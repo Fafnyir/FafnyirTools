@@ -1,0 +1,40 @@
+# Feature requirements and actual baseline
+
+The source and explicit user decisions outrank old assistant descriptions. “Present” below means code exists in the adopted baseline; it does not imply exhaustive runtime validation.
+
+| Feature | Baseline contract | Status |
+| --- | --- | --- |
+| Identity/integration | Fafnyir Tools for EllesmereUI; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
+| Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, size and offsets; drawn above frame border | Present |
+| Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle | Present |
+| Blizzard Bar Art | Detach/reparent recovered native artwork to Bar 1, follow movement/scaling and preserve toggle; do not restore failed early alignment attempts | Present; historical user confirmation |
+| Flyout Fix | Match parent action-button styling, including border style/color instead of forced white pixel borders; preserve toggle | Present; historical user confirmation |
+| Unit Frame Sources | Player, Target, Target of Target, Focus, Boss via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 15 combinations individually |
+| Legacy source settings | Keep `inherit` data untouched; display effective native source without writing a new override; unknown API must not invent a source | Present |
+| ToT dependency | Blizzard ToT requires Blizzard Target; EUI may fall back to its ToT when Target is EUI | Existing tooltip/behavior contract |
+| Aura Skins | Blizzard player/Target aura styling; Target availability follows effective Target source, not blanket EUI addon presence; hold ownership for the session until reload | Present |
+| Target aura layout | Buffs and debuffs wrap after six icons; independent Target icon size, filters, border/zoom/text settings | Present; mocked sizes 16/32/60; historical user confirmation |
+| Focus auras | Distinct from Focus source selection; no custom Focus aura implementation | Not implemented |
+| Status textures | Hide relevant Blizzard Target/Focus status textures without adding a toggle | Present |
+| Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
+| Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; omit redundant Fafnyir Tools tooltip heading | Present foundation |
+| Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
+| Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Missing from active baseline; previously implemented |
+| About | Version, history, credits, support link | Present but older history/companion credit needs reconciliation |
+
+## XP contract
+
+- Current gradient defaults: `#5563FF` to `#C561FF`, alpha 1 at both ends.
+- Rested defaults: `#4F8FFF` at both ends, alpha 1.
+- Quest default: `#FF9600`, alpha 1, enabled by default.
+- Existing current-gradient enable default remains **false**; the repair changes colors, not that preference. Rested gradient default remains true and follows the existing gradient module behavior. Quest enable is independent.
+- Sum positive XP rewards for completed, non-header, non-hidden quests in the current quest log; avoid duplicates and incomplete quests.
+- Begin the orange segment at current XP and extend by the summed reward; clip at the current level boundary.
+- Refresh at login/world entry and registered quest/XP/level/exhaustion/data-load events; respond to bar value, size and show updates.
+- Hide the segment at effective max level, when XP is disabled/invalid, no completed reward exists, or its own toggle is off. Inherit bar visibility; do not force the EUI holder visible.
+- Keep the user's selected quest unchanged and use explicit quest-ID reward lookup. Failed selection-setter approaches from v1.1.0 experiments are not current design.
+- Preserve custom saved colors/alpha and saved enable choices; fill missing values only. An explicit Reset action is allowed to restore defaults.
+
+## Preservation boundaries
+
+Changing source ownership, category labels, XP defaults, filter choices or module inventory is a product change requiring appropriate scope and tests. Do not infer approval from a historical proposal. The active source is the working baseline, while previously accepted omissions remain visible in OPEN_ITEMS.md for restoration decisions.

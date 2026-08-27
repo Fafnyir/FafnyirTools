@@ -1,0 +1,73 @@
+[
+  {
+    "id": "01a044c9-66c6-7012-9de6-11093a8a0b10",
+    "title": "Add ToT and Focus frame sources",
+    "file": "docs/history/01a044c9-66c6-7012-9de6-11093a8a0b10.md",
+    "messages": 31,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/27/rollout-2026-08-27T15-54-04-01a044c9-66c6-7012-9de6-11093a8a0b10.jsonl"
+  },
+  {
+    "id": "01a04568-9348-7180-8adf-921ebcbdd3b7",
+    "title": "Fix missing Quest XP overlay",
+    "file": "docs/history/01a04568-9348-7180-8adf-921ebcbdd3b7.md",
+    "messages": 12,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/27/rollout-2026-08-27T18-47-56-01a04568-9348-7180-8adf-921ebcbdd3b7.jsonl"
+  },
+  {
+    "id": "01a03d9a-15c3-7593-864f-e2022d69cdd3",
+    "title": "Reorganize Fafnyir options",
+    "file": "docs/history/01a03d9a-15c3-7593-864f-e2022d69cdd3.md",
+    "messages": 15,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/26/rollout-2026-08-26T06-25-03-01a03d9a-15c3-7593-864f-e2022d69cdd3.jsonl"
+  },
+  {
+    "id": "01a03639-3b4c-7592-b36f-6700a93a27ba",
+    "title": "Build Quest XP overlay v1.1.0",
+    "file": "docs/history/01a03639-3b4c-7592-b36f-6700a93a27ba.md",
+    "messages": 26,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/24/rollout-2026-08-24T20-01-55-01a03639-3b4c-7592-b36f-6700a93a27ba.jsonl"
+  },
+  {
+    "id": "01a0362d-bca9-7f62-b1df-8f1e19db69c7",
+    "title": "Find default colors",
+    "file": "docs/history/01a0362d-bca9-7f62-b1df-8f1e19db69c7.md",
+    "messages": 5,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/24/rollout-2026-08-24T19-49-22-01a0362d-bca9-7f62-b1df-8f1e19db69c7.jsonl"
+  },
+  {
+    "id": "01a030b5-19fd-75c2-ab3f-60c021417029",
+    "title": "Website",
+    "file": "docs/history/01a030b5-19fd-75c2-ab3f-60c021417029.md",
+    "messages": 7,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/23/rollout-2026-08-23T18-19-30-01a030b5-19fd-75c2-ab3f-60c021417029.jsonl"
+  },
+  {
+    "id": "01a02f9a-6bbe-7bf3-a56c-09bcad0f39eb",
+    "title": "Fix Blizzard bar art alignment",
+    "file": "docs/history/01a02f9a-6bbe-7bf3-a56c-09bcad0f39eb.md",
+    "messages": 87,
+    "source": "/Users/fpatten/.codex/sessions/2026/08/23/rollout-2026-08-23T13-10-44-01a02f9a-6bbe-7bf3-a56c-09bcad0f39eb.jsonl"
+  },
+  {
+    "id": "01a01c6e-27d2-7ee3-bd80-34a9d4131e68",
+    "title": "Troubleshoot flashing red gear",
+    "file": "docs/history/01a01c6e-27d2-7ee3-bd80-34a9d4131e68.md",
+    "messages": 5,
+    "source": "/Users/fpatten/.codex/archived_sessions/rollout-2026-08-19T19-49-36-01a01c6e-27d2-7ee3-bd80-34a9d4131e68.jsonl"
+  },
+  {
+    "id": "01a02130-96e6-7e70-8c8f-977f58a50dd6",
+    "title": "Assess Masque skin EllesmereUI port",
+    "file": "docs/history/01a02130-96e6-7e70-8c8f-977f58a50dd6.md",
+    "messages": 68,
+    "source": "/Users/fpatten/.codex/archived_sessions/rollout-2026-08-20T18-00-27-01a02130-96e6-7e70-8c8f-977f58a50dd6.jsonl"
+  },
+  {
+    "id": "6a73253e-7b10-83ea-b748-e1a08365eb74",
+    "title": "Fafnyir Tools",
+    "file": "docs/history/fafnyir-tools-main.md",
+    "turns": 204,
+    "truncated_messages": 0,
+    "source": "Cached read_thread pages recovered from the identified local task histories; recent page refreshed on 2026-08-27."
+  }
+]

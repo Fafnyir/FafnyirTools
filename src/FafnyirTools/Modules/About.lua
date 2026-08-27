@@ -1,0 +1,156 @@
+local ADDON_NAME, ns = ...
+
+local feature = {
+    key = "About",
+    page = "About",
+    searchTerms = {"about","version","changelog","credits","patreon","support"},
+}
+
+ns:RegisterFeature(feature.key, feature)
+
+local VERSION = "v1.1.2"
+local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
+
+local CHANGELOG = {
+    { version = "v1.1.2", lines = {
+        "Added Player, Target, Target of Target, Focus, and Boss frame source controls.",
+        "Choose EllesmereUI, Blizzard Default, or Hidden; source changes require a reload.",
+        "Existing inherited choices display the effective EllesmereUI frame source.",
+        "Moved Aura Skins into Unit Frames and grouped action controls under Action Bars.",
+        "Restored Blizzard Bar Art and Flyout Fix controls.",
+        "Enabled Aura Skins for Blizzard Target frames while other EUI frames remain active.",
+        "Target buffs and debuffs wrap after six icons per row.",
+    }},
+    { version = "v1.0.7", lines = {
+        "Rebuilt Blizzard TargetFrame aura skinning for the WoW 12.1 AuraKit system.",
+        "Added independent Target Aura Size control.",
+        "Added Target Buff filters: All Buffs, Stealable, Big Defensive, and Dispellable.",
+        "Added Target Debuff filters: All Debuffs, Own Only, and Important.",
+        "Added Target Buff Filter: All Buffs, Own Only, and Important.",
+        "Added a separate Target Aura Size control.",
+        "Automatically hides Blizzard target and focus status textures.",
+    }},
+    { version = "v1.0.6", lines = {
+        "Added Device Layout automatic Blizzard Edit Mode layout switching.",
+        "Added a per-device default Edit Mode layout.",
+        "Added optional per-specialization layout overrides.",
+        "Added automatic layout switching when changing specialization.",
+        "Retained the Right-Click Self Cast compatibility fix for current EllesmereUI action bars.",
+    }},
+    { version = "v1.0.5", lines = {
+        "Fixed Right-Click Self Cast for current EllesmereUI EABButton action bars.",
+        "Added Aura Skins module.",
+        "Added skinning for Blizzard player buffs and debuffs.",
+        "Added skinning for Blizzard target buffs and debuffs.",
+        "Added Target Frame Auras toggle.",
+        "Added compatibility lockout when EllesmereUI Unit Frames is enabled.",
+        "Fixed target aura skinning for pooled target aura buttons.",
+        "Added reload confirmation when Aura Skins is enabled or disabled.",
+        "Removed the Fafnyir Tools header from Bags & Inventory item tooltips.",
+    }},
+    { version = "v1.0.4", lines = {
+        "Added class colors to character names in item-location tooltips.",
+        "Updated About page credit to Envisioned by Fafnyir.",
+    }},
+    { version = "v1.0.3", lines = {
+        "Added About page.",
+        "Added version information.",
+        "Added changelog.",
+        "Added credits.",
+        "Added Patreon support button.",
+        "Added Bags & Inventory tracking foundation.",
+        "Added bag and bank item caching.",
+        "Added account gold summary.",
+        "Added currency caching.",
+        "Added item-location tooltip counts.",
+    }},
+    { version = "v1.0.2", lines = {
+        "Fixed XP Bar gradient flickering.",
+        "Fixed Rested XP gradient restoring to white.",
+        "Updated project description.",
+    }},
+    { version = "v1.0.1", lines = {
+        "Added XP Bar Gradient.",
+        "Added Rested XP Gradient.",
+        "Added gradient direction.",
+        "Added color pickers.",
+    }},
+    { version = "v1.0.0", lines = {
+        "Initial release.",
+        "Added Resting Indicator.",
+        "Added Right-Click Self Cast.",
+        "Added native EllesmereUI integration.",
+    }},
+}
+
+local function AddText(parent, text, y, size, alpha)
+    local fs = EllesmereUI.MakeFont(parent, size or 12, nil, 1, 1, 1, alpha or 1)
+    fs:SetPoint("TOPLEFT", parent, "TOPLEFT", 8, y)
+    fs:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -8, y)
+    fs:SetJustifyH("LEFT")
+    fs:SetWordWrap(true)
+    fs:SetText(text)
+    fs:SetHeight(22)
+    return 22
+end
+
+function feature:BuildOptions(parent, yOffset)
+    local W = EllesmereUI.Widgets
+    local y = yOffset
+    local h
+
+    parent._showRowDivider = true
+
+    _, h = W:SectionHeader(parent, "FAFNYIR TOOLS FOR ELLESMEREUI", y)
+    y = y - h
+    h = AddText(parent, "A collection of enhancements for EllesmereUI.", y - 4, 13, 0.85)
+    y = y - h - 10
+
+    _, h = W:SectionHeader(parent, "VERSION", y)
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        { type="label", text=VERSION },
+        { type="label", text="" })
+    y = y - h
+
+    _, h = W:SectionHeader(parent, "CHANGELOG", y)
+    y = y - h
+    for _, entry in ipairs(CHANGELOG) do
+        h = AddText(parent, entry.version, y - 2, 12, 1)
+        y = y - h
+        for _, line in ipairs(entry.lines) do
+            h = AddText(parent, "• " .. line, y - 1, 11, 0.78)
+            y = y - h
+        end
+        y = y - 8
+    end
+
+    _, h = W:SectionHeader(parent, "CREDITS", y)
+    y = y - h
+    h = AddText(parent, "Envisioned by Fafnyir", y - 2, 12, 1)
+    y = y - h
+    h = AddText(parent, "Special thanks to Ellesmere, creator of EllesmereUI.", y - 1, 11, 0.78)
+    y = y - h - 8
+
+    _, h = W:SectionHeader(parent, "SUPPORT DEVELOPMENT", y)
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        {
+            type="button",
+            text="Support on Patreon",
+            buttonText="Open Patreon",
+            onClick=function()
+                if C_Browser and C_Browser.OpenExternalLink then
+                    C_Browser.OpenExternalLink(PATREON_URL)
+                elseif LaunchURL then
+                    LaunchURL(PATREON_URL)
+                else
+                    ns:Print(PATREON_URL)
+                end
+            end,
+        },
+        { type="label", text=PATREON_URL })
+    y = y - h
+
+    return math.abs(y)
+end

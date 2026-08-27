@@ -1,0 +1,171 @@
+local ADDON_NAME, ns = ...
+
+ns.ADDON_NAME = ADDON_NAME
+ns.MODULE_KEY = "FafnyirTools"
+ns.modules = ns.modules or {}
+ns.state = ns.state or {
+    optionsRegistered = false,
+}
+
+ns.defaults = {
+    blizzardBarArt = {
+        enabled = true,
+    },
+    flyoutFix = {
+        enabled = true,
+    },
+    resting = {
+        enabled = true,
+        hideAtMaxLevel = false,
+        size = 36,
+        offsetX = 20,
+        offsetY = -15,
+    },
+    rightClickSelfCast = {
+        enabled = true,
+    },
+    unitFrameSources = {
+        player = "inherit",
+        target = "inherit",
+        boss = "inherit",
+        targettarget = "inherit",
+        focus = "inherit",
+    },
+    deviceLayout = {
+        enabled = true,
+        presetIndex = 0,
+        specOverrides = {},
+    },
+    inventory = {
+        enabled = true,
+        tooltips = true,
+        characters = {},
+        warband = { items = {}, money = 0, updated = 0 },
+        guilds = {},
+        mail = {},
+        auctions = {},
+        currencies = {},
+    },
+    xpBar = {
+        enabled = false,
+        orientation = "HORIZONTAL",
+        startColor = { r = 85 / 255, g = 99 / 255, b = 1, a = 1 },
+        endColor = { r = 197 / 255, g = 97 / 255, b = 1, a = 1 },
+        questEnabled = true,
+        questColor = { r = 1, g = 150 / 255, b = 0, a = 1 },
+        restedEnabled = true,
+        restedStartColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
+        restedEndColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
+    },
+    auraSkins = {
+        enabled = false,
+        iconSize = 32,
+        targetIconSize = 32,
+        targetBuffFilter = "all",
+        targetDebuffFilter = "all",
+        showText = true,
+        textSize = 11,
+        borderTexture = "solid",
+        borderSize = 1,
+        borderBehind = false,
+        borderR = 0,
+        borderG = 0,
+        borderB = 0,
+        borderA = 1,
+        noBorderDebuffs = true,
+        buffIconZoom = 0.055,
+        debuffIconZoom = 0.055,
+        durationFormat = "blizzard",
+        showExpandButton = true,
+        targetAuras = true,
+    },
+}
+
+local function CopyDefaults(source, target)
+    for key, value in pairs(source) do
+        if type(value) == "table" then
+            if type(target[key]) ~= "table" then
+                target[key] = {}
+            end
+            CopyDefaults(value, target[key])
+        elseif target[key] == nil then
+            target[key] = value
+        end
+    end
+end
+
+ns.CopyDefaults = CopyDefaults
+
+function ns:InitializeDatabase()
+    FafnyirToolsDB = FafnyirToolsDB or {}
+    CopyDefaults(self.defaults, FafnyirToolsDB)
+end
+
+function ns:GetDatabase()
+    self:InitializeDatabase()
+    return FafnyirToolsDB
+end
+
+function ns:RegisterFeature(key, feature)
+    if type(key) ~= "string" or type(feature) ~= "table" then
+        return
+    end
+
+    self.modules[key] = feature
+end
+
+function ns:ResetDatabase()
+    FafnyirToolsDB = {}
+    CopyDefaults(self.defaults, FafnyirToolsDB)
+
+    for _, feature in pairs(self.modules) do
+        if type(feature.Refresh) == "function" then
+            feature:Refresh()
+        end
+    end
+end
+
+function ns:Print(message)
+    print("Fafnyir Tools: " .. tostring(message))
+end
+
+ns:InitializeDatabase()
+
+SLASH_FAFNYIRTOOLS1 = "/faftools"
+SlashCmdList["FAFNYIRTOOLS"] = function()
+    if EllesmereUI and EllesmereUI.NavigateToElementSettings then
+        EllesmereUI:NavigateToElementSettings(ns.MODULE_KEY, "Resting")
+    elseif EllesmereUI and EllesmereUI.ToggleOptions then
+        EllesmereUI:ToggleOptions()
+    else
+        ns:Print("EllesmereUI options are not available yet.")
+    end
+end
+
+SLASH_FAFNYIRTOOLSDEBUG1 = "/faftoolsdebug"
+SlashCmdList["FAFNYIRTOOLSDEBUG"] = function()
+    local euiLoaded = C_AddOns
+        and C_AddOns.IsAddOnLoaded
+        and C_AddOns.IsAddOnLoaded("EllesmereUI")
+
+    local apiReady = EllesmereUI
+        and type(EllesmereUI.RegisterModule) == "function"
+
+    local sidebarEntry = EllesmereUI
+        and EllesmereUI._addonInfoByFolder
+        and EllesmereUI._addonInfoByFolder[ns.MODULE_KEY] ~= nil
+
+    print("Fafnyir Tools debug:")
+    print("  Addon loaded: yes")
+    print("  EllesmereUI loaded: " .. (euiLoaded and "yes" or "no"))
+    print("  EllesmereUI options API: " .. (apiReady and "ready" or "missing"))
+    print("  Sidebar entry: " .. (sidebarEntry and "installed" or "missing"))
+    print("  Options registered: " .. (ns.state.optionsRegistered and "yes" or "no"))
+    print("  Features loaded: "
+        .. (ns.modules.Resting and "Resting " or "")
+        .. (ns.modules.RightClickSelfCast and "RightClickSelfCast " or "")
+        .. (ns.modules.XPBar and "XPBar " or "")
+        .. (ns.modules.DeviceLayout and "DeviceLayout " or "")
+        .. (ns.modules.AuraSkins and "AuraSkins " or "")
+        .. (ns.modules.Inventory and "Inventory" or ""))
+end

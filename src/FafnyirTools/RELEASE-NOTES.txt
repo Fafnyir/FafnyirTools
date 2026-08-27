@@ -1,0 +1,27 @@
+Fafnyir Tools for EllesmereUI v1.1.2
+
+Unit Frames
+- Player, Target, Target of Target, Focus and Boss source controls.
+- Sources: EllesmereUI / Blizzard Default / Hidden.
+- Previous inherited choices show the effective EllesmereUI source without
+  changing the layout. Selecting a source creates an explicit override.
+- If the EUI source API is unavailable, no inherited selection is shown;
+  explicit selections are saved and applied when the API becomes available.
+- Source changes require a UI reload; Reload Now and Later are supported.
+- Blizzard Target of Target requires a Blizzard Target frame. Otherwise,
+  EllesmereUI falls back to its own Target of Target frame.
+
+Aura Skins (under Unit Frames)
+- Styled Blizzard Target auras work while EUI boss frames remain active.
+- Target buffs and debuffs wrap after six icons per row.
+- Existing icon size, filters and appearance settings are preserved.
+- Focus aura styling is not included.
+
+Action Bars
+- Right-Click Self Cast, Blizzard Bar Art and Flyout Fix share one page.
+- Blizzard Bar Art and Flyout Fix retain their existing saved preferences.
+
+Installation
+Replace the FafnyirTools folder in Interface/AddOns and reload the UI.
+Do not delete SavedVariables; existing settings are preserved.
+EllesmereUI is required. No EllesmereUI files are modified.

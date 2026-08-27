@@ -1,0 +1,27 @@
+## Interface: 120000, 120001, 120005, 120007, 120100
+## Title: |cFF6600CCFafnyir Tools|r |cFFFFFFFFfor EllesmereUI|r
+## Author: Fafnyir
+## Category-enUS: |cFF6600CCFafnyirs|r |cFFFFFFFFHoard|r
+## IconTexture: Interface\AddOns\FafnyirMedia\logo\AddonLogo
+## Dependencies: EllesmereUI
+## SavedVariables: FafnyirToolsDB
+## Version: v1.1.1
+## Notes: A collection of enhancements for EllesmereUI.
+
+Core\Bootstrap.lua
+Core\Sidebar.lua
+Modules\HideStatusTextures.lua
+Modules\BlizzardBarArt.lua
+Modules\FlyoutButtonMatch.lua
+Modules\PermanentCompanionPet.lua
+Modules\About.lua
+Modules\Resting.lua
+Modules\RightClickSelfCast.lua
+Modules\DeviceLayout.lua
+Modules\XPBar.lua
+Modules\AuraSkins.lua
+Modules\Inventory\Core.lua
+Modules\Inventory\Tooltips.lua
+Modules\Inventory\Options.lua
+Core\Options.lua
+Core\Events.lua
