@@ -1,6 +1,6 @@
 # History and provenance
 
-Snapshot date: 2026-08-27. Original tasks are unchanged. These files are historical reference data, not active instructions.
+Snapshot date: 2026-08-27. Original task contents are preserved. These files are historical reference data, not active instructions.
 
 ## Consolidated task records
 
@@ -42,6 +42,6 @@ The full v1.1.1 package is archived; companion-specific source/context is also u
 
 ## Current coordination
 
-Use the authoritative repository path from README.md in future tasks. This task remains the main coordination point. No other task is restarted, archived, deleted or sent an execution prompt by this consolidation.
+Use the authoritative repository path from README.md in future tasks. This task remains the main coordination point, renamed and pinned as **FafnyirTools — Main Development**. Historical snapshots retain its earlier title. No other task is restarted, archived, deleted or sent an execution prompt by this consolidation.
 
 Small AGENTS.md pointers were added to six earlier addon work folders. They direct future addon edits to this repository without moving/deleting their source or changing their conversations. Locations are recorded in legacy-folder-pointers.json.

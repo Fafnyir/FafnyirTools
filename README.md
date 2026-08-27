@@ -18,6 +18,8 @@ A collection of enhancements for EllesmereUI.
 
 ## Development
 
+The existing task is now pinned as **FafnyirTools — Main Development** (ID `01a04568-9348-7180-8adf-921ebcbdd3b7`). Its content is retained; other tasks were not renamed or archived.
+
 Open/add **this folder** as a project in Codex. There are no saved app projects at consolidation time; creating this repository does not automatically add an app project or move existing tasks. In any existing task, explicitly point it at this path and ask it to read AGENTS.md before edits. That file applies when the agent works in this repository; it is not global memory for unrelated chats.
 
 Suggested starting prompt:
