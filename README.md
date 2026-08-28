@@ -4,7 +4,7 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current baseline:** v1.1.2 QuestXPFixed, confirmed working by the user on 2026-08-27. This consolidation changes no addon files. The exact 19-file source is in `src/FafnyirTools`; the original corrected ZIP is in `releases/`.
+**Current source:** consolidated v1.1.2 feature restoration (20 addon files). Restores Companion Pet/QoL and release history while preserving the working Quest XP and selective Unit Frame behavior. Offline checks pass; the newly combined build still requires in-game verification. The prior user-confirmed QuestXPFixed ZIP remains under releases/ as an immutable baseline.
 
 ## Start here
 

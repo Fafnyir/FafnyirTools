@@ -32,14 +32,15 @@ def check(baseline=False):
     expected = {p.removeprefix('FafnyirTools/') for p in fingerprint['files']}
     assert expected <= {p.relative_to(ADDON).as_posix() for p in ADDON.rglob('*') if p.is_file()}, 'Baseline module/file removed; reconcile feature inventory explicitly'
     required = {
+        'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'QoL'),
         'Modules/About.lua': ('About', 'About'),
-        'Modules/Resting.lua': ('Resting', 'Resting'),
+        'Modules/Resting.lua': ('Resting', 'Unit Frames'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'Action Bars'),
         'Modules/BlizzardBarArt.lua': ('BlizzardBarArt', 'Action Bars'),
         'Modules/FlyoutButtonMatch.lua': ('FlyoutButtonMatch', 'Action Bars'),
         'Modules/UnitFrameSources.lua': ('UnitFrameSources', 'Unit Frames'),
-        'Modules/DeviceLayout.lua': ('DeviceLayout', 'Device Layout'),
-        'Modules/XPBar.lua': ('XPBar', 'XP Bar'),
+        'Modules/DeviceLayout.lua': ('DeviceLayout', 'Layouts'),
+        'Modules/XPBar.lua': ('XPBar', 'XP & Progression'),
         'Modules/AuraSkins.lua': ('AuraSkins', 'Unit Frames'),
         'Modules/Inventory/Core.lua': ('Inventory', 'Bags & Inventory'),
     }
@@ -57,7 +58,7 @@ def check(baseline=False):
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
       for _,key in ipairs({'blizzardBarArt','flyoutFix','resting','rightClickSelfCast',
-          'unitFrameSources','deviceLayout','inventory','xpBar','auraSkins'}) do
+          'unitFrameSources','deviceLayout','inventory','xpBar','auraSkins','permanentCompanionPet'}) do
         assert(type(FafnyirToolsDB[key])=='table',key)
       end
       FafnyirToolsDB.unrecognizedFutureSetting={keep=true}
@@ -71,7 +72,7 @@ def check(baseline=False):
         assert actual == fingerprint['files'], 'Source differs from adopted baseline'
         print('PASS source byte-identical to user-confirmed baseline', flush=True)
     print(f'PASS {len(entries)} Lua files, complete/unique TOC, expected features/pages/default sections, metadata', flush=True)
-    for test in ['test_xp.py', 'test_aura_sources_options.py']:
+    for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_companion.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

@@ -2,7 +2,7 @@ local ADDON_NAME, ns = ...
 
 local feature = {
     key = "XPBar",
-    page = "XP Bar",
+    page = "XP & Progression",
     searchTerms = {
         "xp bar",
         "experience bar",

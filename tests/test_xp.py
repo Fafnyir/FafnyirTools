@@ -5,7 +5,7 @@ lua=LuaRuntime(unpack_returned_tuples=True)
 root=Path(__file__).resolve().parents[1]/'src/FafnyirTools'
 for p in root.rglob('*.lua'):
     lua.execute('assert(loadstring(...))',p.read_text())
-print('PASS: all 17 Lua files compile under Lua 5.1')
+print('PASS: all active Lua files compile under Lua 5.1')
 toc=(root/'FafnyirTools.toc').read_text()
 for line in toc.splitlines():
     if line and not line.startswith('#'): assert (root/line.replace('\\','/')).is_file(),line
@@ -87,14 +87,14 @@ db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.t
 print('PASS: totals, clipping, resizing, max level, zero XP, disabled XP, toggle, defaults, saved settings, gradients')
 # Fill feature slots so the real options registration can be exercised independently of other module APIs.
 lua.execute('''
-for _,k in ipairs({'About','Resting','RightClickSelfCast','BlizzardBarArt','FlyoutButtonMatch','UnitFrameSources','DeviceLayout','AuraSkins','Inventory'}) do ns.modules[k]={page=k} end
+for _,k in ipairs({'About','PermanentCompanionPet','Resting','RightClickSelfCast','BlizzardBarArt','FlyoutButtonMatch','UnitFrameSources','DeviceLayout','AuraSkins','Inventory'}) do ns.modules[k]={page=k} end
 ns.Sidebar={Install=function() return true end}
 ''')
 run('Core/Options.lua');run('Core/Events.lua')
 lua.execute('''
 ev=frames[#frames];ev.scripts.OnEvent(ev,'PLAYER_LOGIN');flush();assert(ns.state.optionsRegistered and registered)
-local hasXP=false;for _,p in ipairs(registered.pages) do if p=='XP Bar' then hasXP=true end end;assert(hasXP)
-assert(registered.buildPage('XP Bar',CreateFrame(),0)>0)
+local hasXP=false;for _,p in ipairs(registered.pages) do if p=='XP & Progression' then hasXP=true end end;assert(hasXP)
+assert(registered.buildPage('XP & Progression',CreateFrame(),0)>0)
 for _,e in ipairs({'PLAYER_ENTERING_WORLD','PLAYER_XP_UPDATE','PLAYER_LEVEL_UP','UPDATE_EXHAUSTION','QUEST_LOG_UPDATE','QUEST_WATCH_UPDATE','QUEST_ACCEPTED','QUEST_REMOVED','QUEST_TURNED_IN','QUEST_DATA_LOAD_RESULT'}) do
  assert(ev.events[e],e);completed={};ev.scripts.OnEvent(ev,e);flush();assert(not o.shown,e)
  completed={[2]=true};ev.scripts.OnEvent(ev,e);flush();assert(o.shown and o.w==100,e)

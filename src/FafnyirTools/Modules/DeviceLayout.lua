@@ -5,7 +5,7 @@ local SPEC_DEFAULT = -1
 
 local feature = {
     key = "DeviceLayout",
-    page = "Device Layout",
+    page = "Layouts",
     searchTerms = {
         "device", "layout", "preset", "edit mode", "resolution",
         "computer", "machine", "laptop", "desktop", "specialization", "spec",

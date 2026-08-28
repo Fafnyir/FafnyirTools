@@ -2,7 +2,7 @@ local ADDON_NAME, ns = ...
 
 local feature = {
     key = "Resting",
-    page = "Resting",
+    page = "Unit Frames",
     searchTerms = {
         "resting",
         "rest icon",

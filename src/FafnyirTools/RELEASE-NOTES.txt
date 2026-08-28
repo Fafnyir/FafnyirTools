@@ -1,27 +1,33 @@
-Fafnyir Tools for EllesmereUI v1.1.2
+Fafnyir Tools for EllesmereUI v1.1.2 — consolidated feature restoration
 
-Unit Frames
+Restored
+- Permanent Companion Pet, with per-character specific/random-favorite choices.
+- QoL page, original saved pet preferences, safety checks and summon events.
+- Missing v1.0.8-v1.1.1 changelog entries and companion credits to Eiya/raine.
+- Legacy Quest XP toggle/color preferences migrate when newer keys are absent.
+
+Preserved
 - Player, Target, Target of Target, Focus and Boss source controls.
-- Sources: EllesmereUI / Blizzard Default / Hidden.
-- Previous inherited choices show the effective EllesmereUI source without
-  changing the layout. Selecting a source creates an explicit override.
-- If the EUI source API is unavailable, no inherited selection is shown;
-  explicit selections are saved and applied when the API becomes available.
-- Source changes require a UI reload; Reload Now and Later are supported.
-- Blizzard Target of Target requires a Blizzard Target frame. Otherwise,
-  EllesmereUI falls back to its own Target of Target frame.
+- EllesmereUI / Blizzard Default / Hidden choices, reload prompt, legacy inheritance.
+- Blizzard Target aura skins with EUI bosses; six icons per row and existing filters.
+- Completed Quest XP overlay, orange #FF9600 at full opacity.
+- Current XP #5563FF to #C561FF; Rested XP #4F8FFF at full opacity.
+- Existing saved custom colors and settings; gradient enable preference unchanged.
+- Right-click self cast, Blizzard Bar Art, Flyout Fix, inventory and layout features.
 
-Aura Skins (under Unit Frames)
-- Styled Blizzard Target auras work while EUI boss frames remain active.
-- Target buffs and debuffs wrap after six icons per row.
-- Existing icon size, filters and appearance settings are preserved.
-- Focus aura styling is not included.
+Options
+About / QoL / Unit Frames / Action Bars / XP & Progression / Bags & Inventory / Layouts.
+Resting is under Unit Frames after Aura Skins. /faftools opens Unit Frames.
+About text height now adapts to wrapped lines.
 
-Action Bars
-- Right-Click Self Cast, Blizzard Bar Art and Flyout Fix share one page.
-- Blizzard Bar Art and Flyout Fix retain their existing saved preferences.
+Scope
+This restores previously implemented features; it does not add the discarded
+Masque, DataBroker or Warband Mail selector experiments. Focus aura styling
+and full mail/auction/warband/guild inventory scanners remain unimplemented.
 
 Installation
-Replace the FafnyirTools folder in Interface/AddOns and reload the UI.
-Do not delete SavedVariables; existing settings are preserved.
-EllesmereUI is required. No EllesmereUI files are modified.
+Replace FafnyirTools under Interface/AddOns, then reload. Keep SavedVariables.
+Permanent Companion Pet is off by default unless previously enabled; configure
+it under QoL. All five source controls retain their prior settings.
+No EllesmereUI files are modified. Offline regression checks pass; verify the
+restored pet, seven-page layout and mixed frame setup in game before publishing.

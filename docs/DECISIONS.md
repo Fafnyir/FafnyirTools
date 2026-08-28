@@ -27,3 +27,14 @@
 ## Extension rules retained from the user
 
 Do not use EUI's logo or a confusingly similar logo; do not lead the addon name with EllesmereUI; do not join its core addon-list group. Own a distinct Fafnyir Tools options sidebar group instead of inserting into EUI Core/QoL/UI Reskin groups. An internal Fafnyir QoL page is permitted. Preserve the user's Fafnyirs Hoard/category and FafnyirMedia icon references. These are historical project requirements, not a fresh audit of upstream branding policy.
+
+
+## 2026-08-27 — Full v1.1.2 request
+
+User authorized restoring previously shipped features in this task. Companion
+Pet/QoL and history omissions are now resolved. Adopt seven pages: About, QoL,
+Unit Frames (source controls, Aura Skins, Resting), Action Bars, XP & Progression,
+Bags & Inventory, Layouts. Preserve three source choices and all current behavior.
+Retain prior v1.0.9/v1.1.1 credit to raine found in the recovered About source,
+in addition to Eiya. Do not treat unimplemented inventory/Focus aura ambitions
+as shipped features. No discarded experiments restored.

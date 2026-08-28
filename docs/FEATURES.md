@@ -19,8 +19,10 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
 | Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; omit redundant Fafnyir Tools tooltip heading | Present foundation |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
-| Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Missing from active baseline; previously implemented |
-| About | Version, history, credits, support link | Present but older history/companion credit needs reconciliation |
+| Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
+| About | Version, history, credits, support link | History and original companion credits restored; measured text wrapping |
+
+Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
 
 ## XP contract
 
@@ -38,3 +40,5 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 ## Preservation boundaries
 
 Changing source ownership, category labels, XP defaults, filter choices or module inventory is a product change requiring appropriate scope and tests. Do not infer approval from a historical proposal. The active source is the working baseline, while previously accepted omissions remain visible in OPEN_ITEMS.md for restoration decisions.
+
+Legacy questXPEnabled/questXPColor keys migrate only when questEnabled/questColor are absent; existing new values win. Companion settings and per-character choices are preserved.

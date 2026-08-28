@@ -8,15 +8,16 @@ local retryTicker
 local function OrderedFeatures()
     return {
         ns.modules.About,
+        ns.modules.PermanentCompanionPet,
+        ns.modules.UnitFrameSources,
+        ns.modules.AuraSkins,
         ns.modules.Resting,
         ns.modules.RightClickSelfCast,
         ns.modules.BlizzardBarArt,
         ns.modules.FlyoutButtonMatch,
-        ns.modules.UnitFrameSources,
-        ns.modules.DeviceLayout,
         ns.modules.XPBar,
-        ns.modules.AuraSkins,
         ns.modules.Inventory,
+        ns.modules.DeviceLayout,
     }
 end
 

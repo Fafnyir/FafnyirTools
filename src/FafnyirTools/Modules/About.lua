@@ -20,6 +20,36 @@ local CHANGELOG = {
         "Restored Blizzard Bar Art and Flyout Fix controls.",
         "Enabled Aura Skins for Blizzard Target frames while other EUI frames remain active.",
         "Target buffs and debuffs wrap after six icons per row.",
+        "Restored Permanent Companion Pet with per-character choices under QoL.",
+        "Restored completed Quest XP overlay, toggle and color controls.",
+        "Preserved legacy Quest XP settings and all existing custom colors.",
+        "Consolidated Resting under Unit Frames, with XP & Progression and Layouts pages.",
+    }},
+    { version = "v1.1.1", lines = {
+        "Reorganized options into dedicated Fafnyir Tools categories.",
+        "Moved Permanent Companion Pet to the new Fafnyir Tools QoL section.",
+    }},
+    { version = "v1.1.0", lines = {
+        "Updated the default XP gradient to #5563FF through #C561FF.",
+        "Updated the default Rested XP color to #4F8FFF at full opacity.",
+        "Added a configurable #FF9600 overlay for XP from completed quests in the quest log.",
+        "Added Quest XP updates for login, world entry, quest-log changes, and XP changes.",
+        "Quest XP automatically hides at maximum level or when no completed quest XP is available.",
+    }},
+    { version = "v1.0.9", lines = {
+        "Added Permanent Companion Pet controls to UI Tweaks.",
+        "Permanent Companion Pet idea by Eiya (twitch.tv/eiya).",
+        "Based on the original Permanent Companion Pet WeakAura by raine (wago.io/3It1XU72A).",
+        "Supports a random favorite pet or a specific species/custom pet name.",
+        "Stores pet choice and specific pet name separately for each character.",
+        "Avoids summoning while mounted, stealthed, in combat, on a taxi, or in disabled PvP instances.",
+    }},
+    { version = "v1.0.8", lines = {
+        "Added optional Blizzard decorative artwork for EllesmereUI Bar 1.",
+        "Added automatic Blizzard bar-art scaling and alignment for custom button sizes.",
+        "Added Flyout Fix to match spell flyout button size and border style to its parent action bar.",
+        "Added persistent toggles for Blizzard Bar Art and Flyout Fix.",
+        "Renamed XP Bar to UI Tweaks and consolidated related visual options there.",
     }},
     { version = "v1.0.7", lines = {
         "Rebuilt Blizzard TargetFrame aura skinning for the WoW 12.1 AuraKit system.",
@@ -90,8 +120,10 @@ local function AddText(parent, text, y, size, alpha)
     fs:SetJustifyH("LEFT")
     fs:SetWordWrap(true)
     fs:SetText(text)
-    fs:SetHeight(22)
-    return 22
+    fs:SetHeight(0)
+    local height = math.max(22, fs:GetStringHeight() + 4)
+    fs:SetHeight(height)
+    return height
 end
 
 function feature:BuildOptions(parent, yOffset)
@@ -131,6 +163,12 @@ function feature:BuildOptions(parent, yOffset)
     y = y - h
     h = AddText(parent, "Special thanks to Ellesmere, creator of EllesmereUI.", y - 1, 11, 0.78)
     y = y - h - 8
+
+    h = AddText(parent, "Permanent Companion Pet idea by Eiya — twitch.tv/eiya", y - 1, 11, 0.78)
+    y = y - h
+
+    h = AddText(parent, "Original Companion Pet WeakAura: raine (wago.io/3It1XU72A).", y - 1, 11, 0.78)
+    y = y - h
 
     _, h = W:SectionHeader(parent, "SUPPORT DEVELOPMENT", y)
     y = y - h

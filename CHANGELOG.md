@@ -2,6 +2,15 @@
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
+## 2026-08-27 — Consolidated v1.1.2 feature restoration
+
+- Restored Permanent Companion Pet and QoL with per-character settings and safety/event integration.
+- Migrated older Quest XP preference names only when new keys are missing.
+- Consolidated seven options pages; moved Resting under Unit Frames and updated slash navigation.
+- Restored missing About history/credits; measured wrapped text height.
+- Added companion/event/migration/real-page tests; all combined offline checks pass.
+- Kept XP/aura/source/action behavior and version; in-game confirmation pending.
+
 ## 2026-08-27 — Repository consolidation (addon still v1.1.2)
 
 - Adopted the user-confirmed QuestXPFixed ZIP as the authoritative, unchanged source.

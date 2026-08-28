@@ -23,7 +23,7 @@ Tests are inherited from the two relevant build tasks and made independent of th
 9. Resting animation/size/offsets; layout switching/login message/spec change; inventory scans/tooltips/class colors and toggles.
 10. Open every options page at the user's UI scale and confirm labels, scroll ranges and no duplicate/missing controls.
 
-Do not claim Companion Pet is tested or present until its separate restoration is implemented. Broader storage scanners are not present. Record actual user reports separately from offline passes in CURRENT_STATE.md.
+Companion Pet is restored and offline-tested; its new combined runtime integration still needs in-game verification. Broader storage scanners are not present. Record actual user reports separately from offline passes in CURRENT_STATE.md.
 
 ## Packaging
 
@@ -32,3 +32,13 @@ Only package from a clean committed source tree using tools/package.py. Review d
 ## Consolidation validation evidence (2026-08-27)
 
 All offline suites passed against the exact baseline. Temporary-copy negative probes confirmed that checks fail when Quest XP calculation is disabled, Focus source application is removed, or the Flyout module is dropped from the TOC. No production source was changed for these probes.
+
+
+## Companion restoration coverage
+
+New test_companion.py covers per-character and legacy setting preservation,
+random/specific selection, owned/favorite filtering, resets, all summon safety
+conditions, throttle/coalescing, core login/event dispatch, missing API handling,
+seven real feature pages, legacy Quest XP preference migration, slash navigation
+and measured About text wrapping. Validate all these in game after upgrade,
+especially mount/dismount, combat exit, per-character pet selection and reload.

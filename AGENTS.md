@@ -13,7 +13,7 @@ Read README.md, docs/CURRENT_STATE.md, docs/FEATURES.md, and docs/DECISIONS.md b
 - Preserve Player, Target, Target of Target (`targettarget`), Focus and Boss source controls. Use EllesmereUI's native source API, not blanket frame hiding. Retain Reload Now/Later and session-stable aura ownership.
 - Source dropdown choices are EllesmereUI, Blizzard Default, Hidden. Legacy `inherit` is retained in saved data and resolved through the effective-source getter; do not reintroduce the removed UI choice.
 - Preserve completed Quest XP, current XP and rested defaults, quest events and settings, target aura six-icon rows, action art/flyout fixes, inventory and layout behavior. See FEATURES.md for exact requirements and limitations.
-- Do not silently restore the missing Persistent Companion Pet feature or change the options taxonomy during an unrelated task. It is an explicit unresolved omission with source archived for a focused restoration task.
+- Preserve the restored Persistent Companion Pet feature, per-character choices, migration, safety checks and QoL page. Current pages are About, QoL, Unit Frames (sources/Aura Skins/Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts. Do not silently change that taxonomy during unrelated work.
 - Do not restore discarded DataBroker, Masque port, or failed Warband Mail selector experiments without a new user request.
 - Do not modify upstream EllesmereUI or the installed WoW addon directory unless explicitly requested. Use a distinct Fafnyir Tools sidebar group and preserve branding/credits.
 

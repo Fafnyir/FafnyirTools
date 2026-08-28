@@ -1,18 +1,16 @@
 # Open items — no silent restoration
 
-## 1. Persistent Companion Pet omitted from v1.1.2
+## Resolved in consolidated v1.1.2
 
-**Evidence:** implemented/tested in v1.0.9, present in the v1.1.1 ZIP, absent from adopted v1.1.2 source/TOC/defaults/events/options. The Aug 27 options-layout task explicitly left prior companion changes unmerged. This is a real omission relative to earlier accepted work, not a newly requested feature.
+Persistent Companion Pet, QoL, companion defaults/events/TOC/options, prior
+release history and companion credits are restored. The prior source credited
+raine for the original WeakAura; that existing attribution is retained (not a
+new independent author verification). Eiya credit is retained as well.
 
-**Recovered source:** archive/recovered/v1.1.1 includes PermanentCompanionPet.lua plus Bootstrap, Events, Options, About and TOC context. The entire v1.1.1 ZIP is archived as well.
-
-**Next focused task:** restore the feature into current src, merging only its dependencies, adding QoL controls, preserving per-character choices and legacy migration, adding mocked safety/migration tests, and testing in-game. Do not replace Bootstrap/Events/Options wholesale with old versions: that would lose Unit Frames and the current Quest XP fix again.
-
-Preserve companion safety checks (combat/death/mount/stealth/taxi/vehicle/pet battle/PvP setting), throttle, mode and selected pet per character. Credit Eiya for the idea. The original WeakAura designer remains unverified; do not invent their name. Historical reference: https://wago.io/3It1XU72A (not re-fetched during this consolidation).
-
-## 2. Options taxonomy and changelog reconciliation
-
-Current pages differ from the v1.1.1 seven-category plan, and QoL is missing with Companion Pet. The v1.1.2 About history omits v1.0.8–v1.1.1 and the Quest XP repair; the Companion Pet credit is also absent. Decide the final taxonomy in a focused task, preserving later user-approved Unit Frames/Aura and Action Bars grouping. This repository's changelog preserves the recovered history without modifying the running addon.
+Options are consolidated to seven pages with Resting under Unit Frames,
+XP & Progression and Layouts. This preserves later Aura/source and Action Bars
+grouping. Legacy Quest XP setting names now migrate without overwriting newer
+saved values. These changes are offline-tested; in-game validation is pending.
 
 ## 3. Broader inventory functionality
 

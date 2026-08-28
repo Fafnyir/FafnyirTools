@@ -86,7 +86,7 @@ run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
 for n in ['Modules/RightClickSelfCast.lua','Modules/BlizzardBarArt.lua','Modules/FlyoutButtonMatch.lua','Modules/UnitFrameSources.lua']:
  run((root/n).read_text(),l.globals().ns)
 l.execute('''
-for _,key in ipairs({'About','Resting','DeviceLayout','XPBar','Inventory'}) do
+for _,key in ipairs({'About','PermanentCompanionPet','Resting','DeviceLayout','XPBar','Inventory'}) do
  ns.modules[key]={page=key}
 end
 ns.Sidebar={Install=function() return true end}
@@ -95,7 +95,7 @@ function EllesmereUI:RegisterModule(key,c) config=c end
 run((root/'Core/Options.lua').read_text(),l.globals().ns)
 l.execute('''
 assert(ns.Options:Register())
-local expected={'About','Resting','Action Bars','Unit Frames','DeviceLayout','XPBar','Inventory'}
+local expected={'About','PermanentCompanionPet','Unit Frames','Resting','Action Bars','XPBar','Inventory','DeviceLayout'}
 assert(#config.pages==#expected)
 for i,name in ipairs(expected) do assert(config.pages[i]==name) end
 -- Record actual widget positions to ensure combined sections never overlap.
