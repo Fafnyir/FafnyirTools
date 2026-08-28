@@ -23,7 +23,7 @@ Tests are inherited from the two relevant build tasks and made independent of th
 9. Resting animation/size/offsets; layout switching/login message/spec change; inventory scans/tooltips/class colors and toggles.
 10. Open every options page at the user's UI scale and confirm labels, scroll ranges and no duplicate/missing controls.
 
-Companion Pet is restored and offline-tested; its new combined runtime integration still needs in-game verification. Broader storage scanners are not present. Record actual user reports separately from offline passes in CURRENT_STATE.md.
+Companion Pet is restored and offline-tested. The user confirmed the combined FullFixed build with “All fixed.” on 2026-08-27; this does not establish that every checklist case was exercised. Broader storage scanners are not present. Record actual user reports separately from offline passes in CURRENT_STATE.md.
 
 ## Packaging
 

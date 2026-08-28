@@ -33,9 +33,12 @@ feature pages, existing XP/aura/source/action-options suites, and new companion
 migration/modes/character isolation/safety/throttle/events tests. Legacy XP
 migration, slash navigation and About wrapping are covered.
 
-The old QuestXPFixed build was user-confirmed working. This newly combined
-build has NOT yet received in-game confirmation. Test companion summoning,
-options layout and mixed Unit Frames/XP after install; keep SavedVariables.
+User reported “All fixed.” on 2026-08-27 in task 01a04568-9348-7180-8adf-921ebcbdd3b7 after receiving FullFixed. This records user confirmation, not an exhaustive test matrix; client/EUI versions were not supplied.
+
+Confirmed source commit: 0adfac04691d151a03cfcbf3dfed48b2e533f10f.
+FullFixed archive SHA256: dccdf5bb22d8bec1cbcdef107efd0001bdb6f3b8edaab5ee8b41556fafd61e4a.
+The exact archive is retained in releases/; see docs/baselines/v1.1.2-full-fixed.json.
+Future changes start from this source, preserving SavedVariables.
 No installed WoW files or upstream files were modified; no public release made.
 
 Broader inventory scanners/search, Focus aura styling and discarded experiments

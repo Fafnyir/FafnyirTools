@@ -10,7 +10,7 @@ new independent author verification). Eiya credit is retained as well.
 Options are consolidated to seven pages with Resting under Unit Frames,
 XP & Progression and Layouts. This preserves later Aura/source and Action Bars
 grouping. Legacy Quest XP setting names now migrate without overwriting newer
-saved values. These changes are offline-tested; in-game validation is pending.
+saved values. These changes are offline-tested; the user confirmed “All fixed.” on 2026-08-27. See CURRENT_STATE.md for the exact build and limits of this report.
 
 ## 3. Broader inventory functionality
 

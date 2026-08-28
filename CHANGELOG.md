@@ -9,7 +9,7 @@ This file reconstructs the development history from the identified chats and sou
 - Consolidated seven options pages; moved Resting under Unit Frames and updated slash navigation.
 - Restored missing About history/credits; measured wrapped text height.
 - Added companion/event/migration/real-page tests; all combined offline checks pass.
-- Kept XP/aura/source/action behavior and version; in-game confirmation pending.
+- Kept XP/aura/source/action behavior and version; user confirmed “All fixed.” on 2026-08-27 (see docs/CURRENT_STATE.md).
 
 ## 2026-08-27 — Repository consolidation (addon still v1.1.2)
 

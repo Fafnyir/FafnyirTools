@@ -38,3 +38,8 @@ Bags & Inventory, Layouts. Preserve three source choices and all current behavio
 Retain prior v1.0.9/v1.1.1 credit to raine found in the recovered About source,
 in addition to Eiya. Do not treat unimplemented inventory/Focus aura ambitions
 as shipped features. No discarded experiments restored.
+
+## 2026-08-27 — FullFixed accepted
+
+User reported “All fixed.” on 2026-08-27 in task 01a04568-9348-7180-8adf-921ebcbdd3b7 after receiving FullFixed. This records user confirmation, not an exhaustive test matrix; client/EUI versions were not supplied.
+Adopt source commit 0adfac04691d151a03cfcbf3dfed48b2e533f10f as the known working v1.1.2 baseline. Retain the exact FullFixed ZIP and fingerprint; leave prior artifacts and unfinished wishlist scope unchanged.

@@ -1,0 +1,28 @@
+{
+  "archive": "Fafnyir_Tools_for_EllesmereUI_v1.1.2_FullFixed.zip",
+  "sha256": "dccdf5bb22d8bec1cbcdef107efd0001bdb6f3b8edaab5ee8b41556fafd61e4a",
+  "git_revision": "0adfac04691d151a03cfcbf3dfed48b2e533f10f",
+  "user_confirmation": "User reported \u201cAll fixed.\u201d on 2026-08-27 in task 01a04568-9348-7180-8adf-921ebcbdd3b7 after receiving FullFixed. This records user confirmation, not an exhaustive test matrix; client/EUI versions were not supplied.",
+  "files": {
+    "FafnyirTools/Core/Bootstrap.lua": "13602f28076a6ecf0c633782b9fc0ea820c8bb5c3a215bb93fb54680f9c640c7",
+    "FafnyirTools/Core/Events.lua": "761a8065d3a162e9fa16ff210a63eb47b6785a04ba68407ee5fd1b86c010ec9c",
+    "FafnyirTools/Core/Options.lua": "ae215898038e265e7d13eacba33645943da2cc911a452c126a5f3950adbb7358",
+    "FafnyirTools/Core/Sidebar.lua": "1a373dcbfcff0b88eaac6aeea11510cc6260a39eaf8400836bef3fda6add0539",
+    "FafnyirTools/FafnyirTools.toc": "137bc37d7d45ded128aed4ec5d35fe1b7aa9bc162faf05da062d79936fcd67db",
+    "FafnyirTools/Modules/About.lua": "17165e9e5c95d480a8699e58960c821529bba4d78a326f6301928bddd445f682",
+    "FafnyirTools/Modules/AuraSkins.lua": "bfce99baa2550887dce205c346ffc96923e6aa1191e1a41e7a4beb02fe8c867c",
+    "FafnyirTools/Modules/BlizzardBarArt.lua": "3cce682c21a242d26f2d93cb7163fa8aa9bd961f0add7edacc8273618a77562e",
+    "FafnyirTools/Modules/DeviceLayout.lua": "710a5997a1d2d4df832be82439f5f33a5877043898b22037b3e74661fe12ace8",
+    "FafnyirTools/Modules/FlyoutButtonMatch.lua": "ca3a2da6a4792595065942b21e8fb0fbf0a6a4da211cb43bdb2e11c1fd2991c5",
+    "FafnyirTools/Modules/HideStatusTextures.lua": "e700343bc86808dfc5a3a6e2603e0a0ab52589dab81a690e5c58e22b34b25dec",
+    "FafnyirTools/Modules/Inventory/Core.lua": "0f4bbeaa02a9e47f73edc3c661e3398abf6b19f87c68a45efee74c4e9209ea16",
+    "FafnyirTools/Modules/Inventory/Options.lua": "b334e1c73d295c2cebd572ea5904348e8d4f8f314735d3e7afc67172ea9d1443",
+    "FafnyirTools/Modules/Inventory/Tooltips.lua": "d7731805b4d324fee679eb67d63298929916c3af8079b131c46d1b1022a11422",
+    "FafnyirTools/Modules/PermanentCompanionPet.lua": "88fb728fc5d73151e286a027818355431a4ec134ed50cb1028db2091f23e84d1",
+    "FafnyirTools/Modules/Resting.lua": "c421e9b181f3eb2c66e334d571095fdfedb9bf7f82daac2e5bcfe82d96752698",
+    "FafnyirTools/Modules/RightClickSelfCast.lua": "335a168d9769e49b475fc6298e7fe1f88719e33862c6631cfdf352a53effc111",
+    "FafnyirTools/Modules/UnitFrameSources.lua": "e7337c1c3681e47b202a4e2d76610ba610764c8136303f949cb942f4dafe99eb",
+    "FafnyirTools/Modules/XPBar.lua": "343e61632b7a943d02d446ccfa8fbec7614da3ac17d2a95e0c90d22f72620ad5",
+    "FafnyirTools/RELEASE-NOTES.txt": "d8bad3246e85c2c27dc17f355825ea5e5b0d896d0ec78a322fa77e919d89fa06"
+  }
+}
