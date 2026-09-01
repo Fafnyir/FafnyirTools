@@ -10,7 +10,7 @@ Read README.md, docs/CURRENT_STATE.md, docs/FEATURES.md, and docs/DECISIONS.md b
 
 - Preserve all existing features and saved custom settings; change missing defaults only, never reset user settings during an upgrade. An explicit user reset is different.
 - Keep version v1.1.2 unless the user explicitly authorizes a version change. Update TOC, About and project changelog together when authorized.
-- Preserve Player, Target, Target of Target (`targettarget`), Focus and Boss source controls. Use EllesmereUI's native source API, not blanket frame hiding. Retain Reload Now/Later and session-stable aura ownership.
+- Preserve Player, Target, Target of Target (`targettarget`), Focus, Boss and Pet source controls. Use EllesmereUI's native source API, not blanket frame hiding. Retain Reload Now/Later and session-stable aura ownership.
 - Source dropdown choices are EllesmereUI, Blizzard Default, Hidden. Legacy `inherit` is retained in saved data and resolved through the effective-source getter; do not reintroduce the removed UI choice.
 - Preserve completed Quest XP, current XP and rested defaults, quest events and settings, target aura six-icon rows, action art/flyout fixes, inventory and layout behavior. See FEATURES.md for exact requirements and limitations.
 - Preserve the restored Persistent Companion Pet feature, per-character choices, migration, safety checks and QoL page. Current pages are About, QoL, Unit Frames (sources/Aura Skins/Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts. Do not silently change that taxonomy during unrelated work.

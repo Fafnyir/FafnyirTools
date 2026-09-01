@@ -9,7 +9,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle | Present |
 | Blizzard Bar Art | Detach/reparent recovered native artwork to Bar 1, follow movement/scaling and preserve toggle; do not restore failed early alignment attempts | Present; historical user confirmation |
 | Flyout Fix | Match parent action-button styling, including border style/color instead of forced white pixel borders; preserve toggle | Present; historical user confirmation |
-| Unit Frame Sources | Player, Target, Target of Target, Focus, Boss via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 15 combinations individually |
+| Unit Frame Sources | Player, Target, Target of Target, Focus, Boss, Pet via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 18 combinations individually |
 | Legacy source settings | Keep `inherit` data untouched; display effective native source without writing a new override; unknown API must not invent a source | Present |
 | ToT dependency | Blizzard ToT requires Blizzard Target; EUI may fall back to its ToT when Target is EUI | Existing tooltip/behavior contract |
 | Aura Skins | Blizzard player/Target aura styling; Target availability follows effective Target source, not blanket EUI addon presence; hold ownership for the session until reload | Present |

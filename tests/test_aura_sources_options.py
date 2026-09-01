@@ -121,7 +121,8 @@ bottom=config.buildPage('Unit Frames',{},-12)
 assert(headers[1]=='UNIT FRAME SOURCES' and headers[2]=='AURA SKINS')
 assert(bottom>212 and bottom==-previousY)
 assert(rows[1][1].text=='Player Frame' and rows[2][1].text=='Target of Target')
-assert(rows[4][1].text=='Enable Styled Buffs & Debuffs')
+assert(rows[3][1].text=='Boss Frames' and rows[3][2].text=='Pet Frame')
+assert(rows[5][1].text=='Enable Styled Buffs & Debuffs')
 local terms={}; for _,v in ipairs(config.searchTerms) do terms[v]=true end
 assert(terms['aura skins'] and terms['flyout fix'] and terms['bar art'])
 ''')
@@ -130,7 +131,7 @@ print('PASS deduplicated pages, Action Bars restored controls, saved defaults, c
 l=runtime()
 run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
 l.execute('''
-sourceCalls={}; prompts={}; sources={player='blizzard',target='blizzard',targettarget='blizzard',focus='hidden',boss='eui'}
+sourceCalls={}; prompts={}; sources={player='blizzard',target='blizzard',targettarget='blizzard',focus='hidden',boss='eui',pet='blizzard'}
 local euf=EllesmereUI._ModuleNS.EllesmereUIUnitFrames
 function euf.GetUnitFrameSource(unit) return sources[unit] end
 function euf.SetUnitFrameSource(unit,value) sourceCalls[#sourceCalls+1]={unit,value}; sources[unit]=value end
@@ -141,9 +142,9 @@ StaticPopupDialogs={}; StaticPopup_Show=function(key) fallback=key end
 run((root/'Modules/UnitFrameSources.lua').read_text(),l.globals().ns)
 l.execute('''
 local f=ns.modules.UnitFrameSources
-assert(f:BuildOptions({},0)==140 and #rows==3)
-local widgets={rows[1][1],rows[1][2],rows[2][1],rows[2][2],rows[3][1]}
-local units={'player','target','targettarget','focus','boss'}
+assert(f:BuildOptions({},0)==180 and #rows==4)
+local widgets={rows[1][1],rows[1][2],rows[2][1],rows[2][2],rows[3][1],rows[3][2]}
+local units={'player','target','targettarget','focus','boss','pet'}
 assert(f:ApplySaved() and #sourceCalls==0)
 for i,w in ipairs(widgets) do
  assert(w.getValue()==sources[units[i]])
@@ -160,7 +161,7 @@ for i,w in ipairs(widgets) do
  w.setValue('inherit'); w.setValue(nil); w.setValue('invalid')
  assert(w.getValue()==before and #sourceCalls==0 and #prompts==0)
 end
-sourceCalls={}; assert(f:ApplySaved() and #sourceCalls==5)
+sourceCalls={}; assert(f:ApplySaved() and #sourceCalls==6)
 -- Legacy/unset choices resolve on each read, preserving EUI profile changes.
 local db=ns:GetDatabase().unitFrameSources
 db.focus='inherit'; sources.focus='blizzard'; assert(widgets[4].getValue()=='blizzard')
@@ -172,4 +173,4 @@ assert(widgets[4].getValue()==nil and widgets[1].getValue()=='hidden')
 ns.Print=function() end; widgets[4].setValue('blizzard')
 assert(db.focus=='blizzard' and not f:ApplySaved())
 ''')
-print('PASS all 15 source choices, legacy/unset reads, no migration writes, invalid-input guards, reload callbacks, missing API')
+print('PASS all 18 source choices, legacy/unset reads, no migration writes, invalid-input guards, reload callbacks, missing API')

@@ -5,7 +5,7 @@
 Use `python tools/check.py` with Lupa 2.8 installed. Tests run under Lua 5.1 with mocked WoW/EUI APIs. They verify behavior against the mock contract, not compatibility with every future client.
 
 - test_xp.py: syntax of all active Lua; TOC/version; positive completed rewards, exclusions/deduplication; start/clipping/resizing; max level/zero/disabled XP; toggle and colors; saved settings; gradients; login and registered quest events; actual options registration/build for XP; late bar retry.
-- test_aura_sources_options.py: target source availability, native aura hiding/restoration, disabled/deferred guards, session-stable ownership, delayed namespace, six-icon widths at multiple sizes; combined options offsets and search terms; all 15 frame-source selections; inherited/unset values without writes; invalid choices; missing API; reload callbacks.
+- test_aura_sources_options.py: target source availability, native aura hiding/restoration, disabled/deferred guards, session-stable ownership, delayed namespace, six-icon widths at multiple sizes; combined options offsets and search terms; all 18 frame-source selections, including Pet; inherited/unset values without writes; invalid choices; missing API; reload callbacks.
 - check.py: expected modules/features/default sections; TOC uniqueness and completeness; matching About/TOC version; artifact fingerprints; syntax; optional byte-for-byte baseline comparison.
 
 Tests are inherited from the two relevant build tasks and made independent of their old source folders. Exact assertions intentionally protect current behavior; authorized version/category changes need corresponding updates. Do not remove a test merely to conceal a regression.
@@ -16,7 +16,7 @@ Tests are inherited from the two relevant build tasks and made independent of th
 2. Below max level, complete two XP-bearing quests without turn-in. Compare reward sum and orange segment against current XP; turn in/abandon quests and verify updates. Test zero, incomplete-only, capped-at-level and no-rested cases.
 3. Toggle Quest XP independently of gradient. Check orange above rested range, current XP/text unobscured, EUI visibility and bar resize/movement.
 4. Max-level character: no Quest XP segment. Test disabled XP if available.
-5. Set Player/Target/ToT/Focus to Blizzard and Boss to EUI, reload, verify actual boss encounter and no duplicate frames. Exercise EUI/Hidden choices. Confirm ToT parent dependency.
+5. Set Player/Target/ToT/Focus/Pet to Blizzard and Boss to EUI, reload, verify the player pet frame and an actual boss encounter with no duplicate frames. Exercise EUI/Hidden choices. Confirm ToT parent dependency.
 6. Change source, choose Later: current aura ownership must stay stable until reload. Reload and check new owner. Confirm inherited legacy settings resolve without changing EUI choices.
 7. Target auras: 6/7/12/13 buffs and debuffs, filters, sizes, no overlap or native duplicate rows; test combat and target switching. Focus source selection is not Focus aura skinning.
 8. Action art follows Bar 1 movement/size and toggles; flyout shape/border matches owner; right-click self cast and normal left-click work.

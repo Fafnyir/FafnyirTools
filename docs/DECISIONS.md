@@ -43,3 +43,7 @@ as shipped features. No discarded experiments restored.
 
 User reported “All fixed.” on 2026-08-27 in task 01a04568-9348-7180-8adf-921ebcbdd3b7 after receiving FullFixed. This records user confirmation, not an exhaustive test matrix; client/EUI versions were not supplied.
 Adopt source commit 0adfac04691d151a03cfcbf3dfed48b2e533f10f as the known working v1.1.2 baseline. Retain the exact FullFixed ZIP and fingerprint; leave prior artifacts and unfinished wishlist scope unchanged.
+
+## 2026-09-01 — Pet Frame source
+
+The user requested Pet Frame in the selective Unit Frame list. Use EllesmereUI's native `pet` source key with the established EllesmereUI / Blizzard Default / Hidden choices, reload prompt and inherited saved-value behavior. Keep v1.1.2; do not alter the confirmed FullFixed artifact.

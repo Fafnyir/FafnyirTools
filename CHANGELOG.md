@@ -2,6 +2,11 @@
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
+## 2026-09-01 — v1.1.2 Pet Frame source control
+
+- Added Pet Frame to selective Unit Frame sources using EllesmereUI's native source API.
+- Preserved existing SavedVariables with an inherited default and retained EllesmereUI / Blizzard Default / Hidden choices plus reload behavior.
+
 ## 2026-08-27 — Consolidated v1.1.2 feature restoration
 
 - Restored Permanent Companion Pet and QoL with per-character settings and safety/event integration.

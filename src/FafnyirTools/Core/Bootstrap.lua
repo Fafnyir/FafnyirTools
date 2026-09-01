@@ -37,6 +37,7 @@ ns.defaults = {
         boss = "inherit",
         targettarget = "inherit",
         focus = "inherit",
+        pet = "inherit",
     },
     deviceLayout = {
         enabled = true,

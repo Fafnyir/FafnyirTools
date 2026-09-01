@@ -1,5 +1,9 @@
 # Current state — v1.1.2 feature restoration, 2026-08-27
 
+## 2026-09-01 pending in-game verification
+
+Pet Frame is now included as the sixth selective Unit Frame source. It uses the native EllesmereUI `pet` source key, preserves existing SavedVariables through an inherited default, and retains the three established choices and reload behavior. Offline verification and a distinct package are required before treating this as user-confirmed.
+
 The user requested “get me a full featured and fixed 1.1.2” in task
 01a04568-9348-7180-8adf-921ebcbdd3b7. Scope: restore all previously delivered
 features and fix integration omissions, without adding discarded experiments

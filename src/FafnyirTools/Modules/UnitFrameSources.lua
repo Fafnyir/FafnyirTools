@@ -5,7 +5,7 @@ local feature = {
     page = "Unit Frames",
     searchTerms = {
         "unit frames", "player frame", "target frame", "boss frames",
-        "target of target", "tot", "focus frame",
+        "target of target", "tot", "focus frame", "pet frame",
         "frame source", "blizzard", "ellesmereui",
     },
 }
@@ -78,6 +78,7 @@ function feature:ApplySaved()
     if not ApplyOne("boss", db.boss) then ok = false end
     if not ApplyOne("targettarget", db.targettarget) then ok = false end
     if not ApplyOne("focus", db.focus) then ok = false end
+    if not ApplyOne("pet", db.pet) then ok = false end
 
     return ok
 end
@@ -173,10 +174,22 @@ function feature:BuildOptions(parent, yOffset)
             "Boss Frames",
             "Choose whether Boss frames are provided by EllesmereUI, Blizzard, or hidden. Requires a UI reload."
         ),
+        SourceWidget(
+            "pet",
+            "Pet Frame",
+            "Choose whether the Pet frame is provided by EllesmereUI, Blizzard, or hidden. Requires a UI reload."
+        )
+    )
+    y = y - h
+
+    _, h = W:DualRow(
+        parent,
+        y,
         {
             type = "label",
             text = "Source changes require a reload.",
-        }
+        },
+        { type = "label", text = "" }
     )
     y = y - h
 
