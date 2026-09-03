@@ -1,5 +1,9 @@
 # Current state — v1.1.2 feature restoration, 2026-08-27
 
+## 2026-09-03 Aura control clarification
+
+The user clarified that Target aura controls work. The apparent size failure came from using the main Player aura `Icon Size` control. Both Target repair attempts were reverted. Active source only clarifies labels: Player Aura Size and Player Aura Expand Button are Player-frame controls; icon zoom and aura text size remain shared by Player and Target. In-game confirmation of the wording is pending.
+
 ## 2026-09-01 pending in-game verification
 
 Pet Frame is now included as the sixth selective Unit Frame source. It uses the native EllesmereUI `pet` source key, preserves existing SavedVariables through an inherited default, and retains the three established choices and reload behavior. Offline verification and a distinct package are required before treating this as user-confirmed.

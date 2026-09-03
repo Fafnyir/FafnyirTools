@@ -701,16 +701,17 @@ function feature:BuildOptions(parent, yOffset)
             SetValue("enabled",v)
             if old ~= v then PromptReload() end
          end},
-        {type="slider",text="Icon Size",min=16,max=60,step=1,disabled=PAOff,
+        {type="slider",text="Player Aura Size",min=16,max=60,step=1,disabled=PAOff,
+         tooltip="Changes the main Player buff and debuff frames. Target uses Target Aura Size below.",
          getValue=function() return DB().iconSize or 32 end,
          setValue=function(v) SetValue("iconSize",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="slider",text="Buff Icon Zoom",min=0,max=0.20,step=0.01,disabled=PAOff,
+        {type="slider",text="Buff Icon Zoom (Player & Target)",min=0,max=0.20,step=0.01,disabled=PAOff,
          getValue=function() return DB().buffIconZoom or ICON_ZOOM end,
          setValue=function(v) SetValue("buffIconZoom",v) end},
-        {type="slider",text="Debuff Icon Zoom",min=0,max=0.20,step=0.01,disabled=PAOff,
+        {type="slider",text="Debuff Icon Zoom (Player & Target)",min=0,max=0.20,step=0.01,disabled=PAOff,
          getValue=function() return DB().debuffIconZoom or ICON_ZOOM end,
          setValue=function(v) SetValue("debuffIconZoom",v) end})
     y=y-h
@@ -719,7 +720,7 @@ function feature:BuildOptions(parent, yOffset)
         {type="toggle",text="Show Duration Text",disabled=PAOff,
          getValue=function() return DB().showText ~= false end,
          setValue=function(v) SetValue("showText",v) end},
-        {type="slider",text="Text Size",min=6,max=24,step=1,disabled=PAOff,
+        {type="slider",text="Aura Text Size (Player & Target)",min=6,max=24,step=1,disabled=PAOff,
          getValue=function() return DB().textSize or 11 end,
          setValue=function(v) SetValue("textSize",v) end})
     y=y-h
@@ -730,7 +731,7 @@ function feature:BuildOptions(parent, yOffset)
          order={"blizzard","compact","colon","seconds"},
          getValue=function() return DB().durationFormat or "blizzard" end,
          setValue=function(v) SetValue("durationFormat",v) end},
-        {type="toggle",text="Show Expand Button",disabled=PAOff,
+        {type="toggle",text="Show Player Aura Expand Button",disabled=PAOff,
          getValue=function() return DB().showExpandButton ~= false end,
          setValue=function(v) SetValue("showExpandButton",v) end})
     y=y-h

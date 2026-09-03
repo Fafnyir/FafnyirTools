@@ -41,6 +41,9 @@ for source,loaded,available in [('blizzard',True,True),('eui',True,False),('hidd
  assert(f:IsAvailable()==expected); f:Initialize(); f:BuildOptions({},0)
  if expected then
   assert(#created==2 and native.alpha==0 and rows[1][1].type=='toggle')
+  assert(rows[1][2].text=='Player Aura Size')
+  assert(rows[2][1].text=='Buff Icon Zoom (Player & Target)' and rows[2][2].text=='Debuff Icon Zoom (Player & Target)')
+  assert(rows[3][2].text=='Aura Text Size (Player & Target)' and rows[4][2].text=='Show Player Aura Expand Button')
   assert(created[1].shown and created[2].shown)
   for _,size in ipairs({16,32,60}) do
    FafnyirToolsDB.auraSkins.targetIconSize=size; f:Refresh()

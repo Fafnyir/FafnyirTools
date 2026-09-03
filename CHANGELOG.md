@@ -2,6 +2,11 @@
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
+## 2026-09-03 — v1.1.2 Aura option clarification
+
+- Reverted the Target size/zoom repair attempts after the user confirmed Target controls already work.
+- Renamed the main Player aura size/expand controls and marked shared Player/Target zoom and text controls to prevent confusion.
+
 ## 2026-09-01 — v1.1.2 Pet Frame source control
 
 - Added Pet Frame to selective Unit Frame sources using EllesmereUI's native source API.
