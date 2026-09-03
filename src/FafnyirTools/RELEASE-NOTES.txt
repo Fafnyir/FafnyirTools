@@ -5,6 +5,7 @@ Added
 
 Fixed
 - Target aura size and icon zoom now reapply after AuraKit refreshes.
+- Target Aura Size now scales the owned containers when protected buttons reject resizing.
 
 Restored
 - Permanent Companion Pet, with per-character specific/random-favorite choices.

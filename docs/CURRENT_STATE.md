@@ -1,5 +1,9 @@
 # Current state — v1.1.2 feature restoration, 2026-08-27
 
+## 2026-09-03 Target size follow-up
+
+The user confirmed zoom works but Target Aura Size remained unchanged. Active source now keeps protected aura-button geometry fixed after creation and applies live size changes through the addon-owned Target aura containers. Offline checks cover 16/32/60 pixel results, six-per-row wrapping and visible spacing; in-game confirmation is pending.
+
 ## 2026-09-03 pending in-game verification
 
 The user reported that Target aura size and zoom were not applying. Saved values were confirmed present in the installed SavedVariables. Active source now reapplies Target aura geometry and texture crop immediately after AuraKit refreshes, with deferred fallback during restricted aura states. Offline style-level checks pass; this repair requires in-game confirmation.
