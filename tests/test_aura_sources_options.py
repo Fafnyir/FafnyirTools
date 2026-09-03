@@ -11,7 +11,7 @@ function newFrame()
  return {RegisterEvent=function() end,SetScript=function(self,_,fn) self.event=fn end,
  HookScript=function(self,_,fn) self.hook=fn end,GetFrameLevel=function() return 1 end,
  ClearAllPoints=function() end,SetPoint=function() end,SetAuraGroupMaxFrameCount=function() end,
- SetAuraGroupLayout=function() end,SetScale=function(self,v) self.scale=v end,SetShown=function(self,v) self.shown=v end,
+ SetAuraGroupLayout=function() end,SetShown=function(self,v) self.shown=v end,
  Hide=function(self) self.shown=false end,UpdateAllAuras=function(self) self.updates=(self.updates or 0)+1 end}
 end
 CreateFrame=function() eventFrameMock=newFrame(); return eventFrameMock end
@@ -49,11 +49,10 @@ for source,loaded,available in [('blizzard',True,True),('eui',True,False),('hidd
   for _,size in ipairs({16,32,60}) do
    FafnyirToolsDB.auraSkins.targetIconSize=size; f:Refresh()
    for _,container in ipairs(created) do
-    assert(math.abs(container.scale-(size/32))<0.0001)
-    assert(math.abs(container.rowWidth*container.scale-(6*size+5+0.4))<0.0001)
-    assert(6*size+5 <= container.rowWidth*container.scale and 7*size+6 > container.rowWidth*container.scale)
+    assert(math.abs(container.rowWidth-(6*size+5+0.4))<0.0001)
+    assert(6*size+5 <= container.rowWidth and 7*size+6 > container.rowWidth)
    end
-   assert(restyles[#restyles-1].width==32 and restyles[#restyles].width==32)
+   assert(restyles[#restyles-1].width==size and restyles[#restyles].width==size)
   end
   FafnyirToolsDB.auraSkins.debuffIconZoom=0.12; f:Refresh()
   local tc=restyles[#restyles].texCoord

@@ -26,7 +26,6 @@ local targetBuffContainer
 local targetDebuffContainer
 local targetDefaultAuraContainer
 local targetAuraKitBuilt = false
-local targetBuiltIconSize
 local TARGET_BUFF_STYLE = "faf:target:HELPFUL"
 local TARGET_DEBUFF_STYLE = "faf:target:HARMFUL"
 
@@ -309,10 +308,7 @@ local function ApplyTargetAuraText(_button, d, style)
 end
 
 local function BuildTargetAuraStyle(cfg, isDebuff)
-    -- Aura buttons can reject post-creation SetSize calls while aura data is
-    -- protected. Keep their creation-time geometry stable; live size changes
-    -- are applied to our containers in AnchorTargetAuraContainers instead.
-    local size = targetBuiltIconSize or cfg.targetIconSize or cfg.iconSize or 32
+    local size = cfg.targetIconSize or cfg.iconSize or 32
     local zoom = (isDebuff and cfg.debuffIconZoom or cfg.buffIconZoom) or ICON_ZOOM
     local borderSize = cfg.borderSize or 1
     if isDebuff and cfg.noBorderDebuffs then borderSize = 0 end
@@ -360,14 +356,8 @@ local function AnchorTargetAuraContainers()
     if not (targetBuffContainer and targetDebuffContainer and TargetFrame) then return end
     local reference = targetDefaultAuraContainer or TargetAuraDefaultContainer()
     local size = DB().targetIconSize or DB().iconSize or 32
-    local builtSize = targetBuiltIconSize or size
-    local scale = size / builtSize
-    local internalGap = 1 / scale
     -- Six icons plus five 1px gaps; retain AuraKit's rounding allowance.
-    local rowWidth = 6 * builtSize + 5 * internalGap + (0.4 / scale)
-
-    targetBuffContainer:SetScale(scale)
-    targetDebuffContainer:SetScale(scale)
+    local rowWidth = 6 * size + 5 * 1 + 0.4
 
     targetBuffContainer:ClearAllPoints()
     if reference then
@@ -396,14 +386,11 @@ end
 local function ConfigureTargetAuraGroups(cfg)
     if not (targetBuffContainer and targetDebuffContainer) then return end
     local size = cfg.targetIconSize or cfg.iconSize or 32
-    local builtSize = targetBuiltIconSize or size
-    local scale = size / builtSize
-    local internalGap = 1 / scale
     local layout = {
-        elementWidth = builtSize,
-        elementHeight = builtSize,
-        elementSpacing = internalGap,
-        lineSpacing = internalGap,
+        elementWidth = size,
+        elementHeight = size,
+        elementSpacing = 1,
+        lineSpacing = 1,
     }
 
     local bf = cfg.targetBuffFilter or "all"
@@ -446,7 +433,6 @@ local function BuildTargetAuraKitContainers(cfg)
     end
 
     targetDefaultAuraContainer = TargetAuraDefaultContainer()
-    targetBuiltIconSize = cfg.targetIconSize or cfg.iconSize or 32
     targetAuraKit.styles[TARGET_BUFF_STYLE] = BuildTargetAuraStyle(cfg, false)
     targetAuraKit.styles[TARGET_DEBUFF_STYLE] = BuildTargetAuraStyle(cfg, true)
 

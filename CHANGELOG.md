@@ -2,12 +2,6 @@
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
-## 2026-09-03 — v1.1.2 Target aura protected-size repair
-
-- User confirmed icon zoom works but Target Aura Size still did not change.
-- Moved live Target aura sizing to the addon-owned containers because current WoW builds can reject post-creation size writes on protected aura buttons.
-- Preserved six icons per row and a one-pixel visible gap at every configured size.
-
 ## 2026-09-03 — v1.1.2 Target aura live settings repair
 
 - Applied Target aura size and icon zoom synchronously after AuraKit refreshes when permitted.
