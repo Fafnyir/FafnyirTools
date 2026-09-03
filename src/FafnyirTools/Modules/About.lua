@@ -13,7 +13,6 @@ local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
     { version = "v1.1.2", lines = {
-        "Fixed Target aura size and icon zoom live updates.",
         "Added Pet Frame to selective Unit Frame source controls.",
         "Added Player, Target, Target of Target, Focus, and Boss frame source controls.",
         "Choose EllesmereUI, Blizzard Default, or Hidden; source changes require a reload.",
