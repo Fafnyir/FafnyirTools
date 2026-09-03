@@ -2,6 +2,11 @@
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
+## 2026-09-03 — v1.1.2 Target aura live settings repair
+
+- Applied Target aura size and icon zoom synchronously after AuraKit refreshes when permitted.
+- Retained deferred restyling for restricted aura states and preserved existing saved values.
+
 ## 2026-09-01 — v1.1.2 Pet Frame source control
 
 - Added Pet Frame to selective Unit Frame sources using EllesmereUI's native source API.

@@ -1,5 +1,9 @@
 # Current state — v1.1.2 feature restoration, 2026-08-27
 
+## 2026-09-03 pending in-game verification
+
+The user reported that Target aura size and zoom were not applying. Saved values were confirmed present in the installed SavedVariables. Active source now reapplies Target aura geometry and texture crop immediately after AuraKit refreshes, with deferred fallback during restricted aura states. Offline style-level checks pass; this repair requires in-game confirmation.
+
 ## 2026-09-01 pending in-game verification
 
 Pet Frame is now included as the sixth selective Unit Frame source. It uses the native EllesmereUI `pet` source key, preserves existing SavedVariables through an inherited default, and retains the three established choices and reload behavior. Offline verification and a distinct package are required before treating this as user-confirmed.

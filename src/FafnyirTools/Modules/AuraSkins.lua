@@ -111,6 +111,7 @@ local function NoteConfig(cfg)
         and lastCfg.shiftY == cfg.borderTextureShiftY
         and lastCfg.buffZoom == cfg.buffIconZoom
         and lastCfg.debuffZoom == cfg.debuffIconZoom
+        and lastCfg.targetSize == cfg.targetIconSize
         and lastCfg.durFmt == cfg.durationFormat
         and lastCfg.font == font
         and lastCfg.outline == outline
@@ -129,6 +130,7 @@ local function NoteConfig(cfg)
     lastCfg.offX, lastCfg.offY = cfg.borderTextureOffset, cfg.borderTextureOffsetY
     lastCfg.shiftX, lastCfg.shiftY = cfg.borderTextureShiftX, cfg.borderTextureShiftY
     lastCfg.buffZoom, lastCfg.debuffZoom = cfg.buffIconZoom, cfg.debuffIconZoom
+    lastCfg.targetSize = cfg.targetIconSize
     lastCfg.durFmt = cfg.durationFormat
     lastCfg.font, lastCfg.outline = font, outline
     lastCfg.targetAuras = cfg.targetAuras
@@ -500,16 +502,28 @@ local function SkinTargetFrameAuras(cfg)
     targetAuraKit.styles[TARGET_BUFF_STYLE] = BuildTargetAuraStyle(cfg, false)
     targetAuraKit.styles[TARGET_DEBUFF_STYLE] = BuildTargetAuraStyle(cfg, true)
 
-    if targetAuraKit.RestyleSoon then
-        targetAuraKit.RestyleSoon(TARGET_BUFF_STYLE)
-        targetAuraKit.RestyleSoon(TARGET_DEBUFF_STYLE)
-    end
-
     AnchorTargetAuraContainers()
     ConfigureTargetAuraGroups(cfg)
 
     if targetBuffContainer.UpdateAllAuras then targetBuffContainer:UpdateAllAuras() end
     if targetDebuffContainer.UpdateAllAuras then targetDebuffContainer:UpdateAllAuras() end
+
+    -- Apply geometry/crop after the engine refresh. UpdateAllAuras can rewrite
+    -- button regions, and a queued-only restyle may not run before the visible
+    -- target changes again. AuraKit's synchronous restyle is safe when writes
+    -- are permitted; restricted aura states fall back to its deferred worker.
+    for _, styleKey in ipairs({ TARGET_BUFF_STYLE, TARGET_DEBUFF_STYLE }) do
+        local applied = false
+        if targetAuraKit.Restyle then
+            applied = pcall(targetAuraKit.Restyle, styleKey)
+        end
+        if not applied and targetAuraKit.DeferRestyle then
+            targetAuraKit.DeferRestyle(styleKey)
+        end
+        if not applied and targetAuraKit.RestyleSoon then
+            targetAuraKit.RestyleSoon(styleKey)
+        end
+    end
 end
 
 local function ApplyExpandButton()

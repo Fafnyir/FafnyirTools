@@ -3,7 +3,7 @@ import sys,zipfile
 from lupa.lua51 import LuaRuntime
 root=Path(__file__).resolve().parents[1]/'src/FafnyirTools'
 setup='''
-SlashCmdList={}; ns={}; source='blizzard'; loaded=true; calls=0; rows={}; created={}; timers={}
+SlashCmdList={}; ns={}; source='blizzard'; loaded=true; calls=0; rows={}; created={}; timers={}; restyles={}
 C_AddOns={IsAddOnLoaded=function() return loaded end}
 C_Timer={After=function(_,fn) timers[#timers+1]=fn end}
 STANDARD_TEXT_FONT='test'
@@ -24,7 +24,11 @@ EllesmereUI.Widgets.SectionHeader=function() return {},20 end
 EllesmereUI.Widgets.DualRow=function(_,_,_,left,right) rows[#rows+1]={left,right}; return {},40 end
 EllesmereUI.AuraKit={styles={},CreateContainerShell=function(parent)
  assert(parent==TargetFrame); local f=newFrame(); created[#created+1]=f; return f end,
- SetContainerRowWidth=function(container,width) container.rowWidth=width end,AddGroupToContainer=function() end,FinishContainer=function(_,unit) assert(unit=='target') end}
+ SetContainerRowWidth=function(container,width) container.rowWidth=width end,AddGroupToContainer=function() end,FinishContainer=function(_,unit) assert(unit=='target') end,
+ Restyle=function(key)
+  local s=EllesmereUI.AuraKit.styles[key]
+  restyles[#restyles+1]={key=key,width=s.width,height=s.height,texCoord={s.texCoord[1],s.texCoord[2],s.texCoord[3],s.texCoord[4]}}
+ end}
 '''
 def runtime(source='blizzard',loaded=True):
  l=LuaRuntime(unpack_returned_tuples=True); l.execute(setup)
@@ -48,7 +52,11 @@ for source,loaded,available in [('blizzard',True,True),('eui',True,False),('hidd
     assert(math.abs(container.rowWidth-(6*size+5+0.4))<0.0001)
     assert(6*size+5 <= container.rowWidth and 7*size+6 > container.rowWidth)
    end
+   assert(restyles[#restyles-1].width==size and restyles[#restyles].width==size)
   end
+  FafnyirToolsDB.auraSkins.debuffIconZoom=0.12; f:Refresh()
+  local tc=restyles[#restyles].texCoord
+  assert(tc[1]==0.12 and tc[2]==0.88 and tc[3]==0.12 and tc[4]==0.88)
   local updates=created[1].updates
   eventFrameMock.event(nil,'PLAYER_TARGET_CHANGED'); assert(created[1].updates==updates+1)
   FafnyirToolsDB.auraSkins.enabled=false

@@ -3,6 +3,9 @@ Fafnyir Tools for EllesmereUI v1.1.2 — consolidated feature restoration
 Added
 - Pet Frame source control with EllesmereUI, Blizzard Default and Hidden choices.
 
+Fixed
+- Target aura size and icon zoom now reapply after AuraKit refreshes.
+
 Restored
 - Permanent Companion Pet, with per-character specific/random-favorite choices.
 - QoL page, original saved pet preferences, safety checks and summon events.
