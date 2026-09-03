@@ -1,5 +1,9 @@
 # Current state — v1.1.2 feature restoration, 2026-08-27
 
+## 2026-09-03 Target-only Aura Skins
+
+At the user's direction, FafnyirTools no longer styles or exposes controls for the main Player buff/debuff frames; EllesmereUI controls those. Aura Skins now operates on Blizzard Target auras only. Existing saved keys are left intact for upgrade safety but are no longer exposed or applied to Player aura frames. Offline verification passes; in-game confirmation is pending.
+
 ## 2026-09-03 Aura control clarification
 
 The user clarified that Target aura controls work. The apparent size failure came from using the main Player aura `Icon Size` control. Both Target repair attempts were reverted. Active source only clarifies labels: Player Aura Size and Player Aura Expand Button are Player-frame controls; icon zoom and aura text size remain shared by Player and Target. In-game confirmation of the wording is pending.

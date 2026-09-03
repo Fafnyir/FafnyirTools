@@ -2,6 +2,11 @@
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
+## 2026-09-03 — v1.1.2 Target-only Aura Skins options
+
+- Removed Player/main buff and debuff controls from FafnyirTools; EllesmereUI remains their sole owner.
+- Kept and explicitly labeled Target size, zoom, duration text/format, text size, filters and border controls.
+
 ## 2026-09-03 — v1.1.2 Aura option clarification
 
 - Reverted the Target size/zoom repair attempts after the user confirmed Target controls already work.

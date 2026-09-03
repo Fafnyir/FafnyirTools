@@ -536,13 +536,15 @@ end
 function feature:Refresh()
     if not self:IsAvailable() then return end
     local cfg = DB()
-    if not cfg.enabled then return end
+    if not cfg.enabled then
+        if targetBuffContainer then targetBuffContainer:Hide() end
+        if targetDebuffContainer then targetDebuffContainer:Hide() end
+        ShowBlizzardTargetAuras()
+        return
+    end
     NoteConfig(cfg)
     auraDirty = false
-    SkinAll(BuffFrame, false, cfg)
-    SkinAll(DebuffFrame, true, cfg)
     SkinTargetFrameAuras(cfg)
-    self:ApplyScale()
 end
 
 local function PendingRefresh()
@@ -559,16 +561,6 @@ end
 function feature:InstallHooks()
     if hooksInstalled or not self:IsAvailable() then return end
     hooksInstalled = true
-    for _, frame in ipairs({BuffFrame, DebuffFrame}) do
-        if frame and frame.AuraContainer and type(frame.AuraContainer.UpdateGridLayout) == "function" then
-            hooksecurefunc(frame.AuraContainer, "UpdateGridLayout", RequestRefresh)
-        end
-    end
-    local b = BuffFrame and BuffFrame.CollapseAndExpandButton
-    if b and type(BuffFrame.RefreshConsolidationFrameVisibility) == "function" then
-        hooksecurefunc(BuffFrame, "RefreshConsolidationFrameVisibility", ApplyExpandButton)
-    end
-
     local function TargetAuraRefreshHook()
         if not feature:IsAvailable() or not DB().enabled or DB().targetAuras == false then return end
 
@@ -600,17 +592,14 @@ function feature:Initialize()
         eventFrame:SetScript("OnEvent", function(_, event, unit)
             if not feature:IsAvailable() or not DB().enabled then return end
             if event == "UNIT_AURA" then
-                if unit ~= "player" and unit ~= "target" then return end
-                if unit == "target" then
-                    if DB().targetAuras == false then return end
-                    if targetBuffContainer and targetBuffContainer.UpdateAllAuras then
+                if unit ~= "target" or DB().targetAuras == false then return end
+                if targetBuffContainer and targetBuffContainer.UpdateAllAuras then
                 targetBuffContainer:UpdateAllAuras()
-            end
-                    if targetDebuffContainer and targetDebuffContainer.UpdateAllAuras then
-                        targetDebuffContainer:UpdateAllAuras()
-                    end
-                    return
                 end
+                if targetDebuffContainer and targetDebuffContainer.UpdateAllAuras then
+                    targetDebuffContainer:UpdateAllAuras()
+                end
+                return
             elseif event == "PLAYER_TARGET_CHANGED" then
                 if targetBuffContainer and targetBuffContainer.UpdateAllAuras then
                 targetBuffContainer:UpdateAllAuras()
@@ -621,8 +610,6 @@ function feature:Initialize()
                 return
             end
 
-            auraDirty = true
-            RequestRefresh()
         end)
     end
     auraDirty = true
@@ -694,55 +681,45 @@ function feature:BuildOptions(parent, yOffset)
     end
 
     _,h=W:DualRow(parent,y,
-        {type="toggle",text="Enable Styled Buffs & Debuffs",
-         getValue=function() return DB().enabled end,
+        {type="toggle",text="Enable Target Aura Skins",
+         getValue=function() return DB().enabled and DB().targetAuras ~= false end,
          setValue=function(v)
-            local old = DB().enabled
-            SetValue("enabled",v)
-            if old ~= v then PromptReload() end
+            DB().enabled = v
+            DB().targetAuras = v
+            skinGen = skinGen + 1
+            auraDirty = true
+            feature:Refresh()
          end},
-        {type="slider",text="Player Aura Size",min=16,max=60,step=1,disabled=PAOff,
-         tooltip="Changes the main Player buff and debuff frames. Target uses Target Aura Size below.",
-         getValue=function() return DB().iconSize or 32 end,
-         setValue=function(v) SetValue("iconSize",v) end})
+        {type="slider",text="Target Aura Size",min=16,max=60,step=1,disabled=PAOff,
+         getValue=function() return DB().targetIconSize or 32 end,
+         setValue=function(v) SetValue("targetIconSize",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="slider",text="Buff Icon Zoom (Player & Target)",min=0,max=0.20,step=0.01,disabled=PAOff,
+        {type="slider",text="Target Buff Icon Zoom",min=0,max=0.20,step=0.01,disabled=PAOff,
          getValue=function() return DB().buffIconZoom or ICON_ZOOM end,
          setValue=function(v) SetValue("buffIconZoom",v) end},
-        {type="slider",text="Debuff Icon Zoom (Player & Target)",min=0,max=0.20,step=0.01,disabled=PAOff,
+        {type="slider",text="Target Debuff Icon Zoom",min=0,max=0.20,step=0.01,disabled=PAOff,
          getValue=function() return DB().debuffIconZoom or ICON_ZOOM end,
          setValue=function(v) SetValue("debuffIconZoom",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="toggle",text="Show Duration Text",disabled=PAOff,
+        {type="toggle",text="Show Target Duration Text",disabled=PAOff,
          getValue=function() return DB().showText ~= false end,
          setValue=function(v) SetValue("showText",v) end},
-        {type="slider",text="Aura Text Size (Player & Target)",min=6,max=24,step=1,disabled=PAOff,
+        {type="slider",text="Target Aura Text Size",min=6,max=24,step=1,disabled=PAOff,
          getValue=function() return DB().textSize or 11 end,
          setValue=function(v) SetValue("textSize",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="dropdown",text="Duration Format",disabled=PAOff,
+        {type="dropdown",text="Target Duration Format",disabled=PAOff,
          values={blizzard="Blizzard Default",compact="Standard",colon="Colon",seconds="Seconds"},
          order={"blizzard","compact","colon","seconds"},
          getValue=function() return DB().durationFormat or "blizzard" end,
          setValue=function(v) SetValue("durationFormat",v) end},
-        {type="toggle",text="Show Player Aura Expand Button",disabled=PAOff,
-         getValue=function() return DB().showExpandButton ~= false end,
-         setValue=function(v) SetValue("showExpandButton",v) end})
-    y=y-h
-
-    _,h=W:DualRow(parent,y,
-        {type="toggle",text="Skin Target Frame Auras",disabled=PAOff,
-         getValue=function() return DB().targetAuras ~= false end,
-         setValue=function(v) SetValue("targetAuras",v) end},
-        {type="slider",text="Target Aura Size",min=16,max=60,step=1,disabled=PAOff,
-         getValue=function() return DB().targetIconSize or DB().iconSize or 32 end,
-         setValue=function(v) SetValue("targetIconSize",v) end})
+        {type="label",text="Player buffs and debuffs remain controlled by EllesmereUI."})
     y=y-h
 
     _,h=W:DualRow(parent,y,

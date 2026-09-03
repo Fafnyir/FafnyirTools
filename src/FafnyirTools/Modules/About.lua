@@ -13,7 +13,7 @@ local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
     { version = "v1.1.2", lines = {
-        "Clarified Player-only and shared Player/Target Aura Skin controls.",
+        "Limited Aura Skins controls to Target; EllesmereUI owns Player buffs and debuffs.",
         "Added Pet Frame to selective Unit Frame source controls.",
         "Added Player, Target, Target of Target, Focus, and Boss frame source controls.",
         "Choose EllesmereUI, Blizzard Default, or Hidden; source changes require a reload.",

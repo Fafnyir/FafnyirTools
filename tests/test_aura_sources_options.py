@@ -41,9 +41,10 @@ for source,loaded,available in [('blizzard',True,True),('eui',True,False),('hidd
  assert(f:IsAvailable()==expected); f:Initialize(); f:BuildOptions({},0)
  if expected then
   assert(#created==2 and native.alpha==0 and rows[1][1].type=='toggle')
-  assert(rows[1][2].text=='Player Aura Size')
-  assert(rows[2][1].text=='Buff Icon Zoom (Player & Target)' and rows[2][2].text=='Debuff Icon Zoom (Player & Target)')
-  assert(rows[3][2].text=='Aura Text Size (Player & Target)' and rows[4][2].text=='Show Player Aura Expand Button')
+  assert(rows[1][1].text=='Enable Target Aura Skins' and rows[1][2].text=='Target Aura Size')
+  assert(rows[2][1].text=='Target Buff Icon Zoom' and rows[2][2].text=='Target Debuff Icon Zoom')
+  assert(rows[3][1].text=='Show Target Duration Text' and rows[3][2].text=='Target Aura Text Size')
+  assert(rows[4][1].text=='Target Duration Format' and rows[4][2].type=='label')
   assert(created[1].shown and created[2].shown)
   for _,size in ipairs({16,32,60}) do
    FafnyirToolsDB.auraSkins.targetIconSize=size; f:Refresh()
@@ -125,7 +126,7 @@ assert(headers[1]=='UNIT FRAME SOURCES' and headers[2]=='AURA SKINS')
 assert(bottom>212 and bottom==-previousY)
 assert(rows[1][1].text=='Player Frame' and rows[2][1].text=='Target of Target')
 assert(rows[3][1].text=='Boss Frames' and rows[3][2].text=='Pet Frame')
-assert(rows[5][1].text=='Enable Styled Buffs & Debuffs')
+assert(rows[5][1].text=='Enable Target Aura Skins')
 local terms={}; for _,v in ipairs(config.searchTerms) do terms[v]=true end
 assert(terms['aura skins'] and terms['flyout fix'] and terms['bar art'])
 ''')

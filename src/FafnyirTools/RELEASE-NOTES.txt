@@ -3,9 +3,9 @@ Fafnyir Tools for EllesmereUI v1.1.2 — consolidated feature restoration
 Added
 - Pet Frame source control with EllesmereUI, Blizzard Default and Hidden choices.
 
-Clarified
-- Player Aura Size and Player Aura Expand Button affect the main Player aura frames.
-- Buff/debuff zoom and aura text size are shared by Player and Target.
+Changed
+- Removed Player aura controls and styling; EllesmereUI remains their sole owner.
+- Aura Skins options now apply only to Blizzard Target auras.
 
 Restored
 - Permanent Companion Pet, with per-character specific/random-favorite choices.

@@ -47,3 +47,7 @@ Adopt source commit 0adfac04691d151a03cfcbf3dfed48b2e533f10f as the known workin
 ## 2026-09-01 — Pet Frame source
 
 The user requested Pet Frame in the selective Unit Frame list. Use EllesmereUI's native `pet` source key with the established EllesmereUI / Blizzard Default / Hidden choices, reload prompt and inherited saved-value behavior. Keep v1.1.2; do not alter the confirmed FullFixed artifact.
+
+## 2026-09-03 — Player aura ownership
+
+The user confirmed that EllesmereUI controls the main Player buff/debuff frames. FafnyirTools Aura Skins must expose and apply Target-only controls and must not style Player aura frames. Preserve old SavedVariables without using them to take ownership back.

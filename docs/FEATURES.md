@@ -12,7 +12,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Unit Frame Sources | Player, Target, Target of Target, Focus, Boss, Pet via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 18 combinations individually |
 | Legacy source settings | Keep `inherit` data untouched; display effective native source without writing a new override; unknown API must not invent a source | Present |
 | ToT dependency | Blizzard ToT requires Blizzard Target; EUI may fall back to its ToT when Target is EUI | Existing tooltip/behavior contract |
-| Aura Skins | Blizzard player/Target aura styling; Target availability follows effective Target source, not blanket EUI addon presence; hold ownership for the session until reload | Present |
+| Aura Skins | Blizzard Target aura styling only; Player buffs/debuffs remain controlled by EllesmereUI. Target availability follows effective Target source, not blanket EUI addon presence; hold ownership for the session until reload | Present |
 | Target aura layout | Buffs and debuffs wrap after six icons; independent Target icon size, filters, border/zoom/text settings | Present; mocked sizes 16/32/60; historical user confirmation |
 | Focus auras | Distinct from Focus source selection; no custom Focus aura implementation | Not implemented |
 | Status textures | Hide relevant Blizzard Target/Focus status textures without adding a toggle | Present |
