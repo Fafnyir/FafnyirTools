@@ -34,6 +34,7 @@ def check(baseline=False):
     required = {
         'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'QoL'),
         'Modules/About.lua': ('About', 'About'),
+        'Modules/GlobalSettings.lua': ('GlobalSettings', 'About'),
         'Modules/Resting.lua': ('Resting', 'Unit Frames'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'Action Bars'),
         'Modules/BlizzardBarArt.lua': ('BlizzardBarArt', 'Action Bars'),
@@ -72,7 +73,8 @@ def check(baseline=False):
         assert actual == fingerprint['files'], 'Source differs from adopted baseline'
         print('PASS source byte-identical to user-confirmed baseline', flush=True)
     print(f'PASS {len(entries)} Lua files, complete/unique TOC, expected features/pages/default sections, metadata', flush=True)
-    for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_companion.py']:
+    for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_companion.py',
+                 'test_global_settings.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

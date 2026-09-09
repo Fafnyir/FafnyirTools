@@ -8,10 +8,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.2"
+local VERSION = "v1.1.3"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.3", lines = {
+        "Added global settings export and import with validation and rollback backup.",
+        "Excluded per-character data, inventory caches, and device-specific layouts from transfers.",
+    }},
     { version = "v1.1.2", lines = {
         "Limited Aura Skins controls to Target; EllesmereUI owns Player buffs and debuffs.",
         "Added Pet Frame to selective Unit Frame source controls.",

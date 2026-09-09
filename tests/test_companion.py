@@ -84,7 +84,7 @@ local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_
 ''')
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')
 # Real metadata from all features; no fake feature slots in this registration check.
-for path in ['Modules/About.lua','Modules/UnitFrameSources.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
+for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/UnitFrameSources.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
              'Modules/RightClickSelfCast.lua','Modules/BlizzardBarArt.lua','Modules/FlyoutButtonMatch.lua',
              'Modules/XPBar.lua','Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
     load(path)

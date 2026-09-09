@@ -24,6 +24,13 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 
 Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
 
+## Global settings transfer
+
+- v1.1.3 exports a versioned, typed string containing recognized global preferences.
+- Imports parse data without `loadstring`, reject malformed/oversized payloads, merge recognized fields, preserve unknown fields, and create a rollback snapshot before applying.
+- Per-character companion selections, inventory/economy caches, and device-specific Edit Mode layouts are excluded.
+- Import requires explicit confirmation and a UI reload.
+
 ## XP contract
 
 - Current gradient defaults: `#5563FF` to `#C561FF`, alpha 1 at both ends.

@@ -9,7 +9,7 @@ print('PASS: all active Lua files compile under Lua 5.1')
 toc=(root/'FafnyirTools.toc').read_text()
 for line in toc.splitlines():
     if line and not line.startswith('#'): assert (root/line.replace('\\','/')).is_file(),line
-assert '## Version: v1.1.2' in toc
+assert '## Version: v1.1.3' in toc
 lua.execute('''
 ns={}; SlashCmdList={}; queue={}; tickers={}; frames={}; rows={}
 C_Timer={After=function(_,f) table.insert(queue,f) end, NewTicker=function(_,f)
@@ -103,7 +103,7 @@ db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.t
 print('PASS: totals, clipping, resizing, max level, zero XP, disabled XP, toggle, defaults, saved settings, gradients')
 # Fill feature slots so the real options registration can be exercised independently of other module APIs.
 lua.execute('''
-for _,k in ipairs({'About','PermanentCompanionPet','Resting','RightClickSelfCast','BlizzardBarArt','FlyoutButtonMatch','UnitFrameSources','DeviceLayout','AuraSkins','Inventory'}) do ns.modules[k]={page=k} end
+for _,k in ipairs({'About','GlobalSettings','PermanentCompanionPet','Resting','RightClickSelfCast','BlizzardBarArt','FlyoutButtonMatch','UnitFrameSources','DeviceLayout','AuraSkins','Inventory'}) do ns.modules[k]={page=k=='GlobalSettings' and 'About' or k} end
 ns.Sidebar={Install=function() return true end}
 ''')
 run('Core/Options.lua');run('Core/Events.lua')

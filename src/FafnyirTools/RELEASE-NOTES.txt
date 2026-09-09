@@ -1,4 +1,9 @@
-Fafnyir Tools for EllesmereUI v1.1.2 — consolidated feature restoration
+Fafnyir Tools for EllesmereUI v1.1.3 — global settings transfer
+
+Added
+- Versioned global settings export/import with strict decoding and confirmation.
+- Automatic rollback backup before each successful import.
+- Export scope excludes character selections, inventory caches and device layouts.
 
 Added
 - Pet Frame source control with EllesmereUI, Blizzard Default and Hidden choices.

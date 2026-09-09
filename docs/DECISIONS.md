@@ -35,6 +35,14 @@ standard style, size, color and opacity controls under XP & Progression; size
 zero disables the border. Do not place separate borders around the current,
 rested or completed-quest segments. Keep addon version v1.1.2.
 
+## 2026-09-09 — v1.1.3 global settings transfer
+
+Start v1.1.3 with an allowlisted global-settings export/import format. Exclude
+character selections, inventory/economy caches, and device-specific layouts.
+Imported text must be parsed as data rather than executed, merge only recognized
+fields, preserve unknown local data, create a pre-import backup, require user
+confirmation, and reload after application.
+
 
 ## 2026-08-27 — Full v1.1.2 request
 

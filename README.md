@@ -4,7 +4,7 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** v1.1.2 feature restoration plus the pending Pet Frame source control (20 addon files). The FullFixed build remains the user-confirmed working baseline; the Pet addition passes offline checks but requires in-game confirmation. Prior confirmed ZIPs remain immutable under releases/.
+**Current source:** v1.1.3 development, starting from the confirmed v1.1.2 feature restoration and XP-border build. Prior confirmed ZIPs remain immutable under releases/.
 
 ## Start here
 
@@ -42,7 +42,7 @@ After an authorized change, update the records, review and commit, then:
 .venv/bin/python tools/package.py
 ```
 
-The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. Keep using v1.1.2 until a version change is requested.
+The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The active development version is v1.1.3.
 
 ## Installation
 

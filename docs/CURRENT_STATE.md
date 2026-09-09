@@ -1,4 +1,16 @@
-# Current state — v1.1.2 feature restoration, 2026-08-27
+# Current state — v1.1.3 development, 2026-09-09
+
+## 2026-09-09 global settings transfer
+
+The user authorized starting v1.1.3 with global settings export/import. The
+About page now exports a versioned, typed FafnyirTools string and validates it
+without executing imported text. Import merges only recognized settings,
+creates a rollback snapshot first, requires confirmation and reloads the UI.
+
+Exports intentionally exclude per-character companion choices, all inventory
+and economy caches, and device-specific Edit Mode layout selections. Existing
+unknown settings survive import. Offline verification passes; in-game popup,
+clipboard and reload behavior require confirmation.
 
 ## 2026-09-08 XP bar border Trial 1
 

@@ -1,5 +1,11 @@
 # Reconciled project changelog
 
+## 2026-09-09 — v1.1.3 global settings transfer
+
+- Added versioned, validated export/import for recognized global preferences.
+- Excluded character selections, inventory/economy caches, and device layouts.
+- Added confirmation, pre-import rollback data, and reload-on-import behavior.
+
 ## 2026-09-08 — v1.1.2 XP bar border Trial 1
 
 - Added EllesmereUI-native style, size, color and opacity controls for one shared XP bar border.
