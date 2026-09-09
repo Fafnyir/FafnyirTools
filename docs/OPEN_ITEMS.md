@@ -27,3 +27,10 @@ Offline mocks do not verify real EUI render layers, combat taint, or every retai
 ## 6. Historical coverage limits
 
 The main chat was recovered as 204 turns spanning Aug 5–27 from cached paginated reads, including a terminal oldest page and refreshed newest page. Identified local development task texts were consolidated; mixed-topic Website/WoW material is selectively indexed. Binary attachments are not a complete archive, and unrelated chats were not exhaustively read for incidental mentions. No claim is made that inaccessible/deleted/other-account chats have been merged. Use source IDs in HISTORY.md to revisit any missing context.
+
+## 7. Reset / Disable All redesign
+
+The first v1.1.3 implementation was withdrawn after repeated disconnects in the
+test build. Revisit only after the rollback build is stable. Avoid synchronizing
+all source ownership and refreshing every feature inside one live options reset
+callback; stage changes for the next login instead.

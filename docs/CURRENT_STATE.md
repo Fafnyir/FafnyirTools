@@ -18,6 +18,11 @@ EllesmereUI's separate source profile was not synchronized until PLAYER_LOGIN,
 after frame construction. Import and backup restore now call the existing native
 source apply path before ReloadUI so one reload can construct the selected frames.
 
+The 2026-09-09 Reset/Disable All trial (`2d3733c`) was withdrawn after the
+user experienced repeated disconnects while running that build. The change was
+reverted in full. No Lua error or new client crash report was found, so causality
+is not proven; stability must be re-established before redesigning the feature.
+
 ## 2026-09-08 XP bar border Trial 1
 
 The XP & Progression page now exposes EllesmereUI-native border style, size,
