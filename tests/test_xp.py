@@ -63,7 +63,9 @@ EllesmereUI={Widgets={},BuildColorSwatch=function() return CreateFrame(),functio
  GetBorderTextureDropdown=function() return {solid='Solid'},{'solid'} end,
  GetBorderStyleSelectDefaults=function() return {r=.1,g=.2,b=.3,a=.4},false end,
  GetBorderDefaultSize=function() return 2 end,
- ApplyBorderStyle=function(frame,size,r,g,b,a,texture) frame.appliedBorder={size,r,g,b,a,texture} end}
+ ApplyBorderStyle=function(frame,size,r,g,b,a,texture,offsetX,offsetY,shiftX,shiftY,addonKey)
+  frame.appliedBorder={size,r,g,b,a,texture,offsetX=offsetX,offsetY=offsetY,addonKey=addonKey}
+ end}
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
 function EllesmereUI.Widgets:Spacer() return {},18 end
 function EllesmereUI.Widgets:DualRow(parent,y,left,right)
@@ -92,7 +94,8 @@ for _,r in ipairs(rows) do if r.text=='Enable Quest XP Overlay' then toggle=r en
 assert(toggle and toggle.getValue());toggle.setValue(false);assert(not o.shown);toggle.setValue(true);assert(o.shown)
 for _,r in ipairs(rows) do if r.text=='Border Size' then borderSize=r elseif r.text=='Border Style' then borderStyle=r end end
 assert(borderSize and borderStyle);borderSize.setValue(0);assert(border.appliedBorder[1]==0)
-borderStyle.setValue('solid');assert(db.borderSize==2 and db.borderColor.r==.1 and db.borderColor.a==.4)
+borderStyle.setValue('solid');assert(db.borderSize==0 and db.borderColor.r==.1 and db.borderColor.a==.4)
+assert(border.appliedBorder.addonKey==nil) -- use each texture's built-in offset defaults
 db.startColor={r=.2,g=.3,b=.4,a=.5};db.questColor={r=.8,g=.7,b=.6,a=.4};db.questEnabled=false
 db.borderColor={r=.8,g=.6,b=.4,a=.2};ns:InitializeDatabase();assert(db.startColor.a==.5 and db.questColor.g==.7 and db.questEnabled==false and db.borderColor.a==.2)
 db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.texture.gradient[2].r==.2)

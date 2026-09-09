@@ -15,6 +15,10 @@ doubled and one-pixel-inset appearance; this correction passes offline checks.
 The Blizzard textured style then exposed a second layering issue: its backdrop
 used the native host level and rendered behind the StatusBar fill. The host is
 now raised one frame level above the fill while remaining below EUI's text host.
+The next screenshot showed the Blizzard texture still fitted too tightly. XP
+was incorrectly passed as an unregistered `databars` defaults profile, which
+forced zero offsets. XP borders now use EllesmereUI's built-in per-texture
+defaults (Blizzard: 3px horizontal, 2px vertical).
 
 ## 2026-09-03 Target-only Aura Skins
 

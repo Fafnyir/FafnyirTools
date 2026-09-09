@@ -151,8 +151,7 @@ local function ApplyBorder(xpBar)
         color.r, color.g, color.b, color.a or 1,
         settings.borderTexture or defaults.borderTexture or "solid",
         settings.borderTextureOffset, settings.borderTextureOffsetY,
-        settings.borderTextureShiftX, settings.borderTextureShiftY,
-        "databars", size
+        settings.borderTextureShiftX, settings.borderTextureShiftY
     )
 end
 
@@ -393,10 +392,6 @@ function feature:BuildOptions(parent, yOffset)
                         current.r, current.g, current.b = color.r, color.g, color.b
                         current.a = color.a or 1
                     end
-                end
-                if EllesmereUI.GetBorderDefaultSize then
-                    local size = EllesmereUI.GetBorderDefaultSize("databars", value)
-                    if size then settings.borderSize = size end
                 end
                 feature:Refresh()
             end,
