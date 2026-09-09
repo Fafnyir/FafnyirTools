@@ -127,11 +127,18 @@ end
 local function ApplyBorder(xpBar)
     if not xpBar or not EllesmereUI or not EllesmereUI.ApplyBorderStyle then return end
     if not borderFrame then
-        borderFrame = CreateFrame("Frame", nil, xpBar)
-        borderFrame:EnableMouse(false)
-        borderFrame:SetAllPoints(xpBar)
+        local holder = xpBar:GetParent()
+        -- EllesmereUI already creates a one-pixel border host around the outer
+        -- data-bar holder. Restyle that host so the configurable border replaces
+        -- the native edge instead of stacking around the inset StatusBar.
+        borderFrame = holder and holder._border and holder._border._frame
+        if not borderFrame then
+            borderFrame = CreateFrame("Frame", nil, holder or xpBar)
+            borderFrame:EnableMouse(false)
+            borderFrame:SetAllPoints(holder or xpBar)
+            borderFrame:SetFrameLevel((holder or xpBar):GetFrameLevel() + 1)
+        end
     end
-    borderFrame:SetFrameLevel(xpBar:GetFrameLevel() + 5)
     local settings = DB()
     local defaults = ns.defaults.xpBar
     local color = GetColor("borderColor", defaults.borderColor)

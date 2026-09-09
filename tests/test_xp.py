@@ -53,7 +53,9 @@ quests={{isHeader=true},{questID=1},{questID=2},{questID=3},{questID=1},{questID
 rewards={[1]=150,[2]=250,[3]=900,[4]=800}; completed={[1]=true,[2]=true,[4]=true}
 C_QuestLog={GetNumQuestLogEntries=function() return #quests end,GetInfo=function(i) return quests[i] end,IsComplete=function(id) return completed[id] end}
 function GetQuestLogRewardXP(id) assert(id);return rewards[id] end
-holder=CreateFrame();bar=CreateFrame();bar.parent=holder;bar.texture=CreateFrame()
+holder=CreateFrame();nativeBorder=CreateFrame();nativeBorder.parent=holder
+holder._border={_frame=nativeBorder,edges=CreateFrame()}
+bar=CreateFrame();bar.parent=holder;bar.texture=CreateFrame()
 rested=CreateFrame();rested.texture=CreateFrame()
 EllesmereEAB_XPBar_Bar=bar;EllesmereEAB_XPBar_Rested=rested
 holder._updateFunc=function() bar:SetStatusBarColor(1,1,1);rested:SetStatusBarColor(1,1,1) end
@@ -76,7 +78,7 @@ assert(db.startColor.r==85/255 and db.startColor.g==99/255 and db.endColor.r==19
 assert(db.restedStartColor.r==79/255 and db.restedStartColor.g==143/255 and db.restedStartColor.a==1 and db.restedEndColor.a==1)
 assert(db.questColor.r==1 and db.questColor.g==150/255 and db.questColor.b==0 and db.questColor.a==1)
 f:Initialize();o=bar.overlay;assert(o.shown and o.w==80 and o.point[4]==40) -- 400 quest XP, excludes incomplete/hidden/duplicate
-border=frames[#frames];assert(border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')
+border=nativeBorder;assert(border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')
 assert(db.enabled==false) -- quest segment independent of gradient
 current=900;bar:SetValue(current);assert(o.w==20 and o.point[4]==180)
 bar.w=400;bar.scripts.OnSizeChanged();assert(o.w==40 and o.point[4]==360)

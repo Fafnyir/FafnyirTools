@@ -8,6 +8,11 @@ disables it. The change preserves existing XP/Quest/Rested settings and fills
 only missing border defaults. Offline verification passes; in-game visual
 confirmation remains required.
 
+The first in-game screenshot showed the configurable border stacked on the
+inset StatusBar alongside EllesmereUI's native outer edge. The implementation
+now restyles EllesmereUI's existing outer border host directly, eliminating the
+doubled and one-pixel-inset appearance; this correction passes offline checks.
+
 ## 2026-09-03 Target-only Aura Skins
 
 At the user's direction, FafnyirTools no longer styles or exposes controls for the main Player buff/debuff frames; EllesmereUI controls those. Aura Skins now operates on Blizzard Target auras only. Existing saved keys are left intact for upgrade safety but are no longer exposed or applied to Player aura frames. Offline verification passes; in-game confirmation is pending.

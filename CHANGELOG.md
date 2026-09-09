@@ -3,6 +3,7 @@
 ## 2026-09-08 — v1.1.2 XP bar border Trial 1
 
 - Added EllesmereUI-native style, size, color and opacity controls for one shared XP bar border.
+- Reused the XP bar's native outer border host to avoid a doubled, inset outline.
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
