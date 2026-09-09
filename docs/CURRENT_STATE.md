@@ -12,6 +12,12 @@ and economy caches, and device-specific Edit Mode layout selections. Existing
 unknown settings survive import. Offline verification passes; in-game popup,
 clipboard and reload behavior require confirmation.
 
+The first in-game import stored the correct Unit Frame source values but needed
+a second reload to change the frames. Import had updated FafnyirToolsDB only;
+EllesmereUI's separate source profile was not synchronized until PLAYER_LOGIN,
+after frame construction. Import and backup restore now call the existing native
+source apply path before ReloadUI so one reload can construct the selected frames.
+
 ## 2026-09-08 XP bar border Trial 1
 
 The XP & Progression page now exposes EllesmereUI-native border style, size,
