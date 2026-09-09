@@ -6,6 +6,7 @@
 - Reused the XP bar's native outer border host to avoid a doubled, inset outline.
 - Raised the shared border host above the XP fill so textured styles remain visible.
 - Use EllesmereUI's built-in texture offsets instead of an unregistered data-bar profile.
+- User-confirmed the final XP border alignment in game on 2026-09-08.
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 

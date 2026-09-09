@@ -19,6 +19,8 @@ The next screenshot showed the Blizzard texture still fitted too tightly. XP
 was incorrectly passed as an unregistered `databars` defaults profile, which
 forced zero offsets. XP borders now use EllesmereUI's built-in per-texture
 defaults (Blizzard: 3px horizontal, 2px vertical).
+The user reported the resulting aligned Blizzard border as “Perfect” on
+2026-09-08, providing in-game visual confirmation for Trial 1.
 
 ## 2026-09-03 Target-only Aura Skins
 
