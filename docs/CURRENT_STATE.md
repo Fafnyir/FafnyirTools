@@ -2,8 +2,8 @@
 
 ## 2026-09-09 global settings transfer
 
-The user authorized starting v1.1.3 with global settings export/import. The
-About page now exports a versioned, typed FafnyirTools string and validates it
+The user authorized starting v1.1.3 with global settings export/import. The top
+of the About page now exports a versioned, typed FafnyirTools string and validates it
 without executing imported text. Import merges only recognized settings,
 creates a rollback snapshot first, requires confirmation and reloads the UI.
 

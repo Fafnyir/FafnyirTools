@@ -5,6 +5,7 @@
 - Added versioned, validated export/import for recognized global preferences.
 - Excluded character selections, inventory/economy caches, and device layouts.
 - Added confirmation, pre-import rollback data, and reload-on-import behavior.
+- Moved Global Settings to the top of the About page.
 
 ## 2026-09-08 — v1.1.2 XP bar border Trial 1
 

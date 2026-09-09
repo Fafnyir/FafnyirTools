@@ -7,8 +7,8 @@ local retryTicker
 
 local function OrderedFeatures()
     return {
-        ns.modules.About,
         ns.modules.GlobalSettings,
+        ns.modules.About,
         ns.modules.PermanentCompanionPet,
         ns.modules.UnitFrameSources,
         ns.modules.AuraSkins,
