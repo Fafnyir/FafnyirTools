@@ -4,8 +4,6 @@ Added
 - Versioned global settings export/import with strict decoding and confirmation.
 - Automatic rollback backup before each successful import.
 - Export scope excludes character selections, inventory caches and device layouts.
-- Separate Disable All action that preserves custom values and caches.
-- Full Reset returns all Unit Frame sources to EllesmereUI.
 
 Added
 - Pet Frame source control with EllesmereUI, Blizzard Default and Hidden choices.

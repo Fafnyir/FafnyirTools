@@ -18,11 +18,6 @@ EllesmereUI's separate source profile was not synchronized until PLAYER_LOGIN,
 after frame construction. Import and backup restore now call the existing native
 source apply path before ReloadUI so one reload can construct the selected frames.
 
-Full Reset now restores factory defaults with all six Unit Frame sources set to
-EllesmereUI and offers a reload prompt. A separate **Disable All Features**
-action turns off every optional feature, returns Unit Frames to EllesmereUI,
-preserves custom values and caches, and reloads after explicit confirmation.
-
 ## 2026-09-08 XP bar border Trial 1
 
 The XP & Progression page now exposes EllesmereUI-native border style, size,

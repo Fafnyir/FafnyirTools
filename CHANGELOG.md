@@ -7,8 +7,6 @@
 - Added confirmation, pre-import rollback data, and reload-on-import behavior.
 - Moved Global Settings to the top of the About page.
 - Synchronize imported Unit Frame sources into EllesmereUI before reload, avoiding a second reload.
-- Full Reset now returns all six Unit Frame sources to EllesmereUI.
-- Added Disable All Features with confirmation, data preservation, native source synchronization, and one reload.
 
 ## 2026-09-08 — v1.1.2 XP bar border Trial 1
 

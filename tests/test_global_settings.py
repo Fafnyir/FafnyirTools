@@ -10,7 +10,6 @@ lua.execute(r'''
 local f=ns.modules.GlobalSettings
 sourceSyncs=0
 ns.modules.UnitFrameSources={ApplySaved=function() sourceSyncs=sourceSyncs+1;return true end}
-ns.modules.UnitFrameSources.Refresh=ns.modules.UnitFrameSources.ApplySaved
 local db=ns:GetDatabase()
 db.xpBar.enabled=true
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
@@ -48,18 +47,5 @@ assert(not f:Decode(''))
 assert(not f:Decode('OTHER:1:T0:'))
 assert(not f:Decode(exported..'junk'))
 assert(not f:Decode('FAFNYIRTOOLS:1:T1:S6:formatN1:2'))
-
-db.xpBar.startColor.r=.123;db.inventory.characters={Keep={money=77}}
-ns:DisableAllFeatures()
-assert(sourceSyncs==3 and db.xpBar.startColor.r==.123 and db.inventory.characters.Keep.money==77)
-assert(not db.blizzardBarArt.enabled and not db.flyoutFix.enabled and not db.permanentCompanionPet.enabled)
-assert(not db.resting.enabled and not db.rightClickSelfCast.enabled and not db.deviceLayout.enabled)
-assert(not db.inventory.enabled and not db.xpBar.enabled and not db.xpBar.questEnabled and not db.xpBar.restedEnabled)
-assert(not db.auraSkins.enabled and not db.auraSkins.targetAuras)
-for _,unit in ipairs({'player','target','targettarget','focus','boss','pet'}) do assert(db.unitFrameSources[unit]=='eui') end
-
-ns:ResetDatabase();db=ns:GetDatabase();assert(sourceSyncs==4)
-for _,unit in ipairs({'player','target','targettarget','focus','boss','pet'}) do assert(db.unitFrameSources[unit]=='eui') end
-assert(db.blizzardBarArt.enabled and db.flyoutFix.enabled and db.rightClickSelfCast.enabled)
 ''')
-print("PASS: global settings round-trip, exclusions, validation, merge, rollback, disable-all and reset defaults")
+print("PASS: global settings round-trip, exclusions, validation, merge, preservation and rollback")
