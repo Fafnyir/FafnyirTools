@@ -137,15 +137,41 @@ function ns:RegisterFeature(key, feature)
     self.modules[key] = feature
 end
 
+local function SetAllUnitFrameSourcesToEUI(db)
+    for _, unit in ipairs({ "player", "target", "targettarget", "focus", "boss", "pet" }) do
+        db.unitFrameSources[unit] = "eui"
+    end
+end
+
+local function RefreshFeatures(self)
+    for _, feature in pairs(self.modules) do
+        if type(feature.Refresh) == "function" then feature:Refresh() end
+    end
+end
+
 function ns:ResetDatabase()
     FafnyirToolsDB = {}
     CopyDefaults(self.defaults, FafnyirToolsDB)
+    SetAllUnitFrameSourcesToEUI(FafnyirToolsDB)
+    RefreshFeatures(self)
+end
 
-    for _, feature in pairs(self.modules) do
-        if type(feature.Refresh) == "function" then
-            feature:Refresh()
-        end
-    end
+function ns:DisableAllFeatures()
+    local db = self:GetDatabase()
+    db.blizzardBarArt.enabled = false
+    db.flyoutFix.enabled = false
+    db.permanentCompanionPet.enabled = false
+    db.resting.enabled = false
+    db.rightClickSelfCast.enabled = false
+    db.deviceLayout.enabled = false
+    db.inventory.enabled = false
+    db.xpBar.enabled = false
+    db.xpBar.questEnabled = false
+    db.xpBar.restedEnabled = false
+    db.auraSkins.enabled = false
+    db.auraSkins.targetAuras = false
+    SetAllUnitFrameSourcesToEUI(db)
+    RefreshFeatures(self)
 end
 
 function ns:Print(message)

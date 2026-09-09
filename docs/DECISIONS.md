@@ -43,6 +43,13 @@ Imported text must be parsed as data rather than executed, merge only recognized
 fields, preserve unknown local data, create a pre-import backup, require user
 confirmation, and reload after application.
 
+## 2026-09-09 — Reset and Disable All
+
+Full Reset restores factory defaults and explicitly sets Player, Target, Target
+of Target, Focus, Boss and Pet sources to EllesmereUI. Provide a separate
+Disable All action that disables optional features and returns sources to
+EllesmereUI without erasing custom values, character selections or caches.
+
 
 ## 2026-08-27 — Full v1.1.2 request
 

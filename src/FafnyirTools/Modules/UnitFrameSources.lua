@@ -83,6 +83,12 @@ function feature:ApplySaved()
     return ok
 end
 
+-- Full reset/disable actions call Refresh after choosing their source values.
+-- Sync those values into EllesmereUI's separate profile before reload.
+function feature:Refresh()
+    return self:ApplySaved()
+end
+
 local function SetSource(unit, value)
     if not SOURCE_VALUES[value] then return end
     DB()[unit] = value

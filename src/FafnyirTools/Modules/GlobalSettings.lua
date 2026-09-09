@@ -273,6 +273,20 @@ function feature:ShowRestore()
     })
 end
 
+function feature:ShowDisableAll()
+    if not EllesmereUI.ShowConfirmPopup then return end
+    EllesmereUI:ShowConfirmPopup({
+        title = "Disable All FafnyirTools Features?",
+        message = "All optional features will be turned off and all Unit Frame sources returned to EllesmereUI. Custom values, character selections, and inventory caches will be preserved.",
+        confirmText = "Disable & Reload",
+        cancelText = "Cancel",
+        onConfirm = function()
+            ns:DisableAllFeatures()
+            ReloadUI()
+        end,
+    })
+end
+
 function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y, h = yOffset
@@ -284,7 +298,11 @@ function feature:BuildOptions(parent, yOffset)
     y = y - h
     _, h = W:DualRow(parent, y,
         { type = "button", text = "Restore Last Import Backup", buttonText = "Restore", onClick = function() feature:ShowRestore() end },
-        { type = "label", text = "Excludes character data, inventory caches, and device layouts." })
+        { type = "button", text = "Disable All Features", buttonText = "Disable All", onClick = function() feature:ShowDisableAll() end })
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        { type = "label", text = "Transfers exclude character data, inventory caches, and device layouts." },
+        { type = "label", text = "Disable All preserves custom values and cached data." })
     y = y - h
     return math.abs(y)
 end

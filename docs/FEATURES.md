@@ -30,6 +30,8 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 - Imports parse data without `loadstring`, reject malformed/oversized payloads, merge recognized fields, preserve unknown fields, and create a rollback snapshot before applying.
 - Per-character companion selections, inventory/economy caches, and device-specific Edit Mode layouts are excluded.
 - Import requires explicit confirmation and a UI reload.
+- Full Reset restores factory defaults with all six Unit Frame sources set to EllesmereUI and prompts for reload.
+- Disable All turns off optional features and returns Unit Frames to EllesmereUI while retaining custom values, character selections, and inventory caches.
 
 ## XP contract
 

@@ -67,6 +67,15 @@ local function BuildConfig()
             if EllesmereUI and EllesmereUI.RefreshPage then
                 EllesmereUI:RefreshPage(true)
             end
+            if EllesmereUI and EllesmereUI.ShowConfirmPopup then
+                EllesmereUI:ShowConfirmPopup({
+                    title = "FafnyirTools Defaults Restored",
+                    message = "All Unit Frame sources were set to EllesmereUI. Reload now to apply frame ownership.",
+                    confirmText = "Reload Now",
+                    cancelText = "Later",
+                    onConfirm = ReloadUI,
+                })
+            end
         end,
     }
 end
