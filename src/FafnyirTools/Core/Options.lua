@@ -64,8 +64,25 @@ local function BuildConfig()
         onReset = function()
             ns:ResetDatabase()
 
+            -- ResetDatabase finishes every normal feature refresh first. Only
+            -- then mirror the six source defaults into EUI, avoiding the prior
+            -- trial's source writes from inside the unordered refresh loop.
+            local sources = ns.modules.UnitFrameSources
+            if sources and type(sources.ApplySaved) == "function" then
+                sources:ApplySaved()
+            end
+
             if EllesmereUI and EllesmereUI.RefreshPage then
                 EllesmereUI:RefreshPage(true)
+            end
+            if EllesmereUI and EllesmereUI.ShowConfirmPopup then
+                EllesmereUI:ShowConfirmPopup({
+                    title = "Reload Required",
+                    message = "FafnyirTools defaults were restored and all Unit Frame sources were set to EllesmereUI.",
+                    confirmText = "Reload Now",
+                    cancelText = "Later",
+                    onConfirm = ReloadUI,
+                })
             end
         end,
     }

@@ -166,6 +166,12 @@ for i,w in ipairs(widgets) do
  assert(w.getValue()==before and #sourceCalls==0 and #prompts==0)
 end
 sourceCalls={}; assert(f:ApplySaved() and #sourceCalls==6)
+sourceCalls={}; ns:ResetDatabase()
+for _,unit in ipairs(units) do assert(ns:GetDatabase().unitFrameSources[unit]=='eui') end
+assert(#sourceCalls==0) -- reset itself does not write sources inside the refresh loop
+assert(f:ApplySaved() and #sourceCalls==6)
+local resetCalls={};for _,call in ipairs(sourceCalls) do resetCalls[call[1]]=call[2] end
+for _,unit in ipairs(units) do assert(resetCalls[unit]=='eui') end
 -- Legacy/unset choices resolve on each read, preserving EUI profile changes.
 local db=ns:GetDatabase().unitFrameSources
 db.focus='inherit'; sources.focus='blizzard'; assert(widgets[4].getValue()=='blizzard')
@@ -173,7 +179,7 @@ sources.focus='hidden'; assert(widgets[4].getValue()=='hidden')
 db.target=nil; assert(widgets[2].getValue()==sources.target)
 -- No guess or crash when source API is absent; saved explicit choices still work.
 EllesmereUI._ModuleNS=nil
-assert(widgets[4].getValue()==nil and widgets[1].getValue()=='hidden')
+assert(widgets[4].getValue()==nil and widgets[1].getValue()=='eui')
 ns.Print=function() end; widgets[4].setValue('blizzard')
 assert(db.focus=='blizzard' and not f:ApplySaved())
 ''')

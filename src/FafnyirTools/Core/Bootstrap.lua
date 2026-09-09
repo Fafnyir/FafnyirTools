@@ -141,6 +141,13 @@ function ns:ResetDatabase()
     FafnyirToolsDB = {}
     CopyDefaults(self.defaults, FafnyirToolsDB)
 
+    -- A deliberate reset returns the full Unit Frame suite to EllesmereUI.
+    -- Keep ordinary upgrade defaults inherited so adding a missing key never
+    -- overwrites a user's existing EllesmereUI profile.
+    for _, unit in ipairs({ "player", "target", "targettarget", "focus", "boss", "pet" }) do
+        FafnyirToolsDB.unitFrameSources[unit] = "eui"
+    end
+
     for _, feature in pairs(self.modules) do
         if type(feature.Refresh) == "function" then
             feature:Refresh()

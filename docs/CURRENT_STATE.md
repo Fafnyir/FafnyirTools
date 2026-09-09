@@ -23,6 +23,13 @@ user experienced repeated disconnects while running that build. The change was
 reverted in full. No Lua error or new client crash report was found, so causality
 is not proven; stability must be re-established before redesigning the feature.
 
+After the rollback build remained stable in user testing, EllesmereUI was
+restored as the explicit reset value for all six Unit Frame sources. The safer
+implementation completes the existing feature reset loop first, then applies
+only the six source values through the native EUI API and offers one reload. It
+does not restore the withdrawn Disable All action or add source writes inside
+the unordered feature-refresh loop.
+
 ## 2026-09-08 XP bar border Trial 1
 
 The XP & Progression page now exposes EllesmereUI-native border style, size,
