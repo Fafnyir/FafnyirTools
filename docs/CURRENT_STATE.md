@@ -1,5 +1,13 @@
 # Current state — v1.1.2 feature restoration, 2026-08-27
 
+## 2026-09-08 XP bar border Trial 1
+
+The XP & Progression page now exposes EllesmereUI-native border style, size,
+color and opacity controls for one shared outer XP bar border. Border size zero
+disables it. The change preserves existing XP/Quest/Rested settings and fills
+only missing border defaults. Offline verification passes; in-game visual
+confirmation remains required.
+
 ## 2026-09-03 Target-only Aura Skins
 
 At the user's direction, FafnyirTools no longer styles or exposes controls for the main Player buff/debuff frames; EllesmereUI controls those. Aura Skins now operates on Blizzard Target auras only. Existing saved keys are left intact for upgrade safety but are no longer exposed or applied to Player aura frames. Offline verification passes; in-game confirmation is pending.

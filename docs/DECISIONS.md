@@ -28,6 +28,13 @@
 
 Do not use EUI's logo or a confusingly similar logo; do not lead the addon name with EllesmereUI; do not join its core addon-list group. Own a distinct Fafnyir Tools options sidebar group instead of inserting into EUI Core/QoL/UI Reskin groups. An internal Fafnyir QoL page is permitted. Preserve the user's Fafnyirs Hoard/category and FafnyirMedia icon references. These are historical project requirements, not a fresh audit of upstream branding policy.
 
+## 2026-09-08 — XP bar border Trial 1
+
+Use one shared EllesmereUI-rendered outer border for the XP bar. Expose the
+standard style, size, color and opacity controls under XP & Progression; size
+zero disables the border. Do not place separate borders around the current,
+rested or completed-quest segments. Keep addon version v1.1.2.
+
 
 ## 2026-08-27 — Full v1.1.2 request
 

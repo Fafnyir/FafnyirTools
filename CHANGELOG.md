@@ -1,5 +1,9 @@
 # Reconciled project changelog
 
+## 2026-09-08 — v1.1.2 XP bar border Trial 1
+
+- Added EllesmereUI-native style, size, color and opacity controls for one shared XP bar border.
+
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 
 ## 2026-09-03 — v1.1.2 Target-only Aura Skins options

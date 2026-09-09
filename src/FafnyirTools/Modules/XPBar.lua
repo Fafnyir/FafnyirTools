@@ -21,6 +21,7 @@ local RESTED_BAR_NAME = "EllesmereEAB_XPBar_Rested"
 local retryTicker
 local hooksInstalled = false
 local applying = false
+local borderFrame
 
 local function DB()
     return ns:GetDatabase().xpBar
@@ -123,6 +124,29 @@ local function ApplyGradient(texture, orientation, first, second)
     end
 end
 
+local function ApplyBorder(xpBar)
+    if not xpBar or not EllesmereUI or not EllesmereUI.ApplyBorderStyle then return end
+    if not borderFrame then
+        borderFrame = CreateFrame("Frame", nil, xpBar)
+        borderFrame:EnableMouse(false)
+        borderFrame:SetAllPoints(xpBar)
+    end
+    borderFrame:SetFrameLevel(xpBar:GetFrameLevel() + 5)
+    local settings = DB()
+    local defaults = ns.defaults.xpBar
+    local color = GetColor("borderColor", defaults.borderColor)
+    local size = settings.borderSize
+    if type(size) ~= "number" then size = defaults.borderSize end
+    EllesmereUI.ApplyBorderStyle(
+        borderFrame, math.max(0, size or 0),
+        color.r, color.g, color.b, color.a or 1,
+        settings.borderTexture or defaults.borderTexture or "solid",
+        settings.borderTextureOffset, settings.borderTextureOffsetY,
+        settings.borderTextureShiftX, settings.borderTextureShiftY,
+        "databars", size
+    )
+end
+
 
 function feature:Apply()
     if applying then return true end
@@ -133,6 +157,7 @@ function feature:Apply()
 
     applying = true
     self:UpdateQuestOverlay()
+    ApplyBorder(xpBar)
 
     local settings = DB()
     local defaults = ns.defaults.xpBar
@@ -332,6 +357,48 @@ function feature:BuildOptions(parent, yOffset)
 
     AttachSwatch(mainRow._leftRegion, "startColor", defaults.startColor)
     AttachSwatch(mainRow._rightRegion, "endColor", defaults.endColor)
+
+    _, h = W:Spacer(parent, y, 18)
+    y = y - h
+
+    _, h = W:SectionHeader(parent, "XP BAR BORDER", y)
+    y = y - h
+    local borderValues, borderOrder = EllesmereUI.GetBorderTextureDropdown()
+    local borderRow
+    borderRow, h = W:DualRow(parent, y,
+        {
+            type = "dropdown", text = "Border Style",
+            values = borderValues, order = borderOrder,
+            getValue = function() return DB().borderTexture or defaults.borderTexture end,
+            setValue = function(value)
+                local settings = DB()
+                settings.borderTexture = value
+                settings.borderTextureOffset = nil
+                settings.borderTextureOffsetY = nil
+                settings.borderTextureShiftX = nil
+                settings.borderTextureShiftY = nil
+                if EllesmereUI.GetBorderStyleSelectDefaults then
+                    local color = EllesmereUI.GetBorderStyleSelectDefaults(value)
+                    if color then
+                        local current = GetColor("borderColor", defaults.borderColor)
+                        current.r, current.g, current.b = color.r, color.g, color.b
+                        current.a = color.a or 1
+                    end
+                end
+                if EllesmereUI.GetBorderDefaultSize then
+                    local size = EllesmereUI.GetBorderDefaultSize("databars", value)
+                    if size then settings.borderSize = size end
+                end
+                feature:Refresh()
+            end,
+        },
+        {
+            type = "slider", text = "Border Size", min = 0, max = 4, step = 1,
+            getValue = function() return DB().borderSize or 0 end,
+            setValue = function(value) DB().borderSize = value; feature:Refresh() end,
+        })
+    y = y - h
+    AttachSwatch(borderRow._rightRegion, "borderColor", defaults.borderColor)
 
     _, h = W:Spacer(parent, y, 18)
     y = y - h
