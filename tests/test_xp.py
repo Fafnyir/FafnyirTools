@@ -78,7 +78,7 @@ assert(db.startColor.r==85/255 and db.startColor.g==99/255 and db.endColor.r==19
 assert(db.restedStartColor.r==79/255 and db.restedStartColor.g==143/255 and db.restedStartColor.a==1 and db.restedEndColor.a==1)
 assert(db.questColor.r==1 and db.questColor.g==150/255 and db.questColor.b==0 and db.questColor.a==1)
 f:Initialize();o=bar.overlay;assert(o.shown and o.w==80 and o.point[4]==40) -- 400 quest XP, excludes incomplete/hidden/duplicate
-border=nativeBorder;assert(border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')
+border=nativeBorder;assert(border.level==bar.level+1 and border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')
 assert(db.enabled==false) -- quest segment independent of gradient
 current=900;bar:SetValue(current);assert(o.w==20 and o.point[4]==180)
 bar.w=400;bar.scripts.OnSizeChanged();assert(o.w==40 and o.point[4]==360)

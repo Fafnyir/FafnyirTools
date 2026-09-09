@@ -4,6 +4,7 @@
 
 - Added EllesmereUI-native style, size, color and opacity controls for one shared XP bar border.
 - Reused the XP bar's native outer border host to avoid a doubled, inset outline.
+- Raised the shared border host above the XP fill so textured styles remain visible.
 
 This file reconstructs the development history from the identified chats and source packages. It does not assert external publication. Original package notes remain untouched.
 

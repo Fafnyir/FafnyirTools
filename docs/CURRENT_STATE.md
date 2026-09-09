@@ -12,6 +12,9 @@ The first in-game screenshot showed the configurable border stacked on the
 inset StatusBar alongside EllesmereUI's native outer edge. The implementation
 now restyles EllesmereUI's existing outer border host directly, eliminating the
 doubled and one-pixel-inset appearance; this correction passes offline checks.
+The Blizzard textured style then exposed a second layering issue: its backdrop
+used the native host level and rendered behind the StatusBar fill. The host is
+now raised one frame level above the fill while remaining below EUI's text host.
 
 ## 2026-09-03 Target-only Aura Skins
 

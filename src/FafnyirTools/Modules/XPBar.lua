@@ -136,9 +136,11 @@ local function ApplyBorder(xpBar)
             borderFrame = CreateFrame("Frame", nil, holder or xpBar)
             borderFrame:EnableMouse(false)
             borderFrame:SetAllPoints(holder or xpBar)
-            borderFrame:SetFrameLevel((holder or xpBar):GetFrameLevel() + 1)
         end
     end
+    -- Textured styles render their BackdropTemplate at this host's level.
+    -- Keep it above the inset StatusBar but below EUI's dedicated text host.
+    borderFrame:SetFrameLevel(xpBar:GetFrameLevel() + 1)
     local settings = DB()
     local defaults = ns.defaults.xpBar
     local color = GetColor("borderColor", defaults.borderColor)
