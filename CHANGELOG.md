@@ -2,6 +2,8 @@
 
 ## 2026-09-09 — v1.1.3 global settings transfer
 
+User accepted the stable Safe EllesmereUI Reset Defaults build as v1.1.3.
+
 - Added versioned, validated export/import for recognized global preferences.
 - Excluded character selections, inventory/economy caches, and device layouts.
 - Added confirmation, pre-import rollback data, and reload-on-import behavior.

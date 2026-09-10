@@ -4,6 +4,7 @@ Added
 - Versioned global settings export/import with strict decoding and confirmation.
 - Automatic rollback backup before each successful import.
 - Export scope excludes character selections, inventory caches and device layouts.
+- EllesmereUI-native XP bar border style, size, color and opacity controls.
 
 Added
 - Pet Frame source control with EllesmereUI, Blizzard Default and Hidden choices.
@@ -19,7 +20,7 @@ Restored
 - Legacy Quest XP toggle/color preferences migrate when newer keys are absent.
 
 Preserved
-- Player, Target, Target of Target, Focus and Boss source controls.
+- Player, Target, Target of Target, Focus, Boss and Pet source controls.
 - EllesmereUI / Blizzard Default / Hidden choices, reload prompt, legacy inheritance.
 - Blizzard Target aura skins with EUI bosses; six icons per row and existing filters.
 - Completed Quest XP overlay, orange #FF9600 at full opacity.

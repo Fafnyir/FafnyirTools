@@ -1,4 +1,9 @@
-# Current state — v1.1.3 development, 2026-09-09
+# Current state — v1.1.3 release, 2026-09-09
+
+The user approved the stable Safe EllesmereUI Reset Defaults build as the
+v1.1.3 release on 2026-09-09. This records acceptance of the tested build, not
+an exhaustive client/API regression matrix. The withdrawn Reset/Disable All
+experiment remains excluded.
 
 ## 2026-09-09 global settings transfer
 
@@ -9,8 +14,9 @@ creates a rollback snapshot first, requires confirmation and reloads the UI.
 
 Exports intentionally exclude per-character companion choices, all inventory
 and economy caches, and device-specific Edit Mode layout selections. Existing
-unknown settings survive import. Offline verification passes; in-game popup,
-clipboard and reload behavior require confirmation.
+unknown settings survive import. Offline verification passes. The user
+successfully exported, reset, and imported without a Lua error; the subsequent
+one-reload source synchronization repair is included in the accepted release.
 
 The first in-game import stored the correct Unit Frame source values but needed
 a second reload to change the frames. Import had updated FafnyirToolsDB only;

@@ -43,6 +43,10 @@ Imported text must be parsed as data rather than executed, merge only recognized
 fields, preserve unknown local data, create a pre-import backup, require user
 confirmation, and reload after application.
 
+The user accepted the stable Safe EllesmereUI Reset Defaults build as the
+v1.1.3 release. Keep the withdrawn combined Reset/Disable All implementation
+out of this release.
+
 
 ## 2026-08-27 — Full v1.1.2 request
 

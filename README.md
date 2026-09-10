@@ -4,7 +4,7 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** v1.1.3 development, starting from the confirmed v1.1.2 feature restoration and XP-border build. Prior confirmed ZIPs remain immutable under releases/.
+**Current source:** user-accepted v1.1.3 release, built from the confirmed v1.1.2 feature restoration and XP-border build. Prior confirmed ZIPs remain immutable under releases/.
 
 ## Start here
 
