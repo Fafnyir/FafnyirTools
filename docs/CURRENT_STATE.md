@@ -1,5 +1,25 @@
 # Current state — v1.1.3 release, 2026-09-09
 
+## 2026-09-20 WoW Forever beta package
+
+The `forever-beta` branch targets Forever 1.60.1.69913 (interface 16001) and
+EllesmereUI 9.2.1 while preserving the accepted Retail v1.1.3 behavior.
+Inspection of the installed Forever EllesmereUI source confirms that it retains
+the Unit Frame source API, AuraKit, EAB action buttons, Edit Mode and XP frame
+names used by FafnyirTools.
+
+The compatibility build declares interface 16001, detects Forever from its
+interface range, resolves maximum level through client APIs instead of the
+former hard-coded Retail level 90, and supports the current Pet Journal owned-ID
+enumeration while retaining the indexed fallback.
+
+Forever 1.60.1 has an upstream SavedVariables persistence defect documented by
+EllesmereUI as `EllesmereUI.FOREVER_SV_BUG`. While that flag is active,
+FafnyirTools blocks Unit Frame source writes, settings import/backup restore and
+Full Reset because those operations depend on safe persistence across reloads.
+Export remains available. This package is offline-validated but intentionally
+not presented as in-game verified until the client defect is fixed.
+
 The user approved the stable Safe EllesmereUI Reset Defaults build as the
 v1.1.3 release on 2026-09-09. This records acceptance of the tested build, not
 an exhaustive client/API regression matrix. The withdrawn Reset/Disable All

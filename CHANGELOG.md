@@ -1,5 +1,14 @@
 # Reconciled project changelog
 
+## Unreleased — WoW Forever beta compatibility
+
+- Added Forever interface 16001 support and runtime detection.
+- Replaced the Resting level-90 constant with client max-level APIs.
+- Added current Pet Journal owned-ID enumeration with its legacy fallback.
+- Guarded reload-dependent source/import/reset operations while EllesmereUI
+  reports the Forever beta SavedVariables persistence defect.
+- Added offline compatibility coverage and a pending in-game test matrix.
+
 ## 2026-09-09 — v1.1.3 global settings transfer
 
 User accepted the stable Safe EllesmereUI Reset Defaults build as v1.1.3.

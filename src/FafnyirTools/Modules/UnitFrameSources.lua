@@ -70,6 +70,8 @@ local function ApplyOne(unit, source)
 end
 
 function feature:ApplySaved()
+    if ns:ForeverSavedVariablesUnsafe() then return true end
+
     local db = DB()
     local ok = true
 
@@ -85,6 +87,10 @@ end
 
 local function SetSource(unit, value)
     if not SOURCE_VALUES[value] then return end
+    if ns:ForeverSavedVariablesUnsafe() then
+        ns:PrintForeverSavedVariablesWarning()
+        return
+    end
     DB()[unit] = value
 
     if value ~= "inherit" then
@@ -106,6 +112,8 @@ local function SourceWidget(unit, label, tooltip)
         tooltip = tooltip,
         values = SOURCE_VALUES,
         order = SOURCE_ORDER,
+        disabled = function() return ns:ForeverSavedVariablesUnsafe() end,
+        disabledTooltip = "Temporarily unavailable because the Forever beta client is not reliably saving addon settings across reloads.",
         getValue = function()
             local saved = DB()[unit]
             if SOURCE_VALUES[saved] then return saved end

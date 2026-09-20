@@ -1,5 +1,14 @@
 # Open items — no silent restoration
 
+## WoW Forever beta validation
+
+- Do not treat the Forever beta package as fully testable until Blizzard fixes
+  SavedVariables persistence and EllesmereUI removes `FOREVER_SV_BUG`.
+- Then verify sidebar/options registration, Unit Frame sources, settings
+  import/reset, Target auras, XP/Rested/Quest overlays, Resting, action-bar
+  behavior, bags/bank/currencies/tooltips and companion summoning in game.
+- The package must remain separate from the Retail installation and release.
+
 ## Resolved in consolidated v1.1.2
 
 Persistent Companion Pet, QoL, companion defaults/events/TOC/options, prior

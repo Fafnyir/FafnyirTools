@@ -62,6 +62,10 @@ local function BuildConfig()
         searchTerms = searchTerms,
         buildPage = BuildPage,
         onReset = function()
+            if ns:ForeverSavedVariablesUnsafe() then
+                ns:PrintForeverSavedVariablesWarning()
+                return
+            end
             ns:ResetDatabase()
 
             -- ResetDatabase finishes every normal feature refresh first. Only

@@ -203,6 +203,10 @@ function feature:Decode(text)
 end
 
 function feature:ApplyImport(payload)
+    if ns:ForeverSavedVariablesUnsafe() then
+        ns:PrintForeverSavedVariablesWarning()
+        return false
+    end
     local db = ns:GetDatabase()
     db.globalSettingsImportBackup = {
         created = time and time() or 0,
@@ -215,9 +219,14 @@ function feature:ApplyImport(payload)
     -- reads during startup. Write imported choices there before ReloadUI;
     -- deferring this to PLAYER_LOGIN would require a second reload.
     SyncUnitFrameSources()
+    return true
 end
 
 function feature:RestoreBackup()
+    if ns:ForeverSavedVariablesUnsafe() then
+        ns:PrintForeverSavedVariablesWarning()
+        return false
+    end
     local db = ns:GetDatabase()
     local backup = db.globalSettingsImportBackup
     if type(backup) ~= "table" or type(backup.settings) ~= "table" then return false end
@@ -247,6 +256,10 @@ function feature:ShowExport()
 end
 
 function feature:ShowImport()
+    if ns:ForeverSavedVariablesUnsafe() then
+        ns:PrintForeverSavedVariablesWarning()
+        return
+    end
     if not EllesmereUI.ShowImportPopup then return end
     EllesmereUI:ShowImportPopup(function(text)
         local payload, err = feature:Decode(text)

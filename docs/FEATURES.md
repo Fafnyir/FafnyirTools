@@ -25,6 +25,16 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 
 Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
 
+## WoW Forever beta contract
+
+- Support interface 16001 alongside the existing Retail interface list.
+- Detect Forever from the 16000–19999 interface range; its current
+  `WOW_PROJECT_ID` classification is not a sufficient product test.
+- Resolve the Resting indicator's max level from client APIs.
+- Support current owned-pet IDs plus the legacy indexed Pet Journal path.
+- While EllesmereUI reports the beta SavedVariables defect, block operations
+  that write cross-addon settings and immediately reload. Retail is unaffected.
+
 ## Global settings transfer
 
 - v1.1.3 exports a versioned, typed string containing recognized global preferences.

@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## WoW Forever beta line
+
+2026-09-20: prepare a separate Forever beta package without treating it as
+runtime verified while Blizzard's SavedVariables bug remains. Preserve Retail
+v1.1.3 and share source through runtime gates rather than duplicating the addon.
+Use the interface range and EllesmereUI's `FOREVER_SV_BUG` contract; disable
+reload-dependent writes while that flag is active.
+
 ## Source of truth
 
 2026-08-27: the user authorized consolidating accessible history into a single local project, retaining old chats. Adopt the exact QuestXPFixed v1.1.2 they confirmed works. No addon behavior changes in this consolidation. Future changes must start from this source tree and carry a Git revision.

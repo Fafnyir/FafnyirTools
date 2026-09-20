@@ -53,6 +53,51 @@ local function NormalizeName(value)
     return value:lower()
 end
 
+local function OwnedPets()
+    local pets = {}
+    if not C_PetJournal then return pets end
+
+    if C_PetJournal.GetOwnedPetIDs then
+        for _, petID in ipairs(C_PetJournal.GetOwnedPetIDs() or {}) do
+            local info = C_PetJournal.GetPetInfoTableByPetID
+                and C_PetJournal.GetPetInfoTableByPetID(petID)
+            if info then
+                pets[#pets + 1] = {
+                    petID = petID,
+                    customName = info.customName,
+                    speciesName = info.name or info.speciesName,
+                    favorite = info.isFavorite,
+                }
+            else
+                local _, customName, _, _, _, _, isFavorite, speciesName =
+                    C_PetJournal.GetPetInfoByPetID(petID)
+                pets[#pets + 1] = {
+                    petID = petID,
+                    customName = customName,
+                    speciesName = speciesName,
+                    favorite = isFavorite,
+                }
+            end
+        end
+        return pets
+    end
+
+    if not C_PetJournal.GetNumPets then return pets end
+    for index = 1, (C_PetJournal.GetNumPets() or 0) do
+        local petID, _, isOwned, customName, _, isFavorite = C_PetJournal.GetPetInfoByIndex(index)
+        if petID and isOwned then
+            local _, _, _, _, _, _, _, speciesName = C_PetJournal.GetPetInfoByPetID(petID)
+            pets[#pets + 1] = {
+                petID = petID,
+                customName = customName,
+                speciesName = speciesName,
+                favorite = isFavorite,
+            }
+        end
+    end
+    return pets
+end
+
 local function SummoningIsBlocked()
     if InCombatLockdown() or UnitAffectingCombat("player") then return true end
     if UnitIsDeadOrGhost("player") then return true end
@@ -71,29 +116,19 @@ local function SummoningIsBlocked()
 end
 
 local function FindSpecificPet(wantedName)
-    if not C_PetJournal or not C_PetJournal.GetNumPets then return end
-
-    local count = C_PetJournal.GetNumPets() or 0
-    for index = 1, count do
-        local petID, _, isOwned, customName = C_PetJournal.GetPetInfoByIndex(index)
-        if petID and isOwned then
-            local _, _, _, _, _, _, _, speciesName = C_PetJournal.GetPetInfoByPetID(petID)
-            if NormalizeName(customName) == wantedName or NormalizeName(speciesName) == wantedName then
-                return petID
-            end
+    for _, pet in ipairs(OwnedPets()) do
+        if NormalizeName(pet.customName) == wantedName
+            or NormalizeName(pet.speciesName) == wantedName then
+            return pet.petID
         end
     end
 end
 
 local function FindRandomFavoritePet()
-    if not C_PetJournal or not C_PetJournal.GetNumPets then return end
-
     local favorites = {}
-    local count = C_PetJournal.GetNumPets() or 0
-    for index = 1, count do
-        local petID, _, isOwned, _, _, isFavorite = C_PetJournal.GetPetInfoByIndex(index)
-        if petID and isOwned and isFavorite then
-            favorites[#favorites + 1] = petID
+    for _, pet in ipairs(OwnedPets()) do
+        if pet.favorite then
+            favorites[#favorites + 1] = pet.petID
         end
     end
 

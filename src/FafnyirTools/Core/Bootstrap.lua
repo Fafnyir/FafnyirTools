@@ -7,6 +7,21 @@ ns.state = ns.state or {
     optionsRegistered = false,
 }
 
+local interfaceVersion = GetBuildInfo and select(4, GetBuildInfo())
+ns.IS_FOREVER = type(interfaceVersion) == "number"
+    and interfaceVersion >= 16000
+    and interfaceVersion < 20000
+
+function ns:ForeverSavedVariablesUnsafe()
+    return self.IS_FOREVER
+        and EllesmereUI
+        and EllesmereUI.FOREVER_SV_BUG == true
+end
+
+function ns:PrintForeverSavedVariablesWarning()
+    self:Print("Forever beta is not reliably saving addon settings yet. Reload-dependent changes are disabled to protect your configuration.")
+end
+
 ns.defaults = {
     blizzardBarArt = {
         enabled = true,
@@ -187,6 +202,8 @@ SlashCmdList["FAFNYIRTOOLSDEBUG"] = function()
 
     print("Fafnyir Tools debug:")
     print("  Addon loaded: yes")
+    print("  WoW Forever client: " .. (ns.IS_FOREVER and "yes" or "no"))
+    print("  SavedVariables reliable: " .. (ns:ForeverSavedVariablesUnsafe() and "no (beta client bug)" or "yes"))
     print("  EllesmereUI loaded: " .. (euiLoaded and "yes" or "no"))
     print("  EllesmereUI options API: " .. (apiReady and "ready" or "missing"))
     print("  Sidebar entry: " .. (sidebarEntry and "installed" or "missing"))

@@ -6,6 +6,10 @@ A collection of enhancements for EllesmereUI.
 
 **Current source:** user-accepted v1.1.3 release, built from the confirmed v1.1.2 feature restoration and XP-border build. Prior confirmed ZIPs remain immutable under releases/.
 
+WoW Forever beta compatibility development lives on the `forever-beta` branch.
+It preserves Retail v1.1.3 behavior and adds guarded interface 16001 support.
+See [Forever compatibility](docs/FOREVER_COMPAT.md).
+
 ## Start here
 
 - [Current state](docs/CURRENT_STATE.md): what is working and what was actually verified.

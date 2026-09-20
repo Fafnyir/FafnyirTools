@@ -80,6 +80,17 @@ C_PetJournal.SummonRandomPet=nil;f:Refresh();flush();assert(summons[#summons]=='
 rows[2].setValue('specific');rows[3].setValue('absent');count=#summons;flush();assert(#summons==count)
 name='Beta';f:Reset();flush();assert(rows[2].getValue()=='randomFavorite' and rows[3].getValue()=='')
 name='Alpha';assert(rows[3].getValue()=='absent') -- reset only clears current character
+-- Forever/current collection API does not require the legacy indexed methods.
+C_PetJournal.GetOwnedPetIDs=function() return {'forever-one','forever-two'} end
+C_PetJournal.GetPetInfoTableByPetID=function(id)
+ if id=='forever-one' then return {name='Fox',customName='Copper',isFavorite=true} end
+ return {name='Owl',isFavorite=false}
+end
+C_PetJournal.GetNumPets=nil;C_PetJournal.GetPetInfoByIndex=nil
+rows[1].setValue(true);flush();rows[3].setValue('Copper');now=now+3;flush()
+assert(summons[#summons]=='forever-one')
+rows[2].setValue('randomFavorite');C_PetJournal.SummonRandomPet=nil;now=now+3;flush()
+assert(summons[#summons]=='forever-one')
 local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_PetJournal=saved
 ''')
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')

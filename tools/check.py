@@ -54,6 +54,7 @@ def check(baseline=False):
     assert version == re.search(r'local VERSION = "([^"]+)"', (ADDON / 'Modules/About.lua').read_text()).group(1)
     assert '## SavedVariables: FafnyirToolsDB' in toc
     assert '## Dependencies: EllesmereUI' in toc
+    assert '16001' in re.search(r'^## Interface: (.+)$', toc, re.M).group(1), 'Forever interface missing'
     assert entries.index('Core/Bootstrap.lua') < entries.index('Modules/XPBar.lua') < entries.index('Core/Events.lua')
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
@@ -74,7 +75,7 @@ def check(baseline=False):
         print('PASS source byte-identical to user-confirmed baseline', flush=True)
     print(f'PASS {len(entries)} Lua files, complete/unique TOC, expected features/pages/default sections, metadata', flush=True)
     for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_companion.py',
-                 'test_global_settings.py']:
+                 'test_global_settings.py', 'test_forever_compat.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

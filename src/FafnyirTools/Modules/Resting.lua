@@ -13,7 +13,6 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local MAX_LEVEL = 90
 local PLAYER_FRAME_NAME = "EllesmereUIUnitFrames_Player"
 
 local overlayHost
@@ -24,6 +23,15 @@ local retryTicker
 
 local function DB()
     return ns:GetDatabase().resting
+end
+
+local function PlayerAtMaxLevel()
+    local level = UnitLevel("player") or 0
+    if IsPlayerAtEffectiveMaxLevel and IsPlayerAtEffectiveMaxLevel() then return true end
+    if IsLevelAtEffectiveMaxLevel and IsLevelAtEffectiveMaxLevel(level) then return true end
+    local maxLevel = (GetMaxLevelForPlayerExpansion and GetMaxLevelForPlayerExpansion())
+        or (GetMaxPlayerLevel and GetMaxPlayerLevel())
+    return type(maxLevel) == "number" and level >= maxLevel
 end
 
 local function StopRetry()
@@ -88,7 +96,7 @@ function feature:UpdateVisibility()
     local settings = DB()
     local hideAtMaxLevel =
         settings.hideAtMaxLevel
-        and UnitLevel("player") >= MAX_LEVEL
+        and PlayerAtMaxLevel()
 
     local shouldShow =
         settings.enabled
