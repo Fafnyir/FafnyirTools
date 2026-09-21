@@ -46,7 +46,7 @@ After an authorized change, update the records, review and commit, then:
 .venv/bin/python tools/package.py
 ```
 
-The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The active development version is v1.1.3.
+The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The Forever beta development version is v1.1.4; the accepted Retail release remains v1.1.3.
 
 ## Installation
 

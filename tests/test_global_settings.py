@@ -24,7 +24,7 @@ db.futureSetting={keep=true}
 local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
 local payload,err=f:Decode(exported);assert(payload and not err)
-assert(payload.addonVersion=='v1.1.3' and payload.format==1)
+assert(payload.addonVersion=='v1.1.4' and payload.format==1)
 assert(payload.settings.xpBar.enabled==true and payload.settings.xpBar.startColor.a==.5)
 assert(payload.settings.xpBar.startColor.unknown==nil)
 assert(payload.settings.permanentCompanionPet.enabled==true)

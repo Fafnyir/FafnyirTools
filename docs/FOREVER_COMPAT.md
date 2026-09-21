@@ -19,6 +19,7 @@ and EllesmereUI 9.2.1 installed under `_classic_beta_`.
 | Inventory | Container, currency-list and tooltip processor APIs present |
 | Companion Pet | Current Pet Journal collection and summon APIs present |
 | Global transfer | Serializer is portable; import/restore temporarily gated |
+| Volumetric Fog | Forever-only QoL toggle backed directly by the persistent `volumeFog` CVar |
 
 Static presence proves an integration path, not in-game rendering or combat
 safety. The beta package must remain classified as unverified.

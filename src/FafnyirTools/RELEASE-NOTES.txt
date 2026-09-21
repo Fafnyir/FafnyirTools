@@ -1,46 +1,21 @@
-Fafnyir Tools for EllesmereUI v1.1.3 — global settings transfer
+Fafnyir Tools for EllesmereUI v1.1.4 — WoW Forever beta
 
 Added
-- Versioned global settings export/import with strict decoding and confirmation.
-- Automatic rollback backup before each successful import.
-- Export scope excludes character selections, inventory caches and device layouts.
-- EllesmereUI-native XP bar border style, size, color and opacity controls.
-
-Added
-- Pet Frame source control with EllesmereUI, Blizzard Default and Hidden choices.
+- WoW Forever interface 16001 support and runtime detection.
+- Forever-only Volumetric Fog toggle under QoL.
+- Current Pet Journal owned-ID enumeration with the legacy fallback retained.
 
 Changed
-- Removed Player aura controls and styling; EllesmereUI remains their sole owner.
-- Aura Skins options now apply only to Blizzard Target auras.
+- Resting max-level detection now follows client APIs instead of a Retail level constant.
+- Unit Frame source writes, settings import/restore and Full Reset are guarded
+  while EllesmereUI reports the Forever beta SavedVariables defect.
 
-Restored
-- Permanent Companion Pet, with per-character specific/random-favorite choices.
-- QoL page, original saved pet preferences, safety checks and summon events.
-- Missing v1.0.8-v1.1.1 changelog entries and companion credits to Eiya/raine.
-- Legacy Quest XP toggle/color preferences migrate when newer keys are absent.
-
-Preserved
-- Player, Target, Target of Target, Focus, Boss and Pet source controls.
-- EllesmereUI / Blizzard Default / Hidden choices, reload prompt, legacy inheritance.
-- Blizzard Target aura skins with EUI bosses; six icons per row and existing filters.
-- Completed Quest XP overlay, orange #FF9600 at full opacity.
-- Current XP #5563FF to #C561FF; Rested XP #4F8FFF at full opacity.
-- Existing saved custom colors and settings; gradient enable preference unchanged.
-- Right-click self cast, Blizzard Bar Art, Flyout Fix, inventory and layout features.
-
-Options
-About / QoL / Unit Frames / Action Bars / XP & Progression / Bags & Inventory / Layouts.
-Resting is under Unit Frames after Aura Skins. /faftools opens Unit Frames.
-About text height now adapts to wrapped lines.
+Persistence
+- Volumetric Fog directly controls the client volumeFog CVar. The client
+  persists it independently of addon SavedVariables.
+- Export remains available during the beta persistence defect.
 
 Scope
-This restores previously implemented features; it does not add the discarded
-Masque, DataBroker or Warband Mail selector experiments. Focus aura styling
-and full mail/auction/warband/guild inventory scanners remain unimplemented.
-
-Installation
-Replace FafnyirTools under Interface/AddOns, then reload. Keep SavedVariables.
-Permanent Companion Pet is off by default unless previously enabled; configure
-it under QoL. All five source controls retain their prior settings.
-No EllesmereUI files are modified. Offline regression checks pass; verify the
-restored pet, seven-page layout and mixed frame setup in game before publishing.
+This build is offline-validated for WoW Forever beta 1.60.1 and EllesmereUI
+9.2.1. Full in-game regression testing remains deferred until Blizzard fixes
+the SavedVariables defect. The accepted Retail release remains v1.1.3.

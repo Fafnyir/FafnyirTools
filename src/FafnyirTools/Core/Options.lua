@@ -9,6 +9,7 @@ local function OrderedFeatures()
     return {
         ns.modules.GlobalSettings,
         ns.modules.About,
+        ns.modules.ForeverFog,
         ns.modules.PermanentCompanionPet,
         ns.modules.UnitFrameSources,
         ns.modules.AuraSkins,

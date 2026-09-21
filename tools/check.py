@@ -35,6 +35,7 @@ def check(baseline=False):
         'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'QoL'),
         'Modules/About.lua': ('About', 'About'),
         'Modules/GlobalSettings.lua': ('GlobalSettings', 'About'),
+        'Modules/ForeverFog.lua': ('ForeverFog', 'QoL'),
         'Modules/Resting.lua': ('Resting', 'Unit Frames'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'Action Bars'),
         'Modules/BlizzardBarArt.lua': ('BlizzardBarArt', 'Action Bars'),

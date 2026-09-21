@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased — WoW Forever beta compatibility
+## v1.1.4 — WoW Forever beta compatibility
 
 - Added Forever interface 16001 support and runtime detection.
 - Replaced the Resting level-90 constant with client max-level APIs.
@@ -8,6 +8,8 @@
 - Guarded reload-dependent source/import/reset operations while EllesmereUI
   reports the Forever beta SavedVariables persistence defect.
 - Added offline compatibility coverage and a pending in-game test matrix.
+- Added a Forever-only Volumetric Fog toggle backed by the persistent client
+  `volumeFog` CVar; it does not depend on addon SavedVariables.
 
 ## 2026-09-09 — v1.1.3 global settings transfer
 

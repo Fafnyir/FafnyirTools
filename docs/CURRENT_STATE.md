@@ -20,6 +20,11 @@ Full Reset because those operations depend on safe persistence across reloads.
 Export remains available. This package is offline-validated but intentionally
 not presented as in-game verified until the client defect is fixed.
 
+The v1.1.4 beta line also adds a Forever-only **Volumetric Fog** toggle under
+QoL. It controls the live `volumeFog` CVar and does not store a duplicate addon
+preference. Blizzard persists that client setting through `Config.wtf`, outside
+the affected addon SavedVariables path. Retail does not display the section.
+
 The user approved the stable Safe EllesmereUI Reset Defaults build as the
 v1.1.3 release on 2026-09-09. This records acceptance of the tested build, not
 an exhaustive client/API regression matrix. The withdrawn Reset/Disable All
