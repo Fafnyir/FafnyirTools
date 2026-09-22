@@ -5,6 +5,10 @@ Added
 - Forever-only Volumetric Fog toggle under QoL.
 - Current Pet Journal owned-ID enumeration with the legacy fallback retained.
 
+Fixed
+- Blizzard Bar Art now restores itself after action-bar state/layout changes and
+  reacquires Blizzard artwork if the live regions are replaced.
+
 Changed
 - Resting max-level detection now follows client APIs instead of a Retail level constant.
 - Unit Frame source writes, settings import/restore and Full Reset are guarded

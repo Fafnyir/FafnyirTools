@@ -14,14 +14,13 @@ local feature = {
 ns:RegisterFeature(feature.key, feature)
 
 local holder
-local installed = false
-
 local sourceBar
 local borderArt
 local endCaps
 
 local original = {}
 local watched = setmetatable({}, { __mode = "k" })
+local refreshQueued = false
 
 local function DB()
     return ns:GetDatabase().blizzardBarArt
@@ -33,6 +32,33 @@ end
 
 local function SourceBar()
     return _G.MainActionBar
+end
+
+local Refresh
+
+local function QueueRefresh()
+    if refreshQueued then return end
+    refreshQueued = true
+    C_Timer.After(0, function()
+        refreshQueued = false
+        Refresh()
+    end)
+end
+
+local function WatchArtwork(frame)
+    if not frame or watched[frame] then return end
+    if frame.HookScript then
+        frame:HookScript("OnHide", QueueRefresh)
+    end
+    if hooksecurefunc then
+        hooksecurefunc(frame, "SetAlpha", function(_, alpha)
+            if DB().enabled and alpha == 0 then QueueRefresh() end
+        end)
+        hooksecurefunc(frame, "SetParent", function(_, newParent)
+            if DB().enabled and holder and newParent ~= holder then QueueRefresh() end
+        end)
+    end
+    watched[frame] = true
 end
 
 local function SaveFrameState(frame)
@@ -131,39 +157,34 @@ end
 
 local function Install()
     local target = MainBar()
-    sourceBar = SourceBar()
-    if not (target and sourceBar) then return end
+    local currentSource = SourceBar()
+    if not (target and currentSource) then return end
 
-    borderArt = sourceBar.BorderArt
-    endCaps = sourceBar.EndCaps
+    -- Blizzard/EllesmereUI can rebuild or replace these regions while applying
+    -- Edit Mode, paging, vehicle, zone, or specialization state. Resolve the
+    -- live objects every time instead of trusting the login-time references.
+    sourceBar = currentSource
+    borderArt = currentSource.BorderArt
+    endCaps = currentSource.EndCaps
     if not (borderArt or endCaps) then return end
+
+    WatchArtwork(borderArt)
+    WatchArtwork(endCaps)
 
     EnsureHolder(target)
     local scale = ArtworkScale(target)
     LayoutBorder(target, scale)
     LayoutEndCaps(target, scale)
 
-    installed = true
 end
 
-local function Refresh()
+Refresh = function()
     if not DB().enabled then
         if holder then holder:Hide() end
         return
     end
 
-    if not installed then
-        Install()
-        return
-    end
-
-    local target = MainBar()
-    if not target then return end
-
-    EnsureHolder(target)
-    local scale = ArtworkScale(target)
-    LayoutBorder(target, scale)
-    LayoutEndCaps(target, scale)
+    Install()
 end
 
 local function RefreshSoon()
@@ -188,13 +209,27 @@ local function WatchLayout(target)
         end)
         watched[button] = true
     end
+
 end
 
 function feature:Initialize()
     local f = CreateFrame("Frame")
     f:RegisterEvent("PLAYER_LOGIN")
     f:RegisterEvent("PLAYER_ENTERING_WORLD")
-    f:SetScript("OnEvent", RefreshSoon)
+    f:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+    f:RegisterEvent("ACTIONBAR_PAGE_CHANGED")
+    f:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
+    f:RegisterEvent("UPDATE_VEHICLE_ACTIONBAR")
+    f:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
+    f:RegisterEvent("UPDATE_SHAPESHIFT_FORM")
+    f:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
+    f:RegisterEvent("PLAYER_REGEN_ENABLED")
+    f:SetScript("OnEvent", function()
+        RefreshSoon()
+        C_Timer.After(0, function()
+            WatchLayout(MainBar())
+        end)
+    end)
 
     RefreshSoon()
     C_Timer.After(2, function()

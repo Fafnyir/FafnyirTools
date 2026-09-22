@@ -1,4 +1,14 @@
-# Current state — v1.1.3 release, 2026-09-09
+# Current state — v1.1.4 Forever beta, 2026-09-22
+
+## Blizzard Bar Art persistence repair
+
+The v1.1.3 artwork could disappear after runtime action-bar transitions because
+it refreshed only at login and on size changes and retained its original
+`MainActionBar.BorderArt` and `EndCaps` references. The v1.1.4 line now
+reacquires live artwork and restores it after paging, specialization, vehicle,
+override, shapeshift, Edit Mode, world-entry, and combat transitions. Hooks also
+repair direct hide, alpha, or parent changes. Offline regression coverage passes;
+in-game confirmation is still required.
 
 ## 2026-09-20 WoW Forever beta package
 
