@@ -5,10 +5,14 @@ Added
 - Forever-only Volumetric Fog toggle under QoL.
 - Current Pet Journal owned-ID enumeration with the legacy fallback retained.
 
+Removed
+- Unit Frame Sources, Aura Skins, and Resting; EllesmereUI now owns those options.
+- The Unit Frames page. /faftools now opens QoL.
+- Removed-feature settings from new global exports. Existing SavedVariables remain untouched and inactive.
+
 Changed
-- Resting max-level detection now follows client APIs instead of a Retail level constant.
-- Unit Frame source writes, settings import/restore and Full Reset are guarded
-  while EllesmereUI reports the Forever beta SavedVariables defect.
+- Settings import/restore and Full Reset are guarded while EllesmereUI reports
+  the Forever beta SavedVariables defect.
 
 Persistence
 - Volumetric Fog directly controls the client volumeFog CVar. The client

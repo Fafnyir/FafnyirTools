@@ -103,7 +103,7 @@ db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.t
 print('PASS: totals, clipping, resizing, max level, zero XP, disabled XP, toggle, defaults, saved settings, gradients')
 # Fill feature slots so the real options registration can be exercised independently of other module APIs.
 lua.execute('''
-for _,k in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','Resting','RightClickSelfCast','BlizzardBarArt','FlyoutButtonMatch','UnitFrameSources','DeviceLayout','AuraSkins','Inventory'}) do ns.modules[k]={page=k=='GlobalSettings' and 'About' or k} end
+for _,k in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','RightClickSelfCast','BlizzardBarArt','FlyoutButtonMatch','DeviceLayout','Inventory'}) do ns.modules[k]={page=k=='GlobalSettings' and 'About' or k} end
 ns.Sidebar={Install=function() return true end}
 ''')
 run('Core/Options.lua');run('Core/Events.lua')

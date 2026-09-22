@@ -10,7 +10,7 @@ and EllesmereUI 9.2.1 installed under `_classic_beta_`.
 | Options and sidebar | Shared EllesmereUI module/widgets framework |
 | Unit Frame Sources | Source getters/setters and all six existing unit paths |
 | Target Aura Skins | Shared AuraKit container API |
-| Resting Indicator | Same EUI Player frame; dynamic max-level handling added |
+| Resting Indicator | Removed from FafnyirTools v1.1.4; EllesmereUI owns this area |
 | Right-click Self Cast | Same EAB secure action-button family |
 | Blizzard Bar Art | EAB main bar and Blizzard action-bar references; visual test pending |
 | Flyout Match | SpellFlyout, EAB buttons and shared border helpers |
@@ -36,4 +36,4 @@ remove themselves automatically when EllesmereUI changes the flag to false.
 
 After the persistence defect is fixed, test load/options, all Unit Frame source
 choices, XP/Rested/Quest segments, Target auras in combat, action-bar casting,
-flyouts and art, Resting/max level, inventory locations and companion pets.
+flyouts and art, inventory locations and companion pets.

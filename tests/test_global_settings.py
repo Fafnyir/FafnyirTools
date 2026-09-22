@@ -8,12 +8,12 @@ lua.execute((root / "Core/Bootstrap.lua").read_text(), "FafnyirTools", lua.globa
 lua.execute((root / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(r'''
 local f=ns.modules.GlobalSettings
-sourceSyncs=0
-ns.modules.UnitFrameSources={ApplySaved=function() sourceSyncs=sourceSyncs+1;return true end}
 local db=ns:GetDatabase()
 db.xpBar.enabled=true
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
-db.unitFrameSources.pet="hidden"
+db.unitFrameSources={pet="hidden"}
+db.auraSkins={enabled=true}
+db.resting={enabled=false}
 db.permanentCompanionPet.enabled=true
 db.permanentCompanionPet.characters={['Tester-Realm']={mode='specific',petName='Secret Pet'}}
 db.inventory.characters={['Tester-Realm']={money=999,items={123}}}
@@ -31,17 +31,18 @@ assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
 assert(payload.settings.inventory.tooltips==false and payload.settings.inventory.characters==nil)
 assert(payload.settings.deviceLayout==nil and payload.settings.futureSetting==nil)
+assert(payload.settings.unitFrameSources==nil and payload.settings.auraSkins==nil and payload.settings.resting==nil)
 
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 f:ApplyImport(payload)
-assert(sourceSyncs==1)
 assert(db.xpBar.enabled==true and db.xpBar.startColor.a==.5 and db.inventory.tooltips==false)
+assert(db.unitFrameSources.pet=='hidden' and db.auraSkins.enabled and db.resting.enabled==false)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
 assert(db.permanentCompanionPet.characters['Tester-Realm'].petName=='Secret Pet')
 assert(db.inventory.characters['Tester-Realm'].money==999)
 assert(db.globalSettingsImportBackup.created==12345)
 assert(db.globalSettingsImportBackup.settings.xpBar.enabled==false)
-assert(f:RestoreBackup() and sourceSyncs==2 and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
+assert(f:RestoreBackup() and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
 
 assert(not f:Decode(''))
 assert(not f:Decode('OTHER:1:T0:'))

@@ -1,4 +1,13 @@
-# Current state — v1.1.3 release, 2026-09-09
+# Current state — v1.1.4 Forever beta, 2026-09-21
+
+## EllesmereUI ownership cleanup
+
+FafnyirTools no longer loads or exposes Unit Frame Sources, Aura Skins, or
+Resting. EllesmereUI now owns those areas. The Unit Frames page is removed; the
+active pages are About, QoL, Action Bars, XP & Progression, Bags & Inventory,
+and Layouts. Existing `unitFrameSources`, `auraSkins`, and `resting`
+SavedVariables remain untouched as inactive legacy data and are excluded from
+new global exports. Historical sections below describe earlier releases.
 
 ## 2026-09-20 WoW Forever beta package
 
@@ -102,7 +111,7 @@ or unfinished wishlist features.
 
 ## Active source
 
-src/FafnyirTools contains 20 files, including restored PermanentCompanionPet.lua.
+At that point src/FafnyirTools contained 20 files, including restored PermanentCompanionPet.lua.
 The prior QuestXPFixed baseline remains immutable in releases/ and its baseline
 tag/fingerprint. Active source now intentionally differs from that baseline.
 
@@ -111,13 +120,13 @@ QoL controls, event registrations, v1.0.8-v1.1.1 history and original credits.
 Older questXPEnabled/questXPColor preferences migrate only when new keys are
 missing. Existing new keys/custom settings take precedence.
 
-Seven pages: About / QoL / Unit Frames / Action Bars / XP & Progression /
+The v1.1.2 build had seven pages: About / QoL / Unit Frames / Action Bars / XP & Progression /
 Bags & Inventory / Layouts. Unit Frames contains source controls, Aura Skins,
 then Resting. /faftools opens Unit Frames. About uses measured wrapped text height.
 
 ## Preservation
 
-UnitFrameSources, AuraSkins, action modules, inventory modules, status-texture
+In v1.1.2, UnitFrameSources, AuraSkins, action modules, inventory modules, status-texture
 hiding and sidebar are unchanged. XP, Resting and DeviceLayout behavior is
 unchanged; only their page labels moved. Version remains v1.1.2.
 

@@ -5,7 +5,7 @@
 - Do not treat the Forever beta package as fully testable until Blizzard fixes
   SavedVariables persistence and EllesmereUI removes `FOREVER_SV_BUG`.
 - Then verify sidebar/options registration, Unit Frame sources, settings
-  import/reset, Target auras, XP/Rested/Quest overlays, Resting, action-bar
+  import/reset, XP/Rested/Quest overlays, action-bar
   behavior, bags/bank/currencies/tooltips and companion summoning in game.
 - The package must remain separate from the Retail installation and release.
 
@@ -16,18 +16,14 @@ release history and companion credits are restored. The prior source credited
 raine for the original WeakAura; that existing attribution is retained (not a
 new independent author verification). Eiya credit is retained as well.
 
-Options are consolidated to seven pages with Resting under Unit Frames,
-XP & Progression and Layouts. This preserves later Aura/source and Action Bars
-grouping. Legacy Quest XP setting names now migrate without overwriting newer
+Options were consolidated to seven pages in v1.1.2. Unit Frame Sources, Aura
+Skins, and Resting were retired in v1.1.4 when EllesmereUI assumed those
+options; six pages remain. Legacy Quest XP setting names migrate without overwriting newer
 saved values. These changes are offline-tested; the user confirmed “All fixed.” on 2026-08-27. See CURRENT_STATE.md for the exact build and limits of this report.
 
 ## 3. Broader inventory functionality
 
 Historical request covered searching all characters, bags, banks, mail, auctions, warband/guild storage, gold/currencies. Current code scans bags, personal bank and currency list and aggregates cached locations; dedicated mail/auction/warband/guild scanners and a search UI are not present. Existing data tables/tooltip labels are not implementation. Keep as a future scope decision; do not advertise complete live tracking.
-
-## 4. Focus aura styling
-
-Focus source control exists. Custom Focus aura containers do not. Treat as a separate feature request if desired.
 
 ## 5. Release assurance / backup
 

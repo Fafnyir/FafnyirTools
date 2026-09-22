@@ -19,12 +19,9 @@ local SCHEMA = {
     blizzardBarArt = true,
     flyoutFix = true,
     permanentCompanionPet = { enabled = true, disableInPvP = true },
-    resting = true,
     rightClickSelfCast = true,
-    unitFrameSources = true,
     inventory = { enabled = true, tooltips = true },
     xpBar = true,
-    auraSkins = true,
 }
 
 local function Copy(value)
@@ -169,14 +166,6 @@ local function MergeRecognized(target, incoming, schema, defaults)
     end
 end
 
-local function SyncUnitFrameSources()
-    local sources = ns.modules and ns.modules.UnitFrameSources
-    if sources and type(sources.ApplySaved) == "function" then
-        return sources:ApplySaved()
-    end
-    return false
-end
-
 function feature:Export()
     local payload = {
         format = FORMAT,
@@ -215,10 +204,6 @@ function feature:ApplyImport(payload)
     }
     MergeRecognized(db, payload.settings, SCHEMA, ns.defaults)
     ns:InitializeDatabase()
-    -- EllesmereUI owns a separate source profile that its frame constructor
-    -- reads during startup. Write imported choices there before ReloadUI;
-    -- deferring this to PLAYER_LOGIN would require a second reload.
-    SyncUnitFrameSources()
     return true
 end
 
@@ -231,7 +216,6 @@ function feature:RestoreBackup()
     local backup = db.globalSettingsImportBackup
     if type(backup) ~= "table" or type(backup.settings) ~= "table" then return false end
     MergeRecognized(db, backup.settings, SCHEMA, ns.defaults)
-    SyncUnitFrameSources()
     return true
 end
 

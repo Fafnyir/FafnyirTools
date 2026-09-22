@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## Retire overlapping Unit Frame features
+
+2026-09-21: at the user's request, remove Unit Frame Sources, Aura Skins, and
+Resting because EllesmereUI is adding and owning these options. Remove the Unit
+Frames page and runtime modules. Preserve old SavedVariables keys as inactive
+data and omit them from new global exports. Reassess EllesmereUI's release
+options before adding replacements.
+
 ## WoW Forever beta line
 
 2026-09-20: prepare a separate Forever beta package without treating it as

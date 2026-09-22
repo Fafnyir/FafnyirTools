@@ -10,16 +10,15 @@ Read README.md, docs/CURRENT_STATE.md, docs/FEATURES.md, and docs/DECISIONS.md b
 
 - Preserve all existing features and saved custom settings; change missing defaults only, never reset user settings during an upgrade. An explicit user reset is different.
 - Keep version v1.1.2 unless the user explicitly authorizes a version change. Update TOC, About and project changelog together when authorized.
-- Preserve Player, Target, Target of Target (`targettarget`), Focus, Boss and Pet source controls. Use EllesmereUI's native source API, not blanket frame hiding. Retain Reload Now/Later and session-stable aura ownership.
-- Source dropdown choices are EllesmereUI, Blizzard Default, Hidden. Legacy `inherit` is retained in saved data and resolved through the effective-source getter; do not reintroduce the removed UI choice.
-- Preserve completed Quest XP, current XP and rested defaults, quest events and settings, target aura six-icon rows, action art/flyout fixes, inventory and layout behavior. See FEATURES.md for exact requirements and limitations.
-- Preserve the restored Persistent Companion Pet feature, per-character choices, migration, safety checks and QoL page. Current pages are About, QoL, Unit Frames (sources/Aura Skins/Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts. Do not silently change that taxonomy during unrelated work.
+- Unit Frame Sources, Aura Skins, and Resting were retired by user decision on 2026-09-21 because EllesmereUI now owns those options. Do not restore their modules or page without a new request. Preserve old SavedVariables keys as inactive legacy data.
+- Preserve completed Quest XP, current XP and rested defaults, quest events and settings, action art/flyout fixes, inventory and layout behavior. See FEATURES.md for exact requirements and limitations.
+- Preserve the restored Persistent Companion Pet feature, per-character choices, migration, safety checks and QoL page. Current pages are About, QoL, Action Bars, XP & Progression, Bags & Inventory, Layouts. Do not silently change that taxonomy during unrelated work.
 - Do not restore discarded DataBroker, Masque port, or failed Warband Mail selector experiments without a new user request.
 - Do not modify upstream EllesmereUI or the installed WoW addon directory unless explicitly requested. Use a distinct Fafnyir Tools sidebar group and preserve branding/credits.
 
 ## Validate and release
 
-Run `.venv/bin/python tools/check.py` (or a Python environment with requirements-dev.txt installed). Existing tests cover XP, source controls, aura ownership/rows, options layout, Lua 5.1 syntax and module/TOC inventory. Extend the relevant suite when behavior changes. Do not weaken tests merely to pass a package.
+Run `.venv/bin/python tools/check.py` (or a Python environment with requirements-dev.txt installed). Existing tests cover XP, options layout, Lua 5.1 syntax, module/TOC inventory, and inactive legacy-setting preservation. Extend the relevant suite when behavior changes. Do not weaken tests merely to pass a package.
 
 Run `.venv/bin/python tools/check.py --baseline` when verifying the original baseline; this additionally requires byte equality with its fingerprint and is not expected after authorized source changes.
 
