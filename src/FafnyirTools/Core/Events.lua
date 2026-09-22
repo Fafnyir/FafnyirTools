@@ -4,6 +4,7 @@ local events = CreateFrame("Frame")
 
 events:RegisterEvent("PLAYER_LOGIN")
 events:RegisterEvent("PLAYER_ENTERING_WORLD")
+events:RegisterEvent("PLAYER_UPDATE_RESTING")
 events:RegisterEvent("PLAYER_LEVEL_UP")
 events:RegisterEvent("PLAYER_XP_UPDATE")
 events:RegisterEvent("UPDATE_EXHAUSTION")

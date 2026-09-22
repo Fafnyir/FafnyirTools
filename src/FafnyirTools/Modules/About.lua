@@ -16,7 +16,6 @@ local CHANGELOG = {
         "Added guarded WoW Forever beta compatibility.",
         "Added a Forever-only Volumetric Fog toggle under QoL.",
         "The fog choice uses the persistent client CVar and does not depend on addon SavedVariables.",
-        "Removed Unit Frame Sources, Aura Skins, and Resting; EllesmereUI now owns those options.",
     }},
     { version = "v1.1.3", lines = {
         "Added global settings export and import with validation and rollback backup.",

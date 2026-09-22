@@ -5,12 +5,17 @@ from lupa.lua51 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
-ns={};SlashCmdList={};prints={};rows={};cvars={volumeFog='1'}
+ns={};SlashCmdList={};prints={};sourceWrites=0;rows={};cvars={volumeFog='1'}
 function GetBuildInfo() return '1.60.1','69913','Sep 17 2026',16001 end
 function print(value) prints[#prints+1]=tostring(value) end
 function ReloadUI() error('ReloadUI must remain blocked while SV is unsafe') end
 function time() return 123 end
-EllesmereUI={FOREVER_SV_BUG=true,Widgets={},_ModuleNS={}}
+EllesmereUI={FOREVER_SV_BUG=true,Widgets={},_ModuleNS={
+ EllesmereUIUnitFrames={
+  SetUnitFrameSource=function() sourceWrites=sourceWrites+1 end,
+  GetUnitFrameSource=function() return 'eui' end,
+ }
+}}
 C_CVar={
  GetCVar=function(key) return cvars[key] end,
  SetCVar=function(key,value) cvars[key]=tostring(value) end,
@@ -22,14 +27,19 @@ end
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
+lua.execute((ROOT / "Modules/UnitFrameSources.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ROOT / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ROOT / "Modules/ForeverFog.lua").read_text(), "FafnyirTools", ns)
 lua.execute(r'''
 assert(ns.IS_FOREVER and ns:ForeverSavedVariablesUnsafe())
+local sources=ns.modules.UnitFrameSources
+assert(sources:ApplySaved() and sourceWrites==0)
+sources:BuildOptions({},0)
+assert(rows[1].disabled() and rows[1].disabledTooltip:find('Forever beta'))
 local before=ns:GetDatabase().xpBar.enabled
 local payload={settings={xpBar={enabled=not before}}}
 assert(ns.modules.GlobalSettings:ApplyImport(payload)==false)
-assert(ns:GetDatabase().xpBar.enabled==before)
+assert(ns:GetDatabase().xpBar.enabled==before and sourceWrites==0)
 assert(#prints>=1 and prints[#prints]:find('not reliably saving'))
 
 rows={}
@@ -42,4 +52,8 @@ rows[1].setValue(true);assert(cvars.volumeFog=='1' and rows[1].getValue()==true)
 ns.IS_FOREVER=false;rows={};assert(fog:BuildOptions({},-37)==37 and #rows==0)
 ''')
 
-print("PASS Forever detection, fog CVar, interface metadata and SavedVariables safety gates")
+resting = (ROOT / "Modules/Resting.lua").read_text()
+assert "MAX_LEVEL" not in resting
+assert "GetMaxLevelForPlayerExpansion" in resting
+assert "IsPlayerAtEffectiveMaxLevel" in resting
+print("PASS Forever detection, fog CVar, interface metadata, dynamic max level and SavedVariables safety gates")

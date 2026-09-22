@@ -36,8 +36,23 @@ ns.defaults = {
         disableInPvP = true,
         characters = {},
     },
+    resting = {
+        enabled = true,
+        hideAtMaxLevel = false,
+        size = 36,
+        offsetX = 20,
+        offsetY = -15,
+    },
     rightClickSelfCast = {
         enabled = true,
+    },
+    unitFrameSources = {
+        player = "inherit",
+        target = "inherit",
+        boss = "inherit",
+        targettarget = "inherit",
+        focus = "inherit",
+        pet = "inherit",
     },
     deviceLayout = {
         enabled = true,
@@ -67,6 +82,28 @@ ns.defaults = {
         borderTexture = "solid",
         borderSize = 1,
         borderColor = { r = 0, g = 0, b = 0, a = 1 },
+    },
+    auraSkins = {
+        enabled = false,
+        iconSize = 32,
+        targetIconSize = 32,
+        targetBuffFilter = "all",
+        targetDebuffFilter = "all",
+        showText = true,
+        textSize = 11,
+        borderTexture = "solid",
+        borderSize = 1,
+        borderBehind = false,
+        borderR = 0,
+        borderG = 0,
+        borderB = 0,
+        borderA = 1,
+        noBorderDebuffs = true,
+        buffIconZoom = 0.055,
+        debuffIconZoom = 0.055,
+        durationFormat = "blizzard",
+        showExpandButton = true,
+        targetAuras = true,
     },
 }
 
@@ -119,6 +156,13 @@ function ns:ResetDatabase()
     FafnyirToolsDB = {}
     CopyDefaults(self.defaults, FafnyirToolsDB)
 
+    -- A deliberate reset returns the full Unit Frame suite to EllesmereUI.
+    -- Keep ordinary upgrade defaults inherited so adding a missing key never
+    -- overwrites a user's existing EllesmereUI profile.
+    for _, unit in ipairs({ "player", "target", "targettarget", "focus", "boss", "pet" }) do
+        FafnyirToolsDB.unitFrameSources[unit] = "eui"
+    end
+
     for _, feature in pairs(self.modules) do
         if type(feature.Refresh) == "function" then
             feature:Refresh()
@@ -135,7 +179,7 @@ ns:InitializeDatabase()
 SLASH_FAFNYIRTOOLS1 = "/faftools"
 SlashCmdList["FAFNYIRTOOLS"] = function()
     if EllesmereUI and EllesmereUI.NavigateToElementSettings then
-        EllesmereUI:NavigateToElementSettings(ns.MODULE_KEY, "QoL")
+        EllesmereUI:NavigateToElementSettings(ns.MODULE_KEY, "Unit Frames")
     elseif EllesmereUI and EllesmereUI.ToggleOptions then
         EllesmereUI:ToggleOptions()
     else
@@ -165,8 +209,10 @@ SlashCmdList["FAFNYIRTOOLSDEBUG"] = function()
     print("  Sidebar entry: " .. (sidebarEntry and "installed" or "missing"))
     print("  Options registered: " .. (ns.state.optionsRegistered and "yes" or "no"))
     print("  Features loaded: "
+        .. (ns.modules.Resting and "Resting " or "")
         .. (ns.modules.RightClickSelfCast and "RightClickSelfCast " or "")
         .. (ns.modules.XPBar and "XPBar " or "")
         .. (ns.modules.DeviceLayout and "DeviceLayout " or "")
+        .. (ns.modules.AuraSkins and "AuraSkins " or "")
         .. (ns.modules.Inventory and "Inventory" or ""))
 end

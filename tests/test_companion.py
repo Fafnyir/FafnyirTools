@@ -95,14 +95,14 @@ local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_
 ''')
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')
 # Real metadata from all features; no fake feature slots in this registration check.
-for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua',
+for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/UnitFrameSources.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
              'Modules/RightClickSelfCast.lua','Modules/BlizzardBarArt.lua','Modules/FlyoutButtonMatch.lua',
              'Modules/XPBar.lua','Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
     load(path)
 l.execute('ns.Sidebar={Install=function() return true end}')
 load('Core/Options.lua')
 l.execute('''
-assert(ns.Options:Register());local expected={'About','QoL','Action Bars','XP & Progression','Bags & Inventory','Layouts'}
+assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','XP & Progression','Bags & Inventory','Layouts'}
 assert(#config.pages==#expected);for i,p in ipairs(expected) do assert(config.pages[i]==p,p) end
 rows={};assert(config.buildPage('QoL',{},0)==100 and #rows==4)
 -- Restored About history wraps without assuming a fixed 22-pixel text height.
@@ -117,9 +117,9 @@ assert(config.buildPage('About',{},0)>0)
 local credit=false
 for _,fs in ipairs(fonts) do assert(fs.height==48);if fs.text:find('raine') then credit=true end end
 assert(credit)
--- Slash navigation opens the first configurable feature page.
+-- Slash navigation follows Resting into Unit Frames.
 function EllesmereUI:NavigateToElementSettings(key,page) navigated=page end
-SlashCmdList.FAFNYIRTOOLS();assert(navigated=='QoL')
+SlashCmdList.FAFNYIRTOOLS();assert(navigated=='Unit Frames')
 -- Isolate event dispatch from unrelated feature initializers.
 ns.modules={PermanentCompanionPet=f};ns.Options=nil
 ''')
@@ -131,4 +131,4 @@ for _,e in ipairs({'PLAYER_LOGIN','PLAYER_ENTERING_WORLD','PLAYER_STARTED_MOVING
  assert(ev.events[e],e);local count=#summons;now=now+3;ev.event(ev,e,'CRITTER');flush();assert(#summons==count+1,e)
 end
 ''')
-print('PASS restored QoL in six real feature pages, slash navigation, legacy XP preference migration and core companion event dispatch')
+print('PASS restored QoL in seven real feature pages, slash navigation, legacy XP preference migration and core companion event dispatch')

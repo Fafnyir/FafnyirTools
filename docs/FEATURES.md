@@ -5,16 +5,16 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Feature | Baseline contract | Status |
 | --- | --- | --- |
 | Identity/integration | Fafnyir Tools for EllesmereUI; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
-| Resting | Former FafnyirTools resting indicator | Retired in v1.1.4; EllesmereUI owns this area |
+| Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, size and offsets; drawn above frame border | Present |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle | Present |
 | Blizzard Bar Art | Detach/reparent recovered native artwork to Bar 1, follow movement/scaling and preserve toggle; do not restore failed early alignment attempts | Present; historical user confirmation |
 | Flyout Fix | Match parent action-button styling, including border style/color instead of forced white pixel borders; preserve toggle | Present; historical user confirmation |
-| Unit Frame Sources | Former selective source controls | Retired in v1.1.4; EllesmereUI owns frame sources |
+| Unit Frame Sources | Player, Target, Target of Target, Focus, Boss, Pet via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 18 combinations individually |
 | Unit Frame reset defaults | Full Reset sets all six sources to EllesmereUI after normal feature refresh completes, then offers one reload; upgrades preserve saved choices | Present in accepted v1.1.3 build |
 | Legacy source settings | Keep `inherit` data untouched; display effective native source without writing a new override; unknown API must not invent a source | Present |
 | ToT dependency | Blizzard ToT requires Blizzard Target; EUI may fall back to its ToT when Target is EUI | Existing tooltip/behavior contract |
-| Aura Skins | Former Blizzard Target aura styling and layout controls | Retired in v1.1.4; EllesmereUI owns aura options |
-| Target aura layout | Former custom Target aura layout | Retired with Aura Skins in v1.1.4 |
+| Aura Skins | Blizzard Target aura styling only; Player buffs/debuffs remain controlled by EllesmereUI. Target availability follows effective Target source, not blanket EUI addon presence; hold ownership for the session until reload | Present |
+| Target aura layout | Buffs and debuffs wrap after six icons; independent Target icon size, filters, border/zoom/text settings | Present; mocked sizes 16/32/60; historical user confirmation |
 | Focus auras | Distinct from Focus source selection; no custom Focus aura implementation | Not implemented |
 | Status textures | Hide relevant Blizzard Target/Focus status textures without adding a toggle | Present |
 | Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
@@ -23,13 +23,14 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
 | About | Version, history, credits, support link | History and original companion credits restored; measured text wrapping |
 
-Current options pages: About, QoL, Action Bars, XP & Progression, Bags & Inventory, Layouts.
+Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
 
 ## WoW Forever beta contract
 
 - Support interface 16001 alongside the existing Retail interface list.
 - Detect Forever from the 16000–19999 interface range; its current
   `WOW_PROJECT_ID` classification is not a sufficient product test.
+- Resolve the Resting indicator's max level from client APIs.
 - Support current owned-pet IDs plus the legacy indexed Pet Journal path.
 - While EllesmereUI reports the beta SavedVariables defect, block operations
   that write cross-addon settings and immediately reload. Retail is unaffected.

@@ -15,11 +15,14 @@ Modules\About.lua
 Modules\GlobalSettings.lua
 Modules\ForeverFog.lua
 Modules\PermanentCompanionPet.lua
+Modules\Resting.lua
 Modules\RightClickSelfCast.lua
 Modules\BlizzardBarArt.lua
 Modules\FlyoutButtonMatch.lua
+Modules\UnitFrameSources.lua
 Modules\DeviceLayout.lua
 Modules\XPBar.lua
+Modules\AuraSkins.lua
 Modules\Inventory\Core.lua
 Modules\Inventory\Tooltips.lua
 Modules\Inventory\Options.lua
