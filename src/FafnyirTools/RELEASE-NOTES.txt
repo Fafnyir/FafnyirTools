@@ -8,6 +8,8 @@ Added
 Fixed
 - Blizzard Bar Art now restores itself after action-bar state/layout changes and
   reacquires Blizzard artwork if the live regions are replaced.
+- Added an Art Scale slider (0.95–1.10, default 1.06). This local calibration is
+  excluded from Global Settings exports so different machines can use different values.
 
 Changed
 - Resting max-level detection now follows client APIs instead of a Retail level constant.

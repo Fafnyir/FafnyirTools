@@ -16,7 +16,9 @@ local MAX_ENTRIES = 2000
 -- Only user preferences belong in a global export. Runtime inventories,
 -- per-character companion choices and machine-specific Edit Mode layouts do not.
 local SCHEMA = {
-    blizzardBarArt = true,
+    -- Artwork calibration depends on local UI scale/rendering and should not
+    -- be carried to another installation with the global preferences.
+    blizzardBarArt = { enabled = true },
     flyoutFix = true,
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,

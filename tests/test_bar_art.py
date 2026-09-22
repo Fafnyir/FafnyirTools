@@ -5,7 +5,7 @@ from lupa.lua51 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
-ns={};SlashCmdList={};queue={};frames={}
+ns={};SlashCmdList={};queue={};frames={};rows={}
 function flush()
  local q=queue;queue={}
  for _,fn in ipairs(q) do fn() end
@@ -16,6 +16,11 @@ function flushAll()
 end
 C_Timer={After=function(_,fn) queue[#queue+1]=fn end}
 UIParent={GetEffectiveScale=function() return 1 end}
+EllesmereUI={Widgets={}}
+function EllesmereUI.Widgets:SectionHeader() return {},20 end
+function EllesmereUI.Widgets:DualRow(_,_,left,right)
+ rows[#rows+1]=left;rows[#rows+1]=right;return {},40
+end
 function newFrame(name,w,h)
  local f={name=name,w=w or 100,h=h or 40,scale=1,shown=true,alpha=1,events={},scripts={},points={}}
  function f:GetParent() return self.parent end
@@ -67,6 +72,14 @@ f:Initialize();eventFrame=frames[#frames];flushAll()
 local holder=FafnyirToolsBlizzardBarArt
 local oldBorder=MainActionBar.BorderArt
 assert(holder.shown and oldBorder.parent==holder and oldBorder.shown and oldBorder.alpha==1)
+assert(math.abs(oldBorder.w-636)<0.001) -- 600 * default 1.06 calibration
+
+-- Calibration is adjustable per installation without editing Lua.
+f:BuildOptions({},0)
+assert(rows[1].text=='Enable Blizzard Bar Art' and rows[2].text=='Art Scale')
+assert(rows[2].min==0.95 and rows[2].max==1.10 and rows[2].step==0.01)
+rows[2].setValue(1.01);flushAll()
+assert(rows[2].getValue()==1.01 and math.abs(oldBorder.w-606)<0.001)
 
 -- A Blizzard/EllesmereUI hide or alpha reset is repaired without a reload.
 oldBorder:Hide();flushAll();assert(oldBorder.shown and oldBorder.parent==holder)

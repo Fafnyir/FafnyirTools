@@ -25,6 +25,7 @@ end
 ns.defaults = {
     blizzardBarArt = {
         enabled = true,
+        scaleMultiplier = 1.06,
     },
     flyoutFix = {
         enabled = true,

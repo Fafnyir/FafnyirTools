@@ -108,9 +108,11 @@ local function ArtworkScale(target)
     local holderScale = holder and holder:GetEffectiveScale() or 1
     if holderScale <= 0 then holderScale = 1 end
 
-    -- Blizzard's decorative frame extends slightly beyond the nominal action
-    -- button footprint, so retain a small proportional overscan at every size.
-    local scale = (buttonW / 45) * (buttonScale / holderScale) * 1.06
+    -- Blizzard's decorative frame needs a small visual calibration that can
+    -- vary with the installation's UI scale and rendering setup.
+    local calibration = tonumber(DB().scaleMultiplier) or 1.06
+    calibration = math.max(0.95, math.min(1.10, calibration))
+    local scale = (buttonW / 45) * (buttonScale / holderScale) * calibration
     if scale <= 0 or scale > 4 then return 1 end
     return scale
 end
@@ -244,6 +246,7 @@ end
 
 function feature:Reset()
     DB().enabled = ns.defaults.blizzardBarArt.enabled
+    DB().scaleMultiplier = ns.defaults.blizzardBarArt.scaleMultiplier
     self:Refresh()
 end
 
@@ -273,8 +276,19 @@ function feature:BuildOptions(parent, yOffset)
             end,
         },
         {
-            type = "label",
-            text = "",
+            type = "slider",
+            text = "Art Scale",
+            tooltip = "Fine-tune the decorative artwork for this installation. This calibration is not included in Global Settings exports.",
+            min = 0.95,
+            max = 1.10,
+            step = 0.01,
+            getValue = function()
+                return DB().scaleMultiplier
+            end,
+            setValue = function(value)
+                DB().scaleMultiplier = value
+                feature:Refresh()
+            end,
         }
     )
     y = y - h

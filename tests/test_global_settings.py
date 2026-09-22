@@ -13,6 +13,7 @@ ns.modules.UnitFrameSources={ApplySaved=function() sourceSyncs=sourceSyncs+1;ret
 local db=ns:GetDatabase()
 db.xpBar.enabled=true
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
+db.blizzardBarArt.scaleMultiplier=1.01
 db.unitFrameSources.pet="hidden"
 db.permanentCompanionPet.enabled=true
 db.permanentCompanionPet.characters={['Tester-Realm']={mode='specific',petName='Secret Pet'}}
@@ -27,6 +28,7 @@ local payload,err=f:Decode(exported);assert(payload and not err)
 assert(payload.addonVersion=='v1.1.4' and payload.format==1)
 assert(payload.settings.xpBar.enabled==true and payload.settings.xpBar.startColor.a==.5)
 assert(payload.settings.xpBar.startColor.unknown==nil)
+assert(payload.settings.blizzardBarArt.enabled==true and payload.settings.blizzardBarArt.scaleMultiplier==nil)
 assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
 assert(payload.settings.inventory.tooltips==false and payload.settings.inventory.characters==nil)
@@ -36,6 +38,7 @@ db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 f:ApplyImport(payload)
 assert(sourceSyncs==1)
 assert(db.xpBar.enabled==true and db.xpBar.startColor.a==.5 and db.inventory.tooltips==false)
+assert(db.blizzardBarArt.scaleMultiplier==1.01)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
 assert(db.permanentCompanionPet.characters['Tester-Realm'].petName=='Secret Pet')
 assert(db.inventory.characters['Tester-Realm'].money==999)

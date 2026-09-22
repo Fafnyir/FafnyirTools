@@ -4,6 +4,8 @@
 
 - Made Blizzard Bar Art reacquire and restore its native artwork after paging,
   specialization, vehicle, zone, combat, and Edit Mode transitions.
+- Added a per-installation Art Scale control because the required visual
+  calibration can vary between machines; global exports omit this value.
 - Added Forever interface 16001 support and runtime detection.
 - Replaced the Resting level-90 constant with client max-level APIs.
 - Added current Pet Journal owned-ID enumeration with its legacy fallback.
