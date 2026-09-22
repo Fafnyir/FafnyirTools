@@ -11,7 +11,7 @@ repair direct hide, alpha, or parent changes. Offline regression coverage passes
 in-game confirmation is still required.
 
 The former fixed `1.06` artwork multiplier is now a saved **Art Scale** slider
-from 0.95 to 1.10 in 0.01 steps. Its default remains 1.06 so existing visuals do
+from 1.00 to 1.10 in 0.01 steps. Its default remains 1.06 so existing visuals do
 not change automatically; the second machine can select 1.01. Because this is a
 local display calibration, Global Settings exports deliberately omit it.
 

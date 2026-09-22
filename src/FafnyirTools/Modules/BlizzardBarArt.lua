@@ -111,7 +111,7 @@ local function ArtworkScale(target)
     -- Blizzard's decorative frame needs a small visual calibration that can
     -- vary with the installation's UI scale and rendering setup.
     local calibration = tonumber(DB().scaleMultiplier) or 1.06
-    calibration = math.max(0.95, math.min(1.10, calibration))
+    calibration = math.max(1.00, math.min(1.10, calibration))
     local scale = (buttonW / 45) * (buttonScale / holderScale) * calibration
     if scale <= 0 or scale > 4 then return 1 end
     return scale
@@ -279,7 +279,7 @@ function feature:BuildOptions(parent, yOffset)
             type = "slider",
             text = "Art Scale",
             tooltip = "Fine-tune the decorative artwork for this installation. This calibration is not included in Global Settings exports.",
-            min = 0.95,
+            min = 1.00,
             max = 1.10,
             step = 0.01,
             getValue = function()

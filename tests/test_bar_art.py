@@ -77,7 +77,7 @@ assert(math.abs(oldBorder.w-636)<0.001) -- 600 * default 1.06 calibration
 -- Calibration is adjustable per installation without editing Lua.
 f:BuildOptions({},0)
 assert(rows[1].text=='Enable Blizzard Bar Art' and rows[2].text=='Art Scale')
-assert(rows[2].min==0.95 and rows[2].max==1.10 and rows[2].step==0.01)
+assert(rows[2].min==1.00 and rows[2].max==1.10 and rows[2].step==0.01)
 rows[2].setValue(1.01);flushAll()
 assert(rows[2].getValue()==1.01 and math.abs(oldBorder.w-606)<0.001)
 
