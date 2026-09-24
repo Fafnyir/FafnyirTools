@@ -27,6 +27,10 @@ ns.defaults = {
         enabled = true,
         scaleMultiplier = 1.06,
     },
+    foreverFog = {
+        enabled = true,
+        initialized = false,
+    },
     flyoutFix = {
         enabled = true,
     },

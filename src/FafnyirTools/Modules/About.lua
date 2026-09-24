@@ -15,7 +15,7 @@ local CHANGELOG = {
     { version = "v1.1.4", lines = {
         "Added guarded WoW Forever beta compatibility.",
         "Added a Forever-only Volumetric Fog toggle under QoL.",
-        "The fog choice uses the persistent client CVar and does not depend on addon SavedVariables.",
+        "The fog choice is reapplied after login and world changes so the client cannot silently restore it.",
         "Made Blizzard Bar Art recover after action-bar state and layout transitions.",
         "Added a per-installation Art Scale adjustment for differing UI scale setups.",
         "Fixed reload confirmation buttons on WoW Forever.",

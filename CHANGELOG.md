@@ -16,7 +16,9 @@
   reports the Forever beta SavedVariables persistence defect.
 - Added offline compatibility coverage and a pending in-game test matrix.
 - Added a Forever-only Volumetric Fog toggle backed by the persistent client
-  `volumeFog` CVar; it does not depend on addon SavedVariables.
+  `volumeFog` console setting.
+- Store the fog preference in FafnyirTools and reapply it after login and world
+  changes because Forever can overwrite the graphics state.
 
 ## 2026-09-09 — v1.1.3 global settings transfer
 

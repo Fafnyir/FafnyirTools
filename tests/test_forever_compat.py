@@ -5,7 +5,7 @@ from lupa.lua51 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
-ns={};SlashCmdList={};prints={};sourceWrites=0;rows={};cvars={volumeFog='1'}
+ns={};SlashCmdList={};prints={};sourceWrites=0;rows={};cvars={volumeFog='1'};queue={};consoleCalls={}
 function GetBuildInfo() return '1.60.1','69913','Sep 17 2026',16001 end
 function print(value) prints[#prints+1]=tostring(value) end
 function ReloadUI() error('ReloadUI must remain blocked while SV is unsafe') end
@@ -20,6 +20,13 @@ C_CVar={
  GetCVar=function(key) return cvars[key] end,
  SetCVar=function(key,value) cvars[key]=tostring(value) end,
 }
+C_Timer={After=function(_,fn) queue[#queue+1]=fn end}
+function flush() local q=queue;queue={};for _,fn in ipairs(q) do fn() end end
+function ConsoleExec(command)
+ consoleCalls[#consoleCalls+1]=command
+ local value=command:match('volumeFog%s+(%d)');if value then cvars.volumeFog=value end
+ return true
+end
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
 function EllesmereUI.Widgets:DualRow(_,_,left,right)
  rows[#rows+1]=left;rows[#rows+1]=right;return {},40
@@ -48,8 +55,11 @@ rows={}
 local fog=ns.modules.ForeverFog
 assert(fog:BuildOptions({},-20)==80 and #rows==2)
 assert(rows[1].text=='Volumetric Fog' and rows[1].getValue()==true)
-rows[1].setValue(false);assert(cvars.volumeFog=='0' and rows[1].getValue()==false)
-rows[1].setValue(true);assert(cvars.volumeFog=='1' and rows[1].getValue()==true)
+rows[1].setValue(false);assert(cvars.volumeFog=='0' and rows[1].getValue()==false and consoleCalls[#consoleCalls]=='volumeFog 0')
+-- The client can restore its graphics state; login/world entry reapplies ours.
+cvars.volumeFog='1';fog:Initialize();flush();assert(cvars.volumeFog=='0')
+cvars.volumeFog='1';fog:HandleEvent('PLAYER_ENTERING_WORLD');flush();assert(cvars.volumeFog=='0')
+rows[1].setValue(true);assert(cvars.volumeFog=='1' and rows[1].getValue()==true and consoleCalls[#consoleCalls]=='volumeFog 1')
 -- Visibility is product-gated even when another client exposes the same CVar.
 ns.IS_FOREVER=false;rows={};assert(fog:BuildOptions({},-37)==37 and #rows==0)
 ''')

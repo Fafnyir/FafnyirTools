@@ -60,7 +60,7 @@ def check(baseline=False):
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
-      for _,key in ipairs({'blizzardBarArt','flyoutFix','resting','rightClickSelfCast',
+      for _,key in ipairs({'blizzardBarArt','foreverFog','flyoutFix','resting','rightClickSelfCast',
           'unitFrameSources','deviceLayout','inventory','xpBar','auraSkins','permanentCompanionPet'}) do
         assert(type(FafnyirToolsDB[key])=='table',key)
       end

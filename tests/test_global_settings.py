@@ -14,6 +14,7 @@ local db=ns:GetDatabase()
 db.xpBar.enabled=true
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
 db.blizzardBarArt.scaleMultiplier=1.01
+db.foreverFog.enabled=false
 db.unitFrameSources.pet="hidden"
 db.permanentCompanionPet.enabled=true
 db.permanentCompanionPet.characters={['Tester-Realm']={mode='specific',petName='Secret Pet'}}
@@ -29,6 +30,7 @@ assert(payload.addonVersion=='v1.1.4' and payload.format==1)
 assert(payload.settings.xpBar.enabled==true and payload.settings.xpBar.startColor.a==.5)
 assert(payload.settings.xpBar.startColor.unknown==nil)
 assert(payload.settings.blizzardBarArt.enabled==true and payload.settings.blizzardBarArt.scaleMultiplier==nil)
+assert(payload.settings.foreverFog.enabled==false and payload.settings.foreverFog.initialized==nil)
 assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
 assert(payload.settings.inventory.tooltips==false and payload.settings.inventory.characters==nil)

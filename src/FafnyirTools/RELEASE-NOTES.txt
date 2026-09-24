@@ -19,8 +19,8 @@ Changed
   while EllesmereUI reports the Forever beta SavedVariables defect.
 
 Persistence
-- Volumetric Fog directly controls the client volumeFog CVar. The client
-  persists it independently of addon SavedVariables.
+- Volumetric Fog saves its preference in FafnyirTools and reapplies the
+  validated `volumeFog 0|1` console setting after login and world changes.
 - Export remains available during the beta persistence defect.
 
 Scope

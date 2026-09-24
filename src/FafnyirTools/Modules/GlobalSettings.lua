@@ -19,6 +19,7 @@ local SCHEMA = {
     -- Artwork calibration depends on local UI scale/rendering and should not
     -- be carried to another installation with the global preferences.
     blizzardBarArt = { enabled = true },
+    foreverFog = { enabled = true },
     flyoutFix = true,
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,
