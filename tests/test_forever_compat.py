@@ -40,6 +40,8 @@ local before=ns:GetDatabase().xpBar.enabled
 local payload={settings={xpBar={enabled=not before}}}
 assert(ns.modules.GlobalSettings:ApplyImport(payload)==false)
 assert(ns:GetDatabase().xpBar.enabled==before and sourceWrites==0)
+ns:GetDatabase().globalSettingsImportBackup={settings={xpBar={enabled=true}}}
+ns.modules.GlobalSettings:ShowRestore()
 assert(#prints>=1 and prints[#prints]:find('not reliably saving'))
 
 rows={}

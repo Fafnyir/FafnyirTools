@@ -18,6 +18,7 @@ local CHANGELOG = {
         "The fog choice uses the persistent client CVar and does not depend on addon SavedVariables.",
         "Made Blizzard Bar Art recover after action-bar state and layout transitions.",
         "Added a per-installation Art Scale adjustment for differing UI scale setups.",
+        "Fixed reload confirmation buttons on WoW Forever.",
     }},
     { version = "v1.1.3", lines = {
         "Added global settings export and import with validation and rollback backup.",

@@ -6,6 +6,8 @@ Added
 - Current Pet Journal owned-ID enumeration with the legacy fallback retained.
 
 Fixed
+- Reload confirmation buttons now use EllesmereUI's secure Forever reload path,
+  avoiding the protected-action failure from direct ReloadUI callbacks.
 - Blizzard Bar Art now restores itself after action-bar state/layout changes and
   reacquires Blizzard artwork if the live regions are replaced.
 - Added an Art Scale slider (1.00–1.10, default 1.06). This local calibration is

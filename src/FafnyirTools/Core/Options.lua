@@ -86,7 +86,7 @@ local function BuildConfig()
                     message = "FafnyirTools defaults were restored and all Unit Frame sources were set to EllesmereUI.",
                     confirmText = "Reload Now",
                     cancelText = "Later",
-                    onConfirm = ReloadUI,
+                    reload = true,
                 })
             end
         end,

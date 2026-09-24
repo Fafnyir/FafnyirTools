@@ -244,9 +244,9 @@ local function ConfirmImport(payload)
         message = "Recognized global settings will be merged. Character data, inventory caches and device layouts are excluded. Your current global settings will be backed up. A reload is required.",
         confirmText = "Import & Reload",
         cancelText = "Cancel",
+        reload = true,
         onConfirm = function()
             feature:ApplyImport(payload)
-            ReloadUI()
         end,
     })
 end
@@ -271,6 +271,10 @@ function feature:ShowImport()
 end
 
 function feature:ShowRestore()
+    if ns:ForeverSavedVariablesUnsafe() then
+        ns:PrintForeverSavedVariablesWarning()
+        return
+    end
     local backup = ns:GetDatabase().globalSettingsImportBackup
     if type(backup) ~= "table" or type(backup.settings) ~= "table" then
         ns:Print("No import backup is available.")
@@ -282,8 +286,9 @@ function feature:ShowRestore()
         message = "This restores the global settings saved immediately before the last import. A reload is required.",
         confirmText = "Restore & Reload",
         cancelText = "Cancel",
+        reload = true,
         onConfirm = function()
-            if feature:RestoreBackup() then ReloadUI() end
+            feature:RestoreBackup()
         end,
     })
 end

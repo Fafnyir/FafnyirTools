@@ -1,5 +1,13 @@
 # Current state — v1.1.4 Forever beta, 2026-09-22
 
+## 2026-09-24 — Secure reload confirmations
+
+Forever rejects direct addon callback calls to protected `ReloadUI()`. All
+FafnyirTools confirmations now use EllesmereUI 9.2.6's `reload = true` popup
+contract, which routes the hardware click through a secure `/reload` action.
+Import, backup restore, reset, Unit Frame source, and Aura Skins prompts are
+covered. In combat the host asks for a manual `/reload`, matching EllesmereUI.
+
 ## Blizzard Bar Art persistence repair
 
 The v1.1.3 artwork could disappear after runtime action-bar transitions because

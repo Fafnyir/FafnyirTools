@@ -36,9 +36,7 @@ local function PromptReload()
             message = "Changing Aura Skins requires a UI reload to fully apply or restore Blizzard aura styling.",
             confirmText = "Reload Now",
             cancelText = "Later",
-            onConfirm = function()
-                ReloadUI()
-            end,
+            reload = true,
         })
         return
     end

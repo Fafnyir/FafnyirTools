@@ -2,6 +2,9 @@
 
 ## v1.1.4 — WoW Forever beta compatibility
 
+- Fixed reload confirmations on Forever by using EllesmereUI's secure
+  `reload = true` popup contract instead of calling protected `ReloadUI()`
+  from an ordinary addon callback.
 - Made Blizzard Bar Art reacquire and restore its native artwork after paging,
   specialization, vehicle, zone, combat, and Edit Mode transitions.
 - Added a per-installation Art Scale control because the required visual

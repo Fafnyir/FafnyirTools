@@ -160,7 +160,7 @@ for i,w in ipairs(widgets) do
   sourceCalls={}; prompts={}; w.setValue(value)
   assert(w.getValue()==value and #sourceCalls==1 and sourceCalls[1][1]==units[i] and sourceCalls[1][2]==value)
   assert(#prompts==1 and prompts[1].confirmText=='Reload Now' and prompts[1].cancelText=='Later')
-  assert(prompts[1].onConfirm==ReloadUI)
+  assert(prompts[1].reload==true and prompts[1].onConfirm==nil)
  end
  local before=w.getValue(); sourceCalls={}; prompts={}
  w.setValue('inherit'); w.setValue(nil); w.setValue('invalid')
@@ -184,4 +184,4 @@ assert(widgets[4].getValue()==nil and widgets[1].getValue()=='eui')
 ns.Print=function() end; widgets[4].setValue('blizzard')
 assert(db.focus=='blizzard' and not f:ApplySaved())
 ''')
-print('PASS all 18 source choices, legacy/unset reads, no migration writes, invalid-input guards, reload callbacks, missing API')
+print('PASS all 18 source choices, legacy/unset reads, no migration writes, invalid-input guards, secure reload contract, missing API')

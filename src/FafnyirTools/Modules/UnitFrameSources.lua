@@ -37,7 +37,7 @@ local function PromptReload()
             message = message,
             confirmText = "Reload Now",
             cancelText = "Later",
-            onConfirm = ReloadUI,
+            reload = true,
         })
         return
     end
