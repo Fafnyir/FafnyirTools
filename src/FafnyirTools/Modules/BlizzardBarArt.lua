@@ -66,13 +66,14 @@ local function WatchArtwork(frame)
     watched[frame] = true
 end
 
-local function RestoreArtworkTree(frame)
+local function RestoreEndCapArtwork(frame)
     if not frame then return end
 
     -- Forever's native "hide bar art" preference may hide the individual
     -- griffon textures while leaving their EndCaps container available. The
     -- FafnyirTools option owns this recovered artwork as one unit, so restore
-    -- every region and child under that dedicated art container.
+    -- its direct art regions. Do not recursively show child frames: Blizzard
+    -- keeps hidden interaction UI there, including the "Click To Edit" panel.
     if frame.SetAlpha then frame:SetAlpha(1) end
     if frame.Show then frame:Show() end
     WatchArtwork(frame)
@@ -88,12 +89,6 @@ local function RestoreArtworkTree(frame)
         end
     end
 
-    if frame.GetChildren then
-        local children = { frame:GetChildren() }
-        for _, child in ipairs(children) do
-            RestoreArtworkTree(child)
-        end
-    end
 end
 
 local function SaveFrameState(frame)
@@ -188,7 +183,7 @@ local function LayoutEndCaps(target, scale)
     endCaps:SetScale(1)
     endCaps:SetSize(sourceW * scale, sourceH * scale)
     endCaps:SetPoint("CENTER", target, "CENTER", 0, -4)
-    RestoreArtworkTree(endCaps)
+    RestoreEndCapArtwork(endCaps)
 end
 
 local function Install()

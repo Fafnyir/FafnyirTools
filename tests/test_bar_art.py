@@ -65,8 +65,10 @@ MainActionBar=newFrame('source',540,45)
 MainActionBar.BorderArt=newFrame('border',600,80)
 MainActionBar.EndCaps=newFrame('caps',650,100)
 MainActionBar.EndCaps.regions={newFrame('leftGriffon'),newFrame('rightGriffon')}
+MainActionBar.EndCaps.children={newFrame('clickToEdit')}
 MainActionBar.EndCaps.regions[1]:Hide()
 MainActionBar.EndCaps.regions[2]:Hide()
+MainActionBar.EndCaps.children[1]:Hide()
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
@@ -78,8 +80,10 @@ local holder=FafnyirToolsBlizzardBarArt
 local oldBorder=MainActionBar.BorderArt
 local leftGriffon=MainActionBar.EndCaps.regions[1]
 local rightGriffon=MainActionBar.EndCaps.regions[2]
+local clickToEdit=MainActionBar.EndCaps.children[1]
 assert(holder.shown and oldBorder.parent==holder and oldBorder.shown and oldBorder.alpha==1)
 assert(leftGriffon.shown and rightGriffon.shown)
+assert(not clickToEdit.shown)
 assert(math.abs(oldBorder.w-636)<0.001) -- 600 * default 1.06 calibration
 
 -- Calibration is adjustable per installation without editing Lua.

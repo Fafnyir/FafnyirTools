@@ -6,6 +6,8 @@ Forever can hide the two side griffons independently from the central action
 bar artwork. FafnyirTools now treats the recovered central background and both
 griffons as one feature: enabling **Blizzard Bar Art** restores the complete art
 set, while disabling it hides the shared holder and all of that artwork.
+Only the direct decorative regions are restored; Blizzard's hidden end-cap
+interaction children, including its **Click To Edit** panel, remain hidden.
 
 ## 2026-09-24 — Secure reload confirmations
 
