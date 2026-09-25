@@ -21,6 +21,7 @@ local SCHEMA = {
     blizzardBarArt = { enabled = true },
     foreverFog = { enabled = true },
     flyoutFix = true,
+    focusHeader = { enabled = true },
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,
     rightClickSelfCast = true,

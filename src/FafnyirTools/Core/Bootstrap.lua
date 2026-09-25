@@ -34,6 +34,10 @@ ns.defaults = {
     flyoutFix = {
         enabled = true,
     },
+    focusHeader = {
+        enabled = true,
+        initialized = false,
+    },
     permanentCompanionPet = {
         enabled = false,
         mode = "randomFavorite",
@@ -170,6 +174,9 @@ function ns:ResetDatabase()
     for _, unit in ipairs({ "player", "target", "targettarget", "focus", "boss", "pet" }) do
         FafnyirToolsDB.unitFrameSources[unit] = "eui"
     end
+    -- A reset intentionally restores the coloured Blizzard-style Focus header
+    -- instead of adopting the pre-reset EllesmereUI value during Refresh.
+    FafnyirToolsDB.focusHeader.initialized = true
 
     for _, feature in pairs(self.modules) do
         if type(feature.Refresh) == "function" then

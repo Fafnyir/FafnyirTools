@@ -13,6 +13,7 @@ local function OrderedFeatures()
         ns.modules.PermanentCompanionPet,
         ns.modules.UnitFrameNames,
         ns.modules.UnitFrameSources,
+        ns.modules.FocusHeader,
         ns.modules.AuraSkins,
         ns.modules.Resting,
         ns.modules.RightClickSelfCast,

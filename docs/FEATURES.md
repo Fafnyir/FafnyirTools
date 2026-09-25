@@ -11,6 +11,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Flyout Fix | Match parent action-button styling, including border style/color instead of forced white pixel borders; preserve toggle | Present; historical user confirmation |
 | Unit Frame Sources | Player, Target, Target of Target, Focus, Boss, Pet via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 18 combinations individually |
 | Forever unit-frame names | Global First Name / Last Name / Whole Name display for surname-bearing players on EllesmereUI main, Party, and Raid frames; Nameplates, configured nicknames, NPCs, and Retail remain unchanged | Present; offline-tested, in-game confirmation pending |
+| Focus reaction header | Independent Blizz Colored Focus Header toggle using EllesmereUI's supported Focus setting and reload path; full Focus Frame only, not Focus Target | Present; offline-tested, in-game confirmation pending |
 | Unit Frame reset defaults | Full Reset sets all six sources to EllesmereUI after normal feature refresh completes, then offers one reload; upgrades preserve saved choices | Present in accepted v1.1.3 build |
 | Legacy source settings | Keep `inherit` data untouched; display effective native source without writing a new override; unknown API must not invent a source | Present |
 | ToT dependency | Blizzard ToT requires Blizzard Target; EUI may fall back to its ToT when Target is EUI | Existing tooltip/behavior contract |

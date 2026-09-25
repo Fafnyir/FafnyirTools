@@ -1,5 +1,12 @@
 # Current state — v1.1.4 Forever beta, 2026-09-25
 
+## Blizzard-style Focus reaction header
+
+The Unit Frames page now exposes **Blizz Colored Focus Header**, matching
+EllesmereUI's native Target control. It uses the renderer's supported Focus
+setting, adopts an existing saved choice on first use, and refreshes immediately.
+It changes only the full Focus Frame; Focus Target has no reputation strip.
+
 ## Forever unit-frame name display
 
 The Unit Frames page now offers First Name, Last Name, and Whole Name for WoW

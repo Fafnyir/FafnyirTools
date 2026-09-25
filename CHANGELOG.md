@@ -2,6 +2,8 @@
 
 ## v1.1.4 — WoW Forever beta compatibility
 
+- Added the missing Blizzard-style Focus reaction-header toggle using
+  EllesmereUI's existing Focus setting and refresh path.
 - Added a Forever-only First Name / Last Name / Whole Name display option for
   surname-bearing characters on EllesmereUI main, Party, and Raid frames while
   leaving Nameplates unchanged.
