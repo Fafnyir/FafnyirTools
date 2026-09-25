@@ -8,6 +8,9 @@ griffons as one feature: enabling **Blizzard Bar Art** restores the complete art
 set, while disabling it hides the shared holder and all of that artwork.
 The decorative child branches are restored with the griffons; Blizzard's
 separate Edit Mode interaction branch, including **Click To Edit**, stays hidden.
+The user confirmed this behavior in game on 2026-09-24 with build `68e7a1a`:
+the FafnyirTools toggle controls the background and both griffons together and
+overrides Blizzard's independent side-art preference.
 
 ## 2026-09-24 — Secure reload confirmations
 
