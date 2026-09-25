@@ -22,7 +22,7 @@ function EllesmereUI.Widgets:DualRow(_,_,left,right)
  rows[#rows+1]=left;rows[#rows+1]=right;return {},40
 end
 function newFrame(name,w,h)
- local f={name=name,w=w or 100,h=h or 40,scale=1,shown=true,alpha=1,events={},scripts={},points={}}
+ local f={name=name,w=w or 100,h=h or 40,scale=1,shown=true,alpha=1,events={},scripts={},points={},regions={},children={}}
  function f:GetParent() return self.parent end
  function f:SetParent(v) self.parent=v end
  function f:GetWidth() return self.w end
@@ -32,6 +32,8 @@ function newFrame(name,w,h)
  function f:SetScale(v) self.scale=v end
  function f:GetEffectiveScale() return self.scale end
  function f:GetNumPoints() return #self.points end
+ function f:GetRegions() return unpack(self.regions) end
+ function f:GetChildren() return unpack(self.children) end
  function f:GetPoint(i) return unpack(self.points[i]) end
  function f:ClearAllPoints() self.points={} end
  function f:SetPoint(...) self.points={{...}} end
@@ -62,6 +64,9 @@ EABButton1=newFrame('button',45,45)
 MainActionBar=newFrame('source',540,45)
 MainActionBar.BorderArt=newFrame('border',600,80)
 MainActionBar.EndCaps=newFrame('caps',650,100)
+MainActionBar.EndCaps.regions={newFrame('leftGriffon'),newFrame('rightGriffon')}
+MainActionBar.EndCaps.regions[1]:Hide()
+MainActionBar.EndCaps.regions[2]:Hide()
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
@@ -71,7 +76,10 @@ local f=ns.modules.BlizzardBarArt
 f:Initialize();eventFrame=frames[#frames];flushAll()
 local holder=FafnyirToolsBlizzardBarArt
 local oldBorder=MainActionBar.BorderArt
+local leftGriffon=MainActionBar.EndCaps.regions[1]
+local rightGriffon=MainActionBar.EndCaps.regions[2]
 assert(holder.shown and oldBorder.parent==holder and oldBorder.shown and oldBorder.alpha==1)
+assert(leftGriffon.shown and rightGriffon.shown)
 assert(math.abs(oldBorder.w-636)<0.001) -- 600 * default 1.06 calibration
 
 -- Calibration is adjustable per installation without editing Lua.
@@ -84,6 +92,10 @@ assert(rows[2].getValue()==1.01 and math.abs(oldBorder.w-606)<0.001)
 -- A Blizzard/EllesmereUI hide or alpha reset is repaired without a reload.
 oldBorder:Hide();flushAll();assert(oldBorder.shown and oldBorder.parent==holder)
 oldBorder:SetAlpha(0);flushAll();assert(oldBorder.alpha==1)
+
+-- Blizzard's native preference can hide the individual griffon regions. The
+-- FafnyirTools toggle restores the whole art set while it is enabled.
+leftGriffon:Hide();flushAll();assert(leftGriffon.shown and rightGriffon.shown)
 
 -- Runtime transitions reacquire replacement artwork instead of using stale refs.
 local replacement=newFrame('replacement',610,82)
@@ -100,5 +112,6 @@ assert(replacement.parent==holder and replacement.shown and replacement.alpha==1
 ns:GetDatabase().blizzardBarArt.enabled=false
 f:Refresh();flushAll();assert(not holder.shown)
 replacement:Hide();flushAll();assert(not holder.shown and not replacement.shown)
+leftGriffon:Hide();flushAll();assert(not holder.shown and not leftGriffon.shown)
 ''')
 print("PASS bar art self-heals after hides, alpha resets, transitions, and artwork replacement")

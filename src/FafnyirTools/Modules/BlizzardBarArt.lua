@@ -51,6 +51,11 @@ local function WatchArtwork(frame)
         frame:HookScript("OnHide", QueueRefresh)
     end
     if hooksecurefunc then
+        if type(frame.Hide) == "function" then
+            hooksecurefunc(frame, "Hide", function()
+                if DB().enabled then QueueRefresh() end
+            end)
+        end
         hooksecurefunc(frame, "SetAlpha", function(_, alpha)
             if DB().enabled and alpha == 0 then QueueRefresh() end
         end)
@@ -59,6 +64,36 @@ local function WatchArtwork(frame)
         end)
     end
     watched[frame] = true
+end
+
+local function RestoreArtworkTree(frame)
+    if not frame then return end
+
+    -- Forever's native "hide bar art" preference may hide the individual
+    -- griffon textures while leaving their EndCaps container available. The
+    -- FafnyirTools option owns this recovered artwork as one unit, so restore
+    -- every region and child under that dedicated art container.
+    if frame.SetAlpha then frame:SetAlpha(1) end
+    if frame.Show then frame:Show() end
+    WatchArtwork(frame)
+
+    if frame.GetRegions then
+        local regions = { frame:GetRegions() }
+        for _, region in ipairs(regions) do
+            if region then
+                if region.SetAlpha then region:SetAlpha(1) end
+                if region.Show then region:Show() end
+                WatchArtwork(region)
+            end
+        end
+    end
+
+    if frame.GetChildren then
+        local children = { frame:GetChildren() }
+        for _, child in ipairs(children) do
+            RestoreArtworkTree(child)
+        end
+    end
 end
 
 local function SaveFrameState(frame)
@@ -153,8 +188,7 @@ local function LayoutEndCaps(target, scale)
     endCaps:SetScale(1)
     endCaps:SetSize(sourceW * scale, sourceH * scale)
     endCaps:SetPoint("CENTER", target, "CENTER", 0, -4)
-    endCaps:SetAlpha(1)
-    endCaps:Show()
+    RestoreArtworkTree(endCaps)
 end
 
 local function Install()
@@ -266,7 +300,7 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "toggle",
             text = "Enable Blizzard Bar Art",
-            tooltip = "Show Blizzard's decorative border and end caps behind EllesmereUI Bar 1.",
+            tooltip = "Show Blizzard's decorative background and both side griffons behind EllesmereUI Bar 1.",
             getValue = function()
                 return DB().enabled
             end,

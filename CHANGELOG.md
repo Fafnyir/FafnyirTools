@@ -2,6 +2,8 @@
 
 ## v1.1.4 — WoW Forever beta compatibility
 
+- Linked the central Blizzard action-bar background and both side griffons to
+  the existing Blizzard Bar Art toggle.
 - Fixed reload confirmations on Forever by using EllesmereUI's secure
   `reload = true` popup contract instead of calling protected `ReloadUI()`
   from an ordinary addon callback.

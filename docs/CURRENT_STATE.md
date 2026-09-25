@@ -1,5 +1,12 @@
 # Current state — v1.1.4 Forever beta, 2026-09-24
 
+## Unified Blizzard Bar Art toggle
+
+Forever can hide the two side griffons independently from the central action
+bar artwork. FafnyirTools now treats the recovered central background and both
+griffons as one feature: enabling **Blizzard Bar Art** restores the complete art
+set, while disabling it hides the shared holder and all of that artwork.
+
 ## 2026-09-24 — Secure reload confirmations
 
 Forever rejects direct addon callback calls to protected `ReloadUI()`. All
