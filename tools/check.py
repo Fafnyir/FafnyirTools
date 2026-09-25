@@ -76,7 +76,7 @@ def check(baseline=False):
         print('PASS source byte-identical to user-confirmed baseline', flush=True)
     print(f'PASS {len(entries)} Lua files, complete/unique TOC, expected features/pages/default sections, metadata', flush=True)
     for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_bar_art.py', 'test_reload_contract.py', 'test_companion.py',
-                 'test_global_settings.py', 'test_forever_compat.py']:
+                 'test_global_settings.py', 'test_inventory.py', 'test_forever_compat.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

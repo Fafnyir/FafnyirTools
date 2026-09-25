@@ -9,6 +9,9 @@ local function DB() return ns:GetDatabase().inventory end
 local function Key()
     return (UnitName("player") or "Unknown").."-"..((GetNormalizedRealmName and GetNormalizedRealmName()) or GetRealmName() or "Unknown")
 end
+function feature:GetCurrentCharacterKey()
+    return Key()
+end
 local function Char()
     local d=DB(); local k=Key()
     d.characters[k]=d.characters[k] or {name=UnitName("player"),realm=GetRealmName(),money=0,bags={},bank={},currencies={},updated=0}
@@ -81,6 +84,22 @@ function feature:GetItemLocations(id)
 end
 function feature:GetTotalGold()
     local n=0; for _,c in pairs(DB().characters) do n=n+(c.money or 0) end; return n
+end
+function feature:RemoveCharacter(key)
+    if type(key) ~= "string" or key == "" then return false end
+    local d = DB()
+    local existed = d.characters[key] ~= nil or d.mail[key] ~= nil or d.auctions[key] ~= nil
+    d.characters[key] = nil
+    d.mail[key] = nil
+    d.auctions[key] = nil
+    return existed
+end
+function feature:ResetAllCharacters()
+    local d = DB()
+    wipe(d.characters)
+    wipe(d.mail)
+    wipe(d.auctions)
+    if d.enabled then self:Refresh() end
 end
 function feature:Refresh() self:ScanBags(); self:ScanCurrencies() end
 function feature:Initialize() self:Refresh() end

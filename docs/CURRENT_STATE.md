@@ -1,4 +1,12 @@
-# Current state — v1.1.4 Forever beta, 2026-09-24
+# Current state — v1.1.4 Forever beta, 2026-09-25
+
+## Inventory character-cache management
+
+The Bags & Inventory page can now remove one cached character or reset all
+character-keyed inventory data with confirmation. Individual removal excludes
+the logged-in character. Reset All clears character, mail, and auction caches,
+then rescans the current character when tracking is enabled; warband and guild
+caches remain intact.
 
 ## Unified Blizzard Bar Art toggle
 

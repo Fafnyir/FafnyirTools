@@ -18,7 +18,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Focus auras | Distinct from Focus source selection; no custom Focus aura implementation | Not implemented |
 | Status textures | Hide relevant Blizzard Target/Focus status textures without adding a toggle | Present |
 | Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
-| Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; omit redundant Fafnyir Tools tooltip heading | Present foundation |
+| Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; targeted cached-alt removal and confirmed Reset All Characters; omit redundant Fafnyir Tools tooltip heading | Present foundation |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
 | Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
 | About | Version, history, credits, support link | History and original companion credits restored; measured text wrapping |
