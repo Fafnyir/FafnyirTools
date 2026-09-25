@@ -5,8 +5,9 @@
 The Unit Frames page now offers First Name, Last Name, and Whole Name for WoW
 Forever characters rendered by EllesmereUI main, Party, and Raid frames. Whole
 Name preserves the existing behavior and is the upgrade-safe default. Configured
-nicknames, NPC names, secret names, and Retail are unchanged. Changes repaint
-existing frames without a reload.
+nicknames, Nameplates, NPC names, secret names, and Retail are unchanged. The
+shared EllesmereUI surname helper is caller-gated to prevent the setting from
+leaking onto Nameplates. Changes repaint existing frames without a reload.
 
 ## Inventory character-cache management
 

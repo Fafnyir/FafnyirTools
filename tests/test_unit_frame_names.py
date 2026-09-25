@@ -5,9 +5,10 @@ from lupa.lua51 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
-ns={};SlashCmdList={};rows={};mainRefreshes=0;raidRefreshes=0;secretValue=false
+ns={};SlashCmdList={};rows={};mainRefreshes=0;raidRefreshes=0;secretValue=false;callerStack='EllesmereUIUnitFrames'
 function GetBuildInfo() return '', '', '', 16001 end
 function issecretvalue(v) return secretValue and v=='Hidden' end
+function debugstack() return callerStack end
 Constants={CharacterNameSeparatorConsts={CHARACTERNAME_SURNAME_SEPARATOR=' '}}
 EllesmereUI={Widgets={},_ModuleNS={EllesmereUIRaidFrames={}}}
 function EllesmereUI.WithSurname(name,surname) return surname and (name..' '..surname) or name end
@@ -28,7 +29,11 @@ assert(rows[1].text=='Character Name Display')
 assert(rows[1].getValue()=='whole')
 rows[1].setValue('first');assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas')
 assert(EllesmereUI.WithSurname('Mary Jane Proudmoore','Proudmoore')=='Mary Jane')
+callerStack='EllesmereUIRaidFrames';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas')
 rows[1].setValue('last');assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Menethil')
+callerStack='EllesmereUINameplates';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
+callerStack='SomeOtherAddon';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
+callerStack='EllesmereUIUnitFrames'
 assert(EllesmereUI.WithSurname('The Lich King',nil)=='The Lich King')
 secretValue=true;assert(EllesmereUI.WithSurname('Hidden','Surname')=='Hidden Surname');secretValue=false
 rows[1].setValue('bogus');assert(rows[1].getValue()=='last')
@@ -39,4 +44,4 @@ ns:GetDatabase().unitFrameNames.mode='last'
 assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
 assert(mainRefreshes>=4 and raidRefreshes>=4)
 ''')
-print("PASS Forever main/Party/Raid first-last-whole names, compound names, secret fallback, refresh, reset, and Retail gate")
+print("PASS Forever main/Party/Raid name modes, Nameplate exclusion, compound names, secret fallback, refresh, reset, and Retail gate")

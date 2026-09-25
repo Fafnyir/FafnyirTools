@@ -24,8 +24,21 @@ local function IsSecret(value)
     return issecretvalue and issecretvalue(value)
 end
 
+local function CalledFromSupportedFrames()
+    -- WithSurname is shared by Unit Frames, Raid Frames, and Nameplates. Keep
+    -- this preference scoped to the two requested frame modules. debugstack is
+    -- Blizzard's supported caller-inspection helper; fail closed if unavailable
+    -- so a client change cannot leak the setting onto another UI surface.
+    if type(debugstack) ~= "function" then return false end
+    local stack = debugstack(2, 8, 0)
+    if type(stack) ~= "string" then return false end
+    return stack:find("EllesmereUIUnitFrames", 1, true) ~= nil
+        or stack:find("EllesmereUIRaidFrames", 1, true) ~= nil
+end
+
 local function FormatForeverName(name, surname, fallback)
     if not ns.IS_FOREVER then return fallback end
+    if not CalledFromSupportedFrames() then return fallback end
 
     local mode = DB().mode
     if mode == "whole" or not MODES[mode] then return fallback end
@@ -104,7 +117,7 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "dropdown",
             text = "Character Name Display",
-            tooltip = "Choose whether EllesmereUI main, Party, and Raid frames show a Forever character's first name, surname, or whole name. NPC names and configured nicknames are unchanged.",
+            tooltip = "Choose whether EllesmereUI main, Party, and Raid frames show a Forever character's first name, surname, or whole name. Nameplates, NPC names, and configured nicknames are unchanged.",
             values = MODES,
             order = ORDER,
             getValue = function() return DB().mode end,
