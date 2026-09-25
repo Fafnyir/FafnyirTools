@@ -66,14 +66,34 @@ local function WatchArtwork(frame)
     watched[frame] = true
 end
 
-local function RestoreEndCapArtwork(frame)
+local function IsEditModeBranch(frame)
+    local name = frame.GetName and frame:GetName()
+    if type(name) == "string" and name:lower():find("edit", 1, true) then
+        return true
+    end
+
+    if frame.GetRegions then
+        local regions = { frame:GetRegions() }
+        for _, region in ipairs(regions) do
+            if region.GetObjectType and region:GetObjectType() == "FontString" then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+local function RestoreEndCapArtwork(frame, isRoot)
     if not frame then return end
+
+    if not isRoot and IsEditModeBranch(frame) then return end
 
     -- Forever's native "hide bar art" preference may hide the individual
     -- griffon textures while leaving their EndCaps container available. The
     -- FafnyirTools option owns this recovered artwork as one unit, so restore
-    -- its direct art regions. Do not recursively show child frames: Blizzard
-    -- keeps hidden interaction UI there, including the "Click To Edit" panel.
+    -- decorative texture branches while excluding Blizzard's hidden Edit Mode
+    -- interaction branch (the "Click To Edit" panel).
     if frame.SetAlpha then frame:SetAlpha(1) end
     if frame.Show then frame:Show() end
     WatchArtwork(frame)
@@ -81,7 +101,8 @@ local function RestoreEndCapArtwork(frame)
     if frame.GetRegions then
         local regions = { frame:GetRegions() }
         for _, region in ipairs(regions) do
-            if region then
+            local kind = region and region.GetObjectType and region:GetObjectType()
+            if region and (kind == nil or kind == "Texture") then
                 if region.SetAlpha then region:SetAlpha(1) end
                 if region.Show then region:Show() end
                 WatchArtwork(region)
@@ -89,6 +110,12 @@ local function RestoreEndCapArtwork(frame)
         end
     end
 
+    if frame.GetChildren then
+        local children = { frame:GetChildren() }
+        for _, child in ipairs(children) do
+            RestoreEndCapArtwork(child, false)
+        end
+    end
 end
 
 local function SaveFrameState(frame)
@@ -183,7 +210,7 @@ local function LayoutEndCaps(target, scale)
     endCaps:SetScale(1)
     endCaps:SetSize(sourceW * scale, sourceH * scale)
     endCaps:SetPoint("CENTER", target, "CENTER", 0, -4)
-    RestoreEndCapArtwork(endCaps)
+    RestoreEndCapArtwork(endCaps, true)
 end
 
 local function Install()

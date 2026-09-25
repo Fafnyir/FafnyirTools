@@ -22,7 +22,9 @@ function EllesmereUI.Widgets:DualRow(_,_,left,right)
  rows[#rows+1]=left;rows[#rows+1]=right;return {},40
 end
 function newFrame(name,w,h)
- local f={name=name,w=w or 100,h=h or 40,scale=1,shown=true,alpha=1,events={},scripts={},points={},regions={},children={}}
+ local f={name=name,w=w or 100,h=h or 40,scale=1,shown=true,alpha=1,events={},scripts={},points={},regions={},children={},kind='Frame'}
+ function f:GetName() return self.name end
+ function f:GetObjectType() return self.kind end
  function f:GetParent() return self.parent end
  function f:SetParent(v) self.parent=v end
  function f:GetWidth() return self.w end
@@ -64,11 +66,15 @@ EABButton1=newFrame('button',45,45)
 MainActionBar=newFrame('source',540,45)
 MainActionBar.BorderArt=newFrame('border',600,80)
 MainActionBar.EndCaps=newFrame('caps',650,100)
-MainActionBar.EndCaps.regions={newFrame('leftGriffon'),newFrame('rightGriffon')}
-MainActionBar.EndCaps.children={newFrame('clickToEdit')}
-MainActionBar.EndCaps.regions[1]:Hide()
-MainActionBar.EndCaps.regions[2]:Hide()
-MainActionBar.EndCaps.children[1]:Hide()
+local leftGriffon=newFrame('leftGriffon')
+local rightGriffon=newFrame('rightGriffon')
+local clickToEdit=newFrame(nil)
+local editLabel=newFrame(nil);editLabel.kind='FontString'
+leftGriffon.regions={newFrame('leftTexture')};leftGriffon.regions[1].kind='Texture'
+rightGriffon.regions={newFrame('rightTexture')};rightGriffon.regions[1].kind='Texture'
+clickToEdit.regions={editLabel}
+MainActionBar.EndCaps.children={leftGriffon,rightGriffon,clickToEdit}
+leftGriffon:Hide();rightGriffon:Hide();clickToEdit:Hide();editLabel:Hide()
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
@@ -78,9 +84,9 @@ local f=ns.modules.BlizzardBarArt
 f:Initialize();eventFrame=frames[#frames];flushAll()
 local holder=FafnyirToolsBlizzardBarArt
 local oldBorder=MainActionBar.BorderArt
-local leftGriffon=MainActionBar.EndCaps.regions[1]
-local rightGriffon=MainActionBar.EndCaps.regions[2]
-local clickToEdit=MainActionBar.EndCaps.children[1]
+local leftGriffon=MainActionBar.EndCaps.children[1]
+local rightGriffon=MainActionBar.EndCaps.children[2]
+local clickToEdit=MainActionBar.EndCaps.children[3]
 assert(holder.shown and oldBorder.parent==holder and oldBorder.shown and oldBorder.alpha==1)
 assert(leftGriffon.shown and rightGriffon.shown)
 assert(not clickToEdit.shown)
