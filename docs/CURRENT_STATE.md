@@ -11,6 +11,9 @@ separate Edit Mode interaction branch, including **Click To Edit**, stays hidden
 The user confirmed this behavior in game on 2026-09-24 with build `68e7a1a`:
 the FafnyirTools toggle controls the background and both griffons together and
 overrides Blizzard's independent side-art preference.
+On 2026-09-25 the user also tested that build on Retail with EllesmereUI 9.2.9
+and reported that everything appeared to work correctly. Retail and Forever
+were using byte-identical EllesmereUI Action Bars 9.2.9 source during this test.
 
 ## 2026-09-24 — Secure reload confirmations
 
