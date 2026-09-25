@@ -24,6 +24,7 @@ local SCHEMA = {
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,
     rightClickSelfCast = true,
+    unitFrameNames = true,
     unitFrameSources = true,
     inventory = { enabled = true, tooltips = true },
     xpBar = true,

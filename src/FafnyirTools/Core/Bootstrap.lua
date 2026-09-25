@@ -59,6 +59,9 @@ ns.defaults = {
         focus = "inherit",
         pet = "inherit",
     },
+    unitFrameNames = {
+        mode = "whole",
+    },
     deviceLayout = {
         enabled = true,
         presetIndex = 0,

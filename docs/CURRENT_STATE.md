@@ -1,5 +1,12 @@
 # Current state — v1.1.4 Forever beta, 2026-09-25
 
+## Forever unit-frame name display
+
+The Unit Frames page now offers First Name, Last Name, and Whole Name for WoW
+Forever characters rendered by EllesmereUI unit frames. Whole Name preserves
+the existing behavior and is the upgrade-safe default. NPC names, secret names,
+and Retail are unchanged. Changes repaint existing frames without a reload.
+
 ## Inventory character-cache management
 
 The Bags & Inventory page can now remove one cached character or reset all

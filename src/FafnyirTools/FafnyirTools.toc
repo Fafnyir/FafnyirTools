@@ -19,6 +19,7 @@ Modules\Resting.lua
 Modules\RightClickSelfCast.lua
 Modules\BlizzardBarArt.lua
 Modules\FlyoutButtonMatch.lua
+Modules\UnitFrameNames.lua
 Modules\UnitFrameSources.lua
 Modules\DeviceLayout.lua
 Modules\XPBar.lua
