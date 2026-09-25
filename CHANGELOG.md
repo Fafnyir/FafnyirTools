@@ -3,7 +3,7 @@
 ## v1.1.4 — WoW Forever beta compatibility
 
 - Added a Forever-only First Name / Last Name / Whole Name display option for
-  surname-bearing characters on EllesmereUI unit frames.
+  surname-bearing characters on EllesmereUI main, Party, and Raid frames.
 - Added confirmed per-character removal and Reset All Characters controls for
   inventory tracking while preserving warband and guild caches.
 - Linked the central Blizzard action-bar background and both side griffons to
