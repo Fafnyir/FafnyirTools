@@ -1,5 +1,17 @@
 # Open items — no silent restoration
 
+## Hide the Forever fog toggle in the next build
+
+- User decision, 2026-09-26: hide the Forever-only **Volumetric Fog** toggle
+  during the next FafnyirTools build.
+- Blizzard now overrides the `volumeFog 0` console setting after it is applied;
+  players report that fog changes for only a moment and then returns. The
+  current control is therefore misleading even though FafnyirTools persists
+  and reapplies its saved choice.
+- Keep the implementation dormant rather than presenting a nonfunctional
+  option. Reconsider it only if Blizzard exposes a supported, persistent fog
+  setting in a later client build.
+
 ## WoW Forever beta validation
 
 - Do not treat the Forever beta package as fully testable until Blizzard fixes
