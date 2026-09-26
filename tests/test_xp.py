@@ -25,6 +25,19 @@ function CreateFrame()
  function f:EnableMouse(v) self.mouse=v end
  function f:SetAllPoints(v) self.allPoints=v or true end
  function f:GetParent() return self.parent end
+ function f:CreateFontString() local x=CreateFrame();x.parent=self;return x end
+ function f:GetText() return self.text end
+ function f:SetText(v) self.text=v end
+ function f:GetFont() return self.fontPath or 'font',self.fontSize or 9,self.fontFlags or '' end
+ function f:SetFont(p,s,fl) self.fontPath=p;self.fontSize=s;self.fontFlags=fl end
+ function f:GetTextColor() return 1,1,1,1 end
+ function f:SetTextColor(...) self.textColor={...} end
+ function f:GetShadowColor() return 0,0,0,1 end
+ function f:SetShadowColor(...) self.shadowColor={...} end
+ function f:GetShadowOffset() return 1,-1 end
+ function f:SetShadowOffset(...) self.shadowOffset={...} end
+ function f:SetJustifyH(v) self.justify=v end
+ function f:GetPoint() if self.point then return unpack(self.point) end end
  function f:GetSize() return self.w,self.h end
  function f:SetValue(v) self.value=v end
  function f:SetStatusBarColor(...) self.color={...} end
@@ -46,6 +59,10 @@ current=200;maximum=1000;level=40;cap=90;disabled=false
 function UnitXP() return current end
 function UnitXPMax() return maximum end
 function UnitLevel() return level end
+restedXP=300
+function GetXPExhaustion() return restedXP end
+function AbbreviateLargeNumbers(v) return tostring(v) end
+LEVEL='Level';RESTED='Rested'
 function GetMaxLevelForPlayerExpansion() return cap end
 function IsPlayerAtEffectiveMaxLevel() return level>=cap end
 function IsXPUserDisabled() return disabled end
@@ -54,11 +71,13 @@ rewards={[1]=150,[2]=250,[3]=900,[4]=800}; completed={[1]=true,[2]=true,[4]=true
 C_QuestLog={GetNumQuestLogEntries=function() return #quests end,GetInfo=function(i) return quests[i] end,IsComplete=function(id) return completed[id] end}
 function GetQuestLogRewardXP(id) assert(id);return rewards[id] end
 holder=CreateFrame();nativeBorder=CreateFrame();nativeBorder.parent=holder
+textHost=CreateFrame();textHost.parent=holder
+holder._text=textHost:CreateFontString();holder._text:SetPoint('CENTER',textHost,'CENTER',0,0);holder._text:SetText('native')
 holder._border={_frame=nativeBorder,edges=CreateFrame()}
 bar=CreateFrame();bar.parent=holder;bar.texture=CreateFrame()
 rested=CreateFrame();rested.texture=CreateFrame()
 EllesmereEAB_XPBar_Bar=bar;EllesmereEAB_XPBar_Rested=rested
-holder._updateFunc=function() bar:SetStatusBarColor(1,1,1);rested:SetStatusBarColor(1,1,1) end
+holder._updateFunc=function() bar:SetStatusBarColor(1,1,1);rested:SetStatusBarColor(1,1,1);holder._text:SetText('native') end
 EllesmereUI={Widgets={},BuildColorSwatch=function() return CreateFrame(),function() end end,
  GetBorderTextureDropdown=function() return {solid='Solid'},{'solid'} end,
  GetBorderStyleSelectDefaults=function() return {r=.1,g=.2,b=.3,a=.4},false end,
@@ -80,6 +99,13 @@ assert(db.startColor.r==85/255 and db.startColor.g==99/255 and db.endColor.r==19
 assert(db.restedStartColor.r==79/255 and db.restedStartColor.g==143/255 and db.restedStartColor.a==1 and db.restedEndColor.a==1)
 assert(db.questColor.r==1 and db.questColor.g==150/255 and db.questColor.b==0 and db.questColor.a==1)
 f:Initialize();o=bar.overlay;assert(o.shown and o.w==80 and o.point[4]==40) -- 400 quest XP, excludes incomplete/hidden/duplicate
+flush();assert(holder._text.text=='200 / 1000 | 20.0%')
+local foundLevel,foundRested=false,false
+for _,x in ipairs(frames) do
+ if x.text=='Level 40' then foundLevel=true end
+ if x.text=='Rested: 300' then foundRested=true end
+end
+assert(foundLevel and foundRested)
 border=nativeBorder;assert(border.level==bar.level+1 and border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')
 assert(db.enabled==false) -- quest segment independent of gradient
 current=900;bar:SetValue(current);assert(o.w==20 and o.point[4]==180)
@@ -90,6 +116,8 @@ maximum=1000;completed={};f:Refresh();assert(not o.shown)
 completed={[1]=true};current=200;f:Refresh();assert(o.shown and o.w==60)
 disabled=true;f:Refresh();assert(not o.shown);disabled=false
 f:BuildOptions(CreateFrame(),0)
+for _,r in ipairs(rows) do if r.text=='Enable Three-Zone XP Text' then textToggle=r end end
+assert(textToggle and textToggle.getValue()==true)
 for _,r in ipairs(rows) do if r.text=='Enable Quest XP Overlay' then toggle=r end end
 assert(toggle and toggle.getValue());toggle.setValue(false);assert(not o.shown);toggle.setValue(true);assert(o.shown)
 for _,r in ipairs(rows) do if r.text=='Border Size' then borderSize=r elseif r.text=='Border Style' then borderStyle=r end end
@@ -99,6 +127,8 @@ assert(border.appliedBorder.addonKey==nil) -- use each texture's built-in offset
 db.startColor={r=.2,g=.3,b=.4,a=.5};db.questColor={r=.8,g=.7,b=.6,a=.4};db.questEnabled=false
 db.borderColor={r=.8,g=.6,b=.4,a=.2};ns:InitializeDatabase();assert(db.startColor.a==.5 and db.questColor.g==.7 and db.questEnabled==false and db.borderColor.a==.2)
 db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.texture.gradient[2].r==.2)
+textToggle.setValue(false);flush();assert(holder._text.text=='native')
+textToggle.setValue(true);flush();assert(holder._text.text=='200 / 1000 | 20.0%')
 ''')
 print('PASS: totals, clipping, resizing, max level, zero XP, disabled XP, toggle, defaults, saved settings, gradients')
 # Fill feature slots so the real options registration can be exercised independently of other module APIs.

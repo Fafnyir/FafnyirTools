@@ -1,5 +1,12 @@
 # Current state — v1.1.4 Forever beta, 2026-09-25
 
+## Three-zone XP bar text
+
+The XP & Progression page now enables a three-zone text layout by default:
+Level at left, current/max XP plus percentage at center, and rested XP at right.
+It inherits EllesmereUI's font styling and updates with XP/rested events. Its
+toggle restores EllesmereUI's native single centered string.
+
 ## Blizzard-style Focus reaction header
 
 The Unit Frames page now exposes **Blizz Colored Focus Header**, matching
