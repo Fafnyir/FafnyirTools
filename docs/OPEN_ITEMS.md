@@ -25,6 +25,12 @@ saved values. These changes are offline-tested; the user confirmed “All fixed.
 
 Historical request covered searching all characters, bags, banks, mail, auctions, warband/guild storage, gold/currencies. Current code scans bags, personal bank and currency list and aggregates cached locations; dedicated mail/auction/warband/guild scanners and a search UI are not present. Existing data tables/tooltip labels are not implementation. Keep as a future scope decision; do not advertise complete live tracking.
 
+Roadmap decision, 2026-09-26: full inventory search is deferred to v2.0.0.
+Start with reliable cached character bags and personal banks, asynchronous item
+metadata, result sorting, and cache-age reporting. Mail, auction, Warband, and
+guild scanners remain separate API-validation work and are not automatically
+included merely because the v2.0.0 search project begins.
+
 ## 4. Focus aura styling
 
 Focus source control exists. Custom Focus aura containers do not. Treat as a separate feature request if desired.

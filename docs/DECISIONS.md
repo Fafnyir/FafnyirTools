@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## Inventory search roadmap
+
+2026-09-26: defer the proposed cross-character inventory search interface and
+related inventory expansion to v2.0.0. The scope is substantial enough to need
+its own development cycle, including asynchronous item-data loading, searchable
+and sortable results, scrolling, cache-freshness reporting, and focused in-game
+performance testing. Keep v1.1.5 available for a smaller, self-contained change.
+
 ## WoW Forever beta line
 
 2026-09-20: prepare a separate Forever beta package without treating it as
