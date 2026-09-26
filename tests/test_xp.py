@@ -103,7 +103,7 @@ flush();assert(holder._text.text=='200 / 1000 | 20.0%')
 local foundLevel,foundRested=false,false
 for _,x in ipairs(frames) do
  if x.text=='Level 40' then foundLevel=true end
- if x.text=='Rested: 300' then foundRested=true end
+ if x.text=='Rested: 30.0%' then foundRested=true end
 end
 assert(foundLevel and foundRested)
 border=nativeBorder;assert(border.level==bar.level+1 and border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')

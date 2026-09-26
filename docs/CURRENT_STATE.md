@@ -3,7 +3,7 @@
 ## Three-zone XP bar text
 
 The XP & Progression page now enables a three-zone text layout by default:
-Level at left, current/max XP plus percentage at center, and rested XP at right.
+Level at left, current/max XP plus percentage at center, and rested XP percentage at right.
 It inherits EllesmereUI's font styling and updates with XP/rested events. Its
 toggle restores EllesmereUI's native single centered string.
 

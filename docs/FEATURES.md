@@ -50,7 +50,7 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 ## XP contract
 
 - Optional three-zone text layout: level on the left, current/max plus
-  percentage in the center, and rested XP on the right. Disabling it restores
+  percentage in the center, and rested XP percentage on the right. Disabling it restores
   EllesmereUI's native XP text.
 
 - Current gradient defaults: `#5563FF` to `#C561FF`, alpha 1 at both ends.

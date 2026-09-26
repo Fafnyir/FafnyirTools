@@ -102,11 +102,12 @@ local function UpdateXPText()
     local maximum = math.max(1, UnitXPMax("player") or 0)
     local rested = math.max(0, GetXPExhaustion and (GetXPExhaustion() or 0) or 0)
     local percentage = (current / maximum) * 100
+    local restedPercentage = (rested / maximum) * 100
 
     textApplying = true
     xpTextLeft:SetText(string.format("%s %d", LEVEL or "Level", UnitLevel("player") or 0))
     center:SetText(string.format("%s / %s | %.1f%%", Abbreviate(current), Abbreviate(maximum), percentage))
-    xpTextRight:SetText(string.format("%s: %s", RESTED or "Rested", Abbreviate(rested)))
+    xpTextRight:SetText(string.format("%s: %.1f%%", RESTED or "Rested", restedPercentage))
     textApplying = false
     xpTextLeft:Show()
     xpTextRight:Show()
@@ -456,7 +457,7 @@ function feature:BuildOptions(parent, yOffset)
                 feature:Refresh()
             end,
         },
-        { type = "label", text = "Left: Level   Center: XP / Max | %   Right: Rested" })
+        { type = "label", text = "Left: Level   Center: XP / Max | %   Right: Rested %" })
     y = y - h
 
     _, h = W:Spacer(parent, y, 18)
