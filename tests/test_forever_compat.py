@@ -53,14 +53,11 @@ assert(#prints>=1 and prints[#prints]:find('not reliably saving'))
 
 rows={}
 local fog=ns.modules.ForeverFog
-assert(fog:BuildOptions({},-20)==80 and #rows==2)
-assert(rows[1].text=='Volumetric Fog' and rows[1].getValue()==true)
-rows[1].setValue(false);assert(cvars.volumeFog=='0' and rows[1].getValue()==false and consoleCalls[#consoleCalls]=='volumeFog 0')
--- The client can restore its graphics state; login/world entry reapplies ours.
-cvars.volumeFog='1';fog:Initialize();flush();assert(cvars.volumeFog=='0')
-cvars.volumeFog='1';fog:HandleEvent('PLAYER_ENTERING_WORLD');flush();assert(cvars.volumeFog=='0')
-rows[1].setValue(true);assert(cvars.volumeFog=='1' and rows[1].getValue()==true and consoleCalls[#consoleCalls]=='volumeFog 1')
--- Visibility is product-gated even when another client exposes the same CVar.
+assert(fog:BuildOptions({},-20)==20 and #rows==0)
+fog:Initialize();flush();assert(cvars.volumeFog=='1' and #consoleCalls==0)
+fog:HandleEvent('PLAYER_ENTERING_WORLD');flush();assert(cvars.volumeFog=='1' and #consoleCalls==0)
+fog:Reset();assert(ns:GetDatabase().foreverFog.enabled==true)
+assert(ns:GetDatabase().foreverFog.initialized==false and #consoleCalls==0)
 ns.IS_FOREVER=false;rows={};assert(fog:BuildOptions({},-37)==37 and #rows==0)
 ''')
 
@@ -68,4 +65,4 @@ resting = (ROOT / "Modules/Resting.lua").read_text()
 assert "MAX_LEVEL" not in resting
 assert "GetMaxLevelForPlayerExpansion" in resting
 assert "IsPlayerAtEffectiveMaxLevel" in resting
-print("PASS Forever detection, fog CVar, interface metadata, dynamic max level and SavedVariables safety gates")
+print("PASS Forever detection, dormant fog compatibility, interface metadata, dynamic max level and SavedVariables safety gates")

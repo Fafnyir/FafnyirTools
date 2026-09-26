@@ -1,5 +1,14 @@
 # Reconciled project changelog
 
+## v1.1.5 — cleanup
+
+- Hidden the Forever-only Volumetric Fog option because Blizzard now restores
+  the client setting immediately after addons change it.
+- Stopped applying or repeatedly reapplying the unsupported `volumeFog` console
+  setting while retaining its saved-data shape for upgrade compatibility.
+- No new headline feature was added; this release is intentionally limited to
+  compatibility cleanup and regression fixes.
+
 ## v1.1.4 — WoW Forever beta compatibility
 
 User confirmed build `1aae4fe` working in game on 2026-09-26.

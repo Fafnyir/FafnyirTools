@@ -36,9 +36,9 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 - Support current owned-pet IDs plus the legacy indexed Pet Journal path.
 - While EllesmereUI reports the beta SavedVariables defect, block operations
   that write cross-addon settings and immediately reload. Retail is unaffected.
-- Expose a Forever-only Volumetric Fog toggle on QoL. Store the preference in
-  FafnyirTools and reapply the validated `volumeFog 0|1` console setting after
-  login and world/zone transitions because the client may restore graphics state.
+- Retain the legacy Forever fog saved-data shape for upgrade compatibility, but
+  do not expose or apply it. Blizzard now restores `volumeFog` immediately, so
+  presenting a persistent toggle would be misleading.
 
 ## Global settings transfer
 

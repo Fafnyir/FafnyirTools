@@ -9,7 +9,7 @@ print('PASS: all active Lua files compile under Lua 5.1')
 toc=(root/'FafnyirTools.toc').read_text()
 for line in toc.splitlines():
     if line and not line.startswith('#'): assert (root/line.replace('\\','/')).is_file(),line
-assert '## Version: v1.1.4' in toc
+assert '## Version: v1.1.5' in toc
 lua.execute('''
 ns={}; SlashCmdList={}; queue={}; tickers={}; frames={}; rows={}
 C_Timer={After=function(_,f) table.insert(queue,f) end, NewTicker=function(_,f)

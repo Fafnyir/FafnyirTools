@@ -5,7 +5,7 @@
 ## IconTexture: Interface\AddOns\FafnyirMedia\logo\AddonLogo
 ## Dependencies: EllesmereUI
 ## SavedVariables: FafnyirToolsDB
-## Version: v1.1.4
+## Version: v1.1.5
 ## Notes: A collection of enhancements for EllesmereUI.
 
 Core\Bootstrap.lua

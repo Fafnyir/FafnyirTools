@@ -8,10 +8,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.4"
+local VERSION = "v1.1.5"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.5", lines = {
+        "Cleanup release for WoW Forever and EllesmereUI compatibility.",
+        "Hidden the Volumetric Fog control after Blizzard made the setting non-persistent.",
+        "Stopped reapplying the unsupported volumeFog console setting.",
+    }},
     { version = "v1.1.4", lines = {
         "Added guarded WoW Forever beta compatibility.",
         "Added a Forever-only Volumetric Fog toggle under QoL.",

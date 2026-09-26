@@ -1,4 +1,12 @@
-# Current state — v1.1.4 Forever beta, 2026-09-25
+# Current state — v1.1.5 cleanup in development, 2026-09-26
+
+## v1.1.5 cleanup scope
+
+The user chose v1.1.5 as a maintenance release without a forced headline
+feature. The Forever-only Volumetric Fog control is hidden because Blizzard now
+restores `volumeFog` immediately after addons change it. FafnyirTools no longer
+applies the setting at login or world transitions. Its existing saved table is
+retained so upgrades do not discard user data or change the export schema.
 
 ## v1.1.4 confirmed baseline
 
@@ -97,12 +105,10 @@ Full Reset because those operations depend on safe persistence across reloads.
 Export remains available. This package is offline-validated but intentionally
 not presented as in-game verified until the client defect is fixed.
 
-The v1.1.4 beta line also adds a Forever-only **Volumetric Fog** toggle under
-QoL. Testing showed that `/console volumeFog 0|1` is accepted but Forever may
-restore its graphics state later. FafnyirTools therefore stores the choice and
-reapplies the exact console command at login, world entry, and zone changes.
-The first upgraded session adopts the live client value. Retail does not display
-the section.
+The v1.1.4 beta line added a Forever-only **Volumetric Fog** toggle under QoL.
+That historical implementation stored the choice and reapplied `/console
+volumeFog 0|1` at login and world transitions. Blizzard subsequently made the
+setting non-persistent, so v1.1.5 hides the control and stops applying it.
 
 The user approved the stable Safe EllesmereUI Reset Defaults build as the
 v1.1.3 release on 2026-09-09. This records acceptance of the tested build, not

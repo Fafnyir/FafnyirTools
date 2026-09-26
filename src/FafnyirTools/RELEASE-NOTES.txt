@@ -1,8 +1,16 @@
-Fafnyir Tools for EllesmereUI v1.1.4 — WoW Forever beta
+Fafnyir Tools for EllesmereUI v1.1.5 — Cleanup
+
+v1.1.5 changes
+
+- Hidden the Forever Volumetric Fog control because Blizzard now overrides
+  addon changes to that setting.
+- Stopped reapplying the unsupported volumeFog console setting.
+- Retained the legacy saved preference for upgrade and export compatibility.
+
+v1.1.4 features
 
 Added
 - WoW Forever interface 16001 support and runtime detection.
-- Forever-only Volumetric Fog toggle under QoL.
 - Current Pet Journal owned-ID enumeration with the legacy fallback retained.
 
 Fixed
@@ -19,11 +27,8 @@ Changed
   while EllesmereUI reports the Forever beta SavedVariables defect.
 
 Persistence
-- Volumetric Fog saves its preference in FafnyirTools and reapplies the
-  validated `volumeFog 0|1` console setting after login and world changes.
 - Export remains available during the beta persistence defect.
 
 Scope
-This build is offline-validated for WoW Forever beta 1.60.1 and EllesmereUI
-9.2.1. Full in-game regression testing remains deferred until Blizzard fixes
-the SavedVariables defect. The accepted Retail release remains v1.1.3.
+This cleanup build is offline-validated for the supported Retail and WoW
+Forever interfaces. Its UI behavior still requires in-game confirmation.
