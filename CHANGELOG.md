@@ -2,6 +2,8 @@
 
 ## v1.1.4 — WoW Forever beta compatibility
 
+User confirmed build `1aae4fe` working in game on 2026-09-26.
+
 - Added an optional three-zone XP text layout with Level at left, current/max
   plus percentage at center, and rested XP percentage at right.
 - Added the missing Blizzard-style Focus reaction-header toggle using

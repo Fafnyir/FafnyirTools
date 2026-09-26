@@ -4,7 +4,9 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** user-accepted v1.1.3 release, built from the confirmed v1.1.2 feature restoration and XP-border build. Prior confirmed ZIPs remain immutable under releases/.
+**Current source:** user-confirmed v1.1.4 build `1aae4fe`, carrying the accepted
+v1.1.3 release forward with Forever compatibility and the documented v1.1.4
+features. Prior confirmed ZIPs remain immutable under releases/.
 
 WoW Forever beta compatibility development lives on the `forever-beta` branch.
 It preserves Retail v1.1.3 behavior and adds guarded interface 16001 support.

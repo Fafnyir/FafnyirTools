@@ -1,5 +1,13 @@
 # Current state — v1.1.4 Forever beta, 2026-09-25
 
+## v1.1.4 confirmed baseline
+
+On 2026-09-26 the user reported that the latest v1.1.4 build worked perfectly
+in game. Adopt package revision `1aae4fe` as the confirmed v1.1.4 baseline. This
+confirmation includes the latest three-zone XP text with rested percentage,
+Focus reaction-header toggle, main/Party/Raid name modes with Nameplates
+excluded, unified Blizzard Bar Art, and inventory character-cache controls.
+
 ## Three-zone XP bar text
 
 The XP & Progression page now enables a three-zone text layout by default:
