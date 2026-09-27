@@ -3,11 +3,8 @@ local ADDON_NAME, ns = ...
 local feature = {
     key = "FlyoutButtonMatch",
     page = "Action Bars",
-    searchTerms = {
-        "flyout",
-        "flyout fix",
-        "action bar",
-        "border",
+    searchTerms = ns.IS_FOREVER and {} or {
+        "flyout", "flyout fix", "action bar", "border",
     },
 }
 ns:RegisterFeature(feature.key, feature)
@@ -99,6 +96,7 @@ local function RestoreOriginalPresentation(button)
 end
 
 local function MatchFlyoutButtons()
+    if ns.IS_FOREVER then return end
     local flyout = _G.SpellFlyout
     if not flyout or not flyout:IsShown() then return end
 
@@ -132,6 +130,7 @@ local function MatchFlyoutButtons()
 end
 
 local function InstallHook()
+    if ns.IS_FOREVER then return false end
     local flyout = _G.SpellFlyout
     if hooked or not flyout then return hooked end
 
@@ -147,6 +146,7 @@ local function InstallHook()
 end
 
 function feature:Initialize()
+    if ns.IS_FOREVER then return end
     if InstallHook() then return end
 
     C_Timer.After(0.5, InstallHook)
@@ -155,6 +155,7 @@ function feature:Initialize()
 end
 
 function feature:HandleEvent(event)
+    if ns.IS_FOREVER then return end
     if event == "PLAYER_ENTERING_WORLD" then
         InstallHook()
     elseif event == "PLAYER_REGEN_ENABLED" then
@@ -163,15 +164,18 @@ function feature:HandleEvent(event)
 end
 
 function feature:Refresh()
+    if ns.IS_FOREVER then return end
     MatchFlyoutButtons()
 end
 
 function feature:Reset()
+    if ns.IS_FOREVER then return end
     DB().enabled = ns.defaults.flyoutFix.enabled
     self:Refresh()
 end
 
 function feature:BuildOptions(parent, yOffset)
+    if ns.IS_FOREVER then return math.abs(yOffset) end
     local W = EllesmereUI.Widgets
     local y = yOffset
     local h

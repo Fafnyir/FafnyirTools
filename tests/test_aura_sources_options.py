@@ -132,6 +132,28 @@ local terms={}; for _,v in ipairs(config.searchTerms) do terms[v]=true end
 assert(terms['aura skins'] and terms['flyout fix'] and terms['bar art'])
 ''')
 print('PASS deduplicated pages, Action Bars restored controls, saved defaults, combined Unit Frames/Aura layout offsets and search terms')
+# Flyout Fix is a Retail compatibility shim. Forever must not expose it or
+# install any SpellFlyout hooks/retry timers, and must preserve the Retail choice.
+forever=LuaRuntime(unpack_returned_tuples=True)
+forever.execute('''
+ns={};SlashCmdList={};timers=0;hooks=0
+function GetBuildInfo() return '1.60.1','69913','Sep 27 2026',16001 end
+C_Timer={After=function() timers=timers+1 end}
+SpellFlyout={HookScript=function() hooks=hooks+1 end}
+EllesmereUI={Widgets={}}
+''')
+frun=forever.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
+frun((root/'Core/Bootstrap.lua').read_text(),forever.globals().ns)
+frun((root/'Modules/FlyoutButtonMatch.lua').read_text(),forever.globals().ns)
+forever.execute('''
+local f=ns.modules.FlyoutButtonMatch
+assert(ns.IS_FOREVER and #f.searchTerms==0)
+ns:GetDatabase().flyoutFix.enabled=false
+f:Initialize();f:HandleEvent('PLAYER_ENTERING_WORLD');f:Refresh()
+assert(f:BuildOptions({},-37)==37 and timers==0 and hooks==0)
+f:Reset();assert(ns:GetDatabase().flyoutFix.enabled==false)
+''')
+print('PASS Flyout Fix remains Retail-only and inert on Forever')
 # Source dropdowns: all three choices, native inherited reads, no migration writes.
 l=runtime()
 run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')

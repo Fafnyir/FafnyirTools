@@ -11,6 +11,9 @@
   safety but is no longer applied, reset, displayed, or exported.
 - Corrected XP overlay layering so current XP renders on top, Rested XP renders
   second, and completed Quest XP remains behind both instead of covering Rested XP.
+- Limited Flyout Fix to Retail. WoW Forever now uses EllesmereUI's native
+  flyout handling, so FafnyirTools does not show the option, install hooks, or
+  alter flyout buttons there; the saved Retail preference is preserved.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

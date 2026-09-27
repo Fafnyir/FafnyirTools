@@ -19,6 +19,9 @@ is retained only for downgrade safety.
 The completed Quest XP texture now uses EllesmereUI's XP artwork layer at
 sublevel 1, below Rested XP at sublevel 2 and current XP at sublevel 4. This
 prevents the orange Quest XP segment from covering the blue Rested XP segment.
+Flyout Fix is now Retail-only. On Forever the module exposes no option, installs
+no `SpellFlyout` hook, schedules no retry, and leaves the saved Retail choice
+untouched.
 
 ## v1.1.4 confirmed baseline
 

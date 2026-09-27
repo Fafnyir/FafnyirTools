@@ -18,6 +18,7 @@ local CHANGELOG = {
         "Removed XP Bar border controls now provided by EllesmereUI.",
         "Removed XP Bar text overrides now provided by EllesmereUI.",
         "Fixed XP layering so Quest XP remains behind Rested and current XP.",
+        "Limited Flyout Fix to Retail; Forever now uses EllesmereUI natively.",
         "Hidden the Volumetric Fog control after Blizzard made the setting non-persistent.",
         "Stopped reapplying the unsupported volumeFog console setting.",
     }},
