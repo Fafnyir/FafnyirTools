@@ -2,10 +2,6 @@
 
 ## v1.1.5 cleanup scope
 
-The Fafnyir Tools module header now displays the supplied Fafnyir mark directly
-to the left of its title. The square mark is cropped from the bundled 1024x256
-RGBA TGA source and is hidden when another EllesmereUI module is selected.
-
 The user chose v1.1.5 as a maintenance release without a forced headline
 feature. The Forever-only Volumetric Fog control is hidden because Blizzard now
 restores `volumeFog` immediately after addons change it. FafnyirTools no longer

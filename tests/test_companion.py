@@ -95,7 +95,7 @@ local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_
 ''')
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')
 # Real metadata from all features; no fake feature slots in this registration check.
-for path in ['Modules/Branding.lua','Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/UnitFrameNames.lua','Modules/FocusHeader.lua','Modules/UnitFrameSources.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
+for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/UnitFrameNames.lua','Modules/FocusHeader.lua','Modules/UnitFrameSources.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
              'Modules/RightClickSelfCast.lua','Modules/BlizzardBarArt.lua','Modules/FlyoutButtonMatch.lua',
              'Modules/XPBar.lua','Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
     load(path)
@@ -107,17 +107,13 @@ assert(#config.pages==#expected);for i,p in ipairs(expected) do assert(config.pa
 rows={};assert(config.buildPage('QoL',{},0)==100 and #rows==4)
 -- Restored About history wraps without assuming a fixed 22-pixel text height.
 fonts={}
-function CreateTextureMock()
- return {SetTexture=function() end,SetSize=function() end,SetPoint=function() end}
-end
-aboutParent={CreateTexture=function() return CreateTextureMock() end}
 function EllesmereUI.MakeFont()
  local fs={SetPoint=function() end,SetJustifyH=function() end,SetWordWrap=function() end,
  SetText=function(self,text) self.text=text end,GetStringHeight=function() return 44 end,
  SetHeight=function(self,h) self.height=h end}
  fonts[#fonts+1]=fs;return fs
 end
-assert(config.buildPage('About',aboutParent,0)>0)
+assert(config.buildPage('About',{},0)>0)
 local credit=false
 for _,fs in ipairs(fonts) do assert(fs.height==48);if fs.text:find('raine') then credit=true end end
 assert(credit)

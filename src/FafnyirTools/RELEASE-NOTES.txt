@@ -2,7 +2,6 @@ Fafnyir Tools for EllesmereUI v1.1.5 — Cleanup
 
 v1.1.5 changes
 
-- Added the Fafnyir mark beside the Fafnyir Tools module title.
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Removed FafnyirTools XP Bar border controls; EllesmereUI now owns this setting.
 - Removed FafnyirTools XP Bar text overrides; EllesmereUI now owns the layout.
