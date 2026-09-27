@@ -2,6 +2,7 @@
 
 ## v1.1.5 — cleanup
 
+- Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

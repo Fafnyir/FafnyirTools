@@ -4,7 +4,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 
 | Feature | Baseline contract | Status |
 | --- | --- | --- |
-| Identity/integration | Fafnyir Tools for EllesmereUI; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
+| Identity/integration | Fafnyir Tools for EllesmereUI; requires EllesmereUI and FafnyirMedia; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
 | Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, size and offsets; drawn above frame border | Present |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle | Present |
 | Blizzard Bar Art | Detach/reparent recovered native artwork to Bar 1, link the central background and both side griffons to one toggle, follow movement/scaling, self-heal after runtime transitions, and preserve toggle; per-installation Art Scale calibration defaults to 1.06 and is excluded from global exports | Present; historical user confirmation plus offline persistence tests |

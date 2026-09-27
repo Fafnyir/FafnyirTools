@@ -4,10 +4,11 @@ Fafnyir Tools is a collection of focused enhancements for EllesmereUI. It adds q
 
 **Current version:** v1.1.5
 
-**Required addon:** EllesmereUI
+**Required addons:** EllesmereUI and FafnyirMedia
 
 ## v1.1.5 — Compatibility Cleanup
 
+- Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Hid the WoW Forever Volumetric Fog option after Blizzard made the underlying `volumeFog` setting non-persistent.
 - Stopped applying or repeatedly reapplying the unsupported fog console setting.
 - Preserved the legacy saved preference and export structure so existing profiles remain compatible.
@@ -198,7 +199,7 @@ Fafnyir Tools is a collection of focused enhancements for EllesmereUI. It adds q
 
 ## Compatibility Notes
 
-- EllesmereUI is required.
+- EllesmereUI and FafnyirMedia are required.
 - Existing saved settings are preserved during upgrades; missing settings receive defaults without overwriting established choices.
 - Device-specific Art Scale and Edit Mode layout selections are intentionally excluded from global settings transfers.
 - Dedicated cross-character inventory search and broader mail, auction, Warband, and guild-bank scanning are planned separately and are not part of v1.1.5.

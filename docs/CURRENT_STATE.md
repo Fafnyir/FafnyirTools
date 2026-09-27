@@ -7,6 +7,7 @@ feature. The Forever-only Volumetric Fog control is hidden because Blizzard now
 restores `volumeFog` immediately after addons change it. FafnyirTools no longer
 applies the setting at login or world transitions. Its existing saved table is
 retained so upgrades do not discard user data or change the export schema.
+FafnyirMedia is now declared as a required dependency alongside EllesmereUI.
 
 ## v1.1.4 confirmed baseline
 

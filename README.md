@@ -51,7 +51,7 @@ The package is written under ignored `dist/`, includes only `FafnyirTools/`, and
 
 ## Installation
 
-Install a packaged ZIP by replacing the `FafnyirTools` folder under WoW's `Interface/AddOns`, then reload. Do not delete SavedVariables. This consolidation does not install files into WoW and does not modify EllesmereUI.
+Install EllesmereUI and FafnyirMedia first, then install a packaged ZIP by replacing the `FafnyirTools` folder under WoW's `Interface/AddOns` and reload. Do not delete SavedVariables. This consolidation does not install files into WoW and does not modify either dependency.
 
 ## History and privacy
 

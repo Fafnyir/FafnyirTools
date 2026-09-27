@@ -2,6 +2,7 @@ Fafnyir Tools for EllesmereUI v1.1.5 — Cleanup
 
 v1.1.5 changes
 
+- Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Hidden the Forever Volumetric Fog control because Blizzard now overrides
   addon changes to that setting.
 - Stopped reapplying the unsupported volumeFog console setting.
