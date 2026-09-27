@@ -16,6 +16,7 @@ local CHANGELOG = {
         "Cleanup release for WoW Forever and EllesmereUI compatibility.",
         "Added FafnyirMedia as a required dependency.",
         "Removed XP Bar border controls now provided by EllesmereUI.",
+        "Removed XP Bar text overrides now provided by EllesmereUI.",
         "Hidden the Volumetric Fog control after Blizzard made the setting non-persistent.",
         "Stopped reapplying the unsupported volumeFog console setting.",
     }},

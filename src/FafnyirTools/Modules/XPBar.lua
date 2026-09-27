@@ -21,125 +21,9 @@ local RESTED_BAR_NAME = "EllesmereEAB_XPBar_Rested"
 local retryTicker
 local hooksInstalled = false
 local applying = false
-local xpTextLeft
-local xpTextRight
-local nativeXPText
-local textHooksInstalled = false
-local textApplying = false
-local textRefreshQueued = false
 
 local function DB()
     return ns:GetDatabase().xpBar
-end
-
-local function Abbreviate(value)
-    if type(AbbreviateLargeNumbers) == "function" then
-        return AbbreviateLargeNumbers(value)
-    end
-    if type(BreakUpLargeNumbers) == "function" then
-        return BreakUpLargeNumbers(value)
-    end
-    return tostring(value)
-end
-
-local function CopyFontStyle(source, target)
-    if source.GetFont and target.SetFont then
-        local path, size, flags = source:GetFont()
-        if path then target:SetFont(path, size, flags) end
-    end
-    if source.GetTextColor and target.SetTextColor then
-        target:SetTextColor(source:GetTextColor())
-    end
-    if source.GetShadowColor and target.SetShadowColor then
-        target:SetShadowColor(source:GetShadowColor())
-    end
-    if source.GetShadowOffset and target.SetShadowOffset then
-        target:SetShadowOffset(source:GetShadowOffset())
-    end
-end
-
-local function UpdateXPText()
-    local xpBar = _G[XP_BAR_NAME]
-    local holder = xpBar and xpBar:GetParent()
-    local center = holder and holder._text
-    if not center then return false end
-
-    local host = center:GetParent()
-    if not host or not host.CreateFontString then return false end
-    if not xpTextLeft then
-        xpTextLeft = host:CreateFontString(nil, "OVERLAY")
-        xpTextRight = host:CreateFontString(nil, "OVERLAY")
-    end
-
-    if not DB().customTextEnabled then
-        xpTextLeft:Hide()
-        xpTextRight:Hide()
-        if nativeXPText ~= nil then
-            textApplying = true
-            center:SetText(nativeXPText)
-            textApplying = false
-        end
-        return true
-    end
-
-    CopyFontStyle(center, xpTextLeft)
-    CopyFontStyle(center, xpTextRight)
-
-    local _, _, _, offsetX, offsetY = center:GetPoint(1)
-    offsetX, offsetY = offsetX or 0, offsetY or 0
-    center:ClearAllPoints()
-    center:SetPoint("CENTER", host, "CENTER", offsetX, offsetY)
-    center:SetJustifyH("CENTER")
-    xpTextLeft:ClearAllPoints()
-    xpTextLeft:SetPoint("LEFT", host, "LEFT", 6 + offsetX, offsetY)
-    xpTextLeft:SetJustifyH("LEFT")
-    xpTextRight:ClearAllPoints()
-    xpTextRight:SetPoint("RIGHT", host, "RIGHT", -6 + offsetX, offsetY)
-    xpTextRight:SetJustifyH("RIGHT")
-
-    local current = math.max(0, UnitXP("player") or 0)
-    local maximum = math.max(1, UnitXPMax("player") or 0)
-    local rested = math.max(0, GetXPExhaustion and (GetXPExhaustion() or 0) or 0)
-    local percentage = (current / maximum) * 100
-    local restedPercentage = (rested / maximum) * 100
-
-    textApplying = true
-    xpTextLeft:SetText(string.format("%s %d", LEVEL or "Level", UnitLevel("player") or 0))
-    center:SetText(string.format("%s / %s | %.1f%%", Abbreviate(current), Abbreviate(maximum), percentage))
-    xpTextRight:SetText(string.format("%s: %.1f%%", RESTED or "Rested", restedPercentage))
-    textApplying = false
-    xpTextLeft:Show()
-    xpTextRight:Show()
-    return true
-end
-
-local function QueueXPTextUpdate()
-    if textRefreshQueued then return end
-    textRefreshQueued = true
-    C_Timer.After(0, function()
-        textRefreshQueued = false
-        UpdateXPText()
-    end)
-end
-
-local function InstallTextHooks()
-    if textHooksInstalled then return true end
-    local xpBar = _G[XP_BAR_NAME]
-    local holder = xpBar and xpBar:GetParent()
-    local center = holder and holder._text
-    if not center then return false end
-
-    nativeXPText = center:GetText()
-    hooksecurefunc(center, "SetText", function(_, value)
-        if textApplying then return end
-        nativeXPText = value
-        QueueXPTextUpdate()
-    end)
-    hooksecurefunc(center, "SetFont", function()
-        if not textApplying then QueueXPTextUpdate() end
-    end)
-    textHooksInstalled = true
-    return true
 end
 
 local function GetColor(key, fallback)
@@ -248,8 +132,6 @@ function feature:Apply()
 
     applying = true
     self:UpdateQuestOverlay()
-    InstallTextHooks()
-    UpdateXPText()
 
     local settings = DB()
     local defaults = ns.defaults.xpBar
@@ -318,7 +200,6 @@ function feature:InstallHooks()
     if not xpBar then return false end
 
     hooksInstalled = true
-    InstallTextHooks()
 
     hooksecurefunc(xpBar, "SetValue", function() feature:UpdateQuestOverlay() end)
     xpBar:HookScript("OnSizeChanged", function() feature:UpdateQuestOverlay() end)
@@ -404,30 +285,6 @@ function feature:BuildOptions(parent, yOffset)
     local defaults = ns.defaults.xpBar
 
     parent._showRowDivider = true
-
-    _, h = W:SectionHeader(parent, "XP BAR TEXT", y)
-    y = y - h
-    _, h = W:DualRow(parent, y,
-        {
-            type = "toggle",
-            text = "Enable Three-Zone XP Text",
-            tooltip = "Show Level on the left, current/max XP and percentage in the center, and rested XP on the right. Disable to restore EllesmereUI's native XP text.",
-            getValue = function() return DB().customTextEnabled end,
-            setValue = function(value)
-                DB().customTextEnabled = value and true or false
-                if not value then
-                    local xpBar = _G[XP_BAR_NAME]
-                    local holder = xpBar and xpBar:GetParent()
-                    if holder and holder._updateFunc then holder._updateFunc() end
-                end
-                feature:Refresh()
-            end,
-        },
-        { type = "label", text = "Left: Level   Center: XP / Max | %   Right: Rested %" })
-    y = y - h
-
-    _, h = W:Spacer(parent, y, 18)
-    y = y - h
 
     _, h = W:SectionHeader(parent, "XP BAR GRADIENT", y)
     y = y - h

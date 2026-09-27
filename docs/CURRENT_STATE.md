@@ -12,6 +12,10 @@ XP Bar border styling is now owned by EllesmereUI. FafnyirTools no longer
 displays or applies its former border controls. Existing legacy saved keys are
 left untouched for downgrade safety, but are outside the active defaults and
 global export schema.
+The former three-zone XP text override is also retired because EllesmereUI now
+provides the layout natively. FafnyirTools no longer creates text regions,
+repositions EllesmereUI text, or hooks its text updates. The legacy saved toggle
+is retained only for downgrade safety.
 
 ## v1.1.4 confirmed baseline
 
@@ -21,12 +25,13 @@ confirmation includes the latest three-zone XP text with rested percentage,
 Focus reaction-header toggle, main/Party/Raid name modes with Nameplates
 excluded, unified Blizzard Bar Art, and inventory character-cache controls.
 
-## Three-zone XP bar text
+## Three-zone XP bar text (retired in v1.1.5)
 
 The XP & Progression page now enables a three-zone text layout by default:
 Level at left, current/max XP plus percentage at center, and rested XP percentage at right.
-It inherits EllesmereUI's font styling and updates with XP/rested events. Its
-toggle restores EllesmereUI's native single centered string.
+It inherited EllesmereUI's font styling and updated with XP/rested events.
+EllesmereUI now supplies this layout itself, so v1.1.5 removes the duplicate
+FafnyirTools option and implementation.
 
 ## Blizzard-style Focus reaction header
 

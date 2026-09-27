@@ -6,6 +6,9 @@
 - Removed the XP Bar border controls after EllesmereUI added native support.
   Existing legacy FafnyirTools border keys are left untouched but are no longer
   applied, reset, displayed, or included in new global exports.
+- Removed the three-zone XP Bar text override after EllesmereUI added the same
+  layout natively. The legacy saved toggle is left untouched for downgrade
+  safety but is no longer applied, reset, displayed, or exported.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

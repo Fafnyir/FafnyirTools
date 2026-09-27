@@ -49,9 +49,9 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 
 ## XP contract
 
-- Optional three-zone text layout: level on the left, current/max plus
-  percentage in the center, and rested XP percentage on the right. Disabling it restores
-  EllesmereUI's native XP text.
+- XP text layout is owned by EllesmereUI. FafnyirTools must not create,
+  reposition, or hook duplicate XP text regions. The legacy three-zone toggle
+  may remain in SavedVariables for downgrade safety but is not active or exported.
 
 - Current gradient defaults: `#5563FF` to `#C561FF`, alpha 1 at both ends.
 - Rested defaults: `#4F8FFF` at both ends, alpha 1.
