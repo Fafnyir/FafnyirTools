@@ -63,7 +63,9 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 - Hide the segment at effective max level, when XP is disabled/invalid, no completed reward exists, or its own toggle is off. Inherit bar visibility; do not force the EUI holder visible.
 - Keep the user's selected quest unchanged and use explicit quest-ID reward lookup. Failed selection-setter approaches from v1.1.0 experiments are not current design.
 - Preserve custom saved colors/alpha and saved enable choices; fill missing values only. An explicit Reset action is allowed to restore defaults.
-- The XP bar has one shared EllesmereUI-rendered outer border around current, rested and Quest XP segments, with style, size (0 disables), color and opacity controls. Existing profiles receive missing border defaults without replacing saved values.
+- XP Bar border styling is owned by EllesmereUI. FafnyirTools must not expose or
+  apply a duplicate border control. Legacy FafnyirTools border keys may remain
+  in SavedVariables for downgrade safety but are not active defaults or exports.
 
 ## Preservation boundaries
 

@@ -92,9 +92,6 @@ ns.defaults = {
         restedEnabled = true,
         restedStartColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
         restedEndColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
-        borderTexture = "solid",
-        borderSize = 1,
-        borderColor = { r = 0, g = 0, b = 0, a = 1 },
     },
     auraSkins = {
         enabled = false,

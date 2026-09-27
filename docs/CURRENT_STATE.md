@@ -8,6 +8,10 @@ restores `volumeFog` immediately after addons change it. FafnyirTools no longer
 applies the setting at login or world transitions. Its existing saved table is
 retained so upgrades do not discard user data or change the export schema.
 FafnyirMedia is now declared as a required dependency alongside EllesmereUI.
+XP Bar border styling is now owned by EllesmereUI. FafnyirTools no longer
+displays or applies its former border controls. Existing legacy saved keys are
+left untouched for downgrade safety, but are outside the active defaults and
+global export schema.
 
 ## v1.1.4 confirmed baseline
 

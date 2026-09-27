@@ -78,13 +78,10 @@ bar=CreateFrame();bar.parent=holder;bar.texture=CreateFrame()
 rested=CreateFrame();rested.texture=CreateFrame()
 EllesmereEAB_XPBar_Bar=bar;EllesmereEAB_XPBar_Rested=rested
 holder._updateFunc=function() bar:SetStatusBarColor(1,1,1);rested:SetStatusBarColor(1,1,1);holder._text:SetText('native') end
+borderApplyCalls=0
 EllesmereUI={Widgets={},BuildColorSwatch=function() return CreateFrame(),function() end end,
- GetBorderTextureDropdown=function() return {solid='Solid'},{'solid'} end,
- GetBorderStyleSelectDefaults=function() return {r=.1,g=.2,b=.3,a=.4},false end,
- GetBorderDefaultSize=function() return 2 end,
- ApplyBorderStyle=function(frame,size,r,g,b,a,texture,offsetX,offsetY,shiftX,shiftY,addonKey)
-  frame.appliedBorder={size,r,g,b,a,texture,offsetX=offsetX,offsetY=offsetY,addonKey=addonKey}
- end}
+ GetBorderTextureDropdown=function() error('XP border options belong to EllesmereUI') end,
+ ApplyBorderStyle=function() borderApplyCalls=borderApplyCalls+1 end}
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
 function EllesmereUI.Widgets:Spacer() return {},18 end
 function EllesmereUI.Widgets:DualRow(parent,y,left,right)
@@ -106,7 +103,7 @@ for _,x in ipairs(frames) do
  if x.text=='Rested: 30.0%' then foundRested=true end
 end
 assert(foundLevel and foundRested)
-border=nativeBorder;assert(border.level==bar.level+1 and border.appliedBorder[1]==1 and border.appliedBorder[2]==0 and border.appliedBorder[6]=='solid')
+assert(borderApplyCalls==0 and nativeBorder.level==1)
 assert(db.enabled==false) -- quest segment independent of gradient
 current=900;bar:SetValue(current);assert(o.w==20 and o.point[4]==180)
 bar.w=400;bar.scripts.OnSizeChanged();assert(o.w==40 and o.point[4]==360)
@@ -120,12 +117,10 @@ for _,r in ipairs(rows) do if r.text=='Enable Three-Zone XP Text' then textToggl
 assert(textToggle and textToggle.getValue()==true)
 for _,r in ipairs(rows) do if r.text=='Enable Quest XP Overlay' then toggle=r end end
 assert(toggle and toggle.getValue());toggle.setValue(false);assert(not o.shown);toggle.setValue(true);assert(o.shown)
-for _,r in ipairs(rows) do if r.text=='Border Size' then borderSize=r elseif r.text=='Border Style' then borderStyle=r end end
-assert(borderSize and borderStyle);borderSize.setValue(0);assert(border.appliedBorder[1]==0)
-borderStyle.setValue('solid');assert(db.borderSize==0 and db.borderColor.r==.1 and db.borderColor.a==.4)
-assert(border.appliedBorder.addonKey==nil) -- use each texture's built-in offset defaults
+for _,r in ipairs(rows) do assert(r.text~='Border Size' and r.text~='Border Style') end
 db.startColor={r=.2,g=.3,b=.4,a=.5};db.questColor={r=.8,g=.7,b=.6,a=.4};db.questEnabled=false
 db.borderColor={r=.8,g=.6,b=.4,a=.2};ns:InitializeDatabase();assert(db.startColor.a==.5 and db.questColor.g==.7 and db.questEnabled==false and db.borderColor.a==.2)
+assert(ns.defaults.xpBar.borderColor==nil and ns.defaults.xpBar.borderSize==nil and borderApplyCalls==0)
 db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.texture.gradient[2].r==.2)
 textToggle.setValue(false);flush();assert(holder._text.text=='native')
 textToggle.setValue(true);flush();assert(holder._text.text=='200 / 1000 | 20.0%')
