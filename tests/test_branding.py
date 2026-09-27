@@ -40,6 +40,7 @@ lua.execute("""
 local feature=ns.modules.Branding
 assert(feature and feature.page=='About')
 assert(feature:BuildOptions(parent,-37)==37)
+assert(parent.texture and parent.texture.shown)
 feature:Initialize();assert(hook)
 hook(EllesmereUI,'FafnyirTools')
 assert(parent.texture.path==[[Interface\AddOns\FafnyirTools\Media\Header]])

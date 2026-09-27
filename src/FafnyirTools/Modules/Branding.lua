@@ -78,5 +78,9 @@ function feature:Initialize()
 end
 
 function feature:BuildOptions(parent, yOffset)
+    -- Page construction can occur after the initial SelectModule call (for
+    -- example when the panel restores FafnyirTools on login), so apply the
+    -- header here as well as from the module-switch hook.
+    SetHeaderIconShown(true)
     return math.abs(yOffset)
 end
