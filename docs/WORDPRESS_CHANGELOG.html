@@ -1,0 +1,200 @@
+<!-- Paste this content into a WordPress Custom HTML block. -->
+<h1>Fafnyir Tools for EllesmereUI — Full Changelog</h1>
+<p>Fafnyir Tools is a collection of focused enhancements for EllesmereUI. It adds quality-of-life controls, unit-frame options, XP improvements, action-bar fixes, inventory tracking, layout switching, and WoW Forever compatibility while leaving EllesmereUI as the primary interface suite.</p>
+<p><strong>Current version:</strong> v1.1.5</p>
+<p><strong>Required addon:</strong> EllesmereUI</p>
+<h2>v1.1.5 — Compatibility Cleanup</h2>
+<ul>
+<li>Hid the WoW Forever Volumetric Fog option after Blizzard made the underlying <code>volumeFog</code> setting non-persistent.</li>
+<li>Stopped applying or repeatedly reapplying the unsupported fog console setting.</li>
+<li>Preserved the legacy saved preference and export structure so existing profiles remain compatible.</li>
+<li>Kept this release intentionally focused on cleanup and regression prevention rather than adding an overlapping feature already supplied by EllesmereUI.</li>
+</ul>
+<h2>v1.1.4 — WoW Forever Compatibility and Interface Improvements</h2>
+<h3>WoW Forever support</h3>
+<ul>
+<li>Added guarded support for WoW Forever interface 16001 while retaining Retail compatibility.</li>
+<li>Added reliable Forever client detection using the interface version range.</li>
+<li>Updated maximum-level detection to use client APIs instead of a Retail-specific fixed level.</li>
+<li>Updated companion-pet enumeration for the current Pet Journal API while retaining the legacy fallback.</li>
+<li>Added safeguards for reload-dependent settings when the early Forever SavedVariables defect was present.</li>
+<li>Updated reload confirmations to use EllesmereUI's secure reload path, preventing protected-action errors.</li>
+</ul>
+<h3>XP and progression</h3>
+<ul>
+<li>Added an optional three-zone XP text layout with Level on the left, current XP, maximum XP, and percentage in the center, and rested XP percentage on the right.</li>
+<li>Kept EllesmereUI's font styling and live XP/rested updates.</li>
+<li>Restored EllesmereUI's native centered XP text when the custom layout is disabled.</li>
+</ul>
+<h3>Unit frames</h3>
+<ul>
+<li>Added First Name, Last Name, and Whole Name display modes for surname-bearing WoW Forever characters.</li>
+<li>Applied name modes to EllesmereUI main, Party, and Raid frames while leaving Nameplates, NPC names, configured nicknames, secret names, and Retail unchanged.</li>
+<li>Added a Blizzard-style colored Focus header option using EllesmereUI's native Focus setting.</li>
+<li>Kept the Focus option independent from the Target reaction-header setting.</li>
+</ul>
+<h3>Action bars</h3>
+<ul>
+<li>Unified the central Blizzard action-bar background and both side griffons under the existing Blizzard Bar Art toggle.</li>
+<li>Prevented Blizzard's hidden end-cap editing overlay, including “Click To Edit,” from appearing.</li>
+<li>Made Blizzard Bar Art recover after paging, specialization changes, shapeshifts, vehicle and override states, zone transitions, combat transitions, and Edit Mode updates.</li>
+<li>Added an Art Scale adjustment from 1.00 to 1.10 for systems where UI scaling changes the required fit.</li>
+<li>Excluded Art Scale from global exports because it is a device-specific visual calibration.</li>
+</ul>
+<h3>Inventory tracking</h3>
+<ul>
+<li>Added a confirmed Reset All Characters action for character-keyed inventory data.</li>
+<li>Added individual cached-character removal while protecting the currently logged-in character.</li>
+<li>Reset character, mail, and auction caches while preserving Warband and guild caches.</li>
+<li>Rescanned the current character after a reset when inventory tracking was enabled.</li>
+</ul>
+<h2>v1.1.3 — Global Settings Transfer</h2>
+<ul>
+<li>Added versioned global settings export and import.</li>
+<li>Added strict validation so imported text is parsed as data and never executed as Lua.</li>
+<li>Imported only recognized settings while preserving unknown local fields for forward compatibility.</li>
+<li>Created a rollback snapshot before applying an import.</li>
+<li>Added confirmation and a secure UI reload after importing or restoring a backup.</li>
+<li>Moved Global Settings to the top of the About page.</li>
+<li>Synchronized imported Unit Frame source choices with EllesmereUI before reload so changes apply after one reload instead of two.</li>
+<li>Excluded per-character companion selections, inventory and economy caches, and device-specific Edit Mode layouts from global exports.</li>
+<li>Restored EllesmereUI as the explicit reset default for Player, Target, Target of Target, Focus, Boss, and Pet frames.</li>
+</ul>
+<h2>v1.1.2 — Selective Unit Frames, Target Auras, Quest XP, and XP Borders</h2>
+<h3>Unit-frame sources</h3>
+<ul>
+<li>Added independent source controls for Player, Target, Target of Target, Focus, Boss, and Pet frames.</li>
+<li>Added three choices for each supported frame: EllesmereUI, Blizzard Default, or Hidden.</li>
+<li>Used EllesmereUI's native source API and retained the required reload workflow.</li>
+<li>Preserved legacy inherited choices without silently rewriting existing settings.</li>
+</ul>
+<h3>Target Aura Skins</h3>
+<ul>
+<li>Limited FafnyirTools Aura Skins to Blizzard Target auras; EllesmereUI remains responsible for the main Player buff and debuff frames.</li>
+<li>Allowed Blizzard Target aura styling while other frame types continue using EllesmereUI.</li>
+<li>Added Target aura size, zoom, duration text, text size, filters, borders, and related controls.</li>
+<li>Wrapped Target buffs and debuffs after six icons per row.</li>
+<li>Preserved session ownership until reload to avoid mixed Blizzard/EllesmereUI aura states.</li>
+</ul>
+<h3>Quest XP and XP bar</h3>
+<ul>
+<li>Restored the completed-quest XP overlay as an orange segment extending forward from current XP.</li>
+<li>Counted XP from completed quests currently ready to turn in.</li>
+<li>Clipped the overlay at the current level boundary.</li>
+<li>Hid the overlay at maximum level, when no completed quest XP is available, or when disabled.</li>
+<li>Added independent Quest XP enable and color controls.</li>
+<li>Set the Quest XP default to <code>#FF9600</code> at 100% opacity.</li>
+<li>Preserved the current XP gradient defaults of <code>#5563FF</code> to <code>#C561FF</code>.</li>
+<li>Preserved the Rested XP default of <code>#4F8FFF</code> at 100% opacity.</li>
+<li>Migrated older Quest XP preferences only when the newer settings were absent.</li>
+<li>Added EllesmereUI-style border texture, size, color, and opacity controls for one shared XP-bar border.</li>
+<li>Corrected border layering and offsets so the Blizzard-style border aligns around the complete bar.</li>
+</ul>
+<h3>Restored and reorganized features</h3>
+<ul>
+<li>Restored Permanent Companion Pet with per-character choices.</li>
+<li>Restored Blizzard Bar Art and Flyout Fix controls.</li>
+<li>Organized the addon into About, QoL, Unit Frames, Action Bars, XP &amp; Progression, Bags &amp; Inventory, and Layouts.</li>
+<li>Moved Aura Skins and Resting under Unit Frames.</li>
+<li>Grouped the action-bar enhancements under Action Bars.</li>
+</ul>
+<h2>v1.1.1 — Options Organization</h2>
+<ul>
+<li>Reorganized settings into dedicated Fafnyir Tools pages.</li>
+<li>Moved Permanent Companion Pet into the QoL section.</li>
+<li>Retained the Quest XP and XP-color work introduced in v1.1.0.</li>
+</ul>
+<h2>v1.1.0 — Completed Quest XP</h2>
+<ul>
+<li>Added a configurable overlay showing XP available from completed quests ready to turn in.</li>
+<li>Added login, world-entry, quest-log, XP, level, exhaustion, and quest-data refresh handling.</li>
+<li>Added automatic hiding at maximum level or when completed quest XP is zero.</li>
+<li>Updated the current XP gradient default to <code>#5563FF</code> through <code>#C561FF</code>.</li>
+<li>Updated the Rested XP default to <code>#4F8FFF</code> at full opacity.</li>
+<li>Added the Quest XP default color <code>#FF9600</code> at full opacity.</li>
+<li>Preserved saved custom colors and enable choices.</li>
+</ul>
+<h2>v1.0.9 — Permanent Companion Pet</h2>
+<ul>
+<li>Added persistent companion-pet summoning.</li>
+<li>Added Random Favorite and Specific Pet modes.</li>
+<li>Stored the selected mode and pet separately for each character.</li>
+<li>Avoided summoning while mounted, stealthed, in combat, on a taxi, or in disabled PvP instances.</li>
+<li>Added configurable PvP safety behavior.</li>
+<li>Credited Eiya for the feature idea and raine for the original Permanent Companion Pet WeakAura.</li>
+</ul>
+<h2>v1.0.8 — Blizzard Bar Art and Flyout Fix</h2>
+<ul>
+<li>Added optional Blizzard decorative artwork for EllesmereUI Bar 1.</li>
+<li>Added automatic artwork scaling and alignment for custom button sizes.</li>
+<li>Added Flyout Fix so spell-flyout buttons follow their parent action bar's size and border styling.</li>
+<li>Added persistent toggles for Blizzard Bar Art and Flyout Fix.</li>
+</ul>
+<h2>v1.0.7 — Target Aura Improvements</h2>
+<ul>
+<li>Rebuilt Blizzard Target aura handling for the current AuraKit system.</li>
+<li>Added independent Target aura sizing.</li>
+<li>Added Target buff filters for All, Stealable, Big Defensive, and Dispellable auras where supported.</li>
+<li>Added Target debuff filters including All, Own Only, and Important.</li>
+<li>Automatically hid the relevant Blizzard Target and Focus status textures.</li>
+</ul>
+<h2>v1.0.6 — Device Layouts</h2>
+<ul>
+<li>Added automatic Blizzard Edit Mode layout switching.</li>
+<li>Added a per-device default layout.</li>
+<li>Added optional per-specialization layout overrides.</li>
+<li>Added automatic layout switching after specialization changes.</li>
+<li>Added a concise loaded-layout chat message.</li>
+</ul>
+<h2>v1.0.5 — Aura Skins and Right-Click Self Cast</h2>
+<ul>
+<li>Updated Right-Click Self Cast for EllesmereUI action buttons.</li>
+<li>Added the original Aura Skins module for Blizzard aura frames.</li>
+<li>Added aura size, border, zoom, duration, and text controls.</li>
+<li>Added a reload confirmation for aura ownership changes.</li>
+<li>Removed the redundant Fafnyir Tools heading from inventory tooltips.</li>
+</ul>
+<h2>v1.0.4 — Inventory Tooltip Polish</h2>
+<ul>
+<li>Added class colors to character names in item-location tooltips.</li>
+<li>Updated the project credit to “Envisioned by Fafnyir.”</li>
+</ul>
+<h2>v1.0.3 — About Page and Inventory Foundation</h2>
+<ul>
+<li>Added the About page, version information, changelog, credits, and support link.</li>
+<li>Added bag and personal-bank item caching.</li>
+<li>Added account gold totals and currency caching.</li>
+<li>Added item-location counts to tooltips.</li>
+</ul>
+<h2>v1.0.2 — XP Gradient Fixes</h2>
+<ul>
+<li>Fixed XP-bar gradient flickering.</li>
+<li>Fixed the Rested XP gradient reverting to white.</li>
+<li>Updated the project description.</li>
+</ul>
+<h2>v1.0.1 — XP and Rested Gradients</h2>
+<ul>
+<li>Added configurable XP and Rested XP gradients.</li>
+<li>Added gradient direction controls.</li>
+<li>Added color pickers.</li>
+</ul>
+<h2>v1.0.0 — Initial Release</h2>
+<ul>
+<li>Added the Resting indicator for the EllesmereUI Player frame.</li>
+<li>Added Right-Click Self Cast for supported EllesmereUI action buttons.</li>
+<li>Added native EllesmereUI integration and a dedicated Fafnyir Tools settings area.</li>
+</ul>
+<h2>Credits</h2>
+<ul>
+<li>Envisioned by Fafnyir.</li>
+<li>Special thanks to Ellesmere, creator of EllesmereUI.</li>
+<li>Permanent Companion Pet idea by Eiya: <code>twitch.tv/eiya</code>.</li>
+<li>Original Permanent Companion Pet WeakAura by raine: <code>wago.io/3It1XU72A</code>.</li>
+</ul>
+<h2>Compatibility Notes</h2>
+<ul>
+<li>EllesmereUI is required.</li>
+<li>Existing saved settings are preserved during upgrades; missing settings receive defaults without overwriting established choices.</li>
+<li>Device-specific Art Scale and Edit Mode layout selections are intentionally excluded from global settings transfers.</li>
+<li>Dedicated cross-character inventory search and broader mail, auction, Warband, and guild-bank scanning are planned separately and are not part of v1.1.5.</li>
+</ul>
