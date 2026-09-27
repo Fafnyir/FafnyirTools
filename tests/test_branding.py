@@ -9,13 +9,12 @@ lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute("""
 ns={modules={}}
 function ns:RegisterFeature(key, feature) self.modules[key]=feature end
-parent={regions={}}
+parent={}
 title={}
-function title:GetObjectType() return 'FontString' end
 function title:GetText() return 'Fafnyir Tools' end
 function title:GetParent() return parent end
-parent.regions[1]=title
-function parent:GetRegions() return unpack(self.regions) end
+parent._title=title
+parent._desc={}
 function parent:CreateTexture()
   local texture={}
   function texture:SetTexture(path) self.path=path end
@@ -29,8 +28,10 @@ function parent:CreateTexture()
   self.texture=texture
   return texture
 end
-function EnumerateFrames(previous) if previous==nil then return parent end end
 EllesmereUI={}
+clickArea={}
+function clickArea:GetChildren() return parent end
+EllesmereUI._clickArea=clickArea
 function EllesmereUI:SelectModule() end
 function hooksecurefunc(owner,key,callback) hook=callback end
 """)

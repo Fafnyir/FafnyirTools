@@ -15,25 +15,20 @@ local MODULE_TITLE = "Fafnyir Tools"
 local headerIcon
 
 local function FindHeaderTitle()
-    if type(EnumerateFrames) ~= "function" then
+    local clickArea = EllesmereUI and EllesmereUI._clickArea
+    if not clickArea or type(clickArea.GetChildren) ~= "function" then
         return nil
     end
 
-    local frame = EnumerateFrames()
-    while frame do
-        if type(frame.GetRegions) == "function" then
-            for _, region in ipairs({ frame:GetRegions() }) do
-                if region
-                    and type(region.GetObjectType) == "function"
-                    and region:GetObjectType() == "FontString"
-                    and type(region.GetText) == "function"
-                    and region:GetText() == MODULE_TITLE
-                then
-                    return region
-                end
-            end
+    for _, child in ipairs({ clickArea:GetChildren() }) do
+        local title = child and child._title
+        if title
+            and child._desc
+            and type(title.GetText) == "function"
+            and title:GetText() == MODULE_TITLE
+        then
+            return title
         end
-        frame = EnumerateFrames(frame)
     end
 end
 
