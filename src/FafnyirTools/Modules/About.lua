@@ -17,6 +17,7 @@ local CHANGELOG = {
         "Added FafnyirMedia as a required dependency.",
         "Removed XP Bar border controls now provided by EllesmereUI.",
         "Removed XP Bar text overrides now provided by EllesmereUI.",
+        "Fixed XP layering so Quest XP remains behind Rested and current XP.",
         "Hidden the Volumetric Fog control after Blizzard made the setting non-persistent.",
         "Stopped reapplying the unsupported volumeFog console setting.",
     }},

@@ -5,6 +5,7 @@ v1.1.5 changes
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Removed FafnyirTools XP Bar border controls; EllesmereUI now owns this setting.
 - Removed FafnyirTools XP Bar text overrides; EllesmereUI now owns the layout.
+- Fixed XP layers: current XP is on top, Rested XP is second, and Quest XP is behind both.
 - Hidden the Forever Volumetric Fog control because Blizzard now overrides
   addon changes to that setting.
 - Stopped reapplying the unsupported volumeFog console setting.

@@ -92,8 +92,12 @@ function feature:UpdateQuestOverlay()
     if amount <= 0 or width <= 0 or height <= 0 then return end
 
     if not questOverlay then
-        questOverlay = xpBar:CreateTexture(nil, "OVERLAY", nil, 1)
+        -- EllesmereUI draws current XP at ARTWORK sublevel 4 and Rested XP at
+        -- sublevel 2. Keep completed Quest XP behind both at sublevel 1 so an
+        -- overlapping rested segment remains visible.
+        questOverlay = xpBar:CreateTexture(nil, "ARTWORK", nil, 1)
     end
+    questOverlay:SetDrawLayer("ARTWORK", 1)
     local color = GetColor("questColor", ns.defaults.xpBar.questColor)
     questOverlay:SetColorTexture(color.r, color.g, color.b, color.a or 1)
     questOverlay:ClearAllPoints()

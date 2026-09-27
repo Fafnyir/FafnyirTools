@@ -59,6 +59,8 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 - Existing current-gradient enable default remains **false**; the repair changes colors, not that preference. Rested gradient default remains true and follows the existing gradient module behavior. Quest enable is independent.
 - Sum positive XP rewards for completed, non-header, non-hidden quests in the current quest log; avoid duplicates and incomplete quests.
 - Begin the orange segment at current XP and extend by the summed reward; clip at the current level boundary.
+- Render current XP above Rested XP and Rested XP above Quest XP. The Quest XP
+  segment must not cover an overlapping Rested XP segment.
 - Refresh at login/world entry and registered quest/XP/level/exhaustion/data-load events; respond to bar value, size and show updates.
 - Hide the segment at effective max level, when XP is disabled/invalid, no completed reward exists, or its own toggle is off. Inherit bar visibility; do not force the EUI holder visible.
 - Keep the user's selected quest unchanged and use explicit quest-ID reward lookup. Failed selection-setter approaches from v1.1.0 experiments are not current design.

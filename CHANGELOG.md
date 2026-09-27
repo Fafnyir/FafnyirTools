@@ -9,6 +9,8 @@
 - Removed the three-zone XP Bar text override after EllesmereUI added the same
   layout natively. The legacy saved toggle is left untouched for downgrade
   safety but is no longer applied, reset, displayed, or exported.
+- Corrected XP overlay layering so current XP renders on top, Rested XP renders
+  second, and completed Quest XP remains behind both instead of covering Rested XP.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

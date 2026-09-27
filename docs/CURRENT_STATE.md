@@ -16,6 +16,9 @@ The former three-zone XP text override is also retired because EllesmereUI now
 provides the layout natively. FafnyirTools no longer creates text regions,
 repositions EllesmereUI text, or hooks its text updates. The legacy saved toggle
 is retained only for downgrade safety.
+The completed Quest XP texture now uses EllesmereUI's XP artwork layer at
+sublevel 1, below Rested XP at sublevel 2 and current XP at sublevel 4. This
+prevents the orange Quest XP segment from covering the blue Rested XP segment.
 
 ## v1.1.4 confirmed baseline
 

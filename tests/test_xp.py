@@ -50,7 +50,8 @@ function CreateFrame()
  function f:SetColorTexture(...) self.color={...} end
  function f:SetVertexColor(...) self.vertex={...} end
  function f:SetGradient(o,a,b) self.gradient={o,a,b} end
- function f:CreateTexture() self.overlay=CreateFrame();return self.overlay end
+ function f:SetDrawLayer(layer,sublevel) self.drawLayer=layer;self.drawSublevel=sublevel end
+ function f:CreateTexture(_,layer,_,sublevel) self.overlay=CreateFrame();self.overlay:SetDrawLayer(layer,sublevel);return self.overlay end
  table.insert(frames,f);return f
 end
 function hooksecurefunc(obj,key,fn) local old=obj[key];obj[key]=function(...) local ret=old(...);fn(...);return ret end end
@@ -76,6 +77,7 @@ holder._text=textHost:CreateFontString();holder._text:SetPoint('CENTER',textHost
 holder._border={_frame=nativeBorder,edges=CreateFrame()}
 bar=CreateFrame();bar.parent=holder;bar.texture=CreateFrame()
 rested=CreateFrame();rested.texture=CreateFrame()
+bar.texture:SetDrawLayer('ARTWORK',4);rested.texture:SetDrawLayer('ARTWORK',2)
 EllesmereEAB_XPBar_Bar=bar;EllesmereEAB_XPBar_Rested=rested
 holder._updateFunc=function() bar:SetStatusBarColor(1,1,1);rested:SetStatusBarColor(1,1,1);holder._text:SetText('native') end
 borderApplyCalls=0
@@ -96,6 +98,7 @@ assert(db.startColor.r==85/255 and db.startColor.g==99/255 and db.endColor.r==19
 assert(db.restedStartColor.r==79/255 and db.restedStartColor.g==143/255 and db.restedStartColor.a==1 and db.restedEndColor.a==1)
 assert(db.questColor.r==1 and db.questColor.g==150/255 and db.questColor.b==0 and db.questColor.a==1)
 f:Initialize();o=bar.overlay;assert(o.shown and o.w==80 and o.point[4]==40) -- 400 quest XP, excludes incomplete/hidden/duplicate
+assert(bar.texture.drawSublevel==4 and rested.texture.drawSublevel==2 and o.drawLayer=='ARTWORK' and o.drawSublevel==1)
 flush();assert(holder._text.text=='native')
 assert(borderApplyCalls==0 and nativeBorder.level==1)
 assert(db.enabled==false) -- quest segment independent of gradient
