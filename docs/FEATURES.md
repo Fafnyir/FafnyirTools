@@ -71,8 +71,9 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
 
 ## Options branding
 
-- The About page begins with the bundled `Media/Header.tga` artwork at a 4:1
-  display ratio, above Global Settings.
+- The fixed Fafnyir Tools module header displays the mark cropped from bundled
+  `Media/Header.tga` directly to the left of the module title. The logo does not
+  remain visible after switching to another EllesmereUI module.
 
 ## Preservation boundaries
 
