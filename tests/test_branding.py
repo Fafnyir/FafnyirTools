@@ -33,7 +33,9 @@ clickArea={}
 function clickArea:GetChildren() return parent end
 EllesmereUI._clickArea=clickArea
 function EllesmereUI:SelectModule() end
+function EllesmereUI:GetActiveModule() return 'FafnyirTools' end
 function hooksecurefunc(owner,key,callback) hook=callback end
+C_Timer={After=function(_,callback) callback() end}
 """)
 lua.execute((addon / "Modules/Branding.lua").read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute("""

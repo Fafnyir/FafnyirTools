@@ -13,6 +13,7 @@ local HEADER_ICON_SIZE = 52
 local MODULE_KEY = "FafnyirTools"
 local MODULE_TITLE = "Fafnyir Tools"
 local headerIcon
+local retryGeneration = 0
 
 local function FindHeaderTitle()
     local clickArea = EllesmereUI and EllesmereUI._clickArea
@@ -37,12 +38,12 @@ local function SetHeaderIconShown(shown)
         if headerIcon then
             headerIcon:Hide()
         end
-        return
+        return true
     end
 
     local title = FindHeaderTitle()
     if not title then
-        return
+        return false
     end
 
     local parent = title:GetParent()
@@ -60,6 +61,38 @@ local function SetHeaderIconShown(shown)
     headerIcon:ClearAllPoints()
     headerIcon:SetPoint("RIGHT", title, "LEFT", -10, 0)
     headerIcon:Show()
+    return true
+end
+
+local function ScheduleHeaderRetry()
+    if not C_Timer or type(C_Timer.After) ~= "function" then
+        return
+    end
+
+    retryGeneration = retryGeneration + 1
+    local generation = retryGeneration
+    local attempts = 0
+
+    local function TryHeader()
+        if generation ~= retryGeneration then
+            return
+        end
+        if not EllesmereUI
+            or type(EllesmereUI.GetActiveModule) ~= "function"
+            or EllesmereUI:GetActiveModule() ~= MODULE_KEY
+        then
+            return
+        end
+        if SetHeaderIconShown(true) then
+            return
+        end
+        attempts = attempts + 1
+        if attempts < 50 then
+            C_Timer.After(0.1, TryHeader)
+        end
+    end
+
+    C_Timer.After(0, TryHeader)
 end
 
 function feature:Initialize()
@@ -73,14 +106,21 @@ function feature:Initialize()
 
     self._hooked = true
     hooksecurefunc(EllesmereUI, "SelectModule", function(_, folderName)
-        SetHeaderIconShown(folderName == MODULE_KEY)
+        if folderName == MODULE_KEY then
+            ScheduleHeaderRetry()
+        else
+            retryGeneration = retryGeneration + 1
+            SetHeaderIconShown(false)
+        end
     end)
+
+    ScheduleHeaderRetry()
 end
 
 function feature:BuildOptions(parent, yOffset)
     -- Page construction can occur after the initial SelectModule call (for
     -- example when the panel restores FafnyirTools on login), so apply the
     -- header here as well as from the module-switch hook.
-    SetHeaderIconShown(true)
+    ScheduleHeaderRetry()
     return math.abs(yOffset)
 end
