@@ -69,6 +69,11 @@ Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting
   apply a duplicate border control. Legacy FafnyirTools border keys may remain
   in SavedVariables for downgrade safety but are not active defaults or exports.
 
+## Options branding
+
+- The About page begins with the bundled `Media/Header.tga` artwork at a 4:1
+  display ratio, above Global Settings.
+
 ## Preservation boundaries
 
 Changing source ownership, category labels, XP defaults, filter choices or module inventory is a product change requiring appropriate scope and tests. Do not infer approval from a historical proposal. The active source is the working baseline, while previously accepted omissions remain visible in OPEN_ITEMS.md for restoration decisions.

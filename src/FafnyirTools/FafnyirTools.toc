@@ -11,6 +11,7 @@
 Core\Bootstrap.lua
 Core\Sidebar.lua
 Modules\HideStatusTextures.lua
+Modules\Branding.lua
 Modules\About.lua
 Modules\GlobalSettings.lua
 Modules\ForeverFog.lua

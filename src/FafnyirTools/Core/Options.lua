@@ -7,6 +7,7 @@ local retryTicker
 
 local function OrderedFeatures()
     return {
+        ns.modules.Branding,
         ns.modules.GlobalSettings,
         ns.modules.About,
         ns.modules.ForeverFog,

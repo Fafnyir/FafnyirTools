@@ -14,6 +14,7 @@ local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 local CHANGELOG = {
     { version = "v1.1.5", lines = {
         "Cleanup release for WoW Forever and EllesmereUI compatibility.",
+        "Added Fafnyir branding to the top of the About page.",
         "Added FafnyirMedia as a required dependency.",
         "Removed XP Bar border controls now provided by EllesmereUI.",
         "Removed XP Bar text overrides now provided by EllesmereUI.",

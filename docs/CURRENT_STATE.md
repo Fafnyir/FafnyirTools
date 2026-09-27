@@ -2,6 +2,10 @@
 
 ## v1.1.5 cleanup scope
 
+The About page now begins with the supplied Fafnyir header artwork, displayed
+at 512x128 from its bundled 1024x256 RGBA TGA source. Global Settings remains
+directly below the header.
+
 The user chose v1.1.5 as a maintenance release without a forced headline
 feature. The Forever-only Volumetric Fog control is hidden because Blizzard now
 restores `volumeFog` immediately after addons change it. FafnyirTools no longer

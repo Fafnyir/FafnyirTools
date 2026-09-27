@@ -32,6 +32,7 @@ def check(baseline=False):
     expected = {p.removeprefix('FafnyirTools/') for p in fingerprint['files']}
     assert expected <= {p.relative_to(ADDON).as_posix() for p in ADDON.rglob('*') if p.is_file()}, 'Baseline module/file removed; reconcile feature inventory explicitly'
     required = {
+        'Modules/Branding.lua': ('Branding', 'About'),
         'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'QoL'),
         'Modules/About.lua': ('About', 'About'),
         'Modules/GlobalSettings.lua': ('GlobalSettings', 'About'),
@@ -77,7 +78,7 @@ def check(baseline=False):
         assert actual == fingerprint['files'], 'Source differs from adopted baseline'
         print('PASS source byte-identical to user-confirmed baseline', flush=True)
     print(f'PASS {len(entries)} Lua files, complete/unique TOC, expected features/pages/default sections, metadata', flush=True)
-    for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_bar_art.py', 'test_reload_contract.py', 'test_companion.py',
+    for test in ['test_branding.py', 'test_xp.py', 'test_aura_sources_options.py', 'test_bar_art.py', 'test_reload_contract.py', 'test_companion.py',
                  'test_global_settings.py', 'test_inventory.py', 'test_unit_frame_names.py', 'test_focus_header.py', 'test_forever_compat.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)

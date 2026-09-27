@@ -2,6 +2,7 @@
 
 ## v1.1.5 — cleanup
 
+- Added the supplied Fafnyir header artwork to the top of the About page.
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Removed the XP Bar border controls after EllesmereUI added native support.
   Existing legacy FafnyirTools border keys are left untouched but are no longer
