@@ -18,6 +18,7 @@ Modules\PermanentCompanionPet.lua
 Modules\Resting.lua
 Modules\RightClickSelfCast.lua
 Modules\FlyoutButtonMatch.lua
+Modules\IconHistoryBorder.lua
 Modules\UnitFrameNames.lua
 Modules\FocusHeader.lua
 Modules\DeviceLayout.lua

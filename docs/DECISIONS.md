@@ -1,5 +1,12 @@
 # Reconciled decisions
 
+## Damage Meter Icon History border
+
+2026-09-28: extend EllesmereUI's existing Damage Meter **Custom Icon Border**
+to Icon History rather than adding a duplicate FafnyirTools control. Icon
+History follows the selected style, size, offsets and color, including Pixels
+and Pixels Textured. The compatibility layer owns no saved setting.
+
 ## EllesmereUI-owned features retired
 
 2026-09-28: remove FafnyirTools **Blizzard Bar Art** and **Unit Frame Sources**
