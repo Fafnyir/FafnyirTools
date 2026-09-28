@@ -24,7 +24,7 @@ def package():
     addon = ROOT / 'src/FafnyirTools'
     version = re.search(r'^## Version: (.+)$', (addon / 'FafnyirTools.toc').read_text(), re.M).group(1).strip()
     assert re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', version), 'Unexpected version format'
-    name = f'Fafnyir_Tools_for_EllesmereUI_{version}_{revision[:12]}.zip'
+    name = f'Fafnyir_Tools_for_EllesmereUI_{version}_{revision[:7]}.zip'
     destination = ROOT / 'dist'
     destination.mkdir(exist_ok=True)
     output = destination / name

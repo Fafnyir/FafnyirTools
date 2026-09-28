@@ -14,6 +14,9 @@
 - Limited Flyout Fix to Retail. WoW Forever now uses EllesmereUI's native
   flyout handling, so FafnyirTools does not show the option, install hooks, or
   alter flyout buttons there; the saved Retail preference is preserved.
+- Reworked the Retail Flyout Fix to preserve Blizzard's native pooled-button
+  geometry and background while fitting only EllesmereUI's selected border.
+  Tracked native texture and border presentation is restored when inactive.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

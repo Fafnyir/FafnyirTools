@@ -7,6 +7,8 @@ v1.1.5 changes
 - Removed FafnyirTools XP Bar text overrides; EllesmereUI now owns the layout.
 - Fixed XP layers: current XP is on top, Rested XP is second, and Quest XP is behind both.
 - Limited Flyout Fix to Retail; it is hidden and inactive on WoW Forever.
+- Reworked Retail Flyout Fix to preserve Blizzard's native button geometry and
+  background while fitting only EllesmereUI's selected decorative border.
 - Hidden the Forever Volumetric Fog control because Blizzard now overrides
   addon changes to that setting.
 - Stopped reapplying the unsupported volumeFog console setting.

@@ -22,6 +22,10 @@ prevents the orange Quest XP segment from covering the blue Rested XP segment.
 Flyout Fix is now Retail-only. On Forever the module exposes no option, installs
 no `SpellFlyout` hook, schedules no retry, and leaves the saved Retail choice
 untouched.
+On Retail the cleaner flyout implementation preserves Blizzard's pooled button
+size, scale, anchors, icons and cooldown geometry. It fits only EllesmereUI's
+selected decorative border to each native flyout button, preserves the native
+flyout background, and restores tracked texture and border state when inactive.
 
 ## v1.1.4 confirmed baseline
 

@@ -1,5 +1,18 @@
 # Reconciled decisions
 
+## Package revision suffix
+
+2026-09-28: use the standard seven-character abbreviated Git revision in future
+package filenames. Build manifests continue to record the full commit revision
+and archive SHA-256 digest.
+
+## Retail flyout ownership
+
+2026-09-28: adopt the user-supplied cleaner `FlyoutButtonMatch.lua`. The Retail
+fix must not write Blizzard flyout button size, scale, anchors, icon or cooldown
+geometry. It may manage EllesmereUI decorative borders and the native background,
+and must restore tracked presentation when inactive. Forever remains untouched.
+
 ## Inventory search roadmap
 
 2026-09-26: defer the proposed cross-character inventory search interface and
