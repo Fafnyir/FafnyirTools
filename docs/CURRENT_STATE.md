@@ -28,6 +28,10 @@ selected decorative border to each native flyout button, preserves the native
 flyout background, and restores tracked texture and border state when inactive.
 It skips hidden pooled buttons so styling cannot revive stale spells left over
 from a previously longer flyout menu.
+Blizzard Bar Art and Unit Frame Sources are retired because EllesmereUI now
+provides both capabilities. FafnyirTools no longer loads either module, displays
+their options, exports/imports or resets their settings, or writes their runtime
+state. Existing legacy saved keys remain untouched during ordinary upgrades.
 
 ## v1.1.4 confirmed baseline
 
@@ -69,7 +73,7 @@ the logged-in character. Reset All clears character, mail, and auction caches,
 then rescans the current character when tracking is enabled; warband and guild
 caches remain intact.
 
-## Unified Blizzard Bar Art toggle
+## Unified Blizzard Bar Art toggle (retired in v1.1.5)
 
 Forever can hide the two side griffons independently from the central action
 bar artwork. FafnyirTools now treats the recovered central background and both
@@ -92,7 +96,7 @@ contract, which routes the hardware click through a secure `/reload` action.
 Import, backup restore, reset, Unit Frame source, and Aura Skins prompts are
 covered. In combat the host asks for a manual `/reload`, matching EllesmereUI.
 
-## Blizzard Bar Art persistence repair
+## Blizzard Bar Art persistence repair (historical; retired in v1.1.5)
 
 The v1.1.3 artwork could disappear after runtime action-bar transitions because
 it refreshed only at login and on size changes and retained its original
@@ -209,7 +213,7 @@ or unfinished wishlist features.
 
 ## Active source
 
-src/FafnyirTools contains 20 files, including restored PermanentCompanionPet.lua.
+src/FafnyirTools contains the maintained addon source, including restored PermanentCompanionPet.lua.
 The prior QuestXPFixed baseline remains immutable in releases/ and its baseline
 tag/fingerprint. Active source now intentionally differs from that baseline.
 
@@ -219,19 +223,18 @@ Older questXPEnabled/questXPColor preferences migrate only when new keys are
 missing. Existing new keys/custom settings take precedence.
 
 Seven pages: About / QoL / Unit Frames / Action Bars / XP & Progression /
-Bags & Inventory / Layouts. Unit Frames contains source controls, Aura Skins,
-then Resting. /faftools opens Unit Frames. About uses measured wrapped text height.
+Bags & Inventory / Layouts. Unit Frames contains Aura Skins, Resting, name mode,
+and the Focus header control. /faftools opens Unit Frames. About uses measured wrapped text height.
 
 ## Preservation
 
-UnitFrameSources, AuraSkins, action modules, inventory modules, status-texture
-hiding and sidebar are unchanged. XP, Resting and DeviceLayout behavior is
-unchanged; only their page labels moved. Version remains v1.1.2.
+This section records the historical consolidated v1.1.2 baseline. Unit Frame
+Sources and Blizzard Bar Art were subsequently retired in v1.1.5.
 
 ## Validation
 
-Combined offline checks pass: all 18 Lua files, TOC/module contracts, seven real
-feature pages, existing XP/aura/source/action-options suites, and new companion
+Combined offline checks pass: Lua files, TOC/module contracts, seven real
+feature pages, existing XP/aura/action-options suites, and companion
 migration/modes/character isolation/safety/throttle/events tests. Legacy XP
 migration, slash navigation and About wrapping are covered.
 

@@ -16,9 +16,6 @@ local MAX_ENTRIES = 2000
 -- Only user preferences belong in a global export. Runtime inventories,
 -- per-character companion choices and machine-specific Edit Mode layouts do not.
 local SCHEMA = {
-    -- Artwork calibration depends on local UI scale/rendering and should not
-    -- be carried to another installation with the global preferences.
-    blizzardBarArt = { enabled = true },
     foreverFog = { enabled = true },
     flyoutFix = true,
     focusHeader = { enabled = true },
@@ -26,7 +23,6 @@ local SCHEMA = {
     resting = true,
     rightClickSelfCast = true,
     unitFrameNames = true,
-    unitFrameSources = true,
     inventory = { enabled = true, tooltips = true },
     xpBar = true,
     auraSkins = true,
@@ -174,14 +170,6 @@ local function MergeRecognized(target, incoming, schema, defaults)
     end
 end
 
-local function SyncUnitFrameSources()
-    local sources = ns.modules and ns.modules.UnitFrameSources
-    if sources and type(sources.ApplySaved) == "function" then
-        return sources:ApplySaved()
-    end
-    return false
-end
-
 function feature:Export()
     local payload = {
         format = FORMAT,
@@ -220,10 +208,6 @@ function feature:ApplyImport(payload)
     }
     MergeRecognized(db, payload.settings, SCHEMA, ns.defaults)
     ns:InitializeDatabase()
-    -- EllesmereUI owns a separate source profile that its frame constructor
-    -- reads during startup. Write imported choices there before ReloadUI;
-    -- deferring this to PLAYER_LOGIN would require a second reload.
-    SyncUnitFrameSources()
     return true
 end
 
@@ -236,7 +220,6 @@ function feature:RestoreBackup()
     local backup = db.globalSettingsImportBackup
     if type(backup) ~= "table" or type(backup.settings) ~= "table" then return false end
     MergeRecognized(db, backup.settings, SCHEMA, ns.defaults)
-    SyncUnitFrameSources()
     return true
 end
 

@@ -23,10 +23,6 @@ function ns:PrintForeverSavedVariablesWarning()
 end
 
 ns.defaults = {
-    blizzardBarArt = {
-        enabled = true,
-        scaleMultiplier = 1.06,
-    },
     foreverFog = {
         enabled = true,
         initialized = false,
@@ -54,14 +50,6 @@ ns.defaults = {
     },
     rightClickSelfCast = {
         enabled = true,
-    },
-    unitFrameSources = {
-        player = "inherit",
-        target = "inherit",
-        boss = "inherit",
-        targettarget = "inherit",
-        focus = "inherit",
-        pet = "inherit",
     },
     unitFrameNames = {
         mode = "whole",
@@ -165,12 +153,6 @@ function ns:ResetDatabase()
     FafnyirToolsDB = {}
     CopyDefaults(self.defaults, FafnyirToolsDB)
 
-    -- A deliberate reset returns the full Unit Frame suite to EllesmereUI.
-    -- Keep ordinary upgrade defaults inherited so adding a missing key never
-    -- overwrites a user's existing EllesmereUI profile.
-    for _, unit in ipairs({ "player", "target", "targettarget", "focus", "boss", "pet" }) do
-        FafnyirToolsDB.unitFrameSources[unit] = "eui"
-    end
     -- A reset intentionally restores the coloured Blizzard-style Focus header
     -- instead of adopting the pre-reset EllesmereUI value during Refresh.
     FafnyirToolsDB.focusHeader.initialized = true

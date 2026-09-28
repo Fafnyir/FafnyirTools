@@ -8,11 +8,9 @@ and EllesmereUI 9.2.1 installed under `_classic_beta_`.
 | Feature | Forever/EllesmereUI contract found |
 | --- | --- |
 | Options and sidebar | Shared EllesmereUI module/widgets framework |
-| Unit Frame Sources | Source getters/setters and all six existing unit paths |
 | Target Aura Skins | Shared AuraKit container API |
 | Resting Indicator | Same EUI Player frame; dynamic max-level handling added |
 | Right-click Self Cast | Same EAB secure action-button family |
-| Blizzard Bar Art | EAB main bar and Blizzard action-bar references; visual test pending |
 | Flyout Match | Retail only; hidden and inactive on Forever because EllesmereUI handles flyouts natively |
 | XP and Quest XP | Same EUI XP/Rested frames plus quest and XP APIs |
 | Device Layout | Edit Mode manager/layout integration present |

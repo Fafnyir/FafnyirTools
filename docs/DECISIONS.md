@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## EllesmereUI-owned features retired
+
+2026-09-28: remove FafnyirTools **Blizzard Bar Art** and **Unit Frame Sources**
+because EllesmereUI now includes both capabilities. Remove their modules,
+options, defaults, global export/import schema, reset synchronization and runtime
+writes. Preserve old saved keys as unknown data during ordinary upgrades and do
+not restore either feature without a new request.
+
 ## Package revision suffix
 
 2026-09-28: use the standard seven-character abbreviated Git revision in future

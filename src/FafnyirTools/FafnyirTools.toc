@@ -17,10 +17,8 @@ Modules\ForeverFog.lua
 Modules\PermanentCompanionPet.lua
 Modules\Resting.lua
 Modules\RightClickSelfCast.lua
-Modules\BlizzardBarArt.lua
 Modules\FlyoutButtonMatch.lua
 Modules\UnitFrameNames.lua
-Modules\UnitFrameSources.lua
 Modules\FocusHeader.lua
 Modules\DeviceLayout.lua
 Modules\XPBar.lua

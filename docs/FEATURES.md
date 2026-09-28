@@ -7,14 +7,9 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Identity/integration | Fafnyir Tools for EllesmereUI; requires EllesmereUI and FafnyirMedia; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
 | Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, size and offsets; drawn above frame border | Present |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle | Present |
-| Blizzard Bar Art | Detach/reparent recovered native artwork to Bar 1, link the central background and both side griffons to one toggle, follow movement/scaling, self-heal after runtime transitions, and preserve toggle; per-installation Art Scale calibration defaults to 1.06 and is excluded from global exports | Present; historical user confirmation plus offline persistence tests |
 | Flyout Fix | Retail only: preserve Blizzard's native pooled-button geometry and flyout background while fitting the parent action bar's EllesmereUI border style/color to each button; restore tracked presentation when inactive and preserve the saved toggle. Hidden and inactive on Forever, where EllesmereUI handles flyouts natively | Present; replacement requires in-game confirmation |
-| Unit Frame Sources | Player, Target, Target of Target, Focus, Boss, Pet via native `SetUnitFrameSource`; values `eui`, `blizzard`, `hidden`; require reload | Present; offline tests cover all 18 combinations individually |
 | Forever unit-frame names | Global First Name / Last Name / Whole Name display for surname-bearing players on EllesmereUI main, Party, and Raid frames; Nameplates, configured nicknames, NPCs, and Retail remain unchanged | Present; offline-tested, in-game confirmation pending |
 | Focus reaction header | Independent Blizz Colored Focus Header toggle using EllesmereUI's supported Focus setting and reload path; full Focus Frame only, not Focus Target | Present; offline-tested, in-game confirmation pending |
-| Unit Frame reset defaults | Full Reset sets all six sources to EllesmereUI after normal feature refresh completes, then offers one reload; upgrades preserve saved choices | Present in accepted v1.1.3 build |
-| Legacy source settings | Keep `inherit` data untouched; display effective native source without writing a new override; unknown API must not invent a source | Present |
-| ToT dependency | Blizzard ToT requires Blizzard Target; EUI may fall back to its ToT when Target is EUI | Existing tooltip/behavior contract |
 | Aura Skins | Blizzard Target aura styling only; Player buffs/debuffs remain controlled by EllesmereUI. Target availability follows effective Target source, not blanket EUI addon presence; hold ownership for the session until reload | Present |
 | Target aura layout | Buffs and debuffs wrap after six icons; independent Target icon size, filters, border/zoom/text settings | Present; mocked sizes 16/32/60; historical user confirmation |
 | Focus auras | Distinct from Focus source selection; no custom Focus aura implementation | Not implemented |
@@ -26,6 +21,11 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | About | Version, history, credits, support link | History and original companion credits restored; measured text wrapping |
 
 Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
+
+Retired in v1.1.5: Blizzard Bar Art and Unit Frame Sources are now provided by
+EllesmereUI. Their FafnyirTools modules, options, defaults, export/import schema,
+reset behavior and runtime writes are removed. Existing legacy SavedVariables
+remain untouched during ordinary upgrades.
 
 ## WoW Forever beta contract
 

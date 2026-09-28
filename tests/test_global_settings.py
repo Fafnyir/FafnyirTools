@@ -8,17 +8,15 @@ lua.execute((root / "Core/Bootstrap.lua").read_text(), "FafnyirTools", lua.globa
 lua.execute((root / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(r'''
 local f=ns.modules.GlobalSettings
-sourceSyncs=0
-ns.modules.UnitFrameSources={ApplySaved=function() sourceSyncs=sourceSyncs+1;return true end}
 local db=ns:GetDatabase()
+db.blizzardBarArt={enabled=false,scaleMultiplier=1.01}
+db.unitFrameSources={player='hidden',target='blizzard'}
 db.xpBar.enabled=true
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
 db.xpBar.borderSize=3
 db.xpBar.borderColor={r=.8,g=.6,b=.4,a=.2}
 db.xpBar.customTextEnabled=false
-db.blizzardBarArt.scaleMultiplier=1.01
 db.foreverFog.enabled=false
-db.unitFrameSources.pet="hidden"
 db.permanentCompanionPet.enabled=true
 db.permanentCompanionPet.characters={['Tester-Realm']={mode='specific',petName='Secret Pet'}}
 db.inventory.characters={['Tester-Realm']={money=999,items={123}}}
@@ -34,7 +32,7 @@ assert(payload.settings.xpBar.enabled==true and payload.settings.xpBar.startColo
 assert(payload.settings.xpBar.startColor.unknown==nil)
 assert(payload.settings.xpBar.borderSize==nil and payload.settings.xpBar.borderColor==nil)
 assert(payload.settings.xpBar.customTextEnabled==nil)
-assert(payload.settings.blizzardBarArt.enabled==true and payload.settings.blizzardBarArt.scaleMultiplier==nil)
+assert(payload.settings.blizzardBarArt==nil and payload.settings.unitFrameSources==nil)
 assert(payload.settings.foreverFog.enabled==false and payload.settings.foreverFog.initialized==nil)
 assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
@@ -43,17 +41,17 @@ assert(payload.settings.deviceLayout==nil and payload.settings.futureSetting==ni
 
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 f:ApplyImport(payload)
-assert(sourceSyncs==1)
 assert(db.xpBar.enabled==true and db.xpBar.startColor.a==.5 and db.inventory.tooltips==false)
 assert(db.xpBar.borderSize==3 and db.xpBar.borderColor.a==.2)
 assert(db.xpBar.customTextEnabled==false)
-assert(db.blizzardBarArt.scaleMultiplier==1.01)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
+assert(db.blizzardBarArt.enabled==false and db.blizzardBarArt.scaleMultiplier==1.01)
+assert(db.unitFrameSources.player=='hidden' and db.unitFrameSources.target=='blizzard')
 assert(db.permanentCompanionPet.characters['Tester-Realm'].petName=='Secret Pet')
 assert(db.inventory.characters['Tester-Realm'].money==999)
 assert(db.globalSettingsImportBackup.created==12345)
 assert(db.globalSettingsImportBackup.settings.xpBar.enabled==false)
-assert(f:RestoreBackup() and sourceSyncs==2 and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
+assert(f:RestoreBackup() and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
 
 assert(not f:Decode(''))
 assert(not f:Decode('OTHER:1:T0:'))

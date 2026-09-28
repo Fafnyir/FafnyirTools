@@ -77,17 +77,12 @@ EllesmereUI._ModuleNS=euf; FafnyirToolsDB.auraSkins.enabled=true
 f:HandleEvent('PLAYER_ENTERING_WORLD'); assert(f:IsAvailable() and #created==2)
 ''')
 print('PASS unavailable namespace safely retries on entering world')
-l=runtime(); l.execute('''
-FafnyirToolsDB.unitFrameSources.target='inherit'
-assert(ns.modules.AuraSkins:IsAvailable())
-''')
-print('PASS inherited Blizzard source resolved through native getter')
 l=LuaRuntime(); compile=l.eval('function(s) local f,e=loadstring(s); assert(f,e) end')
 for p in root.rglob('*.lua'): compile(p.read_text())
 
 l=runtime()
 run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
-for n in ['Modules/RightClickSelfCast.lua','Modules/BlizzardBarArt.lua','Modules/FlyoutButtonMatch.lua','Modules/UnitFrameSources.lua']:
+for n in ['Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua']:
  run((root/n).read_text(),l.globals().ns)
 l.execute('''
 for _,key in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','UnitFrameNames','FocusHeader','Resting','DeviceLayout','XPBar','Inventory'}) do
@@ -114,24 +109,21 @@ EllesmereUI.Widgets.DualRow=function(_,parent,y,left,right)
  rows[#rows+1]={left,right}; return {},40
 end
 rows={}; local bottom=config.buildPage('Action Bars',{},-12)
-assert(#headers==3 and #rows==3 and bottom==192)
-assert(headers[2]=='BLIZZARD BAR ART' and headers[3]=='FLYOUT FIX')
-assert(rows[2][1].getValue()==true and rows[3][1].getValue()==true)
--- Existing saved choices survive adding the restored defaults.
-FafnyirToolsDB.blizzardBarArt.enabled=false; FafnyirToolsDB.flyoutFix.enabled=false
+assert(#headers==2 and #rows==2 and bottom==132)
+assert(headers[2]=='FLYOUT FIX' and rows[2][1].getValue()==true)
+-- Existing saved choices survive adding defaults.
+FafnyirToolsDB.flyoutFix.enabled=false
 ns:InitializeDatabase()
-assert(not FafnyirToolsDB.blizzardBarArt.enabled and not FafnyirToolsDB.flyoutFix.enabled)
+assert(not FafnyirToolsDB.flyoutFix.enabled)
 headers={}; rows={}; previousY=nil
 bottom=config.buildPage('Unit Frames',{},-12)
-assert(headers[1]=='UNIT FRAME SOURCES' and headers[2]=='AURA SKINS')
-assert(bottom>212 and bottom==-previousY)
-assert(rows[1][1].text=='Player Frame' and rows[2][1].text=='Target of Target')
-assert(rows[3][1].text=='Boss Frames' and rows[3][2].text=='Pet Frame')
-assert(rows[5][1].text=='Enable Target Aura Skins')
+assert(headers[1]=='AURA SKINS')
+assert(bottom>0 and bottom==-previousY)
+assert(rows[1][1].text=='Enable Target Aura Skins')
 local terms={}; for _,v in ipairs(config.searchTerms) do terms[v]=true end
-assert(terms['aura skins'] and terms['flyout fix'] and terms['bar art'])
+assert(terms['aura skins'] and terms['flyout fix'] and not terms['bar art'] and not terms['frame source'])
 ''')
-print('PASS deduplicated pages, Action Bars restored controls, saved defaults, combined Unit Frames/Aura layout offsets and search terms')
+print('PASS deduplicated pages, retired options absent, active layout offsets and search terms')
 # Flyout Fix is a Retail compatibility shim. Forever must not expose it or
 # install any SpellFlyout hooks/retry timers, and must preserve the Retail choice.
 flyout_source=' '.join((root/'Modules/FlyoutButtonMatch.lua').read_text().split())
@@ -156,56 +148,3 @@ assert(f:BuildOptions({},-37)==37 and timers==0 and hooks==0)
 f:Reset();assert(ns:GetDatabase().flyoutFix.enabled==false)
 ''')
 print('PASS Flyout Fix remains Retail-only and inert on Forever')
-# Source dropdowns: all three choices, native inherited reads, no migration writes.
-l=runtime()
-run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
-l.execute('''
-sourceCalls={}; prompts={}; sources={player='blizzard',target='blizzard',targettarget='blizzard',focus='hidden',boss='eui',pet='blizzard'}
-local euf=EllesmereUI._ModuleNS.EllesmereUIUnitFrames
-function euf.GetUnitFrameSource(unit) return sources[unit] end
-function euf.SetUnitFrameSource(unit,value) sourceCalls[#sourceCalls+1]={unit,value}; sources[unit]=value end
-ReloadUI=function() reloads=(reloads or 0)+1 end
-function EllesmereUI:ShowConfirmPopup(p) prompts[#prompts+1]=p end
-StaticPopupDialogs={}; StaticPopup_Show=function(key) fallback=key end
-''')
-run((root/'Modules/UnitFrameSources.lua').read_text(),l.globals().ns)
-l.execute('''
-local f=ns.modules.UnitFrameSources
-assert(f:BuildOptions({},0)==180 and #rows==4)
-local widgets={rows[1][1],rows[1][2],rows[2][1],rows[2][2],rows[3][1],rows[3][2]}
-local units={'player','target','targettarget','focus','boss','pet'}
-assert(f:ApplySaved() and #sourceCalls==0)
-for i,w in ipairs(widgets) do
- assert(w.getValue()==sources[units[i]])
- assert(ns:GetDatabase().unitFrameSources[units[i]]=='inherit')
- assert(#w.order==3 and w.values.inherit==nil)
- for j,value in ipairs({'eui','blizzard','hidden'}) do
-  assert(w.order[j]==value)
-  sourceCalls={}; prompts={}; w.setValue(value)
-  assert(w.getValue()==value and #sourceCalls==1 and sourceCalls[1][1]==units[i] and sourceCalls[1][2]==value)
-  assert(#prompts==1 and prompts[1].confirmText=='Reload Now' and prompts[1].cancelText=='Later')
-  assert(prompts[1].reload==true and prompts[1].onConfirm==nil)
- end
- local before=w.getValue(); sourceCalls={}; prompts={}
- w.setValue('inherit'); w.setValue(nil); w.setValue('invalid')
- assert(w.getValue()==before and #sourceCalls==0 and #prompts==0)
-end
-sourceCalls={}; assert(f:ApplySaved() and #sourceCalls==6)
-sourceCalls={}; ns:ResetDatabase()
-for _,unit in ipairs(units) do assert(ns:GetDatabase().unitFrameSources[unit]=='eui') end
-assert(#sourceCalls==0) -- reset itself does not write sources inside the refresh loop
-assert(f:ApplySaved() and #sourceCalls==6)
-local resetCalls={};for _,call in ipairs(sourceCalls) do resetCalls[call[1]]=call[2] end
-for _,unit in ipairs(units) do assert(resetCalls[unit]=='eui') end
--- Legacy/unset choices resolve on each read, preserving EUI profile changes.
-local db=ns:GetDatabase().unitFrameSources
-db.focus='inherit'; sources.focus='blizzard'; assert(widgets[4].getValue()=='blizzard')
-sources.focus='hidden'; assert(widgets[4].getValue()=='hidden')
-db.target=nil; assert(widgets[2].getValue()==sources.target)
--- No guess or crash when source API is absent; saved explicit choices still work.
-EllesmereUI._ModuleNS=nil
-assert(widgets[4].getValue()==nil and widgets[1].getValue()=='eui')
-ns.Print=function() end; widgets[4].setValue('blizzard')
-assert(db.focus=='blizzard' and not f:ApplySaved())
-''')
-print('PASS all 18 source choices, legacy/unset reads, no migration writes, invalid-input guards, secure reload contract, missing API')

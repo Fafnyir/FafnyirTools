@@ -34,15 +34,10 @@ end
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
-lua.execute((ROOT / "Modules/UnitFrameSources.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ROOT / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ROOT / "Modules/ForeverFog.lua").read_text(), "FafnyirTools", ns)
 lua.execute(r'''
 assert(ns.IS_FOREVER and ns:ForeverSavedVariablesUnsafe())
-local sources=ns.modules.UnitFrameSources
-assert(sources:ApplySaved() and sourceWrites==0)
-sources:BuildOptions({},0)
-assert(rows[1].disabled() and rows[1].disabledTooltip:find('Forever beta'))
 local before=ns:GetDatabase().xpBar.enabled
 local payload={settings={xpBar={enabled=not before}}}
 assert(ns.modules.GlobalSettings:ApplyImport(payload)==false)

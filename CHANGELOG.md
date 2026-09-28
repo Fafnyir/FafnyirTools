@@ -2,6 +2,9 @@
 
 ## v1.1.5 — cleanup
 
+- Removed Blizzard Bar Art options and runtime handling now provided by EllesmereUI.
+- Removed Unit Frame Sources options and runtime handling now provided by EllesmereUI.
+  Legacy saved keys remain untouched during ordinary upgrades.
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Removed the XP Bar border controls after EllesmereUI added native support.
   Existing legacy FafnyirTools border keys are left untouched but are no longer
