@@ -2,11 +2,11 @@
 
 ## Damage Meter Icon History border
 
-2026-09-28: add a dedicated persistent **Enable Pixel Border** toggle under
-FafnyirTools QoL for EllesmereUI Damage Meter Icon History. Enable it by default
-and use EllesmereUI's native Pixels border style. This supersedes the first
-inheritance-only trial, which showed no border when the separate Damage Meter
-Custom Icon Border setting was disabled and exposed no FafnyirTools option.
+2026-09-28: add a dedicated persistent **Enable Icon Border** toggle under
+FafnyirTools QoL for EllesmereUI Damage Meter Icon History. Keep it off by
+default and pair it with a dropdown built from EllesmereUI's complete live
+border registry; Pixels is the initial selection. This supersedes the first
+inheritance-only trial and the subsequent fixed-Pixels/default-on trial.
 
 ## EllesmereUI-owned features retired
 

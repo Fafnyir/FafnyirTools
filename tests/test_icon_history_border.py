@@ -32,8 +32,14 @@ EllesmereUI={Widgets={},_ModuleNS={EllesmereUIDamageMeters={
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
 function EllesmereUI.Widgets:DualRow(_,_,left,right) rows[#rows+1]=left;rows[#rows+1]=right;return {},40 end
 function EllesmereUI.BorderPx(_,size) return size end
-function EllesmereUI.GetBorderDefaultSize() return 2 end
-function EllesmereUI.GetBorderSelectColor() return {r=.57,g=.57,b=.57} end
+function EllesmereUI.GetBorderDefaultSize(_,texture) return texture=='pixels' and 2 or 1 end
+function EllesmereUI.GetBorderStyleSelectDefaults(texture)
+  if texture=='solid' then return {r=0,g=0,b=0},false end
+  return {r=.57,g=.57,b=.57},false
+end
+function EllesmereUI.GetBorderTextureDropdown()
+  return {solid='Solid',pixels='Pixels',blizz='Blizzard'},{'solid','pixels','blizz'}
+end
 function EllesmereUI.ApplyBorderStyle(frame,size,r,g,b,a,texture)
   frame.applied={size=size,r=r,g=g,b=b,a=a,texture=texture};frame:Show()
 end
@@ -46,16 +52,20 @@ local f=ns.modules.IconHistoryBorder
 f:Initialize()
 assert(hooks.ApplySpellHistory and hooks.ApplyIconBorder)
 hooks.ApplySpellHistory()
+assert(icon1._fafnyirHistoryBorder==nil)
+f:BuildOptions({},0)
+assert(rows[1].text=='Enable Icon Border' and rows[1].getValue()==false)
+assert(rows[2].text=='Border Style' and rows[2].getValue()=='pixels')
+assert(rows[2].values.blizz=='Blizzard' and rows[2].disabled())
+rows[1].setValue(true)
 assert(icon1._fafnyirHistoryBorder.applied.texture=='pixels')
 assert(icon1._fafnyirHistoryBorder.shown==true)
 assert(icon2._fafnyirHistoryBorder.shown==false)
-f:BuildOptions({},0)
-assert(rows[1].text=='Enable Pixel Border' and rows[1].getValue()==true)
-rows[1].setValue(false)
-assert(icon1._fafnyirHistoryBorder.shown==false)
-rows[1].setValue(true)
-assert(icon1._fafnyirHistoryBorder.shown==true)
+rows[2].setValue('blizz')
+assert(icon1._fafnyirHistoryBorder.applied.texture=='blizz')
 f:Reset()
-assert(ns:GetDatabase().iconHistoryBorder.enabled==true)
+assert(ns:GetDatabase().iconHistoryBorder.enabled==false)
+assert(ns:GetDatabase().iconHistoryBorder.texture=='pixels')
+assert(icon1._fafnyirHistoryBorder.shown==false)
 ''')
-print("PASS Icon History Pixels border default, option, rendering, visibility, and reset")
+print("PASS Icon History border default-off toggle, live style dropdown, rendering, visibility, and reset")

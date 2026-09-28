@@ -31,7 +31,8 @@ ns.defaults = {
         enabled = true,
     },
     iconHistoryBorder = {
-        enabled = true,
+        enabled = false,
+        texture = "pixels",
     },
     focusHeader = {
         enabled = true,

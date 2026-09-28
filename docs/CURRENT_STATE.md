@@ -32,10 +32,11 @@ Blizzard Bar Art and Unit Frame Sources are retired because EllesmereUI now
 provides both capabilities. FafnyirTools no longer loads either module, displays
 their options, exports/imports or resets their settings, or writes their runtime
 state. Existing legacy saved keys remain untouched during ordinary upgrades.
-Damage Meter Icon History now has a FafnyirTools **Enable Pixel Border** option
-under QoL. It is enabled by default, persists in FafnyirTools settings, and uses
-EllesmereUI's native Pixels border renderer. It refreshes with the Icon History
-render path while preserving hidden-slot visibility.
+Damage Meter Icon History now has a default-off FafnyirTools **Enable Icon
+Border** option under QoL. Its Border Style dropdown reads EllesmereUI's live
+border registry, including SharedMedia additions, and Pixels is the initial
+selection. Both settings persist in FafnyirTools and the renderer preserves
+hidden-slot visibility.
 
 ## v1.1.4 confirmed baseline
 

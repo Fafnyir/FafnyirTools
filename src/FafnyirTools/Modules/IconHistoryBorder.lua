@@ -39,7 +39,6 @@ local function ApplyToIcon(icon)
     if not border then
         border = CreateFrame("Frame", nil, icon)
         border:SetAllPoints(icon)
-        border:SetFrameLevel(icon:GetFrameLevel() + 6)
         icon._fafnyirHistoryBorder = border
 
         icon:HookScript("OnShow", function(self)
@@ -50,13 +49,18 @@ local function ApplyToIcon(icon)
         end)
     end
 
+    local texture = DB().texture or "pixels"
     local size = EllesmereUI.GetBorderDefaultSize
-        and EllesmereUI.GetBorderDefaultSize("damagemeters_icon", "pixels")
-        or 2
-    local texture = "pixels"
-    local color = EllesmereUI.GetBorderSelectColor
-        and EllesmereUI.GetBorderSelectColor(texture)
-        or { r = 0.57, g = 0.57, b = 0.57 }
+        and EllesmereUI.GetBorderDefaultSize("damagemeters_icon", texture)
+        or 1
+    local color, behind
+    if EllesmereUI.GetBorderStyleSelectDefaults then
+        color, behind = EllesmereUI.GetBorderStyleSelectDefaults(texture)
+    end
+    color = color or (texture == "solid"
+        and { r = 0, g = 0, b = 0 }
+        or { r = 1, g = 1, b = 1 })
+    border:SetFrameLevel(math.max(0, icon:GetFrameLevel() + (behind and -1 or 6)))
     local exactPixels = EllesmereUI.BorderPx
         and EllesmereUI.BorderPx(nil, size, texture)
 
@@ -128,6 +132,7 @@ end
 
 function feature:Reset()
     DB().enabled = ns.defaults.iconHistoryBorder.enabled
+    DB().texture = ns.defaults.iconHistoryBorder.texture
     self:Refresh()
 end
 
@@ -138,18 +143,36 @@ function feature:BuildOptions(parent, yOffset)
 
     _, h = W:SectionHeader(parent, "DAMAGE METER ICON HISTORY", y)
     y = y - h
+    local values, order
+    if EllesmereUI.GetBorderTextureDropdown then
+        values, order = EllesmereUI.GetBorderTextureDropdown()
+    else
+        values, order = { solid = "Solid", pixels = "Pixels" }, { "solid", "pixels" }
+    end
     _, h = W:DualRow(parent, y,
         {
             type = "toggle",
-            text = "Enable Pixel Border",
-            tooltip = "Add EllesmereUI's Pixels border to Damage Meter Icon History spell icons.",
+            text = "Enable Icon Border",
+            tooltip = "Add the selected EllesmereUI border to Damage Meter Icon History spell icons.",
             getValue = function() return DB().enabled end,
             setValue = function(value)
                 DB().enabled = value and true or false
                 feature:Refresh()
             end,
         },
-        { type = "label", text = "Requires EllesmereUI Damage Meter Icon History." })
+        {
+            type = "dropdown",
+            text = "Border Style",
+            values = values,
+            order = order,
+            disabled = function() return not DB().enabled end,
+            disabledTooltip = "Enable Icon Border",
+            getValue = function() return DB().texture or "pixels" end,
+            setValue = function(value)
+                DB().texture = value
+                feature:Refresh()
+            end,
+        })
     y = y - h
     return math.abs(y)
 end

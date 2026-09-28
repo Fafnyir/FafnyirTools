@@ -23,7 +23,7 @@ local CHANGELOG = {
         "Limited Flyout Fix to Retail; Forever now uses EllesmereUI natively.",
         "Reworked Retail flyouts to preserve native geometry while fitting EllesmereUI borders.",
         "Prevented stale pooled flyout buttons from reappearing in shorter menus.",
-        "Added a persistent Pixels border toggle for Damage Meter Icon History.",
+        "Added optional EllesmereUI border styles for Damage Meter Icon History.",
         "Hidden the Volumetric Fog control after Blizzard made the setting non-persistent.",
         "Stopped reapplying the unsupported volumeFog console setting.",
     }},
