@@ -134,6 +134,8 @@ assert(terms['aura skins'] and terms['flyout fix'] and terms['bar art'])
 print('PASS deduplicated pages, Action Bars restored controls, saved defaults, combined Unit Frames/Aura layout offsets and search terms')
 # Flyout Fix is a Retail compatibility shim. Forever must not expose it or
 # install any SpellFlyout hooks/retry timers, and must preserve the Retail choice.
+flyout_source=' '.join((root/'Modules/FlyoutButtonMatch.lua').read_text().split())
+assert 'button and button:IsShown() and button:IsObjectType("CheckButton")' in flyout_source
 forever=LuaRuntime(unpack_returned_tuples=True)
 forever.execute('''
 ns={};SlashCmdList={};timers=0;hooks=0

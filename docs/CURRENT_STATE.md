@@ -26,6 +26,8 @@ On Retail the cleaner flyout implementation preserves Blizzard's pooled button
 size, scale, anchors, icons and cooldown geometry. It fits only EllesmereUI's
 selected decorative border to each native flyout button, preserves the native
 flyout background, and restores tracked texture and border state when inactive.
+It skips hidden pooled buttons so styling cannot revive stale spells left over
+from a previously longer flyout menu.
 
 ## v1.1.4 confirmed baseline
 

@@ -9,6 +9,7 @@ v1.1.5 changes
 - Limited Flyout Fix to Retail; it is hidden and inactive on WoW Forever.
 - Reworked Retail Flyout Fix to preserve Blizzard's native button geometry and
   background while fitting only EllesmereUI's selected decorative border.
+- Prevented hidden pooled flyout buttons from reappearing in shorter menus.
 - Hidden the Forever Volumetric Fog control because Blizzard now overrides
   addon changes to that setting.
 - Stopped reapplying the unsupported volumeFog console setting.

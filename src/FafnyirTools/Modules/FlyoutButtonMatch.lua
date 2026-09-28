@@ -281,7 +281,11 @@ local function UpdatePresentation()
     local liveButtons = {}
     for i = 1, flyout:GetNumChildren() do
         local button = select(i, flyout:GetChildren())
-        if button and button:IsObjectType("CheckButton") and (button.icon or button.Icon) then
+        -- SpellFlyout reuses children across menus of different lengths.
+        -- ApplyBorderStyle calls Show() on its owner: never pass an inactive
+        -- pooled button or stale spells from the previous menu reappear.
+        if button and button:IsShown() and button:IsObjectType("CheckButton")
+            and (button.icon or button.Icon) then
             liveButtons[button] = true
             if not buttonHooks[button] then
                 buttonHooks[button] = true

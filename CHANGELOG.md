@@ -17,6 +17,8 @@
 - Reworked the Retail Flyout Fix to preserve Blizzard's native pooled-button
   geometry and background while fitting only EllesmereUI's selected border.
   Tracked native texture and border presentation is restored when inactive.
+- Prevented inactive pooled flyout buttons from being shown again when a
+  shorter flyout reuses children from a previously longer menu.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console
