@@ -85,9 +85,9 @@ run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
 for n in ['Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua']:
  run((root/n).read_text(),l.globals().ns)
 l.execute('''
-for _,key in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','UnitFrameNames','FocusHeader','Resting','DeviceLayout','XPBar','Inventory'}) do
+for _,key in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','UnitFrameNames','FocusHeader','Resting','IconHistoryBorder','DeviceLayout','XPBar','Inventory'}) do
  ns.modules[key]={}
- if key~='ForeverFog' then ns.modules[key].page=key=='GlobalSettings' and 'About' or ((key=='UnitFrameNames' or key=='FocusHeader') and 'Unit Frames' or key) end
+ if key~='ForeverFog' then ns.modules[key].page=key=='GlobalSettings' and 'About' or (key=='IconHistoryBorder' and 'QoL' or ((key=='UnitFrameNames' or key=='FocusHeader') and 'Unit Frames' or key)) end
 end
 ns.Sidebar={Install=function() return true end}
 function EllesmereUI:RegisterModule(key,c) config=c end
@@ -95,7 +95,7 @@ function EllesmereUI:RegisterModule(key,c) config=c end
 run((root/'Core/Options.lua').read_text(),l.globals().ns)
 l.execute('''
 assert(ns.Options:Register())
-local expected={'About','PermanentCompanionPet','Unit Frames','Resting','Action Bars','XPBar','Inventory','DeviceLayout'}
+local expected={'About','PermanentCompanionPet','Unit Frames','Resting','Action Bars','QoL','XPBar','Inventory','DeviceLayout'}
 assert(#config.pages==#expected)
 for i,name in ipairs(expected) do assert(config.pages[i]==name) end
 -- Record actual widget positions to ensure combined sections never overlap.

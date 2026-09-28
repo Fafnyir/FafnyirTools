@@ -96,7 +96,7 @@ local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')
 # Real metadata from all features; no fake feature slots in this registration check.
 for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/UnitFrameNames.lua','Modules/FocusHeader.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
-             'Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua',
+             'Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua','Modules/IconHistoryBorder.lua',
              'Modules/XPBar.lua','Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
     load(path)
 l.execute('ns.Sidebar={Install=function() return true end}')
@@ -104,7 +104,7 @@ load('Core/Options.lua')
 l.execute('''
 assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','XP & Progression','Bags & Inventory','Layouts'}
 assert(#config.pages==#expected);for i,p in ipairs(expected) do assert(config.pages[i]==p,p) end
-rows={};assert(config.buildPage('QoL',{},0)==100 and #rows==4)
+rows={};assert(config.buildPage('QoL',{},0)==160 and #rows==6)
 -- Restored About history wraps without assuming a fixed 22-pixel text height.
 fonts={}
 function EllesmereUI.MakeFont()

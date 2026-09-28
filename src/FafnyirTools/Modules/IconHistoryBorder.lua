@@ -2,6 +2,8 @@ local ADDON_NAME, ns = ...
 
 local feature = {
     key = "IconHistoryBorder",
+    page = "QoL",
+    searchTerms = { "icon history", "pixel border", "damage meters", "spell history" },
 }
 ns:RegisterFeature(feature.key, feature)
 
@@ -13,26 +15,23 @@ local function DamageMetersNamespace()
         and EllesmereUI._ModuleNS.EllesmereUIDamageMeters
 end
 
-local function DamageMetersSettings()
-    local db = _G._EDM_DB
-    return db and db.profile and db.profile.dm
+local function DB()
+    return ns:GetDatabase().iconHistoryBorder
 end
 
-local function BorderEnabled(settings)
-    return settings
-        and settings.customIconBorder == true
-        and (settings.iconBorderSize or 0) > 0
+local function BorderEnabled()
+    return DB().enabled == true
 end
 
-local function SetBorderShown(icon, border, settings)
-    border:SetShown(BorderEnabled(settings) and icon:IsShown())
+local function SetBorderShown(icon, border)
+    border:SetShown(BorderEnabled() and icon:IsShown())
 end
 
-local function ApplyToIcon(icon, settings)
+local function ApplyToIcon(icon)
     if not icon then return end
 
     local border = icon._fafnyirHistoryBorder
-    if not BorderEnabled(settings) then
+    if not BorderEnabled() then
         if border then border:Hide() end
         return
     end
@@ -44,36 +43,41 @@ local function ApplyToIcon(icon, settings)
         icon._fafnyirHistoryBorder = border
 
         icon:HookScript("OnShow", function(self)
-            SetBorderShown(self, border, DamageMetersSettings())
+            SetBorderShown(self, border)
         end)
         icon:HookScript("OnHide", function()
             border:Hide()
         end)
     end
 
-    local size = settings.iconBorderSize or 0
-    local texture = settings.iconBorderTexture or "solid"
+    local size = EllesmereUI.GetBorderDefaultSize
+        and EllesmereUI.GetBorderDefaultSize("damagemeters_icon", "pixels")
+        or 2
+    local texture = "pixels"
+    local color = EllesmereUI.GetBorderSelectColor
+        and EllesmereUI.GetBorderSelectColor(texture)
+        or { r = 0.57, g = 0.57, b = 0.57 }
     local exactPixels = EllesmereUI.BorderPx
-        and EllesmereUI.BorderPx(settings.iconBorderSizePx, size, texture)
+        and EllesmereUI.BorderPx(nil, size, texture)
 
     EllesmereUI.ApplyBorderStyle(
         border,
         size,
-        settings.iconBorderR or 0,
-        settings.iconBorderG or 0,
-        settings.iconBorderB or 0,
-        settings.iconBorderA == nil and 1 or settings.iconBorderA,
+        color.r or 0.57,
+        color.g or 0.57,
+        color.b or 0.57,
+        1,
         texture,
-        settings.iconBorderTextureOffset,
-        settings.iconBorderTextureOffsetY,
-        settings.iconBorderTextureShiftX,
-        settings.iconBorderTextureShiftY,
+        nil,
+        nil,
+        nil,
+        nil,
         "damagemeters_icon",
         size,
         nil,
         exactPixels
     )
-    SetBorderShown(icon, border, settings)
+    SetBorderShown(icon, border)
 end
 
 local function Apply()
@@ -81,10 +85,9 @@ local function Apply()
     local strip = _G.EllesmereUIDMIconStrip
     if not strip then return end
 
-    local settings = DamageMetersSettings()
     local icons = { strip:GetChildren() }
     for i = 1, #icons do
-        ApplyToIcon(icons[i], settings)
+        ApplyToIcon(icons[i])
     end
 end
 
@@ -123,9 +126,36 @@ function feature:Refresh()
     Apply()
 end
 
+function feature:Reset()
+    DB().enabled = ns.defaults.iconHistoryBorder.enabled
+    self:Refresh()
+end
+
+function feature:BuildOptions(parent, yOffset)
+    local W = EllesmereUI.Widgets
+    local y, h = yOffset
+    parent._showRowDivider = true
+
+    _, h = W:SectionHeader(parent, "DAMAGE METER ICON HISTORY", y)
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        {
+            type = "toggle",
+            text = "Enable Pixel Border",
+            tooltip = "Add EllesmereUI's Pixels border to Damage Meter Icon History spell icons.",
+            getValue = function() return DB().enabled end,
+            setValue = function(value)
+                DB().enabled = value and true or false
+                feature:Refresh()
+            end,
+        },
+        { type = "label", text = "Requires EllesmereUI Damage Meter Icon History." })
+    y = y - h
+    return math.abs(y)
+end
+
 local loader = CreateFrame("Frame")
 loader:RegisterEvent("ADDON_LOADED")
 loader:SetScript("OnEvent", function(_, event, addonName)
     feature:HandleEvent(event, addonName)
 end)
-

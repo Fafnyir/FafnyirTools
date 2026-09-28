@@ -30,6 +30,9 @@ ns.defaults = {
     flyoutFix = {
         enabled = true,
     },
+    iconHistoryBorder = {
+        enabled = true,
+    },
     focusHeader = {
         enabled = true,
         initialized = false,

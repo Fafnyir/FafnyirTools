@@ -12,8 +12,8 @@ v1.1.5 changes
 - Reworked Retail Flyout Fix to preserve Blizzard's native button geometry and
   background while fitting only EllesmereUI's selected decorative border.
 - Prevented hidden pooled flyout buttons from reappearing in shorter menus.
-- Added Damage Meter Icon History support for the existing Custom Icon Border
-  setting, including the new Pixels and Pixels Textured styles.
+- Added a persistent FafnyirTools option for EllesmereUI's Pixels border on
+  Damage Meter Icon History spell icons; enabled by default under QoL.
 - Hidden the Forever Volumetric Fog control because Blizzard now overrides
   addon changes to that setting.
 - Stopped reapplying the unsupported volumeFog console setting.

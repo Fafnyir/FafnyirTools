@@ -17,6 +17,7 @@ local function OrderedFeatures()
         ns.modules.Resting,
         ns.modules.RightClickSelfCast,
         ns.modules.FlyoutButtonMatch,
+        ns.modules.IconHistoryBorder,
         ns.modules.XPBar,
         ns.modules.Inventory,
         ns.modules.DeviceLayout,

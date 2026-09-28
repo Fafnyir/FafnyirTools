@@ -42,6 +42,7 @@ def check(baseline=False):
         'Modules/Resting.lua': ('Resting', 'Unit Frames'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'Action Bars'),
         'Modules/FlyoutButtonMatch.lua': ('FlyoutButtonMatch', 'Action Bars'),
+        'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'QoL'),
         'Modules/FocusHeader.lua': ('FocusHeader', 'Unit Frames'),
         'Modules/UnitFrameNames.lua': ('UnitFrameNames', 'Unit Frames'),
         'Modules/DeviceLayout.lua': ('DeviceLayout', 'Layouts'),

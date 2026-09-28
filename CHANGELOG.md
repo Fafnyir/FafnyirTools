@@ -22,9 +22,9 @@
   Tracked native texture and border presentation is restored when inactive.
 - Prevented inactive pooled flyout buttons from being shown again when a
   shorter flyout reuses children from a previously longer menu.
-- Extended EllesmereUI Damage Meter Custom Icon Border styling to Icon History.
-  Icon History now follows the selected style, size, offsets and color,
-  including the new Pixels and Pixels Textured border styles.
+- Added an **Enable Pixel Border** option under FafnyirTools QoL for EllesmereUI
+  Damage Meter Icon History. It is enabled by default, persists independently,
+  and uses EllesmereUI's native Pixels border renderer.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

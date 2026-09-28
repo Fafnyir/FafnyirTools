@@ -18,6 +18,7 @@ local MAX_ENTRIES = 2000
 local SCHEMA = {
     foreverFog = { enabled = true },
     flyoutFix = true,
+    iconHistoryBorder = true,
     focusHeader = { enabled = true },
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,

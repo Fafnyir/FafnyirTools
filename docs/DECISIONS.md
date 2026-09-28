@@ -2,10 +2,11 @@
 
 ## Damage Meter Icon History border
 
-2026-09-28: extend EllesmereUI's existing Damage Meter **Custom Icon Border**
-to Icon History rather than adding a duplicate FafnyirTools control. Icon
-History follows the selected style, size, offsets and color, including Pixels
-and Pixels Textured. The compatibility layer owns no saved setting.
+2026-09-28: add a dedicated persistent **Enable Pixel Border** toggle under
+FafnyirTools QoL for EllesmereUI Damage Meter Icon History. Enable it by default
+and use EllesmereUI's native Pixels border style. This supersedes the first
+inheritance-only trial, which showed no border when the separate Damage Meter
+Custom Icon Border setting was disabled and exposed no FafnyirTools option.
 
 ## EllesmereUI-owned features retired
 
