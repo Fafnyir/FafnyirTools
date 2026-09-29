@@ -8,6 +8,7 @@ local feature = {
 ns:RegisterFeature(feature.key, feature)
 
 local hooked = false
+local hookedStrip
 
 local function DamageMetersNamespace()
     return EllesmereUI
@@ -89,13 +90,36 @@ local function Apply()
     local strip = _G.EllesmereUIDMIconStrip
     if not strip then return end
 
+    if hookedStrip ~= strip and strip.HookScript then
+        hookedStrip = strip
+        strip:HookScript("OnShow", function()
+            if C_Timer and C_Timer.After then C_Timer.After(0, Apply) end
+        end)
+    end
+
     local icons = { strip:GetChildren() }
     for i = 1, #icons do
         ApplyToIcon(icons[i])
     end
 end
 
-local function InstallHooks()
+local InstallHooks
+
+local function QueueStartupRefresh()
+    if not C_Timer or not C_Timer.After then
+        InstallHooks()
+        Apply()
+        return
+    end
+    for _, delay in ipairs({ 0, 0.2, 0.5, 1 }) do
+        C_Timer.After(delay, function()
+            InstallHooks()
+            Apply()
+        end)
+    end
+end
+
+InstallHooks = function()
     if hooked then return true end
     local dm = DamageMetersNamespace()
     if not dm then return false end
@@ -113,15 +137,14 @@ local function InstallHooks()
 end
 
 function feature:Initialize()
-    InstallHooks()
+    QueueStartupRefresh()
 end
 
 function feature:HandleEvent(event, addonName)
     if event == "PLAYER_ENTERING_WORLD" then
-        InstallHooks()
-        Apply()
+        QueueStartupRefresh()
     elseif event == "ADDON_LOADED" and addonName == "EllesmereUIDamageMeters" then
-        InstallHooks()
+        QueueStartupRefresh()
     end
 end
 

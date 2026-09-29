@@ -26,6 +26,8 @@
   EllesmereUI Damage Meter Icon History. The adjacent Border Style dropdown is
   built from EllesmereUI's live border registry, so all current and future
   registered styles are available. Pixels remains the initial selected style.
+- Fixed saved Icon History borders not appearing after reload by synchronizing
+  with EllesmereUI's delayed icon-pool creation and strip show cycle.
 - Hidden the Forever-only Volumetric Fog option because Blizzard now restores
   the client setting immediately after addons change it.
 - Stopped applying or repeatedly reapplying the unsupported `volumeFog` console

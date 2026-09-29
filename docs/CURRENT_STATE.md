@@ -36,7 +36,9 @@ Damage Meter Icon History now has a default-off FafnyirTools **Enable Icon
 Border** option under QoL. Its Border Style dropdown reads EllesmereUI's live
 border registry, including SharedMedia additions, and Pixels is the initial
 selection. Both settings persist in FafnyirTools and the renderer preserves
-hidden-slot visibility.
+hidden-slot visibility. Startup retries and a strip-show hook apply saved border
+settings after EllesmereUI's delayed Icon History pool creation, avoiding the
+former need to toggle the option off and back on after reload.
 
 ## v1.1.4 confirmed baseline
 

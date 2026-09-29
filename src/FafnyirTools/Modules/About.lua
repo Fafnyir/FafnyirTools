@@ -24,6 +24,7 @@ local CHANGELOG = {
         "Reworked Retail flyouts to preserve native geometry while fitting EllesmereUI borders.",
         "Prevented stale pooled flyout buttons from reappearing in shorter menus.",
         "Added optional EllesmereUI border styles for Damage Meter Icon History.",
+        "Fixed saved Icon History borders not appearing automatically after reload.",
         "Hidden the Volumetric Fog control after Blizzard made the setting non-persistent.",
         "Stopped reapplying the unsupported volumeFog console setting.",
     }},

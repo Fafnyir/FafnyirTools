@@ -5,7 +5,7 @@ from lupa.lua51 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
-ns={};SlashCmdList={};hooks={};created={};rows={}
+ns={};SlashCmdList={};hooks={};created={};rows={};timers={}
 function GetBuildInfo() return '', '', '', 120100 end
 function CreateFrame()
   local f={shown=true,level=2,scripts={}}
@@ -23,10 +23,11 @@ function CreateFrame()
   return f
 end
 function hooksecurefunc(t,k,fn) hooks[k]=fn end
+C_Timer={After=function(_,fn) timers[#timers+1]=fn end}
 icon1=CreateFrame();icon2=CreateFrame();icon2.shown=false
 strip={}
 function strip:GetChildren() return icon1,icon2 end
-EllesmereUIDMIconStrip=strip
+function strip:HookScript(k,fn) self[k]=fn end
 EllesmereUI={Widgets={},_ModuleNS={EllesmereUIDamageMeters={
   ApplySpellHistory=function() end,ApplyIconBorder=function() end}}}
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
@@ -50,8 +51,10 @@ lua.execute((ROOT / "Modules/IconHistoryBorder.lua").read_text(), "FafnyirTools"
 lua.execute(r'''
 local f=ns.modules.IconHistoryBorder
 f:Initialize()
+assert(#timers==4 and EllesmereUIDMIconStrip==nil)
+EllesmereUIDMIconStrip=strip
+for _,fn in ipairs(timers) do fn() end
 assert(hooks.ApplySpellHistory and hooks.ApplyIconBorder)
-hooks.ApplySpellHistory()
 assert(icon1._fafnyirHistoryBorder==nil)
 f:BuildOptions({},0)
 assert(rows[1].text=='Enable Icon Border' and rows[1].getValue()==false)
@@ -61,6 +64,7 @@ rows[1].setValue(true)
 assert(icon1._fafnyirHistoryBorder.applied.texture=='pixels')
 assert(icon1._fafnyirHistoryBorder.shown==true)
 assert(icon2._fafnyirHistoryBorder.shown==false)
+assert(strip.OnShow)
 rows[2].setValue('blizz')
 assert(icon1._fafnyirHistoryBorder.applied.texture=='blizz')
 f:Reset()

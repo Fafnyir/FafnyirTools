@@ -14,6 +14,7 @@ v1.1.5 changes
 - Prevented hidden pooled flyout buttons from reappearing in shorter menus.
 - Added a persistent, default-off Icon History border toggle under QoL with a
   dropdown containing EllesmereUI's complete live border-style list.
+- Fixed enabled Icon History borders requiring an off/on toggle after reload.
 - Hidden the Forever Volumetric Fog control because Blizzard now overrides
   addon changes to that setting.
 - Stopped reapplying the unsupported volumeFog console setting.
