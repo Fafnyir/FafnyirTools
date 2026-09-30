@@ -1,4 +1,4 @@
-"""Forever main, Party, and Raid names share first/last/whole-name modes safely."""
+"""Forever main-frame names use first/last/whole modes without leaking elsewhere."""
 from pathlib import Path
 from lupa.lua51 import LuaRuntime
 
@@ -29,7 +29,8 @@ assert(rows[1].text=='Character Name Display')
 assert(rows[1].getValue()=='whole')
 rows[1].setValue('first');assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas')
 assert(EllesmereUI.WithSurname('Mary Jane Proudmoore','Proudmoore')=='Mary Jane')
-callerStack='EllesmereUIRaidFrames';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas')
+callerStack='EllesmereUIRaidFrames';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
+callerStack='EllesmereUIUnitFrames'
 rows[1].setValue('last');assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Menethil')
 callerStack='EllesmereUINameplates';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
 callerStack='SomeOtherAddon';assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
@@ -42,6 +43,6 @@ local count=#rows;ns.IS_FOREVER=false
 assert(f:BuildOptions({},0)==0 and #rows==count)
 ns:GetDatabase().unitFrameNames.mode='last'
 assert(EllesmereUI.WithSurname('Arthas','Menethil')=='Arthas Menethil')
-assert(mainRefreshes>=4 and raidRefreshes>=4)
+assert(mainRefreshes>=4 and raidRefreshes==0)
 ''')
-print("PASS Forever main/Party/Raid name modes, Nameplate exclusion, compound names, secret fallback, refresh, reset, and Retail gate")
+print("PASS Forever main-frame name modes, Party/Raid/Nameplate exclusion, compound names, secret fallback, refresh, reset, and Retail gate")

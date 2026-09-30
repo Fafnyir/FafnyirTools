@@ -3,6 +3,8 @@ Fafnyir Tools for EllesmereUI v1.1.5 — Cleanup
 v1.1.5 changes
 
 - Removed Blizzard Bar Art and Unit Frame Sources; EllesmereUI now provides both.
+- Removed Party and Raid support from FafnyirTools name display modes because
+  EllesmereUI now provides those controls; main unit frames remain supported.
 - Left existing legacy saved keys untouched during ordinary upgrades.
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Removed FafnyirTools XP Bar border controls; EllesmereUI now owns this setting.

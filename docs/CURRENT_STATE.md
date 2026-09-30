@@ -32,6 +32,9 @@ Blizzard Bar Art and Unit Frame Sources are retired because EllesmereUI now
 provides both capabilities. FafnyirTools no longer loads either module, displays
 their options, exports/imports or resets their settings, or writes their runtime
 state. Existing legacy saved keys remain untouched during ordinary upgrades.
+Party and Raid frame handling is also removed from FafnyirTools First/Last/Whole
+Name modes because EllesmereUI now provides those controls. The saved mode and
+main-unit-frame behavior remain intact; Party, Raid and Nameplates use EllesmereUI.
 Damage Meter Icon History now has a default-off FafnyirTools **Enable Icon
 Border** option under QoL. Its Border Style dropdown reads EllesmereUI's live
 border registry, including SharedMedia additions, and Pixels is the initial
@@ -66,11 +69,12 @@ It changes only the full Focus Frame; Focus Target has no reputation strip.
 ## Forever unit-frame name display
 
 The Unit Frames page now offers First Name, Last Name, and Whole Name for WoW
-Forever characters rendered by EllesmereUI main, Party, and Raid frames. Whole
-Name preserves the existing behavior and is the upgrade-safe default. Configured
+Forever characters rendered by EllesmereUI main unit frames. Whole Name preserves
+the existing behavior and is the upgrade-safe default. Party, Raid, configured
 nicknames, Nameplates, NPC names, secret names, and Retail are unchanged. The
 shared EllesmereUI surname helper is caller-gated to prevent the setting from
-leaking onto Nameplates. Changes repaint existing frames without a reload.
+leaking onto EllesmereUI-owned surfaces. Changes repaint existing main frames
+without a reload.
 
 ## Inventory character-cache management
 

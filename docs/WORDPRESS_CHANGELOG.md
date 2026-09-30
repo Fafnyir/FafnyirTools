@@ -9,6 +9,7 @@ Fafnyir Tools is a collection of focused enhancements for EllesmereUI. It adds q
 ## v1.1.5 — Compatibility Cleanup
 
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
+- Removed Party and Raid handling from FafnyirTools name display modes after EllesmereUI added native controls for those frames. Main unit-frame name modes remain available.
 - Removed the duplicate XP Bar border controls after EllesmereUI added native support. Existing legacy settings remain untouched for compatibility.
 - Removed the duplicate three-zone XP text override after EllesmereUI added native support. Existing legacy settings remain untouched for compatibility.
 - Fixed XP layering so current XP appears on top, Rested XP appears second, and completed Quest XP remains behind both.

@@ -16,6 +16,7 @@ local CHANGELOG = {
         "Cleanup release for WoW Forever and EllesmereUI compatibility.",
         "Removed Blizzard Bar Art controls now provided by EllesmereUI.",
         "Removed Unit Frame Sources controls now provided by EllesmereUI.",
+        "Removed Party and Raid handling from name display options now provided by EllesmereUI.",
         "Added FafnyirMedia as a required dependency.",
         "Removed XP Bar border controls now provided by EllesmereUI.",
         "Removed XP Bar text overrides now provided by EllesmereUI.",

@@ -5,6 +5,9 @@
 - Removed Blizzard Bar Art options and runtime handling now provided by EllesmereUI.
 - Removed Unit Frame Sources options and runtime handling now provided by EllesmereUI.
   Legacy saved keys remain untouched during ordinary upgrades.
+- Removed Party and Raid frame handling from FafnyirTools First/Last/Whole Name
+  modes now that EllesmereUI owns those frames' name controls. The option remains
+  available for EllesmereUI main unit frames and keeps existing saved choices.
 - Added FafnyirMedia as a required dependency alongside EllesmereUI.
 - Removed the XP Bar border controls after EllesmereUI added native support.
   Existing legacy FafnyirTools border keys are left untouched but are no longer

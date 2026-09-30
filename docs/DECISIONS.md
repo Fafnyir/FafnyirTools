@@ -1,5 +1,12 @@
 # Reconciled decisions
 
+## Party and Raid name controls retired
+
+2026-09-30: remove Party and Raid frame support from FafnyirTools First Name /
+Last Name / Whole Name modes because EllesmereUI now provides those controls.
+Keep the existing saved mode and main-unit-frame behavior. Party, Raid and
+Nameplates must remain outside the FafnyirTools formatter.
+
 ## Damage Meter Icon History border
 
 2026-09-28: add a dedicated persistent **Enable Icon Border** toggle under

@@ -3,7 +3,7 @@ local ADDON_NAME, ns = ...
 local feature = {
     key = "UnitFrameNames",
     page = "Unit Frames",
-    searchTerms = { "first name", "last name", "whole name", "surname", "party names", "raid names" },
+    searchTerms = { "first name", "last name", "whole name", "surname", "main frame names" },
 }
 ns:RegisterFeature(feature.key, feature)
 
@@ -26,14 +26,13 @@ end
 
 local function CalledFromSupportedFrames()
     -- WithSurname is shared by Unit Frames, Raid Frames, and Nameplates. Keep
-    -- this preference scoped to the two requested frame modules. debugstack is
+    -- this preference scoped to the main Unit Frames module. debugstack is
     -- Blizzard's supported caller-inspection helper; fail closed if unavailable
     -- so a client change cannot leak the setting onto another UI surface.
     if type(debugstack) ~= "function" then return false end
     local stack = debugstack(2, 8, 0)
     if type(stack) ~= "string" then return false end
     return stack:find("EllesmereUIUnitFrames", 1, true) ~= nil
-        or stack:find("EllesmereUIRaidFrames", 1, true) ~= nil
 end
 
 local function FormatForeverName(name, surname, fallback)
@@ -63,12 +62,6 @@ end
 local function RefreshNames()
     local refreshMain = _G._EUF_RefreshUnitNames
     if type(refreshMain) == "function" then refreshMain() end
-
-    local raid = EllesmereUI and EllesmereUI._ModuleNS
-        and EllesmereUI._ModuleNS.EllesmereUIRaidFrames
-    if raid and type(raid.RefreshAllNames) == "function" then
-        raid.RefreshAllNames()
-    end
 end
 
 local function Install()
@@ -117,7 +110,7 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "dropdown",
             text = "Character Name Display",
-            tooltip = "Choose whether EllesmereUI main, Party, and Raid frames show a Forever character's first name, surname, or whole name. Nameplates, NPC names, and configured nicknames are unchanged.",
+            tooltip = "Choose whether EllesmereUI main unit frames show a Forever character's first name, surname, or whole name. Party, Raid, Nameplates, NPC names, and configured nicknames are unchanged.",
             values = MODES,
             order = ORDER,
             getValue = function() return DB().mode end,
