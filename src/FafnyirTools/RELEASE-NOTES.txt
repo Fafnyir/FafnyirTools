@@ -14,6 +14,9 @@ v1.1.5 changes
 - Reworked Retail Flyout Fix to preserve Blizzard's native button geometry and
   background while fitting only EllesmereUI's selected decorative border.
 - Prevented hidden pooled flyout buttons from reappearing in shorter menus.
+- Removed unnecessary ACTIONBAR_SLOT_CHANGED and UPDATE_BINDINGS refreshes from
+  Right-Click Self Cast, preventing repeated 180-button scans during action and
+  modifier-state churn while retaining dynamic paging through secure attributes.
 - Added a persistent, default-off Icon History border toggle under QoL with a
   dropdown containing EllesmereUI's complete live border-style list.
 - Fixed enabled Icon History borders requiring an off/on toggle after reload.

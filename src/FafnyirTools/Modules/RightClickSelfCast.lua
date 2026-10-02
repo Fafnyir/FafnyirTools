@@ -117,12 +117,6 @@ function feature:HandleEvent(event)
         if refreshPending then
             self:Refresh()
         end
-    elseif event == "ACTIONBAR_SLOT_CHANGED"
-        or event == "UPDATE_BINDINGS"
-    then
-        C_Timer.After(0, function()
-            feature:Refresh()
-        end)
     elseif event == "PLAYER_ENTERING_WORLD" then
         self:Refresh()
     end

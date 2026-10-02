@@ -28,6 +28,12 @@ selected decorative border to each native flyout button, preserves the native
 flyout background, and restores tracked texture and border state when inactive.
 It skips hidden pooled buttons so styling cannot revive stale spells left over
 from a previously longer flyout menu.
+Right-Click Self Cast no longer subscribes to `ACTIONBAR_SLOT_CHANGED` or
+`UPDATE_BINDINGS`. Those events were unnecessary because the secure right-click
+action follows each button's live `action` attribute, while the old handlers
+could schedule repeated full 180-button refreshes during action/modifier churn.
+Initialization, world entry, explicit option changes and post-combat deferral
+remain the supported refresh paths.
 Blizzard Bar Art and Unit Frame Sources are retired because EllesmereUI now
 provides both capabilities. FafnyirTools no longer loads either module, displays
 their options, exports/imports or resets their settings, or writes their runtime

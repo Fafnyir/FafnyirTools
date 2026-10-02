@@ -14,6 +14,7 @@ Fafnyir Tools is a collection of focused enhancements for EllesmereUI. It adds q
 - Removed the duplicate three-zone XP text override after EllesmereUI added native support. Existing legacy settings remain untouched for compatibility.
 - Fixed XP layering so current XP appears on top, Rested XP appears second, and completed Quest XP remains behind both.
 - Limited Flyout Fix to Retail. On WoW Forever the option is hidden and EllesmereUI handles flyouts natively.
+- Removed unnecessary action-slot and binding event refreshes from Right-Click Self Cast, preventing repeated full-button scans during high-frequency action or modifier-state updates.
 - Hid the WoW Forever Volumetric Fog option after Blizzard made the underlying `volumeFog` setting non-persistent.
 - Stopped applying or repeatedly reapplying the unsupported fog console setting.
 - Preserved the legacy saved preference and export structure so existing profiles remain compatible.

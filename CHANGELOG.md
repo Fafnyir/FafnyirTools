@@ -25,6 +25,11 @@
   Tracked native texture and border presentation is restored when inactive.
 - Prevented inactive pooled flyout buttons from being shown again when a
   shorter flyout reuses children from a previously longer menu.
+- Removed unnecessary `ACTIONBAR_SLOT_CHANGED` and `UPDATE_BINDINGS` refreshes
+  from Right-Click Self Cast. The former can fire at high frequency from
+  assisted-combat and conditional-action churn, and each event previously
+  scheduled another scan of up to 180 buttons. Secure `type2="action"`
+  attributes already follow paging and slot changes without those rewrites.
 - Added a default-off **Enable Icon Border** option under FafnyirTools QoL for
   EllesmereUI Damage Meter Icon History. The adjacent Border Style dropdown is
   built from EllesmereUI's live border registry, so all current and future

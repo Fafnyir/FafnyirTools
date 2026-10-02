@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## Right-click self-cast event ownership
+
+2026-10-02: remove FafnyirTools subscriptions to `ACTIONBAR_SLOT_CHANGED` and
+`UPDATE_BINDINGS`. The secure `type2="action"`, `action2=nil` setup follows the
+button's current action without rewrites. The former event path could enqueue
+one 180-button refresh per high-frequency action-slot notification and was
+reported to cause severe frame drops while modifier keys were held.
+
 ## Party and Raid name controls retired
 
 2026-09-30: remove Party and Raid frame support from FafnyirTools First Name /
