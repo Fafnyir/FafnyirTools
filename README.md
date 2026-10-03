@@ -23,6 +23,18 @@ See [Forever compatibility](docs/FOREVER_COMPAT.md).
 
 ## Development
 
+### GitHub releases
+
+The private repository includes a manually triggered **Build GitHub Release**
+workflow. In GitHub, open **Actions**, select that workflow, and choose **Run
+workflow** on the commit or branch to release. Enter the exact version from
+`FafnyirTools.toc` and choose Draft, Prerelease, or Final. Draft is the default.
+
+The workflow runs the complete offline test suite, packages only the canonical
+`src/FafnyirTools` source, verifies the ZIP, creates `release/<version>`, and
+uploads both the revision-stamped ZIP and its build manifest. It refuses to
+reuse an existing version tag. In-game testing remains a manual release gate.
+
 The existing task is now pinned as **FafnyirTools — Main Development** (ID `01a04568-9348-7180-8adf-921ebcbdd3b7`). Its content is retained; other tasks were not renamed or archived.
 
 Open/add **this folder** as a project in Codex. There are no saved app projects at consolidation time; creating this repository does not automatically add an app project or move existing tasks. In any existing task, explicitly point it at this path and ask it to read AGENTS.md before edits. That file applies when the agent works in this repository; it is not global memory for unrelated chats.

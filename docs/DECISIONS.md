@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## GitHub release automation
+
+2026-10-03: releases may be built through the private repository's manually
+triggered GitHub Actions workflow. The operator must confirm the TOC version and
+choose Draft, Prerelease, or Final; Draft is the safe default. The workflow
+reuses `tools/package.py`, creates `release/<version>`, uploads the ZIP and build
+manifest, and refuses to overwrite an existing release tag. Offline automation
+does not replace in-game validation.
+
 ## Right-click self-cast event ownership
 
 2026-10-02: remove FafnyirTools subscriptions to `ACTIONBAR_SLOT_CHANGED` and

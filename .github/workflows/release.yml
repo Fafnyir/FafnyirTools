@@ -1,0 +1,101 @@
+name: Build GitHub Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_version:
+        description: "Version in FafnyirTools.toc (for example: v1.1.5)"
+        required: true
+        type: string
+      release_type:
+        description: "Release visibility"
+        required: true
+        default: draft
+        type: choice
+        options:
+          - draft
+          - prerelease
+          - final
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fafnyirtools-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Validate, package, and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out selected revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install test dependencies
+        run: python -m pip install --requirement requirements-dev.txt
+
+      - name: Confirm addon version
+        id: version
+        env:
+          CONFIRMED_VERSION: ${{ inputs.confirm_version }}
+        run: |
+          version="$(sed -n 's/^## Version: //p' src/FafnyirTools/FafnyirTools.toc)"
+          if [ -z "$version" ]; then
+            echo "Unable to read the addon version from FafnyirTools.toc." >&2
+            exit 1
+          fi
+          if [ "$version" != "$CONFIRMED_VERSION" ]; then
+            echo "Requested version $CONFIRMED_VERSION does not match TOC version $version." >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=release/$version" >> "$GITHUB_OUTPUT"
+
+      - name: Reject an existing release tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "GitHub Release $RELEASE_TAG already exists." >&2
+            exit 1
+          fi
+          if git rev-parse --verify --quiet "refs/tags/$RELEASE_TAG" >/dev/null; then
+            echo "Git tag $RELEASE_TAG already exists." >&2
+            exit 1
+          fi
+
+      - name: Validate and package
+        run: python tools/package.py
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+          ADDON_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          extra_flag=""
+          if [ "$RELEASE_TYPE" = "draft" ]; then
+            extra_flag="--draft"
+          elif [ "$RELEASE_TYPE" = "prerelease" ]; then
+            extra_flag="--prerelease"
+          fi
+          gh release create "$RELEASE_TAG" \
+            dist/*.zip \
+            dist/*.build.json \
+            --target "$GITHUB_SHA" \
+            --title "Fafnyir Tools $ADDON_VERSION" \
+            --notes-file src/FafnyirTools/RELEASE-NOTES.txt \
+            $extra_flag
+
