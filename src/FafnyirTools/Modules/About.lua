@@ -270,8 +270,7 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:DualRow(parent, y,
         {
             type="button",
-            text="Copy a privacy-safe report for support requests.",
-            buttonText="Copy Diagnostics",
+            text="Copy Diagnostics",
             onClick=function() feature:ShowDiagnostics() end,
         },
         { type="label", text="No character names, account details, or SavedVariables are included." })

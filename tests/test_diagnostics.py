@@ -72,5 +72,7 @@ lua.execute(
 source = ABOUT.read_text()
 for forbidden in ("UnitName(", "GetRealmName(", "BattleTag", "FafnyirToolsDB"):
     assert forbidden not in source, forbidden
+assert 'type="button",\n            text="Copy Diagnostics"' in source
+assert 'buttonText="Copy Diagnostics"' not in source
 
 print("PASS privacy-safe support diagnostics, dependency versions, feature state, and copy popup")
