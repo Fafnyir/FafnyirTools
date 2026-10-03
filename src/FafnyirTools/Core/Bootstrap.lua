@@ -23,6 +23,7 @@ function ns:PrintForeverSavedVariablesWarning()
 end
 
 ns.defaults = {
+    sharedArtwork = { arrow = "native", roles = false },
     foreverFog = {
         enabled = true,
         initialized = false,

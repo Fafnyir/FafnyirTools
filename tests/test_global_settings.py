@@ -23,6 +23,7 @@ db.inventory.characters={['Tester-Realm']={money=999,items={123}}}
 db.inventory.tooltips=false
 db.deviceLayout.presetIndex=7
 db.futureSetting={keep=true}
+db.sharedArtwork={arrow='background:- Arrow Glow',roles=true,unknown='keep'}
 
 local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
@@ -38,9 +39,13 @@ assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
 assert(payload.settings.inventory.tooltips==false and payload.settings.inventory.characters==nil)
 assert(payload.settings.deviceLayout==nil and payload.settings.futureSetting==nil)
+assert(payload.settings.sharedArtwork.arrow=='background:- Arrow Glow' and payload.settings.sharedArtwork.roles)
+assert(payload.settings.sharedArtwork.unknown==nil)
 
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
+db.sharedArtwork.arrow='native';db.sharedArtwork.roles=false
 f:ApplyImport(payload)
+assert(db.sharedArtwork.arrow=='background:- Arrow Glow' and db.sharedArtwork.roles and db.sharedArtwork.unknown=='keep')
 assert(db.xpBar.enabled==true and db.xpBar.startColor.a==.5 and db.inventory.tooltips==false)
 assert(db.xpBar.borderSize==3 and db.xpBar.borderColor.a==.2)
 assert(db.xpBar.customTextEnabled==false)
@@ -52,6 +57,7 @@ assert(db.inventory.characters['Tester-Realm'].money==999)
 assert(db.globalSettingsImportBackup.created==12345)
 assert(db.globalSettingsImportBackup.settings.xpBar.enabled==false)
 assert(f:RestoreBackup() and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
+assert(db.sharedArtwork.arrow=='native' and not db.sharedArtwork.roles)
 
 assert(not f:Decode(''))
 assert(not f:Decode('OTHER:1:T0:'))

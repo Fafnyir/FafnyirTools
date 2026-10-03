@@ -185,6 +185,8 @@ function feature:GetDiagnostics()
         "Device Layout=" .. OnOff(db.deviceLayout and db.deviceLayout.enabled),
         "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled),
         "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled),
+        "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native"),
+        "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles),
         "Inventory=" .. OnOff(db.inventory and db.inventory.enabled),
         "Inventory Tooltips=" .. OnOff(db.inventory and db.inventory.tooltips),
         "Permanent Companion Pet=" .. OnOff(db.permanentCompanionPet and db.permanentCompanionPet.enabled),

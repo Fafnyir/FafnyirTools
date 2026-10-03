@@ -2,6 +2,11 @@
 
 ## v1.1.6 — support diagnostics
 
+- Added a SharedMedia Nameplate Target Arrow selector under Unit Frames,
+  including FafnyirMedia Glow artwork and native-style fallback.
+- Added optional FafnyirMedia Tank/Healer/DPS artwork for Party and Raid role
+  icons. Both controls default to EllesmereUI artwork and preserve native
+  visibility, sizing and positioning; settings participate in global transfer.
 - Added **Copy Diagnostics** to the About page.
 - Reports addon, client, interface, dependency, options, SavedVariables
   compatibility and enabled-feature state in a copyable support report.

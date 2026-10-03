@@ -1,5 +1,16 @@
 # Open items — no silent restoration
 
+## SharedMedia arrows and Party/Raid role artwork — in-game verification
+
+- Confirm both new Unit Frames controls fit the options page on Retail/Forever.
+- Enable EUI target arrows, select - Arrow Glow and confirm inward direction,
+  native scale/color/position and updates after target changes and pool reuse.
+- Switch back to native artwork and test missing registered media fallback.
+- Enable FafnyirMedia role artwork in Party/Raid; check Tank/Healer/DPS,
+  native role filters, combat visibility, size and offsets. Disable it and
+  verify native artwork returns. Main unit frames and extra frames stay native.
+- Test reload persistence, global settings transfer and combat taint in game.
+
 ## v1.1.6 diagnostics in-game verification
 
 - Confirm the About-page **Copy Diagnostics** row is aligned and visible.

@@ -1,5 +1,17 @@
 # Reconciled decisions
 
+## SharedMedia arrows and FafnyirMedia role artwork
+
+2026-10-03, current feature task: user authorized a FafnyirTools target-arrow
+selector under Unit Frames and adding FafnyirMedia role artwork. User clarified
+role scope as **Party/Raid only for now**. Preserve native EUI settings and
+artwork by default; apply runtime texture overrides without editing installed
+EllesmereUI or FafnyirMedia. User subsequently reported all five FafnyirMedia images
+registered as SharedMedia backgrounds: `- Arrow Glow`, `- Combat`, `- Tank`,
+`- DPS`, `- Healer`. Consume those registrations directly; also support a
+custom `targetarrow` category for external paired artwork. Combat-indicator
+replacement is outside this request. Keep the current v1.1.6 development version.
+
 ## GitHub release automation
 
 2026-10-03: releases may be built through the private repository's manually

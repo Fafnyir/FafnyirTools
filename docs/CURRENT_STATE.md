@@ -2,6 +2,32 @@
 
 ## v1.1.6 support diagnostics
 
+2026-10-03: Unit Frames now includes a **Nameplate Target Arrow** SharedMedia
+selector and **FafnyirMedia Party / Raid Role Icons** toggle. Both default to
+native EllesmereUI artwork. The selector lists SharedMedia `background` entries,
+including FafnyirMedia's
+`- Arrow Glow`. Party/Raid roles fetch `- Tank`, `- Healer` and `- DPS` from that
+same category, with the existing image paths as a fallback for older media
+versions. Neither dependency is modified. The registered `- Combat` image is
+not applied to combat indicators in this scope.
+Arrows retain EUI visibility, scale, color and position; missing media falls
+back to native artwork without discarding the saved selection. Role artwork
+only replaces already-visible Party/Raid icons after EUI renders them; role
+filters, hide-in-combat, size and placement remain native. Extra frames and
+main unit frames are excluded. Turning either override off restores native
+artwork. Preferences are included in global export/import and diagnostics.
+The installed Retail/Forever sources expose matching integration hooks.
+`tools/check.py` passes all offline suites, including new lifecycle, restoration,
+secret-value, scope and settings-transfer coverage. In-game appearance,
+pool reuse and combat behavior remain unverified.
+
+Other media addons can register `targetarrow` entries through LibSharedMedia:
+a string path supplies a right-pointing image placed at the left of the plate
+and mirrored on the right; a table `{ left = fullPath, right = fullPath }`
+supplies independent images. The selector lists registered entries when the
+page builds; reopen the page to list newly registered artwork. No filesystem
+scanning or automatic discovery of unregistered image files is implied.
+
 The About page now provides **Copy Diagnostics**. It opens EllesmereUI's native
 copy popup with a plain-text report containing FafnyirTools, client,
 EllesmereUI and FafnyirMedia versions; Retail/Forever flavor; interface/build;

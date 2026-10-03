@@ -21,6 +21,7 @@ Modules\FlyoutButtonMatch.lua
 Modules\IconHistoryBorder.lua
 Modules\UnitFrameNames.lua
 Modules\FocusHeader.lua
+Modules\SharedArtwork.lua
 Modules\DeviceLayout.lua
 Modules\XPBar.lua
 Modules\AuraSkins.lua

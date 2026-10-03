@@ -19,6 +19,7 @@ local SCHEMA = {
     foreverFog = { enabled = true },
     flyoutFix = true,
     iconHistoryBorder = true,
+    sharedArtwork = true,
     focusHeader = { enabled = true },
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,
