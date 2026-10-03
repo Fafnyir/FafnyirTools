@@ -338,3 +338,9 @@ remain outside this restoration. See OPEN_ITEMS.md.
 and CurseForge display names as well as uploaded filenames. The former friendly
 display name obscured the correctly named artifact. The repair workflow changes
 only existing release metadata; it does not rebuild or replace ZIPs.
+
+Repair run `37142783967` succeeded on retry after an initial CurseForge HTTP
+500. GitHub title and CurseForge file `9049889` display name now match
+`Fafnyir_Tools_for_EllesmereUI_v1.1.7_e744c79.zip`. Original ZIP bytes and
+release tag remain intact. The complete offline suite, including display-name
+metadata checks, passed before the workflow fix was pushed.
