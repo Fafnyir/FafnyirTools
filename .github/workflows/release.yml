@@ -99,3 +99,58 @@ jobs:
             --title "Fafnyir Tools $ADDON_VERSION" \
             --notes-file src/FafnyirTools/RELEASE-NOTES.txt \
             $extra_flag
+
+      - name: Upload to CurseForge
+        if: ${{ inputs.release_type != 'draft' }}
+        env:
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
+          ADDON_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          if [ -z "$CURSEFORGE_API_TOKEN" ]; then
+            echo "CURSEFORGE_API_TOKEN is not configured." >&2
+            exit 1
+          fi
+
+          curseforge_release_type="release"
+          if [ "$RELEASE_TYPE" = "prerelease" ]; then
+            curseforge_release_type="beta"
+          fi
+          export CURSEFORGE_RELEASE_TYPE="$curseforge_release_type"
+
+          artifact="$(find dist -maxdepth 1 -type f -name '*.zip' -print -quit)"
+          if [ -z "$artifact" ]; then
+            echo "Packaged ZIP was not found." >&2
+            exit 1
+          fi
+
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          metadata = {
+              "changelog": Path("src/FafnyirTools/RELEASE-NOTES.txt").read_text(),
+              "changelogType": "text",
+              "displayName": f"Fafnyir Tools {os.environ['ADDON_VERSION']}",
+              "gameVersionNames": [
+                  "12.1.5",
+                  "12.1.0",
+                  "12.0.7",
+                  "12.0.5",
+                  "12.0.1",
+                  "1.60.1",
+              ],
+              "releaseType": os.environ["CURSEFORGE_RELEASE_TYPE"],
+          }
+          Path("curseforge-metadata.json").write_text(json.dumps(metadata))
+          PY
+
+          response="$(curl --silent --show-error --fail-with-body \
+            --request POST \
+            --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
+            --form "metadata=<curseforge-metadata.json;type=application/json" \
+            --form "file=@$artifact;type=application/zip" \
+            "https://wow.curseforge.com/api/projects/1640881/upload-file")"
+          echo "$response" | python -c \
+            'import json, sys; result = json.load(sys.stdin); assert result.get("id"), result; print(f"CurseForge file ID: {result[\"id\"]}")'

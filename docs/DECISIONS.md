@@ -9,6 +9,11 @@ reuses `tools/package.py`, creates `release/<version>`, uploads the ZIP and buil
 manifest, and refuses to overwrite an existing release tag. Offline automation
 does not replace in-game validation.
 
+2026-10-03: the same workflow also publishes the verified ZIP to CurseForge
+project `1640881` for Prerelease and Final runs. Prerelease maps to CurseForge
+Beta and Final maps to Release; Draft never uploads to CurseForge. The API token
+is kept only in the `CURSEFORGE_API_TOKEN` GitHub Actions secret.
+
 ## Right-click self-cast event ownership
 
 2026-10-02: remove FafnyirTools subscriptions to `ACTIONBAR_SLOT_CHANGED` and
