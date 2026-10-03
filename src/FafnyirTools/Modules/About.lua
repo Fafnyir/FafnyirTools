@@ -3,15 +3,19 @@ local ADDON_NAME, ns = ...
 local feature = {
     key = "About",
     page = "About",
-    searchTerms = {"about","version","changelog","credits","patreon","support"},
+    searchTerms = {"about","version","diagnostics","debug","copy","changelog","credits","patreon","support"},
 }
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.5"
+local VERSION = "v1.1.6"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.6", lines = {
+        "Added a privacy-safe Copy Diagnostics report to the About page.",
+        "Reports client, dependency, options and enabled-feature state for support requests.",
+    }},
     { version = "v1.1.5", lines = {
         "Cleanup release for WoW Forever and EllesmereUI compatibility.",
         "Removed Blizzard Bar Art controls now provided by EllesmereUI.",
@@ -145,6 +149,90 @@ local CHANGELOG = {
     }},
 }
 
+local function AddOnLoaded(name)
+    if C_AddOns and C_AddOns.IsAddOnLoaded then
+        return C_AddOns.IsAddOnLoaded(name) == true
+    end
+    return IsAddOnLoaded and IsAddOnLoaded(name) == true or false
+end
+
+local function AddOnVersion(name)
+    local value
+    if C_AddOns and C_AddOns.GetAddOnMetadata then
+        value = C_AddOns.GetAddOnMetadata(name, "Version")
+    elseif GetAddOnMetadata then
+        value = GetAddOnMetadata(name, "Version")
+    end
+    if value == nil or value == "" then
+        return "unknown"
+    end
+    return tostring(value)
+end
+
+local function OnOff(value)
+    return value and "on" or "off"
+end
+
+function feature:GetDiagnostics()
+    local clientVersion, clientBuild, _, interfaceVersion
+    if GetBuildInfo then
+        clientVersion, clientBuild, _, interfaceVersion = GetBuildInfo()
+    end
+
+    local db = ns:GetDatabase()
+    local enabled = {
+        "Aura Skins=" .. OnOff(db.auraSkins and db.auraSkins.enabled),
+        "Device Layout=" .. OnOff(db.deviceLayout and db.deviceLayout.enabled),
+        "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled),
+        "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled),
+        "Inventory=" .. OnOff(db.inventory and db.inventory.enabled),
+        "Inventory Tooltips=" .. OnOff(db.inventory and db.inventory.tooltips),
+        "Permanent Companion Pet=" .. OnOff(db.permanentCompanionPet and db.permanentCompanionPet.enabled),
+        "Quest XP=" .. OnOff(db.xpBar and db.xpBar.questEnabled),
+        "Rested XP=" .. OnOff(db.xpBar and db.xpBar.restedEnabled),
+        "Resting=" .. OnOff(db.resting and db.resting.enabled),
+        "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled),
+        "XP Gradient=" .. OnOff(db.xpBar and db.xpBar.enabled),
+    }
+    if not ns.IS_FOREVER then
+        enabled[#enabled + 1] = "Flyout Fix=" .. OnOff(db.flyoutFix and db.flyoutFix.enabled)
+    end
+
+    local euiOptionsReady = EllesmereUI
+        and type(EllesmereUI.RegisterModule) == "function"
+
+    return table.concat({
+        "Fafnyir Tools Diagnostics",
+        "Addon: " .. VERSION,
+        "Flavor: " .. (ns.IS_FOREVER and "Forever" or "Retail"),
+        "Client: " .. tostring(clientVersion or "unknown"),
+        "Build: " .. tostring(clientBuild or "unknown"),
+        "Interface: " .. tostring(interfaceVersion or "unknown"),
+        "EllesmereUI: " .. AddOnVersion("EllesmereUI") .. " (" .. (AddOnLoaded("EllesmereUI") and "loaded" or "not loaded") .. ")",
+        "FafnyirMedia: " .. AddOnVersion("FafnyirMedia") .. " (" .. (AddOnLoaded("FafnyirMedia") and "loaded" or "not loaded") .. ")",
+        "EllesmereUI options API: " .. (euiOptionsReady and "ready" or "missing"),
+        "FafnyirTools options: " .. (ns.state.optionsRegistered and "registered" or "not registered"),
+        "SavedVariables: " .. (ns:ForeverSavedVariablesUnsafe() and "unsafe (Forever client bug)" or "reliable"),
+        "Features: " .. table.concat(enabled, "; "),
+    }, "\n")
+end
+
+function feature:ShowDiagnostics()
+    local report = self:GetDiagnostics()
+    if EllesmereUI and EllesmereUI.ShowCopyPopup then
+        EllesmereUI:ShowCopyPopup(
+            "Fafnyir Tools Diagnostics",
+            "Copy this report when requesting support. It contains no character or account data.",
+            report
+        )
+        return
+    end
+
+    for line in string.gmatch(report, "[^\n]+") do
+        ns:Print(line)
+    end
+end
+
 local function AddText(parent, text, y, size, alpha)
     local fs = EllesmereUI.MakeFont(parent, size or 12, nil, 1, 1, 1, alpha or 1)
     fs:SetPoint("TOPLEFT", parent, "TOPLEFT", 8, y)
@@ -175,6 +263,18 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:DualRow(parent, y,
         { type="label", text=VERSION },
         { type="label", text="" })
+    y = y - h
+
+    _, h = W:SectionHeader(parent, "SUPPORT DIAGNOSTICS", y)
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        {
+            type="button",
+            text="Copy a privacy-safe report for support requests.",
+            buttonText="Copy Diagnostics",
+            onClick=function() feature:ShowDiagnostics() end,
+        },
+        { type="label", text="No character names, account details, or SavedVariables are included." })
     y = y - h
 
     _, h = W:SectionHeader(parent, "CHANGELOG", y)

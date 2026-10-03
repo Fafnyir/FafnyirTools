@@ -1,5 +1,13 @@
 # Reconciled project changelog
 
+## v1.1.6 — support diagnostics
+
+- Added **Copy Diagnostics** to the About page.
+- Reports addon, client, interface, dependency, options, SavedVariables
+  compatibility and enabled-feature state in a copyable support report.
+- Excludes character names, realm, account information and raw SavedVariables.
+- Falls back to chat output if EllesmereUI's copy popup is unavailable.
+
 ## v1.1.5 — cleanup
 
 - Removed Blizzard Bar Art options and runtime handling now provided by EllesmereUI.

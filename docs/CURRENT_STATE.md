@@ -1,4 +1,16 @@
-# Current state — v1.1.5 cleanup in development, 2026-09-26
+# Current state — v1.1.6 diagnostics in development, 2026-10-03
+
+## v1.1.6 support diagnostics
+
+The About page now provides **Copy Diagnostics**. It opens EllesmereUI's native
+copy popup with a plain-text report containing FafnyirTools, client,
+EllesmereUI and FafnyirMedia versions; Retail/Forever flavor; interface/build;
+options-registration and SavedVariables compatibility state; and the enabled
+state of supported FafnyirTools features. The report deliberately excludes
+character, realm, account and raw SavedVariables data. If the copy popup is not
+available, the same report is printed to chat. Offline report, privacy and
+popup-path coverage passes; the options placement and copy interaction require
+in-game confirmation.
 
 ## v1.1.5 cleanup scope
 

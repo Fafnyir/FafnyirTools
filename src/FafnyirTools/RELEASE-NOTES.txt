@@ -1,4 +1,13 @@
-Fafnyir Tools for EllesmereUI v1.1.5 — Cleanup
+Fafnyir Tools for EllesmereUI v1.1.6 — Support Diagnostics
+
+v1.1.6 changes
+
+- Added Copy Diagnostics to the About page.
+- Added a copyable report with addon, client, interface, EllesmereUI,
+  FafnyirMedia, options-registration and enabled-feature information.
+- Excluded character names, realm, account information and raw SavedVariables
+  from the report.
+- Added a chat fallback if EllesmereUI's native copy popup is unavailable.
 
 v1.1.5 changes
 

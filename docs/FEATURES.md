@@ -19,7 +19,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; targeted cached-alt removal and confirmed Reset All Characters; omit redundant Fafnyir Tools tooltip heading | Present foundation |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
 | Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
-| About | Version, history, credits, support link | History and original companion credits restored; measured text wrapping |
+| About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 
 Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
 

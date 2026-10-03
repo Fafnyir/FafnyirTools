@@ -1,5 +1,13 @@
 # Open items — no silent restoration
 
+## v1.1.6 diagnostics in-game verification
+
+- Confirm the About-page **Copy Diagnostics** row is aligned and visible.
+- Confirm the native copy popup selects/copies the complete report on Retail
+  and Forever.
+- Review a copied report to confirm the live client, dependency versions and
+  enabled feature states match the test installation.
+
 ## Forever fog toggle hidden in v1.1.5
 
 - User decision, 2026-09-26: the Forever-only **Volumetric Fog** toggle is
