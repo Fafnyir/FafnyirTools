@@ -1,4 +1,17 @@
-Fafnyir Tools for EllesmereUI v1.1.6 — Support Diagnostics
+Fafnyir Tools for EllesmereUI v1.1.7 — SharedMedia Arrows and Role Icons
+
+v1.1.7 changes
+
+- Added a Nameplate Target Arrow selector under FafnyirTools Unit Frames.
+- Uses SharedMedia arrow backgrounds, including FafnyirMedia's - Arrow Glow.
+- Excludes role and combat images from the target-arrow selector.
+- Added an optional FafnyirMedia Party / Raid Role Icons toggle using the
+  registered Tank, Healer and DPS artwork.
+- Preserves EllesmereUI visibility, size, position and arrow color settings.
+- Defaults to native artwork, restores it when disabled and preserves saved settings.
+- Includes the new preferences in global settings transfer and diagnostics.
+- User confirmed arrows and Party/Raid role icons work in game.
+  Detailed combat/reload scenarios remain separate manual checks.
 
 v1.1.6 changes
 

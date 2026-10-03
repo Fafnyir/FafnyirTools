@@ -1,6 +1,12 @@
-# Current state — v1.1.6 diagnostics in development, 2026-10-03
+# Current state — v1.1.7 release, 2026-10-03
 
-## v1.1.6 support diagnostics
+## v1.1.7 SharedMedia artwork
+
+2026-10-03: user authorized v1.1.7 as a final GitHub/CurseForge release after
+confirming arrows and Party/Raid role icons. Version, About history, changelog
+and release notes are updated together. Offline checks pass; detailed manual
+QA omissions remain listed below.
+
 
 2026-10-03: Unit Frames now includes a **Nameplate Target Arrow** SharedMedia
 selector and **FafnyirMedia Party / Raid Role Icons** toggle. Both default to

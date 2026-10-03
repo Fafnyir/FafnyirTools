@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the v1.1.6 privacy-safe support diagnostics report."""
+"""Verify the v1.1.7 privacy-safe support diagnostics report."""
 from pathlib import Path
 
 from lupa.lua51 import LuaRuntime
@@ -49,7 +49,7 @@ lua.execute(ABOUT.read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(
     r'''
     local report=ns.modules.About:GetDiagnostics()
-    assert(string.find(report,"Addon: v1.1.6",1,true))
+    assert(string.find(report,"Addon: v1.1.7",1,true))
     assert(string.find(report,"Flavor: Retail",1,true))
     assert(string.find(report,"Client: 12.1.5",1,true))
     assert(string.find(report,"Build: 65432",1,true))

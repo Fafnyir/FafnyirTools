@@ -16,6 +16,10 @@ replacement is outside this request. Keep the current v1.1.6 development version
 excluded from target-arrow choices. Filter background names for `arrow`; keep
 dedicated `targetarrow` entries and existing Party/Raid role handling.
 
+2026-10-03 release decision, current task: user explicitly selected
+**Publish v1.1.7 final** because v1.1.6 already exists. Publish through the
+configured GitHub workflow to GitHub and CurseForge.
+
 ## GitHub release automation
 
 2026-10-03: releases may be built through the private repository's manually

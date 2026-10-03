@@ -8,10 +8,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.6"
+local VERSION = "v1.1.7"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.7", lines = {
+        "Added SharedMedia nameplate target arrows under Unit Frames.",
+        "Added optional FafnyirMedia Party and Raid role icons.",
+        "Excluded role and combat artwork from target-arrow choices.",
+    } },
     { version = "v1.1.6", lines = {
         "Added a privacy-safe Copy Diagnostics report to the About page.",
         "Reports client, dependency, options and enabled-feature state for support requests.",
