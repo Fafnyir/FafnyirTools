@@ -96,7 +96,7 @@ jobs:
             dist/*.zip \
             dist/*.build.json \
             --target "$GITHUB_SHA" \
-            --title "Fafnyir Tools $ADDON_VERSION" \
+            --title "Fafnyir_Tools_for_EllesmereUI_${ADDON_VERSION}_${GITHUB_SHA:0:7}.zip" \
             --notes-file src/FafnyirTools/RELEASE-NOTES.txt \
             $extra_flag
 
@@ -124,6 +124,7 @@ jobs:
             exit 1
           fi
           artifact_name="$(basename "$artifact")"
+          export ARTIFACT_NAME="$artifact_name"
 
           python - <<'PY'
           import json
@@ -133,7 +134,7 @@ jobs:
           metadata = {
               "changelog": Path("src/FafnyirTools/RELEASE-NOTES.txt").read_text(),
               "changelogType": "text",
-              "displayName": f"Fafnyir Tools {os.environ['ADDON_VERSION']}",
+              "displayName": os.environ["ARTIFACT_NAME"],
               "gameVersionNames": [
                   "12.1.5",
                   "12.1.0",

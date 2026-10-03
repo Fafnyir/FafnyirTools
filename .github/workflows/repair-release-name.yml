@@ -1,0 +1,63 @@
+name: Repair Release Display Name
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing GitHub release tag
+        required: true
+        type: string
+      curseforge_file_id:
+        description: Existing CurseForge file ID for the same release
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Match published ZIP and repair display names
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          CURSEFORGE_FILE_ID: ${{ inputs.curseforge_file_id }}
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
+        run: |
+          gh release view "$RELEASE_TAG" --json assets > release-assets.json
+          python - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          assets = json.loads(Path("release-assets.json").read_text())["assets"]
+          names = [a["name"] for a in assets if a["name"].endswith(".zip")]
+          assert len(names) == 1, "Expected exactly one published ZIP"
+          name = names[0]
+          match = re.fullmatch(r"Fafnyir_Tools_for_EllesmereUI_(v\d+\.\d+\.\d+)_([0-9a-f]{7})\.zip", name)
+          assert match and os.environ["RELEASE_TAG"] == "release/" + match[1]
+          file_id = int(os.environ["CURSEFORGE_FILE_ID"])
+          assert file_id > 0
+          Path("artifact-name.txt").write_text(name)
+          Path("metadata.json").write_text(json.dumps({"fileID": file_id, "displayName": name}))
+          PY
+          artifact_name="$(cat artifact-name.txt)"
+          gh release edit "$RELEASE_TAG" --title "$artifact_name"
+          curl --silent --show-error --fail-with-body \
+            --request POST \
+            --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
+            --form "metadata=<metadata.json;type=application/json" \
+            "https://wow.curseforge.com/api/projects/1640881/update-file" \
+            --output response.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("response.json").read_text())
+          assert result.get("id"), result
+          print("Updated CurseForge file ID:", result["id"])
+          print("Display name:", Path("artifact-name.txt").read_text())
+          PY

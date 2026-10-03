@@ -332,3 +332,9 @@ No installed WoW files or upstream files were modified; no public release made.
 
 Broader inventory scanners/search, Focus aura styling and discarded experiments
 remain outside this restoration. See OPEN_ITEMS.md.
+
+2026-10-03 filename correction: use the exact packaged ZIP basename
+`Fafnyir_Tools_for_EllesmereUI_(version)_(commit).zip` for GitHub release titles
+and CurseForge display names as well as uploaded filenames. The former friendly
+display name obscured the correctly named artifact. The repair workflow changes
+only existing release metadata; it does not rebuild or replace ZIPs.

@@ -164,3 +164,9 @@ The user requested Pet Frame in the selective Unit Frame list. Use EllesmereUI's
 ## 2026-09-03 — Player aura ownership
 
 The user confirmed that EllesmereUI controls the main Player buff/debuff frames. FafnyirTools Aura Skins must expose and apply Target-only controls and must not style Player aura frames. Preserve old SavedVariables without using them to take ownership back.
+
+2026-10-03 filename correction: use the exact packaged ZIP basename
+`Fafnyir_Tools_for_EllesmereUI_(version)_(commit).zip` for GitHub release titles
+and CurseForge display names as well as uploaded filenames. The former friendly
+display name obscured the correctly named artifact. The repair workflow changes
+only existing release metadata; it does not rebuild or replace ZIPs.

@@ -75,3 +75,9 @@ Install EllesmereUI and FafnyirMedia first, then install a packaged ZIP by repla
 ## History and privacy
 
 All prior tasks remain intact. The local history is a dated reference snapshot, not live synchronization or a literal merge of chats. It contains user/assistant project discussions; do not publish the repository or its history without reviewing it. No remote repository is configured. Media attachments are not comprehensively mirrored.
+
+2026-10-03 filename correction: use the exact packaged ZIP basename
+`Fafnyir_Tools_for_EllesmereUI_(version)_(commit).zip` for GitHub release titles
+and CurseForge display names as well as uploaded filenames. The former friendly
+display name obscured the correctly named artifact. The repair workflow changes
+only existing release metadata; it does not rebuild or replace ZIPs.
