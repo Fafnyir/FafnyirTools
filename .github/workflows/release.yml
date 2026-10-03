@@ -153,4 +153,4 @@ jobs:
             --form "file=@$artifact;type=application/zip" \
             "https://wow.curseforge.com/api/projects/1640881/upload-file")"
           echo "$response" | python -c \
-            'import json, sys; result = json.load(sys.stdin); assert result.get("id"), result; print(f"CurseForge file ID: {result[\"id\"]}")'
+            'import json, sys; result = json.load(sys.stdin); assert result.get("id"), result; print("CurseForge file ID: {}".format(result["id"]))'
