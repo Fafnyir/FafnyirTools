@@ -7,6 +7,13 @@ confirming arrows and Party/Raid role icons. Version, About history, changelog
 and release notes are updated together. Offline checks pass; detailed manual
 QA omissions remain listed below.
 
+Published 2026-10-03: final GitHub release `release/v1.1.7` at `e744c79`,
+with revision-stamped ZIP and build manifest. Workflow run `37142374350`
+passed offline validation, packaging and publishing; CurseForge accepted the
+Release upload as file `9049889`. ZIP SHA-256:
+`d417f01795c9781b203e680947a845b4a6f2d591e3c9bec44d8f45f41dd2246c`.
+CurseForge upload acceptance does not establish moderation/public availability.
+
 
 2026-10-03: Unit Frames now includes a **Nameplate Target Arrow** SharedMedia
 selector and **FafnyirMedia Party / Raid Role Icons** toggle. Both default to
