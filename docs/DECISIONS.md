@@ -12,6 +12,10 @@ registered as SharedMedia backgrounds: `- Arrow Glow`, `- Combat`, `- Tank`,
 custom `targetarrow` category for external paired artwork. Combat-indicator
 replacement is outside this request. Keep the current v1.1.6 development version.
 
+2026-10-03 follow-up: user confirmed arrows work and requested role icons be
+excluded from target-arrow choices. Filter background names for `arrow`; keep
+dedicated `targetarrow` entries and existing Party/Raid role handling.
+
 ## GitHub release automation
 
 2026-10-03: releases may be built through the private repository's manually

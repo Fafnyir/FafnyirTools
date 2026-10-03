@@ -3,7 +3,8 @@
 ## v1.1.6 — support diagnostics
 
 - Added a SharedMedia Nameplate Target Arrow selector under Unit Frames,
-  including FafnyirMedia Glow artwork and native-style fallback.
+  including FafnyirMedia Glow artwork and native-style fallback. Non-arrow
+  backgrounds such as role/combat icons are excluded from the selector.
 - Added optional FafnyirMedia Tank/Healer/DPS artwork for Party and Raid role
   icons. Both controls default to EllesmereUI artwork and preserve native
   visibility, sizing and positioning; settings participate in global transfer.

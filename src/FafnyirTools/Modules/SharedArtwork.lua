@@ -21,10 +21,17 @@ end
 local function LSM()
     return LibStub and LibStub("LibSharedMedia-3.0", true)
 end
+local function IsArrowBackground(key)
+    return key:lower():find("arrow", 1, true) ~= nil
+end
+local function IsArrowSelection(value)
+    return value:sub(1, 11) ~= "background:" or IsArrowBackground(value:sub(12))
+end
 local function ArrowPaths()
     local media = LSM()
     if DB().arrow == "native" or not media then return end
     local selection = DB().arrow
+    if not IsArrowSelection(selection) then return end
     local category, key = CATEGORY, selection
     if selection:sub(1, 11) == "background:" then
         category, key = "background", selection:sub(12)
@@ -135,21 +142,23 @@ function feature:BuildOptions(parent, yOffset)
     -- SharedMedia background entries are full image paths. Preserve their names
     -- in the UI while keeping storage distinct from paired targetarrow entries.
     for _, key in ipairs(media and media:List("background") or {}) do
-        local value = "background:" .. key
-        values[value] = key
-        order[#order + 1] = value
+        if IsArrowBackground(key) then
+            local value = "background:" .. key
+            values[value] = key
+            order[#order + 1] = value
+        end
     end
     for _, key in ipairs(media and media:List(CATEGORY) or {}) do
         if key ~= "native" then values[key] = key; order[#order + 1] = key end
     end
-    if not values[DB().arrow] then
+    if IsArrowSelection(DB().arrow) and not values[DB().arrow] then
         values[DB().arrow] = DB().arrow .. " (unavailable)"
         order[#order + 1] = DB().arrow
     end
     _, h = W:DualRow(parent, y,
         { type = "dropdown", text = "Nameplate Target Arrow", values = values, order = order,
           tooltip = "Choose SharedMedia target-arrow artwork. Enable arrows and adjust their size and color in EllesmereUI Nameplates. Missing media falls back to EllesmereUI.",
-          getValue = function() return DB().arrow end,
+          getValue = function() return IsArrowSelection(DB().arrow) and DB().arrow or "native" end,
           setValue = function(value) DB().arrow = value; feature:Refresh() end },
         { type = "toggle", text = "FafnyirMedia Party / Raid Role Icons",
           tooltip = "Replace visible Party and Raid role icons with FafnyirMedia artwork. EllesmereUI still controls role visibility, size and position.",

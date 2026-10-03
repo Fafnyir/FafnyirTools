@@ -4,7 +4,7 @@
 
 2026-10-03: Unit Frames now includes a **Nameplate Target Arrow** SharedMedia
 selector and **FafnyirMedia Party / Raid Role Icons** toggle. Both default to
-native EllesmereUI artwork. The selector lists SharedMedia `background` entries,
+native EllesmereUI artwork. The selector lists SharedMedia `background` entries whose names contain `arrow`,
 including FafnyirMedia's
 `- Arrow Glow`. Party/Raid roles fetch `- Tank`, `- Healer` and `- DPS` from that
 same category, with the existing image paths as a fallback for older media
@@ -20,6 +20,12 @@ The installed Retail/Forever sources expose matching integration hooks.
 `tools/check.py` passes all offline suites, including new lifecycle, restoration,
 secret-value, scope and settings-transfer coverage. In-game appearance,
 pool reuse and combat behavior remain unverified.
+
+2026-10-03 follow-up: user confirmed arrows work in game with build `8def225`.
+Client/EUI versions and specific scenarios were not supplied. The arrow selector
+now excludes non-arrow backgrounds, including Tank, DPS, Healer and Combat.
+Existing excluded selections are preserved but render native arrows; role
+artwork remains separately available for Party/Raid. Offline checks pass.
 
 Other media addons can register `targetarrow` entries through LibSharedMedia:
 a string path supplies a right-pointing image placed at the left of the plate

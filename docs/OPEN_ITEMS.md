@@ -2,6 +2,9 @@
 
 ## SharedMedia arrows and Party/Raid role artwork — in-game verification
 
+- User confirmed arrows work on 2026-10-03 with `8def225`; detailed client
+  scenarios remain pending. Confirm Tank/DPS/Healer/Combat are absent from
+  the corrected arrow selector.
 - Confirm both new Unit Frames controls fit the options page on Retail/Forever.
 - Enable EUI target arrows, select - Arrow Glow and confirm inward direction,
   native scale/color/position and updates after target changes and pool reuse.

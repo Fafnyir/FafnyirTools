@@ -39,6 +39,7 @@ media:Register('background','- Arrow Glow','Interface\\AddOns\\FafnyirMedia\\Tex
 media:Register('background','- Tank','registered-Tank.tga')
 media:Register('background','- Healer','registered-Healer.tga')
 media:Register('background','- DPS','registered-DPS.tga')
+media:Register('background','- Combat','registered-Combat.tga')
 function issecretvalue(v) return v=='SECRET' end
 plate={leftArrow=texture('left.png'),rightArrow=texture('right.png')}
 enp={plates={nameplate1=plate},RefreshAllSettings=function() end}
@@ -58,6 +59,12 @@ local f=ns.modules.SharedArtwork;local db=ns:GetDatabase().sharedArtwork
 assert(db.arrow=='native' and db.roles==false)
 f:Initialize();assert(plate.leftArrow.path=='left.png' and d.roleIcon.path=='native-role')
 f:BuildOptions({},0);assert(rows[1].values['background:- Arrow Glow']=='- Arrow Glow')
+for _,key in ipairs({'- Tank','- Healer','- DPS','- Combat'}) do
+ assert(rows[1].values['background:'..key]==nil)
+end
+db.arrow='background:- Tank';f:Refresh();f:BuildOptions({},0)
+assert(plate.leftArrow.path=='left.png' and db.arrow=='background:- Tank')
+assert(rows[1].values['background:- Tank']==nil and rows[1].getValue()=='native')
 rows[1].setValue('background:- Arrow Glow');assert(plate.leftArrow.path:find('arrow_glow.tga',1,true))
 assert(plate.leftArrow.coords[1]==0 and plate.rightArrow.coords[1]==1)
 assert(plate.leftArrow.w==11 and plate.leftArrow.color=='native' and plate.leftArrow.shown)
