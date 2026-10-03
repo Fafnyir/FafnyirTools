@@ -39,7 +39,8 @@ Draft releases remain on GitHub only. Prerelease runs upload the same ZIP to
 CurseForge project `1640881` as a Beta, while Final runs upload it as a Release.
 CurseForge authentication is stored in the `CURSEFORGE_API_TOKEN` repository
 secret. The upload declares the Retail and Forever versions supported by the
-TOC; update the workflow list when support changes.
+TOC and explicitly preserves the revision-stamped ZIP filename; update the
+workflow version list when support changes.
 
 The existing task is now pinned as **FafnyirTools — Main Development** (ID `01a04568-9348-7180-8adf-921ebcbdd3b7`). Its content is retained; other tasks were not renamed or archived.
 

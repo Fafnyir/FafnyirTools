@@ -123,6 +123,7 @@ jobs:
             echo "Packaged ZIP was not found." >&2
             exit 1
           fi
+          artifact_name="$(basename "$artifact")"
 
           python - <<'PY'
           import json
@@ -150,7 +151,7 @@ jobs:
             --request POST \
             --header "X-Api-Token: $CURSEFORGE_API_TOKEN" \
             --form "metadata=<curseforge-metadata.json;type=application/json" \
-            --form "file=@$artifact;type=application/zip" \
+            --form "file=@$artifact;filename=$artifact_name;type=application/zip" \
             "https://wow.curseforge.com/api/projects/1640881/upload-file")"
           echo "$response" | python -c \
             'import json, sys; result = json.load(sys.stdin); assert result.get("id"), result; print("CurseForge file ID: {}".format(result["id"]))'
