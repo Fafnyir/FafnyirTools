@@ -27,6 +27,11 @@ now excludes non-arrow backgrounds, including Tank, DPS, Healer and Combat.
 Existing excluded selections are preserved but render native arrows; role
 artwork remains separately available for Party/Raid. Offline checks pass.
 
+2026-10-03 in-game report, current SharedMedia artwork task: user confirmed the
+role-icon toggle works in Party. Raid has explicitly not been verified yet.
+The tested package revision, client/EUI versions and specific role/combat/reload
+scenarios were not supplied; this confirms Party toggle behavior only.
+
 Other media addons can register `targetarrow` entries through LibSharedMedia:
 a string path supplies a right-pointing image placed at the left of the plate
 and mirrored on the right; a table `{ left = fullPath, right = fullPath }`
