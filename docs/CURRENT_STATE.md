@@ -32,6 +32,11 @@ role-icon toggle works in Party. Raid has explicitly not been verified yet.
 The tested package revision, client/EUI versions and specific role/combat/reload
 scenarios were not supplied; this confirms Party toggle behavior only.
 
+2026-10-03 subsequent report, current SharedMedia artwork task: user also
+validated role icons in Raid. Party and Raid role artwork now have user
+in-game confirmation. Tested package revision, client/EUI versions and detailed
+combat/reload scenarios remain unspecified; no broader regression claim is made.
+
 Other media addons can register `targetarrow` entries through LibSharedMedia:
 a string path supplies a right-pointing image placed at the left of the plate
 and mirrored on the right; a table `{ left = fullPath, right = fullPath }`

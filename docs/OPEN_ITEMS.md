@@ -9,9 +9,9 @@
 - Enable EUI target arrows, select - Arrow Glow and confirm inward direction,
   native scale/color/position and updates after target changes and pool reuse.
 - Switch back to native artwork and test missing registered media fallback.
-- User confirmed the role-icon toggle works in Party on 2026-10-03; Raid is
-  explicitly unverified. Tested revision and client/EUI versions were not supplied.
-- Verify FafnyirMedia role artwork in Raid; check Tank/Healer/DPS in both groups,
+- User confirmed Party role-icon toggle and subsequently Raid role icons on
+  2026-10-03. Tested revision and client/EUI versions were not supplied.
+- Detailed scenario coverage remains pending: check Tank/Healer/DPS in both groups,
   native role filters, combat visibility, size and offsets. Disable it and
   verify native artwork returns. Main unit frames and extra frames stay native.
 - Test reload persistence, global settings transfer and combat taint in game.

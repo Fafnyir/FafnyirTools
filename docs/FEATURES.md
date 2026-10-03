@@ -15,7 +15,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Target aura layout | Buffs and debuffs wrap after six icons; independent Target icon size, filters, border/zoom/text settings | Present; mocked sizes 16/32/60; historical user confirmation |
 | Focus auras | Distinct from Focus source selection; no custom Focus aura implementation | Not implemented |
 | SharedMedia target arrows | Unit Frames selector uses arrow-named SharedMedia backgrounds and paired `targetarrow` artwork, includes FafnyirMedia Glow, retains native positioning/visibility/scale/color, restores native textures when disabled or unavailable | Present; offline-tested, in-game confirmation pending |
-| FafnyirMedia role icons | Default-off Party/Raid-only artwork replacement; preserve native role filters, visibility, sizing and positioning; exclude main and extra frames | Present; offline-tested; Party toggle confirmed by user 2026-10-03, Raid unverified |
+| FafnyirMedia role icons | Default-off Party/Raid-only artwork replacement; preserve native role filters, visibility, sizing and positioning; exclude main and extra frames | Present; offline-tested; Party and Raid confirmed by user 2026-10-03 |
 | Status textures | Hide relevant Blizzard Target/Focus status textures without adding a toggle | Present |
 | Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
 | Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; targeted cached-alt removal and confirmed Reset All Characters; omit redundant Fafnyir Tools tooltip heading | Present foundation |
