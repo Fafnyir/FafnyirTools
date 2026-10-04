@@ -2,6 +2,12 @@
 
 ## v1.1.8 — XP layering
 
+Published 2026-10-04: final GitHub release `release/v1.1.8` at `5ccee4d`.
+Workflow `37234323679` passed validation, packaging and publishing. ZIP and
+display name: `Fafnyir_Tools_for_EllesmereUI_v1.1.8_5ccee4d.zip`.
+SHA-256: `a525abef5c072d303d6026310f94129041f78444448fcba870c890f07bded6d6`.
+CurseForge accepted Release file `9063152`; moderation availability is separate.
+
 User requested Current XP / completed Quest XP / Rested XP from front to back
 after a Forever screenshot showed rested XP covering the quest segment.
 Quest XP now uses ARTWORK sublevel 3, between native Current XP at 4 and Rested
