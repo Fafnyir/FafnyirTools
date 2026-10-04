@@ -2,6 +2,9 @@
 
 ## XP layering revision
 
+2026-10-04 release decision: after confirming test build `aa4b028`, user
+explicitly selected **Publish v1.1.8 final** to GitHub and CurseForge.
+
 2026-10-04, current XP layering task: user explicitly approved Current XP /
 completed Quest XP / Rested XP from front to back so completed quest rewards
 remain visible while rested XP fills the remaining bar. This supersedes the

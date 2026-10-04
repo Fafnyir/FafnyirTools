@@ -1,4 +1,11 @@
-Fafnyir Tools for EllesmereUI v1.1.7 — SharedMedia Arrows and Role Icons
+Fafnyir Tools for EllesmereUI v1.1.8 — XP Layer Order
+
+v1.1.8 changes
+
+- Render Current XP in front, completed Quest XP next, and Rested XP behind.
+- Keep completed quest rewards visible when rested XP overlaps the orange segment.
+- Preserve quest calculations, level-boundary clipping, colors and saved settings.
+- User confirmed the improved appearance in game; all offline checks pass.
 
 v1.1.7 changes
 

@@ -1,10 +1,10 @@
 # Reconciled project changelog
 
-## Unreleased — XP layer order (v1.1.7 test build)
+## v1.1.8 — XP layer order
 
 - Moved completed Quest XP above Rested XP and below Current XP so completed
   quest rewards remain visible when rested XP overlaps them. Offline checks
-  pass; in-game confirmation pending. Published v1.1.7 remains unchanged.
+  pass; user confirmed the improved appearance on 2026-10-04.
 
 
 ## v1.1.7 — SharedMedia arrows and role icons

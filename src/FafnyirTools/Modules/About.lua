@@ -8,10 +8,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.7"
+local VERSION = "v1.1.8"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.8", lines = {
+        "Show completed Quest XP above Rested XP and below Current XP.",
+        "Keep quest rewards visible when rested XP overlaps them.",
+    } },
     { version = "v1.1.7", lines = {
         "Added SharedMedia nameplate target arrows under Unit Frames.",
         "Added optional FafnyirMedia Party and Raid role icons.",
