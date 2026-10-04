@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## XP layering revision
+
+2026-10-04, current XP layering task: user explicitly approved Current XP /
+completed Quest XP / Rested XP from front to back so completed quest rewards
+remain visible while rested XP fills the remaining bar. This supersedes the
+v1.1.5 rested-over-quest decision. Use ARTWORK sublevels 4/3/2; preserve quest
+geometry, saved settings and EllesmereUI border/text ownership.
+
+
 ## SharedMedia arrows and FafnyirMedia role artwork
 
 2026-10-03, current feature task: user authorized a FafnyirTools target-arrow

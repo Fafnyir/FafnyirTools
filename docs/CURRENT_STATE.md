@@ -1,5 +1,16 @@
 # Current state — v1.1.7 release, 2026-10-03
 
+## 2026-10-04 — XP layering change in local testing
+
+User requested Current XP / completed Quest XP / Rested XP from front to back
+after a Forever screenshot showed rested XP covering the quest segment.
+Quest XP now uses ARTWORK sublevel 3, between native Current XP at 4 and Rested
+XP at 2. Quest XP retains its current-XP starting point, level-boundary clipping
+and saved settings. All offline checks pass, including layer-order assertions;
+in-game confirmation is pending. Version stays v1.1.7 for the distinct test
+package; published v1.1.7 is unchanged.
+
+
 ## v1.1.7 SharedMedia artwork
 
 2026-10-03: user authorized v1.1.7 as a final GitHub/CurseForge release after

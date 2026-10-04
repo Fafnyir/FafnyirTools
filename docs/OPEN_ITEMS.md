@@ -1,5 +1,12 @@
 # Open items — no silent restoration
 
+## 2026-10-04 XP layering — in-game verification
+
+- With completed quests and rested XP overlapping, verify Current XP stays in
+  front, orange Quest XP appears next, and blue Rested XP remains visible beyond
+  the quest segment. Check turn-in updates and level-boundary clipping.
+
+
 ## SharedMedia arrows and Party/Raid role artwork — in-game verification
 
 - User confirmed arrows work on 2026-10-03 with `8def225`; detailed client

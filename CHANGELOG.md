@@ -1,5 +1,12 @@
 # Reconciled project changelog
 
+## Unreleased — XP layer order (v1.1.7 test build)
+
+- Moved completed Quest XP above Rested XP and below Current XP so completed
+  quest rewards remain visible when rested XP overlaps them. Offline checks
+  pass; in-game confirmation pending. Published v1.1.7 remains unchanged.
+
+
 ## v1.1.7 — SharedMedia arrows and role icons
 
 - Added a SharedMedia Nameplate Target Arrow selector under Unit Frames,
