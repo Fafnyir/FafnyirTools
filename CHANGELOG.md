@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased
+## v1.1.9 — Native current XP gradient ownership
 
 - Retire duplicate current XP gradient controls and styling in favor of EllesmereUI.
 - Keep independent rested gradient controls and completed Quest XP layering.

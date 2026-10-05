@@ -8,10 +8,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.8"
+local VERSION = "v1.1.9"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.9", lines = {
+        "Use EllesmereUI native current XP gradient controls.",
+        "Keep independent rested XP gradients and completed Quest XP.",
+        "Preserve legacy saved current-gradient settings.",
+    } },
     { version = "v1.1.8", lines = {
         "Show completed Quest XP above Rested XP and below Current XP.",
         "Keep quest rewards visible when rested XP overlaps them.",

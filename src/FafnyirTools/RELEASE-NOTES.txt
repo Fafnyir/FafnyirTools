@@ -1,4 +1,12 @@
-Fafnyir Tools for EllesmereUI v1.1.8 — XP Layer Order
+Fafnyir Tools for EllesmereUI v1.1.9 — Native XP Gradient Support
+
+v1.1.9 changes
+
+- Retired duplicate current XP gradient controls and styling; use EllesmereUI's native options.
+- Kept independent rested XP gradient colors, direction and enable controls.
+- Kept completed Quest XP visible between Current XP and Rested XP.
+- Preserved legacy saved current-gradient choices without applying or exporting them.
+- User confirmed appearance and testing in game with build afd5d0c; all offline checks pass.
 
 v1.1.8 changes
 
@@ -78,4 +86,4 @@ Persistence
 
 Scope
 This cleanup build is offline-validated for the supported Retail and WoW
-Forever interfaces. Its UI behavior still requires in-game confirmation.
+Forever interfaces. The XP cleanup has user in-game confirmation; exhaustive client/combat coverage remains separate.

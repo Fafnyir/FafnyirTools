@@ -28,7 +28,7 @@ db.sharedArtwork={arrow='background:- Arrow Glow',roles=true,unknown='keep'}
 local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
 local payload,err=f:Decode(exported);assert(payload and not err)
-assert(payload.addonVersion=='v1.1.8' and payload.format==1)
+assert(payload.addonVersion=='v1.1.9' and payload.format==1)
 assert(payload.settings.xpBar.enabled==nil and payload.settings.xpBar.startColor==nil and payload.settings.xpBar.endColor==nil)
 assert(payload.settings.xpBar.borderSize==nil and payload.settings.xpBar.borderColor==nil)
 assert(payload.settings.xpBar.customTextEnabled==nil)

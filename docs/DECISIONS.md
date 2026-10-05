@@ -6,8 +6,9 @@ User requested retiring the duplicate current XP gradient after EllesmereUI adde
 native support (current task: “Do it.”). Remove FafnyirTools current gradient
 controls, runtime writes, defaults, exports and diagnostic state. Preserve legacy
 saved keys untouched. Keep rested gradient/colors/direction and completed Quest
-XP independent, with Current / Quest / Rested ARTWORK layers 4/3/2. Version stays
-v1.1.8; no release or installation authorized by this change.
+XP independent, with Current / Quest / Rested ARTWORK layers 4/3/2. Initial test build stayed v1.1.8. On 2026-10-05 the user confirmed it
+looks and tests fine and explicitly authorized **Publish v1.1.9 final** to
+GitHub and CurseForge.
 
 
 ## XP layering revision
