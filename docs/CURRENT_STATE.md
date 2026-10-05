@@ -1,5 +1,17 @@
 # Current state — v1.1.8 release, 2026-10-04
 
+## Unreleased — 2026-10-05 XP ownership cleanup
+
+Current XP gradients now belong to EllesmereUI. Installed Forever source exposes
+`XPBarGradient` and ARTWORK current/rested layers 4/2. FafnyirTools keeps rested
+gradients and completed Quest XP at layer 3; rested styling no longer depends on
+the retired current-gradient enable flag. Legacy current-gradient saved settings
+survive initialization/reset/import but are excluded from exports and diagnostics.
+Rested direction remains saved under orientation. Offline tools/check.py passes,
+including native-current preservation, independent rested styling, reset and
+settings transfer. In-game verification is pending; source remains v1.1.8.
+
+
 ## v1.1.8 — XP layering
 
 Published 2026-10-04: final GitHub release `release/v1.1.8` at `5ccee4d`.

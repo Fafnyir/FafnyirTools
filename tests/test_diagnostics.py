@@ -57,7 +57,7 @@ lua.execute(
     assert(string.find(report,"EllesmereUI: 9.3.0 (loaded)",1,true))
     assert(string.find(report,"FafnyirMedia: 1.0.0 (loaded)",1,true))
     assert(string.find(report,"Quest XP=on",1,true))
-    assert(string.find(report,"XP Gradient=off",1,true))
+    assert(not string.find(report,"XP Gradient=",1,true))
     assert(string.find(report,"Flyout Fix=on",1,true))
     assert(not string.find(report,"character",1,true))
     assert(not string.find(report,"realm",1,true))

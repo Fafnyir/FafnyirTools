@@ -94,7 +94,7 @@ def run(path):lua.execute((root/path).read_text(),'FafnyirTools',lua.globals().n
 run('Core/Bootstrap.lua');run('Modules/XPBar.lua')
 lua.execute('''
 f=ns.modules.XPBar;db=ns:GetDatabase().xpBar
-assert(db.startColor.r==85/255 and db.startColor.g==99/255 and db.endColor.r==197/255 and db.endColor.g==97/255)
+assert(db.enabled==nil and db.startColor==nil and db.endColor==nil)
 assert(db.restedStartColor.r==79/255 and db.restedStartColor.g==143/255 and db.restedStartColor.a==1 and db.restedEndColor.a==1)
 assert(db.questColor.r==1 and db.questColor.g==150/255 and db.questColor.b==0 and db.questColor.a==1)
 f:Initialize();o=bar.overlay;assert(o.shown and o.w==80 and o.point[4]==40) -- 400 quest XP, excludes incomplete/hidden/duplicate
@@ -102,7 +102,7 @@ assert(bar.texture.drawSublevel==4 and rested.texture.drawSublevel==2 and o.draw
 assert(bar.texture.drawSublevel>o.drawSublevel and o.drawSublevel>rested.texture.drawSublevel)
 flush();assert(holder._text.text=='native')
 assert(borderApplyCalls==0 and nativeBorder.level==1)
-assert(db.enabled==false) -- quest segment independent of gradient
+assert(rested.texture.gradient and bar.texture.gradient==nil) -- independent rested styling
 current=900;bar:SetValue(current);assert(o.w==20 and o.point[4]==180)
 bar.w=400;bar.scripts.OnSizeChanged();assert(o.w==40 and o.point[4]==360)
 level=90;f:Refresh();assert(not o.shown)
@@ -111,14 +111,21 @@ maximum=1000;completed={};f:Refresh();assert(not o.shown)
 completed={[1]=true};current=200;f:Refresh();assert(o.shown and o.w==60)
 disabled=true;f:Refresh();assert(not o.shown);disabled=false
 f:BuildOptions(CreateFrame(),0)
-for _,r in ipairs(rows) do assert(r.text~='Enable Three-Zone XP Text') end
+for _,r in ipairs(rows) do assert(r.text~='Enable Three-Zone XP Text' and r.text~='Enable XP Bar Gradient' and r.text~='Gradient Start Color') end
 for _,r in ipairs(rows) do if r.text=='Enable Quest XP Overlay' then toggle=r end end
 assert(toggle and toggle.getValue());toggle.setValue(false);assert(not o.shown);toggle.setValue(true);assert(o.shown)
 for _,r in ipairs(rows) do assert(r.text~='Border Size' and r.text~='Border Style') end
 db.startColor={r=.2,g=.3,b=.4,a=.5};db.questColor={r=.8,g=.7,b=.6,a=.4};db.questEnabled=false
 db.borderColor={r=.8,g=.6,b=.4,a=.2};db.customTextEnabled=false;ns:InitializeDatabase();assert(db.startColor.a==.5 and db.questColor.g==.7 and db.questEnabled==false and db.borderColor.a==.2 and db.customTextEnabled==false)
 assert(ns.defaults.xpBar.borderColor==nil and ns.defaults.xpBar.borderSize==nil and ns.defaults.xpBar.customTextEnabled==nil and borderApplyCalls==0)
-db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.texture.gradient[2].r==.2)
+db.questEnabled=true;db.enabled=true;f:Refresh();assert(o.color[4]==.4 and bar.texture.gradient==nil)
+bar.texture.gradient={'native'};bar:SetStatusBarColor(.1,.2,.3);f:Refresh()
+assert(bar.texture.gradient[1]=='native' and bar.color[1]==.1)
+db.restedStartColor={r=.3,g=.4,b=.5,a=.6};db.orientation='VERTICAL'
+rested:SetStatusBarColor(1,1,1)
+assert(rested.texture.gradient[1]=='VERTICAL' and rested.texture.gradient[2].a==.6)
+db.restedEnabled=false;f:Refresh();assert(rested.color[1]==1)
+f:Reset();assert(db.startColor.a==.5 and db.enabled==true and db.restedEnabled and db.orientation=='HORIZONTAL')
 flush();assert(holder._text.text=='native')
 ''')
 print('PASS: totals, clipping, resizing, max level, zero XP, disabled XP, toggle, defaults, saved settings, gradients')

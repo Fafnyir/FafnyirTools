@@ -142,27 +142,11 @@ function feature:Apply()
     local orientation = settings.orientation or "HORIZONTAL"
     local holder = xpBar:GetParent()
 
-    if not settings.enabled then
-        if holder and holder._updateFunc then
-            holder._updateFunc()
-        end
-
-        applying = false
-        return true
-    end
-
     if restedBar and not settings.restedEnabled then
         if holder and holder._updateFunc then
             holder._updateFunc()
         end
     end
-
-    ApplyGradient(
-        xpBar:GetStatusBarTexture(),
-        orientation,
-        GetColor("startColor", defaults.startColor),
-        GetColor("endColor", defaults.endColor)
-    )
 
     if restedBar and settings.restedEnabled then
         ApplyGradient(
@@ -209,15 +193,9 @@ function feature:InstallHooks()
     xpBar:HookScript("OnSizeChanged", function() feature:UpdateQuestOverlay() end)
     xpBar:HookScript("OnShow", function() feature:UpdateQuestOverlay() end)
 
-    hooksecurefunc(xpBar, "SetStatusBarColor", function()
-        if DB().enabled and not applying then
-            feature:Apply()
-        end
-    end)
-
     if restedBar then
         hooksecurefunc(restedBar, "SetStatusBarColor", function()
-            if DB().enabled and DB().restedEnabled and not applying then
+            if DB().restedEnabled and not applying then
                 feature:Apply()
             end
         end)
@@ -290,55 +268,6 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "XP BAR GRADIENT", y)
-    y = y - h
-
-    _, h = W:DualRow(
-        parent,
-        y,
-        {
-            type = "toggle",
-            text = "Enable XP Bar Gradient",
-            getValue = function() return DB().enabled end,
-            setValue = function(value)
-                DB().enabled = value
-                feature:Refresh()
-            end,
-        },
-        {
-            type = "dropdown",
-            text = "Gradient Direction",
-            values = {
-                HORIZONTAL = "Horizontal",
-                VERTICAL = "Vertical",
-            },
-            order = { "HORIZONTAL", "VERTICAL" },
-            getValue = function()
-                return DB().orientation or "HORIZONTAL"
-            end,
-            setValue = function(value)
-                DB().orientation = value
-                feature:Refresh()
-            end,
-        }
-    )
-    y = y - h
-
-    local mainRow
-    mainRow, h = W:DualRow(
-        parent,
-        y,
-        { type = "label", text = "Gradient Start Color" },
-        { type = "label", text = "Gradient End Color" }
-    )
-    y = y - h
-
-    AttachSwatch(mainRow._leftRegion, "startColor", defaults.startColor)
-    AttachSwatch(mainRow._rightRegion, "endColor", defaults.endColor)
-
-    _, h = W:Spacer(parent, y, 18)
-    y = y - h
-
     _, h = W:SectionHeader(parent, "RESTED XP GRADIENT", y)
     y = y - h
 
@@ -355,14 +284,19 @@ function feature:BuildOptions(parent, yOffset)
             end,
         },
         {
-            type = "button",
-            text = "Reset XP Gradient",
-            buttonText = "Reset",
-            onClick = function()
-                feature:Reset()
-                if EllesmereUI and EllesmereUI.RefreshPage then
-                    EllesmereUI:RefreshPage(true)
-                end
+            type = "dropdown",
+            text = "Rested Gradient Direction",
+            values = {
+                HORIZONTAL = "Horizontal",
+                VERTICAL = "Vertical",
+            },
+            order = { "HORIZONTAL", "VERTICAL" },
+            getValue = function()
+                return DB().orientation or "HORIZONTAL"
+            end,
+            setValue = function(value)
+                DB().orientation = value
+                feature:Refresh()
             end,
         }
     )
@@ -379,6 +313,18 @@ function feature:BuildOptions(parent, yOffset)
 
     AttachSwatch(restedRow._leftRegion, "restedStartColor", defaults.restedStartColor)
     AttachSwatch(restedRow._rightRegion, "restedEndColor", defaults.restedEndColor)
+
+    _, h = W:DualRow(parent, y,
+        { type = "button", text = "Reset XP Settings", buttonText = "Reset",
+            onClick = function()
+                feature:Reset()
+                if EllesmereUI and EllesmereUI.RefreshPage then
+                    EllesmereUI:RefreshPage(true)
+                end
+            end },
+        { type = "label", text = "" }
+    )
+    y = y - h
 
     _, h = W:Spacer(parent, y, 18)
     y = y - h

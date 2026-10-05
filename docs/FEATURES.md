@@ -56,10 +56,14 @@ remain untouched during ordinary upgrades.
   reposition, or hook duplicate XP text regions. The legacy three-zone toggle
   may remain in SavedVariables for downgrade safety but is not active or exported.
 
-- Current gradient defaults: `#5563FF` to `#C561FF`, alpha 1 at both ends.
+- Current XP gradient is owned by EllesmereUI. FafnyirTools exposes no current
+  gradient controls and does not style or hook current-XP color updates. Legacy
+  enabled/startColor/endColor keys remain untouched but are not defaults or exports.
 - Rested defaults: `#4F8FFF` at both ends, alpha 1.
 - Quest default: `#FF9600`, alpha 1, enabled by default.
-- Existing current-gradient enable default remains **false**; the repair changes colors, not that preference. Rested gradient default remains true and follows the existing gradient module behavior. Quest enable is independent.
+- Rested gradient defaults to enabled and operates independently of legacy current
+  gradient settings. Its saved orientation controls rested XP only. Quest enable
+  remains independent.
 - Sum positive XP rewards for completed, non-header, non-hidden quests in the current quest log; avoid duplicates and incomplete quests.
 - Begin the orange segment at current XP and extend by the summed reward; clip at the current level boundary.
 - Render Current XP above completed Quest XP and Quest XP above Rested XP.

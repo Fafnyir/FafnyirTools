@@ -75,10 +75,7 @@ ns.defaults = {
         currencies = {},
     },
     xpBar = {
-        enabled = false,
         orientation = "HORIZONTAL",
-        startColor = { r = 85 / 255, g = 99 / 255, b = 1, a = 1 },
-        endColor = { r = 197 / 255, g = 97 / 255, b = 1, a = 1 },
         questEnabled = true,
         questColor = { r = 1, g = 150 / 255, b = 0, a = 1 },
         restedEnabled = true,

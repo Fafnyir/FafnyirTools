@@ -203,7 +203,6 @@ function feature:GetDiagnostics()
         "Rested XP=" .. OnOff(db.xpBar and db.xpBar.restedEnabled),
         "Resting=" .. OnOff(db.resting and db.resting.enabled),
         "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled),
-        "XP Gradient=" .. OnOff(db.xpBar and db.xpBar.enabled),
     }
     if not ns.IS_FOREVER then
         enabled[#enabled + 1] = "Flyout Fix=" .. OnOff(db.flyoutFix and db.flyoutFix.enabled)

@@ -1,5 +1,13 @@
 # Open items — no silent restoration
 
+## 2026-10-05 XP ownership cleanup — pending in-game check
+
+- Verify native current gradient changes remain visible with FafnyirTools active.
+- Verify rested enable/colors/direction and native restoration when disabled.
+- Verify Quest XP remains visible between Current and Rested, including reload.
+- Offline checks pass; no new build has been installed or published.
+
+
 ## 2026-10-04 XP layering — user confirmed
 
 - User confirmed the new layering looks better after testing `aa4b028` and

@@ -1,5 +1,15 @@
 # Reconciled decisions
 
+## 2026-10-05 — Native current XP gradient ownership
+
+User requested retiring the duplicate current XP gradient after EllesmereUI added
+native support (current task: “Do it.”). Remove FafnyirTools current gradient
+controls, runtime writes, defaults, exports and diagnostic state. Preserve legacy
+saved keys untouched. Keep rested gradient/colors/direction and completed Quest
+XP independent, with Current / Quest / Rested ARTWORK layers 4/3/2. Version stays
+v1.1.8; no release or installation authorized by this change.
+
+
 ## XP layering revision
 
 2026-10-04 release decision: after confirming test build `aa4b028`, user

@@ -1,5 +1,12 @@
 # Reconciled project changelog
 
+## Unreleased
+
+- Retire duplicate current XP gradient controls and styling in favor of EllesmereUI.
+- Keep independent rested gradient controls and completed Quest XP layering.
+- Preserve legacy saved current-gradient choices without exporting or applying them.
+
+
 ## v1.1.8 — XP layer order
 
 - Moved completed Quest XP above Rested XP and below Current XP so completed
