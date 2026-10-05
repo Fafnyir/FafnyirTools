@@ -1,6 +1,12 @@
-# Current state — v1.1.9 release preparation, 2026-10-05
+# Current state — v1.1.9 release, 2026-10-05
 
 ## v1.1.9 — 2026-10-05 XP ownership cleanup
+
+Published final GitHub release `release/v1.1.9` at `a03f221` on 2026-10-05.
+Workflow `37380110342` passed validation, packaging and publishing. ZIP/display
+name: `Fafnyir_Tools_for_EllesmereUI_v1.1.9_a03f221.zip`.
+SHA-256: `a1a9296d28f11d81238e61b24c8699fc89a308e9a4fa816cc760ed39d8ff2c31`.
+CurseForge accepted Release file `9073735`; moderation availability is separate.
 
 Current XP gradients now belong to EllesmereUI. Installed Forever source exposes
 `XPBarGradient` and ARTWORK current/rested layers 4/2. FafnyirTools keeps rested
