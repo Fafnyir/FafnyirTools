@@ -5,7 +5,7 @@
 - Verify XP & Progression is absent and the native EUI XP/quest bar works after
   replacing the addon folder and reloading. Existing native settings stay native.
 - Previous FafnyirTools XP-specific QA items below are historical, superseded by
-  full retirement. Version remains v1.1.9 for the test build.
+  full retirement. Test build 46971a5 used v1.1.9; the released version is v1.1.10.
 
 
 ## 2026-10-05 XP ownership cleanup — user confirmed

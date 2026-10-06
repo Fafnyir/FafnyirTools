@@ -1,6 +1,12 @@
-# Current state — v1.1.10 release preparation, 2026-10-06
+# Current state — v1.1.10 release, 2026-10-06
 
 ## v1.1.10 — XP module retired, 2026-10-06
+
+Published final GitHub release `release/v1.1.10` at `39f45e3` on 2026-10-06.
+Workflow `37450710563` passed validation, packaging and publishing. ZIP/display
+name: `Fafnyir_Tools_for_EllesmereUI_v1.1.10_39f45e3.zip`.
+SHA-256: `4b31ff09e57ba15617fc1d7b0f920ea8828ec8de56e894aaadcc9322fed59abb`.
+CurseForge accepted Release file `9079045`; moderation availability is separate.
 
 User requested removing the remaining XP bar feature after EllesmereUI added
 quest XP. Installed Forever source exposes ApplyXPQuestOverlay with incomplete
