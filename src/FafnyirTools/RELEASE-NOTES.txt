@@ -1,4 +1,10 @@
-Fafnyir Tools for EllesmereUI v1.1.9 — Native XP Gradient Support
+Fafnyir Tools for EllesmereUI v1.1.10 — Native XP Bar Ownership
+
+v1.1.10 changes
+
+- Removed the XP & Progression page and remaining XP bar enhancements now provided by EllesmereUI.
+- Use EllesmereUI's native XP bar options for gradients and quest overlays.
+- Preserved legacy saved XP settings during upgrades.
 
 v1.1.9 changes
 

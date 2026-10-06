@@ -1,6 +1,6 @@
-# Current state — v1.1.9 release, 2026-10-05
+# Current state — v1.1.10 release preparation, 2026-10-06
 
-## Unreleased — XP module retired, 2026-10-06
+## v1.1.10 — XP module retired, 2026-10-06
 
 User requested removing the remaining XP bar feature after EllesmereUI added
 quest XP. Installed Forever source exposes ApplyXPQuestOverlay with incomplete
@@ -8,7 +8,8 @@ and completed quest layers. Removed module, XP & Progression page, defaults,
 legacy migration, export/import schema, diagnostics and XP/quest-only events.
 PLAYER_LEVEL_UP remains for Resting. Legacy xpBar data survives upgrades and
 settings transfer unchanged. All offline checks pass; in-game confirmation of
-this removal is pending. Version remains v1.1.9; no publication performed.
+this removal is pending. User explicitly authorized **Publish v1.1.10 final** to GitHub and CurseForge.
+No additional in-game confirmation was supplied before this release request.
 
 
 ## v1.1.9 — 2026-10-05 XP ownership cleanup

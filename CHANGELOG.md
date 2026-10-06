@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased
+## v1.1.10 — Native XP bar ownership
 
 - Remove the XP & Progression page and remaining XP bar enhancements now provided by EllesmereUI.
 - Preserve legacy saved XP settings during upgrades.

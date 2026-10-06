@@ -7,6 +7,8 @@ bar option altogether. Retire the whole module and empty XP & Progression page,
 including rested styling, quest overlays, defaults, migrations, events, exports
 and diagnostics. Preserve legacy SavedVariables untouched. This supersedes the
 previous FafnyirTools XP rendering and taxonomy requirements.
+On 2026-10-06 user explicitly authorized **Publish v1.1.10 final** to GitHub
+and CurseForge.
 
 2026-10-05 public patch-note preference: omit “User confirmed” and testing
 commentary from public notes. Keep verification evidence in internal records.
