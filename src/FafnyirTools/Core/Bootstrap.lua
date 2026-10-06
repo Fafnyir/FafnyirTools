@@ -74,14 +74,6 @@ ns.defaults = {
         auctions = {},
         currencies = {},
     },
-    xpBar = {
-        orientation = "HORIZONTAL",
-        questEnabled = true,
-        questColor = { r = 1, g = 150 / 255, b = 0, a = 1 },
-        restedEnabled = true,
-        restedStartColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
-        restedEndColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
-    },
     auraSkins = {
         enabled = false,
         iconSize = 32,
@@ -123,18 +115,6 @@ ns.CopyDefaults = CopyDefaults
 
 function ns:InitializeDatabase()
     FafnyirToolsDB = FafnyirToolsDB or {}
-    -- v1.1.0/v1.1.1 used questXP* keys. Migrate only missing new keys;
-    -- never replace a choice already saved by the QuestXPFixed build.
-    local xp = FafnyirToolsDB.xpBar
-    if type(xp) == "table" then
-        if xp.questEnabled == nil and xp.questXPEnabled ~= nil then
-            xp.questEnabled = xp.questXPEnabled
-        end
-        if xp.questColor == nil and type(xp.questXPColor) == "table" then
-            local old = xp.questXPColor
-            xp.questColor = { r = old.r, g = old.g, b = old.b, a = old.a }
-        end
-    end
     CopyDefaults(self.defaults, FafnyirToolsDB)
 end
 
@@ -207,7 +187,6 @@ SlashCmdList["FAFNYIRTOOLSDEBUG"] = function()
     print("  Features loaded: "
         .. (ns.modules.Resting and "Resting " or "")
         .. (ns.modules.RightClickSelfCast and "RightClickSelfCast " or "")
-        .. (ns.modules.XPBar and "XPBar " or "")
         .. (ns.modules.DeviceLayout and "DeviceLayout " or "")
         .. (ns.modules.AuraSkins and "AuraSkins " or "")
         .. (ns.modules.Inventory and "Inventory" or ""))

@@ -23,7 +23,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 
-Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, XP & Progression, Bags & Inventory, Layouts.
+Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, Bags & Inventory, Layouts.
 
 Retired in v1.1.5: Blizzard Bar Art and Unit Frame Sources are now provided by
 EllesmereUI. Their FafnyirTools modules, options, defaults, export/import schema,
@@ -50,35 +50,16 @@ remain untouched during ordinary upgrades.
 - Per-character companion selections, inventory/economy caches, and device-specific Edit Mode layouts are excluded.
 - Import requires explicit confirmation and a UI reload.
 
-## XP contract
+## XP ownership — retired 2026-10-06
 
-- XP text layout is owned by EllesmereUI. FafnyirTools must not create,
-  reposition, or hook duplicate XP text regions. The legacy three-zone toggle
-  may remain in SavedVariables for downgrade safety but is not active or exported.
-
-- Current XP gradient is owned by EllesmereUI. FafnyirTools exposes no current
-  gradient controls and does not style or hook current-XP color updates. Legacy
-  enabled/startColor/endColor keys remain untouched but are not defaults or exports.
-- Rested defaults: `#4F8FFF` at both ends, alpha 1.
-- Quest default: `#FF9600`, alpha 1, enabled by default.
-- Rested gradient defaults to enabled and operates independently of legacy current
-  gradient settings. Its saved orientation controls rested XP only. Quest enable
-  remains independent.
-- Sum positive XP rewards for completed, non-header, non-hidden quests in the current quest log; avoid duplicates and incomplete quests.
-- Begin the orange segment at current XP and extend by the summed reward; clip at the current level boundary.
-- Render Current XP above completed Quest XP and Quest XP above Rested XP.
-  Quest XP must remain visible over overlapping Rested XP (ARTWORK sublevels
-  Current 4, Quest 3, Rested 2; user decision 2026-10-04).
-- Refresh at login/world entry and registered quest/XP/level/exhaustion/data-load events; respond to bar value, size and show updates.
-- Hide the segment at effective max level, when XP is disabled/invalid, no completed reward exists, or its own toggle is off. Inherit bar visibility; do not force the EUI holder visible.
-- Keep the user's selected quest unchanged and use explicit quest-ID reward lookup. Failed selection-setter approaches from v1.1.0 experiments are not current design.
-- Preserve custom saved colors/alpha and saved enable choices; fill missing values only. An explicit Reset action is allowed to restore defaults.
-- XP Bar border styling is owned by EllesmereUI. FafnyirTools must not expose or
-  apply a duplicate border control. Legacy FafnyirTools border keys may remain
-  in SavedVariables for downgrade safety but are not active defaults or exports.
+EllesmereUI now owns the entire XP bar, including quest overlays. FafnyirTools
+must not load an XP module, expose XP options/page, subscribe to XP/quest-only
+events, alter gradients/layers/text/borders, or export/import/reset XP settings.
+Preserve legacy xpBar SavedVariables as unknown data without migration or writes.
+PLAYER_LEVEL_UP remains subscribed for the independent Resting feature.
 
 ## Preservation boundaries
 
 Changing source ownership, category labels, XP defaults, filter choices or module inventory is a product change requiring appropriate scope and tests. Do not infer approval from a historical proposal. The active source is the working baseline, while previously accepted omissions remain visible in OPEN_ITEMS.md for restoration decisions.
 
-Legacy questXPEnabled/questXPColor keys migrate only when questEnabled/questColor are absent; existing new values win. Companion settings and per-character choices are preserved.
+Legacy XP settings remain untouched. Companion settings and per-character choices are preserved.

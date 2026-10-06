@@ -26,7 +26,6 @@ local SCHEMA = {
     rightClickSelfCast = true,
     unitFrameNames = true,
     inventory = { enabled = true, tooltips = true },
-    xpBar = true,
     auraSkins = true,
 }
 

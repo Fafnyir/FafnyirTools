@@ -11,7 +11,7 @@ local f=ns.modules.GlobalSettings
 local db=ns:GetDatabase()
 db.blizzardBarArt={enabled=false,scaleMultiplier=1.01}
 db.unitFrameSources={player='hidden',target='blizzard'}
-db.xpBar.enabled=true
+db.xpBar={enabled=true}
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
 db.xpBar.borderSize=3
 db.xpBar.borderColor={r=.8,g=.6,b=.4,a=.2}
@@ -29,9 +29,7 @@ local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
 local payload,err=f:Decode(exported);assert(payload and not err)
 assert(payload.addonVersion=='v1.1.9' and payload.format==1)
-assert(payload.settings.xpBar.enabled==nil and payload.settings.xpBar.startColor==nil and payload.settings.xpBar.endColor==nil)
-assert(payload.settings.xpBar.borderSize==nil and payload.settings.xpBar.borderColor==nil)
-assert(payload.settings.xpBar.customTextEnabled==nil)
+assert(payload.settings.xpBar==nil)
 assert(payload.settings.blizzardBarArt==nil and payload.settings.unitFrameSources==nil)
 assert(payload.settings.foreverFog.enabled==false and payload.settings.foreverFog.initialized==nil)
 assert(payload.settings.permanentCompanionPet.enabled==true)
@@ -43,6 +41,7 @@ assert(payload.settings.sharedArtwork.unknown==nil)
 
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 db.sharedArtwork.arrow='native';db.sharedArtwork.roles=false
+payload.settings.xpBar={enabled=true,questEnabled=false}
 f:ApplyImport(payload)
 assert(db.sharedArtwork.arrow=='background:- Arrow Glow' and db.sharedArtwork.roles and db.sharedArtwork.unknown=='keep')
 assert(db.xpBar.enabled==false and db.xpBar.startColor.a==.9 and db.inventory.tooltips==false)
@@ -54,7 +53,7 @@ assert(db.unitFrameSources.player=='hidden' and db.unitFrameSources.target=='bli
 assert(db.permanentCompanionPet.characters['Tester-Realm'].petName=='Secret Pet')
 assert(db.inventory.characters['Tester-Realm'].money==999)
 assert(db.globalSettingsImportBackup.created==12345)
-assert(db.globalSettingsImportBackup.settings.xpBar.enabled==nil)
+assert(db.globalSettingsImportBackup.settings.xpBar==nil)
 assert(f:RestoreBackup() and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
 assert(db.sharedArtwork.arrow=='native' and not db.sharedArtwork.roles)
 

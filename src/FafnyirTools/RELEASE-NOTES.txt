@@ -6,14 +6,12 @@ v1.1.9 changes
 - Kept independent rested XP gradient colors, direction and enable controls.
 - Kept completed Quest XP visible between Current XP and Rested XP.
 - Preserved legacy saved current-gradient choices without applying or exporting them.
-- User confirmed appearance and testing in game with build afd5d0c; all offline checks pass.
 
 v1.1.8 changes
 
 - Render Current XP in front, completed Quest XP next, and Rested XP behind.
 - Keep completed quest rewards visible when rested XP overlaps the orange segment.
 - Preserve quest calculations, level-boundary clipping, colors and saved settings.
-- User confirmed the improved appearance in game; all offline checks pass.
 
 v1.1.7 changes
 
@@ -25,8 +23,6 @@ v1.1.7 changes
 - Preserves EllesmereUI visibility, size, position and arrow color settings.
 - Defaults to native artwork, restores it when disabled and preserves saved settings.
 - Includes the new preferences in global settings transfer and diagnostics.
-- User confirmed arrows and Party/Raid role icons work in game.
-  Detailed combat/reload scenarios remain separate manual checks.
 
 v1.1.6 changes
 
@@ -83,7 +79,3 @@ Changed
 
 Persistence
 - Export remains available during the beta persistence defect.
-
-Scope
-This cleanup build is offline-validated for the supported Retail and WoW
-Forever interfaces. The XP cleanup has user in-game confirmation; exhaustive client/combat coverage remains separate.

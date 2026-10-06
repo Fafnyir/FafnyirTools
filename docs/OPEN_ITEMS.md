@@ -1,5 +1,13 @@
 # Open items — no silent restoration
 
+## 2026-10-06 XP retirement — in-game check pending
+
+- Verify XP & Progression is absent and the native EUI XP/quest bar works after
+  replacing the addon folder and reloading. Existing native settings stay native.
+- Previous FafnyirTools XP-specific QA items below are historical, superseded by
+  full retirement. Version remains v1.1.9 for the test build.
+
+
 ## 2026-10-05 XP ownership cleanup — user confirmed
 
 - User confirmed appearance and testing with afd5d0c and supplied a screenshot

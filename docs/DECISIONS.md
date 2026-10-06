@@ -1,5 +1,17 @@
 # Reconciled decisions
 
+## 2026-10-06 — Retire all FafnyirTools XP ownership
+
+Current task user request: EllesmereUI now provides quest XP, so remove our XP
+bar option altogether. Retire the whole module and empty XP & Progression page,
+including rested styling, quest overlays, defaults, migrations, events, exports
+and diagnostics. Preserve legacy SavedVariables untouched. This supersedes the
+previous FafnyirTools XP rendering and taxonomy requirements.
+
+2026-10-05 public patch-note preference: omit “User confirmed” and testing
+commentary from public notes. Keep verification evidence in internal records.
+
+
 ## 2026-10-05 — Native current XP gradient ownership
 
 User requested retiring the duplicate current XP gradient after EllesmereUI added

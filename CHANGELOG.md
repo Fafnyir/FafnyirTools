@@ -1,5 +1,11 @@
 # Reconciled project changelog
 
+## Unreleased
+
+- Remove the XP & Progression page and remaining XP bar enhancements now provided by EllesmereUI.
+- Preserve legacy saved XP settings during upgrades.
+
+
 ## v1.1.9 — Native current XP gradient ownership
 
 - Retire duplicate current XP gradient controls and styling in favor of EllesmereUI.

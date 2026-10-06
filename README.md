@@ -4,7 +4,7 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** v1.1.9 native XP gradient cleanup based on the user-confirmed
+**Current source:** v1.1.9 with unreleased XP module retirement based on the user-confirmed
 v1.1.4 build `1aae4fe`. Prior confirmed ZIPs remain immutable under releases/.
 
 WoW Forever beta compatibility development lives on the `forever-beta` branch.

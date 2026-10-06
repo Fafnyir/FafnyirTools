@@ -204,8 +204,6 @@ function feature:GetDiagnostics()
         "Inventory=" .. OnOff(db.inventory and db.inventory.enabled),
         "Inventory Tooltips=" .. OnOff(db.inventory and db.inventory.tooltips),
         "Permanent Companion Pet=" .. OnOff(db.permanentCompanionPet and db.permanentCompanionPet.enabled),
-        "Quest XP=" .. OnOff(db.xpBar and db.xpBar.questEnabled),
-        "Rested XP=" .. OnOff(db.xpBar and db.xpBar.restedEnabled),
         "Resting=" .. OnOff(db.resting and db.resting.enabled),
         "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled),
     }

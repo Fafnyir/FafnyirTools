@@ -31,7 +31,7 @@ def check(baseline=False):
     fingerprint = json.loads((ROOT / 'docs/baselines/v1.1.2-quest-xp-fixed.json').read_text())
     expected = {p.removeprefix('FafnyirTools/') for p in fingerprint['files']}
     actual_files = {p.relative_to(ADDON).as_posix() for p in ADDON.rglob('*') if p.is_file()}
-    retired = {'Modules/BlizzardBarArt.lua', 'Modules/UnitFrameSources.lua'}
+    retired = {'Modules/BlizzardBarArt.lua', 'Modules/UnitFrameSources.lua', 'Modules/XPBar.lua'}
     assert expected - retired <= actual_files, 'Baseline module/file removed; reconcile feature inventory explicitly'
     assert retired.isdisjoint(actual_files), 'EllesmereUI-owned retired module restored unexpectedly'
     required = {
@@ -47,7 +47,6 @@ def check(baseline=False):
         'Modules/SharedArtwork.lua': ('SharedArtwork', 'Unit Frames'),
         'Modules/UnitFrameNames.lua': ('UnitFrameNames', 'Unit Frames'),
         'Modules/DeviceLayout.lua': ('DeviceLayout', 'Layouts'),
-        'Modules/XPBar.lua': ('XPBar', 'XP & Progression'),
         'Modules/AuraSkins.lua': ('AuraSkins', 'Unit Frames'),
         'Modules/Inventory/Core.lua': ('Inventory', 'Bags & Inventory'),
     }
@@ -61,12 +60,12 @@ def check(baseline=False):
     assert '## SavedVariables: FafnyirToolsDB' in toc
     assert '## Dependencies: EllesmereUI, FafnyirMedia' in toc
     assert '16001' in re.search(r'^## Interface: (.+)$', toc, re.M).group(1), 'Forever interface missing'
-    assert entries.index('Core/Bootstrap.lua') < entries.index('Modules/XPBar.lua') < entries.index('Core/Events.lua')
+    assert entries.index('Core/Bootstrap.lua') < entries.index('Core/Events.lua')
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
       for _,key in ipairs({'foreverFog','flyoutFix','resting','rightClickSelfCast',
-          'deviceLayout','inventory','xpBar','auraSkins','permanentCompanionPet'}) do
+          'deviceLayout','inventory','auraSkins','permanentCompanionPet'}) do
         assert(type(FafnyirToolsDB[key])=='table',key)
       end
       FafnyirToolsDB.unrecognizedFutureSetting={keep=true}

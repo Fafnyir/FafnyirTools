@@ -38,6 +38,7 @@ lua.execute((ROOT / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", n
 lua.execute((ROOT / "Modules/ForeverFog.lua").read_text(), "FafnyirTools", ns)
 lua.execute(r'''
 assert(ns.IS_FOREVER and ns:ForeverSavedVariablesUnsafe())
+ns:GetDatabase().xpBar={enabled=false}
 local before=ns:GetDatabase().xpBar.enabled
 local payload={settings={xpBar={enabled=not before}}}
 assert(ns.modules.GlobalSettings:ApplyImport(payload)==false)

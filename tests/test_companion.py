@@ -48,10 +48,8 @@ l.execute('''FafnyirToolsDB={xpBar={questXPEnabled=false,questXPColor={r=.2,g=.3
 load('Core/Bootstrap.lua');load('Modules/PermanentCompanionPet.lua')
 l.execute('''
 f=ns.modules.PermanentCompanionPet;db=FafnyirToolsDB.permanentCompanionPet
-assert(FafnyirToolsDB.xpBar.questEnabled==false and FafnyirToolsDB.xpBar.questColor.a==.5)
-assert(FafnyirToolsDB.xpBar.questColor~=FafnyirToolsDB.xpBar.questXPColor)
-FafnyirToolsDB.xpBar.questEnabled=true;FafnyirToolsDB.xpBar.questColor.g=.8;ns:InitializeDatabase()
-assert(FafnyirToolsDB.xpBar.questEnabled and FafnyirToolsDB.xpBar.questColor.g==.8 and FafnyirToolsDB.xpBar.questXPColor.g==.3)
+assert(FafnyirToolsDB.xpBar.questXPEnabled==false and FafnyirToolsDB.xpBar.questXPColor.a==.5)
+assert(FafnyirToolsDB.xpBar.questEnabled==nil and FafnyirToolsDB.xpBar.questColor==nil)
 f:BuildOptions({},0);assert(#rows==4 and rows[1].getValue())
 assert(rows[2].getValue()=='specific' and rows[3].getValue()=='Kitty')
 assert(db.characterMigrationComplete and db.characters['Alpha-Realm'].petName=='Kitty')
@@ -97,12 +95,12 @@ print('PASS companion migration, per-character choices/reset, all safety guards,
 # Real metadata from all features; no fake feature slots in this registration check.
 for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/UnitFrameNames.lua','Modules/FocusHeader.lua','Modules/SharedArtwork.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
              'Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua','Modules/IconHistoryBorder.lua',
-             'Modules/XPBar.lua','Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
+             'Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
     load(path)
 l.execute('ns.Sidebar={Install=function() return true end}')
 load('Core/Options.lua')
 l.execute('''
-assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','XP & Progression','Bags & Inventory','Layouts'}
+assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','Bags & Inventory','Layouts'}
 assert(#config.pages==#expected);for i,p in ipairs(expected) do assert(config.pages[i]==p,p) end
 rows={};assert(config.buildPage('QoL',{},0)==160 and #rows==6)
 -- Restored About history wraps without assuming a fixed 22-pixel text height.
@@ -131,4 +129,4 @@ for _,e in ipairs({'PLAYER_LOGIN','PLAYER_ENTERING_WORLD','PLAYER_STARTED_MOVING
  assert(ev.events[e],e);local count=#summons;now=now+3;ev.event(ev,e,'CRITTER');flush();assert(#summons==count+1,e)
 end
 ''')
-print('PASS restored QoL in seven real feature pages, slash navigation, legacy XP preference migration and core companion event dispatch')
+print('PASS restored QoL in six real feature pages, slash navigation, legacy XP preference preservation and core companion event dispatch')
