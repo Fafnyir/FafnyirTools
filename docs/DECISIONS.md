@@ -8,6 +8,8 @@ Forever-only option, defaults, export/import schema, reset behavior and runtime
 wrapper. Preserve existing legacy `unitFrameNames` SavedVariables as unknown
 data during ordinary upgrades and settings transfers. EllesmereUI is the sole
 owner of name formatting for v1.1.11.
+On 2026-10-08 the user explicitly authorized **Push release**; publish v1.1.11
+as a final GitHub and CurseForge release.
 
 ## 2026-10-06 — Retire all FafnyirTools XP ownership
 

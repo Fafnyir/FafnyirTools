@@ -1,6 +1,12 @@
-# Current state — v1.1.11 name-format retirement in development, 2026-10-08
+# Current state — v1.1.11 release, 2026-10-08
 
 ## v1.1.11 — EllesmereUI owns name formatting
+
+Published final GitHub release `release/v1.1.11` at `6e54117` on 2026-10-08.
+Workflow `37866234202` passed validation, packaging and publishing. ZIP/display
+name: `Fafnyir_Tools_for_EllesmereUI_v1.1.11_6e54117.zip`.
+SHA-256: `ac5bfdeb36078fae70a60c27242ca74b280a7893ddae686500f8792230be6659`.
+CurseForge accepted Release file `9103690`; moderation availability is separate.
 
 The user reported that EllesmereUI now supports name formats on all frames and
 requested removing the redundant FafnyirTools implementation. The
@@ -10,6 +16,7 @@ are retired. Existing `unitFrameNames` SavedVariables remain untouched as
 unknown data during ordinary upgrades and settings transfers. Offline
 retirement and preservation coverage passes; confirm in game that the option is
 absent and EllesmereUI formats all desired frames without interference.
+User explicitly authorized **Push release** to GitHub and CurseForge.
 
 ## v1.1.10 release, 2026-10-06
 
