@@ -8,10 +8,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.10"
+local VERSION = "v1.1.11"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.11", lines = {
+        "Removed name-format controls now provided by EllesmereUI on all frames.",
+        "Preserved legacy saved name-format settings during upgrades.",
+    } },
     { version = "v1.1.10", lines = {
         "Removed XP & Progression controls now provided by EllesmereUI.",
         "Preserved legacy saved XP settings during upgrades.",

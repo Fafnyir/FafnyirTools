@@ -1,4 +1,10 @@
-Fafnyir Tools for EllesmereUI v1.1.10 — Native XP Bar Ownership
+Fafnyir Tools for EllesmereUI v1.1.11 — Native Name Format Ownership
+
+v1.1.11 changes
+
+- Removed First Name / Last Name / Whole Name controls and runtime formatting
+  now provided by EllesmereUI on all frames.
+- Preserved legacy saved name-format settings during upgrades.
 
 v1.1.10 changes
 

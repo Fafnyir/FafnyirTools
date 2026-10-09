@@ -1,4 +1,17 @@
-# Current state — v1.1.10 release, 2026-10-06
+# Current state — v1.1.11 name-format retirement in development, 2026-10-08
+
+## v1.1.11 — EllesmereUI owns name formatting
+
+The user reported that EllesmereUI now supports name formats on all frames and
+requested removing the redundant FafnyirTools implementation. The
+`UnitFrameNames` module, Forever-only First/Last/Whole dropdown, default,
+options registration, global-settings schema and runtime `WithSurname` wrapper
+are retired. Existing `unitFrameNames` SavedVariables remain untouched as
+unknown data during ordinary upgrades and settings transfers. Offline
+retirement and preservation coverage passes; confirm in game that the option is
+absent and EllesmereUI formats all desired frames without interference.
+
+## v1.1.10 release, 2026-10-06
 
 ## v1.1.10 — XP module retired, 2026-10-06
 

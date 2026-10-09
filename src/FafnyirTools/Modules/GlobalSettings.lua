@@ -24,7 +24,6 @@ local SCHEMA = {
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     resting = true,
     rightClickSelfCast = true,
-    unitFrameNames = true,
     inventory = { enabled = true, tooltips = true },
     auraSkins = true,
 }
@@ -174,7 +173,7 @@ end
 function feature:Export()
     local payload = {
         format = FORMAT,
-        addonVersion = "v1.1.10",
+        addonVersion = "v1.1.11",
         settings = Select(ns:GetDatabase(), SCHEMA, ns.defaults),
     }
     local out = {}
@@ -204,7 +203,7 @@ function feature:ApplyImport(payload)
     local db = ns:GetDatabase()
     db.globalSettingsImportBackup = {
         created = time and time() or 0,
-        addonVersion = "v1.1.10",
+        addonVersion = "v1.1.11",
         settings = Select(db, SCHEMA, ns.defaults),
     }
     MergeRecognized(db, payload.settings, SCHEMA, ns.defaults)

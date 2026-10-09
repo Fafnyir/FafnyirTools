@@ -11,6 +11,7 @@ local f=ns.modules.GlobalSettings
 local db=ns:GetDatabase()
 db.blizzardBarArt={enabled=false,scaleMultiplier=1.01}
 db.unitFrameSources={player='hidden',target='blizzard'}
+db.unitFrameNames={mode='last',future='keep'}
 db.xpBar={enabled=true}
 db.xpBar.startColor={r=.2,g=.3,b=.4,a=.5,unknown="drop"}
 db.xpBar.borderSize=3
@@ -28,9 +29,10 @@ db.sharedArtwork={arrow='background:- Arrow Glow',roles=true,unknown='keep'}
 local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
 local payload,err=f:Decode(exported);assert(payload and not err)
-assert(payload.addonVersion=='v1.1.10' and payload.format==1)
+assert(payload.addonVersion=='v1.1.11' and payload.format==1)
 assert(payload.settings.xpBar==nil)
 assert(payload.settings.blizzardBarArt==nil and payload.settings.unitFrameSources==nil)
+assert(payload.settings.unitFrameNames==nil)
 assert(payload.settings.foreverFog.enabled==false and payload.settings.foreverFog.initialized==nil)
 assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
@@ -42,6 +44,7 @@ assert(payload.settings.sharedArtwork.unknown==nil)
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 db.sharedArtwork.arrow='native';db.sharedArtwork.roles=false
 payload.settings.xpBar={enabled=true,questEnabled=false}
+payload.settings.unitFrameNames={mode='first'}
 f:ApplyImport(payload)
 assert(db.sharedArtwork.arrow=='background:- Arrow Glow' and db.sharedArtwork.roles and db.sharedArtwork.unknown=='keep')
 assert(db.xpBar.enabled==false and db.xpBar.startColor.a==.9 and db.inventory.tooltips==false)
@@ -50,6 +53,7 @@ assert(db.xpBar.customTextEnabled==false)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
 assert(db.blizzardBarArt.enabled==false and db.blizzardBarArt.scaleMultiplier==1.01)
 assert(db.unitFrameSources.player=='hidden' and db.unitFrameSources.target=='blizzard')
+assert(db.unitFrameNames.mode=='last' and db.unitFrameNames.future=='keep')
 assert(db.permanentCompanionPet.characters['Tester-Realm'].petName=='Secret Pet')
 assert(db.inventory.characters['Tester-Realm'].money==999)
 assert(db.globalSettingsImportBackup.created==12345)

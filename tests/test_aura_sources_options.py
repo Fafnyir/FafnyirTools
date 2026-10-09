@@ -85,9 +85,9 @@ run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
 for n in ['Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua']:
  run((root/n).read_text(),l.globals().ns)
 l.execute('''
-for _,key in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','UnitFrameNames','FocusHeader','SharedArtwork','Resting','IconHistoryBorder','DeviceLayout','Inventory'}) do
+for _,key in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','FocusHeader','SharedArtwork','Resting','IconHistoryBorder','DeviceLayout','Inventory'}) do
  ns.modules[key]={}
- if key~='ForeverFog' then ns.modules[key].page=key=='GlobalSettings' and 'About' or (key=='IconHistoryBorder' and 'QoL' or ((key=='UnitFrameNames' or key=='FocusHeader' or key=='SharedArtwork') and 'Unit Frames' or key)) end
+ if key~='ForeverFog' then ns.modules[key].page=key=='GlobalSettings' and 'About' or (key=='IconHistoryBorder' and 'QoL' or ((key=='FocusHeader' or key=='SharedArtwork') and 'Unit Frames' or key)) end
 end
 ns.Sidebar={Install=function() return true end}
 function EllesmereUI:RegisterModule(key,c) config=c end

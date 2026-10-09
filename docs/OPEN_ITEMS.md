@@ -1,5 +1,12 @@
 # Open items — no silent restoration
 
+## 2026-10-08 name-format retirement — in-game check pending
+
+- Confirm the FafnyirTools First/Last/Whole Name option is absent.
+- Confirm EllesmereUI controls the intended name format on main, Party, Raid,
+  Nameplate and any other supported frames after reload.
+- Confirm no duplicate formatting or surname interference remains on Forever.
+
 ## 2026-10-06 XP retirement — in-game check pending
 
 - Verify XP & Progression is absent and the native EUI XP/quest bar works after

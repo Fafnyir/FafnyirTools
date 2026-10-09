@@ -56,9 +56,6 @@ ns.defaults = {
     rightClickSelfCast = {
         enabled = true,
     },
-    unitFrameNames = {
-        mode = "whole",
-    },
     deviceLayout = {
         enabled = true,
         presetIndex = 0,

@@ -1,5 +1,12 @@
 # Reconciled project changelog
 
+## v1.1.11 — Native name-format ownership
+
+- Removed First Name / Last Name / Whole Name controls and runtime formatting
+  now provided by EllesmereUI on all frames.
+- Preserved legacy saved name-format data during ordinary upgrades and settings
+  transfers.
+
 ## v1.1.10 — Native XP bar ownership
 
 - Remove the XP & Progression page and remaining XP bar enhancements now provided by EllesmereUI.

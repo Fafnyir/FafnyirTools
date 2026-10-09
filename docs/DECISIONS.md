@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-10-08 — Retire FafnyirTools name formatting
+
+The user reported that EllesmereUI now supports name formats on all frames and
+requested **Build it**. Remove the FafnyirTools `UnitFrameNames` module,
+Forever-only option, defaults, export/import schema, reset behavior and runtime
+wrapper. Preserve existing legacy `unitFrameNames` SavedVariables as unknown
+data during ordinary upgrades and settings transfers. EllesmereUI is the sole
+owner of name formatting for v1.1.11.
+
 ## 2026-10-06 — Retire all FafnyirTools XP ownership
 
 Current task user request: EllesmereUI now provides quest XP, so remove our XP
