@@ -1,4 +1,4 @@
-# Current state — v1.1.12 development, 2026-10-11
+# Current state — v1.1.12 release, 2026-10-11
 
 ## v1.1.12 — Resting indicator placement
 
@@ -14,6 +14,12 @@ were confirmed by the user on 2026-10-11 with test build `23df736` (“Tests
 fine”). Client/EllesmereUI versions and the detailed scenarios exercised were
 not supplied. The user explicitly authorized a final GitHub and CurseForge
 release.
+
+Published final GitHub release `release/v1.1.12` at `72bc275` through workflow
+`38178412230`. ZIP/display name:
+`Fafnyir_Tools_for_EllesmereUI_v1.1.12_72bc275.zip`. SHA-256:
+`eafeace51ed84930439ad8e71067929be776969031a699ebaea87e09f6db718d`.
+CurseForge accepted Release file `9139664`; moderation availability is separate.
 
 ## v1.1.11 — EllesmereUI owns name formatting
 

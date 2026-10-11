@@ -8,6 +8,8 @@ on the left so one saved spacing value produces symmetric corner placement.
 Include the recognized setting in reset and global settings transfer.
 On 2026-10-11 the user reported that build `23df736` tests fine and explicitly
 authorized a final release to GitHub and CurseForge.
+Workflow `38178412230` published final GitHub release `release/v1.1.12` at
+`72bc275` and CurseForge accepted file `9139664`.
 
 ## 2026-10-08 — Retire FafnyirTools name formatting
 
