@@ -1,12 +1,11 @@
 # Open items — no silent restoration
 
-## 2026-10-11 resting indicator side — in-game check pending
+## 2026-10-11 resting indicator side — user confirmed
 
-- Confirm Right retains the existing resting Z's position after upgrade/reload.
-- Switch to Left and confirm the indicator anchors above the Player frame's
-  upper-left corner with mirrored horizontal spacing.
-- Confirm size and both offsets still update immediately on both sides.
-- Confirm reset restores Right and global export/import preserves the selection.
+- User reported “Tests fine” for build `23df736` and authorized release.
+- Client/EllesmereUI versions and detailed Right/Left, reload, reset and global
+  transfer scenarios were not supplied, so this is confirmation rather than an
+  exhaustive regression matrix.
 
 ## 2026-10-08 name-format retirement — in-game check pending
 

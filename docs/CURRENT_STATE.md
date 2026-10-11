@@ -10,7 +10,10 @@ across sides so the same saved value provides matching corner spacing. The
 setting participates in reset and the existing allowlisted global export/import.
 Offline validation covers defaults, both anchors, mirrored positive and negative
 offsets, invalid-value fallback and reset. In-game appearance and persistence
-remain pending.
+were confirmed by the user on 2026-10-11 with test build `23df736` (“Tests
+fine”). Client/EllesmereUI versions and the detailed scenarios exercised were
+not supplied. The user explicitly authorized a final GitHub and CurseForge
+release.
 
 ## v1.1.11 — EllesmereUI owns name formatting
 
