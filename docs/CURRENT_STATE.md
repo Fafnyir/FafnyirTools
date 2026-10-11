@@ -1,4 +1,16 @@
-# Current state — v1.1.11 release, 2026-10-08
+# Current state — v1.1.12 development, 2026-10-11
+
+## v1.1.12 — Resting indicator placement
+
+The Resting Indicator now provides a Left / Right dropdown under Unit Frames.
+Right remains the upgrade-safe default, and existing settings gain it only when
+missing. Left anchors the animation to the Player frame's upper-left corner;
+Right retains the existing upper-right anchor. Horizontal offsets are mirrored
+across sides so the same saved value provides matching corner spacing. The
+setting participates in reset and the existing allowlisted global export/import.
+Offline validation covers defaults, both anchors, mirrored positive and negative
+offsets, invalid-value fallback and reset. In-game appearance and persistence
+remain pending.
 
 ## v1.1.11 — EllesmereUI owns name formatting
 

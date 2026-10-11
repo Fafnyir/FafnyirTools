@@ -25,6 +25,10 @@ local function DB()
     return ns:GetDatabase().resting
 end
 
+local function GetSide(settings)
+    return settings.side == "left" and "left" or "right"
+end
+
 local function PlayerAtMaxLevel()
     local level = UnitLevel("player") or 0
     if IsPlayerAtEffectiveMaxLevel and IsPlayerAtEffectiveMaxLevel() then return true end
@@ -49,6 +53,14 @@ function feature:ApplyLayout()
 
     local settings = DB()
     local defaults = ns.defaults.resting
+    local side = GetSide(settings)
+    local offsetX = tonumber(settings.offsetX) or defaults.offsetX
+
+    -- Treat the horizontal offset as distance from the selected outer corner,
+    -- so switching sides preserves the same visual spacing.
+    if side == "left" then
+        offsetX = -offsetX
+    end
 
     indicator:SetSize(
         tonumber(settings.size) or defaults.size,
@@ -62,10 +74,10 @@ function feature:ApplyLayout()
 
     indicator:ClearAllPoints()
     indicator:SetPoint(
-        "BOTTOMRIGHT",
+        side == "left" and "BOTTOMLEFT" or "BOTTOMRIGHT",
         playerFrame,
-        "TOPRIGHT",
-        tonumber(settings.offsetX) or defaults.offsetX,
+        side == "left" and "TOPLEFT" or "TOPRIGHT",
+        offsetX,
         tonumber(settings.offsetY) or defaults.offsetY
     )
 
@@ -232,6 +244,43 @@ function feature:BuildOptions(parent, yOffset)
         parent,
         y,
         {
+            type = "dropdown",
+            text = "Resting Indicator Side",
+            values = {
+                left = "Left",
+                right = "Right",
+            },
+            order = { "left", "right" },
+            tooltip = "Choose which upper corner of the Player frame holds the resting Z's. Horizontal Offset is mirrored to preserve equal spacing.",
+            getValue = function()
+                return GetSide(DB())
+            end,
+            setValue = function(value)
+                DB().side = value == "left" and "left" or "right"
+                feature:ApplyLayout()
+            end,
+        },
+        {
+            type = "slider",
+            text = "Resting Icon Size",
+            min = 16,
+            max = 96,
+            step = 1,
+            getValue = function()
+                return DB().size
+            end,
+            setValue = function(value)
+                DB().size = value
+                feature:ApplyLayout()
+            end,
+        }
+    )
+    y = y - h
+
+    _, h = W:DualRow(
+        parent,
+        y,
+        {
             type = "slider",
             text = "Horizontal Offset",
             min = -100,
@@ -266,20 +315,6 @@ function feature:BuildOptions(parent, yOffset)
         parent,
         y,
         {
-            type = "slider",
-            text = "Resting Icon Size",
-            min = 16,
-            max = 96,
-            step = 1,
-            getValue = function()
-                return DB().size
-            end,
-            setValue = function(value)
-                DB().size = value
-                feature:ApplyLayout()
-            end,
-        },
-        {
             type = "button",
             text = "Reset Resting Settings",
             buttonText = "Reset",
@@ -290,6 +325,10 @@ function feature:BuildOptions(parent, yOffset)
                     EllesmereUI:RefreshPage(true)
                 end
             end,
+        },
+        {
+            type = "label",
+            text = "",
         }
     )
     y = y - h

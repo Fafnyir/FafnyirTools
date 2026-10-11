@@ -49,6 +49,7 @@ ns.defaults = {
     resting = {
         enabled = true,
         hideAtMaxLevel = false,
+        side = "right",
         size = 36,
         offsetX = 20,
         offsetY = -15,

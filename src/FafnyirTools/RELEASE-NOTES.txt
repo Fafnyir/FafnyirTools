@@ -1,4 +1,11 @@
-Fafnyir Tools for EllesmereUI v1.1.11 — Native Name Format Ownership
+Fafnyir Tools for EllesmereUI v1.1.12 — Resting Indicator Placement
+
+v1.1.12 changes
+
+- Added Left and Right placement options for the resting Z's on the Player frame.
+- Kept Right as the upgrade-safe default.
+- Mirrored horizontal offset spacing when switching between frame corners.
+- Included the new setting in reset and global settings transfers.
 
 v1.1.11 changes
 

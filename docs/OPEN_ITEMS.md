@@ -1,5 +1,13 @@
 # Open items — no silent restoration
 
+## 2026-10-11 resting indicator side — in-game check pending
+
+- Confirm Right retains the existing resting Z's position after upgrade/reload.
+- Switch to Left and confirm the indicator anchors above the Player frame's
+  upper-left corner with mirrored horizontal spacing.
+- Confirm size and both offsets still update immediately on both sides.
+- Confirm reset restores Right and global export/import preserves the selection.
+
 ## 2026-10-08 name-format retirement — in-game check pending
 
 - Confirm the FafnyirTools First/Last/Whole Name option is absent.

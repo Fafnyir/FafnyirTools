@@ -1,5 +1,12 @@
 # Reconciled project changelog
 
+## v1.1.12 — Resting indicator placement
+
+- Added a Left / Right placement option for the resting Z's on the Player frame.
+- Kept Right as the upgrade-safe default and mirrored the horizontal offset so
+  switching sides preserves matching corner spacing.
+- Included the new setting in reset and global settings transfer behavior.
+
 ## v1.1.11 — Native name-format ownership
 
 - Removed First Name / Last Name / Whole Name controls and runtime formatting

@@ -1,5 +1,12 @@
 # Reconciled decisions
 
+## 2026-10-11 — Resting indicator side
+
+Add Left / Right placement for the Player-frame resting Z's in v1.1.12. Keep
+Right as the upgrade-safe default. Mirror the horizontal offset when rendering
+on the left so one saved spacing value produces symmetric corner placement.
+Include the recognized setting in reset and global settings transfer.
+
 ## 2026-10-08 — Retire FafnyirTools name formatting
 
 The user reported that EllesmereUI now supports name formats on all frames and
