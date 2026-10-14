@@ -1,4 +1,4 @@
-# Current state — v1.1.13 release preparation, 2026-10-14
+# Current state — v1.1.13 release, 2026-10-14
 
 ## v1.1.13 — Retail 12.1.5 compatibility
 
@@ -8,6 +8,12 @@ interface `16001` remain supported. This is a metadata-only compatibility
 change: addon behavior, defaults and saved settings are unchanged. Offline and
 in-game validation of the new package remain separate. The user explicitly
 authorized a final GitHub and CurseForge release on 2026-10-14.
+
+Published final GitHub release `release/v1.1.13` at `9fece5e` through workflow
+`38547034451`. ZIP/display name:
+`Fafnyir_Tools_for_EllesmereUI_v1.1.13_9fece5e.zip`. SHA-256:
+`667a72c3ae97cdeb31e09c8d5a863f5ea8fb27edd73775be131a76fe36e1948e`.
+CurseForge accepted Release file `9171398`; moderation availability is separate.
 
 ## v1.1.12 — Resting indicator placement
 
