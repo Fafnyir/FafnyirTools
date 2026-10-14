@@ -1,4 +1,10 @@
-Fafnyir Tools for EllesmereUI v1.1.12 — Resting Indicator Placement
+Fafnyir Tools for EllesmereUI v1.1.13 — Retail 12.1.5 Compatibility
+
+v1.1.13 changes
+
+- Added Retail interface 120105 compatibility metadata.
+- Preserved all existing Retail and WoW Forever interface support.
+- No feature behavior, defaults or saved settings changed.
 
 v1.1.12 changes
 

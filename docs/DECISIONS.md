@@ -4,8 +4,9 @@
 
 Add interface `120105` to FafnyirTools after the user requested a TOC update
 and the installed EllesmereUI 9.5.4 TOC confirmed that interface. Preserve all
-existing interface values, including Forever `16001`, and keep addon version
-v1.1.12 for the test build because no new release version was requested.
+existing interface values, including Forever `16001`. The first test build kept
+v1.1.12; the subsequent explicit release request authorizes v1.1.13 and final
+publication to GitHub and CurseForge.
 
 ## 2026-10-11 — Resting indicator side
 

@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased — Retail interface metadata
+## v1.1.13 — Retail 12.1.5 compatibility
 
 - Added Retail interface 120105 to match the current supported EllesmereUI TOC.
 - No runtime behavior or saved settings changed.
