@@ -1,5 +1,14 @@
 # Open items — no silent restoration
 
+## Chinese localization
+
+- Confirm whether the volunteer supports `zhCN`, `zhTW` or both.
+- Receive and review the completed worksheet in `docs/localization/`.
+- Add English fallback and locale files, replace active hard-coded interface
+  strings, register files in the TOC and test missing-key behavior.
+- Verify the chosen Chinese client font, options layout, wrapping, dropdowns,
+  dialogs and inventory tooltips in game.
+
 ## 2026-10-14 Retail interface 120105 — in-game check pending
 
 - Confirm the updated package loads without the out-of-date warning on Retail

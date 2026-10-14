@@ -1,5 +1,14 @@
 # Current state — v1.1.13 release, 2026-10-14
 
+## Chinese localization preparation
+
+A volunteer translation kit is available under `docs/localization/`. The Excel
+worksheet contains 164 current interface strings with separate `zhCN` and
+`zhTW` columns, source context, priorities, terminology notes, reviewer fields
+and completion status. This is preparation only: the addon does not yet load
+locale files or replace hard-coded English strings. Historical About changelog
+text and the English support diagnostics body are deferred from the first pass.
+
 ## v1.1.13 — Retail 12.1.5 compatibility
 
 The active TOC now includes Retail interface `120105`, matching the installed

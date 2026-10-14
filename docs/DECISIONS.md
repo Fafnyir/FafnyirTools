@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-10-14 — Chinese localization preparation
+
+Prepare a language-neutral volunteer worksheet while waiting to learn whether
+the translator supports `zhCN`, `zhTW` or both. Keep the two locales separate,
+request official WoW-client terminology, and do not add runtime localization or
+machine-generated translations before reviewed volunteer text is available.
+Defer historical About changelog prose and the English diagnostics body from
+the first translation pass.
+
 ## 2026-10-14 — Retail TOC interface update
 
 Add interface `120105` to FafnyirTools after the user requested a TOC update
