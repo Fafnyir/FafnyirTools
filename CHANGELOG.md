@@ -1,5 +1,10 @@
 # Reconciled project changelog
 
+## Unreleased — Retail interface metadata
+
+- Added Retail interface 120105 to match the current supported EllesmereUI TOC.
+- No runtime behavior or saved settings changed.
+
 ## v1.1.12 — Resting indicator placement
 
 - Added a Left / Right placement option for the resting Z's on the Player frame.

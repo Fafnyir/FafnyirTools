@@ -1,5 +1,12 @@
 # Reconciled decisions
 
+## 2026-10-14 — Retail TOC interface update
+
+Add interface `120105` to FafnyirTools after the user requested a TOC update
+and the installed EllesmereUI 9.5.4 TOC confirmed that interface. Preserve all
+existing interface values, including Forever `16001`, and keep addon version
+v1.1.12 for the test build because no new release version was requested.
+
 ## 2026-10-11 — Resting indicator side
 
 Add Left / Right placement for the Player-frame resting Z's in v1.1.12. Keep

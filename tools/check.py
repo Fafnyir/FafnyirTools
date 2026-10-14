@@ -59,7 +59,9 @@ def check(baseline=False):
     assert version == re.search(r'local VERSION = "([^"]+)"', (ADDON / 'Modules/About.lua').read_text()).group(1)
     assert '## SavedVariables: FafnyirToolsDB' in toc
     assert '## Dependencies: EllesmereUI, FafnyirMedia' in toc
-    assert '16001' in re.search(r'^## Interface: (.+)$', toc, re.M).group(1), 'Forever interface missing'
+    interfaces = re.search(r'^## Interface: (.+)$', toc, re.M).group(1)
+    assert '120105' in interfaces, 'Retail 12.1.5 interface missing'
+    assert '16001' in interfaces, 'Forever interface missing'
     assert entries.index('Core/Bootstrap.lua') < entries.index('Core/Events.lua')
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)

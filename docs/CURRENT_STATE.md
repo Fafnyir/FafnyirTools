@@ -1,4 +1,12 @@
-# Current state — v1.1.12 release, 2026-10-11
+# Current state — post-v1.1.12 development, 2026-10-14
+
+## Retail interface 120105
+
+The active TOC now includes Retail interface `120105`, matching the installed
+EllesmereUI 9.5.4 metadata. Existing Retail interface entries and Forever
+interface `16001` remain supported. This is a metadata-only compatibility
+change: addon behavior, defaults and saved settings are unchanged. Offline and
+in-game validation of the new package remain separate.
 
 ## v1.1.12 — Resting indicator placement
 

@@ -1,5 +1,10 @@
 # Open items — no silent restoration
 
+## 2026-10-14 Retail interface 120105 — in-game check pending
+
+- Confirm the updated package loads without the out-of-date warning on Retail
+  12.1.5 and that the Fafnyir Tools options remain available.
+
 ## 2026-10-11 resting indicator side — user confirmed
 
 - User reported “Tests fine” for build `23df736` and authorized release.
