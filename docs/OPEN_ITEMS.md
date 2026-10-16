@@ -13,6 +13,9 @@
   translated pass. Do not invent or machine-translate these strings.
 - A second fluent reviewer has not been recorded. Capture any terminology or
   truncation corrections from the volunteer during in-game testing.
+- Remove the temporary `/faftoolslocale` override before publishing the final
+  localization release. It exists only because the current Retail installation
+  offers no Chinese text-language option and Forever reverts to English.
 
 ## 2026-10-14 Retail interface 120105 — in-game check pending
 
