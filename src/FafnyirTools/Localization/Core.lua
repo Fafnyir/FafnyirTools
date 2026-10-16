@@ -8,8 +8,7 @@ local SUPPORTED_TEST_LOCALES = {
 }
 
 local function ActiveLocale()
-    local db = ns:GetDatabase()
-    local override = db and db.localeTestOverride
+    local override = FafnyirToolsLocaleOverride
     if override == "zhCN" or override == "zhTW" then
         return override
     end
@@ -37,22 +36,21 @@ SlashCmdList = SlashCmdList or {}
 SLASH_FAFNYIRTOOLSLOCALE1 = "/faftoolslocale"
 SlashCmdList["FAFNYIRTOOLSLOCALE"] = function(message)
     local value = string.lower((message or ""):match("^%s*(.-)%s*$"))
-    local db = ns:GetDatabase()
 
     if value == "reset" or value == "en" or value == "english" then
-        db.localeTestOverride = nil
+        FafnyirToolsLocaleOverride = nil
         ns:Print("Locale test override cleared. Type /reload to apply the client language.")
         return
     end
 
     local locale = SUPPORTED_TEST_LOCALES[value]
     if locale then
-        db.localeTestOverride = locale
+        FafnyirToolsLocaleOverride = locale
         ns:Print("Locale test override set to " .. locale .. ". Type /reload to apply it.")
         return
     end
 
-    local current = db.localeTestOverride or "client default"
+    local current = FafnyirToolsLocaleOverride or "client default"
     ns:Print("Locale test override: " .. current .. ". Use /faftoolslocale zhCN, zhTW, or reset.")
 end
 

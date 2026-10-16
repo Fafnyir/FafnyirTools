@@ -65,7 +65,7 @@ assert unsupported.globals().ns.Text(unsupported.globals().ns, "CORE.ABOUT") == 
 
 override = LuaRuntime(unpack_returned_tuples=True)
 override.execute("""
-    SlashCmdList={}; FafnyirToolsDB={localeTestOverride='zhTW'}; ns={}
+    SlashCmdList={}; FafnyirToolsDB={}; FafnyirToolsLocaleOverride='zhTW'; ns={}
     function GetLocale() return 'enUS' end
     function ns:GetDatabase() return FafnyirToolsDB end
     function ns:Print() end
@@ -74,8 +74,8 @@ override.execute((LOCALE_DIR / "Core.lua").read_text(), "FafnyirTools", override
 for name in LOCALES:
     override.execute((LOCALE_DIR / f"{name}.lua").read_text(), "FafnyirTools", override.globals().ns)
 assert override.globals().ns.Text(override.globals().ns, "CORE.ABOUT") == entries_for("zhTW")["CORE.ABOUT"]
-override.execute("SlashCmdList.FAFNYIRTOOLSLOCALE('zhCN'); assert(FafnyirToolsDB.localeTestOverride=='zhCN')")
-override.execute("SlashCmdList.FAFNYIRTOOLSLOCALE('reset'); assert(FafnyirToolsDB.localeTestOverride==nil)")
+override.execute("SlashCmdList.FAFNYIRTOOLSLOCALE('zhCN'); assert(FafnyirToolsLocaleOverride=='zhCN')")
+override.execute("SlashCmdList.FAFNYIRTOOLSLOCALE('reset'); assert(FafnyirToolsLocaleOverride==nil)")
 
 for locale in LOCALES:
     source = (LOCALE_DIR / f"{locale}.lua").read_text()

@@ -19,7 +19,7 @@ control widths and live options behavior are not yet confirmed in game. Source
 version remains v1.1.13 for this test build.
 
 Because the available Retail client does not expose Chinese text languages and
-Forever reverts to English, this test build includes a temporary saved locale
+Forever reverts to English, this test build includes a temporary dedicated saved locale
 override: `/faftoolslocale zhCN`, `/faftoolslocale zhTW`, or
 `/faftoolslocale reset`, followed by `/reload`. Remove the override command
 before a final localization release.
