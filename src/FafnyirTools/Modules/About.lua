@@ -9,10 +9,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.13"
+local VERSION = "v1.1.14"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.14", lines = {
+        "Added Simplified and Traditional Chinese localization.",
+        "Thank you to Yilang for translating and refining the Chinese text.",
+    } },
     { version = "v1.1.13", lines = {
         "Added Retail 12.1.5 interface compatibility metadata.",
         "No feature behavior or saved settings changed.",

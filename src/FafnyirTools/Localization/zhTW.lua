@@ -144,7 +144,7 @@ ns:RegisterLocale("zhTW", {
     ["UNIT_FRAMES.PLAYER_BUFFS_AND_DEBUFFS_REMAIN_CONTROLLED_BY_ELLESMERE"] = "玩家的增益和減益效果由 EllesmereUI 控制。",
     ["UNIT_FRAMES.RELOAD_NOW"] = "立即重新載入介面",
     ["UNIT_FRAMES.RELOAD_REQUIRED"] = "需要重新載入介面",
-    ["UNIT_FRAMES.REPLACE_VISIBLE_PARTY_AND_RAID_ROLE_ICONS_WITH_FAFNYIRM"] = "將可見的小隊和團隊職責圖示替換為 FafnyirMedia 圖案。圖示的顯示、大小和位置仍由 EllesmereUI 控制。",
+    ["UNIT_FRAMES.REPLACE_VISIBLE_PARTY_AND_RAID_ROLE_ICONS_WITH_FAFNYIRM"] = "將可見的小隊和團隊職責圖示替換為FafnyirMedia圖案。圖示的顯示、大小和位置仍由EllesmereUI控制。",
     ["UNIT_FRAMES.RESET"] = "重設",
     ["UNIT_FRAMES.RESET_AURA_SKIN_SETTINGS"] = "重設光環外觀設定",
     ["UNIT_FRAMES.RESET_RESTING_SETTINGS"] = "重設休息狀態設定",

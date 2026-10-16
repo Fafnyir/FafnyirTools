@@ -1,4 +1,16 @@
-Fafnyir Tools for EllesmereUI v1.1.13 — Retail 12.1.5 Compatibility
+Fafnyir Tools for EllesmereUI v1.1.14 — Chinese Localization
+
+v1.1.14 changes
+
+- Added complete Simplified Chinese (zhCN) and Traditional Chinese (zhTW)
+  localization with English fallback.
+- Localized current options pages, controls, tooltips, dialogs, dropdowns,
+  chat feedback and inventory tooltip labels.
+- Kept saved settings, exported values and runtime identifiers language-neutral.
+- Added automated locale key, placeholder, fallback and Lua syntax validation.
+- Removed the unsuccessful developer-only locale override from the release.
+- Special thanks to volunteer translator Yilang for translating, testing and
+  refining the Chinese localization. Your support made this release possible.
 
 v1.1.13 changes
 

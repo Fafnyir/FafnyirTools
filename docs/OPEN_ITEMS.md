@@ -3,7 +3,7 @@
 ## Chinese localization
 
 - Final volunteer translations were received for both `zhCN` and `zhTW` and
-  integrated into the v1.1.13 test source. Automated locale and regression
+  integrated into the v1.1.14 source. Automated locale and regression
   checks pass.
 - Verify both Chinese clients in game: font glyph coverage, page navigation,
   options layout, wrapping, dropdown widths, confirmation dialogs, chat
@@ -13,9 +13,8 @@
   translated pass. Do not invent or machine-translate these strings.
 - A second fluent reviewer has not been recorded. Capture any terminology or
   truncation corrections from the volunteer during in-game testing.
-- Translator **Yilang** will perform native Chinese-client testing because the
-  local Retail installation offers no Chinese text-language option and Forever
-  reverts to English. Record the client locale, screenshots and corrections.
+- Translator **Yilang** returned six `zhCN` and one `zhTW` wording refinements.
+  Record any later client-locale screenshots, truncation reports or corrections.
 
 ## 2026-10-14 Retail interface 120105 — in-game check pending
 

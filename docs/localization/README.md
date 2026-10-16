@@ -8,6 +8,8 @@ The user confirmed the returned workbook as the final volunteer submission on
 source. The locale files use that text without machine edits. Offline
 integration is complete; in-game Chinese-client review remains pending.
 The translator is **Yilang**, credited in the addon's About page.
+Yilang returned six Simplified Chinese and one Traditional Chinese wording
+refinements on 2026-10-16; those Lua files are the current authoritative text.
 
 Use `FafnyirTools_Chinese_Localization_Worksheet.xlsx` to collect Chinese
 translations without asking the volunteer to edit Lua source.
@@ -28,7 +30,7 @@ translations without asking the volunteer to edit Lua source.
 
 ## Current scope
 
-The workbook contains 164 current interface strings from v1.1.13, including
+The workbook contains 164 interface strings introduced for v1.1.14, including
 options, tooltips, dialogs, chat feedback, dropdown choices and inventory
 tooltip labels. Historical About-page changelog entries and the English support
 diagnostics body are deferred from the first pass because they are lengthy,

@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased — Chinese localization test build
+## v1.1.14 — Chinese localization
 
 - Added English fallback plus complete volunteer-provided Simplified Chinese
   (`zhCN`) and Traditional Chinese (`zhTW`) locale files for 164 interface
@@ -11,9 +11,9 @@
 - Added automated locale parity, fallback, formatting and TOC-order coverage.
 - Kept About changelog history, credits, diagnostics and untranslated dynamic
   sentences in English pending a reviewed follow-up.
-- Kept addon version v1.1.13 for in-game testing.
-- Credit Chinese localization to Yilang. Native Chinese-client testing remains
-  pending; the unsuccessful developer locale override is not included.
+- Thanked and credited volunteer translator **Yilang** for the complete Chinese
+  translation and subsequent wording refinements.
+- Removed the unsuccessful developer locale override from the release.
 
 ## v1.1.13 — Retail 12.1.5 compatibility
 

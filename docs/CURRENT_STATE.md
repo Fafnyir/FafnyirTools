@@ -1,4 +1,17 @@
-# Current state — v1.1.13 release, 2026-10-14
+# Current state — v1.1.14 release candidate, 2026-10-16
+
+## v1.1.14 — Chinese localization
+
+FafnyirTools now includes complete Simplified Chinese (`zhCN`) and Traditional
+Chinese (`zhTW`) locale files with English fallback. Volunteer translator
+**Yilang** supplied all 164 strings and returned seven final wording refinements
+(six `zhCN`, one `zhTW`), which were checked for Lua syntax, key parity,
+nonblank values and placeholder compatibility before integration. Yilang is
+credited on the About page and in the release notes with thanks for the support.
+
+The unsuccessful developer locale-override experiment is absent. Locale choice
+follows the WoW client normally. Offline validation passes; the release workflow
+and external publication are recorded separately after completion.
 
 ## Chinese localization test build — in-game validation pending
 
@@ -16,7 +29,7 @@ Offline checks cover Lua 5.1 syntax, TOC ordering, identical 164-key locale
 sets, nonblank values, `%d` formatting, unsupported-locale English fallback and
 all existing feature regressions. Chinese-client font coverage, wrapping,
 control widths and live options behavior are not yet confirmed in game. Source
-version remains v1.1.13 for this test build.
+This work is released as v1.1.14.
 
 The local Retail installation does not expose Chinese text languages and the
 Forever client reverts its language selection to English, so native testing is

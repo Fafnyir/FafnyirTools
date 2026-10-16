@@ -12,6 +12,11 @@ The translator is **Yilang** and must receive visible credit. On 2026-10-16 the
 user requested removing the unsuccessful developer locale override and sending
 a normal locale-driven test build to Yilang instead.
 
+After Yilang returned six `zhCN` and one `zhTW` wording refinements, the user
+explicitly authorized incorporating them and publishing a release. Ship this as
+v1.1.14 because the v1.1.13 release tag already exists. Thank Yilang visibly in
+the About page and release notes.
+
 ## 2026-10-14 — Chinese localization preparation
 
 Prepare a language-neutral volunteer worksheet while waiting to learn whether
