@@ -12,8 +12,8 @@
 - Kept About changelog history, credits, diagnostics and untranslated dynamic
   sentences in English pending a reviewed follow-up.
 - Kept addon version v1.1.13 for in-game testing.
-- Added a temporary `/faftoolslocale zhCN|zhTW|reset` test command for clients
-  that cannot retain or select a Chinese text language; it is not for release.
+- Credit Chinese localization to Yilang. Native Chinese-client testing remains
+  pending; the unsuccessful developer locale override is not included.
 
 ## v1.1.13 — Retail 12.1.5 compatibility
 

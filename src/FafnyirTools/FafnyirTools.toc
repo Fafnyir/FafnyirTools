@@ -4,7 +4,7 @@
 ## Category-enUS: |cFF6600CCFafnyirs|r |cFFFFFFFFHoard|r
 ## IconTexture: Interface\AddOns\FafnyirMedia\logo\AddonLogo
 ## Dependencies: EllesmereUI, FafnyirMedia
-## SavedVariables: FafnyirToolsDB, FafnyirToolsLocaleOverride
+## SavedVariables: FafnyirToolsDB
 ## Version: v1.1.13
 ## Notes: A collection of enhancements for EllesmereUI.
 

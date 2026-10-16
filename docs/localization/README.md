@@ -7,6 +7,7 @@ The user confirmed the returned workbook as the final volunteer submission on
 `zhCN` and `zhTW` text for all 164 rows and is preserved as the translation
 source. The locale files use that text without machine edits. Offline
 integration is complete; in-game Chinese-client review remains pending.
+The translator is **Yilang**, credited in the addon's About page.
 
 Use `FafnyirTools_Chinese_Localization_Worksheet.xlsx` to collect Chinese
 translations without asking the volunteer to edit Lua source.

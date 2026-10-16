@@ -8,6 +8,9 @@ text for the first localization pass; do not machine-edit wording or silently
 normalize brand terminology. Preserve the submitted workbook and keep version
 v1.1.13 while producing an in-game test build. Runtime integration translates
 display text only, with English fallback and neutral internal or saved keys.
+The translator is **Yilang** and must receive visible credit. On 2026-10-16 the
+user requested removing the unsuccessful developer locale override and sending
+a normal locale-driven test build to Yilang instead.
 
 ## 2026-10-14 — Chinese localization preparation
 

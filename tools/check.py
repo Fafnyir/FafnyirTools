@@ -57,7 +57,7 @@ def check(baseline=False):
         assert f'ns.modules.{key}' in (ADDON / 'Core/Options.lua').read_text(), f'Feature not ordered in options: {key}'
     version = re.search(r'^## Version: (.+)$', toc, re.M).group(1).strip()
     assert version == re.search(r'local VERSION = "([^"]+)"', (ADDON / 'Modules/About.lua').read_text()).group(1)
-    assert '## SavedVariables: FafnyirToolsDB, FafnyirToolsLocaleOverride' in toc
+    assert '## SavedVariables: FafnyirToolsDB' in toc
     assert '## Dependencies: EllesmereUI, FafnyirMedia' in toc
     interfaces = re.search(r'^## Interface: (.+)$', toc, re.M).group(1)
     assert '120105' in interfaces, 'Retail 12.1.5 interface missing'

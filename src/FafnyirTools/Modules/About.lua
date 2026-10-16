@@ -331,6 +331,9 @@ function feature:BuildOptions(parent, yOffset)
     h = AddText(parent, "Original Companion Pet WeakAura: raine (wago.io/3It1XU72A).", y - 1, 11, 0.78)
     y = y - h
 
+    h = AddText(parent, "Chinese localization by Yilang.", y - 1, 11, 0.78)
+    y = y - h
+
     _, h = W:SectionHeader(parent, T("ABOUT.SUPPORT_DEVELOPMENT"), y)
     y = y - h
     _, h = W:DualRow(parent, y,
