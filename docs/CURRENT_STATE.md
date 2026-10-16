@@ -11,7 +11,14 @@ credited on the About page and in the release notes with thanks for the support.
 
 The unsuccessful developer locale-override experiment is absent. Locale choice
 follows the WoW client normally. Offline validation passes; the release workflow
-and external publication are recorded separately after completion.
+passed and published the final release on 2026-10-16.
+
+Published final GitHub release `release/v1.1.14` at `7acd694` through workflow
+`38965194915`. ZIP/display name:
+`Fafnyir_Tools_for_EllesmereUI_v1.1.14_7acd694.zip`. SHA-256:
+`935a3fc13ba5110b509587609160e6c7c10071eb532f4f744ec03c837461e04e`.
+CurseForge accepted Release file `9213901`; moderation/public availability is
+separate from upload acceptance.
 
 ## Chinese localization test build — in-game validation pending
 
