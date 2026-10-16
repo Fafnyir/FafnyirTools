@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "RightClickSelfCast",
-    page = "Action Bars",
+    page = T("CORE.ACTION_BARS"),
     searchTerms = {
         "right click",
         "right-click",
@@ -84,7 +85,7 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "RIGHT-CLICK SELF CAST", y)
+    _, h = W:SectionHeader(parent, T("ACTION_BARS.RIGHT_CLICK_SELF_CAST"), y)
     y = y - h
 
     _, h = W:DualRow(
@@ -92,8 +93,8 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "toggle",
-            text = "Enable Right-Click Self Cast",
-            tooltip = "Right-click a spell on an EllesmereUI action bar to cast it on yourself.",
+            text = T("ACTION_BARS.ENABLE_RIGHT_CLICK_SELF_CAST"),
+            tooltip = T("ACTION_BARS.RIGHT_CLICK_A_SPELL_ON_AN_ELLESMEREUI_ACTION_BAR_TO_CAS"),
             getValue = function()
                 return DB().enabled
             end,

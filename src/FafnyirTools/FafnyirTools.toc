@@ -9,6 +9,10 @@
 ## Notes: A collection of enhancements for EllesmereUI.
 
 Core\Bootstrap.lua
+Localization\Core.lua
+Localization\enUS.lua
+Localization\zhCN.lua
+Localization\zhTW.lua
 Core\Sidebar.lua
 Modules\HideStatusTextures.lua
 Modules\About.lua

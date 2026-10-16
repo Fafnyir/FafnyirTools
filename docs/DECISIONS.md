@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-10-16 — Chinese localization source
+
+The user identified the returned worksheet as the final volunteer submission.
+Treat its complete `zhCN` and `zhTW` columns as the authoritative translation
+text for the first localization pass; do not machine-edit wording or silently
+normalize brand terminology. Preserve the submitted workbook and keep version
+v1.1.13 while producing an in-game test build. Runtime integration translates
+display text only, with English fallback and neutral internal or saved keys.
+
 ## 2026-10-14 — Chinese localization preparation
 
 Prepare a language-neutral volunteer worksheet while waiting to learn whether

@@ -1,4 +1,12 @@
-# Fafnyir Tools localization volunteer kit
+# Fafnyir Tools Chinese localization
+
+## Final submission
+
+The user confirmed the returned workbook as the final volunteer submission on
+2026-10-16. `FafnyirTools_Chinese_Localization_Final.xlsx` contains complete
+`zhCN` and `zhTW` text for all 164 rows and is preserved as the translation
+source. The locale files use that text without machine edits. Offline
+integration is complete; in-game Chinese-client review remains pending.
 
 Use `FafnyirTools_Chinese_Localization_Worksheet.xlsx` to collect Chinese
 translations without asking the volunteer to edit Lua source.
@@ -25,7 +33,5 @@ tooltip labels. Historical About-page changelog entries and the English support
 diagnostics body are deferred from the first pass because they are lengthy,
 high-churn support content.
 
-This kit does not add localization runtime code or alter addon behavior. Locale
-files, English fallback behavior, TOC registration, automated key coverage and
-in-game font/layout testing remain implementation work after translations are
-returned.
+The addon now includes locale files, English fallback behavior, TOC registration
+and automated key coverage. In-game font and layout testing remains required.

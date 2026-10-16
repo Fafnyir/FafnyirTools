@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "FlyoutButtonMatch",
-    page = "Action Bars",
+    page = T("CORE.ACTION_BARS"),
     searchTerms = ns.IS_FOREVER and {} or {
         "flyout", "flyout fix", "action bar", "border",
     },
@@ -386,7 +387,7 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "FLYOUT FIX", y)
+    _, h = W:SectionHeader(parent, T("ACTION_BARS.FLYOUT_FIX"), y)
     y = y - h
 
     _, h = W:DualRow(
@@ -394,8 +395,8 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "toggle",
-            text = "Enable Flyout Fix",
-            tooltip = "Preserve Blizzard's native flyout layout and background, and fit the selected EllesmereUI border style to each flyout button.",
+            text = T("ACTION_BARS.ENABLE_FLYOUT_FIX"),
+            tooltip = T("ACTION_BARS.PRESERVE_BLIZZARD_S_NATIVE_FLYOUT_LAYOUT_AND_BACKGROUND"),
             getValue = function()
                 return DB().enabled
             end,

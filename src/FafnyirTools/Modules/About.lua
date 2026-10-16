@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "About",
-    page = "About",
+    page = T("CORE.ABOUT"),
     searchTerms = {"about","version","diagnostics","debug","copy","changelog","credits","patreon","support"},
 }
 
@@ -282,30 +283,30 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "FAFNYIR TOOLS FOR ELLESMEREUI", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.FAFNYIR_TOOLS_FOR_ELLESMEREUI"), y)
     y = y - h
-    h = AddText(parent, "A collection of enhancements for EllesmereUI.", y - 4, 13, 0.85)
+    h = AddText(parent, T("CORE.A_COLLECTION_OF_ENHANCEMENTS_FOR_ELLESMEREUI"), y - 4, 13, 0.85)
     y = y - h - 10
 
-    _, h = W:SectionHeader(parent, "VERSION", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.VERSION"), y)
     y = y - h
     _, h = W:DualRow(parent, y,
         { type="label", text=VERSION },
         { type="label", text="" })
     y = y - h
 
-    _, h = W:SectionHeader(parent, "SUPPORT DIAGNOSTICS", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.SUPPORT_DIAGNOSTICS"), y)
     y = y - h
     _, h = W:DualRow(parent, y,
         {
             type="button",
-            text="Copy Diagnostics",
+            text=T("ABOUT.COPY_DIAGNOSTICS"),
             onClick=function() feature:ShowDiagnostics() end,
         },
-        { type="label", text="No character names, account details, or SavedVariables are included." })
+        { type="label", text=T("ABOUT.NO_CHARACTER_NAMES_ACCOUNT_DETAILS_OR_SAVEDVARIABLES_AR") })
     y = y - h
 
-    _, h = W:SectionHeader(parent, "CHANGELOG", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.CHANGELOG"), y)
     y = y - h
     for _, entry in ipairs(CHANGELOG) do
         h = AddText(parent, entry.version, y - 2, 12, 1)
@@ -317,7 +318,7 @@ function feature:BuildOptions(parent, yOffset)
         y = y - 8
     end
 
-    _, h = W:SectionHeader(parent, "CREDITS", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.CREDITS"), y)
     y = y - h
     h = AddText(parent, "Envisioned by Fafnyir", y - 2, 12, 1)
     y = y - h
@@ -330,13 +331,13 @@ function feature:BuildOptions(parent, yOffset)
     h = AddText(parent, "Original Companion Pet WeakAura: raine (wago.io/3It1XU72A).", y - 1, 11, 0.78)
     y = y - h
 
-    _, h = W:SectionHeader(parent, "SUPPORT DEVELOPMENT", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.SUPPORT_DEVELOPMENT"), y)
     y = y - h
     _, h = W:DualRow(parent, y,
         {
             type="button",
-            text="Support on Patreon",
-            buttonText="Open Patreon",
+            text=T("ABOUT.SUPPORT_ON_PATREON"),
+            buttonText=T("ABOUT.OPEN_PATREON"),
             onClick=function()
                 if C_Browser and C_Browser.OpenExternalLink then
                     C_Browser.OpenExternalLink(PATREON_URL)

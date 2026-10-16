@@ -1,4 +1,5 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 local feature=ns.modules.Inventory
 if not feature then return end
 local function DB() return ns:GetDatabase().inventory end
@@ -31,10 +32,10 @@ local function ConfirmRemove(key, label)
     end
     if EllesmereUI.ShowConfirmPopup then
         EllesmereUI:ShowConfirmPopup({
-            title = "Remove Cached Character?",
+            title = T("BAGS_INVENTORY.REMOVE_CACHED_CHARACTER"),
             message = "Remove "..label.." and its cached bags, bank, mail, auctions, currencies, and gold totals?",
-            confirmText = "Remove",
-            cancelText = "Cancel",
+            confirmText = T("BAGS_INVENTORY.REMOVE"),
+            cancelText = T("BAGS_INVENTORY.CANCEL"),
             onConfirm = action,
         })
     else
@@ -48,10 +49,10 @@ local function ConfirmResetAll()
     end
     if EllesmereUI.ShowConfirmPopup then
         EllesmereUI:ShowConfirmPopup({
-            title = "Reset All Tracked Characters?",
-            message = "Clear every character's cached bags, bank, mail, auctions, currencies, and gold totals? The current character will be scanned again immediately when tracking is enabled. Warband and guild caches are kept.",
-            confirmText = "Reset All",
-            cancelText = "Cancel",
+            title = T("BAGS_INVENTORY.RESET_ALL_TRACKED_CHARACTERS"),
+            message = T("BAGS_INVENTORY.CLEAR_EVERY_CHARACTER_S_CACHED_BAGS_BANK_MAIL_AUCTIONS_"),
+            confirmText = T("BAGS_INVENTORY.RESET_ALL"),
+            cancelText = T("BAGS_INVENTORY.CANCEL"),
             onConfirm = action,
         })
     else
@@ -61,35 +62,37 @@ end
 function feature:BuildOptions(parent,yOffset)
     local W=EllesmereUI.Widgets; local y=yOffset; local h
     parent._showRowDivider=true
-    _,h=W:SectionHeader(parent,"BAGS & INVENTORY",y); y=y-h
+    _,h=W:SectionHeader(parent,T("BAGS_INVENTORY.BAGS_INVENTORY"),y); y=y-h
     _,h=W:DualRow(parent,y,
-        {type="toggle",text="Enable Inventory Tracking",getValue=function() return DB().enabled end,setValue=function(v) DB().enabled=v; if v then feature:Refresh() end end},
-        {type="toggle",text="Show Item Locations in Tooltips",getValue=function() return DB().tooltips end,setValue=function(v) DB().tooltips=v end})
+        {type="toggle",text=T("BAGS_INVENTORY.ENABLE_INVENTORY_TRACKING"),getValue=function() return DB().enabled end,setValue=function(v) DB().enabled=v; if v then feature:Refresh() end end},
+        {type="toggle",text=T("BAGS_INVENTORY.SHOW_ITEM_LOCATIONS_IN_TOOLTIPS"),getValue=function() return DB().tooltips end,setValue=function(v) DB().tooltips=v end})
     y=y-h
-    _,h=W:SectionHeader(parent,"ACCOUNT SUMMARY",y); y=y-h
+    _,h=W:SectionHeader(parent,T("BAGS_INVENTORY.ACCOUNT_SUMMARY"),y); y=y-h
     local chars=0; for _ in pairs(DB().characters) do chars=chars+1 end
-    _,h=W:DualRow(parent,y,{type="label",text="Characters Cached: "..chars},{type="label",text="Total Gold: "..Money(feature:GetTotalGold())}); y=y-h
-    _,h=W:SectionHeader(parent,"CHARACTER CACHE",y); y=y-h
+    _,h=W:DualRow(parent,y,
+        {type="label",text=T("BAGS_INVENTORY.CHARACTERS_CACHED").." "..chars},
+        {type="label",text=T("BAGS_INVENTORY.TOTAL_GOLD").." "..Money(feature:GetTotalGold())}); y=y-h
+    _,h=W:SectionHeader(parent,T("BAGS_INVENTORY.CHARACTER_CACHE"),y); y=y-h
     local characterValues, characterOrder = CharacterChoices()
     local selectedCharacter = characterOrder[1]
     _,h=W:DualRow(parent,y,
-        {type="dropdown",text="Cached Character",values=characterValues,order=characterOrder,
+        {type="dropdown",text=T("BAGS_INVENTORY.CACHED_CHARACTER"),values=characterValues,order=characterOrder,
          disabled=function() return #characterOrder==0 end,
          disabledTooltip="No other cached characters are available.",
          getValue=function() return selectedCharacter end,
          setValue=function(v) selectedCharacter=v end},
-        {type="button",text="Remove Character",buttonText="Remove",
+        {type="button",text=T("BAGS_INVENTORY.REMOVE_CHARACTER"),buttonText=T("BAGS_INVENTORY.REMOVE"),
          disabled=function() return selectedCharacter==nil end,
          onClick=function() if selectedCharacter then ConfirmRemove(selectedCharacter,characterValues[selectedCharacter] or selectedCharacter) end end})
     y=y-h
     _,h=W:DualRow(parent,y,
-        {type="button",text="Reset All Characters",buttonText="Reset All",onClick=ConfirmResetAll},
-        {type="label",text="The logged-in character is excluded from individual removal."})
+        {type="button",text=T("BAGS_INVENTORY.RESET_ALL_CHARACTERS"),buttonText=T("BAGS_INVENTORY.RESET_ALL"),onClick=ConfirmResetAll},
+        {type="label",text=T("BAGS_INVENTORY.THE_LOGGED_IN_CHARACTER_IS_EXCLUDED_FROM_INDIVIDUAL_REM")})
     y=y-h
-    _,h=W:SectionHeader(parent,"SEARCH",y); y=y-h
+    _,h=W:SectionHeader(parent,T("BAGS_INVENTORY.SEARCH"),y); y=y-h
     _,h=W:DualRow(parent,y,
-        {type="label",text="Search index foundation is enabled; full search UI follows."},
-        {type="button",text="Refresh Current Character",buttonText="Refresh",onClick=function() feature:Refresh(); RefreshOptions() end})
+        {type="label",text=T("BAGS_INVENTORY.SEARCH_INDEX_FOUNDATION_IS_ENABLED_FULL_SEARCH_UI_FOLLO")},
+        {type="button",text=T("BAGS_INVENTORY.REFRESH_CURRENT_CHARACTER"),buttonText=T("BAGS_INVENTORY.REFRESH"),onClick=function() feature:Refresh(); RefreshOptions() end})
     y=y-h
     return math.abs(y)
 end

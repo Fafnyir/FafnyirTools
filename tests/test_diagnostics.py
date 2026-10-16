@@ -45,6 +45,8 @@ lua.execute(
     }
     '''
 )
+lua.execute((ROOT / "src/FafnyirTools/Localization/Core.lua").read_text(), "FafnyirTools", lua.globals().ns)
+lua.execute((ROOT / "src/FafnyirTools/Localization/enUS.lua").read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(ABOUT.read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(
     r'''
@@ -73,7 +75,7 @@ lua.execute(
 source = ABOUT.read_text()
 for forbidden in ("UnitName(", "GetRealmName(", "BattleTag", "FafnyirToolsDB"):
     assert forbidden not in source, forbidden
-assert 'type="button",\n            text="Copy Diagnostics"' in source
+assert 'type="button",\n            text=T("ABOUT.COPY_DIAGNOSTICS")' in source
 assert 'buttonText="Copy Diagnostics"' not in source
 
 print("PASS privacy-safe support diagnostics, dependency versions, feature state, and copy popup")

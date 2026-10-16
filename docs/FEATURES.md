@@ -1,5 +1,19 @@
 # Feature requirements and actual baseline
 
+## Localization
+
+- English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
+  Chinese (`zhTW`) provide the 164 strings received in the volunteer's final
+  worksheet.
+- Locale files load before feature modules so localized page names are stable
+  when EllesmereUI registers the options pages.
+- Saved values, feature registry keys, export field names and other runtime
+  identifiers stay language-neutral; only user-facing text is translated.
+- Missing locale keys fall back to English and then to the key itself. Format
+  failures return the untranslated string rather than raising a Lua error.
+- About changelog history, credits, support diagnostics and dynamic sentences
+  not supplied by the volunteer may remain English until a reviewed follow-up.
+
 The source and explicit user decisions outrank old assistant descriptions. “Present” below means code exists in the adopted baseline; it does not imply exhaustive runtime validation.
 
 | Feature | Baseline contract | Status |

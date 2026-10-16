@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "IconHistoryBorder",
-    page = "QoL",
+    page = T("CORE.QOL"),
     searchTerms = { "icon history", "pixel border", "damage meters", "spell history" },
 }
 ns:RegisterFeature(feature.key, feature)
@@ -164,19 +165,22 @@ function feature:BuildOptions(parent, yOffset)
     local y, h = yOffset
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "DAMAGE METER ICON HISTORY", y)
+    _, h = W:SectionHeader(parent, T("QOL.DAMAGE_METER_ICON_HISTORY"), y)
     y = y - h
     local values, order
     if EllesmereUI.GetBorderTextureDropdown then
         values, order = EllesmereUI.GetBorderTextureDropdown()
     else
-        values, order = { solid = "Solid", pixels = "Pixels" }, { "solid", "pixels" }
+        values, order = {
+            solid = T("QOL.SOLID"),
+            pixels = T("QOL.PIXELS"),
+        }, { "solid", "pixels" }
     end
     _, h = W:DualRow(parent, y,
         {
             type = "toggle",
-            text = "Enable Icon Border",
-            tooltip = "Add the selected EllesmereUI border to Damage Meter Icon History spell icons.",
+            text = T("QOL.ENABLE_ICON_BORDER"),
+            tooltip = T("QOL.ADD_THE_SELECTED_ELLESMEREUI_BORDER_TO_DAMAGE_METER_ICO"),
             getValue = function() return DB().enabled end,
             setValue = function(value)
                 DB().enabled = value and true or false
@@ -185,11 +189,11 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "dropdown",
-            text = "Border Style",
+            text = T("QOL.BORDER_STYLE"),
             values = values,
             order = order,
             disabled = function() return not DB().enabled end,
-            disabledTooltip = "Enable Icon Border",
+            disabledTooltip = T("QOL.ENABLE_ICON_BORDER"),
             getValue = function() return DB().texture or "pixels" end,
             setValue = function(value)
                 DB().texture = value

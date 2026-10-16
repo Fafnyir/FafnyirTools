@@ -1,4 +1,5 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local options = {}
 ns.Options = options
@@ -57,8 +58,8 @@ local function BuildConfig()
     end
 
     return {
-        title = "Fafnyir Tools",
-        description = "A collection of enhancements for EllesmereUI.",
+        title = T("CORE.FAFNYIR_TOOLS"),
+        description = T("CORE.A_COLLECTION_OF_ENHANCEMENTS_FOR_ELLESMEREUI"),
         pages = pages,
         searchTerms = searchTerms,
         buildPage = BuildPage,
@@ -74,10 +75,10 @@ local function BuildConfig()
             end
             if EllesmereUI and EllesmereUI.ShowConfirmPopup then
                 EllesmereUI:ShowConfirmPopup({
-                    title = "Reload Required",
-                    message = "FafnyirTools defaults were restored.",
-                    confirmText = "Reload Now",
-                    cancelText = "Later",
+                    title = T("CORE.RELOAD_REQUIRED"),
+                    message = T("CORE.FAFNYIRTOOLS_DEFAULTS_WERE_RESTORED"),
+                    confirmText = T("CORE.RELOAD_NOW"),
+                    cancelText = T("CORE.LATER"),
                     reload = true,
                 })
             end
@@ -113,7 +114,7 @@ function options:Register()
 
     if not bridge then
         _G.FafnyirTools_PendingOptionsConfig = nil
-        ns:Print("options bridge error: " .. tostring(bridgeError))
+        ns:Print(T("CORE.OPTIONS_BRIDGE_ERROR") .. " " .. tostring(bridgeError))
         return false
     end
 
@@ -121,7 +122,7 @@ function options:Register()
     _G.FafnyirTools_PendingOptionsConfig = nil
 
     if not ok then
-        ns:Print("options registration error: " .. tostring(registrationError))
+        ns:Print(T("CORE.OPTIONS_REGISTRATION_ERROR") .. " " .. tostring(registrationError))
         return false
     end
 

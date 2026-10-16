@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "Resting",
-    page = "Unit Frames",
+    page = T("CORE.UNIT_FRAMES"),
     searchTerms = {
         "resting",
         "rest icon",
@@ -209,7 +210,7 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "RESTING INDICATOR", y)
+    _, h = W:SectionHeader(parent, T("UNIT_FRAMES.RESTING_INDICATOR"), y)
     y = y - h
 
     _, h = W:DualRow(
@@ -217,7 +218,7 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "toggle",
-            text = "Enable Resting Indicator",
+            text = T("UNIT_FRAMES.ENABLE_RESTING_INDICATOR"),
             getValue = function()
                 return DB().enabled
             end,
@@ -228,7 +229,7 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "toggle",
-            text = "Hide at Max Level",
+            text = T("UNIT_FRAMES.HIDE_AT_MAX_LEVEL"),
             getValue = function()
                 return DB().hideAtMaxLevel
             end,
@@ -245,13 +246,13 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "dropdown",
-            text = "Resting Indicator Side",
+            text = T("UNIT_FRAMES.RESTING_INDICATOR_SIDE"),
             values = {
-                left = "Left",
-                right = "Right",
+                left = T("UNIT_FRAMES.LEFT"),
+                right = T("UNIT_FRAMES.RIGHT"),
             },
             order = { "left", "right" },
-            tooltip = "Choose which upper corner of the Player frame holds the resting Z's. Horizontal Offset is mirrored to preserve equal spacing.",
+            tooltip = T("UNIT_FRAMES.CHOOSE_WHICH_UPPER_CORNER_OF_THE_PLAYER_FRAME_HOLDS_THE"),
             getValue = function()
                 return GetSide(DB())
             end,
@@ -262,7 +263,7 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "slider",
-            text = "Resting Icon Size",
+            text = T("UNIT_FRAMES.RESTING_ICON_SIZE"),
             min = 16,
             max = 96,
             step = 1,
@@ -282,7 +283,7 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "slider",
-            text = "Horizontal Offset",
+            text = T("UNIT_FRAMES.HORIZONTAL_OFFSET"),
             min = -100,
             max = 100,
             step = 1,
@@ -296,7 +297,7 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "slider",
-            text = "Vertical Offset",
+            text = T("UNIT_FRAMES.VERTICAL_OFFSET"),
             min = -100,
             max = 100,
             step = 1,
@@ -316,8 +317,8 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "button",
-            text = "Reset Resting Settings",
-            buttonText = "Reset",
+            text = T("UNIT_FRAMES.RESET_RESTING_SETTINGS"),
+            buttonText = T("UNIT_FRAMES.RESET"),
             onClick = function()
                 feature:Reset()
 

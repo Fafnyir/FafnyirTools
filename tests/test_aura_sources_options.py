@@ -30,7 +30,7 @@ def runtime(source='blizzard',loaded=True):
  l=LuaRuntime(unpack_returned_tuples=True); l.execute(setup)
  l.globals().source=source; l.globals().loaded=loaded
  run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
- for n in ['Core/Bootstrap.lua','Modules/AuraSkins.lua']: run((root/n).read_text(),l.globals().ns)
+ for n in ['Core/Bootstrap.lua','Localization/Core.lua','Localization/enUS.lua','Modules/AuraSkins.lua']: run((root/n).read_text(),l.globals().ns)
  return l
 for source,loaded,available in [('blizzard',True,True),('eui',True,False),('hidden',True,False),('invalid',True,False),('eui',False,True)]:
  l=runtime(source,loaded)

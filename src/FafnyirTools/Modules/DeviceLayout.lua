@@ -1,11 +1,12 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local DEVICE_DEFAULT = 0
 local SPEC_DEFAULT = -1
 
 local feature = {
     key = "DeviceLayout",
-    page = "Layouts",
+    page = T("CORE.LAYOUTS"),
     searchTerms = {
         "device", "layout", "preset", "edit mode", "resolution",
         "computer", "machine", "laptop", "desktop", "specialization", "spec",
@@ -48,7 +49,7 @@ local function LayoutValues(includeSpecDefault)
     local values, order = {}, {}
 
     if includeSpecDefault then
-        values[SPEC_DEFAULT] = "Use Device Default"
+        values[SPEC_DEFAULT] = T("LAYOUTS.USE_DEVICE_DEFAULT")
         order[#order + 1] = SPEC_DEFAULT
     else
         values[DEVICE_DEFAULT] = "Do Not Change"
@@ -109,7 +110,7 @@ function feature:ApplyDesired(silent)
 
     if desired > #layouts then
         if not silent then
-            ns:Print("Device Layout: saved layout is no longer available.")
+            ns:Print(T("LAYOUTS.DEVICE_LAYOUT_SAVED_LAYOUT_IS_NO_LONGER_AVAILABLE"))
         end
         return false
     end
@@ -205,7 +206,7 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "DEVICE LAYOUT", y)
+    _, h = W:SectionHeader(parent, T("LAYOUTS.DEVICE_LAYOUT"), y)
     y = y - h
 
     _, h = W:DualRow(
@@ -213,8 +214,8 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "toggle",
-            text = "Enable Device Layout",
-            tooltip = "Automatically select the saved Blizzard Edit Mode layout when you log in on this installation.",
+            text = T("LAYOUTS.ENABLE_DEVICE_LAYOUT"),
+            tooltip = T("LAYOUTS.AUTOMATICALLY_SELECT_THE_SAVED_BLIZZARD_EDIT_MODE_LAYOU"),
             getValue = function()
                 return DB().enabled ~= false
             end,
@@ -228,7 +229,7 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "label",
-            text = "Saved per WoW installation.\nChoose a different layout on each device.",
+            text = T("LAYOUTS.SAVED_PER_WOW_INSTALLATION_CHOOSE_A_DIFFERENT_LAYOUT_ON"),
         }
     )
     y = y - h
@@ -240,8 +241,8 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "dropdown",
-            text = "Device Default Layout",
-            tooltip = "The Blizzard Edit Mode layout Fafnyir Tools will select when you log in on this device.",
+            text = T("LAYOUTS.DEVICE_DEFAULT_LAYOUT"),
+            tooltip = T("LAYOUTS.THE_BLIZZARD_EDIT_MODE_LAYOUT_FAFNYIR_TOOLS_WILL_SELECT"),
             values = layoutValues,
             order = layoutOrder,
             getValue = function()
@@ -255,12 +256,12 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "label",
-            text = "This setting is applied automatically after Blizzard Edit Mode finishes loading.",
+            text = T("LAYOUTS.THIS_SETTING_IS_APPLIED_AUTOMATICALLY_AFTER_BLIZZARD_ED"),
         }
     )
     y = y - h
 
-    _, h = W:SectionHeader(parent, "SPECIALIZATION OVERRIDES", y)
+    _, h = W:SectionHeader(parent, T("LAYOUTS.SPECIALIZATION_OVERRIDES"), y)
     y = y - h
 
     local specValues, specOrder = LayoutValues(true)
@@ -270,7 +271,7 @@ function feature:BuildOptions(parent, yOffset)
         _, h = W:DualRow(
             parent,
             y,
-            { type = "label", text = "Specialization information is not available yet." },
+            { type = "label", text = T("LAYOUTS.SPECIALIZATION_INFORMATION_IS_NOT_AVAILABLE_YET") },
             { type = "label", text = "" }
         )
         y = y - h

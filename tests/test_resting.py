@@ -62,6 +62,8 @@ EllesmereUIUnitFrames_Player = Frame()
 '''
 )
 lua.execute((root / "Core/Bootstrap.lua").read_text(), "FafnyirTools", lua.globals().ns)
+lua.execute((root / 'Localization/Core.lua').read_text(), 'FafnyirTools', lua.globals().ns)
+lua.execute((root / 'Localization/enUS.lua').read_text(), 'FafnyirTools', lua.globals().ns)
 lua.execute((root / "Modules/Resting.lua").read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(
     r'''
@@ -97,7 +99,7 @@ assert(restingPoint[1] == "BOTTOMRIGHT")
 )
 
 source = (root / "Modules/Resting.lua").read_text()
-assert 'text = "Resting Indicator Side"' in source
-assert 'left = "Left"' in source and 'right = "Right"' in source
+assert 'text = T("UNIT_FRAMES.RESTING_INDICATOR_SIDE")' in source
+assert 'left = T("UNIT_FRAMES.LEFT")' in source and 'right = T("UNIT_FRAMES.RIGHT")' in source
 
 print("PASS: resting indicator right/left anchors, mirrored offsets, fallback and reset")

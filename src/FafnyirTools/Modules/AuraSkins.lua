@@ -1,8 +1,9 @@
 local _, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "AuraSkins",
-    page = "Unit Frames",
+    page = T("CORE.UNIT_FRAMES"),
     searchTerms = {
         "aura skins", "buffs", "debuffs", "player auras", "buff frame",
         "debuff frame", "target auras", "target buffs", "target debuffs", "icon zoom", "aura border",
@@ -32,19 +33,19 @@ local TARGET_DEBUFF_STYLE = "faf:target:HARMFUL"
 local function PromptReload()
     if EllesmereUI and EllesmereUI.ShowConfirmPopup then
         EllesmereUI:ShowConfirmPopup({
-            title = "Reload Required",
-            message = "Changing Aura Skins requires a UI reload to fully apply or restore Blizzard aura styling.",
-            confirmText = "Reload Now",
-            cancelText = "Later",
+            title = T("UNIT_FRAMES.RELOAD_REQUIRED"),
+            message = T("UNIT_FRAMES.CHANGING_AURA_SKINS_REQUIRES_A_UI_RELOAD_TO_FULLY_APPLY"),
+            confirmText = T("UNIT_FRAMES.RELOAD_NOW"),
+            cancelText = T("UNIT_FRAMES.LATER"),
             reload = true,
         })
         return
     end
 
     StaticPopupDialogs["FAFNYIRTOOLS_AURASKINS_RELOAD"] = StaticPopupDialogs["FAFNYIRTOOLS_AURASKINS_RELOAD"] or {
-        text = "Changing Aura Skins requires a UI reload to fully apply or restore Blizzard aura styling.",
-        button1 = "Reload Now",
-        button2 = "Later",
+        text = T("UNIT_FRAMES.CHANGING_AURA_SKINS_REQUIRES_A_UI_RELOAD_TO_FULLY_APPLY"),
+        button1 = T("UNIT_FRAMES.RELOAD_NOW"),
+        button2 = T("UNIT_FRAMES.LATER"),
         OnAccept = function()
             ReloadUI()
         end,
@@ -668,18 +669,18 @@ function feature:BuildOptions(parent, yOffset)
     local h
     parent._showRowDivider=true
 
-    _,h=W:SectionHeader(parent,"AURA SKINS",y); y=y-h
+    _,h=W:SectionHeader(parent,T("UNIT_FRAMES.AURA_SKINS"),y); y=y-h
 
     if Disabled() then
         _,h=W:DualRow(parent,y,
-            {type="label",text="Aura Skins requires a Blizzard Target frame; its active source is EUI, Hidden, or not yet available."},
-            {type="label",text="Set Unit Frames > Target Frame to Blizzard Default, then reload. Other EUI frames can stay enabled."})
+            {type="label",text=T("UNIT_FRAMES.AURA_SKINS_REQUIRES_A_BLIZZARD_TARGET_FRAME_ITS_ACTIVE_")},
+            {type="label",text=T("UNIT_FRAMES.SET_UNIT_FRAMES_TARGET_FRAME_TO_BLIZZARD_DEFAULT_THEN_R")})
         y=y-h
         return math.abs(y)
     end
 
     _,h=W:DualRow(parent,y,
-        {type="toggle",text="Enable Target Aura Skins",
+        {type="toggle",text=T("UNIT_FRAMES.ENABLE_TARGET_AURA_SKINS"),
          getValue=function() return DB().enabled and DB().targetAuras ~= false end,
          setValue=function(v)
             DB().enabled = v
@@ -688,46 +689,60 @@ function feature:BuildOptions(parent, yOffset)
             auraDirty = true
             feature:Refresh()
          end},
-        {type="slider",text="Target Aura Size",min=16,max=60,step=1,disabled=PAOff,
+        {type="slider",text=T("UNIT_FRAMES.TARGET_AURA_SIZE"),min=16,max=60,step=1,disabled=PAOff,
          getValue=function() return DB().targetIconSize or 32 end,
          setValue=function(v) SetValue("targetIconSize",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="slider",text="Target Buff Icon Zoom",min=0,max=0.20,step=0.01,disabled=PAOff,
+        {type="slider",text=T("UNIT_FRAMES.TARGET_BUFF_ICON_ZOOM"),min=0,max=0.20,step=0.01,disabled=PAOff,
          getValue=function() return DB().buffIconZoom or ICON_ZOOM end,
          setValue=function(v) SetValue("buffIconZoom",v) end},
-        {type="slider",text="Target Debuff Icon Zoom",min=0,max=0.20,step=0.01,disabled=PAOff,
+        {type="slider",text=T("UNIT_FRAMES.TARGET_DEBUFF_ICON_ZOOM"),min=0,max=0.20,step=0.01,disabled=PAOff,
          getValue=function() return DB().debuffIconZoom or ICON_ZOOM end,
          setValue=function(v) SetValue("debuffIconZoom",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="toggle",text="Show Target Duration Text",disabled=PAOff,
+        {type="toggle",text=T("UNIT_FRAMES.SHOW_TARGET_DURATION_TEXT"),disabled=PAOff,
          getValue=function() return DB().showText ~= false end,
          setValue=function(v) SetValue("showText",v) end},
-        {type="slider",text="Target Aura Text Size",min=6,max=24,step=1,disabled=PAOff,
+        {type="slider",text=T("UNIT_FRAMES.TARGET_AURA_TEXT_SIZE"),min=6,max=24,step=1,disabled=PAOff,
          getValue=function() return DB().textSize or 11 end,
          setValue=function(v) SetValue("textSize",v) end})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="dropdown",text="Target Duration Format",disabled=PAOff,
-         values={blizzard="Blizzard Default",compact="Standard",colon="Colon",seconds="Seconds"},
+        {type="dropdown",text=T("UNIT_FRAMES.TARGET_DURATION_FORMAT"),disabled=PAOff,
+         values={
+             blizzard=T("UNIT_FRAMES.BLIZZARD_DEFAULT"),
+             compact=T("UNIT_FRAMES.STANDARD"),
+             colon=T("UNIT_FRAMES.COLON"),
+             seconds=T("UNIT_FRAMES.SECONDS"),
+         },
          order={"blizzard","compact","colon","seconds"},
          getValue=function() return DB().durationFormat or "blizzard" end,
          setValue=function(v) SetValue("durationFormat",v) end},
-        {type="label",text="Player buffs and debuffs remain controlled by EllesmereUI."})
+        {type="label",text=T("UNIT_FRAMES.PLAYER_BUFFS_AND_DEBUFFS_REMAIN_CONTROLLED_BY_ELLESMERE")})
     y=y-h
 
     _,h=W:DualRow(parent,y,
-        {type="dropdown",text="Target Buff Filter",disabled=PAOff,
-         values={all="All Buffs",stealable="Stealable",bigdef="Big Defensive",dispellable="Dispellable"},
+        {type="dropdown",text=T("UNIT_FRAMES.TARGET_BUFF_FILTER"),disabled=PAOff,
+         values={
+             all=T("UNIT_FRAMES.ALL_BUFFS"),
+             stealable=T("UNIT_FRAMES.STEALABLE"),
+             bigdef=T("UNIT_FRAMES.BIG_DEFENSIVE"),
+             dispellable=T("UNIT_FRAMES.DISPELLABLE"),
+         },
          order={"all","stealable","bigdef","dispellable"},
          getValue=function() return DB().targetBuffFilter or "all" end,
          setValue=function(v) SetValue("targetBuffFilter",v) end},
-        {type="dropdown",text="Target Debuff Filter",disabled=PAOff,
-         values={all="All Debuffs",own="Own Only",important="Important"},
+        {type="dropdown",text=T("UNIT_FRAMES.TARGET_DEBUFF_FILTER"),disabled=PAOff,
+         values={
+             all=T("UNIT_FRAMES.ALL_DEBUFFS"),
+             own=T("UNIT_FRAMES.OWN_ONLY"),
+             important=T("UNIT_FRAMES.IMPORTANT"),
+         },
          order={"all","own","important"},
          getValue=function() return DB().targetDebuffFilter or "all" end,
          setValue=function(v) SetValue("targetDebuffFilter",v) end})
@@ -736,7 +751,7 @@ function feature:BuildOptions(parent, yOffset)
     local texValues,texOrder=EllesmereUI.GetBorderTextureDropdown()
     local borderRow
     borderRow,h=W:DualRow(parent,y,
-        {type="dropdown",text="Border Style",disabled=PAOff,values=texValues,order=texOrder,
+        {type="dropdown",text=T("UNIT_FRAMES.BORDER_STYLE"),disabled=PAOff,values=texValues,order=texOrder,
          getValue=function() return DB().borderTexture or "solid" end,
          setValue=function(v)
             local color,behind=EllesmereUI.GetBorderStyleSelectDefaults(v)
@@ -746,17 +761,17 @@ function feature:BuildOptions(parent, yOffset)
             local sz=EllesmereUI.GetBorderDefaultSize("unitframes",v); if sz then d.borderSize=sz end
             skinGen=skinGen+1; auraDirty=true; feature:Refresh()
          end},
-        {type="slider",text="Border Size",min=0,max=4,step=1,disabled=PAOff,
+        {type="slider",text=T("UNIT_FRAMES.BORDER_SIZE"),min=0,max=4,step=1,disabled=PAOff,
          getValue=function() return DB().borderSize or 1 end,
          setValue=function(v) SetValue("borderSize",v) end})
     y=y-h
     if borderRow and borderRow._rightRegion then AttachColorSwatch(borderRow._rightRegion) end
 
     _,h=W:DualRow(parent,y,
-        {type="toggle",text="Use Blizzard Debuff Border",disabled=PAOff,
+        {type="toggle",text=T("UNIT_FRAMES.USE_BLIZZARD_DEBUFF_BORDER"),disabled=PAOff,
          getValue=function() return DB().noBorderDebuffs == true end,
          setValue=function(v) SetValue("noBorderDebuffs",v) end},
-        {type="button",text="Reset Aura Skin Settings",buttonText="Reset",onClick=function()
+        {type="button",text=T("UNIT_FRAMES.RESET_AURA_SKIN_SETTINGS"),buttonText=T("UNIT_FRAMES.RESET"),onClick=function()
             feature:Reset(); if EllesmereUI.RefreshPage then EllesmereUI:RefreshPage(true) end
          end})
     y=y-h

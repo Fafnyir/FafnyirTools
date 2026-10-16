@@ -1,5 +1,18 @@
 # Reconciled project changelog
 
+## Unreleased — Chinese localization test build
+
+- Added English fallback plus complete volunteer-provided Simplified Chinese
+  (`zhCN`) and Traditional Chinese (`zhTW`) locale files for 164 interface
+  strings.
+- Localized active page names, controls, tooltips, dialogs, dropdown choices,
+  chat feedback and inventory tooltip labels while keeping saved values and
+  runtime identifiers language-neutral.
+- Added automated locale parity, fallback, formatting and TOC-order coverage.
+- Kept About changelog history, credits, diagnostics and untranslated dynamic
+  sentences in English pending a reviewed follow-up.
+- Kept addon version v1.1.13 for in-game testing.
+
 ## v1.1.13 — Retail 12.1.5 compatibility
 
 - Added Retail interface 120105 to match the current supported EllesmereUI TOC.

@@ -12,5 +12,7 @@ assert 'PLAYER_LEVEL_UP' in events  # Resting still needs this event.
 lua=LuaRuntime(unpack_returned_tuples=True)
 lua.execute("ns={};SlashCmdList={};FafnyirToolsDB={xpBar={questEnabled=false,restedEnabled=true,questColor={r=.2,a=.4},future='keep'}};saved=FafnyirToolsDB.xpBar")
 lua.execute((root/'Core/Bootstrap.lua').read_text(),'FafnyirTools',lua.globals().ns)
+lua.execute((root / 'Localization/Core.lua').read_text(), 'FafnyirTools', lua.globals().ns)
+lua.execute((root / 'Localization/enUS.lua').read_text(), 'FafnyirTools', lua.globals().ns)
 lua.execute("assert(ns.defaults.xpBar==nil and ns.modules.XPBar==nil);ns:InitializeDatabase();assert(FafnyirToolsDB.xpBar==saved and saved.questColor.a==.4 and saved.questEnabled==false and saved.future=='keep');FafnyirToolsDB=nil;ns:InitializeDatabase();assert(FafnyirToolsDB.xpBar==nil)")
 print('PASS XP module/options/events retired, legacy settings preserved, fresh installs omit XP defaults')

@@ -5,6 +5,8 @@ root = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute("SlashCmdList={}; ns={}; function time() return 12345 end")
 lua.execute((root / "Core/Bootstrap.lua").read_text(), "FafnyirTools", lua.globals().ns)
+lua.execute((root / 'Localization/Core.lua').read_text(), 'FafnyirTools', lua.globals().ns)
+lua.execute((root / 'Localization/enUS.lua').read_text(), 'FafnyirTools', lua.globals().ns)
 lua.execute((root / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(r'''
 local f=ns.modules.GlobalSettings

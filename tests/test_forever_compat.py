@@ -1,5 +1,6 @@
 """WoW Forever client detection and temporary SavedVariables safety gates."""
 from pathlib import Path
+import re
 from lupa.lua51 import LuaRuntime
 
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
@@ -34,6 +35,8 @@ end
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
+lua.execute((ROOT / 'Localization/Core.lua').read_text(), 'FafnyirTools', lua.globals().ns)
+lua.execute((ROOT / 'Localization/enUS.lua').read_text(), 'FafnyirTools', lua.globals().ns)
 lua.execute((ROOT / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ROOT / "Modules/ForeverFog.lua").read_text(), "FafnyirTools", ns)
 lua.execute(r'''
@@ -58,7 +61,7 @@ ns.IS_FOREVER=false;rows={};assert(fog:BuildOptions({},-37)==37 and #rows==0)
 ''')
 
 resting = (ROOT / "Modules/Resting.lua").read_text()
-assert "MAX_LEVEL" not in resting
+assert not re.search(r'\bMAX_LEVEL\b', resting)
 assert "GetMaxLevelForPlayerExpansion" in resting
 assert "IsPlayerAtEffectiveMaxLevel" in resting
 print("PASS Forever detection, dormant fog compatibility, interface metadata, dynamic max level and SavedVariables safety gates")

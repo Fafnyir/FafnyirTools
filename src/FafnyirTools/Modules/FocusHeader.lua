@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "FocusHeader",
-    page = "Unit Frames",
+    page = T("CORE.UNIT_FRAMES"),
     searchTerms = { "focus header", "focus reputation", "focus reaction color", "colored focus" },
 }
 ns:RegisterFeature(feature.key, feature)
@@ -74,13 +75,13 @@ function feature:BuildOptions(parent, yOffset)
     local y, h = yOffset
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "BLIZZARD STYLE FOCUS FRAME", y)
+    _, h = W:SectionHeader(parent, T("UNIT_FRAMES.BLIZZARD_STYLE_FOCUS_FRAME"), y)
     y = y - h
     _, h = W:DualRow(parent, y,
         {
             type = "toggle",
-            text = "Blizz Colored Focus Header",
-            tooltip = "Color the strip behind the full Focus Frame's name by its reaction. Applies to EllesmereUI's Blizzard style only; Focus Target is unchanged.",
+            text = T("UNIT_FRAMES.BLIZZ_COLORED_FOCUS_HEADER"),
+            tooltip = T("UNIT_FRAMES.COLOR_THE_STRIP_BEHIND_THE_FULL_FOCUS_FRAME_S_NAME_BY_I"),
             getValue = function()
                 CaptureExisting()
                 return DB().enabled
@@ -92,7 +93,7 @@ function feature:BuildOptions(parent, yOffset)
                 Apply(true)
             end,
         },
-        { type = "label", text = "Focus Target has no reputation strip." })
+        { type = "label", text = T("UNIT_FRAMES.FOCUS_TARGET_HAS_NO_REPUTATION_STRIP") })
     y = y - h
     return math.abs(y)
 end

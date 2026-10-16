@@ -1,4 +1,5 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 ns.ADDON_NAME = ADDON_NAME
 ns.MODULE_KEY = "FafnyirTools"
@@ -153,11 +154,11 @@ ns:InitializeDatabase()
 SLASH_FAFNYIRTOOLS1 = "/faftools"
 SlashCmdList["FAFNYIRTOOLS"] = function()
     if EllesmereUI and EllesmereUI.NavigateToElementSettings then
-        EllesmereUI:NavigateToElementSettings(ns.MODULE_KEY, "Unit Frames")
+        EllesmereUI:NavigateToElementSettings(ns.MODULE_KEY, T("CORE.UNIT_FRAMES"))
     elseif EllesmereUI and EllesmereUI.ToggleOptions then
         EllesmereUI:ToggleOptions()
     else
-        ns:Print("EllesmereUI options are not available yet.")
+        ns:Print(T("CORE.ELLESMEREUI_OPTIONS_ARE_NOT_AVAILABLE_YET"))
     end
 end
 

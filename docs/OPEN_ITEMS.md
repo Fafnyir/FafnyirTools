@@ -2,12 +2,17 @@
 
 ## Chinese localization
 
-- Confirm whether the volunteer supports `zhCN`, `zhTW` or both.
-- Receive and review the completed worksheet in `docs/localization/`.
-- Add English fallback and locale files, replace active hard-coded interface
-  strings, register files in the TOC and test missing-key behavior.
-- Verify the chosen Chinese client font, options layout, wrapping, dropdowns,
-  dialogs and inventory tooltips in game.
+- Final volunteer translations were received for both `zhCN` and `zhTW` and
+  integrated into the v1.1.13 test source. Automated locale and regression
+  checks pass.
+- Verify both Chinese clients in game: font glyph coverage, page navigation,
+  options layout, wrapping, dropdown widths, confirmation dialogs, chat
+  feedback and inventory tooltips.
+- Review the few dynamic English sentences not represented in the worksheet,
+  plus About changelog/credits and the support diagnostics body, for a later
+  translated pass. Do not invent or machine-translate these strings.
+- A second fluent reviewer has not been recorded. Capture any terminology or
+  truncation corrections from the volunteer during in-game testing.
 
 ## 2026-10-14 Retail interface 120105 — in-game check pending
 

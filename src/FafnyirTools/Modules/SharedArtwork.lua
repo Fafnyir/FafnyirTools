@@ -1,7 +1,8 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
-    key = "SharedArtwork", page = "Unit Frames",
+    key = "SharedArtwork", page = T("CORE.UNIT_FRAMES"),
     searchTerms = { "nameplate target arrows", "sharedmedia", "role icons", "party", "raid" },
 }
 ns:RegisterFeature(feature.key, feature)
@@ -135,9 +136,11 @@ end
 function feature:BuildOptions(parent, yOffset)
     local W, y, h = EllesmereUI.Widgets, yOffset
     parent._showRowDivider = true
-    _, h = W:SectionHeader(parent, "NAMEPLATE TARGET ARROWS / PARTY & RAID ICONS", y)
+    _, h = W:SectionHeader(parent, T("UNIT_FRAMES.NAMEPLATE_TARGET_ARROWS_PARTY_RAID_ICONS"), y)
     y = y - h
-    local values, order = { native = "Use EllesmereUI Style" }, { "native" }
+    local values, order = {
+        native = T("UNIT_FRAMES.USE_ELLESMEREUI_STYLE"),
+    }, { "native" }
     local media = LSM()
     -- SharedMedia background entries are full image paths. Preserve their names
     -- in the UI while keeping storage distinct from paired targetarrow entries.
@@ -156,12 +159,12 @@ function feature:BuildOptions(parent, yOffset)
         order[#order + 1] = DB().arrow
     end
     _, h = W:DualRow(parent, y,
-        { type = "dropdown", text = "Nameplate Target Arrow", values = values, order = order,
-          tooltip = "Choose SharedMedia target-arrow artwork. Enable arrows and adjust their size and color in EllesmereUI Nameplates. Missing media falls back to EllesmereUI.",
+        { type = "dropdown", text = T("UNIT_FRAMES.NAMEPLATE_TARGET_ARROW"), values = values, order = order,
+          tooltip = T("UNIT_FRAMES.CHOOSE_SHAREDMEDIA_TARGET_ARROW_ARTWORK_ENABLE_ARROWS_A"),
           getValue = function() return IsArrowSelection(DB().arrow) and DB().arrow or "native" end,
           setValue = function(value) DB().arrow = value; feature:Refresh() end },
-        { type = "toggle", text = "FafnyirMedia Party / Raid Role Icons",
-          tooltip = "Replace visible Party and Raid role icons with FafnyirMedia artwork. EllesmereUI still controls role visibility, size and position.",
+        { type = "toggle", text = T("UNIT_FRAMES.FAFNYIRMEDIA_PARTY_RAID_ROLE_ICONS"),
+          tooltip = T("UNIT_FRAMES.REPLACE_VISIBLE_PARTY_AND_RAID_ROLE_ICONS_WITH_FAFNYIRM"),
           getValue = function() return DB().roles end,
           setValue = function(value) DB().roles = value and true or false; feature:Refresh() end })
     return math.abs(y - h)

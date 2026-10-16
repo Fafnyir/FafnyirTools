@@ -45,7 +45,7 @@ def load(path):l.execute((ROOT/path).read_text(),'FafnyirTools',l.globals().ns)
 # Upgrade direct from v1.1.1 preserves old colors, false toggle, and companion settings.
 l.execute('''FafnyirToolsDB={xpBar={questXPEnabled=false,questXPColor={r=.2,g=.3,b=.4,a=.5}},
  permanentCompanionPet={enabled=true,mode='specific',petName='Kitty'}}''')
-load('Core/Bootstrap.lua');load('Modules/PermanentCompanionPet.lua')
+load('Core/Bootstrap.lua');load('Localization/Core.lua');load('Localization/enUS.lua');load('Modules/PermanentCompanionPet.lua')
 l.execute('''
 f=ns.modules.PermanentCompanionPet;db=FafnyirToolsDB.permanentCompanionPet
 assert(FafnyirToolsDB.xpBar.questXPEnabled==false and FafnyirToolsDB.xpBar.questXPColor.a==.5)

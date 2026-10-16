@@ -36,24 +36,24 @@ def check(baseline=False):
     assert expected - retired <= actual_files, 'Baseline module/file removed; reconcile feature inventory explicitly'
     assert retired.isdisjoint(actual_files), 'EllesmereUI-owned retired module restored unexpectedly'
     required = {
-        'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'QoL'),
-        'Modules/About.lua': ('About', 'About'),
-        'Modules/GlobalSettings.lua': ('GlobalSettings', 'About'),
-        'Modules/ForeverFog.lua': ('ForeverFog', 'QoL'),
-        'Modules/Resting.lua': ('Resting', 'Unit Frames'),
-        'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'Action Bars'),
-        'Modules/FlyoutButtonMatch.lua': ('FlyoutButtonMatch', 'Action Bars'),
-        'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'QoL'),
-        'Modules/FocusHeader.lua': ('FocusHeader', 'Unit Frames'),
-        'Modules/SharedArtwork.lua': ('SharedArtwork', 'Unit Frames'),
-        'Modules/DeviceLayout.lua': ('DeviceLayout', 'Layouts'),
-        'Modules/AuraSkins.lua': ('AuraSkins', 'Unit Frames'),
-        'Modules/Inventory/Core.lua': ('Inventory', 'Bags & Inventory'),
+        'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'CORE.QOL'),
+        'Modules/About.lua': ('About', 'CORE.ABOUT'),
+        'Modules/GlobalSettings.lua': ('GlobalSettings', 'CORE.ABOUT'),
+        'Modules/ForeverFog.lua': ('ForeverFog', 'CORE.QOL'),
+        'Modules/Resting.lua': ('Resting', 'CORE.UNIT_FRAMES'),
+        'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'CORE.ACTION_BARS'),
+        'Modules/FlyoutButtonMatch.lua': ('FlyoutButtonMatch', 'CORE.ACTION_BARS'),
+        'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
+        'Modules/FocusHeader.lua': ('FocusHeader', 'CORE.UNIT_FRAMES'),
+        'Modules/SharedArtwork.lua': ('SharedArtwork', 'CORE.UNIT_FRAMES'),
+        'Modules/DeviceLayout.lua': ('DeviceLayout', 'CORE.LAYOUTS'),
+        'Modules/AuraSkins.lua': ('AuraSkins', 'CORE.UNIT_FRAMES'),
+        'Modules/Inventory/Core.lua': ('Inventory', 'CORE.BAGS_INVENTORY'),
     }
-    for name, (key, page) in required.items():
+    for name, (key, page_key) in required.items():
         text = (ADDON / name).read_text()
         assert re.search(r'key\s*=\s*"' + re.escape(key) + '"', text), name
-        assert re.search(r'page\s*=\s*"' + re.escape(page) + '"', text), name
+        assert re.search(r'page\s*=\s*T\("' + re.escape(page_key) + r'"\)', text), name
         assert f'ns.modules.{key}' in (ADDON / 'Core/Options.lua').read_text(), f'Feature not ordered in options: {key}'
     version = re.search(r'^## Version: (.+)$', toc, re.M).group(1).strip()
     assert version == re.search(r'local VERSION = "([^"]+)"', (ADDON / 'Modules/About.lua').read_text()).group(1)
@@ -63,6 +63,11 @@ def check(baseline=False):
     assert '120105' in interfaces, 'Retail 12.1.5 interface missing'
     assert '16001' in interfaces, 'Forever interface missing'
     assert entries.index('Core/Bootstrap.lua') < entries.index('Core/Events.lua')
+    assert entries.index('Core/Bootstrap.lua') < entries.index('Localization/Core.lua')
+    assert entries.index('Localization/Core.lua') < entries.index('Localization/enUS.lua')
+    first_module = min(entries.index(name) for name in entries if name.startswith('Modules/'))
+    for locale_file in ('Localization/enUS.lua', 'Localization/zhCN.lua', 'Localization/zhTW.lua'):
+        assert entries.index(locale_file) < first_module, f'{locale_file} must load before modules'
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
@@ -84,7 +89,8 @@ def check(baseline=False):
     for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_reload_contract.py', 'test_companion.py',
                  'test_global_settings.py', 'test_inventory.py', 'test_unit_frame_names.py', 'test_focus_header.py',
                  'test_icon_history_border.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
-                 'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py']:
+                 'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
+                 'test_localization.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

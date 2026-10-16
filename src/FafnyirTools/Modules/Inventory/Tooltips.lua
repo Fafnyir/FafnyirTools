@@ -1,4 +1,5 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 local feature=ns.modules.Inventory
 if not feature then return end
 local function DB() return ns:GetDatabase().inventory end
@@ -10,10 +11,10 @@ local function Hook(tip,data)
     tip:AddLine(" ")
     for _,v in ipairs(loc) do
         local p={}
-        if (v.bags or 0)>0 then p[#p+1]="Bags: "..v.bags end
-        if (v.bank or 0)>0 then p[#p+1]="Bank: "..v.bank end
-        if (v.mail or 0)>0 then p[#p+1]="Mail: "..v.mail end
-        if (v.auctions or 0)>0 then p[#p+1]="Auctions: "..v.auctions end
+        if (v.bags or 0)>0 then p[#p+1]=T("BAGS_INVENTORY.BAGS_VALUE",v.bags) end
+        if (v.bank or 0)>0 then p[#p+1]=T("BAGS_INVENTORY.BANK_VALUE",v.bank) end
+        if (v.mail or 0)>0 then p[#p+1]=T("BAGS_INVENTORY.MAIL_VALUE",v.mail) end
+        if (v.auctions or 0)>0 then p[#p+1]=T("BAGS_INVENTORY.AUCTIONS_VALUE",v.auctions) end
         if (v.warband or 0)>0 then p[#p+1]=tostring(v.warband) end
         if (v.guild or 0)>0 then p[#p+1]=tostring(v.guild) end
         local r,g,b=1,1,1
@@ -23,6 +24,6 @@ local function Hook(tip,data)
         end
         tip:AddDoubleLine(v.label,table.concat(p,"  "),r,g,b,0.75,0.85,1)
     end
-    tip:AddDoubleLine("Total",tostring(total),1,0.82,0,1,0.82,0)
+    tip:AddDoubleLine(T("BAGS_INVENTORY.TOTAL"),tostring(total),1,0.82,0,1,0.82,0)
 end
 if TooltipDataProcessor and Enum.TooltipDataType then TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item,Hook) end

@@ -47,6 +47,8 @@ end
 ''')
 ns = lua.globals().ns
 lua.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
+lua.execute((ROOT / 'Localization/Core.lua').read_text(), 'FafnyirTools', lua.globals().ns)
+lua.execute((ROOT / 'Localization/enUS.lua').read_text(), 'FafnyirTools', lua.globals().ns)
 lua.execute((ROOT / "Modules/IconHistoryBorder.lua").read_text(), "FafnyirTools", ns)
 lua.execute(r'''
 local f=ns.modules.IconHistoryBorder

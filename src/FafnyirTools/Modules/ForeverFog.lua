@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "ForeverFog",
-    page = "QoL",
+    page = T("CORE.QOL"),
     searchTerms = {},
 }
 ns:RegisterFeature(feature.key, feature)

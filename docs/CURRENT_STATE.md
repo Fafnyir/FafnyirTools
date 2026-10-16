@@ -1,13 +1,22 @@
 # Current state — v1.1.13 release, 2026-10-14
 
-## Chinese localization preparation
+## Chinese localization test build — in-game validation pending
 
-A volunteer translation kit is available under `docs/localization/`. The Excel
-worksheet contains 164 current interface strings with separate `zhCN` and
-`zhTW` columns, source context, priorities, terminology notes, reviewer fields
-and completion status. This is preparation only: the addon does not yet load
-locale files or replace hard-coded English strings. Historical About changelog
-text and the English support diagnostics body are deferred from the first pass.
+The volunteer returned final Simplified Chinese (`zhCN`) and Traditional
+Chinese (`zhTW`) translations for all 164 worksheet strings on 2026-10-16.
+The submitted workbook is preserved under `docs/localization/` and its text is
+integrated through English fallback plus dedicated locale files. Active page
+names, controls, tooltips, dialogs, dropdown values, chat feedback and inventory
+tooltip labels use the locale layer; saved values and internal feature keys stay
+language-neutral. Historical About changelog text, credits, the privacy-safe
+support diagnostics body and a few dynamic sentences outside the worksheet
+remain English in this first pass.
+
+Offline checks cover Lua 5.1 syntax, TOC ordering, identical 164-key locale
+sets, nonblank values, `%d` formatting, unsupported-locale English fallback and
+all existing feature regressions. Chinese-client font coverage, wrapping,
+control widths and live options behavior are not yet confirmed in game. Source
+version remains v1.1.13 for this test build.
 
 ## v1.1.13 — Retail 12.1.5 compatibility
 

@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "PermanentCompanionPet",
-    page = "QoL",
+    page = T("CORE.QOL"),
     searchTerms = {
         "companion pet",
         "battle pet",
@@ -160,7 +161,7 @@ local function CheckCompanionPet()
         if not petID then
             if lastMissingName ~= wantedName then
                 lastMissingName = wantedName
-                ns:Print("Permanent Companion Pet could not find: " .. tostring(character.petName))
+                ns:Print(T("QOL.PERMANENT_COMPANION_PET_COULD_NOT_FIND") .. " " .. tostring(character.petName))
             end
             return
         end
@@ -235,7 +236,7 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, "PERMANENT COMPANION PET", y)
+    _, h = W:SectionHeader(parent, T("QOL.PERMANENT_COMPANION_PET"), y)
     y = y - h
 
     _, h = W:DualRow(
@@ -243,8 +244,8 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "toggle",
-            text = "Enable Permanent Companion Pet",
-            tooltip = "Keep a companion pet summoned whenever conditions allow.",
+            text = T("QOL.ENABLE_PERMANENT_COMPANION_PET"),
+            tooltip = T("QOL.KEEP_A_COMPANION_PET_SUMMONED_WHENEVER_CONDITIONS_ALLOW"),
             getValue = function() return DB().enabled end,
             setValue = function(value)
                 DB().enabled = value
@@ -253,10 +254,10 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "dropdown",
-            text = "Pet Choice (This Character)",
+            text = T("QOL.PET_CHOICE_THIS_CHARACTER"),
             values = {
-                randomFavorite = "Random Favorite",
-                specific = "Specific Pet",
+                randomFavorite = T("QOL.RANDOM_FAVORITE"),
+                specific = T("QOL.SPECIFIC_PET"),
             },
             order = { "randomFavorite", "specific" },
             getValue = function() return CharacterDB().mode or "randomFavorite" end,
@@ -274,10 +275,10 @@ function feature:BuildOptions(parent, yOffset)
         y,
         {
             type = "input",
-            text = "Specific Pet Name (This Character)",
+            text = T("QOL.SPECIFIC_PET_NAME_THIS_CHARACTER"),
             inputWidth = 170,
             inputStyle = "popup",
-            placeholder = "Species or custom name",
+            placeholder = T("QOL.SPECIES_OR_CUSTOM_NAME"),
             disabled = function() return CharacterDB().mode ~= "specific" end,
             disabledTooltip = "Set Pet Choice to Specific Pet first.",
             getValue = function() return CharacterDB().petName or "" end,
@@ -289,8 +290,8 @@ function feature:BuildOptions(parent, yOffset)
         },
         {
             type = "toggle",
-            text = "Disable in PvP Instances",
-            tooltip = "Do not summon companion pets in battlegrounds or arenas.",
+            text = T("QOL.DISABLE_IN_PVP_INSTANCES"),
+            tooltip = T("QOL.DO_NOT_SUMMON_COMPANION_PETS_IN_BATTLEGROUNDS_OR_ARENAS"),
             getValue = function() return DB().disableInPvP end,
             setValue = function(value)
                 DB().disableInPvP = value

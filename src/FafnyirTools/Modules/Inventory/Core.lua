@@ -1,6 +1,7 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 local feature = {
-    key="Inventory", page="Bags & Inventory",
+    key="Inventory", page=T("CORE.BAGS_INVENTORY"),
     searchTerms={"bags","inventory","bank","warband","items","gold","mail","auctions","guild","currencies"},
 }
 ns:RegisterFeature(feature.key, feature)
@@ -74,7 +75,10 @@ function feature:GetItemLocations(id)
         if n>0 then r[#r+1]={label=c.name or k,class=c.class,bags=bags,bank=bank,mail=mail,auctions=auctions,total=n}; total=total+n end
     end
     local w=(d.warband.items and d.warband.items[id]) or 0
-    if w>0 then r[#r+1]={label="Warband Bank",warband=w,total=w}; total=total+w end
+    if w>0 then
+        r[#r+1]={label=T("BAGS_INVENTORY.WARBAND_BANK"),warband=w,total=w}
+        total=total+w
+    end
     for name,g in pairs(d.guilds) do
         local n=(g.items and g.items[id]) or 0
         if n>0 then r[#r+1]={label=name,guild=n,total=n}; total=total+n end

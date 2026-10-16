@@ -1,8 +1,9 @@
 local ADDON_NAME, ns = ...
+local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
 local feature = {
     key = "GlobalSettings",
-    page = "About",
+    page = T("CORE.ABOUT"),
     searchTerms = { "export", "import", "backup", "global settings", "transfer" },
 }
 ns:RegisterFeature(feature.key, feature)
@@ -226,10 +227,10 @@ end
 local function ConfirmImport(payload)
     if not EllesmereUI.ShowConfirmPopup then return end
     EllesmereUI:ShowConfirmPopup({
-        title = "Import FafnyirTools Settings?",
-        message = "Recognized global settings will be merged. Character data, inventory caches and device layouts are excluded. Your current global settings will be backed up. A reload is required.",
-        confirmText = "Import & Reload",
-        cancelText = "Cancel",
+        title = T("ABOUT.IMPORT_FAFNYIRTOOLS_SETTINGS"),
+        message = T("ABOUT.RECOGNIZED_GLOBAL_SETTINGS_WILL_BE_MERGED_CHARACTER_DAT"),
+        confirmText = T("ABOUT.IMPORT_RELOAD"),
+        cancelText = T("ABOUT.CANCEL"),
         reload = true,
         onConfirm = function()
             feature:ApplyImport(payload)
@@ -263,15 +264,15 @@ function feature:ShowRestore()
     end
     local backup = ns:GetDatabase().globalSettingsImportBackup
     if type(backup) ~= "table" or type(backup.settings) ~= "table" then
-        ns:Print("No import backup is available.")
+        ns:Print(T("ABOUT.NO_IMPORT_BACKUP_IS_AVAILABLE"))
         return
     end
     if not EllesmereUI.ShowConfirmPopup then return end
     EllesmereUI:ShowConfirmPopup({
-        title = "Restore Pre-Import Settings?",
-        message = "This restores the global settings saved immediately before the last import. A reload is required.",
-        confirmText = "Restore & Reload",
-        cancelText = "Cancel",
+        title = T("ABOUT.RESTORE_PRE_IMPORT_SETTINGS"),
+        message = T("ABOUT.THIS_RESTORES_THE_GLOBAL_SETTINGS_SAVED_IMMEDIATELY_BEF"),
+        confirmText = T("ABOUT.RESTORE_RELOAD"),
+        cancelText = T("ABOUT.CANCEL"),
         reload = true,
         onConfirm = function()
             feature:RestoreBackup()
@@ -282,15 +283,15 @@ end
 function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y, h = yOffset
-    _, h = W:SectionHeader(parent, "GLOBAL SETTINGS", y)
+    _, h = W:SectionHeader(parent, T("ABOUT.GLOBAL_SETTINGS"), y)
     y = y - h
     _, h = W:DualRow(parent, y,
-        { type = "button", text = "Export Global Settings", buttonText = "Export", onClick = function() feature:ShowExport() end },
-        { type = "button", text = "Import Global Settings", buttonText = "Import", onClick = function() feature:ShowImport() end })
+        { type = "button", text = T("ABOUT.EXPORT_GLOBAL_SETTINGS"), buttonText = T("ABOUT.EXPORT"), onClick = function() feature:ShowExport() end },
+        { type = "button", text = T("ABOUT.IMPORT_GLOBAL_SETTINGS"), buttonText = T("ABOUT.IMPORT"), onClick = function() feature:ShowImport() end })
     y = y - h
     _, h = W:DualRow(parent, y,
-        { type = "button", text = "Restore Last Import Backup", buttonText = "Restore", onClick = function() feature:ShowRestore() end },
-        { type = "label", text = "Excludes character data, inventory caches, and device layouts." })
+        { type = "button", text = T("ABOUT.RESTORE_LAST_IMPORT_BACKUP"), buttonText = T("ABOUT.RESTORE"), onClick = function() feature:ShowRestore() end },
+        { type = "label", text = T("ABOUT.EXCLUDES_CHARACTER_DATA_INVENTORY_CACHES_AND_DEVICE_LAY") })
     y = y - h
     return math.abs(y)
 end
