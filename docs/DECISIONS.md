@@ -376,3 +376,7 @@ hooks after the menu closes; do not refresh unrelated options widgets. That
 re-enable after disabling. Supersede it with a 0.05-second post-control page
 refresh, after the menu lifecycle has completed, and keep the enable switch
 available even when BigWigs is not currently loaded.
+In-game testing of `aef67fe` showed that the enable value did persist when
+clicked back on, but the switch continued to look off until reload. Do not
+rebuild the page from the toggle setter: refresh existing widget states there,
+and reserve the delayed page repaint for Border Style selection.

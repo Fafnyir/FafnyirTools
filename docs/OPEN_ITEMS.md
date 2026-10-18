@@ -12,7 +12,9 @@
   failed this check in the user's 2026-10-18 screen recording, and `cd70a1f`
   still failed when relying only on EllesmereUI's automatic refresh. The direct
   control build `1fb292b` also failed and introduced an inability to re-enable
-  the feature. Confirm the delayed page repaint fixes both behaviors.
+  the feature. Build `aef67fe` saved re-enabling correctly but still drew the
+  switch as off until reload because its page repaint interrupted the toggle
+  animation. Confirm the split widget-refresh/dropdown-repaint fix resolves it.
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.

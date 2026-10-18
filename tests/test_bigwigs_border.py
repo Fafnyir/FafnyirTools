@@ -148,11 +148,12 @@ lua.execute(
 
     -- Controls refresh the page only after their click/menu lifecycle finishes.
     local capturedToggleSetter,capturedBorderSetter
-    local refreshes,delays=0,{}
+    local pageRefreshes,widgetRefreshes,delays=0,0,{}
     EllesmereUI.GetBorderTextureDropdown=function()
         return {pixels="Pixels",glow="Glow"},{"pixels","glow"}
     end
-    EllesmereUI.RefreshPage=function() refreshes=refreshes+1 end
+    EllesmereUI.RefreshPage=function() pageRefreshes=pageRefreshes+1 end
+    EllesmereUI._widgetRefreshList={function() widgetRefreshes=widgetRefreshes+1 end}
     EllesmereUI.Widgets={
         SectionHeader=function() return {},40 end,
         DualRow=function(_,_,_,left,right)
@@ -172,7 +173,8 @@ lua.execute(
     capturedToggleSetter(false)
     capturedToggleSetter(true)
     assert(ns:GetDatabase().bigWigsBorder.enabled==true)
-    assert(refreshes==3 and delays[1]==0.05 and delays[2]==0.05 and delays[3]==0.05)
+    assert(pageRefreshes==1 and widgetRefreshes==2)
+    assert(delays[1]==0.05 and delays[2]==0 and delays[3]==0)
     '''
 )
 
@@ -183,7 +185,8 @@ assert "BigWigs_StartNameplate" not in source
 assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
 assert '"bigwigs_message_icon"' in source and "ScanMessageIcons" in source
 assert "EnumerateFrames" in source
-assert "RefreshOptionsAfterControl()" in source and "C_Timer.After(0.05, refresh)" in source
+assert "RefreshWidgetsAfterToggle()" in source and "C_Timer.After(0, refresh)" in source
+assert "RefreshOptionsAfterDropdown()" in source and "C_Timer.After(0.05, refresh)" in source
 assert "borderStyleControl" not in source
 
 print("PASS BigWigs bar/message borders, styles, bar-body offset, fades, restore, and isolation")

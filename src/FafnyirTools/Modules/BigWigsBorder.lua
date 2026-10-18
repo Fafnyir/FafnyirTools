@@ -283,7 +283,20 @@ function feature:Reset()
     self:Refresh()
 end
 
-local function RefreshOptionsAfterControl()
+local function RefreshWidgetsAfterToggle()
+    local function refresh()
+        local widgets = EllesmereUI and EllesmereUI._widgetRefreshList
+        if not widgets then return end
+        for i = 1, #widgets do widgets[i]() end
+    end
+    if C_Timer and C_Timer.After then
+        C_Timer.After(0, refresh)
+    else
+        refresh()
+    end
+end
+
+local function RefreshOptionsAfterDropdown()
     local function refresh()
         if EllesmereUI and EllesmereUI.RefreshPage then
             EllesmereUI:RefreshPage(true)
@@ -323,7 +336,7 @@ function feature:BuildOptions(parent, yOffset)
             setValue = function(value)
                 DB().enabled = value and true or false
                 feature:Refresh()
-                RefreshOptionsAfterControl()
+                RefreshWidgetsAfterToggle()
             end,
         },
         {
@@ -337,7 +350,7 @@ function feature:BuildOptions(parent, yOffset)
             setValue = function(value)
                 DB().texture = value
                 feature:Refresh()
-                RefreshOptionsAfterControl()
+                RefreshOptionsAfterDropdown()
             end,
         })
     y = y - h

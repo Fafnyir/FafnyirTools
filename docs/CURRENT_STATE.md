@@ -32,6 +32,10 @@ failed while also leaving the feature impossible to re-enable after disabling.
 The current revision removes the enable switch's unnecessary BigWigs-loaded
 lock and rebuilds the page 0.05 seconds after either control changes, allowing
 the active click/menu lifecycle to finish before the saved state is repainted.
+In-game testing then showed the toggle value persisted correctly but that page
+rebuild interrupted its visual animation, leaving an enabled value drawn as
+off until reload. The toggle path now refreshes existing widgets without a page
+rebuild; only the dropdown retains the delayed repaint.
 
 ## v1.1.16 — Leveling Forecast to 90
 
