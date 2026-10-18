@@ -40,6 +40,11 @@ That widget-list refresh still left the switch visually off after an off/on
 sequence. The current test removes all external refreshes from the toggle
 setter and leaves Border Style selectable while disabled, so EllesmereUI alone
 owns the switch animation and no dependent control requires live disabling.
+That still reproduced in game, identifying the synchronous live
+`feature:Refresh()` call as the remaining common work inside both broken
+controls. Toggle and Border Style changes now save normally and show the
+standard secure Reload Now/Later confirmation instead of restyling active
+BigWigs frames during the click. Content Spacing remains live-adjustable.
 
 ## v1.1.16 — Leveling Forecast to 90
 

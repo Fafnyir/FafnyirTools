@@ -146,13 +146,17 @@ lua.execute(
     feature:Refresh()
     for i=1,4 do assert(messageFrame.regions[i].points[1][4]==0) end
 
-    -- Controls refresh the page only after their click/menu lifecycle finishes.
+    -- Toggle/style writes show the standard reload confirmation without
+    -- refreshing active bars or rebuilding their controls mid-click.
     local capturedToggleSetter,capturedBorderSetter
-    local pageRefreshes,delays=0,{}
+    local confirmations=0
     EllesmereUI.GetBorderTextureDropdown=function()
         return {pixels="Pixels",glow="Glow"},{"pixels","glow"}
     end
-    EllesmereUI.RefreshPage=function() pageRefreshes=pageRefreshes+1 end
+    EllesmereUI.ShowConfirmPopup=function(_,cfg)
+        confirmations=confirmations+1
+        assert(cfg.reload==true)
+    end
     EllesmereUI.Widgets={
         SectionHeader=function() return {},40 end,
         DualRow=function(_,_,_,left,right)
@@ -166,14 +170,13 @@ lua.execute(
             return {},50
         end,
     }
-    C_Timer={After=function(delay,callback) delays[#delays+1]=delay;callback() end}
     feature:BuildOptions({},0)
     capturedBorderSetter("glow")
     assert(ns:GetDatabase().bigWigsBorder.texture=="glow")
     capturedToggleSetter(false)
     capturedToggleSetter(true)
     assert(ns:GetDatabase().bigWigsBorder.enabled==true)
-    assert(pageRefreshes==1 and #delays==1 and delays[1]==0.05)
+    assert(confirmations==3)
     '''
 )
 
@@ -184,7 +187,8 @@ assert "BigWigs_StartNameplate" not in source
 assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
 assert '"bigwigs_message_icon"' in source and "ScanMessageIcons" in source
 assert "EnumerateFrames" in source
-assert "RefreshOptionsAfterDropdown()" in source and "C_Timer.After(0.05, refresh)" in source
+assert 'message = T("QOL.CHANGING_BIGWIGS_BORDER_SETTINGS_REQUIRES_A_UI_RELOAD")' in source
+assert "RefreshOptionsAfterDropdown" not in source
 assert "RefreshWidgetsAfterToggle" not in source
 assert "borderStyleControl" not in source
 

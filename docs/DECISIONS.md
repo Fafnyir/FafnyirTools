@@ -384,3 +384,7 @@ The widget-state refresh in `6be5a79` also interfered with the switch visual.
 Remove all external refreshes from the toggle setter and keep Border Style
 selectable while the feature is off; this lets users choose the next style in
 advance and leaves the toggle animation entirely under EllesmereUI ownership.
+The issue still reproduced, leaving live `feature:Refresh()` as the common work
+inside the affected toggle and dropdown setters. Supersede live application for
+those two controls with the standard secure reload confirmation. Save the value
+immediately, apply it on reload, and keep Content Spacing live-adjustable.

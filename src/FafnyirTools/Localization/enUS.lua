@@ -113,6 +113,7 @@ ns:RegisterLocale("enUS", {
     ["QOL.ENABLE_BIGWIGS_PIXEL_BORDER"] = "Enable BigWigs Border",
     ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "Apply the selected EllesmereUI border to BigWigs timer bars, attached spell icons, and message icons.",
     ["QOL.BIGWIGS_BARS_ARE_NOT_AVAILABLE"] = "BigWigs bars are not available.",
+    ["QOL.CHANGING_BIGWIGS_BORDER_SETTINGS_REQUIRES_A_UI_RELOAD"] = "Changing BigWigs Border settings requires a UI reload to apply.",
     ["QOL.BIGWIGS_ICON_OFFSET"] = "Content Spacing",
     ["QOL.MOVE_BIGWIGS_SPELL_ICONS_AWAY_FROM_THE_TIMER_BAR"] = "Add space between timer bars and their spell icons, and between message icons and text.",
     ["QOL.PERMANENT_COMPANION_PET"] = "PERMANENT COMPANION PET",

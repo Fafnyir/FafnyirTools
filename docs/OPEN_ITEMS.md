@@ -17,6 +17,9 @@
   animation. Build `6be5a79` still failed when refreshing the widget list.
   Confirm the revision with no external toggle refresh draws off/on correctly;
   Border Style intentionally remains selectable while the feature is off.
+- The no-refresh toggle build still reproduced the stale visual. Confirm the
+  reload-confirmation revision leaves both controls visually correct, persists
+  their values, and applies them after Reload Now or a later manual reload.
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.

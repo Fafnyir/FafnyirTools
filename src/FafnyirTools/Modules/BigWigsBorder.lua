@@ -283,18 +283,15 @@ function feature:Reset()
     self:Refresh()
 end
 
-local function RefreshOptionsAfterDropdown()
-    local function refresh()
-        if EllesmereUI and EllesmereUI.RefreshPage then
-            EllesmereUI:RefreshPage(true)
-        end
-    end
-    if C_Timer and C_Timer.After then
-        -- Let the active toggle/dropdown finish its own click and menu-close
-        -- lifecycle before EllesmereUI rebuilds the page from saved values.
-        C_Timer.After(0.05, refresh)
-    else
-        refresh()
+local function PromptReload()
+    if EllesmereUI and EllesmereUI.ShowConfirmPopup then
+        EllesmereUI:ShowConfirmPopup({
+            title = T("CORE.RELOAD_REQUIRED"),
+            message = T("QOL.CHANGING_BIGWIGS_BORDER_SETTINGS_REQUIRES_A_UI_RELOAD"),
+            confirmText = T("CORE.RELOAD_NOW"),
+            cancelText = T("CORE.LATER"),
+            reload = true,
+        })
     end
 end
 
@@ -322,7 +319,7 @@ function feature:BuildOptions(parent, yOffset)
             getValue = function() return DB().enabled end,
             setValue = function(value)
                 DB().enabled = value and true or false
-                feature:Refresh()
+                PromptReload()
             end,
         },
         {
@@ -333,8 +330,7 @@ function feature:BuildOptions(parent, yOffset)
             getValue = function() return DB().texture or "pixels" end,
             setValue = function(value)
                 DB().texture = value
-                feature:Refresh()
-                RefreshOptionsAfterDropdown()
+                PromptReload()
             end,
         })
     y = y - h
