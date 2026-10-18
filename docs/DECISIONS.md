@@ -1,5 +1,15 @@
 # Reconciled decisions
 
+## 2026-10-18 — Extend Leveling Forecast through level 90
+
+The user requested that the completed-quest projection continue through level
+90 after v1.1.15 stopped at the first level boundary. Supersede the earlier
+one-level-only decision for Midnight levels 80–90. Keep the live current-level
+`UnitXPMax()` value authoritative and use bundled future requirements only when
+that value matches the Midnight 12.1 curve. Fall back to the conservative
+one-level overflow result when it does not match. Keep the feature read-only and
+move its two long guidance messages to separate full-width rows.
+
 ## 2026-10-18 — Chinese translation worksheet workflow
 
 For new interface strings, prefill localization worksheets with a complete

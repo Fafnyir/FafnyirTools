@@ -1,4 +1,19 @@
-# Current state — v1.1.15 release, 2026-10-18
+# Current state — v1.1.16 test build, 2026-10-18
+
+## v1.1.16 — Leveling Forecast to 90
+
+The completed-quest projection now walks the Midnight 12.1 XP requirements from
+the player's current level through level 90. The live `UnitXPMax()` value is
+still authoritative for the current level; future requirements are used only
+when that value matches the bundled curve. If Blizzard changes the curve, the
+display safely returns to the v1.1.15 one-level overflow result instead of
+presenting a false precise forecast.
+
+The reported screenshot case is covered directly: level 81 at 418,117 of
+423,390 XP plus 604,313 completed-quest XP projects to level 83 at about 33.6%.
+Tests also cover reaching level 90 and the stale-curve fallback. The two long
+guidance messages now occupy separate full-width rows to prevent overlap.
+Offline validation passes; in-game confirmation and packaging are pending.
 
 ## v1.1.15 — Leveling Forecast
 

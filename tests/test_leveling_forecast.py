@@ -45,20 +45,40 @@ assert(result.bonusPercent==25)
 assert(result.projectedLevel==83 and result.overflowXP==250)
 assert(result.projectedPercent==nil and not result.atMaxLevel)
 f:BuildOptions({},-10)
-assert(headers[1]=='LEVELING FORECAST' and #rows==6)
+assert(headers[1]=='LEVELING FORECAST' and #rows==7)
 assert(rows[2][2].text=='3' and rows[3][2].text=='850')
 assert(rows[4][2].text=='+25%')
 assert(rows[5][2].text=='Level 83+ — 250 XP beyond next level',rows[5][2].text)
+assert(rows[6][1].text:find('Blizzard%-adjusted'))
+assert(rows[6][2]==nil and rows[7][1].text=='Reopen this page to refresh.')
 
 playerXP=100;rewards[101]={100,100};rewards[102]={200,200};rewards[104]={0,0}
 result=f:GetForecast()
 assert(result.questCount==2 and result.questXP==300 and result.bonusPercent==0)
 assert(result.projectedLevel==82 and math.abs(result.projectedPercent-40)<0.001)
 
+playerLevel=81;playerXP=418117;playerMax=423390
+rewards[101]={604313,483450};rewards[102]={0,0};rewards[104]={0,0}
+result=f:GetForecast()
+assert(result.projectedLevel==83 and not result.projectedAtMaxLevel)
+assert(math.abs(result.projectedPercent-(155645/463740*100))<0.001)
+assert(result.overflowXP==nil)
+
+rewards[101]={5000000,4000000}
+result=f:GetForecast()
+assert(result.projectedLevel==90 and result.projectedAtMaxLevel)
+assert(result.projectedPercent==nil and result.overflowXP==nil)
+
+playerMax=423000;rewards[101]={604313,483450}
+result=f:GetForecast()
+assert(result.projectedLevel==82 and result.projectedPercent==nil)
+assert(result.overflowXP==599430)
+
 playerLevel=90;playerXP=0;playerMax=0
 result=f:GetForecast();assert(result.atMaxLevel)
 
 playerLevel=82;playerXP=100;playerMax=1000;secret=200
+rewards[101]={100,100};rewards[102]={200,200};rewards[104]={0,0}
 result=f:GetForecast();assert(result.questCount==1 and result.questXP==100)
 
 local savedQuestLog=C_QuestLog;C_QuestLog=nil

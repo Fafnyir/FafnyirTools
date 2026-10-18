@@ -102,7 +102,7 @@ load('Core/Options.lua')
 l.execute('''
 assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','Bags & Inventory','Layouts'}
 assert(#config.pages==#expected);for i,p in ipairs(expected) do assert(config.pages[i]==p,p) end
-rows={};assert(config.buildPage('QoL',{},0)==420 and #rows==18)
+rows={};assert(config.buildPage('QoL',{},0)==460 and #rows==18)
 -- Restored About history wraps without assuming a fixed 22-pixel text height.
 fonts={}
 function EllesmereUI.MakeFont()

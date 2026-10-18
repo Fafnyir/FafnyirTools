@@ -1,5 +1,18 @@
 # Reconciled project changelog
 
+## v1.1.16 — Leveling Forecast to 90 (test build)
+
+- Extended the completed-quest projection across the current Midnight XP curve
+  through level 90, including the percentage reached within the final projected
+  level.
+- Keeps `UnitXPMax()` authoritative for the current level and uses the future
+  table only when the live value matches, falling back to the existing
+  one-level overflow result after a client XP rebalance.
+- Shows maximum level when the available quest XP would reach level 90.
+- Moved the two explanatory messages onto separate full-width rows to prevent
+  overlap in the QoL panel.
+- Retains read-only behavior and EllesmereUI XP-bar ownership.
+
 ## v1.1.15 — Leveling Forecast
 
 - Added a read-only **Leveling Forecast** section under QoL.

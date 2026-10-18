@@ -1,4 +1,18 @@
-Fafnyir Tools for EllesmereUI v1.1.15 — Leveling Forecast
+Fafnyir Tools for EllesmereUI v1.1.16 — Leveling Forecast to 90
+
+v1.1.16 test-build changes
+
+- Extended completed-quest projections across multiple Midnight levels through
+  level 90.
+- Uses the live current-level XP requirement as a guard before applying the
+  bundled Midnight 12.1 future-level requirements.
+- Falls back to the conservative one-level overflow display if Blizzard changes
+  the live XP curve.
+- Shows projected percentage progress at the resulting level or Maximum Level
+  when the completed quests would reach level 90.
+- Placed the two forecast guidance messages on separate full-width rows to
+  prevent the overlap visible in v1.1.15.
+- Remains read-only and does not alter EllesmereUI's XP bar, settings or events.
 
 v1.1.15 changes
 

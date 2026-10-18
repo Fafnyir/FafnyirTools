@@ -9,21 +9,42 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
+-- Midnight 12.1 XP requirements for the level shown to the level after it.
+-- The live UnitXPMax value remains authoritative for the player's current
+-- level. Future levels are used only when that live value matches this table,
+-- so a client rebalance falls back to the conservative one-level projection.
+local MIDNIGHT_XP_TO_NEXT_LEVEL = {
+    [80] = 403725,
+    [81] = 423390,
+    [82] = 443395,
+    [83] = 463740,
+    [84] = 484430,
+    [85] = 505455,
+    [86] = 526825,
+    [87] = 548535,
+    [88] = 570590,
+    [89] = 592980,
+}
+
 local function UsableNumber(value)
     if type(value) ~= "number" then return nil end
     if issecretvalue and issecretvalue(value) then return nil end
     return value
 end
 
-local function IsAtMaxLevel(level)
+local function EffectiveMaxLevel()
+    local maximum = (GetMaxLevelForPlayerExpansion and GetMaxLevelForPlayerExpansion())
+        or (GetMaxPlayerLevel and GetMaxPlayerLevel())
+    return UsableNumber(maximum)
+end
+
+local function IsAtMaxLevel(level, maximum)
     if IsPlayerAtEffectiveMaxLevel and IsPlayerAtEffectiveMaxLevel() then
         return true
     end
     if IsLevelAtEffectiveMaxLevel and IsLevelAtEffectiveMaxLevel(level) then
         return true
     end
-    local maximum = (GetMaxLevelForPlayerExpansion and GetMaxLevelForPlayerExpansion())
-        or (GetMaxPlayerLevel and GetMaxPlayerLevel())
     return type(maximum) == "number" and level >= maximum
 end
 
@@ -63,6 +84,7 @@ function feature:GetForecast()
     local level = UsableNumber(UnitLevel and UnitLevel("player")) or 0
     local current = UsableNumber(UnitXP and UnitXP("player")) or 0
     local maximum = UsableNumber(UnitXPMax and UnitXPMax("player")) or 0
+    local maximumLevel = EffectiveMaxLevel()
     local count, questXP, baseXP, adjustedForBonus = self:GetCompletedQuestXP()
     local result = {
         level = level,
@@ -71,7 +93,8 @@ function feature:GetForecast()
         questCount = count,
         questXP = questXP,
         baseQuestXP = baseXP,
-        atMaxLevel = IsAtMaxLevel(level) or maximum <= 0,
+        maximumLevel = maximumLevel,
+        atMaxLevel = IsAtMaxLevel(level, maximumLevel) or maximum <= 0,
     }
 
     if baseXP > 0 and adjustedForBonus >= baseXP then
@@ -84,8 +107,33 @@ function feature:GetForecast()
             result.projectedLevel = level
             result.projectedPercent = projected / maximum * 100
         else
-            result.projectedLevel = level + 1
-            result.overflowXP = projected - maximum
+            local projectedLevel = level + 1
+            local remaining = projected - maximum
+            result.projectedLevel = projectedLevel
+
+            if maximumLevel and projectedLevel >= maximumLevel then
+                result.projectedAtMaxLevel = true
+            elseif maximumLevel == 90 and MIDNIGHT_XP_TO_NEXT_LEVEL[level] == maximum then
+                while projectedLevel < maximumLevel do
+                    local required = MIDNIGHT_XP_TO_NEXT_LEVEL[projectedLevel]
+                    if not required then break end
+                    if remaining < required then
+                        result.projectedPercent = remaining / required * 100
+                        remaining = nil
+                        break
+                    end
+                    remaining = remaining - required
+                    projectedLevel = projectedLevel + 1
+                    result.projectedLevel = projectedLevel
+                end
+                if projectedLevel >= maximumLevel then
+                    result.projectedAtMaxLevel = true
+                elseif remaining then
+                    result.overflowXP = remaining
+                end
+            else
+                result.overflowXP = remaining
+            end
         end
     end
     return result
@@ -144,6 +192,8 @@ function feature:BuildOptions(parent, yOffset)
     local projection
     if forecast.atMaxLevel then
         projection = T("QOL.MAXIMUM_LEVEL")
+    elseif forecast.projectedAtMaxLevel then
+        projection = T("QOL.LEVEL_PERCENT", forecast.projectedLevel, T("QOL.MAXIMUM_LEVEL"))
     elseif forecast.projectedPercent then
         projection = T("QOL.LEVEL_PERCENT", forecast.projectedLevel, Percent(forecast.projectedPercent))
     else
@@ -155,7 +205,10 @@ function feature:BuildOptions(parent, yOffset)
     y = y - h
 
     _, h = W:DualRow(parent, y,
-        { type = "label", text = T("QOL.FORECAST_USES_ADJUSTED_QUEST_XP") },
+        { type = "label", text = T("QOL.FORECAST_USES_ADJUSTED_QUEST_XP") })
+    y = y - h
+
+    _, h = W:DualRow(parent, y,
         { type = "label", text = T("QOL.REOPEN_TO_REFRESH") })
     y = y - h
 
