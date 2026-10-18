@@ -8,6 +8,8 @@
   UI reload persistence, disabling while bars are visible, and combat safety.
 - Test Icon Offset from 0–10 on left- and right-positioned icons; verify zero
   matches native placement and disabling restores the original geometry.
+- Confirm the style-safe anchor snapshot removes the reported text overlap in
+  the BigWigs test-bar style shown in the 2026-10-18 screenshot.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.
 - The six new `zhCN` and `zhTW` strings are AI first-pass translations and
   require Yilang's review for terminology and in-game fit.

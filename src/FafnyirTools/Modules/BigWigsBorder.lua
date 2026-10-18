@@ -28,40 +28,61 @@ local function HideBorder(target, field)
     if border then border:Hide() end
 end
 
-local function RestoreIconLayout(bar)
-    if bar and type(bar.SetIconPosition) == "function" then
-        local position = type(bar.GetIconPosition) == "function" and bar:GetIconPosition() or "LEFT"
-        bar:SetIconPosition(position)
+local function ReadPoints(region)
+    local points = {}
+    for i = 1, region:GetNumPoints() do
+        local point, relativeTo, relativePoint, x, y = region:GetPoint(i)
+        points[i] = { point, relativeTo, relativePoint, x or 0, y or 0 }
     end
+    return points
+end
+
+local function CaptureIconLayout(bar)
+    if not bar or not bar.candyBarIconFrame or not bar.candyBarBar then return end
+    local ok, iconPoints, statusPoints = pcall(function()
+        return ReadPoints(bar.candyBarIconFrame), ReadPoints(bar.candyBarBar)
+    end)
+    if ok then
+        bar._fafnyirBigWigsNativeLayout = {
+            icon = iconPoints,
+            status = statusPoints,
+        }
+    end
+end
+
+local function SetPoints(region, points, globalOffset, relativeRegion, relativeOffset)
+    region:ClearAllPoints()
+    for i = 1, #points do
+        local point = points[i]
+        local x = point[4] + (globalOffset or 0)
+        if relativeRegion and point[2] == relativeRegion then
+            x = x + (relativeOffset or 0)
+        end
+        region:SetPoint(point[1], point[2], point[3], x, point[5])
+    end
+end
+
+local function RestoreIconLayout(bar)
+    local layout = bar and bar._fafnyirBigWigsNativeLayout
+    if not layout then return end
+    SetPoints(bar.candyBarIconFrame, layout.icon, 0)
+    SetPoints(bar.candyBarBar, layout.status, 0)
 end
 
 local function ApplyIconOffset(bar)
     local icon = bar and bar.candyBarIconFrame
     local status = bar and bar.candyBarBar
-    if not icon or not status then return end
+    local layout = bar and bar._fafnyirBigWigsNativeLayout
+    if not icon or not status or not layout then return end
 
     RestoreIconLayout(bar)
     local offset = math.max(0, tonumber(DB().iconOffset) or 0)
     if not Enabled() or offset == 0 or not icon:IsShown() then return end
 
     local position = type(bar.GetIconPosition) == "function" and bar:GetIconPosition() or "LEFT"
-    icon:ClearAllPoints()
-    status:ClearAllPoints()
-    if position == "RIGHT" then
-        icon:SetPoint("TOPRIGHT", bar, "TOPRIGHT", offset, 0)
-        icon:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", offset, 0)
-        status:SetPoint("TOPRIGHT", icon, "TOPLEFT", -offset, 0)
-        status:SetPoint("BOTTOMRIGHT", icon, "BOTTOMLEFT", -offset, 0)
-        status:SetPoint("TOPLEFT", bar, "TOPLEFT", 0, 0)
-        status:SetPoint("BOTTOMLEFT", bar, "BOTTOMLEFT", 0, 0)
-    else
-        icon:SetPoint("TOPLEFT", bar, "TOPLEFT", -offset, 0)
-        icon:SetPoint("BOTTOMLEFT", bar, "BOTTOMLEFT", -offset, 0)
-        status:SetPoint("TOPLEFT", icon, "TOPRIGHT", offset, 0)
-        status:SetPoint("BOTTOMLEFT", icon, "BOTTOMRIGHT", offset, 0)
-        status:SetPoint("TOPRIGHT", bar, "TOPRIGHT", 0, 0)
-        status:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", 0, 0)
-    end
+    local direction = position == "RIGHT" and 1 or -1
+    SetPoints(icon, layout.icon, direction * offset)
+    SetPoints(status, layout.status, 0, icon, -direction * offset)
 end
 
 local function ApplyPixelsBorder(bar, target, field, context)
@@ -113,9 +134,10 @@ local function ApplyPixelsBorder(bar, target, field, context)
     border:SetShown(bar:IsShown() and target:IsShown())
 end
 
-local function ApplyToBar(bar)
+local function ApplyToBar(bar, captureLayout)
     if not bar then return end
     trackedBars[bar] = true
+    if captureLayout then CaptureIconLayout(bar) end
     ApplyIconOffset(bar)
     ApplyPixelsBorder(bar, bar.candyBarBar, "_fafnyirBigWigsBorder", "bigwigs_bar")
     ApplyPixelsBorder(bar, bar.candyBarIconFrame, "_fafnyirBigWigsIconBorder", "bigwigs_icon")
@@ -128,11 +150,11 @@ local function HideBarBorders(bar)
 end
 
 local function OnBarCreated(_, _, bar)
-    ApplyToBar(bar)
+    ApplyToBar(bar, true)
 end
 
 local function OnBarEmphasized(_, _, bar)
-    ApplyToBar(bar)
+    ApplyToBar(bar, true)
 end
 
 local function RegisterMessages()

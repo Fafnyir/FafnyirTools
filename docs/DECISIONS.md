@@ -15,6 +15,12 @@ pixel icon-offset slider with an upgrade-safe default of zero. Apply it only
 while this border feature is enabled and restore BigWigs' native icon layout
 when disabled.
 
+The first offset implementation rebuilt generic LibCandyBar anchors and caused
+the active BigWigs style's text spacing to overlap. Replace it before the next
+test package: snapshot the actual style-provided icon and status-bar anchors,
+adjust only their horizontal seam, and restore those exact anchors at zero or
+when disabled.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

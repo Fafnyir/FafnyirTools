@@ -10,6 +10,9 @@ translations pending Yilang's review. Offline validation passes; in-game BigWigs
 test bars and combat behavior remain to be confirmed. The initial border passed
 in-game testing; a subsequent screenshot showed the icon and bar outlines
 overlapping, so the revised test adds a saved 0–10 pixel Icon Offset slider.
+After that build exposed text overlap, the implementation was changed to
+preserve each active BigWigs bar style's real anchors instead of rebuilding a
+generic LibCandyBar layout. This style-safe revision awaits in-game testing.
 
 ## v1.1.16 — Leveling Forecast to 90
 

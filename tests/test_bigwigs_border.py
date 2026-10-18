@@ -19,6 +19,10 @@ lua.execute(
     function frameMethods:SetScript() end
     function frameMethods:ClearAllPoints() self.points={} end
     function frameMethods:SetPoint(...) self.points=self.points or {};self.points[#self.points+1]={...} end
+    function frameMethods:GetNumPoints() return #(self.points or {}) end
+    function frameMethods:GetPoint(index)
+        local p=self.points[index];return p[1],p[2],p[3],p[4],p[5]
+    end
     function frameMethods:SetFrameLevel(value) self.level=value end
     function frameMethods:GetFrameLevel() return self.level or 1 end
     function frameMethods:IsShown() return self.shown ~= false end
@@ -68,6 +72,9 @@ lua.execute(
         self.iconPosition=position;self.restoreCalls=(self.restoreCalls or 0)+1
         self.candyBarIconFrame:ClearAllPoints();self.candyBarBar:ClearAllPoints()
     end
+    bar.candyBarIconFrame:SetPoint("TOPLEFT",bar,"TOPLEFT",0,0)
+    bar.candyBarBar:SetPoint("TOPLEFT",bar.candyBarIconFrame,"TOPRIGHT",0,0)
+    bar.candyBarBar:SetPoint("TOPRIGHT",bar,"TOPRIGHT",0,0)
     registrations.BigWigs_BarCreated.callback("BigWigs_BarCreated",{},bar)
     assert(#applied==0)
 
@@ -83,12 +90,19 @@ lua.execute(
     assert(bar.candyBarIconFrame.points[1][4]==-3)
     assert(bar.candyBarBar.points[1][4]==3)
 
+    -- BigWigs reapplies its native style before sending the emphasized message.
+    bar.candyBarIconFrame:ClearAllPoints();bar.candyBarBar:ClearAllPoints()
+    bar.candyBarIconFrame:SetPoint("TOPLEFT",bar,"TOPLEFT",0,0)
+    bar.candyBarBar:SetPoint("TOPLEFT",bar.candyBarIconFrame,"TOPRIGHT",0,0)
+    bar.candyBarBar:SetPoint("TOPRIGHT",bar,"TOPRIGHT",0,0)
     registrations.BigWigs_BarEmphasized.callback("BigWigs_BarEmphasized",{},bar)
     assert(#applied==6)
     ns:GetDatabase().bigWigsBorder.enabled=false
     feature:Refresh()
     assert(not bar.candyBarBar._fafnyirBigWigsBorder.shown)
     assert(not bar.candyBarIconFrame._fafnyirBigWigsIconBorder.shown)
+    assert(bar.candyBarIconFrame.points[1][4]==0)
+    assert(bar.candyBarBar.points[1][4]==0)
     feature:Reset()
     assert(ns:GetDatabase().bigWigsBorder.enabled==false)
     assert(ns:GetDatabase().bigWigsBorder.iconOffset==0)
