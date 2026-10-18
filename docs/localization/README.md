@@ -22,18 +22,28 @@ v1.1.14 translation pass. It preserves the same zhCN/zhTW, translator-note,
 reviewer and status workflow as the original workbook. The two formatted rows
 identify their required `%d` and `%s` placeholders explicitly. Integrate the
 returned translations only after checking placeholder parity and Lua syntax.
+The workbook includes an AI-drafted first pass for both locales, with every row
+marked **Needs Review** for Yilang to verify against official WoW terminology,
+natural phrasing and in-game layout.
+
+For future localization additions, provide a complete AI-drafted first pass in
+both Chinese columns when practical, preserve all placeholders, and mark those
+entries **Needs Review**. A fluent volunteer remains the authority for approval;
+do not integrate draft text as final merely because the worksheet is complete.
 
 ## Volunteer workflow
 
 1. Confirm whether the volunteer uses the `zhCN` (Simplified Chinese) or `zhTW`
    (Traditional Chinese) World of Warcraft client.
-2. Fill only the matching language column unless the volunteer is fluent in
-   both client locales.
+2. Review the matching language column; review both only when fluent in both
+   client locales. Replace draft wording rather than preserving it out of
+   deference to the first pass.
 3. Prefer official terminology from that WoW client instead of literal or
    machine translation.
 4. Preserve brand names and placeholders identified in the worksheet notes.
-5. Set completed rows to **Translated**. A second fluent speaker should set them
-   to **Reviewed** after checking terminology and in-game context.
+5. AI-drafted rows begin as **Needs Review**. Set completed rows to
+   **Translated** after translator approval. A second fluent speaker should set
+   them to **Reviewed** after checking terminology and in-game context.
 6. Return the completed workbook for conversion into locale files and code
    integration.
 

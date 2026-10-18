@@ -6,8 +6,10 @@
   EllesmereUI version and detailed scenarios were not supplied.
 - Exhaustive no-bonus, mixed-bonus, overflow, maximum-level and disabled-XP
   coverage remains separate from that confirmation.
-- Obtain reviewed `zhCN` and `zhTW` translations for the twelve new English
-  fallback strings before a localization-complete release.
+- The supplemental worksheet now contains AI-drafted `zhCN` and `zhTW`
+  translations for all twelve new strings, marked **Needs Review**. Obtain
+  Yilang's review and corrections before integration or a localization-complete
+  release.
 
 ## Chinese localization
 

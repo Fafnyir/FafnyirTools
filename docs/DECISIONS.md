@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## 2026-10-18 — Chinese translation worksheet workflow
+
+For new interface strings, prefill localization worksheets with a complete
+first-pass `zhCN` and `zhTW` translation when practical. Preserve formatting
+tokens exactly and mark all AI-drafted entries **Needs Review**. Translator
+Yilang, or another fluent reviewer, verifies official WoW terminology, natural
+phrasing and in-game fit before the text is treated as approved or integrated.
+
 ## 2026-10-17 — Leveling Forecast test scope
 
 The user authorized a v1.1.15 test build for estimated leveling from completed
