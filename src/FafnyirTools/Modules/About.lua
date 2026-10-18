@@ -9,10 +9,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.16"
+local VERSION = "v1.1.17"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.17", lines = {
+        "Added an optional EllesmereUI Pixels border to BigWigs timer bars and attached spell icons.",
+        "The feature is disabled by default and does not change BigWigs profiles or nameplate icons.",
+        "Included first-pass Simplified and Traditional Chinese text pending Yilang's review.",
+    }},
     { version = "v1.1.16", lines = {
         "Extended Leveling Forecast projections through level 90.",
         "Fixed overlapping forecast guidance text.",
@@ -228,6 +233,7 @@ function feature:GetDiagnostics()
         "Device Layout=" .. OnOff(db.deviceLayout and db.deviceLayout.enabled),
         "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled),
         "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled),
+        "BigWigs Border=" .. OnOff(db.bigWigsBorder and db.bigWigsBorder.enabled),
         "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native"),
         "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles),
         "Inventory=" .. OnOff(db.inventory and db.inventory.enabled),

@@ -1,4 +1,13 @@
-# Current state — v1.1.16 release, 2026-10-18
+# Current state — v1.1.17 BigWigs border test, 2026-10-18
+
+## v1.1.17 — BigWigs Pixels Border test
+
+Adds a default-off QoL toggle for EllesmereUI Pixels borders on BigWigs timer
+bars and their attached spell icons. It uses public BigWigs creation/emphasis
+messages, does not alter BigWigs profiles, and excludes nameplate icons. The
+four new Simplified and Traditional Chinese strings are included as first-pass
+translations pending Yilang's review. Offline validation passes; in-game BigWigs
+test bars and combat behavior remain to be confirmed.
 
 ## v1.1.16 — Leveling Forecast to 90
 

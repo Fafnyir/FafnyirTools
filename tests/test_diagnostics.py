@@ -15,7 +15,7 @@ lua.execute(
     captured = nil
     FafnyirToolsDB = {
         auraSkins={enabled=false}, deviceLayout={enabled=true},
-        focusHeader={enabled=true}, iconHistoryBorder={enabled=false},
+        focusHeader={enabled=true}, iconHistoryBorder={enabled=false}, bigWigsBorder={enabled=false},
         inventory={enabled=true,tooltips=true},
         permanentCompanionPet={enabled=false},
         xpBar={enabled=false,questEnabled=true,restedEnabled=true},
@@ -51,7 +51,7 @@ lua.execute(ABOUT.read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(
     r'''
     local report=ns.modules.About:GetDiagnostics()
-    assert(string.find(report,"Addon: v1.1.16",1,true))
+    assert(string.find(report,"Addon: v1.1.17",1,true))
     assert(string.find(report,"Flavor: Retail",1,true))
     assert(string.find(report,"Client: 12.1.5",1,true))
     assert(string.find(report,"Build: 65432",1,true))
@@ -62,6 +62,7 @@ lua.execute(
     assert(not string.find(report,"Rested XP=",1,true))
     assert(not string.find(report,"XP Gradient=",1,true))
     assert(string.find(report,"Flyout Fix=on",1,true))
+    assert(string.find(report,"BigWigs Border=off",1,true))
     assert(not string.find(report,"character",1,true))
     assert(not string.find(report,"realm",1,true))
     assert(not string.find(report,"account",1,true))

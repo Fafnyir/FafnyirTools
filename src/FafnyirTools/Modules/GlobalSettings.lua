@@ -20,6 +20,7 @@ local SCHEMA = {
     foreverFog = { enabled = true },
     flyoutFix = true,
     iconHistoryBorder = true,
+    bigWigsBorder = true,
     sharedArtwork = true,
     focusHeader = { enabled = true },
     permanentCompanionPet = { enabled = true, disableInPvP = true },
@@ -174,7 +175,7 @@ end
 function feature:Export()
     local payload = {
         format = FORMAT,
-        addonVersion = "v1.1.16",
+        addonVersion = "v1.1.17",
         settings = Select(ns:GetDatabase(), SCHEMA, ns.defaults),
     }
     local out = {}
@@ -204,7 +205,7 @@ function feature:ApplyImport(payload)
     local db = ns:GetDatabase()
     db.globalSettingsImportBackup = {
         created = time and time() or 0,
-        addonVersion = "v1.1.16",
+        addonVersion = "v1.1.17",
         settings = Select(db, SCHEMA, ns.defaults),
     }
     MergeRecognized(db, payload.settings, SCHEMA, ns.defaults)

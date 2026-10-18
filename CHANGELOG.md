@@ -1,5 +1,13 @@
 # Reconciled project changelog
 
+## v1.1.17 — BigWigs Pixels Border test
+
+- Added a default-off QoL toggle that applies EllesmereUI's Pixels border to
+  BigWigs timer bars and their attached spell icons.
+- Uses BigWigs' public bar-created and emphasized messages, changes no BigWigs
+  profile values, and leaves BigWigs nameplate icons under native control.
+- Included first-pass `zhCN` and `zhTW` translations marked for fluent review.
+
 ## v1.1.16 — Leveling Forecast to 90
 
 - Extended the completed-quest projection across the current Midnight XP curve

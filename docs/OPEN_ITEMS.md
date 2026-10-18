@@ -1,5 +1,15 @@
 # Open items — no silent restoration
 
+## v1.1.17 BigWigs Pixels Border — test build
+
+- Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
+  Pixels borders appear on both timer bars and attached spell icons.
+- Test normal and emphasized bars, icons on either side, bars without icons,
+  UI reload persistence, disabling while bars are visible, and combat safety.
+- Confirm BigWigs nameplate icons and its saved profile remain unchanged.
+- The four new `zhCN` and `zhTW` strings are AI first-pass translations and
+  require Yilang's review for terminology and in-game fit.
+
 ## v1.1.16 Leveling Forecast to 90 — in-game test pending
 
 - User screenshot on 2026-10-18 confirms build `b72b994` projects level 81 at

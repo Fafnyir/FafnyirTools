@@ -20,6 +20,7 @@ local function OrderedFeatures()
         ns.modules.RightClickSelfCast,
         ns.modules.FlyoutButtonMatch,
         ns.modules.IconHistoryBorder,
+        ns.modules.BigWigsBorder,
         ns.modules.Inventory,
         ns.modules.DeviceLayout,
     }

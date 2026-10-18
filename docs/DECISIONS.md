@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-10-18 — BigWigs Pixels-border test
+
+The user requested a test build with translations for an optional Pixels border
+on BigWigs bars and icons. Add one default-off QoL toggle, style only timer bars
+and their attached spell icons through BigWigs' public callbacks, and do not
+write BigWigs profiles or alter its native nameplate-border controls. Include
+AI-drafted Simplified and Traditional Chinese strings in the test build and
+keep them marked for Yilang's fluent review.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

@@ -1,4 +1,14 @@
-Fafnyir Tools for EllesmereUI v1.1.16 — Leveling Forecast to 90
+Fafnyir Tools for EllesmereUI v1.1.17 — BigWigs Pixels Border Test
+
+v1.1.17 changes
+
+- Adds a default-off QoL toggle for EllesmereUI Pixels borders on BigWigs timer bars and attached spell icons.
+- Does not modify BigWigs profiles or its native nameplate icon settings.
+- Includes first-pass Simplified and Traditional Chinese translations pending Yilang's review.
+
+Testing requested
+
+- Verify normal and emphasized BigWigs bars, icon placement, reload persistence, disabling while visible, and combat safety.
 
 v1.1.16 changes
 
