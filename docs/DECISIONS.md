@@ -9,6 +9,12 @@ write BigWigs profiles or alter its native nameplate-border controls. Include
 AI-drafted Simplified and Traditional Chinese strings in the test build and
 keep them marked for Yilang's fluent review.
 
+After the first in-game pass, the user confirmed the border works but showed
+the icon and bar outlines overlapping at their shared edge. Add a saved 0–10
+pixel icon-offset slider with an upgrade-safe default of zero. Apply it only
+while this border feature is enabled and restore BigWigs' native icon layout
+when disabled.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

@@ -113,6 +113,8 @@ ns:RegisterLocale("enUS", {
     ["QOL.ENABLE_BIGWIGS_PIXEL_BORDER"] = "Enable BigWigs Pixel Border",
     ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "Apply the EllesmereUI Pixels border to BigWigs timer bars and their attached spell icons.",
     ["QOL.BIGWIGS_BARS_ARE_NOT_AVAILABLE"] = "BigWigs bars are not available.",
+    ["QOL.BIGWIGS_ICON_OFFSET"] = "BigWigs Icon Offset",
+    ["QOL.MOVE_BIGWIGS_SPELL_ICONS_AWAY_FROM_THE_TIMER_BAR"] = "Move attached BigWigs spell icons away from the timer bar border.",
     ["QOL.PERMANENT_COMPANION_PET"] = "PERMANENT COMPANION PET",
     ["QOL.LEVELING_FORECAST"] = "LEVELING FORECAST",
     ["QOL.CURRENT_PROGRESS"] = "Current Progress",

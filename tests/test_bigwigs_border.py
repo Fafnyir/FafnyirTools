@@ -17,8 +17,8 @@ lua.execute(
     local frameMethods={}
     function frameMethods:RegisterEvent() end
     function frameMethods:SetScript() end
-    function frameMethods:ClearAllPoints() end
-    function frameMethods:SetPoint() end
+    function frameMethods:ClearAllPoints() self.points={} end
+    function frameMethods:SetPoint(...) self.points=self.points or {};self.points[#self.points+1]={...} end
     function frameMethods:SetFrameLevel(value) self.level=value end
     function frameMethods:GetFrameLevel() return self.level or 1 end
     function frameMethods:IsShown() return self.shown ~= false end
@@ -62,6 +62,12 @@ lua.execute(
     local bar=CreateFrame("Frame")
     bar.candyBarBar=CreateFrame("StatusBar",nil,bar)
     bar.candyBarIconFrame=CreateFrame("Frame",nil,bar)
+    bar.iconPosition="LEFT"
+    function bar:GetIconPosition() return self.iconPosition end
+    function bar:SetIconPosition(position)
+        self.iconPosition=position;self.restoreCalls=(self.restoreCalls or 0)+1
+        self.candyBarIconFrame:ClearAllPoints();self.candyBarBar:ClearAllPoints()
+    end
     registrations.BigWigs_BarCreated.callback("BigWigs_BarCreated",{},bar)
     assert(#applied==0)
 
@@ -72,14 +78,20 @@ lua.execute(
     assert(bar.candyBarBar._fafnyirBigWigsBorder.shown)
     assert(bar.candyBarIconFrame._fafnyirBigWigsIconBorder.shown)
 
+    ns:GetDatabase().bigWigsBorder.iconOffset=3
+    feature:Refresh()
+    assert(bar.candyBarIconFrame.points[1][4]==-3)
+    assert(bar.candyBarBar.points[1][4]==3)
+
     registrations.BigWigs_BarEmphasized.callback("BigWigs_BarEmphasized",{},bar)
-    assert(#applied==4)
+    assert(#applied==6)
     ns:GetDatabase().bigWigsBorder.enabled=false
     feature:Refresh()
     assert(not bar.candyBarBar._fafnyirBigWigsBorder.shown)
     assert(not bar.candyBarIconFrame._fafnyirBigWigsIconBorder.shown)
     feature:Reset()
     assert(ns:GetDatabase().bigWigsBorder.enabled==false)
+    assert(ns:GetDatabase().bigWigsBorder.iconOffset==0)
     '''
 )
 

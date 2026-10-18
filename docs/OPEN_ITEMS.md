@@ -6,8 +6,10 @@
   Pixels borders appear on both timer bars and attached spell icons.
 - Test normal and emphasized bars, icons on either side, bars without icons,
   UI reload persistence, disabling while bars are visible, and combat safety.
+- Test Icon Offset from 0–10 on left- and right-positioned icons; verify zero
+  matches native placement and disabling restores the original geometry.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.
-- The four new `zhCN` and `zhTW` strings are AI first-pass translations and
+- The six new `zhCN` and `zhTW` strings are AI first-pass translations and
   require Yilang's review for terminology and in-game fit.
 
 ## v1.1.16 Leveling Forecast to 90 — in-game test pending

@@ -3,12 +3,13 @@ Fafnyir Tools for EllesmereUI v1.1.17 — BigWigs Pixels Border Test
 v1.1.17 changes
 
 - Adds a default-off QoL toggle for EllesmereUI Pixels borders on BigWigs timer bars and attached spell icons.
+- Adds a saved 0–10 pixel Icon Offset slider; zero preserves BigWigs' native layout.
 - Does not modify BigWigs profiles or its native nameplate icon settings.
 - Includes first-pass Simplified and Traditional Chinese translations pending Yilang's review.
 
 Testing requested
 
-- Verify normal and emphasized BigWigs bars, icon placement, reload persistence, disabling while visible, and combat safety.
+- Verify normal and emphasized BigWigs bars, left/right Icon Offset, reload persistence, disabling while visible, and combat safety.
 
 v1.1.16 changes
 

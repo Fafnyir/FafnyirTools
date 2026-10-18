@@ -42,10 +42,10 @@ def placeholders(value):
 
 
 english_keys = keys_for("enUS")
-assert len(english_keys) == 180
+assert len(english_keys) == 182
 for locale in LOCALES[1:]:
     translated_keys = keys_for(locale)
-    assert len(translated_keys) == 168, locale
+    assert len(translated_keys) == 170, locale
     assert translated_keys < english_keys, locale
     english = entries_for("enUS")
     translated = entries_for(locale)
@@ -70,4 +70,4 @@ for locale in LOCALES:
     source = (LOCALE_DIR / f"{locale}.lua").read_text()
     assert not re.search(r'=\s*""\s*,?$', source, re.M), locale
 
-print("PASS enUS plus 168-key zhCN/zhTW coverage, English fallback, formatting, and missing-key behavior")
+print("PASS enUS plus 170-key zhCN/zhTW coverage, English fallback, formatting, and missing-key behavior")

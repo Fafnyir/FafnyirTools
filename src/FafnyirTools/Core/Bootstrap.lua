@@ -38,6 +38,7 @@ ns.defaults = {
     },
     bigWigsBorder = {
         enabled = false,
+        iconOffset = 0,
     },
     focusHeader = {
         enabled = true,

@@ -113,6 +113,8 @@ ns:RegisterLocale("zhTW", {
     ["QOL.ENABLE_BIGWIGS_PIXEL_BORDER"] = "啟用 BigWigs 像素邊框",
     ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "將 EllesmereUI 像素邊框套用至 BigWigs 計時條及其附加的法術圖示。",
     ["QOL.BIGWIGS_BARS_ARE_NOT_AVAILABLE"] = "BigWigs 計時條無法使用。",
+    ["QOL.BIGWIGS_ICON_OFFSET"] = "BigWigs 圖示偏移",
+    ["QOL.MOVE_BIGWIGS_SPELL_ICONS_AWAY_FROM_THE_TIMER_BAR"] = "將附加的 BigWigs 法術圖示移離計時條邊框。",
     ["QOL.PERMANENT_COMPANION_PET"] = "常駐小寵物",
     ["UNIT_FRAMES.RESTING"] = "休息狀態",
     ["UNIT_FRAMES.ALL_BUFFS"] = "所有增益效果",
