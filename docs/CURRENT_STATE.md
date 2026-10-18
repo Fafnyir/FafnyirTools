@@ -21,9 +21,12 @@ The shared Content Spacing slider also separates message icons from their text;
 zero or disabling restores native anchors for both bars and messages.
 User in-game testing on 2026-10-18 confirms build `233c90c` works, including
 the global Messages-frame discovery that superseded two failed scan attempts.
-The next revision queues an EllesmereUI page rebuild after Border Style changes
-because the applied style updated live while the dropdown label stayed stale
-until reload.
+The first dropdown repair queued a full EllesmereUI page rebuild after Border
+Style changes. In-game video showed that this still left the closed caption and
+selected-row highlight stale. That rebuild has now been removed: it recycled
+the dropdown before EllesmereUI's own post-selection label/menu refresh could
+finish. The new test build leaves that native dropdown lifecycle intact while
+still applying the border immediately.
 
 ## v1.1.16 — Leveling Forecast to 90
 

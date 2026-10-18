@@ -360,3 +360,11 @@ The user confirmed that EllesmereUI controls the main Player buff/debuff frames.
 and CurseForge display names as well as uploaded filenames. The former friendly
 display name obscured the correctly named artifact. The repair workflow changes
 only existing release metadata; it does not rebuild or replace ZIPs.
+
+## 2026-10-18 — BigWigs border dropdown refresh
+
+Do not rebuild the EllesmereUI options page from the BigWigs Border Style
+dropdown setter. EllesmereUI refreshes the dropdown caption and selected-row
+state after the setter returns; rebuilding there recycles the widget before
+that deferred refresh completes. The `fa7880a` page-rebuild attempt was rejected
+after the user's screen recording showed the state still remained stale.
