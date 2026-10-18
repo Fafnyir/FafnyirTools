@@ -2,14 +2,14 @@ Fafnyir Tools for EllesmereUI v1.1.17 — BigWigs Border Test
 
 v1.1.17 changes
 
-- Adds a default-off QoL toggle and live dropdown of all current EllesmereUI borders for BigWigs timer bars and attached spell icons; Pixels remains the default.
+- Adds a default-off QoL toggle and live dropdown of all current EllesmereUI borders for BigWigs timer bars, attached spell icons, and normal message icons; Pixels remains the default.
 - Adds a saved 0–10 pixel Timer Bar Offset slider that leaves spell icons and indicators fixed; zero preserves BigWigs' native layout.
 - Does not modify BigWigs profiles or its native nameplate icon settings.
 - Includes first-pass Simplified and Traditional Chinese translations pending Yilang's review.
 
 Testing requested
 
-- Verify all border styles, normal/emphasized bars, left/right Timer Bar Offset, reload persistence, disabling while visible, and combat safety.
+- Verify all border styles, normal/emphasized bars, message icon visibility/fades, left/right Timer Bar Offset, reload persistence, disabling while visible, and combat safety.
 
 v1.1.16 changes
 

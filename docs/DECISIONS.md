@@ -27,6 +27,11 @@ bar body instead, carrying its label, duration and style-relative elements with
 it. The user also requested parity with Icon History: populate a Border Style
 dropdown from EllesmereUI's live border list and retain Pixels as the default.
 
+The user then identified that BigWigs Messages icons use a separate display
+path. Extend the same toggle and selected border style to the four pooled normal
+message icons. Follow their visibility and fade alpha without moving message
+text or changing the BigWigs profile.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

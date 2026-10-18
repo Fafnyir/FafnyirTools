@@ -15,6 +15,8 @@ preserve each active BigWigs bar style's real anchors instead of rebuilding a
 generic LibCandyBar layout. This style-safe revision awaits in-game testing.
 The latest revision leaves the spell icon and its BigWigs indicators fixed and
 moves the complete bar body instead.
+The selected border now also applies to BigWigs' four pooled normal Messages
+icons and follows their visibility/fade alpha; message text is not repositioned.
 
 ## v1.1.16 — Leveling Forecast to 90
 

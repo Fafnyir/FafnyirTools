@@ -9,6 +9,7 @@ local feature = {
 ns:RegisterFeature(feature.key, feature)
 
 local trackedBars = setmetatable({}, { __mode = "k" })
+local trackedMessageIcons = setmetatable({}, { __mode = "k" })
 local messagesRegistered = false
 
 local function DB()
@@ -83,7 +84,7 @@ local function ApplyBarOffset(bar)
     SetPoints(status, layout.status, direction * offset)
 end
 
-local function ApplyBorder(bar, target, field, context)
+local function ApplyBorder(owner, target, field, context)
     if not target then return end
     if not Enabled() or not EllesmereUI or type(EllesmereUI.ApplyBorderStyle) ~= "function" then
         HideBorder(target, field)
@@ -92,7 +93,7 @@ local function ApplyBorder(bar, target, field, context)
 
     local border = target[field]
     if not border then
-        border = CreateFrame("Frame", nil, bar)
+        border = CreateFrame("Frame", nil, owner)
         target[field] = border
     end
 
@@ -108,7 +109,7 @@ local function ApplyBorder(bar, target, field, context)
         color, behind = EllesmereUI.GetBorderStyleSelectDefaults(texture)
     end
     color = color or { r = 1, g = 1, b = 1 }
-    border:SetFrameLevel(math.max(0, bar:GetFrameLevel() + (behind and -1 or 8)))
+    border:SetFrameLevel(math.max(0, owner:GetFrameLevel() + (behind and -1 or 8)))
     local exactPixels = EllesmereUI.BorderPx
         and EllesmereUI.BorderPx(nil, size, texture)
 
@@ -129,7 +130,67 @@ local function ApplyBorder(bar, target, field, context)
         nil,
         exactPixels
     )
-    border:SetShown(bar:IsShown() and target:IsShown())
+    border:SetShown(owner:IsShown() and target:IsShown())
+end
+
+local function ApplyToMessageIcon(icon, owner)
+    if not icon or not owner then return end
+    trackedMessageIcons[icon] = owner
+    ApplyBorder(owner, icon, "_fafnyirBigWigsMessageBorder", "bigwigs_message_icon")
+    local border = icon._fafnyirBigWigsMessageBorder
+    if border and not border._fafnyirAlphaSync then
+        border._fafnyirAlphaSync = true
+        border:SetScript("OnUpdate", function(self)
+            if not Enabled() then
+                self:Hide()
+                return
+            end
+            self:Show()
+            local visible = owner:IsShown() and icon:IsShown()
+            self:SetAlpha(visible and (icon.GetAlpha and icon:GetAlpha() or 1) or 0)
+        end)
+    end
+    if border and Enabled() then
+        border:Show()
+        border:SetAlpha(owner:IsShown() and icon:IsShown()
+            and (icon.GetAlpha and icon:GetAlpha() or 1) or 0)
+    end
+end
+
+local function IsMessagesFrame(frame)
+    if not frame or not frame.GetRegions or not frame.GetWidth or not frame.GetHeight then return false end
+    if math.abs((frame:GetWidth() or 0) - 2000) > 1 or math.abs((frame:GetHeight() or 0) - 80) > 1 then
+        return false
+    end
+    if frame.GetFrameStrata and frame:GetFrameStrata() ~= "FULLSCREEN_DIALOG" then return false end
+    if frame.GetFrameLevel and frame:GetFrameLevel() ~= 20 then return false end
+    local textures = {}
+    for _, region in ipairs({ frame:GetRegions() }) do
+        if region.GetObjectType and region:GetObjectType() == "Texture" then
+            textures[#textures + 1] = region
+        end
+    end
+    if #textures ~= 4 then return false end
+    for i = 1, #textures do ApplyToMessageIcon(textures[i], frame) end
+    return true
+end
+
+local function ScanMessageIcons()
+    if not UIParent or not UIParent.GetChildren then return false end
+    for _, frame in ipairs({ UIParent:GetChildren() }) do
+        if IsMessagesFrame(frame) then return true end
+    end
+    return false
+end
+
+local function QueueMessageScan()
+    if not C_Timer or not C_Timer.After then
+        ScanMessageIcons()
+        return
+    end
+    for _, delay in ipairs({ 0, 0.2, 0.5, 1 }) do
+        C_Timer.After(delay, ScanMessageIcons)
+    end
 end
 
 local function ApplyToBar(bar, captureLayout)
@@ -165,6 +226,7 @@ end
 
 function feature:Initialize()
     RegisterMessages()
+    QueueMessageScan()
 end
 
 function feature:Refresh()
@@ -176,6 +238,18 @@ function feature:Refresh()
             HideBarBorders(bar)
         end
     end
+    for icon, owner in pairs(trackedMessageIcons) do
+        if Enabled() then
+            ApplyToMessageIcon(icon, owner)
+        else
+            HideBorder(icon, "_fafnyirBigWigsMessageBorder")
+        end
+    end
+    if Enabled() then ScanMessageIcons() end
+end
+
+function feature:HandleEvent(event)
+    if event == "PLAYER_ENTERING_WORLD" then QueueMessageScan() end
 end
 
 function feature:Reset()
@@ -254,5 +328,6 @@ loader:RegisterEvent("ADDON_LOADED")
 loader:SetScript("OnEvent", function(_, _, addonName)
     if addonName == "BigWigs" or addonName == "BigWigs_Plugins" then
         RegisterMessages()
+        QueueMessageScan()
     end
 end)

@@ -111,7 +111,7 @@ ns:RegisterLocale("zhCN", {
     ["QOL.DAMAGE_METER_ICON_HISTORY"] = "伤害统计图标历史记录",
     ["QOL.BIGWIGS_PIXEL_BORDER"] = "BIGWIGS 边框",
     ["QOL.ENABLE_BIGWIGS_PIXEL_BORDER"] = "启用 BigWigs 边框",
-    ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "将所选 EllesmereUI 边框应用于 BigWigs 计时条及其附加的法术图标。",
+    ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "将所选 EllesmereUI 边框应用于 BigWigs 计时条、附加的法术图标和消息图标。",
     ["QOL.BIGWIGS_BARS_ARE_NOT_AVAILABLE"] = "BigWigs 计时条不可用。",
     ["QOL.BIGWIGS_ICON_OFFSET"] = "计时条偏移",
     ["QOL.MOVE_BIGWIGS_SPELL_ICONS_AWAY_FROM_THE_TIMER_BAR"] = "将计时条主体移离其法术图标和指示器。",

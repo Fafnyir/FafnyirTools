@@ -16,7 +16,7 @@ lua.execute(
     function GetBuildInfo() return "12.1.5", "1", "", 120105 end
     local frameMethods={}
     function frameMethods:RegisterEvent() end
-    function frameMethods:SetScript() end
+    function frameMethods:SetScript(event,callback) self.scripts=self.scripts or {};self.scripts[event]=callback end
     function frameMethods:ClearAllPoints() self.points={} end
     function frameMethods:SetPoint(...) self.points=self.points or {};self.points[#self.points+1]={...} end
     function frameMethods:GetNumPoints() return #(self.points or {}) end
@@ -28,6 +28,14 @@ lua.execute(
     function frameMethods:IsShown() return self.shown ~= false end
     function frameMethods:SetShown(value) self.shown=value end
     function frameMethods:Hide() self.shown=false end
+    function frameMethods:Show() self.shown=true end
+    function frameMethods:SetAlpha(value) self.alpha=value end
+    function frameMethods:GetAlpha() return self.alpha or 1 end
+    function frameMethods:GetWidth() return self.width end
+    function frameMethods:GetHeight() return self.height end
+    function frameMethods:GetFrameStrata() return self.strata end
+    function frameMethods:GetObjectType() return self.objectType or "Frame" end
+    function frameMethods:GetRegions() return unpack(self.regions or {}) end
     function CreateFrame(_, _, parent)
         return setmetatable({parent=parent,shown=true},{__index=frameMethods})
     end
@@ -110,6 +118,22 @@ lua.execute(
     assert(ns:GetDatabase().bigWigsBorder.enabled==false)
     assert(ns:GetDatabase().bigWigsBorder.texture=="pixels")
     assert(ns:GetDatabase().bigWigsBorder.iconOffset==0)
+
+    local messageFrame=CreateFrame("Frame")
+    messageFrame.width=2000;messageFrame.height=80;messageFrame.strata="FULLSCREEN_DIALOG";messageFrame.level=20
+    messageFrame.regions={}
+    for i=1,4 do
+        local icon=CreateFrame("Texture",nil,messageFrame);icon.objectType="Texture";icon.shown=false
+        messageFrame.regions[i]=icon
+    end
+    UIParent={GetChildren=function() return messageFrame end}
+    ns:GetDatabase().bigWigsBorder.enabled=true
+    feature:Refresh()
+    assert(#applied==14)
+    for i=1,4 do
+        local border=messageFrame.regions[i]._fafnyirBigWigsMessageBorder
+        assert(border and border.scripts.OnUpdate and border.alpha==0)
+    end
     '''
 )
 
@@ -118,5 +142,6 @@ assert 'DB().texture or "pixels"' in source
 assert "BigWigs3DB" not in source
 assert "BigWigs_StartNameplate" not in source
 assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
+assert '"bigwigs_message_icon"' in source and "ScanMessageIcons" in source
 
-print("PASS BigWigs border defaults/styles, bar-body offset, public callbacks, disable restore, and isolation")
+print("PASS BigWigs bar/message borders, styles, bar-body offset, fades, restore, and isolation")

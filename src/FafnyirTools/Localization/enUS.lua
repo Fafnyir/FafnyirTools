@@ -111,7 +111,7 @@ ns:RegisterLocale("enUS", {
     ["QOL.DAMAGE_METER_ICON_HISTORY"] = "DAMAGE METER ICON HISTORY",
     ["QOL.BIGWIGS_PIXEL_BORDER"] = "BIGWIGS BORDER",
     ["QOL.ENABLE_BIGWIGS_PIXEL_BORDER"] = "Enable BigWigs Border",
-    ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "Apply the selected EllesmereUI border to BigWigs timer bars and their attached spell icons.",
+    ["QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"] = "Apply the selected EllesmereUI border to BigWigs timer bars, attached spell icons, and message icons.",
     ["QOL.BIGWIGS_BARS_ARE_NOT_AVAILABLE"] = "BigWigs bars are not available.",
     ["QOL.BIGWIGS_ICON_OFFSET"] = "Timer Bar Offset",
     ["QOL.MOVE_BIGWIGS_SPELL_ICONS_AWAY_FROM_THE_TIMER_BAR"] = "Move the timer bar body away from its spell icon and indicators.",

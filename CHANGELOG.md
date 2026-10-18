@@ -3,7 +3,8 @@
 ## v1.1.17 — BigWigs Border test
 
 - Added a default-off QoL toggle that applies any current EllesmereUI border to
-  BigWigs timer bars and their attached spell icons; Pixels remains the default.
+  BigWigs timer bars, attached spell icons, and message icons; Pixels remains
+  the default.
 - Uses BigWigs' public bar-created and emphasized messages, changes no BigWigs
   profile values, and leaves BigWigs nameplate icons under native control.
 - Added a saved 0–10 pixel timer-bar offset that leaves attached spell icons
