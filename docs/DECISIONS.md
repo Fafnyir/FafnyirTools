@@ -380,3 +380,7 @@ In-game testing of `aef67fe` showed that the enable value did persist when
 clicked back on, but the switch continued to look off until reload. Do not
 rebuild the page from the toggle setter: refresh existing widget states there,
 and reserve the delayed page repaint for Border Style selection.
+The widget-state refresh in `6be5a79` also interfered with the switch visual.
+Remove all external refreshes from the toggle setter and keep Border Style
+selectable while the feature is off; this lets users choose the next style in
+advance and leaves the toggle animation entirely under EllesmereUI ownership.

@@ -283,19 +283,6 @@ function feature:Reset()
     self:Refresh()
 end
 
-local function RefreshWidgetsAfterToggle()
-    local function refresh()
-        local widgets = EllesmereUI and EllesmereUI._widgetRefreshList
-        if not widgets then return end
-        for i = 1, #widgets do widgets[i]() end
-    end
-    if C_Timer and C_Timer.After then
-        C_Timer.After(0, refresh)
-    else
-        refresh()
-    end
-end
-
 local function RefreshOptionsAfterDropdown()
     local function refresh()
         if EllesmereUI and EllesmereUI.RefreshPage then
@@ -336,7 +323,6 @@ function feature:BuildOptions(parent, yOffset)
             setValue = function(value)
                 DB().enabled = value and true or false
                 feature:Refresh()
-                RefreshWidgetsAfterToggle()
             end,
         },
         {
@@ -344,8 +330,6 @@ function feature:BuildOptions(parent, yOffset)
             text = T("QOL.BORDER_STYLE"),
             values = values,
             order = order,
-            disabled = function() return not DB().enabled end,
-            disabledTooltip = T("QOL.ENABLE_BIGWIGS_PIXEL_BORDER"),
             getValue = function() return DB().texture or "pixels" end,
             setValue = function(value)
                 DB().texture = value

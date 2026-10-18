@@ -36,6 +36,10 @@ In-game testing then showed the toggle value persisted correctly but that page
 rebuild interrupted its visual animation, leaving an enabled value drawn as
 off until reload. The toggle path now refreshes existing widgets without a page
 rebuild; only the dropdown retains the delayed repaint.
+That widget-list refresh still left the switch visually off after an off/on
+sequence. The current test removes all external refreshes from the toggle
+setter and leaves Border Style selectable while disabled, so EllesmereUI alone
+owns the switch animation and no dependent control requires live disabling.
 
 ## v1.1.16 — Leveling Forecast to 90
 

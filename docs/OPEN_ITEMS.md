@@ -14,7 +14,9 @@
   control build `1fb292b` also failed and introduced an inability to re-enable
   the feature. Build `aef67fe` saved re-enabling correctly but still drew the
   switch as off until reload because its page repaint interrupted the toggle
-  animation. Confirm the split widget-refresh/dropdown-repaint fix resolves it.
+  animation. Build `6be5a79` still failed when refreshing the widget list.
+  Confirm the revision with no external toggle refresh draws off/on correctly;
+  Border Style intentionally remains selectable while the feature is off.
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.
