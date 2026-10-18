@@ -28,8 +28,8 @@ lua.execute(
     function ring:GetObjectType() return "Texture" end
     function ring:GetNumMaskTextures() return 0 end
     EllesmereUICursorFrame={GetRegions=function() return ring,texture end}
-    _ECL_AceDB={profile={cursor={reticle=true}}}
-    function _ECL_Apply() texture.shown=_ECL_AceDB.profile.cursor.reticle end
+    _ECL_AceDB={profile={reticle=true}}
+    function _ECL_Apply() texture.shown=_ECL_AceDB.profile.reticle end
     function IsMouseButtonDown(button) return mouseDown end
     function hooksecurefunc(name,after)
         local original=_G[name]
@@ -64,7 +64,7 @@ lua.execute(
     mouseDown=false;_ECL_Apply();assert(texture.shown==false)
     capturedToggle.setValue(false)
     assert(texture.shown==true)
-    _ECL_AceDB.profile.cursor.reticle=false
+    _ECL_AceDB.profile.reticle=false
     assert(capturedToggle.disabled()==true)
     feature:Reset()
     assert(ns:GetDatabase().cursorReticle.enabled==false)

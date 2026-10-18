@@ -60,6 +60,10 @@ behavior immediately when the enhancement is disabled. The setting participates
 in reset, diagnostics and global settings transfer. English plus first-pass
 Simplified and Traditional Chinese strings are included. Offline validation
 passes; mouse-down/up behavior still requires in-game confirmation.
+The first test build `1bea7c9` incorrectly looked for
+`_ECL_AceDB.profile.cursor.reticle`; EllesmereUI publishes a narrow cursor DB
+view where `profile` already is the cursor table. The corrected build reads
+`_ECL_AceDB.profile.reticle`, matching EllesmereUI's own options helper.
 
 ## v1.1.16 — Leveling Forecast to 90
 

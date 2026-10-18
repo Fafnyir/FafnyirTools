@@ -17,7 +17,9 @@ end
 
 local function CursorProfile()
     local db = _G._ECL_AceDB
-    return db and db.profile and db.profile.cursor
+    -- EllesmereUI publishes a narrow AceDB view whose dynamic `profile`
+    -- already is the cursor table (the shared backing DB owns profile.cursor).
+    return db and db.profile
 end
 
 local function NativeReticleEnabled()

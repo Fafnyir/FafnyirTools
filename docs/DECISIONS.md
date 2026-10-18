@@ -400,3 +400,6 @@ saved preference and visual settings; do not copy or replace its cursor circle.
 If the native Center Reticle is off, disable the FafnyirTools control with a
 clear prerequisite tooltip. Include the setting in reset, global transfer and
 privacy-safe diagnostics.
+EllesmereUI's exported `_ECL_AceDB` is already narrowed to the cursor slice, so
+read its native setting at `_ECL_AceDB.profile.reticle`; do not append another
+`.cursor` level from the shared backing database's internal shape.
