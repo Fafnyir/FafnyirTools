@@ -403,3 +403,5 @@ privacy-safe diagnostics.
 EllesmereUI's exported `_ECL_AceDB` is already narrowed to the cursor slice, so
 read its native setting at `_ECL_AceDB.profile.reticle`; do not append another
 `.cursor` level from the shared backing database's internal shape.
+User confirmation on 2026-10-18: corrected build `de4f128` works perfectly and
+the user explicitly likes the addition. Retain it in the v1.1.17 scope.

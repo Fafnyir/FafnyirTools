@@ -13,8 +13,8 @@
 - The four new `zhCN` and `zhTW` strings are AI first-pass translations pending
   Yilang's terminology and in-game layout review.
 - Initial build `1bea7c9` failed its prerequisite check because it read one DB
-  level too deep; verify the corrected narrow-profile lookup recognizes an
-  already-enabled native Center Reticle.
+  level too deep. User-confirmed build `de4f128` recognizes the enabled native
+  Center Reticle and the click-only behavior works perfectly in game.
 
 ## v1.1.17 BigWigs Border — test build
 

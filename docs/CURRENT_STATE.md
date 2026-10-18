@@ -64,6 +64,10 @@ The first test build `1bea7c9` incorrectly looked for
 `_ECL_AceDB.profile.cursor.reticle`; EllesmereUI publishes a narrow cursor DB
 view where `profile` already is the cursor table. The corrected build reads
 `_ECL_AceDB.profile.reticle`, matching EllesmereUI's own options helper.
+The user confirmed corrected build `de4f128` works perfectly in game on
+2026-10-18 and explicitly approved the addition. This confirms native-reticle
+detection plus click-only visibility under the tested setup; broader combat and
+locale layout checks remain separate.
 
 ## v1.1.16 — Leveling Forecast to 90
 
