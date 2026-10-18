@@ -283,10 +283,24 @@ function feature:Reset()
     self:Refresh()
 end
 
+local function RefreshOptionsAfterControl()
+    local function refresh()
+        if EllesmereUI and EllesmereUI.RefreshPage then
+            EllesmereUI:RefreshPage(true)
+        end
+    end
+    if C_Timer and C_Timer.After then
+        -- Let the active toggle/dropdown finish its own click and menu-close
+        -- lifecycle before EllesmereUI rebuilds the page from saved values.
+        C_Timer.After(0.05, refresh)
+    else
+        refresh()
+    end
+end
+
 function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y, h = yOffset
-    local borderStyleControl
     parent._showRowDivider = true
 
     _, h = W:SectionHeader(parent, T("QOL.BIGWIGS_PIXEL_BORDER"), y)
@@ -300,18 +314,16 @@ function feature:BuildOptions(parent, yOffset)
             pixels = T("QOL.PIXELS"),
         }, { "solid", "pixels" }
     end
-    local borderStyleRow
-    borderStyleRow, h = W:DualRow(parent, y,
+    _, h = W:DualRow(parent, y,
         {
             type = "toggle",
             text = T("QOL.ENABLE_BIGWIGS_PIXEL_BORDER"),
             tooltip = T("QOL.APPLY_THE_ELLESMEREUI_PIXELS_BORDER_TO_BIGWIGS_TIMER"),
-            disabled = function() return not BigWigsAvailable() end,
-            disabledTooltip = T("QOL.BIGWIGS_BARS_ARE_NOT_AVAILABLE"),
             getValue = function() return DB().enabled end,
             setValue = function(value)
                 DB().enabled = value and true or false
                 feature:Refresh()
+                RefreshOptionsAfterControl()
             end,
         },
         {
@@ -325,28 +337,9 @@ function feature:BuildOptions(parent, yOffset)
             setValue = function(value)
                 DB().texture = value
                 feature:Refresh()
-                -- Update this dropdown after its click handler closes the menu.
-                -- The control exposes separate hooks for the resting caption
-                -- and cached menu selection, so unrelated options stay intact.
-                local function refreshDropdown()
-                    if not borderStyleControl then return end
-                    if borderStyleControl._refreshLabel then
-                        borderStyleControl._refreshLabel()
-                    end
-                    if borderStyleControl._ddRefresh then
-                        borderStyleControl._ddRefresh()
-                    end
-                end
-                if C_Timer and C_Timer.After then
-                    C_Timer.After(0, refreshDropdown)
-                else
-                    refreshDropdown()
-                end
+                RefreshOptionsAfterControl()
             end,
         })
-    borderStyleControl = borderStyleRow
-        and borderStyleRow._rightRegion
-        and borderStyleRow._rightRegion._control
     y = y - h
     _, h = W:DualRow(parent, y,
         {

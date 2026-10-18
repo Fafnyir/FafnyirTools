@@ -27,9 +27,11 @@ selected-row highlight stale. That rebuild has now been removed: it recycled
 the dropdown before EllesmereUI's own post-selection label/menu refresh could
 finish. The new test build leaves that native dropdown lifecycle intact while
 still applying the border immediately. A second in-game recording showed the
-native refresh alone was also insufficient. The current revision captures the
-specific Border Style control exposed by EllesmereUI's row API and, after the
-menu closes, directly refreshes both its caption and cached menu selection.
+native refresh alone was also insufficient, and the direct-control build still
+failed while also leaving the feature impossible to re-enable after disabling.
+The current revision removes the enable switch's unnecessary BigWigs-loaded
+lock and rebuilds the page 0.05 seconds after either control changes, allowing
+the active click/menu lifecycle to finish before the saved state is repainted.
 
 ## v1.1.16 — Leveling Forecast to 90
 

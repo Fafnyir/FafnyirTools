@@ -371,4 +371,8 @@ after the user's screen recording showed the state still remained stale.
 The subsequent `cd70a1f` test confirmed that merely leaving the native refresh
 alone was insufficient. Capture the dropdown control returned through the
 DualRow right region and call its supported `_refreshLabel` and `_ddRefresh`
-hooks after the menu closes; do not refresh unrelated options widgets.
+hooks after the menu closes; do not refresh unrelated options widgets. That
+`1fb292b` approach also failed in game and made the feature impossible to
+re-enable after disabling. Supersede it with a 0.05-second post-control page
+refresh, after the menu lifecycle has completed, and keep the enable switch
+available even when BigWigs is not currently loaded.
