@@ -14,6 +14,15 @@ refinements on 2026-10-16; those Lua files are the current authoritative text.
 Use `FafnyirTools_Chinese_Localization_Worksheet.xlsx` to collect Chinese
 translations without asking the volunteer to edit Lua source.
 
+## v1.1.15 Leveling Forecast supplement
+
+`FafnyirTools_Leveling_Forecast_Chinese_Localization_Worksheet.xlsx` contains
+the twelve English fallback strings added for the Leveling Forecast after the
+v1.1.14 translation pass. It preserves the same zhCN/zhTW, translator-note,
+reviewer and status workflow as the original workbook. The two formatted rows
+identify their required `%d` and `%s` placeholders explicitly. Integrate the
+returned translations only after checking placeholder parity and Lua syntax.
+
 ## Volunteer workflow
 
 1. Confirm whether the volunteer uses the `zhCN` (Simplified Chinese) or `zhTW`
