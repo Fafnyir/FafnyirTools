@@ -2,6 +2,11 @@
 
 ## v1.1.17 BigWigs Border — test build
 
+- User confirmed build `233c90c` works in game on 2026-10-18. This confirms the
+  global Messages-frame discovery reaches and borders the normal message icons.
+- Detailed checks of every border style, right-positioned bar icons, fade alpha,
+  reload persistence and combat safety remain useful before final release.
+
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.
 - Test normal and emphasized bars, icons on either side, bars without icons,
@@ -15,11 +20,8 @@
   pooled message icons receive the selected border, fade cleanly with the icon,
   reuse correctly, and follow Content Spacing without shifting text. Emphasized sink icons that
   are embedded directly in text remain outside this test scope.
-- Build `752112e` failed this message-icon check. Retest the structural
-  FontString/icon-pair discovery and per-message rescan in the next package.
-- Screenshot testing confirms `109ee90` also failed. The next package uses
-  global frame enumeration rather than assuming the Messages frame is returned
-  by `UIParent:GetChildren()`.
+- Historical test builds `752112e` and `109ee90` failed message-icon discovery;
+  `233c90c` supersedes them and is user-confirmed.
 - Confirm the style-safe anchor snapshot removes the reported text overlap in
   the BigWigs test-bar style shown in the 2026-10-18 screenshot.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.

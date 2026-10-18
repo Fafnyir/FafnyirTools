@@ -47,6 +47,11 @@ Retain the structural matcher and message callback, but replace the direct
 `UIParent:GetChildren()` search with WoW's global `EnumerateFrames()` traversal;
 keep the direct-child scan only as a compatibility fallback.
 
+The user confirmed build `233c90c` works in game on 2026-10-18. Treat global
+frame enumeration as the accepted Messages-icon discovery path for v1.1.17;
+retain the direct-child fallback and do not restore either failed scan-only
+approach.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

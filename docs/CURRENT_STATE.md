@@ -19,6 +19,8 @@ The selected border now also applies to BigWigs' four pooled normal Messages
 icons and follows their visibility/fade alpha; message text is not repositioned.
 The shared Content Spacing slider also separates message icons from their text;
 zero or disabling restores native anchors for both bars and messages.
+User in-game testing on 2026-10-18 confirms build `233c90c` works, including
+the global Messages-frame discovery that superseded two failed scan attempts.
 
 ## v1.1.16 — Leveling Forecast to 90
 
