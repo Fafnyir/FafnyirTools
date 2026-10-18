@@ -23,6 +23,13 @@ After reviewing the confirmed in-game result, the user explicitly authorized a
 final v1.1.16 release on 2026-10-18 because the multi-level projection is more
 closely aligned with the original feature goal.
 
+Published final GitHub release `release/v1.1.16` at `666ff7f` through workflow
+`39131249304`. ZIP/display name:
+`Fafnyir_Tools_for_EllesmereUI_v1.1.16_666ff7f.zip`. SHA-256:
+`fa7d88eb1f02c007bd2ea5dca9047c5027094c635c03c3f5c3a19b4687f06e7a`.
+CurseForge accepted Release file `9239813`; moderation/public availability is
+separate from upload acceptance.
+
 ## v1.1.15 — Leveling Forecast
 
 QoL now includes a read-only Leveling Forecast. It sums unique completed quests
