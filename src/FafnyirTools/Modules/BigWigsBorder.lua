@@ -283,6 +283,19 @@ function feature:Reset()
     self:Refresh()
 end
 
+local function RefreshOptionsPage()
+    local function refresh()
+        if EllesmereUI and EllesmereUI.RefreshPage then
+            EllesmereUI:RefreshPage(true)
+        end
+    end
+    if C_Timer and C_Timer.After then
+        C_Timer.After(0, refresh)
+    else
+        refresh()
+    end
+end
+
 function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y, h = yOffset
@@ -323,6 +336,7 @@ function feature:BuildOptions(parent, yOffset)
             setValue = function(value)
                 DB().texture = value
                 feature:Refresh()
+                RefreshOptionsPage()
             end,
         })
     y = y - h

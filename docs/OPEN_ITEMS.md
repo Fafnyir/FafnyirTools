@@ -6,6 +6,8 @@
   global Messages-frame discovery reaches and borders the normal message icons.
 - Detailed checks of every border style, right-positioned bar icons, fade alpha,
   reload persistence and combat safety remain useful before final release.
+- Confirm changing Border Style immediately updates the closed dropdown label
+  and selected-list highlight in the post-menu page refresh build.
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.

@@ -155,5 +155,6 @@ assert "BigWigs_StartNameplate" not in source
 assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
 assert '"bigwigs_message_icon"' in source and "ScanMessageIcons" in source
 assert "EnumerateFrames" in source
+assert "RefreshOptionsPage()" in source and "RefreshPage(true)" in source
 
 print("PASS BigWigs bar/message borders, styles, bar-body offset, fades, restore, and isolation")

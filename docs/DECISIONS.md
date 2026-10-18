@@ -52,6 +52,11 @@ frame enumeration as the accepted Messages-icon discovery path for v1.1.17;
 retain the direct-child fallback and do not restore either failed scan-only
 approach.
 
+After the message-icon fix passed, the user reported that changing Border Style
+applied immediately but the closed dropdown label and selected-list highlight
+remained stale until reload. Queue `RefreshPage(true)` after the dropdown closes
+so the current value is redressed without a UI reload.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level
