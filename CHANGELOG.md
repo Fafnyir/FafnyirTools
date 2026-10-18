@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## v1.1.16 — Leveling Forecast to 90 (test build)
+## v1.1.16 — Leveling Forecast to 90
 
 - Extended the completed-quest projection across the current Midnight XP curve
   through level 90, including the percentage reached within the final projected

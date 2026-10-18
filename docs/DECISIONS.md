@@ -10,6 +10,10 @@ that value matches the Midnight 12.1 curve. Fall back to the conservative
 one-level overflow result when it does not match. Keep the feature read-only and
 move its two long guidance messages to separate full-width rows.
 
+After confirming the level 83 at 33.6% result in game, the user authorized a
+final v1.1.16 GitHub and CurseForge release on 2026-10-18. The remaining manual
+boundary scenarios are useful follow-up coverage rather than a release blocker.
+
 ## 2026-10-18 — Chinese translation worksheet workflow
 
 For new interface strings, prefill localization worksheets with a complete

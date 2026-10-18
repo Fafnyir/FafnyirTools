@@ -1,4 +1,4 @@
-# Current state — v1.1.16 test build, 2026-10-18
+# Current state — v1.1.16 release, 2026-10-18
 
 ## v1.1.16 — Leveling Forecast to 90
 
@@ -17,7 +17,11 @@ Offline validation passes. On 2026-10-18 the user supplied an in-game screenshot
 from test build `b72b994` confirming the reported case displays **Level 83 —
 33.6%** and that the two guidance messages render on separate rows without
 overlap. Exact-boundary, additional multi-level and level-90 scenarios remain
-pending. The test package is built but not publicly released.
+pending. The test package is built; final publication is authorized and pending.
+
+After reviewing the confirmed in-game result, the user explicitly authorized a
+final v1.1.16 release on 2026-10-18 because the multi-level projection is more
+closely aligned with the original feature goal.
 
 ## v1.1.15 — Leveling Forecast
 
