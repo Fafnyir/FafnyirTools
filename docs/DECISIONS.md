@@ -391,3 +391,12 @@ immediately, apply it on reload, and keep Content Spacing live-adjustable.
 User confirmation on 2026-10-18: build `ee4fc67` works perfectly. Retain this
 reload-applied design for the v1.1.17 release rather than restoring any of the
 failed live-refresh approaches.
+
+## 2026-10-18 — Click-only EllesmereUI Center Reticle
+
+Add a default-off FafnyirTools QoL enhancement that gates EllesmereUI's enabled
+Center Reticle to left/right mouse-button holds. Preserve EllesmereUI's native
+saved preference and visual settings; do not copy or replace its cursor circle.
+If the native Center Reticle is off, disable the FafnyirTools control with a
+clear prerequisite tooltip. Include the setting in reset, global transfer and
+privacy-safe diagnostics.

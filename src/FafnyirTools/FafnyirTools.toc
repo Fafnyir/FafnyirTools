@@ -25,6 +25,7 @@ Modules\RightClickSelfCast.lua
 Modules\FlyoutButtonMatch.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua
+Modules\CursorReticle.lua
 Modules\FocusHeader.lua
 Modules\SharedArtwork.lua
 Modules\DeviceLayout.lua

@@ -1,5 +1,18 @@
 # Open items — no silent restoration
 
+## v1.1.17 Click-only Center Reticle — in-game test pending
+
+- Enable EllesmereUI QoL > Cursor Circle > Center Reticle, then enable
+  FafnyirTools QoL > Reticle Only While Clicking.
+- Confirm the dot is hidden at rest, visible while either left or right mouse
+  button is held, and hides after the last held button is released.
+- Confirm the cursor circle, native visibility rules, color, opacity and size
+  remain unchanged, including in combat and while turning the camera.
+- Disable the FafnyirTools option and confirm EllesmereUI's normal always-shown
+  Center Reticle returns immediately. Confirm reload persistence and reset.
+- The four new `zhCN` and `zhTW` strings are AI first-pass translations pending
+  Yilang's terminology and in-game layout review.
+
 ## v1.1.17 BigWigs Border — test build
 
 - User confirmed build `233c90c` works in game on 2026-10-18. This confirms the

@@ -19,6 +19,7 @@ local CHANGELOG = {
         "The same spacing control separates normal message icons from their text.",
         "Border Style offers the complete current EllesmereUI border list; Pixels remains the default.",
         "The feature is disabled by default and does not change BigWigs profiles or nameplate icons.",
+        "Added an optional click-only mode for EllesmereUI's Center Reticle.",
         "Included first-pass Simplified and Traditional Chinese text pending Yilang's review.",
     }},
     { version = "v1.1.16", lines = {
@@ -237,6 +238,7 @@ function feature:GetDiagnostics()
         "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled),
         "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled),
         "BigWigs Border=" .. OnOff(db.bigWigsBorder and db.bigWigsBorder.enabled),
+        "Click Reticle=" .. OnOff(db.cursorReticle and db.cursorReticle.enabled),
         "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native"),
         "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles),
         "Inventory=" .. OnOff(db.inventory and db.inventory.enabled),

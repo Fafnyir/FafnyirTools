@@ -21,6 +21,7 @@ local function OrderedFeatures()
         ns.modules.FlyoutButtonMatch,
         ns.modules.IconHistoryBorder,
         ns.modules.BigWigsBorder,
+        ns.modules.CursorReticle,
         ns.modules.Inventory,
         ns.modules.DeviceLayout,
     }

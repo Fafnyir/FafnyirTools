@@ -49,6 +49,18 @@ The user confirmed test build `ee4fc67` works perfectly in game on 2026-10-18.
 This accepts the reload-applied toggle and Border Style behavior as the stable
 v1.1.17 design; broader BigWigs combat/style coverage remains separate.
 
+## v1.1.17 — Click-only Center Reticle test
+
+Adds a default-off QoL toggle for EllesmereUI's Center Reticle. When the native
+reticle is enabled, FafnyirTools shows only its center dot while the left or
+right mouse button is held. The native cursor circle remains under EllesmereUI
+control, including its size, color, opacity and visibility rules. FafnyirTools
+does not write EllesmereUI's saved reticle preference and restores native
+behavior immediately when the enhancement is disabled. The setting participates
+in reset, diagnostics and global settings transfer. English plus first-pass
+Simplified and Traditional Chinese strings are included. Offline validation
+passes; mouse-down/up behavior still requires in-game confirmation.
+
 ## v1.1.16 — Leveling Forecast to 90
 
 The completed-quest projection now walks the Midnight 12.1 XP requirements from

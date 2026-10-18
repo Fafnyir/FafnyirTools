@@ -21,6 +21,7 @@ local SCHEMA = {
     flyoutFix = true,
     iconHistoryBorder = true,
     bigWigsBorder = true,
+    cursorReticle = true,
     sharedArtwork = true,
     focusHeader = { enabled = true },
     permanentCompanionPet = { enabled = true, disableInPvP = true },

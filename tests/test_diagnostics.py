@@ -16,6 +16,7 @@ lua.execute(
     FafnyirToolsDB = {
         auraSkins={enabled=false}, deviceLayout={enabled=true},
         focusHeader={enabled=true}, iconHistoryBorder={enabled=false}, bigWigsBorder={enabled=false},
+        cursorReticle={enabled=false},
         inventory={enabled=true,tooltips=true},
         permanentCompanionPet={enabled=false},
         xpBar={enabled=false,questEnabled=true,restedEnabled=true},
@@ -63,6 +64,7 @@ lua.execute(
     assert(not string.find(report,"XP Gradient=",1,true))
     assert(string.find(report,"Flyout Fix=on",1,true))
     assert(string.find(report,"BigWigs Border=off",1,true))
+    assert(string.find(report,"Click Reticle=off",1,true))
     assert(not string.find(report,"character",1,true))
     assert(not string.find(report,"realm",1,true))
     assert(not string.find(report,"account",1,true))

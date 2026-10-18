@@ -41,6 +41,9 @@ ns.defaults = {
         texture = "pixels",
         iconOffset = 0,
     },
+    cursorReticle = {
+        enabled = false,
+    },
     focusHeader = {
         enabled = true,
         initialized = false,

@@ -46,6 +46,7 @@ def check(baseline=False):
         'Modules/FlyoutButtonMatch.lua': ('FlyoutButtonMatch', 'CORE.ACTION_BARS'),
         'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
         'Modules/BigWigsBorder.lua': ('BigWigsBorder', 'CORE.QOL'),
+        'Modules/CursorReticle.lua': ('CursorReticle', 'CORE.QOL'),
         'Modules/FocusHeader.lua': ('FocusHeader', 'CORE.UNIT_FRAMES'),
         'Modules/SharedArtwork.lua': ('SharedArtwork', 'CORE.UNIT_FRAMES'),
         'Modules/DeviceLayout.lua': ('DeviceLayout', 'CORE.LAYOUTS'),
@@ -90,7 +91,7 @@ def check(baseline=False):
     print(f'PASS {len(entries)} Lua files, complete/unique TOC, expected features/pages/default sections, metadata', flush=True)
     for test in ['test_xp.py', 'test_aura_sources_options.py', 'test_reload_contract.py', 'test_companion.py',
                  'test_global_settings.py', 'test_inventory.py', 'test_unit_frame_names.py', 'test_focus_header.py',
-                 'test_icon_history_border.py', 'test_bigwigs_border.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
+                 'test_icon_history_border.py', 'test_bigwigs_border.py', 'test_cursor_reticle.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
                  'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
                  'test_localization.py', 'test_leveling_forecast.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
