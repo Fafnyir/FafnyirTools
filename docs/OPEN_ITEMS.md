@@ -1,14 +1,11 @@
 # Open items — no silent restoration
 
-## v1.1.15 Leveling Forecast — in-game test pending
+## v1.1.15 Leveling Forecast — user confirmed
 
-- Confirm the QoL section fits and reports current progress correctly on Retail
-  and Forever.
-- Compare completed quest count and adjusted XP against the live quest log.
-- Test no bonus, Warband bonus, mixed bonuses, no completed quests, crossing a
-  level boundary, maximum level and disabled XP if available.
-- Confirm closing and reopening QoL refreshes the figures and no XP-bar visuals
-  or EllesmereUI settings change.
+- User reported “Testing passes” on 2026-10-18 and authorized release. Client,
+  EllesmereUI version and detailed scenarios were not supplied.
+- Exhaustive no-bonus, mixed-bonus, overflow, maximum-level and disabled-XP
+  coverage remains separate from that confirmation.
 - Obtain reviewed `zhCN` and `zhTW` translations for the twelve new English
   fallback strings before a localization-complete release.
 

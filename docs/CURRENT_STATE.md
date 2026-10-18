@@ -1,6 +1,6 @@
-# Current state — v1.1.15 Leveling Forecast test, 2026-10-17
+# Current state — v1.1.15 release, 2026-10-18
 
-## v1.1.15 — Leveling Forecast test
+## v1.1.15 — Leveling Forecast
 
 QoL now includes a read-only Leveling Forecast. It sums unique completed quests
 currently ready to turn in through `GetQuestLogRewardXP(questID)`, compares the
@@ -16,8 +16,10 @@ ownership. The panel recalculates whenever the QoL page is opened; close and
 reopen it to refresh. Offline tests cover duplicate quest IDs, completed-only
 selection, adjusted/base bonus math, within-level and overflow projections,
 maximum level, secret values, missing APIs and absence of XP-bar operations.
-In-game validation is pending. New strings use English fallback pending reviewed
-Chinese translations.
+The user reported “Testing passes” on 2026-10-18 and explicitly authorized the
+final release. The client, EllesmereUI version and individual scenarios tested
+were not supplied, so this is confirmation rather than an exhaustive matrix.
+New strings use English fallback pending reviewed Chinese translations.
 
 ## v1.1.14 — Chinese localization
 

@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased v1.1.15 — Leveling Forecast test
+## v1.1.15 — Leveling Forecast
 
 - Added a read-only **Leveling Forecast** section under QoL.
 - Shows current progress, completed quests ready to turn in, their adjusted XP,

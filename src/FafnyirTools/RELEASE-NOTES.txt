@@ -1,6 +1,6 @@
-Fafnyir Tools for EllesmereUI v1.1.15 — Leveling Forecast Test Build
+Fafnyir Tools for EllesmereUI v1.1.15 — Leveling Forecast
 
-v1.1.15 test changes
+v1.1.15 changes
 
 - Added a read-only Leveling Forecast under QoL.
 - Shows completed quest XP, the effective applicable quest-XP bonus, and

@@ -11,6 +11,11 @@ through the current level; crossing the boundary must show next-level overflow
 instead of using a hard-coded future XP table. Reopening the page refreshes the
 values, avoiding new XP/quest event subscriptions.
 
+2026-10-18: the user reported that testing passes and explicitly authorized a
+final v1.1.15 release. Retain the read-only scope and publish through the
+configured GitHub/CurseForge workflow. The new forecast strings may use English
+fallback until reviewed Chinese translations arrive.
+
 ## 2026-10-16 — Chinese localization source
 
 The user identified the returned worksheet as the final volunteer submission.
