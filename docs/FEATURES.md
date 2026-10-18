@@ -34,6 +34,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; targeted cached-alt removal and confirmed Reset All Characters; omit redundant Fafnyir Tools tooltip heading | Present foundation |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
 | Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
+| Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; exact within current level, next-level overflow clearly marked; never touches EllesmereUI's XP bar | v1.1.15 test; offline-tested, in-game confirmation pending |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 
 Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, Bags & Inventory, Layouts.
@@ -69,13 +70,18 @@ ordinary upgrades.
 - Per-character companion selections, inventory/economy caches, and device-specific Edit Mode layouts are excluded.
 - Import requires explicit confirmation and a UI reload.
 
-## XP ownership — retired 2026-10-06
+## XP bar ownership — retired 2026-10-06
 
 EllesmereUI now owns the entire XP bar, including quest overlays. FafnyirTools
 must not load an XP module, expose XP options/page, subscribe to XP/quest-only
 events, alter gradients/layers/text/borders, or export/import/reset XP settings.
 Preserve legacy xpBar SavedVariables as unknown data without migration or writes.
 PLAYER_LEVEL_UP remains subscribed for the independent Resting feature.
+
+The v1.1.15 Leveling Forecast is an explicit exception for read-only reporting:
+it may query current player XP and completed quest reward values when its QoL
+options section is built. It must not restore the XP module/page, subscribe to
+XP/quest events, alter EllesmereUI regions, or add XP settings and transfers.
 
 ## Preservation boundaries
 

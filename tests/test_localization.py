@@ -42,12 +42,14 @@ def placeholders(value):
 
 
 english_keys = keys_for("enUS")
-assert len(english_keys) == 164
+assert len(english_keys) == 176
 for locale in LOCALES[1:]:
-    assert keys_for(locale) == english_keys, locale
+    translated_keys = keys_for(locale)
+    assert len(translated_keys) == 164, locale
+    assert translated_keys < english_keys, locale
     english = entries_for("enUS")
     translated = entries_for(locale)
-    for key in english_keys:
+    for key in translated_keys:
         assert placeholders(translated[key]) == placeholders(english[key]), (locale, key)
 
 for locale in LOCALES:
@@ -56,6 +58,7 @@ for locale in LOCALES:
     assert ns.Text(ns, "ABOUT.VERSION")
     assert ns.Text(ns, "BAGS_INVENTORY.BAGS_VALUE", 7).endswith("7")
     assert ns.Text(ns, "MISSING.TEST.KEY") == "MISSING.TEST.KEY"
+    assert ns.Text(ns, "QOL.LEVELING_FORECAST") == "LEVELING FORECAST"
 
 zh_cn = load_locale("zhCN")
 assert zh_cn.globals().ns.Text(zh_cn.globals().ns, "CORE.ABOUT") != "About"
@@ -67,4 +70,4 @@ for locale in LOCALES:
     source = (LOCALE_DIR / f"{locale}.lua").read_text()
     assert not re.search(r'=\s*""\s*,?$', source, re.M), locale
 
-print("PASS enUS/zhCN/zhTW locale parity, fallback, formatting, and missing-key behavior")
+print("PASS enUS plus 164-key zhCN/zhTW coverage, English fallback, formatting, and missing-key behavior")

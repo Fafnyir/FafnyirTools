@@ -12,6 +12,7 @@ local function OrderedFeatures()
         ns.modules.About,
         ns.modules.ForeverFog,
         ns.modules.PermanentCompanionPet,
+        ns.modules.LevelingForecast,
         ns.modules.FocusHeader,
         ns.modules.SharedArtwork,
         ns.modules.AuraSkins,

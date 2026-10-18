@@ -5,7 +5,7 @@
 ## IconTexture: Interface\AddOns\FafnyirMedia\logo\AddonLogo
 ## Dependencies: EllesmereUI, FafnyirMedia
 ## SavedVariables: FafnyirToolsDB
-## Version: v1.1.14
+## Version: v1.1.15
 ## Notes: A collection of enhancements for EllesmereUI.
 
 Core\Bootstrap.lua
@@ -19,6 +19,7 @@ Modules\About.lua
 Modules\GlobalSettings.lua
 Modules\ForeverFog.lua
 Modules\PermanentCompanionPet.lua
+Modules\LevelingForecast.lua
 Modules\Resting.lua
 Modules\RightClickSelfCast.lua
 Modules\FlyoutButtonMatch.lua

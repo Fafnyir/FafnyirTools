@@ -1,5 +1,16 @@
 # Reconciled decisions
 
+## 2026-10-17 — Leveling Forecast test scope
+
+The user authorized a v1.1.15 test build for estimated leveling from completed
+quest XP and applicable bonuses such as Warband Mentored Leveling. Implement it
+as a read-only QoL panel and preserve EllesmereUI's complete XP-bar ownership.
+Use Blizzard-adjusted and base quest reward values to derive one effective bonus
+without identifying or double-counting individual buffs. Forecast exactly only
+through the current level; crossing the boundary must show next-level overflow
+instead of using a hard-coded future XP table. Reopening the page refreshes the
+values, avoiding new XP/quest event subscriptions.
+
 ## 2026-10-16 — Chinese localization source
 
 The user identified the returned worksheet as the final volunteer submission.

@@ -1,4 +1,23 @@
-# Current state — v1.1.14 release candidate, 2026-10-16
+# Current state — v1.1.15 Leveling Forecast test, 2026-10-17
+
+## v1.1.15 — Leveling Forecast test
+
+QoL now includes a read-only Leveling Forecast. It sums unique completed quests
+currently ready to turn in through `GetQuestLogRewardXP(questID)`, compares the
+adjusted and base totals to report the effective applicable quest-XP bonus, and
+projects the player's progress after those turn-ins. Forecasts within the
+current level are exact from the client values. If rewards cross the next level,
+the panel reports the next level plus overflow and labels it with `+` rather
+than estimating later levels from an unstable XP table.
+
+The feature does not create or alter XP bars, subscribe to XP/quest events,
+write settings, or enter global transfer. EllesmereUI retains complete XP-bar
+ownership. The panel recalculates whenever the QoL page is opened; close and
+reopen it to refresh. Offline tests cover duplicate quest IDs, completed-only
+selection, adjusted/base bonus math, within-level and overflow projections,
+maximum level, secret values, missing APIs and absence of XP-bar operations.
+In-game validation is pending. New strings use English fallback pending reviewed
+Chinese translations.
 
 ## v1.1.14 — Chinese localization
 

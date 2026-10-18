@@ -9,10 +9,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.14"
+local VERSION = "v1.1.15"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.15", lines = {
+        "Added a read-only Leveling Forecast under QoL.",
+        "Estimate completed quest XP, effective bonuses, and progress after turn-ins.",
+    } },
     { version = "v1.1.14", lines = {
         "Added Simplified and Traditional Chinese localization.",
         "Thank you to Yilang for translating and refining the Chinese text.",

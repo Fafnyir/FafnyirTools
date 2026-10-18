@@ -1,4 +1,14 @@
-Fafnyir Tools for EllesmereUI v1.1.14 — Chinese Localization
+Fafnyir Tools for EllesmereUI v1.1.15 — Leveling Forecast Test Build
+
+v1.1.15 test changes
+
+- Added a read-only Leveling Forecast under QoL.
+- Shows completed quest XP, the effective applicable quest-XP bonus, and
+  projected progress after turn-ins.
+- Leaves EllesmereUI's XP bar, settings, events and artwork untouched.
+- Exact within the current level; next-level overflow is clearly marked as an
+  estimate boundary instead of using a hard-coded future XP table.
+- Reopen the QoL page to refresh the forecast.
 
 v1.1.14 changes
 

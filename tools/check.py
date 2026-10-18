@@ -37,6 +37,7 @@ def check(baseline=False):
     assert retired.isdisjoint(actual_files), 'EllesmereUI-owned retired module restored unexpectedly'
     required = {
         'Modules/PermanentCompanionPet.lua': ('PermanentCompanionPet', 'CORE.QOL'),
+        'Modules/LevelingForecast.lua': ('LevelingForecast', 'CORE.QOL'),
         'Modules/About.lua': ('About', 'CORE.ABOUT'),
         'Modules/GlobalSettings.lua': ('GlobalSettings', 'CORE.ABOUT'),
         'Modules/ForeverFog.lua': ('ForeverFog', 'CORE.QOL'),
@@ -90,7 +91,7 @@ def check(baseline=False):
                  'test_global_settings.py', 'test_inventory.py', 'test_unit_frame_names.py', 'test_focus_header.py',
                  'test_icon_history_border.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
                  'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
-                 'test_localization.py']:
+                 'test_localization.py', 'test_leveling_forecast.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

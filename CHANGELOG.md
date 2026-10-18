@@ -1,5 +1,19 @@
 # Reconciled project changelog
 
+## Unreleased v1.1.15 — Leveling Forecast test
+
+- Added a read-only **Leveling Forecast** section under QoL.
+- Shows current progress, completed quests ready to turn in, their adjusted XP,
+  the effective quest-XP bonus derived from Blizzard's adjusted/base values,
+  and projected progress after turn-ins.
+- Gives an exact projection within the current level. When rewards cross the
+  next boundary, reports the next level plus XP overflow rather than pretending
+  to know later levels' changing XP requirements.
+- Uses no XP-bar textures, hooks, events, settings, exports or runtime writes;
+  EllesmereUI retains complete XP-bar ownership. Reopen the page to refresh.
+- New forecast text falls back to English until reviewed `zhCN` and `zhTW`
+  translations are supplied.
+
 ## v1.1.14 — Chinese localization
 
 - Added English fallback plus complete volunteer-provided Simplified Chinese
