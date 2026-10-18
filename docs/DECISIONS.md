@@ -36,6 +36,12 @@ Apply the single spacing slider to both displays: move timer-bar bodies away
 from their fixed icons/indicators, and move normal message icons outward from
 their text. Zero and disabling must restore both native layouts.
 
+Build `752112e` still did not border message icons in game. Replace the strict
+width/height/frame-level lookup with structural detection of BigWigs' four
+Texture regions anchored RIGHT of FontString regions, and queue a rescan after
+every public `BigWigs_Message` callback so discovery occurs while the display is
+active.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

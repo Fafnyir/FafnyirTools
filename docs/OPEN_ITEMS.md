@@ -15,6 +15,8 @@
   pooled message icons receive the selected border, fade cleanly with the icon,
   reuse correctly, and follow Content Spacing without shifting text. Emphasized sink icons that
   are embedded directly in text remain outside this test scope.
+- Build `752112e` failed this message-icon check. Retest the structural
+  FontString/icon-pair discovery and per-message rescan in the next package.
 - Confirm the style-safe anchor snapshot removes the reported text overlap in
   the BigWigs test-bar style shown in the 2026-10-18 screenshot.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.

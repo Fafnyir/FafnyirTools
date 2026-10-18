@@ -68,7 +68,7 @@ lua.execute(
     assert(ns:GetDatabase().bigWigsBorder.enabled==false)
     assert(ns:GetDatabase().bigWigsBorder.texture=="pixels")
     feature:Initialize()
-    assert(registrations.BigWigs_BarCreated and registrations.BigWigs_BarEmphasized)
+    assert(registrations.BigWigs_BarCreated and registrations.BigWigs_BarEmphasized and registrations.BigWigs_Message)
 
     local bar=CreateFrame("Frame")
     bar.candyBarBar=CreateFrame("StatusBar",nil,bar)
@@ -124,14 +124,15 @@ lua.execute(
     messageFrame.regions={}
     for i=1,4 do
         local icon=CreateFrame("Texture",nil,messageFrame);icon.objectType="Texture";icon.shown=false
-        icon:SetPoint("RIGHT",CreateFrame("FontString",nil,messageFrame),"LEFT",0,0)
+        local label=CreateFrame("FontString",nil,messageFrame);label.objectType="FontString"
+        icon:SetPoint("RIGHT",label,"LEFT",0,0)
         messageFrame.regions[i]=icon
     end
     UIParent={GetChildren=function() return messageFrame end}
     ns:GetDatabase().bigWigsBorder.enabled=true
     ns:GetDatabase().bigWigsBorder.iconOffset=3
-    feature:Refresh()
-    assert(#applied==14)
+    registrations.BigWigs_Message.callback("BigWigs_Message",{},1,"Test","yellow",123,false)
+    assert(#applied==12)
     for i=1,4 do
         local border=messageFrame.regions[i]._fafnyirBigWigsMessageBorder
         assert(border and border.scripts.OnUpdate and border.alpha==0)

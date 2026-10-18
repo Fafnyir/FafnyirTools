@@ -167,16 +167,16 @@ local function ApplyToMessageIcon(icon, owner)
 end
 
 local function IsMessagesFrame(frame)
-    if not frame or not frame.GetRegions or not frame.GetWidth or not frame.GetHeight then return false end
-    if math.abs((frame:GetWidth() or 0) - 2000) > 1 or math.abs((frame:GetHeight() or 0) - 80) > 1 then
-        return false
-    end
-    if frame.GetFrameStrata and frame:GetFrameStrata() ~= "FULLSCREEN_DIALOG" then return false end
-    if frame.GetFrameLevel and frame:GetFrameLevel() ~= 20 then return false end
+    if not frame or not frame.GetRegions then return false end
     local textures = {}
     for _, region in ipairs({ frame:GetRegions() }) do
         if region.GetObjectType and region:GetObjectType() == "Texture" then
-            textures[#textures + 1] = region
+            local ok, point, relativeTo, relativePoint = pcall(region.GetPoint, region, 1)
+            if ok and point == "RIGHT" and relativePoint == "LEFT"
+                and relativeTo and relativeTo.GetObjectType
+                and relativeTo:GetObjectType() == "FontString" then
+                textures[#textures + 1] = region
+            end
         end
     end
     if #textures ~= 4 then return false end
@@ -225,10 +225,15 @@ local function OnBarEmphasized(_, _, bar)
     ApplyToBar(bar, true)
 end
 
+local function OnBigWigsMessage()
+    QueueMessageScan()
+end
+
 local function RegisterMessages()
     if messagesRegistered or not BigWigsAvailable() then return false end
     BigWigsLoader.RegisterMessage(feature, "BigWigs_BarCreated", OnBarCreated)
     BigWigsLoader.RegisterMessage(feature, "BigWigs_BarEmphasized", OnBarEmphasized)
+    BigWigsLoader.RegisterMessage(feature, "BigWigs_Message", OnBigWigsMessage)
     messagesRegistered = true
     return true
 end
