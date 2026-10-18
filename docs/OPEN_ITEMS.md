@@ -2,12 +2,13 @@
 
 ## v1.1.16 Leveling Forecast to 90 — in-game test pending
 
-- Confirm the screenshot case projects level 81 at 418,117/423,390 plus 604,313
-  quest XP to level 83 at approximately 33.6%.
+- User screenshot on 2026-10-18 confirms build `b72b994` projects level 81 at
+  98.8% plus 604,313 quest XP to **Level 83 — 33.6%**.
 - Confirm projections at exact level boundaries, across several levels and at
   level 90. Confirm a changed current-level requirement produces the guarded
   one-level overflow fallback rather than a false multi-level result.
-- Confirm the two guidance messages render on separate rows without overlap.
+- The same screenshot confirms the two guidance messages render on separate
+  rows without overlap.
 
 ## v1.1.15 Leveling Forecast — user confirmed
 

@@ -13,7 +13,11 @@ The reported screenshot case is covered directly: level 81 at 418,117 of
 423,390 XP plus 604,313 completed-quest XP projects to level 83 at about 33.6%.
 Tests also cover reaching level 90 and the stale-curve fallback. The two long
 guidance messages now occupy separate full-width rows to prevent overlap.
-Offline validation passes; in-game confirmation and packaging are pending.
+Offline validation passes. On 2026-10-18 the user supplied an in-game screenshot
+from test build `b72b994` confirming the reported case displays **Level 83 —
+33.6%** and that the two guidance messages render on separate rows without
+overlap. Exact-boundary, additional multi-level and level-90 scenarios remain
+pending. The test package is built but not publicly released.
 
 ## v1.1.15 — Leveling Forecast
 
