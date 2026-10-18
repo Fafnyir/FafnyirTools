@@ -45,6 +45,9 @@ That still reproduced in game, identifying the synchronous live
 controls. Toggle and Border Style changes now save normally and show the
 standard secure Reload Now/Later confirmation instead of restyling active
 BigWigs frames during the click. Content Spacing remains live-adjustable.
+The user confirmed test build `ee4fc67` works perfectly in game on 2026-10-18.
+This accepts the reload-applied toggle and Border Style behavior as the stable
+v1.1.17 design; broader BigWigs combat/style coverage remains separate.
 
 ## v1.1.16 — Leveling Forecast to 90
 

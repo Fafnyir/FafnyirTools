@@ -6,20 +6,9 @@
   global Messages-frame discovery reaches and borders the normal message icons.
 - Detailed checks of every border style, right-positioned bar icons, fade alpha,
   reload persistence and combat safety remain useful before final release.
-- Confirm changing Border Style immediately updates the closed dropdown label
-  and selected-list highlight in the revised build that no longer rebuilds the
-  page from inside the dropdown setter. The prior `fa7880a` page-refresh test
-  failed this check in the user's 2026-10-18 screen recording, and `cd70a1f`
-  still failed when relying only on EllesmereUI's automatic refresh. The direct
-  control build `1fb292b` also failed and introduced an inability to re-enable
-  the feature. Build `aef67fe` saved re-enabling correctly but still drew the
-  switch as off until reload because its page repaint interrupted the toggle
-  animation. Build `6be5a79` still failed when refreshing the widget list.
-  Confirm the revision with no external toggle refresh draws off/on correctly;
-  Border Style intentionally remains selectable while the feature is off.
-- The no-refresh toggle build still reproduced the stale visual. Confirm the
-  reload-confirmation revision leaves both controls visually correct, persists
-  their values, and applies them after Reload Now or a later manual reload.
+- User confirmed reload-confirmation build `ee4fc67` works perfectly in game on
+  2026-10-18. Toggle and Border Style are intentionally reload-applied; Content
+  Spacing remains live. Earlier live-refresh experiments are superseded.
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.

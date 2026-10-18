@@ -388,3 +388,6 @@ The issue still reproduced, leaving live `feature:Refresh()` as the common work
 inside the affected toggle and dropdown setters. Supersede live application for
 those two controls with the standard secure reload confirmation. Save the value
 immediately, apply it on reload, and keep Content Spacing live-adjustable.
+User confirmation on 2026-10-18: build `ee4fc67` works perfectly. Retain this
+reload-applied design for the v1.1.17 release rather than restoring any of the
+failed live-refresh approaches.
