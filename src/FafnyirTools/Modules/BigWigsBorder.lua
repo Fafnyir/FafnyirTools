@@ -185,9 +185,18 @@ local function IsMessagesFrame(frame)
 end
 
 local function ScanMessageIcons()
-    if not UIParent or not UIParent.GetChildren then return false end
-    for _, frame in ipairs({ UIParent:GetChildren() }) do
-        if IsMessagesFrame(frame) then return true end
+    if EnumerateFrames then
+        local frame = EnumerateFrames()
+        while frame do
+            if IsMessagesFrame(frame) then return true end
+            frame = EnumerateFrames(frame)
+        end
+        return false
+    end
+    if UIParent and UIParent.GetChildren then
+        for _, frame in ipairs({ UIParent:GetChildren() }) do
+            if IsMessagesFrame(frame) then return true end
+        end
     end
     return false
 end

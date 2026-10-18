@@ -128,7 +128,11 @@ lua.execute(
         icon:SetPoint("RIGHT",label,"LEFT",0,0)
         messageFrame.regions[i]=icon
     end
-    UIParent={GetChildren=function() return messageFrame end}
+    UIParent={GetChildren=function() return end}
+    function EnumerateFrames(previous)
+        if previous==nil then return messageFrame end
+        return nil
+    end
     ns:GetDatabase().bigWigsBorder.enabled=true
     ns:GetDatabase().bigWigsBorder.iconOffset=3
     registrations.BigWigs_Message.callback("BigWigs_Message",{},1,"Test","yellow",123,false)
@@ -150,5 +154,6 @@ assert "BigWigs3DB" not in source
 assert "BigWigs_StartNameplate" not in source
 assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
 assert '"bigwigs_message_icon"' in source and "ScanMessageIcons" in source
+assert "EnumerateFrames" in source
 
 print("PASS BigWigs bar/message borders, styles, bar-body offset, fades, restore, and isolation")

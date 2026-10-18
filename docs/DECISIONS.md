@@ -42,6 +42,11 @@ Texture regions anchored RIGHT of FontString regions, and queue a rescan after
 every public `BigWigs_Message` callback so discovery occurs while the display is
 active.
 
+Screenshot feedback confirms build `109ee90` still missed the live frame.
+Retain the structural matcher and message callback, but replace the direct
+`UIParent:GetChildren()` search with WoW's global `EnumerateFrames()` traversal;
+keep the direct-child scan only as a compatibility fallback.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

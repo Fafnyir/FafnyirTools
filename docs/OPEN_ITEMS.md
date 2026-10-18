@@ -17,6 +17,9 @@
   are embedded directly in text remain outside this test scope.
 - Build `752112e` failed this message-icon check. Retest the structural
   FontString/icon-pair discovery and per-message rescan in the next package.
+- Screenshot testing confirms `109ee90` also failed. The next package uses
+  global frame enumeration rather than assuming the Messages frame is returned
+  by `UIParent:GetChildren()`.
 - Confirm the style-safe anchor snapshot removes the reported text overlap in
   the BigWigs test-bar style shown in the 2026-10-18 screenshot.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.
