@@ -286,6 +286,7 @@ end
 function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y, h = yOffset
+    local borderStyleControl
     parent._showRowDivider = true
 
     _, h = W:SectionHeader(parent, T("QOL.BIGWIGS_PIXEL_BORDER"), y)
@@ -299,7 +300,8 @@ function feature:BuildOptions(parent, yOffset)
             pixels = T("QOL.PIXELS"),
         }, { "solid", "pixels" }
     end
-    _, h = W:DualRow(parent, y,
+    local borderStyleRow
+    borderStyleRow, h = W:DualRow(parent, y,
         {
             type = "toggle",
             text = T("QOL.ENABLE_BIGWIGS_PIXEL_BORDER"),
@@ -323,11 +325,28 @@ function feature:BuildOptions(parent, yOffset)
             setValue = function(value)
                 DB().texture = value
                 feature:Refresh()
-                -- EllesmereUI's dropdown owns its caption and selected-row
-                -- refresh after this setter returns. Rebuilding the page here
-                -- recycles that widget before its deferred refresh can run.
+                -- Update this dropdown after its click handler closes the menu.
+                -- The control exposes separate hooks for the resting caption
+                -- and cached menu selection, so unrelated options stay intact.
+                local function refreshDropdown()
+                    if not borderStyleControl then return end
+                    if borderStyleControl._refreshLabel then
+                        borderStyleControl._refreshLabel()
+                    end
+                    if borderStyleControl._ddRefresh then
+                        borderStyleControl._ddRefresh()
+                    end
+                end
+                if C_Timer and C_Timer.After then
+                    C_Timer.After(0, refreshDropdown)
+                else
+                    refreshDropdown()
+                end
             end,
         })
+    borderStyleControl = borderStyleRow
+        and borderStyleRow._rightRegion
+        and borderStyleRow._rightRegion._control
     y = y - h
     _, h = W:DualRow(parent, y,
         {

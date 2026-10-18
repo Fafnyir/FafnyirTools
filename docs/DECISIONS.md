@@ -368,3 +368,7 @@ dropdown setter. EllesmereUI refreshes the dropdown caption and selected-row
 state after the setter returns; rebuilding there recycles the widget before
 that deferred refresh completes. The `fa7880a` page-rebuild attempt was rejected
 after the user's screen recording showed the state still remained stale.
+The subsequent `cd70a1f` test confirmed that merely leaving the native refresh
+alone was insufficient. Capture the dropdown control returned through the
+DualRow right region and call its supported `_refreshLabel` and `_ddRefresh`
+hooks after the menu closes; do not refresh unrelated options widgets.

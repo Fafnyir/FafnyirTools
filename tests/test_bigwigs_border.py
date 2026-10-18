@@ -145,6 +145,33 @@ lua.execute(
     ns:GetDatabase().bigWigsBorder.enabled=false
     feature:Refresh()
     for i=1,4 do assert(messageFrame.regions[i].points[1][4]==0) end
+
+    -- The border dropdown refreshes only its own caption and cached menu after
+    -- selection, without rebuilding the complete EllesmereUI options page.
+    local labelRefreshes,menuRefreshes=0,0
+    local dropdownControl={
+        _refreshLabel=function() labelRefreshes=labelRefreshes+1 end,
+        _ddRefresh=function() menuRefreshes=menuRefreshes+1 end,
+    }
+    local capturedBorderSetter
+    EllesmereUI.GetBorderTextureDropdown=function()
+        return {pixels="Pixels",glow="Glow"},{"pixels","glow"}
+    end
+    EllesmereUI.Widgets={
+        SectionHeader=function() return {},40 end,
+        DualRow=function(_,_,_,left,right)
+            if right and right.type=="dropdown" then
+                capturedBorderSetter=right.setValue
+                return {_rightRegion={_control=dropdownControl}},50
+            end
+            return {},50
+        end,
+    }
+    C_Timer={After=function(_,callback) callback() end}
+    feature:BuildOptions({},0)
+    capturedBorderSetter("glow")
+    assert(ns:GetDatabase().bigWigsBorder.texture=="glow")
+    assert(labelRefreshes==1 and menuRefreshes==1)
     '''
 )
 
@@ -156,6 +183,8 @@ assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
 assert '"bigwigs_message_icon"' in source and "ScanMessageIcons" in source
 assert "EnumerateFrames" in source
 assert "RefreshOptionsPage" not in source and "RefreshPage(true)" not in source
-assert "EllesmereUI's dropdown owns its caption" in source
+assert "borderStyleRow._rightRegion._control" in source
+assert "borderStyleControl._refreshLabel()" in source
+assert "borderStyleControl._ddRefresh()" in source
 
 print("PASS BigWigs bar/message borders, styles, bar-body offset, fades, restore, and isolation")

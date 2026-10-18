@@ -9,7 +9,9 @@
 - Confirm changing Border Style immediately updates the closed dropdown label
   and selected-list highlight in the revised build that no longer rebuilds the
   page from inside the dropdown setter. The prior `fa7880a` page-refresh test
-  failed this check in the user's 2026-10-18 screen recording.
+  failed this check in the user's 2026-10-18 screen recording, and `cd70a1f`
+  still failed when relying only on EllesmereUI's automatic refresh. The next
+  build directly refreshes the captured dropdown caption and menu selection.
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.
