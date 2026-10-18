@@ -9,7 +9,7 @@ six new Simplified and Traditional Chinese strings are included as first-pass
 translations pending Yilang's review. Offline validation passes; in-game BigWigs
 test bars and combat behavior remain to be confirmed. The initial border passed
 in-game testing; a subsequent screenshot showed the icon and bar outlines
-overlapping, so the revised test adds a saved 0–10 pixel Timer Bar Offset slider.
+overlapping, so the revised test adds a saved 0–10 pixel Content Spacing slider.
 After that build exposed text overlap, the implementation was changed to
 preserve each active BigWigs bar style's real anchors instead of rebuilding a
 generic LibCandyBar layout. This style-safe revision awaits in-game testing.
@@ -17,6 +17,8 @@ The latest revision leaves the spell icon and its BigWigs indicators fixed and
 moves the complete bar body instead.
 The selected border now also applies to BigWigs' four pooled normal Messages
 icons and follows their visibility/fade alpha; message text is not repositioned.
+The shared Content Spacing slider also separates message icons from their text;
+zero or disabling restores native anchors for both bars and messages.
 
 ## v1.1.16 — Leveling Forecast to 90
 

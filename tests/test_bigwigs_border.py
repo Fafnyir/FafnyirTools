@@ -124,16 +124,22 @@ lua.execute(
     messageFrame.regions={}
     for i=1,4 do
         local icon=CreateFrame("Texture",nil,messageFrame);icon.objectType="Texture";icon.shown=false
+        icon:SetPoint("RIGHT",CreateFrame("FontString",nil,messageFrame),"LEFT",0,0)
         messageFrame.regions[i]=icon
     end
     UIParent={GetChildren=function() return messageFrame end}
     ns:GetDatabase().bigWigsBorder.enabled=true
+    ns:GetDatabase().bigWigsBorder.iconOffset=3
     feature:Refresh()
     assert(#applied==14)
     for i=1,4 do
         local border=messageFrame.regions[i]._fafnyirBigWigsMessageBorder
         assert(border and border.scripts.OnUpdate and border.alpha==0)
+        assert(messageFrame.regions[i].points[1][4]==-3)
     end
+    ns:GetDatabase().bigWigsBorder.enabled=false
+    feature:Refresh()
+    for i=1,4 do assert(messageFrame.regions[i].points[1][4]==0) end
     '''
 )
 

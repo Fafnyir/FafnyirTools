@@ -16,6 +16,7 @@ local CHANGELOG = {
     { version = "v1.1.17", lines = {
         "Added an optional EllesmereUI border to BigWigs timer bars, attached spell icons, and message icons.",
         "Added a saved timer-bar offset that leaves spell icons and their indicators in place.",
+        "The same spacing control separates normal message icons from their text.",
         "Border Style offers the complete current EllesmereUI border list; Pixels remains the default.",
         "The feature is disabled by default and does not change BigWigs profiles or nameplate icons.",
         "Included first-pass Simplified and Traditional Chinese text pending Yilang's review.",

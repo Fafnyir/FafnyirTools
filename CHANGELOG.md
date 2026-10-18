@@ -9,6 +9,7 @@
   profile values, and leaves BigWigs nameplate icons under native control.
 - Added a saved 0–10 pixel timer-bar offset that leaves attached spell icons
   and their indicators in place; zero preserves BigWigs geometry.
+- The same spacing control separates normal message icons from message text.
 - Included first-pass `zhCN` and `zhTW` translations marked for fluent review.
 
 ## v1.1.16 — Leveling Forecast to 90

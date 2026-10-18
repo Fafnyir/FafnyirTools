@@ -32,6 +32,10 @@ path. Extend the same toggle and selected border style to the four pooled normal
 message icons. Follow their visibility and fade alpha without moving message
 text or changing the BigWigs profile.
 
+Apply the single spacing slider to both displays: move timer-bar bodies away
+from their fixed icons/indicators, and move normal message icons outward from
+their text. Zero and disabling must restore both native layouts.
+
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 
 The user requested that the completed-quest projection continue through level

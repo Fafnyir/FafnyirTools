@@ -6,14 +6,14 @@
   Pixels borders appear on both timer bars and attached spell icons.
 - Test normal and emphasized bars, icons on either side, bars without icons,
   UI reload persistence, disabling while bars are visible, and combat safety.
-- Test Timer Bar Offset from 0–10 with left- and right-positioned icons; verify
+- Test Content Spacing from 0–10 with left- and right-positioned icons; verify
   the icon/indicators remain fixed, the complete bar body moves, zero matches
   native placement, and disabling restores the original geometry.
 - Exercise every border returned by the installed EllesmereUI dropdown,
   including behind-layer styles, on normal and emphasized BigWigs bars.
 - Trigger normal BigWigs messages with and without icons. Confirm all four
   pooled message icons receive the selected border, fade cleanly with the icon,
-  reuse correctly, and do not change text placement. Emphasized sink icons that
+  reuse correctly, and follow Content Spacing without shifting text. Emphasized sink icons that
   are embedded directly in text remain outside this test scope.
 - Confirm the style-safe anchor snapshot removes the reported text overlap in
   the BigWigs test-bar style shown in the 2026-10-18 screenshot.

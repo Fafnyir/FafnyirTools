@@ -135,7 +135,16 @@ end
 
 local function ApplyToMessageIcon(icon, owner)
     if not icon or not owner then return end
-    trackedMessageIcons[icon] = owner
+    local state = trackedMessageIcons[icon]
+    if not state then
+        local ok, points = pcall(ReadPoints, icon)
+        if not ok then return end
+        state = { owner = owner, points = points }
+        trackedMessageIcons[icon] = state
+    end
+    SetPoints(icon, state.points, 0)
+    local offset = math.max(0, tonumber(DB().iconOffset) or 0)
+    if Enabled() and offset > 0 then SetPoints(icon, state.points, -offset) end
     ApplyBorder(owner, icon, "_fafnyirBigWigsMessageBorder", "bigwigs_message_icon")
     local border = icon._fafnyirBigWigsMessageBorder
     if border and not border._fafnyirAlphaSync then
@@ -238,10 +247,11 @@ function feature:Refresh()
             HideBarBorders(bar)
         end
     end
-    for icon, owner in pairs(trackedMessageIcons) do
+    for icon, state in pairs(trackedMessageIcons) do
         if Enabled() then
-            ApplyToMessageIcon(icon, owner)
+            ApplyToMessageIcon(icon, state.owner)
         else
+            SetPoints(icon, state.points, 0)
             HideBorder(icon, "_fafnyirBigWigsMessageBorder")
         end
     end
