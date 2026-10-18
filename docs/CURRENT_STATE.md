@@ -21,6 +21,13 @@ final release. The client, EllesmereUI version and individual scenarios tested
 were not supplied, so this is confirmation rather than an exhaustive matrix.
 New strings use English fallback pending reviewed Chinese translations.
 
+Published final GitHub release `release/v1.1.15` at `5c91d53` through workflow
+`39126509465`. ZIP/display name:
+`Fafnyir_Tools_for_EllesmereUI_v1.1.15_5c91d53.zip`. SHA-256:
+`9ff852cb55eb1779a3abccad2ccfa85e4175178246c84a1870f528b3184fa107`.
+CurseForge accepted Release file `9239256`; moderation/public availability is
+separate from upload acceptance.
+
 ## v1.1.14 — Chinese localization
 
 FafnyirTools now includes complete Simplified Chinese (`zhCN`) and Traditional
