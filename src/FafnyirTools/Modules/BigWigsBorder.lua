@@ -4,7 +4,7 @@ local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 local feature = {
     key = "BigWigsBorder",
     page = T("CORE.QOL"),
-    searchTerms = { "bigwigs", "pixel border", "timer bars", "boss bars" },
+    searchTerms = { "bigwigs", "border", "timer bars", "boss bars" },
 }
 ns:RegisterFeature(feature.key, feature)
 
@@ -37,7 +37,7 @@ local function ReadPoints(region)
     return points
 end
 
-local function CaptureIconLayout(bar)
+local function CaptureBarLayout(bar)
     if not bar or not bar.candyBarIconFrame or not bar.candyBarBar then return end
     local ok, iconPoints, statusPoints = pcall(function()
         return ReadPoints(bar.candyBarIconFrame), ReadPoints(bar.candyBarBar)
@@ -62,30 +62,28 @@ local function SetPoints(region, points, globalOffset, relativeRegion, relativeO
     end
 end
 
-local function RestoreIconLayout(bar)
+local function RestoreBarLayout(bar)
     local layout = bar and bar._fafnyirBigWigsNativeLayout
     if not layout then return end
-    SetPoints(bar.candyBarIconFrame, layout.icon, 0)
     SetPoints(bar.candyBarBar, layout.status, 0)
 end
 
-local function ApplyIconOffset(bar)
+local function ApplyBarOffset(bar)
     local icon = bar and bar.candyBarIconFrame
     local status = bar and bar.candyBarBar
     local layout = bar and bar._fafnyirBigWigsNativeLayout
     if not icon or not status or not layout then return end
 
-    RestoreIconLayout(bar)
+    RestoreBarLayout(bar)
     local offset = math.max(0, tonumber(DB().iconOffset) or 0)
     if not Enabled() or offset == 0 or not icon:IsShown() then return end
 
     local position = type(bar.GetIconPosition) == "function" and bar:GetIconPosition() or "LEFT"
-    local direction = position == "RIGHT" and 1 or -1
-    SetPoints(icon, layout.icon, direction * offset)
-    SetPoints(status, layout.status, 0, icon, -direction * offset)
+    local direction = position == "RIGHT" and -1 or 1
+    SetPoints(status, layout.status, direction * offset)
 end
 
-local function ApplyPixelsBorder(bar, target, field, context)
+local function ApplyBorder(bar, target, field, context)
     if not target then return end
     if not Enabled() or not EllesmereUI or type(EllesmereUI.ApplyBorderStyle) ~= "function" then
         HideBorder(target, field)
@@ -101,16 +99,16 @@ local function ApplyPixelsBorder(bar, target, field, context)
     border:ClearAllPoints()
     border:SetPoint("TOPLEFT", target, "TOPLEFT", 0, 0)
     border:SetPoint("BOTTOMRIGHT", target, "BOTTOMRIGHT", 0, 0)
-    border:SetFrameLevel(math.max(0, bar:GetFrameLevel() + 8))
-
-    local texture = "pixels"
+    local texture = DB().texture or "pixels"
     local size = EllesmereUI.GetBorderDefaultSize
         and EllesmereUI.GetBorderDefaultSize(context, texture)
         or 1
-    local color = EllesmereUI.GetBorderStyleSelectDefaults
-        and EllesmereUI.GetBorderStyleSelectDefaults(texture)
-        or nil
+    local color, behind
+    if EllesmereUI.GetBorderStyleSelectDefaults then
+        color, behind = EllesmereUI.GetBorderStyleSelectDefaults(texture)
+    end
     color = color or { r = 1, g = 1, b = 1 }
+    border:SetFrameLevel(math.max(0, bar:GetFrameLevel() + (behind and -1 or 8)))
     local exactPixels = EllesmereUI.BorderPx
         and EllesmereUI.BorderPx(nil, size, texture)
 
@@ -137,16 +135,16 @@ end
 local function ApplyToBar(bar, captureLayout)
     if not bar then return end
     trackedBars[bar] = true
-    if captureLayout then CaptureIconLayout(bar) end
-    ApplyIconOffset(bar)
-    ApplyPixelsBorder(bar, bar.candyBarBar, "_fafnyirBigWigsBorder", "bigwigs_bar")
-    ApplyPixelsBorder(bar, bar.candyBarIconFrame, "_fafnyirBigWigsIconBorder", "bigwigs_icon")
+    if captureLayout then CaptureBarLayout(bar) end
+    ApplyBarOffset(bar)
+    ApplyBorder(bar, bar.candyBarBar, "_fafnyirBigWigsBorder", "bigwigs_bar")
+    ApplyBorder(bar, bar.candyBarIconFrame, "_fafnyirBigWigsIconBorder", "bigwigs_icon")
 end
 
 local function HideBarBorders(bar)
     HideBorder(bar and bar.candyBarBar, "_fafnyirBigWigsBorder")
     HideBorder(bar and bar.candyBarIconFrame, "_fafnyirBigWigsIconBorder")
-    RestoreIconLayout(bar)
+    RestoreBarLayout(bar)
 end
 
 local function OnBarCreated(_, _, bar)
@@ -182,6 +180,7 @@ end
 
 function feature:Reset()
     DB().enabled = ns.defaults.bigWigsBorder.enabled
+    DB().texture = ns.defaults.bigWigsBorder.texture
     DB().iconOffset = ns.defaults.bigWigsBorder.iconOffset
     self:Refresh()
 end
@@ -193,6 +192,15 @@ function feature:BuildOptions(parent, yOffset)
 
     _, h = W:SectionHeader(parent, T("QOL.BIGWIGS_PIXEL_BORDER"), y)
     y = y - h
+    local values, order
+    if EllesmereUI.GetBorderTextureDropdown then
+        values, order = EllesmereUI.GetBorderTextureDropdown()
+    else
+        values, order = {
+            solid = T("QOL.SOLID"),
+            pixels = T("QOL.PIXELS"),
+        }, { "solid", "pixels" }
+    end
     _, h = W:DualRow(parent, y,
         {
             type = "toggle",
@@ -207,6 +215,21 @@ function feature:BuildOptions(parent, yOffset)
             end,
         },
         {
+            type = "dropdown",
+            text = T("QOL.BORDER_STYLE"),
+            values = values,
+            order = order,
+            disabled = function() return not DB().enabled end,
+            disabledTooltip = T("QOL.ENABLE_BIGWIGS_PIXEL_BORDER"),
+            getValue = function() return DB().texture or "pixels" end,
+            setValue = function(value)
+                DB().texture = value
+                feature:Refresh()
+            end,
+        })
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        {
             type = "slider",
             text = T("QOL.BIGWIGS_ICON_OFFSET"),
             tooltip = T("QOL.MOVE_BIGWIGS_SPELL_ICONS_AWAY_FROM_THE_TIMER_BAR"),
@@ -220,7 +243,8 @@ function feature:BuildOptions(parent, yOffset)
                 DB().iconOffset = value
                 feature:Refresh()
             end,
-        })
+        },
+        nil)
     y = y - h
     return math.abs(y)
 end

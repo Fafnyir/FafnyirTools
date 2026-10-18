@@ -41,11 +41,9 @@ lua.execute(
             applied[#applied+1]={border=border,size=size,texture=texture}
         end,
         GetBorderDefaultSize=function(context,texture)
-            assert(texture=="pixels")
             return context=="bigwigs_icon" and 2 or 1
         end,
         GetBorderStyleSelectDefaults=function(texture)
-            assert(texture=="pixels")
             return {r=.5,g=.6,b=.7}
         end,
         BorderPx=function(_,size,texture) return size end,
@@ -60,6 +58,7 @@ lua.execute(
     r'''
     local feature=ns.modules.BigWigsBorder
     assert(ns:GetDatabase().bigWigsBorder.enabled==false)
+    assert(ns:GetDatabase().bigWigsBorder.texture=="pixels")
     feature:Initialize()
     assert(registrations.BigWigs_BarCreated and registrations.BigWigs_BarEmphasized)
 
@@ -87,8 +86,12 @@ lua.execute(
 
     ns:GetDatabase().bigWigsBorder.iconOffset=3
     feature:Refresh()
-    assert(bar.candyBarIconFrame.points[1][4]==-3)
+    assert(bar.candyBarIconFrame.points[1][4]==0)
     assert(bar.candyBarBar.points[1][4]==3)
+
+    ns:GetDatabase().bigWigsBorder.texture="solid"
+    feature:Refresh()
+    assert(applied[#applied].texture=="solid")
 
     -- BigWigs reapplies its native style before sending the emphasized message.
     bar.candyBarIconFrame:ClearAllPoints();bar.candyBarBar:ClearAllPoints()
@@ -96,7 +99,7 @@ lua.execute(
     bar.candyBarBar:SetPoint("TOPLEFT",bar.candyBarIconFrame,"TOPRIGHT",0,0)
     bar.candyBarBar:SetPoint("TOPRIGHT",bar,"TOPRIGHT",0,0)
     registrations.BigWigs_BarEmphasized.callback("BigWigs_BarEmphasized",{},bar)
-    assert(#applied==6)
+    assert(#applied==8)
     ns:GetDatabase().bigWigsBorder.enabled=false
     feature:Refresh()
     assert(not bar.candyBarBar._fafnyirBigWigsBorder.shown)
@@ -105,14 +108,15 @@ lua.execute(
     assert(bar.candyBarBar.points[1][4]==0)
     feature:Reset()
     assert(ns:GetDatabase().bigWigsBorder.enabled==false)
+    assert(ns:GetDatabase().bigWigsBorder.texture=="pixels")
     assert(ns:GetDatabase().bigWigsBorder.iconOffset==0)
     '''
 )
 
 source = MODULE.read_text()
-assert 'texture = "pixels"' in source
+assert 'DB().texture or "pixels"' in source
 assert "BigWigs3DB" not in source
 assert "BigWigs_StartNameplate" not in source
 assert "BigWigs_BarCreated" in source and "BigWigs_BarEmphasized" in source
 
-print("PASS BigWigs Pixels border defaults, public callbacks, bar/icon styling, disable restore, and isolation")
+print("PASS BigWigs border defaults/styles, bar-body offset, public callbacks, disable restore, and isolation")

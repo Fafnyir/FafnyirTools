@@ -14,8 +14,9 @@ local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
     { version = "v1.1.17", lines = {
-        "Added an optional EllesmereUI Pixels border to BigWigs timer bars and attached spell icons.",
-        "Added a saved icon-offset slider to separate attached spell icons from the timer-bar border.",
+        "Added an optional EllesmereUI border to BigWigs timer bars and attached spell icons.",
+        "Added a saved timer-bar offset that leaves spell icons and their indicators in place.",
+        "Border Style offers the complete current EllesmereUI border list; Pixels remains the default.",
         "The feature is disabled by default and does not change BigWigs profiles or nameplate icons.",
         "Included first-pass Simplified and Traditional Chinese text pending Yilang's review.",
     }},

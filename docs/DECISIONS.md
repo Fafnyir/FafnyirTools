@@ -1,6 +1,6 @@
 # Reconciled decisions
 
-## 2026-10-18 — BigWigs Pixels-border test
+## 2026-10-18 — BigWigs border test
 
 The user requested a test build with translations for an optional Pixels border
 on BigWigs bars and icons. Add one default-off QoL toggle, style only timer bars
@@ -11,7 +11,7 @@ keep them marked for Yilang's fluent review.
 
 After the first in-game pass, the user confirmed the border works but showed
 the icon and bar outlines overlapping at their shared edge. Add a saved 0–10
-pixel icon-offset slider with an upgrade-safe default of zero. Apply it only
+pixel spacing slider with an upgrade-safe default of zero. Apply it only
 while this border feature is enabled and restore BigWigs' native icon layout
 when disabled.
 
@@ -20,6 +20,12 @@ the active BigWigs style's text spacing to overlap. Replace it before the next
 test package: snapshot the actual style-provided icon and status-bar anchors,
 adjust only their horizontal seam, and restore those exact anchors at zero or
 when disabled.
+
+The next screenshot showed BigWigs indicators positioned beside the spell icon.
+Keep the icon and indicators at their native anchors and move the complete timer
+bar body instead, carrying its label, duration and style-relative elements with
+it. The user also requested parity with Icon History: populate a Border Style
+dropdown from EllesmereUI's live border list and retain Pixels as the default.
 
 ## 2026-10-18 — Extend Leveling Forecast through level 90
 

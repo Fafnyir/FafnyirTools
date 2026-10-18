@@ -1,13 +1,13 @@
 # Reconciled project changelog
 
-## v1.1.17 — BigWigs Pixels Border test
+## v1.1.17 — BigWigs Border test
 
-- Added a default-off QoL toggle that applies EllesmereUI's Pixels border to
-  BigWigs timer bars and their attached spell icons.
+- Added a default-off QoL toggle that applies any current EllesmereUI border to
+  BigWigs timer bars and their attached spell icons; Pixels remains the default.
 - Uses BigWigs' public bar-created and emphasized messages, changes no BigWigs
   profile values, and leaves BigWigs nameplate icons under native control.
-- Added a saved 0–10 pixel icon-offset slider to create space between attached
-  spell icons and the timer-bar border; zero preserves BigWigs geometry.
+- Added a saved 0–10 pixel timer-bar offset that leaves attached spell icons
+  and their indicators in place; zero preserves BigWigs geometry.
 - Included first-pass `zhCN` and `zhTW` translations marked for fluent review.
 
 ## v1.1.16 — Leveling Forecast to 90

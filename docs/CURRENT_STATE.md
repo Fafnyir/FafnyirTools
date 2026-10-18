@@ -1,18 +1,20 @@
 # Current state — v1.1.17 BigWigs border test, 2026-10-18
 
-## v1.1.17 — BigWigs Pixels Border test
+## v1.1.17 — BigWigs Border test
 
-Adds a default-off QoL toggle for EllesmereUI Pixels borders on BigWigs timer
-bars and their attached spell icons. It uses public BigWigs creation/emphasis
+Adds a default-off QoL toggle for all borders returned by EllesmereUI on BigWigs
+timer bars and their attached spell icons, with Pixels as the default. It uses public BigWigs creation/emphasis
 messages, does not alter BigWigs profiles, and excludes nameplate icons. The
 six new Simplified and Traditional Chinese strings are included as first-pass
 translations pending Yilang's review. Offline validation passes; in-game BigWigs
 test bars and combat behavior remain to be confirmed. The initial border passed
 in-game testing; a subsequent screenshot showed the icon and bar outlines
-overlapping, so the revised test adds a saved 0–10 pixel Icon Offset slider.
+overlapping, so the revised test adds a saved 0–10 pixel Timer Bar Offset slider.
 After that build exposed text overlap, the implementation was changed to
 preserve each active BigWigs bar style's real anchors instead of rebuilding a
 generic LibCandyBar layout. This style-safe revision awaits in-game testing.
+The latest revision leaves the spell icon and its BigWigs indicators fixed and
+moves the complete bar body instead.
 
 ## v1.1.16 — Leveling Forecast to 90
 

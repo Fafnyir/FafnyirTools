@@ -1,13 +1,16 @@
 # Open items — no silent restoration
 
-## v1.1.17 BigWigs Pixels Border — test build
+## v1.1.17 BigWigs Border — test build
 
 - Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
   Pixels borders appear on both timer bars and attached spell icons.
 - Test normal and emphasized bars, icons on either side, bars without icons,
   UI reload persistence, disabling while bars are visible, and combat safety.
-- Test Icon Offset from 0–10 on left- and right-positioned icons; verify zero
-  matches native placement and disabling restores the original geometry.
+- Test Timer Bar Offset from 0–10 with left- and right-positioned icons; verify
+  the icon/indicators remain fixed, the complete bar body moves, zero matches
+  native placement, and disabling restores the original geometry.
+- Exercise every border returned by the installed EllesmereUI dropdown,
+  including behind-layer styles, on normal and emphasized BigWigs bars.
 - Confirm the style-safe anchor snapshot removes the reported text overlap in
   the BigWigs test-bar style shown in the 2026-10-18 screenshot.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.
