@@ -69,6 +69,9 @@ The user confirmed corrected build `de4f128` works perfectly in game on
 detection plus click-only visibility under the tested setup; broader combat and
 locale layout checks remain separate.
 
+The user authorized the final v1.1.17 release on 2026-10-18 after confirming
+both the reload-applied BigWigs controls and corrected click-only reticle.
+
 ## v1.1.16 — Leveling Forecast to 90
 
 The completed-quest projection now walks the Midnight 12.1 XP requirements from

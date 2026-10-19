@@ -1,4 +1,4 @@
-Fafnyir Tools for EllesmereUI v1.1.17 — BigWigs Border Test
+Fafnyir Tools for EllesmereUI v1.1.17
 
 v1.1.17 changes
 
@@ -6,11 +6,19 @@ v1.1.17 changes
 - Adds a saved 0–10 pixel Content Spacing slider that leaves timer-bar spell icons and indicators fixed; zero preserves BigWigs' native layout.
 - The same Content Spacing slider separates normal message icons from their text and restores both displays at zero or when disabled.
 - Does not modify BigWigs profiles or its native nameplate icon settings.
-- Includes first-pass Simplified and Traditional Chinese translations pending Yilang's review.
+- BigWigs Border and Border Style changes use a Reload Now/Later confirmation
+  so their saved values apply cleanly without interrupting EllesmereUI controls.
+- Adds a default-off Reticle Only While Clicking option for EllesmereUI's Center
+  Reticle. The center dot appears while either mouse button is held while its
+  native color, opacity, size, and saved preference remain under EllesmereUI.
+- Includes first-pass Simplified and Traditional Chinese translations for the
+  new v1.1.17 controls pending Yilang's review.
 
 Testing requested
 
-- Verify all border styles, normal/emphasized bars, message icon visibility/fades, Content Spacing, reload persistence, disabling while visible, and combat safety.
+- User-confirmed the reload-applied BigWigs controls and click-only Center
+  Reticle in game. Broader border-style, combat-safety, and Chinese layout
+  coverage remains welcome.
 
 v1.1.16 changes
 
