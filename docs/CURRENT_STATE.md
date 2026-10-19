@@ -72,6 +72,13 @@ locale layout checks remain separate.
 The user authorized the final v1.1.17 release on 2026-10-18 after confirming
 both the reload-applied BigWigs controls and corrected click-only reticle.
 
+Final release workflow `39179757630` completed successfully on 2026-10-18.
+GitHub release tag `release/v1.1.17` points to source commit `984b0f5`; the
+published artifact is
+`Fafnyir_Tools_for_EllesmereUI_v1.1.17_984b0f5.zip` with SHA-256
+`1aeed6b9b605d67855552f988190427073350133745446e285c4e79a100dbc0f`.
+CurseForge accepted the same revision-stamped ZIP as file `9251085`.
+
 ## v1.1.16 — Leveling Forecast to 90
 
 The completed-quest projection now walks the Midnight 12.1 XP requirements from
