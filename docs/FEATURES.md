@@ -3,8 +3,8 @@
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide the 164 strings received in the volunteer's final
-  worksheet.
+  Chinese (`zhTW`) provide complete coverage of all 187 current interface
+  strings, including Yilang's reviewed Leveling Forecast translations.
 - Locale files load before feature modules so localized page names are stable
   when EllesmereUI registers the options pages.
 - Saved values, feature registry keys, export field names and other runtime

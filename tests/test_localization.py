@@ -45,8 +45,8 @@ english_keys = keys_for("enUS")
 assert len(english_keys) == 187
 for locale in LOCALES[1:]:
     translated_keys = keys_for(locale)
-    assert len(translated_keys) == 175, locale
-    assert translated_keys < english_keys, locale
+    assert len(translated_keys) == 187, locale
+    assert translated_keys == english_keys, locale
     english = entries_for("enUS")
     translated = entries_for(locale)
     for key in translated_keys:
@@ -58,7 +58,12 @@ for locale in LOCALES:
     assert ns.Text(ns, "ABOUT.VERSION")
     assert ns.Text(ns, "BAGS_INVENTORY.BAGS_VALUE", 7).endswith("7")
     assert ns.Text(ns, "MISSING.TEST.KEY") == "MISSING.TEST.KEY"
-    assert ns.Text(ns, "QOL.LEVELING_FORECAST") == "LEVELING FORECAST"
+    expected_forecast = {
+        "enUS": "LEVELING FORECAST",
+        "zhCN": "升级预测",
+        "zhTW": "升級預測",
+    }
+    assert ns.Text(ns, "QOL.LEVELING_FORECAST") == expected_forecast[locale]
 
 zh_cn = load_locale("zhCN")
 assert zh_cn.globals().ns.Text(zh_cn.globals().ns, "CORE.ABOUT") != "About"
@@ -70,4 +75,4 @@ for locale in LOCALES:
     source = (LOCALE_DIR / f"{locale}.lua").read_text()
     assert not re.search(r'=\s*""\s*,?$', source, re.M), locale
 
-print("PASS enUS plus 175-key zhCN/zhTW coverage, English fallback, formatting, and missing-key behavior")
+print("PASS enUS plus complete 187-key zhCN/zhTW coverage, English fallback, formatting, and missing-key behavior")

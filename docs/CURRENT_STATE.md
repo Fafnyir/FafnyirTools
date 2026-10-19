@@ -79,6 +79,12 @@ published artifact is
 `1aeed6b9b605d67855552f988190427073350133745446e285c4e79a100dbc0f`.
 CurseForge accepted the same revision-stamped ZIP as file `9251085`.
 
+On 2026-10-19, Yilang returned the Leveling Forecast localization worksheet.
+All 12 `zhCN` and `zhTW` strings passed key, placeholder, completeness and Lua
+validation and were integrated into the active locale files. Both Chinese
+locales now cover all 187 current English interface keys. This source change is
+post-release and has not been published as a new package.
+
 ## v1.1.16 — Leveling Forecast to 90
 
 The completed-quest projection now walks the Midnight 12.1 XP requirements from

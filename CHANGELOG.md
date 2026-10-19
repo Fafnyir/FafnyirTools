@@ -1,5 +1,11 @@
 # Reconciled project changelog
 
+## Unreleased after v1.1.17
+
+- Integrated Yilang's reviewed Simplified and Traditional Chinese translations
+  for all 12 Leveling Forecast strings, bringing both locales to full 187-key
+  coverage.
+
 ## v1.1.17 — BigWigs Border test
 
 - Added a default-off QoL toggle that applies any current EllesmereUI border to

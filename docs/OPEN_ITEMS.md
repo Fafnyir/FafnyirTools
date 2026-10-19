@@ -63,10 +63,9 @@
   EllesmereUI version and detailed scenarios were not supplied.
 - Exhaustive no-bonus, mixed-bonus, overflow, maximum-level and disabled-XP
   coverage remains separate from that confirmation.
-- The supplemental worksheet now contains AI-drafted `zhCN` and `zhTW`
-  translations for all twelve new strings, marked **Needs Review**. Obtain
-  Yilang's review and corrections before integration or a localization-complete
-  release.
+- Yilang's reviewed `zhCN` and `zhTW` translations for all twelve strings were
+  integrated on 2026-10-19. Chinese-client layout and terminology confirmation
+  remain pending before a future release.
 
 ## Chinese localization
 
