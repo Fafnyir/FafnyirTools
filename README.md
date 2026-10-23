@@ -4,8 +4,9 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** v1.1.17 BigWigs Border test based on the user-confirmed
-v1.1.4 build `1aae4fe`. Prior confirmed ZIPs remain immutable under releases/.
+**Current source:** v1.1.18 Chinese localization maintenance release based on
+the user-confirmed v1.1.17 feature release. Prior confirmed ZIPs remain
+immutable under releases/.
 
 WoW Forever beta compatibility development lives on the `forever-beta` branch.
 It preserves Retail v1.1.3 behavior and adds guarded interface 16001 support.
@@ -66,7 +67,7 @@ After an authorized change, update the records, review and commit, then:
 .venv/bin/python tools/package.py
 ```
 
-The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The current source version is v1.1.17.
+The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The current source version is v1.1.18.
 
 ## Installation
 

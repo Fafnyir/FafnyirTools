@@ -9,10 +9,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.17"
+local VERSION = "v1.1.18"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.18", lines = {
+        "Completed reviewed Simplified and Traditional Chinese coverage for all 187 current interface strings.",
+        "Integrated Yilang's Leveling Forecast, BigWigs Border, Content Spacing, and Center Reticle wording.",
+        "No feature behavior, defaults, or saved settings changed.",
+    }},
     { version = "v1.1.17", lines = {
         "Added an optional EllesmereUI border to BigWigs timer bars, attached spell icons, and message icons.",
         "Added a saved timer-bar offset that leaves spell icons and their indicators in place.",

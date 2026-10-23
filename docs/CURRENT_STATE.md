@@ -1,4 +1,15 @@
-# Current state — v1.1.17 BigWigs border test, 2026-10-18
+# Current state — v1.1.18 Chinese localization maintenance, 2026-10-23
+
+## v1.1.18 — Chinese localization completion
+
+Promotes the two post-v1.1.17 localization integrations into a maintenance
+release. Yilang reviewed all 12 Leveling Forecast strings and all 11 BigWigs
+Border, Content Spacing and click-only Center Reticle strings. Both `zhCN` and
+`zhTW` now cover all 187 current English interface keys. This release changes
+no feature behavior, defaults, saved settings or dependency ownership.
+
+The user authorized the v1.1.18 release on 2026-10-23. Offline validation,
+packaging and remote publication evidence are recorded below when complete.
 
 ## v1.1.17 — BigWigs Border test
 

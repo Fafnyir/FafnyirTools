@@ -1,4 +1,18 @@
-Fafnyir Tools for EllesmereUI v1.1.17
+Fafnyir Tools for EllesmereUI v1.1.18
+
+v1.1.18 changes
+
+- Completes reviewed Simplified Chinese (zhCN) and Traditional Chinese (zhTW)
+  coverage for all 187 current interface strings.
+- Integrates Yilang's reviewed Leveling Forecast translations.
+- Integrates Yilang's reviewed BigWigs Border, Content Spacing, and click-only
+  Center Reticle wording.
+- Preserves all v1.1.17 feature behavior, defaults, saved settings, and
+  EllesmereUI ownership boundaries.
+
+Special thanks
+
+- Thank you to Yilang for reviewing and refining the Chinese localization.
 
 v1.1.17 changes
 
