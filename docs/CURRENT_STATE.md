@@ -8,8 +8,13 @@ Border, Content Spacing and click-only Center Reticle strings. Both `zhCN` and
 `zhTW` now cover all 187 current English interface keys. This release changes
 no feature behavior, defaults, saved settings or dependency ownership.
 
-The user authorized the v1.1.18 release on 2026-10-23. Offline validation,
-packaging and remote publication evidence are recorded below when complete.
+The user authorized the v1.1.18 release on 2026-10-23. Full offline validation
+passed and final workflow `40025945048` published GitHub release
+`release/v1.1.18` from commit `8bb4731`. The revision-stamped artifact is
+`Fafnyir_Tools_for_EllesmereUI_v1.1.18_8bb4731.zip` with SHA-256
+`2a427498f18cd35786d1c69020979ff507d5901e4c72bf026629b1dd32e77406`.
+CurseForge accepted the same ZIP as Release file `9302478`; moderation and
+public availability remain separate from upload acceptance.
 
 ## v1.1.17 — BigWigs Border test
 
