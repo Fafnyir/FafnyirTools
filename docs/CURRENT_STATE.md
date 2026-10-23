@@ -85,6 +85,13 @@ validation and were integrated into the active locale files. Both Chinese
 locales now cover all 187 current English interface keys. This source change is
 post-release and has not been published as a new package.
 
+On 2026-10-23, Yilang returned the v1.1.17 localization supplement covering
+all 11 BigWigs Border, Content Spacing and click-only Center Reticle strings.
+Five strings in each locale received wording or typography changes; the other
+six were returned unchanged. The complete returned wording is integrated and
+passes locale completeness, placeholder, fallback and Lua validation. These
+post-release localization changes have not been published as a new package.
+
 ## v1.1.16 — Leveling Forecast to 90
 
 The completed-quest projection now walks the Midnight 12.1 XP requirements from

@@ -10,8 +10,8 @@
   remain unchanged, including in combat and while turning the camera.
 - Disable the FafnyirTools option and confirm EllesmereUI's normal always-shown
   Center Reticle returns immediately. Confirm reload persistence and reset.
-- The four new `zhCN` and `zhTW` strings are AI first-pass translations pending
-  Yilang's terminology and in-game layout review.
+- Yilang's returned `zhCN` and `zhTW` wording for the four Center Reticle strings
+  was integrated on 2026-10-23. Chinese-client layout confirmation remains.
 - Initial build `1bea7c9` failed its prerequisite check because it read one DB
   level too deep. User-confirmed build `de4f128` recognizes the enabled native
   Center Reticle and the click-only behavior works perfectly in game.
@@ -44,8 +44,9 @@
 - Confirm the style-safe anchor snapshot removes the reported text overlap in
   the BigWigs test-bar style shown in the 2026-10-18 screenshot.
 - Confirm BigWigs nameplate icons and its saved profile remain unchanged.
-- The six new `zhCN` and `zhTW` strings are AI first-pass translations and
-  require Yilang's review for terminology and in-game fit.
+- Yilang's returned `zhCN` and `zhTW` wording for all seven BigWigs Border and
+  Content Spacing strings was integrated on 2026-10-23. Chinese-client layout
+  confirmation remains.
 
 ## v1.1.16 Leveling Forecast to 90 — in-game test pending
 

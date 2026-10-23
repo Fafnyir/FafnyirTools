@@ -4,7 +4,8 @@
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
   Chinese (`zhTW`) provide complete coverage of all 187 current interface
-  strings, including Yilang's reviewed Leveling Forecast translations.
+  strings, including Yilang's reviewed Leveling Forecast and v1.1.17 feature
+  translations.
 - Locale files load before feature modules so localized page names are stable
   when EllesmereUI registers the options pages.
 - Saved values, feature registry keys, export field names and other runtime
@@ -13,8 +14,8 @@
   failures return the untranslated string rather than raising a Lua error.
 - About changelog history, credits, support diagnostics and dynamic sentences
   not supplied by the volunteer may remain English until a reviewed follow-up.
-- The v1.1.17 BigWigs-border strings are included as AI first-pass `zhCN` and
-  `zhTW` translations and remain pending Yilang's review.
+- Yilang reviewed the 11 v1.1.17 BigWigs-border and click-only Center Reticle
+  strings; the returned wording is integrated in both Chinese locales.
 
 The source and explicit user decisions outrank old assistant descriptions. “Present” below means code exists in the adopted baseline; it does not imply exhaustive runtime validation.
 

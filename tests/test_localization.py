@@ -67,6 +67,10 @@ for locale in LOCALES:
 
 zh_cn = load_locale("zhCN")
 assert zh_cn.globals().ns.Text(zh_cn.globals().ns, "CORE.ABOUT") != "About"
+assert zh_cn.globals().ns.Text(zh_cn.globals().ns, "QOL.RETICLE_ONLY_WHILE_CLICKING") == "点击时显示准星"
+
+zh_tw = load_locale("zhTW")
+assert zh_tw.globals().ns.Text(zh_tw.globals().ns, "QOL.RETICLE_ONLY_WHILE_CLICKING") == "點擊時顯示準星"
 
 unsupported = load_locale("frFR")
 assert unsupported.globals().ns.Text(unsupported.globals().ns, "CORE.ABOUT") == "About"

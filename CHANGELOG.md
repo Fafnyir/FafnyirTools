@@ -5,6 +5,8 @@
 - Integrated Yilang's reviewed Simplified and Traditional Chinese translations
   for all 12 Leveling Forecast strings, bringing both locales to full 187-key
   coverage.
+- Integrated Yilang's returned wording for all 11 v1.1.17 BigWigs Border,
+  Content Spacing, and click-only Center Reticle strings.
 
 ## v1.1.17 — BigWigs Border test
 
