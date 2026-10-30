@@ -20,6 +20,13 @@ authorized the v1.1.19 release on 2026-10-30. Detailed client-by-client scenario
 coverage was not supplied, so the report is confirmation rather than an
 exhaustive Retail and Forever matrix.
 
+Final workflow `41121846000` published GitHub release `release/v1.1.19` from
+commit `b96476f`. The revision-stamped artifact is
+`Fafnyir_Tools_for_EllesmereUI_v1.1.19_b96476f.zip` with SHA-256
+`8f5bc4a731bbcbc4c5a845eb6fde3abfc1ae96bd08f7a49750a18b94d02c94a5`.
+CurseForge accepted the same ZIP as Release file `9376718`; moderation and
+public availability remain separate from upload acceptance.
+
 ## v1.1.18 — Chinese localization completion
 
 Promotes the two post-v1.1.17 localization integrations into a maintenance
