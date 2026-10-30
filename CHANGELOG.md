@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased — EllesmereUI ownership cleanup
+## v1.1.19 — EllesmereUI ownership cleanup
 
 - Retired the Fafnyir Tools Retail Flyout Fix because EllesmereUI now owns the
   complete spell-flyout presentation.
@@ -13,6 +13,7 @@
 - Preserved all legacy Fafnyir Tools SavedVariables as dormant data; ordinary
   upgrades do not erase prior flyout, inventory, or companion preferences.
 - Removed inactive client-specific event subscriptions and diagnostics entries.
+- User in-game testing completed without errors on 2026-10-30.
 
 ## v1.1.18 — Chinese localization completion
 

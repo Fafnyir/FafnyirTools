@@ -1,6 +1,6 @@
-# Current state — post-v1.1.18 ownership cleanup, 2026-10-30
+# Current state — v1.1.19 EllesmereUI ownership cleanup, 2026-10-30
 
-## Unreleased — EllesmereUI 9.7 ownership cleanup
+## v1.1.19 — EllesmereUI 9.7 ownership cleanup
 
 At the user's direction on 2026-10-30, three overlapping integrations were
 retired or narrowed after comparing the installed EllesmereUI 9.7 source and
@@ -14,9 +14,11 @@ The old `flyoutFix`, `inventory`, and `permanentCompanionPet` SavedVariables are
 not deleted or rewritten during an ordinary upgrade. Flavor guards run before
 feature registration, so the delegated feature has no options, scanners,
 summoning callbacks, or diagnostics entry on that client. Core event
-subscriptions are also flavor-scoped. Offline validation passes; Retail and
-Forever in-game confirmation remains pending. Version remains v1.1.18 until the
-user explicitly authorizes a version change.
+subscriptions are also flavor-scoped. Offline validation passes. The user
+reported that test build `8247f07` completed in-game testing without errors and
+authorized the v1.1.19 release on 2026-10-30. Detailed client-by-client scenario
+coverage was not supplied, so the report is confirmation rather than an
+exhaustive Retail and Forever matrix.
 
 ## v1.1.18 — Chinese localization completion
 

@@ -9,10 +9,16 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.18"
+local VERSION = "v1.1.19"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.19", lines = {
+        "Retired the Flyout Fix now owned by EllesmereUI.",
+        "Delegated Retail inventory tracking and tooltips to EllesmereUI Bags.",
+        "Delegated Forever companion-pet persistence to EllesmereUI Forever Essentials.",
+        "Preserved legacy Fafnyir Tools settings as dormant upgrade data.",
+    }},
     { version = "v1.1.18", lines = {
         "Completed reviewed Simplified and Traditional Chinese coverage for all 187 current interface strings.",
         "Integrated Yilang's Leveling Forecast, BigWigs Border, Content Spacing, and Center Reticle wording.",
