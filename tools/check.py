@@ -32,7 +32,7 @@ def check(baseline=False):
     expected = {p.removeprefix('FafnyirTools/') for p in fingerprint['files']}
     actual_files = {p.relative_to(ADDON).as_posix() for p in ADDON.rglob('*') if p.is_file()}
     retired = {'Modules/BlizzardBarArt.lua', 'Modules/UnitFrameSources.lua', 'Modules/XPBar.lua',
-               'Modules/UnitFrameNames.lua'}
+               'Modules/UnitFrameNames.lua', 'Modules/FlyoutButtonMatch.lua'}
     assert expected - retired <= actual_files, 'Baseline module/file removed; reconcile feature inventory explicitly'
     assert retired.isdisjoint(actual_files), 'EllesmereUI-owned retired module restored unexpectedly'
     required = {
@@ -43,7 +43,6 @@ def check(baseline=False):
         'Modules/ForeverFog.lua': ('ForeverFog', 'CORE.QOL'),
         'Modules/Resting.lua': ('Resting', 'CORE.UNIT_FRAMES'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'CORE.ACTION_BARS'),
-        'Modules/FlyoutButtonMatch.lua': ('FlyoutButtonMatch', 'CORE.ACTION_BARS'),
         'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
         'Modules/BigWigsBorder.lua': ('BigWigsBorder', 'CORE.QOL'),
         'Modules/CursorReticle.lua': ('CursorReticle', 'CORE.QOL'),
@@ -57,7 +56,7 @@ def check(baseline=False):
         text = (ADDON / name).read_text()
         assert re.search(r'key\s*=\s*"' + re.escape(key) + '"', text), name
         assert re.search(r'page\s*=\s*T\("' + re.escape(page_key) + r'"\)', text), name
-        assert f'ns.modules.{key}' in (ADDON / 'Core/Options.lua').read_text(), f'Feature not ordered in options: {key}'
+        assert f'"{key}"' in (ADDON / 'Core/Options.lua').read_text(), f'Feature not ordered in options: {key}'
     version = re.search(r'^## Version: (.+)$', toc, re.M).group(1).strip()
     assert version == re.search(r'local VERSION = "([^"]+)"', (ADDON / 'Modules/About.lua').read_text()).group(1)
     assert '## SavedVariables: FafnyirToolsDB' in toc
@@ -74,7 +73,7 @@ def check(baseline=False):
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
-      for _,key in ipairs({'foreverFog','flyoutFix','resting','rightClickSelfCast',
+      for _,key in ipairs({'foreverFog','resting','rightClickSelfCast',
           'deviceLayout','inventory','auraSkins','permanentCompanionPet'}) do
         assert(type(FafnyirToolsDB[key])=='table',key)
       end

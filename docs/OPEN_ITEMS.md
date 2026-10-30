@@ -1,5 +1,19 @@
 # Open items — no silent restoration
 
+## 2026-10-30 ownership cleanup — in-game verification
+
+- Retail: confirm Flyout Fix is absent, native EllesmereUI flyouts still match
+  their parent action bars, and no Fafnyir flyout hooks run.
+- Retail: confirm Bags & Inventory is absent from Fafnyir Tools, EllesmereUI's
+  Offline Bank and tooltip item counts work, and the Fafnyir companion controls
+  remain available and functional.
+- Forever: confirm Permanent Companion Pet is absent from Fafnyir Tools and
+  EllesmereUI Forever Essentials restores the selected companion as expected.
+- Forever: confirm Fafnyir Tools Bags & Inventory remains available and its
+  existing cached-character controls and item-location tooltips still work.
+- On both clients, confirm existing dormant SavedVariables survive an ordinary
+  upgrade without being copied into or written over EllesmereUI's databases.
+
 ## v1.1.17 Click-only Center Reticle — in-game test pending
 
 - Enable EllesmereUI QoL > Cursor Circle > Center Reticle, then enable

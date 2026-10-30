@@ -246,14 +246,14 @@ function feature:GetDiagnostics()
         "Click Reticle=" .. OnOff(db.cursorReticle and db.cursorReticle.enabled),
         "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native"),
         "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles),
-        "Inventory=" .. OnOff(db.inventory and db.inventory.enabled),
-        "Inventory Tooltips=" .. OnOff(db.inventory and db.inventory.tooltips),
-        "Permanent Companion Pet=" .. OnOff(db.permanentCompanionPet and db.permanentCompanionPet.enabled),
         "Resting=" .. OnOff(db.resting and db.resting.enabled),
         "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled),
     }
-    if not ns.IS_FOREVER then
-        enabled[#enabled + 1] = "Flyout Fix=" .. OnOff(db.flyoutFix and db.flyoutFix.enabled)
+    if ns.IS_FOREVER then
+        enabled[#enabled + 1] = "Inventory=" .. OnOff(db.inventory and db.inventory.enabled)
+        enabled[#enabled + 1] = "Inventory Tooltips=" .. OnOff(db.inventory and db.inventory.tooltips)
+    else
+        enabled[#enabled + 1] = "Permanent Companion Pet=" .. OnOff(db.permanentCompanionPet and db.permanentCompanionPet.enabled)
     end
 
     local euiOptionsReady = EllesmereUI

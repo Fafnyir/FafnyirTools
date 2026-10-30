@@ -1,5 +1,16 @@
 # Reconciled decisions
 
+## 2026-10-30 — EllesmereUI ownership cleanup
+
+Retire the Flyout Fix completely. Delegate offline inventory and item-count
+tooltips to EllesmereUI Bags on Retail while retaining Fafnyir Tools inventory
+on Forever. Delegate persistent companion-pet summoning to EllesmereUI Forever
+Essentials on Forever while retaining the Fafnyir Tools feature on Retail.
+Preserve all legacy SavedVariables as dormant upgrade data and do not register
+options, runtime callbacks, scanners, or unnecessary events for a delegated
+feature. Focus Header and Leveling Forecast remain because the audit confirmed
+that their Fafnyir behavior is still distinct.
+
 ## 2026-10-18 — BigWigs border test
 
 The user requested a test build with translations for an optional Pixels border

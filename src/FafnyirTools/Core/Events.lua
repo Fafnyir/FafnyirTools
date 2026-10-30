@@ -9,17 +9,21 @@ events:RegisterEvent("PLAYER_LEVEL_UP")
 events:RegisterEvent("PLAYER_REGEN_ENABLED")
 events:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
 events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
-events:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
-events:RegisterEvent("PLAYERBANKSLOTS_CHANGED")
-events:RegisterEvent("BANKFRAME_OPENED")
-events:RegisterEvent("PLAYER_MONEY")
-events:RegisterEvent("BAG_UPDATE_DELAYED")
-events:RegisterEvent("PLAYER_STARTED_MOVING")
-events:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-events:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED")
-events:RegisterEvent("PLAYER_CONTROL_GAINED")
-events:RegisterEvent("PET_JOURNAL_LIST_UPDATE")
-events:RegisterEvent("COMPANION_UPDATE")
+
+if ns.IS_FOREVER then
+    events:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
+    events:RegisterEvent("PLAYERBANKSLOTS_CHANGED")
+    events:RegisterEvent("BANKFRAME_OPENED")
+    events:RegisterEvent("PLAYER_MONEY")
+    events:RegisterEvent("BAG_UPDATE_DELAYED")
+else
+    events:RegisterEvent("PLAYER_STARTED_MOVING")
+    events:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+    events:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED")
+    events:RegisterEvent("PLAYER_CONTROL_GAINED")
+    events:RegisterEvent("PET_JOURNAL_LIST_UPDATE")
+    events:RegisterEvent("COMPANION_UPDATE")
+end
 
 events:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LOGIN" then

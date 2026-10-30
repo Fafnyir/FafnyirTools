@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
 ns={};SlashCmdList={};rows={};prompts={};refreshes=0
+function GetBuildInfo() return '1.60.1','69913','Oct 30 2026',16001 end
 function wipe(t) for k in pairs(t) do t[k]=nil end return t end
 function UnitName() return 'Current' end
 function GetNormalizedRealmName() return 'Realm' end
@@ -57,3 +58,11 @@ assert(d.warband.items[1]==9 and d.guilds.Guild.items[1]==8)
 assert(refreshes==2)
 ''')
 print("PASS inventory targeted removal, confirmations, reset-all, current rescan, and shared-cache preservation")
+
+# Retail delegates offline inventory and item-count tooltips to EllesmereUI Bags.
+retail = LuaRuntime(unpack_returned_tuples=True)
+retail.execute("ns={};SlashCmdList={};function GetBuildInfo() return '12.1.5','1','',120105 end")
+retail.execute((ROOT / "Core/Bootstrap.lua").read_text(), "FafnyirTools", retail.globals().ns)
+retail.execute((ROOT / "Modules/Inventory/Core.lua").read_text(), "FafnyirTools", retail.globals().ns)
+retail.execute("assert(not ns.IS_FOREVER and ns.modules.Inventory==nil and type(FafnyirToolsDB.inventory)=='table')")
+print("PASS Retail inventory ownership delegated to EllesmereUI with legacy settings preserved")

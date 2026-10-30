@@ -29,9 +29,6 @@ ns.defaults = {
         enabled = true,
         initialized = false,
     },
-    flyoutFix = {
-        enabled = true,
-    },
     iconHistoryBorder = {
         enabled = false,
         texture = "pixels",

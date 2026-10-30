@@ -1,5 +1,19 @@
 # Reconciled project changelog
 
+## Unreleased — EllesmereUI ownership cleanup
+
+- Retired the Fafnyir Tools Retail Flyout Fix because EllesmereUI now owns the
+  complete spell-flyout presentation.
+- On Retail, delegated offline character inventory and item-count tooltips to
+  EllesmereUI Bags. Fafnyir Tools inventory tracking remains available on WoW
+  Forever, where the matching EllesmereUI implementation is absent.
+- On WoW Forever, delegated persistent companion-pet summoning to EllesmereUI
+  Forever Essentials. The Fafnyir Tools companion feature remains available on
+  Retail, where EllesmereUI does not provide that replacement.
+- Preserved all legacy Fafnyir Tools SavedVariables as dormant data; ordinary
+  upgrades do not erase prior flyout, inventory, or companion preferences.
+- Removed inactive client-specific event subscriptions and diagnostics entries.
+
 ## v1.1.18 — Chinese localization completion
 
 - Integrated Yilang's reviewed Simplified and Traditional Chinese translations

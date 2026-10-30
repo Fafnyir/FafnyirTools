@@ -1,6 +1,11 @@
 local ADDON_NAME, ns = ...
 local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 
+-- EllesmereUI Forever Essentials owns companion-pet persistence on Forever.
+-- Leave the legacy SavedVariables untouched and keep this implementation for
+-- Retail, where the matching EllesmereUI feature is not available.
+if ns.IS_FOREVER then return end
+
 local feature = {
     key = "PermanentCompanionPet",
     page = T("CORE.QOL"),

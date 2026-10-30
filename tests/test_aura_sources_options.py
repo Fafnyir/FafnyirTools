@@ -82,7 +82,7 @@ for p in root.rglob('*.lua'): compile(p.read_text())
 
 l=runtime()
 run=l.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
-for n in ['Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua']:
+for n in ['Modules/RightClickSelfCast.lua']:
  run((root/n).read_text(),l.globals().ns)
 l.execute('''
 for _,key in ipairs({'About','GlobalSettings','ForeverFog','PermanentCompanionPet','LevelingForecast','FocusHeader','SharedArtwork','Resting','IconHistoryBorder','BigWigsBorder','CursorReticle','DeviceLayout','Inventory'}) do
@@ -109,42 +109,13 @@ EllesmereUI.Widgets.DualRow=function(_,parent,y,left,right)
  rows[#rows+1]={left,right}; return {},40
 end
 rows={}; local bottom=config.buildPage('Action Bars',{},-12)
-assert(#headers==2 and #rows==2 and bottom==132)
-assert(headers[2]=='FLYOUT FIX' and rows[2][1].getValue()==true)
--- Existing saved choices survive adding defaults.
-FafnyirToolsDB.flyoutFix.enabled=false
-ns:InitializeDatabase()
-assert(not FafnyirToolsDB.flyoutFix.enabled)
+assert(#headers==1 and #rows==1 and bottom==72)
 headers={}; rows={}; previousY=nil
 bottom=config.buildPage('Unit Frames',{},-12)
 assert(headers[1]=='AURA SKINS')
 assert(bottom>0 and bottom==-previousY)
 assert(rows[1][1].text=='Enable Target Aura Skins')
 local terms={}; for _,v in ipairs(config.searchTerms) do terms[v]=true end
-assert(terms['aura skins'] and terms['flyout fix'] and not terms['bar art'] and not terms['frame source'])
+assert(terms['aura skins'] and not terms['flyout fix'] and not terms['bar art'] and not terms['frame source'])
 ''')
 print('PASS deduplicated pages, retired options absent, active layout offsets and search terms')
-# Flyout Fix is a Retail compatibility shim. Forever must not expose it or
-# install any SpellFlyout hooks/retry timers, and must preserve the Retail choice.
-flyout_source=' '.join((root/'Modules/FlyoutButtonMatch.lua').read_text().split())
-assert 'button and button:IsShown() and button:IsObjectType("CheckButton")' in flyout_source
-forever=LuaRuntime(unpack_returned_tuples=True)
-forever.execute('''
-ns={};SlashCmdList={};timers=0;hooks=0
-function GetBuildInfo() return '1.60.1','69913','Sep 27 2026',16001 end
-C_Timer={After=function() timers=timers+1 end}
-SpellFlyout={HookScript=function() hooks=hooks+1 end}
-EllesmereUI={Widgets={}}
-''')
-frun=forever.eval('function(s,ns) assert(loadstring(s))("FafnyirTools",ns) end')
-frun((root/'Core/Bootstrap.lua').read_text(),forever.globals().ns)
-frun((root/'Modules/FlyoutButtonMatch.lua').read_text(),forever.globals().ns)
-forever.execute('''
-local f=ns.modules.FlyoutButtonMatch
-assert(ns.IS_FOREVER and #f.searchTerms==0)
-ns:GetDatabase().flyoutFix.enabled=false
-f:Initialize();f:HandleEvent('PLAYER_ENTERING_WORLD');f:Refresh()
-assert(f:BuildOptions({},-37)==37 and timers==0 and hooks==0)
-f:Reset();assert(ns:GetDatabase().flyoutFix.enabled==false)
-''')
-print('PASS Flyout Fix remains Retail-only and inert on Forever')

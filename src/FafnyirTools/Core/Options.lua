@@ -7,24 +7,18 @@ ns.Options = options
 local retryTicker
 
 local function OrderedFeatures()
-    return {
-        ns.modules.GlobalSettings,
-        ns.modules.About,
-        ns.modules.ForeverFog,
-        ns.modules.PermanentCompanionPet,
-        ns.modules.LevelingForecast,
-        ns.modules.FocusHeader,
-        ns.modules.SharedArtwork,
-        ns.modules.AuraSkins,
-        ns.modules.Resting,
-        ns.modules.RightClickSelfCast,
-        ns.modules.FlyoutButtonMatch,
-        ns.modules.IconHistoryBorder,
-        ns.modules.BigWigsBorder,
-        ns.modules.CursorReticle,
-        ns.modules.Inventory,
-        ns.modules.DeviceLayout,
+    local order = {
+        "GlobalSettings", "About", "ForeverFog", "PermanentCompanionPet",
+        "LevelingForecast", "FocusHeader", "SharedArtwork", "AuraSkins",
+        "Resting", "RightClickSelfCast", "IconHistoryBorder",
+        "BigWigsBorder", "CursorReticle", "Inventory", "DeviceLayout",
     }
+    local features = {}
+    for _, key in ipairs(order) do
+        local feature = ns.modules[key]
+        if feature then features[#features + 1] = feature end
+    end
+    return features
 end
 
 local function BuildPage(pageName, parent, yOffset)

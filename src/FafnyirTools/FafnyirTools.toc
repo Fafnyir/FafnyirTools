@@ -22,7 +22,6 @@ Modules\PermanentCompanionPet.lua
 Modules\LevelingForecast.lua
 Modules\Resting.lua
 Modules\RightClickSelfCast.lua
-Modules\FlyoutButtonMatch.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua
 Modules\CursorReticle.lua

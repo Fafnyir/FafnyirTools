@@ -21,7 +21,6 @@ lua.execute(
         permanentCompanionPet={enabled=false},
         xpBar={enabled=false,questEnabled=true,restedEnabled=true},
         resting={enabled=true}, rightClickSelfCast={enabled=true},
-        flyoutFix={enabled=true},
     }
     C_AddOns = {
         IsAddOnLoaded=function(name) return name == "EllesmereUI" or name == "FafnyirMedia" end,
@@ -62,7 +61,9 @@ lua.execute(
     assert(not string.find(report,"Quest XP=",1,true))
     assert(not string.find(report,"Rested XP=",1,true))
     assert(not string.find(report,"XP Gradient=",1,true))
-    assert(string.find(report,"Flyout Fix=on",1,true))
+    assert(not string.find(report,"Flyout Fix=",1,true))
+    assert(not string.find(report,"Inventory=",1,true))
+    assert(string.find(report,"Permanent Companion Pet=off",1,true))
     assert(string.find(report,"BigWigs Border=off",1,true))
     assert(string.find(report,"Click Reticle=off",1,true))
     assert(not string.find(report,"character",1,true))

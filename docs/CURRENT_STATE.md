@@ -1,4 +1,22 @@
-# Current state — v1.1.18 Chinese localization maintenance, 2026-10-23
+# Current state — post-v1.1.18 ownership cleanup, 2026-10-30
+
+## Unreleased — EllesmereUI 9.7 ownership cleanup
+
+At the user's direction on 2026-10-30, three overlapping integrations were
+retired or narrowed after comparing the installed EllesmereUI 9.7 source and
+public release history. The Retail Flyout Fix is removed completely. Retail now
+leaves offline character inventory and item-count tooltips to EllesmereUI Bags;
+Fafnyir Tools retains that feature on Forever. Forever now leaves persistent
+companion-pet summoning to EllesmereUI Forever Essentials; Fafnyir Tools retains
+its companion feature on Retail.
+
+The old `flyoutFix`, `inventory`, and `permanentCompanionPet` SavedVariables are
+not deleted or rewritten during an ordinary upgrade. Flavor guards run before
+feature registration, so the delegated feature has no options, scanners,
+summoning callbacks, or diagnostics entry on that client. Core event
+subscriptions are also flavor-scoped. Offline validation passes; Retail and
+Forever in-game confirmation remains pending. Version remains v1.1.18 until the
+user explicitly authorizes a version change.
 
 ## v1.1.18 — Chinese localization completion
 

@@ -24,7 +24,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Identity/integration | Fafnyir Tools for EllesmereUI; requires EllesmereUI and FafnyirMedia; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
 | Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, left/right placement, size and offsets; drawn above frame border | Present |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle; secure attributes follow paging without action-slot/binding event refreshes | Present |
-| Flyout Fix | Retail only: preserve Blizzard's native pooled-button geometry and flyout background while fitting the parent action bar's EllesmereUI border style/color to each button; restore tracked presentation when inactive and preserve the saved toggle. Hidden and inactive on Forever, where EllesmereUI handles flyouts natively | Present; replacement requires in-game confirmation |
+| Flyout Fix | Retired on both clients; EllesmereUI owns spell-flyout presentation. Legacy SavedVariables remain untouched | Removed after EllesmereUI 9.7 audit |
 | Icon History border | Default-off persistent toggle under QoL for EllesmereUI Damage Meter Icon History, with a live dropdown of all EllesmereUI border styles; Pixels is initially selected | Present; offline-tested, in-game confirmation pending |
 | BigWigs border | Default-off choice of all current EllesmereUI borders on BigWigs timer bars, attached spell icons and normal message icons; Pixels default; message borders follow icon fades; shared 0–10 spacing moves bar bodies from fixed icons/indicators and separates message icons from text; leaves profiles and nameplate icons untouched | v1.1.17 test; initial bar border confirmed in game, revised scope pending |
 | Click-only Center Reticle | Default-off QoL toggle that shows EllesmereUI's enabled Center Reticle only while the left or right mouse button is held; preserves EllesmereUI's own reticle preference, color, opacity and size | v1.1.17 test; offline-tested, in-game confirmation pending |
@@ -36,13 +36,15 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | FafnyirMedia role icons | Default-off Party/Raid-only artwork replacement; preserve native role filters, visibility, sizing and positioning; exclude main and extra frames | Present; offline-tested; Party and Raid confirmed by user 2026-10-03 |
 | Status textures | Hide relevant Blizzard Target/Focus status textures without adding a toggle | Present |
 | Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
-| Inventory | Character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names; targeted cached-alt removal and confirmed Reset All Characters; omit redundant Fafnyir Tools tooltip heading | Present foundation |
+| Inventory | Forever only: character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names, targeted cached-alt removal and Reset All Characters. Retail delegates offline inventory and tooltip counts to EllesmereUI Bags | Present on Forever; retired on Retail |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
-| Persistent Companion Pet | Per-character specific/random favorite companion (not combat-pet frame persistence), shared enable/safety controls; QoL category; retain credit | Restored in consolidated v1.1.2; offline tests pass |
+| Persistent Companion Pet | Retail only: per-character specific/random favorite companion with safety controls. Forever delegates the equivalent behavior to EllesmereUI Forever Essentials; retain historical credit and legacy data | Present on Retail; retired on Forever |
 | Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; follows the guarded Midnight 80–90 XP curve and falls back to next-level overflow if the live current-level requirement changes; never touches EllesmereUI's XP bar | v1.1.16 test; offline-tested, in-game confirmation pending |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 
-Current options pages: About, QoL, Unit Frames (including Aura Skins and Resting), Action Bars, Bags & Inventory, Layouts.
+Current options pages: About, QoL, Unit Frames (including Aura Skins and
+Resting), Action Bars, and Layouts. Bags & Inventory is additionally present on
+Forever; Retail uses EllesmereUI Bags for the equivalent feature.
 
 Retired in v1.1.5: Blizzard Bar Art and Unit Frame Sources are now provided by
 EllesmereUI. Their FafnyirTools modules, options, defaults, export/import schema,

@@ -92,18 +92,25 @@ assert(summons[#summons]=='forever-one')
 local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_PetJournal=saved
 ''')
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')
+# Forever delegates companion persistence to EllesmereUI Forever Essentials.
+forever=LuaRuntime(unpack_returned_tuples=True)
+forever.execute("ns={};SlashCmdList={};function GetBuildInfo() return '1.60.1','1','',16001 end")
+forever.execute((ROOT/'Core/Bootstrap.lua').read_text(),'FafnyirTools',forever.globals().ns)
+forever.execute((ROOT/'Modules/PermanentCompanionPet.lua').read_text(),'FafnyirTools',forever.globals().ns)
+forever.execute("assert(ns.IS_FOREVER and ns.modules.PermanentCompanionPet==nil and type(FafnyirToolsDB.permanentCompanionPet)=='table')")
+print('PASS Forever companion ownership delegated to EllesmereUI with legacy settings preserved')
 # Real metadata from all features; no fake feature slots in this registration check.
 for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/LevelingForecast.lua','Modules/FocusHeader.lua','Modules/SharedArtwork.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
-             'Modules/RightClickSelfCast.lua','Modules/FlyoutButtonMatch.lua','Modules/IconHistoryBorder.lua',
+             'Modules/RightClickSelfCast.lua','Modules/IconHistoryBorder.lua',
 	             'Modules/BigWigsBorder.lua','Modules/CursorReticle.lua',
              'Modules/Inventory/Core.lua','Modules/DeviceLayout.lua']:
     load(path)
 l.execute('ns.Sidebar={Install=function() return true end}')
 load('Core/Options.lua')
 l.execute('''
-assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','Bags & Inventory','Layouts'}
-assert(#config.pages==#expected);for i,p in ipairs(expected) do assert(config.pages[i]==p,p) end
-rows={};assert(config.buildPage('QoL',{},0)==620 and #rows==22)
+assert(ns.Options:Register());local expected={'About','QoL','Unit Frames','Action Bars','Layouts'}
+assert(#config.pages==#expected,'pages '..#config.pages..' '..table.concat(config.pages,','));for i,p in ipairs(expected) do assert(config.pages[i]==p,p) end
+rows={};local qolHeight=config.buildPage('QoL',{},0);assert(qolHeight==620 and #rows==22,'qol '..qolHeight..' rows '..#rows)
 -- Restored About history wraps without assuming a fixed 22-pixel text height.
 fonts={}
 function EllesmereUI.MakeFont()

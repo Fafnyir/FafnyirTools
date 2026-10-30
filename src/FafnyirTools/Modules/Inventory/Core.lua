@@ -1,5 +1,10 @@
 local ADDON_NAME, ns = ...
 local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
+
+-- EllesmereUI Bags owns offline bags/banks and item-count tooltips on Retail.
+-- Keep the legacy SavedVariables untouched and retain Fafnyir tracking only on
+-- Forever, where EllesmereUI's Retail offline-bank implementation is absent.
+if not ns.IS_FOREVER then return end
 local feature = {
     key="Inventory", page=T("CORE.BAGS_INVENTORY"),
     searchTerms={"bags","inventory","bank","warband","items","gold","mail","auctions","guild","currencies"},

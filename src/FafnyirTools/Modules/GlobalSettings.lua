@@ -18,7 +18,6 @@ local MAX_ENTRIES = 2000
 -- per-character companion choices and machine-specific Edit Mode layouts do not.
 local SCHEMA = {
     foreverFog = { enabled = true },
-    flyoutFix = true,
     iconHistoryBorder = true,
     bigWigsBorder = true,
     cursorReticle = true,
