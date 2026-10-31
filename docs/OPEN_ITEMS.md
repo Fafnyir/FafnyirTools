@@ -1,225 +1,96 @@
-# Open items — no silent restoration
+# Open items — current only
 
-## 2026-10-30 ownership cleanup — in-game verification
+This file lists actionable follow-up work and intentionally deferred product
+scope. Confirmed releases, superseded test attempts, retired features and
+historical implementation notes belong in `CURRENT_STATE.md`, `DECISIONS.md`
+or `CHANGELOG.md`, not here.
 
-- Retail: confirm Flyout Fix is absent, native EllesmereUI flyouts still match
-  their parent action bars, and no Fafnyir flyout hooks run.
-- Retail: confirm Bags & Inventory is absent from Fafnyir Tools, EllesmereUI's
-  Offline Bank and tooltip item counts work, and the Fafnyir companion controls
-  remain available and functional.
-- Forever: confirm Permanent Companion Pet is absent from Fafnyir Tools and
-  EllesmereUI Forever Essentials restores the selected companion as expected.
-- Forever: confirm Fafnyir Tools Bags & Inventory remains available and its
-  existing cached-character controls and item-location tooltips still work.
-- On both clients, confirm existing dormant SavedVariables survive an ordinary
-  upgrade without being copied into or written over EllesmereUI's databases.
+## v1.1.19 client-specific verification
 
-## v1.1.17 Click-only Center Reticle — in-game test pending
+The user reported that test build `8247f07` ran without errors and authorized
+the v1.1.19 release. The exact client coverage was not supplied, so these are
+useful follow-up checks rather than release blockers:
 
-- Enable EllesmereUI QoL > Cursor Circle > Center Reticle, then enable
-  FafnyirTools QoL > Reticle Only While Clicking.
-- Confirm the dot is hidden at rest, visible while either left or right mouse
-  button is held, and hides after the last held button is released.
-- Confirm the cursor circle, native visibility rules, color, opacity and size
-  remain unchanged, including in combat and while turning the camera.
-- Disable the FafnyirTools option and confirm EllesmereUI's normal always-shown
-  Center Reticle returns immediately. Confirm reload persistence and reset.
-- Yilang's returned `zhCN` and `zhTW` wording for the four Center Reticle strings
-  was integrated on 2026-10-23. Chinese-client layout confirmation remains.
-- Initial build `1bea7c9` failed its prerequisite check because it read one DB
-  level too deep. User-confirmed build `de4f128` recognizes the enabled native
-  Center Reticle and the click-only behavior works perfectly in game.
+- Retail: confirm Fafnyir Tools has no Flyout Fix or Bags & Inventory page,
+  EllesmereUI owns both surfaces, and the Fafnyir companion controls remain.
+- Forever: confirm Fafnyir Tools has no companion-pet controls, EllesmereUI
+  Forever Essentials owns pet persistence, and Fafnyir Bags & Inventory remains.
+- On both clients, confirm an ordinary upgrade leaves dormant legacy flyout,
+  inventory and companion SavedVariables untouched.
+- Confirm CurseForge file `9376718` is publicly available after moderation.
+- Verify or manually update the independently hosted Wago release; the current
+  release workflow publishes only GitHub and CurseForge.
 
-## v1.1.17 BigWigs Border — test build
+## Runtime coverage worth retaining
 
-- User confirmed build `233c90c` works in game on 2026-10-18. This confirms the
-  global Messages-frame discovery reaches and borders the normal message icons.
-- Detailed checks of every border style, right-positioned bar icons, fade alpha,
-  reload persistence and combat safety remain useful before final release.
-- User confirmed reload-confirmation build `ee4fc67` works perfectly in game on
-  2026-10-18. Toggle and Border Style are intentionally reload-applied; Content
-  Spacing remains live. Earlier live-refresh experiments are superseded.
+These features have passed offline validation and received the user
+confirmations recorded in `CURRENT_STATE.md`. The cases below are additional
+coverage, not evidence of a known defect.
 
-- Enable the default-off toggle under QoL and start BigWigs test bars. Confirm
-  Pixels borders appear on both timer bars and attached spell icons.
-- Test normal and emphasized bars, icons on either side, bars without icons,
-  UI reload persistence, disabling while bars are visible, and combat safety.
-- Test Content Spacing from 0–10 with left- and right-positioned icons; verify
-  the icon/indicators remain fixed, the complete bar body moves, zero matches
-  native placement, and disabling restores the original geometry.
-- Exercise every border returned by the installed EllesmereUI dropdown,
-  including behind-layer styles, on normal and emphasized BigWigs bars.
-- Trigger normal BigWigs messages with and without icons. Confirm all four
-  pooled message icons receive the selected border, fade cleanly with the icon,
-  reuse correctly, and follow Content Spacing without shifting text. Emphasized sink icons that
-  are embedded directly in text remain outside this test scope.
-- Historical test builds `752112e` and `109ee90` failed message-icon discovery;
-  `233c90c` supersedes them and is user-confirmed.
-- Confirm the style-safe anchor snapshot removes the reported text overlap in
-  the BigWigs test-bar style shown in the 2026-10-18 screenshot.
-- Confirm BigWigs nameplate icons and its saved profile remain unchanged.
-- Yilang's returned `zhCN` and `zhTW` wording for all seven BigWigs Border and
-  Content Spacing strings was integrated on 2026-10-23. Chinese-client layout
-  confirmation remains.
+### BigWigs borders
 
-## v1.1.16 Leveling Forecast to 90 — in-game test pending
+- Exercise normal and emphasized timer bars, icons on both sides, bars without
+  icons, message-icon fading and pooled reuse.
+- Check every currently offered EllesmereUI border style, including styles
+  drawn behind content.
+- Confirm spacing zero and disabling restore native geometry, BigWigs
+  nameplate icons stay untouched, and no saved BigWigs profile value changes.
+- Repeat during combat to check for protected-action or taint errors.
 
-- User screenshot on 2026-10-18 confirms build `b72b994` projects level 81 at
-  98.8% plus 604,313 quest XP to **Level 83 — 33.6%**.
-- Confirm projections at exact level boundaries, across several levels and at
-  level 90. Confirm a changed current-level requirement produces the guarded
-  one-level overflow fallback rather than a false multi-level result.
-- The same screenshot confirms the two guidance messages render on separate
-  rows without overlap.
+### Leveling Forecast
 
-## v1.1.15 Leveling Forecast — user confirmed
+- Verify exact level boundaries, projections spanning several levels and the
+  level-90 cap.
+- If Blizzard changes the XP curve, confirm the guarded one-level overflow
+  fallback appears instead of a false multi-level estimate.
 
-- User reported “Testing passes” on 2026-10-18 and authorized release. Client,
-  EllesmereUI version and detailed scenarios were not supplied.
-- Exhaustive no-bonus, mixed-bonus, overflow, maximum-level and disabled-XP
-  coverage remains separate from that confirmation.
-- Yilang's reviewed `zhCN` and `zhTW` translations for all twelve strings were
-  integrated on 2026-10-19. Chinese-client layout and terminology confirmation
-  remain pending before a future release.
+### Shared artwork and diagnostics
 
-## Chinese localization
+- Check SharedMedia target arrows through target changes and nameplate pool
+  reuse, including native restoration when disabled or media is unavailable.
+- Check Tank, Healer and DPS replacement artwork in both Party and Raid while
+  preserving EllesmereUI visibility, size, position and combat rules.
+- Confirm the About-page diagnostics popup copies the complete privacy-safe
+  report on both Retail and Forever and reports only active flavor features.
 
-- Final volunteer translations were received for both `zhCN` and `zhTW` and
-  integrated into the v1.1.14 source. Automated locale and regression
-  checks pass.
-- Verify both Chinese clients in game: font glyph coverage, page navigation,
-  options layout, wrapping, dropdown widths, confirmation dialogs, chat
-  feedback and inventory tooltips.
-- Review the few dynamic English sentences not represented in the worksheet,
-  plus About changelog/credits and the support diagnostics body, for a later
-  translated pass. Do not invent or machine-translate these strings.
-- A second fluent reviewer has not been recorded. Capture any terminology or
-  truncation corrections from the volunteer during in-game testing.
-- Translator **Yilang** returned six `zhCN` and one `zhTW` wording refinements.
-  Record any later client-locale screenshots, truncation reports or corrections.
+### Chinese localization
 
-## 2026-10-14 Retail interface 120105 — in-game check pending
+- On native `zhCN` and `zhTW` clients, check glyph coverage, wrapping, control
+  widths, dropdowns, confirmation dialogs and current feature terminology.
+- Keep Yilang's reviewed strings authoritative. Any new strings should receive
+  a first-pass translation marked **Needs Review** until a fluent reviewer
+  verifies terminology and in-game fit.
+- About history, credits, diagnostics and dynamic English sentences remain a
+  possible future translation pass.
 
-- Confirm the updated package loads without the out-of-date warning on Retail
-  12.1.5 and that the Fafnyir Tools options remain available.
+## Explicitly deferred product work
 
-## 2026-10-11 resting indicator side — user confirmed
+### Cross-character inventory search — v2.0.0
 
-- User reported “Tests fine” for build `23df736` and authorized release.
-- Client/EllesmereUI versions and detailed Right/Left, reload, reset and global
-  transfer scenarios were not supplied, so this is confirmation rather than an
-  exhaustive regression matrix.
+The broader inventory project remains deferred to v2.0.0. Start with reliable
+cached character bags and personal banks, asynchronous item metadata, sorting
+and cache-age reporting. Mail, auction, Warband and guild scanners require
+separate API validation and are not implied by the initial search scope.
 
-## 2026-10-08 name-format retirement — in-game check pending
+Retail now delegates offline inventory to EllesmereUI Bags. Re-evaluate the
+need for a separate Fafnyir search interface against EllesmereUI's current
+capabilities before starting v2.0.0.
 
-- Confirm the FafnyirTools First/Last/Whole Name option is absent.
-- Confirm EllesmereUI controls the intended name format on main, Party, Raid,
-  Nameplate and any other supported frames after reload.
-- Confirm no duplicate formatting or surname interference remains on Forever.
+### Focus aura styling
 
-## 2026-10-06 XP retirement — in-game check pending
+Custom Focus aura containers are not implemented. The existing Focus reaction
+header is a separate supported feature. Add Focus aura styling only after a new
+explicit request and a fresh comparison with EllesmereUI.
 
-- Verify XP & Progression is absent and the native EUI XP/quest bar works after
-  replacing the addon folder and reloading. Existing native settings stay native.
-- Previous FafnyirTools XP-specific QA items below are historical, superseded by
-  full retirement. Test build 46971a5 used v1.1.9; the released version is v1.1.10.
+### Volumetric fog
 
+The Forever fog control remains dormant because Blizzard restores `volumeFog`
+after it is changed. Reconsider it only if Blizzard exposes a supported,
+persistent setting.
 
-## 2026-10-05 XP ownership cleanup — user confirmed
+### Reset / Disable All redesign
 
-- User confirmed appearance and testing with afd5d0c and supplied a screenshot
-  showing all three XP segments. Detailed test scenarios/client versions were
-  not supplied; exhaustive reload/combat/turn-in coverage remains separate.
-
-## 2026-10-04 XP layering — user confirmed
-
-- User confirmed the new layering looks better after testing `aa4b028` and
-  requested a release. Detailed turn-in and level-boundary scenarios remain
-  separate manual checks; this is visual confirmation of the new order.
-
-
-## SharedMedia arrows and Party/Raid role artwork — in-game verification
-
-- User confirmed arrows work on 2026-10-03 with `8def225`; detailed client
-  scenarios remain pending. Confirm Tank/DPS/Healer/Combat are absent from
-  the corrected arrow selector.
-- Confirm both new Unit Frames controls fit the options page on Retail/Forever.
-- Enable EUI target arrows, select - Arrow Glow and confirm inward direction,
-  native scale/color/position and updates after target changes and pool reuse.
-- Switch back to native artwork and test missing registered media fallback.
-- User confirmed Party role-icon toggle and subsequently Raid role icons on
-  2026-10-03. Tested revision and client/EUI versions were not supplied.
-- Detailed scenario coverage remains pending: check Tank/Healer/DPS in both groups,
-  native role filters, combat visibility, size and offsets. Disable it and
-  verify native artwork returns. Main unit frames and extra frames stay native.
-- Test reload persistence, global settings transfer and combat taint in game.
-
-## v1.1.6 diagnostics in-game verification
-
-- Confirm the About-page **Copy Diagnostics** row is aligned and visible.
-- Confirm the native copy popup selects/copies the complete report on Retail
-  and Forever.
-- Review a copied report to confirm the live client, dependency versions and
-  enabled feature states match the test installation.
-
-## Forever fog toggle hidden in v1.1.5
-
-- User decision, 2026-09-26: the Forever-only **Volumetric Fog** toggle is
-  hidden for v1.1.5.
-- Blizzard now overrides the `volumeFog 0` console setting after it is applied;
-  players report that fog changes for only a moment and then returns. The
-  former control was therefore misleading even though FafnyirTools persisted
-  and reapplied its saved choice.
-- The implementation is dormant rather than presenting a nonfunctional
-  option. Reconsider it only if Blizzard exposes a supported, persistent fog
-  setting in a later client build.
-
-## WoW Forever beta validation
-
-- Do not treat the Forever beta package as fully testable until Blizzard fixes
-  SavedVariables persistence and EllesmereUI removes `FOREVER_SV_BUG`.
-- Then verify sidebar/options registration, Unit Frame sources, settings
-  import/reset, Target auras, XP/Rested/Quest overlays, Resting, action-bar
-  behavior, bags/bank/currencies/tooltips and companion summoning in game.
-- The package must remain separate from the Retail installation and release.
-
-## Resolved in consolidated v1.1.2
-
-Persistent Companion Pet, QoL, companion defaults/events/TOC/options, prior
-release history and companion credits are restored. The prior source credited
-raine for the original WeakAura; that existing attribution is retained (not a
-new independent author verification). Eiya credit is retained as well.
-
-Options are consolidated to seven pages with Resting under Unit Frames,
-XP & Progression and Layouts. This preserves later Aura/source and Action Bars
-grouping. Legacy Quest XP setting names now migrate without overwriting newer
-saved values. These changes are offline-tested; the user confirmed “All fixed.” on 2026-08-27. See CURRENT_STATE.md for the exact build and limits of this report.
-
-## 3. Broader inventory functionality
-
-Historical request covered searching all characters, bags, banks, mail, auctions, warband/guild storage, gold/currencies. Current code scans bags, personal bank and currency list and aggregates cached locations; dedicated mail/auction/warband/guild scanners and a search UI are not present. Existing data tables/tooltip labels are not implementation. Keep as a future scope decision; do not advertise complete live tracking.
-
-Roadmap decision, 2026-09-26: full inventory search is deferred to v2.0.0.
-Start with reliable cached character bags and personal banks, asynchronous item
-metadata, result sorting, and cache-age reporting. Mail, auction, Warband, and
-guild scanners remain separate API-validation work and are not automatically
-included merely because the v2.0.0 search project begins.
-
-## 4. Focus aura styling
-
-Focus source control exists. Custom Focus aura containers do not. Treat as a separate feature request if desired.
-
-## 5. Release assurance / backup
-
-Offline mocks do not verify real EUI render layers, combat taint, or every retail API behavior. Follow TESTING.md for releases. No upstream/remote repository or off-machine backup has been configured; local Git and the supplied snapshot only protect against local editing mistakes. Publishing/backing up to a remote requires a separate destination/authorization.
-
-## 6. Historical coverage limits
-
-The main chat was recovered as 204 turns spanning Aug 5–27 from cached paginated reads, including a terminal oldest page and refreshed newest page. Identified local development task texts were consolidated; mixed-topic Website/WoW material is selectively indexed. Binary attachments are not a complete archive, and unrelated chats were not exhaustively read for incidental mentions. No claim is made that inaccessible/deleted/other-account chats have been merged. Use source IDs in HISTORY.md to revisit any missing context.
-
-## 7. Reset / Disable All redesign
-
-The first v1.1.3 implementation was withdrawn after repeated disconnects in the
-test build. Revisit only after the rollback build is stable. Avoid synchronizing
-all source ownership and refreshing every feature inside one live options reset
-callback; stage changes for the next login instead.
+The original combined reset/disable experiment was withdrawn after disconnect
+reports. Do not restore it without a new request. Any redesign should stage
+cross-addon ownership changes for the next login instead of refreshing every
+feature synchronously from one callback.
