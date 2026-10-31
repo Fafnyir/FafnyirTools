@@ -98,6 +98,7 @@ font = ADDON / "Media/NicerDamage.ttf"
 assert font.is_file()
 assert hashlib.sha256(font.read_bytes()).hexdigest() == "fbe683091b0db0faa8f38e5227ad3bc17dc67f119f27ff10a63d72f5f9bb9da3"
 assert (ADDON / "Media/Apache-2.0.txt").is_file()
+assert "'.ttf'" in (ROOT / "tools/package.py").read_text()
 
 schema = (ADDON / "Modules/GlobalSettings.lua").read_text()
 assert "fpsDisplay = { enabled = true, showLatency = true, fontSize = true }" in schema
