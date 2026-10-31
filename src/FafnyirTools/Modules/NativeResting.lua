@@ -165,18 +165,14 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:DualRow(parent, y,
         {
             type = "slider", text = T("UNIT_FRAMES.HORIZONTAL_OFFSET"),
-            min = -500, max = 500, step = 1, resetValue = 0,
+            min = -50, max = 50, step = 1, resetValue = 0,
             disabled = function() return not DB().enabled end,
             getValue = function() return DB().offsetX end,
             setValue = function(value) DB().offsetX = value; feature:ApplyLayout() end,
-        }
-    )
-    y = y - h
-
-    _, h = W:DualRow(parent, y,
+        },
         {
             type = "slider", text = T("UNIT_FRAMES.VERTICAL_OFFSET"),
-            min = -300, max = 300, step = 1, resetValue = 0,
+            min = -50, max = 50, step = 1, resetValue = 0,
             disabled = function() return not DB().enabled end,
             getValue = function() return DB().offsetY end,
             setValue = function(value) DB().offsetY = value; feature:ApplyLayout() end,

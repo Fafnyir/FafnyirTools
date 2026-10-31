@@ -21,8 +21,8 @@
   a safe Blizzard-font fallback.
 - Added explicit horizontal slider thumbs and live numeric value feedback to
   standalone controls.
-- Expanded Native Resting offsets to horizontal +/-500 and vertical +/-300,
-  placed each on a full-width row, and added double-click-to-zero.
+- Added compact Native Resting horizontal and vertical offset controls with a
+  practical +/-50 range and double-click-to-zero.
 
 ## v1.1.20 — Leveling Forecast refresh
 

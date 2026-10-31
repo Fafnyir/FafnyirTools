@@ -18,9 +18,11 @@ the corrected offset controls move the native resting animation. The same test
 showed that standalone slider thumbs lacked explicit horizontal orientation and
 there was no numeric position readout; the shared native slider now declares
 horizontal orientation and displays its live value at the right edge. Screenshot
-testing then showed the original +/-100 offset range was too restrictive. The
-native Resting controls now use full-width rows, horizontal -500 to +500 and
-vertical -300 to +300 ranges, and double-click-to-zero behavior.
+testing then showed the original controls needed clearer feedback. A subsequent
+trial expanded the range and split the axes into full-width rows, but in game
+that made horizontal adjustment far too coarse and pushed Vertical and Reset
+below the visible section. The corrected layout returns both axes to one compact
+row, uses -50 to +50 for each, and retains double-click-to-zero behavior.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

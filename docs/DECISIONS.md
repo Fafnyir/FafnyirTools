@@ -9,10 +9,10 @@ restore the exact original anchors when disabled or reset. Keep the established
 EllesmereUI Resting implementation unchanged and do not register this native
 controller when EllesmereUI is installed.
 
-Use a -500 to +500 horizontal range and -300 to +300 vertical range after the
-first in-game screenshots demonstrated that +/-100 was too restrictive. Give
-each offset a full-width row and allow double-clicking either slider to return
-that axis to zero.
+The expanded -500/+500 and -300/+300 full-width trial was rejected after it made
+horizontal adjustment too coarse and pushed later controls below the visible
+section. Use one compact two-axis row with -50 to +50 on each axis. Preserve
+double-clicking either slider to return that axis to zero.
 
 ## 2026-10-31 — Standalone-capability v2 test
 

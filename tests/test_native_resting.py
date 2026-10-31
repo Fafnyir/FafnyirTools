@@ -82,6 +82,5 @@ assert(PlayerRestLoop.points[1][4]==64 and PlayerRestLoop.points[1][5]==-6)
 print("PASS native resting defaults, offsets, max-level hiding, hook and restoration")
 
 source = (root / "Modules/NativeResting.lua").read_text()
-assert "min = -500, max = 500" in source
-assert "min = -300, max = 300" in source
+assert source.count("min = -50, max = 50") == 2
 assert source.count("resetValue = 0") == 2
