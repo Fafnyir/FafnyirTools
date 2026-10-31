@@ -21,9 +21,25 @@ local function DB()
 end
 
 local function FindActionButton(index)
-    return _G["EABButton" .. index]
+    local euiButton = _G["EABButton" .. index]
         or _G["EllesmereUI_ActionButton" .. index]
         or _G["EUI_ActionButton" .. index]
+    if euiButton then return euiButton end
+
+    local prefixes = {
+        "ActionButton",
+        "MultiBarBottomLeftButton",
+        "MultiBarBottomRightButton",
+        "MultiBarRightButton",
+        "MultiBarLeftButton",
+        "MultiBar5Button",
+        "MultiBar6Button",
+        "MultiBar7Button",
+    }
+    local group = math.floor((index - 1) / 12) + 1
+    local slot = ((index - 1) % 12) + 1
+    local prefix = prefixes[group]
+    return prefix and _G[prefix .. slot]
 end
 
 local function ApplyToButton(button)
@@ -94,7 +110,7 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "toggle",
             text = T("ACTION_BARS.ENABLE_RIGHT_CLICK_SELF_CAST"),
-            tooltip = T("ACTION_BARS.RIGHT_CLICK_A_SPELL_ON_AN_ELLESMEREUI_ACTION_BAR_TO_CAS"),
+            tooltip = T("ACTION_BARS.RIGHT_CLICK_A_SPELL_ON_AN_ACTION_BAR_TO_CAST_IT_ON_YOURSELF"),
             getValue = function()
                 return DB().enabled
             end,

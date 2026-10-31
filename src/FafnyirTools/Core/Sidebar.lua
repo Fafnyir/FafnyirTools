@@ -4,6 +4,9 @@ local sidebar = {}
 ns.Sidebar = sidebar
 
 function sidebar:Install()
+    if not ns.HAS_ELLESMEREUI then
+        return true
+    end
     if not EllesmereUI
         or type(EllesmereUI.ADDON_GROUPS) ~= "table"
         or type(EllesmereUI._addonInfoByFolder) ~= "table"

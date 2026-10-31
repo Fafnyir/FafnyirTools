@@ -1,11 +1,28 @@
 # Feature requirements and actual baseline
 
+## v2.0.0 standalone test availability
+
+| Feature | Standalone | With EllesmereUI |
+| --- | --- | --- |
+| About, diagnostics and global settings | Native Fafnyir Tools window | EllesmereUI sidebar |
+| Leveling Forecast and Refresh | Yes | Yes |
+| Device Layout | Yes | Yes |
+| Right-click self cast | Blizzard action bars | EllesmereUI and supported action bars |
+| Persistent Companion Pet | Retail | Retail |
+| Inventory tracking | Forever | Forever |
+| Resting, Aura Skins, Focus Header | Hidden; requires EllesmereUI frames | Yes |
+| Icon History, BigWigs borders, click reticle | Hidden; requires EllesmereUI APIs | Yes |
+| Shared target/role artwork | Hidden; requires EllesmereUI and media | Yes |
+
+Standalone mode must never delete or rewrite dormant integration settings.
+Installing EllesmereUI later restores the complete integration feature set.
+
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide complete coverage of all 188 current interface
-  strings. Yilang reviewed the strings through v1.1.19; the two v1.1.20 Refresh
-  strings are first-pass translations pending fluent review.
+  Chinese (`zhTW`) provide complete coverage of all 193 current interface
+  strings. Yilang reviewed the strings through v1.1.19; the v1.1.20 Refresh and
+  v2.0.0 standalone strings are first-pass translations pending fluent review.
 - Locale files load before feature modules so localized page names are stable
   when EllesmereUI registers the options pages.
 - Saved values, feature registry keys, export field names and other runtime
@@ -21,7 +38,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 
 | Feature | Baseline contract | Status |
 | --- | --- | --- |
-| Identity/integration | Fafnyir Tools for EllesmereUI; requires EllesmereUI and FafnyirMedia; description “A collection of enhancements for EllesmereUI.”; independent Fafnyir sidebar group; existing category/logo metadata and Patreon link | Present |
+| Identity/integration | Fafnyir Tools; EllesmereUI and FafnyirMedia are optional; standalone description and native window without EUI, independent Fafnyir sidebar group with EUI, existing category and Patreon link | v2.0.0 test |
 | Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, left/right placement, size and offsets; drawn above frame border | Present |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle; secure attributes follow paging without action-slot/binding event refreshes | Present |
 | Flyout Fix | Retired on both clients; EllesmereUI owns spell-flyout presentation. Legacy SavedVariables remain untouched | Removed after EllesmereUI 9.7 audit |

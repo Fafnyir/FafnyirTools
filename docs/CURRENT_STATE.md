@@ -1,4 +1,27 @@
-# Current state — v1.1.20 Leveling Forecast refresh test, 2026-10-31
+# Current state — v2.0.0 standalone-capability test, 2026-10-31
+
+## v2.0.0 test — optional EllesmereUI integration
+
+At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
+and FafnyirMedia from required to optional dependencies. With EllesmereUI
+installed, the existing sidebar, widgets and complete integration feature set
+remain active. Without EllesmereUI, `/faftools` opens a native movable window
+for portable features: About/diagnostics, global settings transfer, Leveling
+Forecast, Device Layout, native action-bar right-click self-cast, Retail
+companion-pet persistence, and Forever inventory tracking.
+
+Resting, Target Aura Skins, Focus Header, Icon History Border, BigWigs Border,
+click-only Center Reticle and Shared Artwork remain EllesmereUI integrations and
+are intentionally not registered in standalone mode. Their saved values remain
+untouched. The standalone window supplies native buttons, toggles, input boxes,
+sliders and compact click-to-cycle selectors; it does not imitate EllesmereUI
+frames or write another addon's settings.
+
+Offline validation passes for the existing integration tests and the new
+standalone dependency, gating and Blizzard action-button contract. Native
+Retail/Forever rendering, settings interaction, popup behavior and action-bar
+combat safety still require in-game testing. This test is not published and
+does not alter the confirmed v1.x release line.
 
 ## v1.1.20 — Leveling Forecast refresh test
 

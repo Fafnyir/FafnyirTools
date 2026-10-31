@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parents[1] / 'src/FafnyirTools'
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
 ns={}; SlashCmdList={}; rows={}; frames={}; timers={}
+C_AddOns={IsAddOnLoaded=function(name) return name=='EllesmereUI' or name=='FafnyirMedia' end}
 function CreateFrame()
  local f={events={}}
  function f:RegisterEvent(e) self.events[e]=true end
@@ -98,5 +99,7 @@ EllesmereUI._ModuleNS={};LibStub=nil;db.arrow='Paired';db.roles=true;f:Refresh()
 ns:InitializeDatabase();assert(db.arrow=='Paired' and db.roles)
 EllesmereUI._ModuleNS.EllesmereUIRaidFrames=erf;f:Refresh()
 assert(d.roleIcon.path:find('Tank',1,true))
+ns.HAS_FAFNYIRMEDIA=false;erf._UpdateRoleIcons()
+assert(d.roleIcon.path=='native-role')
 ''')
 print('PASS SharedMedia arrows, paired/mirrored paths, native restoration, lazy pools, Party/Raid roles, visibility and secret guards')

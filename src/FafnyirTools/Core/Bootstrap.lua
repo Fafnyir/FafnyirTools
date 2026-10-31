@@ -12,6 +12,13 @@ local interfaceVersion = GetBuildInfo and select(4, GetBuildInfo())
 ns.IS_FOREVER = type(interfaceVersion) == "number"
     and interfaceVersion >= 16000
     and interfaceVersion < 20000
+ns.HAS_ELLESMEREUI = C_AddOns
+    and C_AddOns.IsAddOnLoaded
+    and C_AddOns.IsAddOnLoaded("EllesmereUI")
+    or (EllesmereUI ~= nil)
+ns.HAS_FAFNYIRMEDIA = C_AddOns
+    and C_AddOns.IsAddOnLoaded
+    and C_AddOns.IsAddOnLoaded("FafnyirMedia")
 
 function ns:ForeverSavedVariablesUnsafe()
     return self.IS_FOREVER
@@ -132,6 +139,19 @@ function ns:RegisterFeature(key, feature)
         return
     end
 
+    local requiresEllesmereUI = {
+        AuraSkins = true,
+        BigWigsBorder = true,
+        CursorReticle = true,
+        FocusHeader = true,
+        IconHistoryBorder = true,
+        Resting = true,
+        SharedArtwork = true,
+    }
+    if not self.HAS_ELLESMEREUI and requiresEllesmereUI[key] then
+        return
+    end
+
     self.modules[key] = feature
 end
 
@@ -158,12 +178,14 @@ ns:InitializeDatabase()
 
 SLASH_FAFNYIRTOOLS1 = "/faftools"
 SlashCmdList["FAFNYIRTOOLS"] = function()
-    if EllesmereUI and EllesmereUI.NavigateToElementSettings then
+    if not ns.HAS_ELLESMEREUI and EllesmereUI and EllesmereUI.ToggleOptions then
+        EllesmereUI:ToggleOptions()
+    elseif EllesmereUI and EllesmereUI.NavigateToElementSettings then
         EllesmereUI:NavigateToElementSettings(ns.MODULE_KEY, T("CORE.UNIT_FRAMES"))
     elseif EllesmereUI and EllesmereUI.ToggleOptions then
         EllesmereUI:ToggleOptions()
     else
-        ns:Print(T("CORE.ELLESMEREUI_OPTIONS_ARE_NOT_AVAILABLE_YET"))
+        ns:Print(T("CORE.OPTIONS_ARE_NOT_AVAILABLE_YET"))
     end
 end
 
@@ -185,6 +207,7 @@ SlashCmdList["FAFNYIRTOOLSDEBUG"] = function()
     print("  WoW Forever client: " .. (ns.IS_FOREVER and "yes" or "no"))
     print("  SavedVariables reliable: " .. (ns:ForeverSavedVariablesUnsafe() and "no (beta client bug)" or "yes"))
     print("  EllesmereUI loaded: " .. (euiLoaded and "yes" or "no"))
+    print("  FafnyirMedia loaded: " .. (ns.HAS_FAFNYIRMEDIA and "yes" or "no"))
     print("  EllesmereUI options API: " .. (apiReady and "ready" or "missing"))
     print("  Sidebar entry: " .. (sidebarEntry and "installed" or "missing"))
     print("  Options registered: " .. (ns.state.optionsRegistered and "yes" or "no"))

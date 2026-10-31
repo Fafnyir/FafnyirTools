@@ -56,7 +56,9 @@ local function BuildConfig()
 
     return {
         title = T("CORE.FAFNYIR_TOOLS"),
-        description = T("CORE.A_COLLECTION_OF_ENHANCEMENTS_FOR_ELLESMEREUI"),
+        description = ns.HAS_ELLESMEREUI
+            and T("CORE.A_COLLECTION_OF_ENHANCEMENTS_FOR_ELLESMEREUI")
+            or T("CORE.STANDALONE_DESCRIPTION"),
         pages = pages,
         searchTerms = searchTerms,
         buildPage = BuildPage,
@@ -100,6 +102,19 @@ function options:Register()
     end
 
     _G.FafnyirTools_PendingOptionsConfig = BuildConfig()
+
+    if not ns.HAS_ELLESMEREUI then
+        local ok, registrationError = pcall(EllesmereUI.RegisterModule, EllesmereUI,
+            "FafnyirTools", _G.FafnyirTools_PendingOptionsConfig)
+        _G.FafnyirTools_PendingOptionsConfig = nil
+        if not ok then
+            ns:Print(T("CORE.OPTIONS_REGISTRATION_ERROR") .. " " .. tostring(registrationError))
+            return false
+        end
+        ns.state.optionsRegistered = true
+        if retryTicker then retryTicker:Cancel(); retryTicker = nil end
+        return true
+    end
 
     local bridge, bridgeError = loadstring(
         "local c = _G.FafnyirTools_PendingOptionsConfig; "

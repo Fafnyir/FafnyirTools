@@ -37,7 +37,9 @@ lua.execute(
         end,
     }
     ns = {
-        modules={}, state={optionsRegistered=true}, IS_FOREVER=false,
+        modules={AuraSkins={},DeviceLayout={},FocusHeader={},IconHistoryBorder={},BigWigsBorder={},
+            CursorReticle={},SharedArtwork={},Resting={},RightClickSelfCast={},PermanentCompanionPet={}},
+        state={optionsRegistered=true}, IS_FOREVER=false, HAS_ELLESMEREUI=true,
         RegisterFeature=function(self,key,feature) self.modules[key]=feature end,
         GetDatabase=function() return FafnyirToolsDB end,
         ForeverSavedVariablesUnsafe=function() return false end,
@@ -51,7 +53,8 @@ lua.execute(ABOUT.read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(
     r'''
     local report=ns.modules.About:GetDiagnostics()
-    assert(string.find(report,"Addon: v1.1.20",1,true))
+    assert(string.find(report,"Addon: v2.0.0",1,true))
+    assert(string.find(report,"Mode: EllesmereUI integration",1,true))
     assert(string.find(report,"Flavor: Retail",1,true))
     assert(string.find(report,"Client: 12.1.5",1,true))
     assert(string.find(report,"Build: 65432",1,true))

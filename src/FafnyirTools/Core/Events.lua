@@ -27,7 +27,7 @@ end
 
 events:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LOGIN" then
-        if ns.Sidebar then
+        if ns.HAS_ELLESMEREUI and ns.Sidebar then
             ns.Sidebar:Install()
         end
 

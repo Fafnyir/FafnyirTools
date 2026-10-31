@@ -5,6 +5,20 @@ scope. Confirmed releases, superseded test attempts, retired features and
 historical implementation notes belong in `CURRENT_STATE.md`, `DECISIONS.md`
 or `CHANGELOG.md`, not here.
 
+## v2.0.0 standalone-capability test
+
+- Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
+  toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
+- Test with EllesmereUI installed to confirm the full v1.x integration surface
+  and saved settings remain unchanged.
+- Exercise Blizzard native action bars before, during and after combat; confirm
+  paging and disabling right-click self-cast restore expected behavior.
+- Confirm installing/removing optional FafnyirMedia produces no load error.
+- Have Yilang review the five new standalone-mode strings and check native
+  window wrapping on `zhCN` and `zhTW` clients.
+- Release automation still uses the v1.x `for_EllesmereUI` artifact identity;
+  update it only if the standalone design is accepted for release.
+
 ## v1.1.20 Leveling Forecast refresh test
 
 - The user reported that build `2184a77` passes in-game testing on 2026-10-31.

@@ -58,6 +58,7 @@ local function Frame()
 end
 
 CreateFrame = function() return Frame() end
+EllesmereUI = {}
 EllesmereUIUnitFrames_Player = Frame()
 '''
 )

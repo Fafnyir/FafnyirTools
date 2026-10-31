@@ -1,5 +1,20 @@
 # Reconciled project changelog
 
+## v2.0.0 Test — Standalone capability
+
+- Made EllesmereUI and FafnyirMedia optional rather than required dependencies.
+- Added a native movable settings window opened with `/faftools` when
+  EllesmereUI is not installed.
+- Standalone mode provides About/diagnostics, global settings transfer,
+  Leveling Forecast, Device Layout, native action-bar right-click self-cast,
+  Retail companion-pet persistence, and Forever inventory tracking.
+- Installing EllesmereUI continues to use its native options integration and
+  restores the complete EllesmereUI-specific feature set.
+- EllesmereUI-only features are deliberately hidden in standalone mode rather
+  than being applied to unrelated Blizzard frames.
+- Added first-pass Simplified and Traditional Chinese strings for the new mode;
+  fluent review and in-game testing remain pending.
+
 ## v1.1.20 — Leveling Forecast refresh
 
 - Added a **Refresh Leveling Forecast** button under the existing forecast.

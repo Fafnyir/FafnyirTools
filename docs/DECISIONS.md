@@ -1,5 +1,15 @@
 # Reconciled decisions
 
+## 2026-10-31 — Standalone-capability v2 test
+
+Build an isolated v2.0.0 test in which EllesmereUI and FafnyirMedia are
+optional. Retain one addon identity, database and codebase. When EllesmereUI is
+present, preserve the complete current integration. Without it, expose only
+features that have a legitimate native implementation through a Fafnyir Tools
+window opened by `/faftools`. Do not fake EllesmereUI-owned frames or silently
+map integration settings onto unrelated Blizzard UI. Preserve dormant settings
+so installing EllesmereUI later restores those features.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.

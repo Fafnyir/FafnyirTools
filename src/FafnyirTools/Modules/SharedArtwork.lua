@@ -92,7 +92,9 @@ local function ApplyRole(d, settings, unit)
     if issecretvalue and issecretvalue(role) then return end
     local media = LSM()
     local path = role and roleKeys[role] and media and media:Fetch("background", roleKeys[role], true)
-    if type(path) ~= "string" or path == "" then path = role and roles[role] end
+    if (type(path) ~= "string" or path == "") and ns.HAS_FAFNYIRMEDIA then
+        path = role and roles[role]
+    end
     if path then
         d.roleIcon:SetTexture(path)
         d.roleIcon:SetTexCoord(0, 1, 0, 1)
@@ -165,6 +167,8 @@ function feature:BuildOptions(parent, yOffset)
           setValue = function(value) DB().arrow = value; feature:Refresh() end },
         { type = "toggle", text = T("UNIT_FRAMES.FAFNYIRMEDIA_PARTY_RAID_ROLE_ICONS"),
           tooltip = T("UNIT_FRAMES.REPLACE_VISIBLE_PARTY_AND_RAID_ROLE_ICONS_WITH_FAFNYIRM"),
+          disabled = function() return not ns.HAS_FAFNYIRMEDIA end,
+          disabledTooltip = T("UNIT_FRAMES.FAFNYIRMEDIA_IS_REQUIRED_FOR_ROLE_ICONS"),
           getValue = function() return DB().roles end,
           setValue = function(value) DB().roles = value and true or false; feature:Refresh() end })
     return math.abs(y - h)

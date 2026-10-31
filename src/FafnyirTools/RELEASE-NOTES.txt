@@ -1,4 +1,23 @@
-Fafnyir Tools for EllesmereUI v1.1.20
+Fafnyir Tools v2.0.0 Test
+
+v2.0.0 test changes
+
+- Makes EllesmereUI and FafnyirMedia optional dependencies.
+- Adds a native movable `/faftools` settings window when EllesmereUI is absent.
+- Provides the portable Fafnyir Tools feature set in standalone mode while
+  preserving all existing integrations when EllesmereUI is installed.
+- Keeps EllesmereUI-only features hidden in standalone mode and preserves their
+  saved settings for later use.
+- Adapts Right-Click Self Cast to Blizzard native action bars.
+- Includes first-pass Chinese strings pending Yilang's review.
+
+Testing requested
+
+- Test native settings, popups, scrolling and every portable feature without
+  EllesmereUI on Retail and Forever.
+- Re-enable EllesmereUI and confirm the complete integration surface returns.
+
+Previous release: Fafnyir Tools for EllesmereUI v1.1.20
 
 v1.1.20 changes
 

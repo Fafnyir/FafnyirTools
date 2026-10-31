@@ -60,7 +60,8 @@ def check(baseline=False):
     version = re.search(r'^## Version: (.+)$', toc, re.M).group(1).strip()
     assert version == re.search(r'local VERSION = "([^"]+)"', (ADDON / 'Modules/About.lua').read_text()).group(1)
     assert '## SavedVariables: FafnyirToolsDB' in toc
-    assert '## Dependencies: EllesmereUI, FafnyirMedia' in toc
+    assert '## Dependencies:' not in toc
+    assert '## OptionalDeps: EllesmereUI, FafnyirMedia' in toc
     interfaces = re.search(r'^## Interface: (.+)$', toc, re.M).group(1)
     assert '120105' in interfaces, 'Retail 12.1.5 interface missing'
     assert '16001' in interfaces, 'Forever interface missing'
@@ -92,7 +93,7 @@ def check(baseline=False):
                  'test_global_settings.py', 'test_inventory.py', 'test_unit_frame_names.py', 'test_focus_header.py',
                  'test_icon_history_border.py', 'test_bigwigs_border.py', 'test_cursor_reticle.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
                  'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
-                 'test_localization.py', 'test_leveling_forecast.py']:
+                 'test_localization.py', 'test_leveling_forecast.py', 'test_standalone_mode.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

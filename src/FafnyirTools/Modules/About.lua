@@ -9,10 +9,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.20"
+local VERSION = "v2.0.0"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.0 Test", lines = {
+        "Made EllesmereUI and FafnyirMedia optional dependencies.",
+        "Added a native standalone settings window for portable features.",
+        "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
+    }},
     { version = "v1.1.20", lines = {
         "Added an in-place Refresh button to Leveling Forecast.",
         "Refresh recalculates current XP, completed quests, bonuses, and projected progress without reopening the page.",
@@ -247,31 +252,36 @@ function feature:GetDiagnostics()
     end
 
     local db = ns:GetDatabase()
-    local enabled = {
-        "Aura Skins=" .. OnOff(db.auraSkins and db.auraSkins.enabled),
-        "Device Layout=" .. OnOff(db.deviceLayout and db.deviceLayout.enabled),
-        "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled),
-        "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled),
-        "BigWigs Border=" .. OnOff(db.bigWigsBorder and db.bigWigsBorder.enabled),
-        "Click Reticle=" .. OnOff(db.cursorReticle and db.cursorReticle.enabled),
-        "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native"),
-        "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles),
-        "Resting=" .. OnOff(db.resting and db.resting.enabled),
-        "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled),
-    }
-    if ns.IS_FOREVER then
+    local enabled = {}
+    local function AddFeature(key, text)
+        if ns.modules[key] then enabled[#enabled + 1] = text end
+    end
+    AddFeature("AuraSkins", "Aura Skins=" .. OnOff(db.auraSkins and db.auraSkins.enabled))
+    AddFeature("DeviceLayout", "Device Layout=" .. OnOff(db.deviceLayout and db.deviceLayout.enabled))
+    AddFeature("FocusHeader", "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled))
+    AddFeature("IconHistoryBorder", "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled))
+    AddFeature("BigWigsBorder", "BigWigs Border=" .. OnOff(db.bigWigsBorder and db.bigWigsBorder.enabled))
+    AddFeature("CursorReticle", "Click Reticle=" .. OnOff(db.cursorReticle and db.cursorReticle.enabled))
+    if ns.modules.SharedArtwork then
+        enabled[#enabled + 1] = "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native")
+        enabled[#enabled + 1] = "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles)
+    end
+    AddFeature("Resting", "Resting=" .. OnOff(db.resting and db.resting.enabled))
+    AddFeature("RightClickSelfCast", "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled))
+    if ns.IS_FOREVER and ns.modules.Inventory then
         enabled[#enabled + 1] = "Inventory=" .. OnOff(db.inventory and db.inventory.enabled)
         enabled[#enabled + 1] = "Inventory Tooltips=" .. OnOff(db.inventory and db.inventory.tooltips)
-    else
+    elseif ns.modules.PermanentCompanionPet then
         enabled[#enabled + 1] = "Permanent Companion Pet=" .. OnOff(db.permanentCompanionPet and db.permanentCompanionPet.enabled)
     end
 
-    local euiOptionsReady = EllesmereUI
+    local euiOptionsReady = ns.HAS_ELLESMEREUI and EllesmereUI
         and type(EllesmereUI.RegisterModule) == "function"
 
     return table.concat({
         "Fafnyir Tools Diagnostics",
         "Addon: " .. VERSION,
+        "Mode: " .. (ns.HAS_ELLESMEREUI and "EllesmereUI integration" or "Standalone"),
         "Flavor: " .. (ns.IS_FOREVER and "Forever" or "Retail"),
         "Client: " .. tostring(clientVersion or "unknown"),
         "Build: " .. tostring(clientBuild or "unknown"),
@@ -321,9 +331,12 @@ function feature:BuildOptions(parent, yOffset)
 
     parent._showRowDivider = true
 
-    _, h = W:SectionHeader(parent, T("ABOUT.FAFNYIR_TOOLS_FOR_ELLESMEREUI"), y)
+    _, h = W:SectionHeader(parent, ns.HAS_ELLESMEREUI
+        and T("ABOUT.FAFNYIR_TOOLS_FOR_ELLESMEREUI") or T("ABOUT.FAFNYIR_TOOLS"), y)
     y = y - h
-    h = AddText(parent, T("CORE.A_COLLECTION_OF_ENHANCEMENTS_FOR_ELLESMEREUI"), y - 4, 13, 0.85)
+    h = AddText(parent, ns.HAS_ELLESMEREUI
+        and T("CORE.A_COLLECTION_OF_ENHANCEMENTS_FOR_ELLESMEREUI")
+        or T("CORE.STANDALONE_DESCRIPTION"), y - 4, 13, 0.85)
     y = y - h - 10
 
     _, h = W:SectionHeader(parent, T("ABOUT.VERSION"), y)
