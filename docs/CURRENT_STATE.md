@@ -50,7 +50,8 @@ The first Trial 3 companion-pet screenshot showed toggle labels sitting above
 their 22-pixel checkboxes because the labels used a 36-pixel top-justified text
 box. The correction vertically centers a 22-pixel label on each checkbox and
 adds a consistent six-pixel gap in both option columns. In-game confirmation of
-the corrected alignment is pending.
+the corrected alignment is confirmed by the user's 2026-10-31 screenshot from
+build `16dd10c`.
 
 ## v1.1.20 — Leveling Forecast refresh test
 

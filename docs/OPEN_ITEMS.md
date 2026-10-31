@@ -11,6 +11,8 @@ or `CHANGELOG.md`, not here.
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
 - Confirm the compact skinned window, Fafnyir palette, pixel borders and
   `- THE FONT` render correctly at several UI scales and resolutions.
+- Toggle-label alignment is confirmed fixed in build `16dd10c`; retain the
+  22-pixel vertically centered label and six-pixel checkbox gap.
 - Test with EllesmereUI installed to confirm the full v1.x integration surface
   and saved settings remain unchanged.
 - Exercise Blizzard native action bars before, during and after combat; confirm
