@@ -21,8 +21,11 @@ horizontal orientation and displays its live value at the right edge. Screenshot
 testing then showed the original controls needed clearer feedback. A subsequent
 trial expanded the range and split the axes into full-width rows, but in game
 that made horizontal adjustment far too coarse and pushed Vertical and Reset
-below the visible section. The corrected layout returns both axes to one compact
-row, uses -50 to +50 for each, and retains double-click-to-zero behavior.
+below the visible section. A second screenshot confirmed that the two-column
+offset row still failed to render Vertical and the separate Reset row remained
+outside the viewport. The corrected layout uses one three-column row for
+Horizontal, Vertical and Reset, tightens both axes to -25 through +25, and
+retains double-click-to-zero behavior.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

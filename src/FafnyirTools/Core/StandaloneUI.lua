@@ -372,6 +372,41 @@ function UI.Widgets:DualRow(parent, y, left, right)
     return row, 58
 end
 
+function UI.Widgets:TripleRow(parent, y, first, second, third)
+    local row = CreateFrame("Frame", nil, parent)
+    row:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, y)
+    row:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
+    row:SetHeight(58)
+    AddBackground(row, COLORS.surface)
+
+    local descriptors = { first, second, third }
+    local previous
+    for index, descriptor in ipairs(descriptors) do
+        local cell = CreateFrame("Frame", nil, row)
+        if index == 1 then
+            cell:SetPoint("TOPLEFT")
+        else
+            cell:SetPoint("TOPLEFT", previous, "TOPRIGHT", 0, 0)
+        end
+        if index == 3 then
+            cell:SetPoint("BOTTOMRIGHT")
+        else
+            cell:SetSize(820 / 3, 58)
+        end
+        BuildDescriptor(cell, descriptor)
+
+        if previous then
+            local divider = row:CreateTexture(nil, "BORDER")
+            divider:SetPoint("TOP", cell, "TOPLEFT", 0, -8)
+            divider:SetPoint("BOTTOM", cell, "BOTTOMLEFT", 0, 8)
+            divider:SetWidth(1)
+            SetColor(divider, COLORS.divider)
+        end
+        previous = cell
+    end
+    return row, 58
+end
+
 function UI.MakeFont(parent, size, _, r, g, b, a)
     local fs = parent:CreateFontString(nil, "ARTWORK")
     fs:SetFont(FontPath(), size or 12, "")

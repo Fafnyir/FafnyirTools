@@ -162,31 +162,26 @@ function feature:BuildOptions(parent, yOffset)
     )
     y = y - h
 
-    _, h = W:DualRow(parent, y,
+    _, h = W:TripleRow(parent, y,
         {
             type = "slider", text = T("UNIT_FRAMES.HORIZONTAL_OFFSET"),
-            min = -50, max = 50, step = 1, resetValue = 0,
+            min = -25, max = 25, step = 1, resetValue = 0,
             disabled = function() return not DB().enabled end,
             getValue = function() return DB().offsetX end,
             setValue = function(value) DB().offsetX = value; feature:ApplyLayout() end,
         },
         {
             type = "slider", text = T("UNIT_FRAMES.VERTICAL_OFFSET"),
-            min = -50, max = 50, step = 1, resetValue = 0,
+            min = -25, max = 25, step = 1, resetValue = 0,
             disabled = function() return not DB().enabled end,
             getValue = function() return DB().offsetY end,
             setValue = function(value) DB().offsetY = value; feature:ApplyLayout() end,
-        }
-    )
-    y = y - h
-
-    _, h = W:DualRow(parent, y,
+        },
         {
             type = "button", text = T("QOL.RESET_NATIVE_RESTING_SETTINGS"),
             buttonText = T("UNIT_FRAMES.RESET"),
             onClick = function() feature:Reset(); EllesmereUI:RefreshPage(true) end,
-        },
-        { type = "label", text = T("QOL.NATIVE_RESTING_BLIZZARD_NOTE") }
+        }
     )
     y = y - h
     return math.abs(y)

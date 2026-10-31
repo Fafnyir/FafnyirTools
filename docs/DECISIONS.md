@@ -11,8 +11,10 @@ controller when EllesmereUI is installed.
 
 The expanded -500/+500 and -300/+300 full-width trial was rejected after it made
 horizontal adjustment too coarse and pushed later controls below the visible
-section. Use one compact two-axis row with -50 to +50 on each axis. Preserve
-double-clicking either slider to return that axis to zero.
+section. The following two-column +/-50 trial still omitted Vertical and Reset
+in the live viewport. Use a single three-column row for Horizontal, Vertical
+and Reset, with -25 to +25 on each axis. Preserve double-clicking either slider
+to return that axis to zero.
 
 ## 2026-10-31 — Standalone-capability v2 test
 
