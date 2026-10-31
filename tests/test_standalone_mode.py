@@ -68,6 +68,7 @@ GameTooltip={SetOwner=function() end,SetText=function() end,Show=function() end,
 function Region()
     local r={shown=false,text="",checked=false,height=500,scripts={}}
     function r:SetSize() end;function r:SetPoint() end;function r:ClearAllPoints() end;function r:SetFrameStrata() end
+    function r:GetFrameLevel() return 1 end;function r:SetFrameLevel() end
     function r:SetScale() end;function r:SetClampedToScreen() end;function r:SetAllPoints() end
     function r:SetMovable() end;function r:EnableMouse() end;function r:RegisterForDrag() end
     function r:SetScript(key,fn) self.scripts[key]=fn end;function r:HookScript(key,fn) self.scripts[key]=fn end
@@ -150,7 +151,9 @@ assert 'function UI.Widgets:TripleRow' in standalone_ui
 assert 'local function SetActivePageButton' in standalone_ui
 assert 'local pageName = page' in standalone_ui
 assert 'ShowPage(clicked._pageName, clicked)' in standalone_ui
-assert 'accent:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 0)' in standalone_ui
-assert 'accent:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0)' in standalone_ui
+assert 'local accent = CreateFrame("Frame", nil, self)' in standalone_ui
+assert 'accent:SetFrameLevel(self:GetFrameLevel() + 10)' in standalone_ui
+assert 'button:SetSelected(false)' in standalone_ui
+assert 'selected:SetSelected(true)' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

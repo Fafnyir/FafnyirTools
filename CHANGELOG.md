@@ -27,6 +27,8 @@
   underline directly; added click-level regression coverage for QoL versus About.
 - Explicitly anchored each tab underline to its owning button to correct QoL's
   remaining missing indicator.
+- Replaced unreliable tab underline textures with higher-frame-level child
+  frames and added purple active-tab text.
 
 ## v1.1.20 — Leveling Forecast refresh
 

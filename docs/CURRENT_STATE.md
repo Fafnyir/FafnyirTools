@@ -42,7 +42,11 @@ through a page-name lookup. Offline coverage now performs an actual simulated
 QoL tab click and requires QoL's accent visible and About's hidden. In game,
 every tab except QoL then rendered correctly. The remaining difference was the
 accent's reliance on an implicit relative frame; all tab accents now explicitly
-anchor both lower corners to their owning button.
+anchor both lower corners to their owning button. That produced no in-game
+change for QoL, confirming the texture itself was the failing primitive. The
+current revision replaces tab underline textures with higher-frame-level child
+frames and routes all active styling through each button's `SetSelected` method;
+the active label also turns purple as a second unambiguous state cue.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

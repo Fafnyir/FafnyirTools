@@ -142,18 +142,19 @@ local function CreateButton(parent, caption)
     function button:SetSelected(selected)
         self._selected = selected == true
         SetColor(bg, self._sidebar and COLORS.background or COLORS.surfaceLight)
-        fs:SetTextColor(unpack(self._selected and COLORS.bright or COLORS.text))
+        fs:SetTextColor(unpack(self._selected and COLORS.secondary or COLORS.text))
         if self._selectionAccent then self._selectionAccent:SetShown(self._selected) end
     end
     function button:SetSidebarStyle()
         self._sidebar = true
         SetColor(bg, COLORS.background)
         for _, line in ipairs(border) do line:SetAlpha(0) end
-        local accent = self:CreateTexture(nil, "OVERLAY")
+        local accent = CreateFrame("Frame", nil, self)
         accent:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 0)
         accent:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0)
         accent:SetHeight(3)
-        SetColor(accent, COLORS.secondary)
+        accent:SetFrameLevel(self:GetFrameLevel() + 10)
+        AddBackground(accent, COLORS.secondary)
         accent:Hide()
         self._selectionAccent = accent
     end
@@ -427,8 +428,7 @@ end
 
 local function SetActivePageButton(pageName, clickedButton)
     for _, button in pairs(pageButtons) do
-        button._selected = false
-        if button._selectionAccent then button._selectionAccent:Hide() end
+        button:SetSelected(false)
     end
 
     local selected = clickedButton
@@ -439,8 +439,7 @@ local function SetActivePageButton(pageName, clickedButton)
         end
     end
     if selected then
-        selected._selected = true
-        if selected._selectionAccent then selected._selectionAccent:Show() end
+        selected:SetSelected(true)
     end
     UI._activePage = pageName
 end
