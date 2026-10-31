@@ -31,6 +31,13 @@ the SharedMedia font named `- THE FONT` when available from FafnyirMedia. It
 falls back to Blizzard's standard font when that optional addon or media entry
 is absent. The skinned revision awaits in-game confirmation.
 
+The first skin rendered correctly but the user was not satisfied with its
+uniform bright-blue treatment, oversized empty header and lavender selected
+tab. Trial 2 fixes the hidden title by parenting header text above its surface,
+reduces the window/header/sidebar and row spacing, limits bright borders to
+subtle accents, uses darker controls with hover color, and marks the selected
+page with a slim secondary-color bar. Trial 2 awaits in-game confirmation.
+
 ## v1.1.20 — Leveling Forecast refresh test
 
 At the user's direction on 2026-10-31, the existing read-only Leveling Forecast

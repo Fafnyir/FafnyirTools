@@ -76,6 +76,7 @@ function Region()
     function r:SetParent() end;function r:Hide() self.shown=false end;function r:Show() self.shown=true end
     function r:IsShown() return self.shown end;function r:SetEnabled(v) self.enabled=v end
     function r:IsEnabled() return self.enabled~=false end;function r:SetAlpha() end
+    function r:SetShown(v) self.shown=v end
     function r:SetText(v) self.text=v end;function r:GetText() return self.text end
     function r:SetChecked(v) self.checked=v end;function r:GetChecked() return self.checked end
     function r:SetAutoFocus() end;function r:SetMultiLine() end;function r:SetFontObject() end

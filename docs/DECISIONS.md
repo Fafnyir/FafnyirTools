@@ -15,6 +15,12 @@ window with the established Fafnyir palette. Use FafnyirMedia's SharedMedia
 font `- THE FONT` when available and retain a standard Blizzard-font fallback
 so FafnyirMedia remains optional. Do not restyle EllesmereUI's own options.
 
+After reviewing Trial 1 in game, retain the palette and font but reduce the
+uniform blue treatment: compact the header/window/sidebar, keep controls dark,
+use hover color sparingly, replace the full lavender selected tab with a slim
+secondary accent, and use only subtle borders/dividers. Fix the header layering
+so the title and subtitle remain visible.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.
