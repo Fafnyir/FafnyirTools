@@ -48,6 +48,9 @@
   sections; fluent review and in-game testing remain pending.
 - Added a default-off standalone option to hide Blizzard's default unit-tooltip
   health bar with immediate restoration and taint-safe alpha handling.
+- Added default-off Mouseover Action Bars controls to the Action Bars page for
+  Blizzard's primary, multi, Pet and Stance bars, including faded opacity and
+  immediate full-opacity restoration when disabled.
 
 ## v1.1.20 — Leveling Forecast refresh
 

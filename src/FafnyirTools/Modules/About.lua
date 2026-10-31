@@ -20,6 +20,7 @@ local CHANGELOG = {
         "Integrated the legacy FPS Display and Nicer Damage addons as optional standalone features.",
         "Preserved Hide Target Rep Color through the existing Target and Focus status-texture handler.",
         "Added an optional standalone control to hide Blizzard's default tooltip health bar.",
+        "Added optional mouseover visibility for Blizzard's default action bars.",
         "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
     }},
     { version = "v1.1.20", lines = {
@@ -275,6 +276,7 @@ function feature:GetDiagnostics()
     AddFeature("FPSDisplay", "FPS Display=" .. OnOff(db.fpsDisplay and db.fpsDisplay.enabled))
     AddFeature("NicerDamage", "Nicer Damage=" .. OnOff(db.nicerDamage and db.nicerDamage.enabled))
     AddFeature("TooltipHealthBar", "Tooltip Health Bar Hidden=" .. OnOff(db.tooltipHealthBar and db.tooltipHealthBar.hidden))
+    AddFeature("ActionBarMouseover", "Action Bar Mouseover=" .. OnOff(db.actionBarMouseover and db.actionBarMouseover.enabled))
     AddFeature("RightClickSelfCast", "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled))
     if ns.IS_FOREVER and ns.modules.Inventory then
         enabled[#enabled + 1] = "Inventory=" .. OnOff(db.inventory and db.inventory.enabled)

@@ -11,7 +11,7 @@ local function OrderedFeatures()
         "GlobalSettings", "About", "ForeverFog", "PermanentCompanionPet",
         "LevelingForecast", "NativeResting", "FPSDisplay", "NicerDamage", "TooltipHealthBar",
         "FocusHeader", "SharedArtwork", "AuraSkins",
-        "Resting", "RightClickSelfCast", "IconHistoryBorder",
+        "Resting", "RightClickSelfCast", "ActionBarMouseover", "IconHistoryBorder",
         "BigWigsBorder", "CursorReticle", "Inventory", "DeviceLayout",
     }
     local features = {}

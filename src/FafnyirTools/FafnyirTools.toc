@@ -27,6 +27,7 @@ Modules\FPSDisplay.lua
 Modules\NicerDamage.lua
 Modules\TooltipHealthBar.lua
 Modules\RightClickSelfCast.lua
+Modules\ActionBarMouseover.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua
 Modules\CursorReticle.lua

@@ -84,6 +84,10 @@ ns.defaults = {
     tooltipHealthBar = {
         hidden = false,
     },
+    actionBarMouseover = {
+        enabled = false,
+        fadedOpacity = 0,
+    },
     rightClickSelfCast = {
         enabled = true,
     },

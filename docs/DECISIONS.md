@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-10-31 — Standalone mouseover action bars
+
+Place a default-off Mouseover Action Bars feature in the existing Action Bars
+page. Cover Blizzard's primary, multi, Pet and Stance bars, treat each bar as an
+independent hover group, and offer a saved 0–100% faded opacity. Change only
+visual alpha and hover hooks; do not alter secure attributes, clicks, paging or
+spell state. Restore full opacity on disable. Keep the feature standalone-only
+because EllesmereUI replaces/owns the action-bar surface in integration mode.
+
 ## 2026-10-31 — Standalone default-tooltip health bar
 
 Add a default-off standalone QoL toggle that hides only Blizzard's default unit

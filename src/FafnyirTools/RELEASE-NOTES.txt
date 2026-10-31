@@ -19,6 +19,8 @@ v2.0.0 test changes
 - Adds a default-off Nicer Damage font toggle with Reload Now/Later handling.
 - Adds a default-off standalone option to hide Blizzard's default unit-tooltip
   health bar without changing tooltip visibility.
+- Adds default-off Mouseover Action Bars controls under Action Bars for
+  Blizzard's primary, multi, Pet and Stance bars with configurable opacity.
 
 Testing requested
 
@@ -29,6 +31,8 @@ Testing requested
   in standalone Retail and Forever.
 - Verify default unit tooltips hide and restore their health bar live without
   taint on Retail and Forever.
+- Verify mouseover reveal, leave delay, partial opacity and disable restoration
+  for every Blizzard action-bar group in Retail and Forever.
 
 Previous release: Fafnyir Tools for EllesmereUI v1.1.20
 

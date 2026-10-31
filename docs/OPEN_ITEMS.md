@@ -18,6 +18,10 @@ or `CHANGELOG.md`, not here.
 - Test Hide Default Tooltip Health Bar on player, friendly, hostile, NPC and
   dead-unit tooltips in standalone Retail and Forever. Confirm live off/on
   changes, reload persistence, no one-frame health-strip flash, and no taint.
+- Test Mouseover Action Bars in standalone Retail and Forever across all eight
+  primary/multi bars plus Pet and Stance bars. Check zero and partial opacity,
+  adjacent-button movement, Edit Mode changes, paging, vehicles, combat,
+  disable restoration, reload persistence, and hidden-bar mouse hit testing.
 
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
@@ -38,7 +42,7 @@ or `CHANGELOG.md`, not here.
 - Exercise Blizzard native action bars before, during and after combat; confirm
   paging and disabling right-click self-cast restore expected behavior.
 - Confirm installing/removing optional FafnyirMedia produces no load error.
-- Have Yilang review the sixteen new standalone-mode strings and check native
+- Have Yilang review the twenty new standalone-mode strings and check native
   window wrapping on `zhCN` and `zhTW` clients.
 - Test Native Resting controls on the Blizzard Player frame in Retail and
   Forever: offsets, resting-state transitions, effective max level, reset,

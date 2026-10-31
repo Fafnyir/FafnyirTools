@@ -21,6 +21,17 @@ registered when EllesmereUI is installed because EllesmereUI now owns the
 equivalent tooltip-strip option. Offline ownership, live-toggle and repeated
 Show behavior pass; Retail and Forever hover testing remains required.
 
+The standalone Action Bars page now also has a default-off **Mouseover Action
+Bars** feature. It controls Blizzard's primary, seven multi-action, Pet and
+Stance bars as independent hover groups. A saved Faded Opacity slider ranges
+from fully hidden to fully visible; entering a bar or any of its buttons
+restores that group to full opacity and leaving reapplies the saved value after
+a short boundary delay. Disabling immediately restores every discovered bar to
+full opacity. The implementation changes only frame alpha and hover scripts—no
+secure action attributes, clicks, paging or spell state. It is not registered
+with EllesmereUI installed. Offline hover/leave/restore and ownership tests
+pass; in-game Edit Mode, combat, paging, vehicle and pet/stance testing remains.
+
 ## v2.0.0 test — optional EllesmereUI integration
 
 At the user's direction on 2026-10-31, standalone mode now includes default-off
