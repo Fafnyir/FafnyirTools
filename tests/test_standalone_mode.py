@@ -113,6 +113,8 @@ EllesmereUI:ToggleOptions()
 EllesmereUI:RefreshPage(true)
 SlashCmdList.FAFNYIRTOOLS()
 assert(fetchedFafnyirFont==true)
+EllesmereUI:NavigateToElementSettings("FafnyirTools","About")
+assert(EllesmereUI._activePage=="About")
 ''')
 
 toc = (ADDON / "FafnyirTools.toc").read_text()
@@ -139,5 +141,7 @@ assert 'valueText:SetText(FormatValue(value))' in standalone_ui
 assert 'slider:SetScript("OnDoubleClick"' in standalone_ui
 assert 'leftCell:SetPoint("BOTTOMRIGHT")' in standalone_ui
 assert 'function UI.Widgets:TripleRow' in standalone_ui
+assert 'local function SetActivePageButton' in standalone_ui
+assert 'local pageName = page' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

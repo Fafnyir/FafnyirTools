@@ -23,6 +23,8 @@
   standalone controls.
 - Added one compact Native Resting row containing Horizontal, Vertical and
   Reset controls, with a practical +/-25 range and double-click-to-zero.
+- Fixed standalone tab underlines so the active indicator follows the page that
+  is actually displayed.
 
 ## v1.1.20 — Leveling Forecast refresh
 

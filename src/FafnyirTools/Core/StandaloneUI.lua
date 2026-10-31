@@ -423,6 +423,20 @@ local function ClearPage()
     wipe(activeControls)
 end
 
+local function SetActivePageButton(pageName)
+    for _, button in pairs(pageButtons) do
+        button._selected = false
+        if button._selectionAccent then button._selectionAccent:Hide() end
+    end
+
+    local selected = pageButtons[pageName]
+    if selected then
+        selected._selected = true
+        if selected._selectionAccent then selected._selectionAccent:Show() end
+    end
+    UI._activePage = pageName
+end
+
 local function ShowPage(pageName)
     if not window or not config then return end
     currentPage = pageName or currentPage or config.pages[1]
@@ -434,9 +448,7 @@ local function ShowPage(pageName)
     window.pageContent = content
     local height = config.buildPage(currentPage, content, -8)
     content:SetHeight(math.max(height + 24, window.pageHost:GetHeight()))
-    for page, button in pairs(pageButtons) do
-        button:SetSelected(page == currentPage)
-    end
+    SetActivePageButton(currentPage)
 end
 
 local function MakeWindow()
@@ -500,13 +512,14 @@ local function BuildSidebar()
     wipe(pageButtons)
     local previous
     for _, page in ipairs(config.pages or {}) do
-        local button = CreateButton(window.sidebar, page)
-        button:SetSize(math.max(115, #page * 9 + 34), 40)
+        local pageName = page
+        local button = CreateButton(window.sidebar, pageName)
+        button:SetSize(math.max(115, #pageName * 9 + 34), 40)
         button:SetSidebarStyle()
         if previous then button:SetPoint("LEFT", previous, "RIGHT", 4, 0)
         else button:SetPoint("LEFT", 18, 0) end
-        button:SetScript("OnClick", function() ShowPage(page) end)
-        pageButtons[page] = button
+        button:SetScript("OnClick", function() ShowPage(pageName) end)
+        pageButtons[pageName] = button
         previous = button
     end
 end

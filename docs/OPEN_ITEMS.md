@@ -11,6 +11,8 @@ or `CHANGELOG.md`, not here.
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
 - Confirm the compact skinned window, Fafnyir palette, pixel borders and
   `- THE FONT` render correctly at several UI scales and resolutions.
+- Confirm the active underline follows QoL and every other standalone tab after
+  the authoritative tab-selection repair.
 - Toggle-label alignment is confirmed fixed in build `16dd10c`; retain the
   22-pixel vertically centered label and six-pixel checkbox gap.
 - The user confirmed the EllesmereUI-installed v2 test is fully functional with
