@@ -16,6 +16,9 @@
 
 Standalone mode must never delete or rewrite dormant integration settings.
 Installing EllesmereUI later restores the complete integration feature set.
+The user confirmed the EllesmereUI-installed v2 test is functional with no
+errors on 2026-10-31; standalone and exhaustive cross-client coverage remain
+separate.
 
 ## Localization
 

@@ -53,6 +53,12 @@ adds a consistent six-pixel gap in both option columns. In-game confirmation of
 the corrected alignment is confirmed by the user's 2026-10-31 screenshot from
 build `16dd10c`.
 
+The user subsequently tested the v2 branch with EllesmereUI installed and
+reported that all functionality works with no errors. This confirms the
+optional-dependency path preserved the complete integration surface in the
+tested setup; exact client and feature-by-feature scenario coverage were not
+supplied, so it is not an exhaustive Retail/Forever matrix.
+
 ## v1.1.20 — Leveling Forecast refresh test
 
 At the user's direction on 2026-10-31, the existing read-only Leveling Forecast

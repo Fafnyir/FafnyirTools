@@ -13,8 +13,9 @@ or `CHANGELOG.md`, not here.
   `- THE FONT` render correctly at several UI scales and resolutions.
 - Toggle-label alignment is confirmed fixed in build `16dd10c`; retain the
   22-pixel vertically centered label and six-pixel checkbox gap.
-- Test with EllesmereUI installed to confirm the full v1.x integration surface
-  and saved settings remain unchanged.
+- The user confirmed the EllesmereUI-installed v2 test is fully functional with
+  no errors on 2026-10-31. Exact client and scenario coverage were not supplied;
+  broader Retail/Forever matrix testing remains optional follow-up coverage.
 - Exercise Blizzard native action bars before, during and after combat; confirm
   paging and disabling right-click self-cast restore expected behavior.
 - Confirm installing/removing optional FafnyirMedia produces no load error.
