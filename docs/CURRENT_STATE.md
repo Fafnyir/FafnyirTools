@@ -58,6 +58,13 @@ which is now reduced to the current safe text-only form. Standalone page builds
 are also protected so a future builder failure is reported in chat without
 preventing the selected-tab state from finalizing.
 
+The user's 2026-10-31 in-game screenshot from build `30e80ff` confirms the
+correction: QoL has the active purple label and underline, and the Native
+Resting section renders Horizontal and Vertical sliders, numeric values, Hide
+at Max Level and the Reset button. This confirms presentation and construction
+in the tested Retail setup; max-level hiding, reload persistence and broader
+Forever/combat/vehicle behavior remain separate runtime checks.
+
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI
 installed, the existing sidebar, widgets and complete integration feature set

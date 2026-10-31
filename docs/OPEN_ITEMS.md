@@ -11,11 +11,8 @@ or `CHANGELOG.md`, not here.
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
 - Confirm the compact skinned window, Fafnyir palette, pixel borders and
   `- THE FONT` render correctly at several UI scales and resolutions.
-- Confirm the clicked-button-owned underline follows QoL and every other
-  standalone tab after replacing underline textures with higher-level child
-  frames; confirm the active tab label also turns purple.
-- Confirm the complete Native Resting row renders after removing the unsupported
-  Slider `OnDoubleClick`: Horizontal, Vertical and the visible Reset button.
+- QoL's active purple label/underline and the complete Native Resting control
+  row are confirmed in game in build `30e80ff` (2026-10-31).
 - Recheck `General.log` for new Fafnyir Tools Lua errors after hovering controls;
   the obsolete tooltip call has been corrected.
 - Toggle-label alignment is confirmed fixed in build `16dd10c`; retain the
