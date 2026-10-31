@@ -31,7 +31,11 @@ The first three-column test screenshot also exposed a standalone navigation
 cosmetic defect: QoL content loaded, but the active underline remained on About.
 Tab selection now uses one authoritative routine that hides every underline and
 shows only the page actually built; tab click closures also bind a stable page
-name per iteration. This visual correction awaits in-game confirmation.
+name per iteration. The next screenshot still showed the underline attached to
+Action Bars while QoL content was visible, identifying the per-button accent
+objects as the remaining failure point. The current correction uses one shared
+underline anchored directly to the clicked button and reads the page name stored
+on that same button. This revision awaits in-game confirmation.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

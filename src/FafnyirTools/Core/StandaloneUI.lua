@@ -423,21 +423,33 @@ local function ClearPage()
     wipe(activeControls)
 end
 
-local function SetActivePageButton(pageName)
+local function SetActivePageButton(pageName, clickedButton)
     for _, button in pairs(pageButtons) do
         button._selected = false
         if button._selectionAccent then button._selectionAccent:Hide() end
     end
 
-    local selected = pageButtons[pageName]
+    local selected = clickedButton
+    if not selected or selected._pageName ~= pageName then
+        selected = nil
+        for _, button in pairs(pageButtons) do
+            if button._pageName == pageName then selected = button; break end
+        end
+    end
     if selected then
         selected._selected = true
-        if selected._selectionAccent then selected._selectionAccent:Show() end
+        local accent = window and window.activeTabAccent
+        if accent then
+            accent:ClearAllPoints()
+            accent:SetPoint("BOTTOMLEFT", selected, "BOTTOMLEFT", 0, 0)
+            accent:SetPoint("BOTTOMRIGHT", selected, "BOTTOMRIGHT", 0, 0)
+            accent:Show()
+        end
     end
     UI._activePage = pageName
 end
 
-local function ShowPage(pageName)
+local function ShowPage(pageName, clickedButton)
     if not window or not config then return end
     currentPage = pageName or currentPage or config.pages[1]
     ClearPage()
@@ -448,7 +460,7 @@ local function ShowPage(pageName)
     window.pageContent = content
     local height = config.buildPage(currentPage, content, -8)
     content:SetHeight(math.max(height + 24, window.pageHost:GetHeight()))
-    SetActivePageButton(currentPage)
+    SetActivePageButton(currentPage, clickedButton)
 end
 
 local function MakeWindow()
@@ -496,6 +508,11 @@ local function MakeWindow()
     local tabLine = sidebar:CreateTexture(nil, "BORDER")
     tabLine:SetPoint("BOTTOMLEFT"); tabLine:SetPoint("BOTTOMRIGHT"); tabLine:SetHeight(1)
     SetColor(tabLine, COLORS.controlBorder)
+    local activeTabAccent = sidebar:CreateTexture(nil, "OVERLAY")
+    activeTabAccent:SetHeight(3)
+    SetColor(activeTabAccent, COLORS.secondary)
+    activeTabAccent:Hide()
+    window.activeTabAccent = activeTabAccent
     local scroll = CreateFrame("ScrollFrame", nil, window, "UIPanelScrollFrameTemplate")
     scroll:SetPoint("TOPLEFT", 30, -112)
     scroll:SetPoint("BOTTOMRIGHT", -34, 18)
@@ -514,11 +531,14 @@ local function BuildSidebar()
     for _, page in ipairs(config.pages or {}) do
         local pageName = page
         local button = CreateButton(window.sidebar, pageName)
+        button._pageName = pageName
         button:SetSize(math.max(115, #pageName * 9 + 34), 40)
         button:SetSidebarStyle()
         if previous then button:SetPoint("LEFT", previous, "RIGHT", 4, 0)
         else button:SetPoint("LEFT", 18, 0) end
-        button:SetScript("OnClick", function() ShowPage(pageName) end)
+        button:SetScript("OnClick", function(clicked)
+            ShowPage(clicked._pageName, clicked)
+        end)
         pageButtons[pageName] = button
         previous = button
     end

@@ -67,7 +67,7 @@ UIParent={};STANDARD_TEXT_FONT="Fonts\\FRIZQT__.TTF";ChatFontNormal={};BackdropT
 GameTooltip={SetOwner=function() end,SetText=function() end,Show=function() end,Hide=function() end}
 function Region()
     local r={shown=false,text="",checked=false,height=500,scripts={}}
-    function r:SetSize() end;function r:SetPoint() end;function r:SetFrameStrata() end
+    function r:SetSize() end;function r:SetPoint() end;function r:ClearAllPoints() end;function r:SetFrameStrata() end
     function r:SetScale() end;function r:SetClampedToScreen() end;function r:SetAllPoints() end
     function r:SetMovable() end;function r:EnableMouse() end;function r:RegisterForDrag() end
     function r:SetScript(key,fn) self.scripts[key]=fn end;function r:HookScript(key,fn) self.scripts[key]=fn end
@@ -143,5 +143,7 @@ assert 'leftCell:SetPoint("BOTTOMRIGHT")' in standalone_ui
 assert 'function UI.Widgets:TripleRow' in standalone_ui
 assert 'local function SetActivePageButton' in standalone_ui
 assert 'local pageName = page' in standalone_ui
+assert 'window.activeTabAccent = activeTabAccent' in standalone_ui
+assert 'ShowPage(clicked._pageName, clicked)' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")
