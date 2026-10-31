@@ -15,6 +15,56 @@ local currentPage
 local pageButtons = {}
 local activeControls = {}
 
+local COLORS = {
+    background = { 0x02 / 255, 0x06 / 255, 0x29 / 255, 0.97 },
+    surface = { 0x0B / 255, 0x14 / 255, 0x4B / 255, 0.96 },
+    surfaceLight = { 0x12 / 255, 0x21 / 255, 0x6A / 255, 1 },
+    primary = { 0x24 / 255, 0x47 / 255, 0xAC / 255, 1 },
+    secondary = { 0x63 / 255, 0x58 / 255, 0xB8 / 255, 1 },
+    highlight = { 0x4A / 255, 0xA0 / 255, 0xE5 / 255, 1 },
+    bright = { 0xA7 / 255, 0xE9 / 255, 0xF9 / 255, 1 },
+    text = { 0.93, 0.96, 1, 1 },
+    muted = { 0.62, 0.68, 0.82, 1 },
+}
+
+local fontPath
+local function FontPath()
+    if fontPath then return fontPath end
+    local media = LibStub and LibStub("LibSharedMedia-3.0", true)
+    fontPath = media and media:Fetch("font", "- THE FONT", true)
+    if (type(fontPath) ~= "string" or fontPath == "") and ns.HAS_FAFNYIRMEDIA then
+        fontPath = "Interface\\AddOns\\FafnyirMedia\\fonts\\Fafnyir-Regular.ttf"
+    end
+    if type(fontPath) ~= "string" or fontPath == "" then
+        fontPath = STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF"
+    end
+    return fontPath
+end
+
+local function SetColor(region, color)
+    region:SetColorTexture(color[1], color[2], color[3], color[4] or 1)
+end
+
+local function AddPixelBorder(frame, color)
+    local border = {}
+    for i = 1, 4 do
+        border[i] = frame:CreateTexture(nil, "BORDER")
+        SetColor(border[i], color or COLORS.highlight)
+    end
+    border[1]:SetPoint("TOPLEFT"); border[1]:SetPoint("TOPRIGHT"); border[1]:SetHeight(1)
+    border[2]:SetPoint("BOTTOMLEFT"); border[2]:SetPoint("BOTTOMRIGHT"); border[2]:SetHeight(1)
+    border[3]:SetPoint("TOPLEFT"); border[3]:SetPoint("BOTTOMLEFT"); border[3]:SetWidth(1)
+    border[4]:SetPoint("TOPRIGHT"); border[4]:SetPoint("BOTTOMRIGHT"); border[4]:SetWidth(1)
+    return border
+end
+
+local function AddBackground(frame, color)
+    local bg = frame:CreateTexture(nil, "BACKGROUND")
+    bg:SetAllPoints()
+    SetColor(bg, color or COLORS.surface)
+    return bg
+end
+
 local function BackdropTemplate()
     return BackdropTemplateMixin and "BackdropTemplate" or nil
 end
@@ -51,12 +101,50 @@ local function AddControl(control)
 end
 
 local function Label(parent, text, size)
-    local fs = parent:CreateFontString(nil, "ARTWORK", size and "GameFontNormalLarge" or "GameFontNormal")
+    local fs = parent:CreateFontString(nil, "ARTWORK")
+    fs:SetFont(FontPath(), size and 16 or 13, "")
+    fs:SetTextColor(unpack(COLORS.text))
     fs:SetJustifyH("LEFT")
     fs:SetJustifyV("TOP")
     fs:SetWordWrap(true)
     fs:SetText(text or "")
     return fs
+end
+
+local function CreateButton(parent, caption)
+    local button = CreateFrame("Button", nil, parent)
+    local bg = AddBackground(button, COLORS.primary)
+    local border = AddPixelBorder(button, COLORS.highlight)
+    local fs = button:CreateFontString(nil, "ARTWORK")
+    fs:SetFont(FontPath(), 13, "")
+    fs:SetTextColor(unpack(COLORS.text))
+    fs:SetPoint("CENTER", 0, 0)
+    button:SetFontString(fs)
+    button:SetText(caption or "")
+    button:SetScript("OnEnter", function(self)
+        if self:IsEnabled() and not self._selected then SetColor(bg, COLORS.secondary) end
+    end)
+    button:SetScript("OnLeave", function(self)
+        local color = self._selected and COLORS.secondary
+            or (self:IsEnabled() and COLORS.primary or COLORS.surfaceLight)
+        SetColor(bg, color)
+    end)
+    button:HookScript("OnDisable", function()
+        SetColor(bg, COLORS.surfaceLight)
+        fs:SetTextColor(unpack(COLORS.muted))
+        for _, line in ipairs(border) do line:SetAlpha(0.35) end
+    end)
+    button:HookScript("OnEnable", function()
+        SetColor(bg, button._selected and COLORS.secondary or COLORS.primary)
+        fs:SetTextColor(unpack(COLORS.text))
+        for _, line in ipairs(border) do line:SetAlpha(1) end
+    end)
+    function button:SetSelected(selected)
+        self._selected = selected == true
+        SetColor(bg, self._selected and COLORS.secondary or COLORS.primary)
+        fs:SetTextColor(unpack(self._selected and COLORS.bright or COLORS.text))
+    end
+    return button
 end
 
 local function BuildLabel(parent, descriptor)
@@ -76,7 +164,7 @@ local function BuildButton(parent, descriptor)
         fs:SetPoint("TOPRIGHT", -8, -5)
         fs:SetHeight(18)
     end
-    local button = AddControl(CreateFrame("Button", nil, parent, "UIPanelButtonTemplate"))
+    local button = AddControl(CreateButton(parent, caption))
     button:SetSize(math.min(210, math.max(110, #caption * 7 + 26)), 24)
     button:SetPoint("TOPLEFT", 8, hasSeparateLabel and -27 or -16)
     button:SetText(caption)
@@ -88,7 +176,15 @@ local function BuildButton(parent, descriptor)
 end
 
 local function BuildToggle(parent, descriptor)
-    local check = AddControl(CreateFrame("CheckButton", nil, parent, "UICheckButtonTemplate"))
+    local check = AddControl(CreateFrame("CheckButton", nil, parent))
+    check:SetSize(22, 22)
+    AddBackground(check, COLORS.surfaceLight)
+    AddPixelBorder(check, COLORS.highlight)
+    local checked = check:CreateTexture(nil, "ARTWORK")
+    checked:SetPoint("TOPLEFT", 4, -4)
+    checked:SetPoint("BOTTOMRIGHT", -4, 4)
+    SetColor(checked, COLORS.bright)
+    check:SetCheckedTexture(checked)
     check:SetPoint("TOPLEFT", 4, -12)
     check:SetChecked(SafeValue(descriptor, false) == true)
     check:SetEnabled(not Disabled(descriptor))
@@ -110,7 +206,7 @@ local function BuildDropdown(parent, descriptor)
     fs:SetPoint("TOPLEFT", 8, -5)
     fs:SetPoint("TOPRIGHT", -8, -5)
     fs:SetHeight(18)
-    local button = AddControl(CreateFrame("Button", nil, parent, "UIPanelButtonTemplate"))
+    local button = AddControl(CreateButton(parent, ""))
     button:SetPoint("TOPLEFT", 8, -27)
     button:SetPoint("TOPRIGHT", -8, -27)
     button:SetHeight(24)
@@ -118,7 +214,7 @@ local function BuildDropdown(parent, descriptor)
     local values = descriptor.values or {}
     local function Repaint()
         local value = SafeValue(descriptor, order[1])
-        button:SetText(values[value] or tostring(value or ""))
+        button:SetText((values[value] or tostring(value or "")) .. "  ›")
         button:SetEnabled(not Disabled(descriptor) and #order > 0)
     end
     button:SetScript("OnClick", function()
@@ -140,7 +236,12 @@ local function BuildInput(parent, descriptor)
     fs:SetPoint("TOPLEFT", 8, -5)
     fs:SetPoint("TOPRIGHT", -8, -5)
     fs:SetHeight(18)
-    local box = AddControl(CreateFrame("EditBox", nil, parent, "InputBoxTemplate"))
+    local box = AddControl(CreateFrame("EditBox", nil, parent, BackdropTemplate()))
+    AddBackground(box, COLORS.background)
+    AddPixelBorder(box, COLORS.highlight)
+    box:SetFont(FontPath(), 13, "")
+    box:SetTextColor(unpack(COLORS.text))
+    box:SetTextInsets(7, 7, 0, 0)
     box:SetAutoFocus(false)
     box:SetPoint("TOPLEFT", 12, -29)
     box:SetPoint("TOPRIGHT", -12, -29)
@@ -162,7 +263,13 @@ local function BuildSlider(parent, descriptor)
     fs:SetPoint("TOPLEFT", 8, -5)
     fs:SetPoint("TOPRIGHT", -8, -5)
     fs:SetHeight(18)
-    local slider = AddControl(CreateFrame("Slider", nil, parent, "OptionsSliderTemplate"))
+    local slider = AddControl(CreateFrame("Slider", nil, parent))
+    local track = slider:CreateTexture(nil, "BACKGROUND")
+    track:SetPoint("LEFT", 0, 0); track:SetPoint("RIGHT", 0, 0); track:SetHeight(4)
+    SetColor(track, COLORS.surfaceLight)
+    slider:SetThumbTexture("Interface\\Buttons\\WHITE8X8")
+    local thumb = slider:GetThumbTexture()
+    thumb:SetSize(12, 20); SetColor(thumb, COLORS.bright)
     slider:SetPoint("TOPLEFT", 14, -31)
     slider:SetPoint("TOPRIGHT", -18, -31)
     slider:SetHeight(16)
@@ -193,10 +300,11 @@ function UI.Widgets:SectionHeader(parent, text, y)
     frame:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
     frame:SetHeight(34)
     local fs = Label(frame, text, true)
+    fs:SetTextColor(unpack(COLORS.bright))
     fs:SetPoint("BOTTOMLEFT", 8, 5)
     fs:SetPoint("RIGHT", -8, 0)
     local line = frame:CreateTexture(nil, "BACKGROUND")
-    line:SetColorTexture(0.29, 0.63, 0.9, 0.7)
+    SetColor(line, COLORS.highlight)
     line:SetPoint("BOTTOMLEFT", 8, 1)
     line:SetPoint("BOTTOMRIGHT", -8, 1)
     line:SetHeight(1)
@@ -222,9 +330,8 @@ function UI.Widgets:DualRow(parent, y, left, right)
 end
 
 function UI.MakeFont(parent, size, _, r, g, b, a)
-    local fs = parent:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-    local font = STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF"
-    fs:SetFont(font, size or 12)
+    local fs = parent:CreateFontString(nil, "ARTWORK")
+    fs:SetFont(FontPath(), size or 12, "")
     fs:SetTextColor(r or 1, g or 1, b or 1, a or 1)
     return fs
 end
@@ -243,50 +350,63 @@ local function ShowPage(pageName)
     currentPage = pageName or currentPage or config.pages[1]
     ClearPage()
     local content = CreateFrame("Frame", nil, window.pageHost)
-    content:SetWidth(700)
+    content:SetWidth(610)
     content:SetHeight(1)
     window.pageHost:SetScrollChild(content)
     window.pageContent = content
     local height = config.buildPage(currentPage, content, -8)
     content:SetHeight(math.max(height + 24, window.pageHost:GetHeight()))
     for page, button in pairs(pageButtons) do
-        button:SetEnabled(page ~= currentPage)
+        button:SetSelected(page == currentPage)
     end
 end
 
 local function MakeWindow()
     if window then return window end
     window = CreateFrame("Frame", "FafnyirToolsStandaloneFrame", UIParent, BackdropTemplate())
-    window:SetSize(920, 650)
+    window:SetSize(860, 620)
+    window:SetScale(0.86)
     window:SetPoint("CENTER")
     window:SetFrameStrata("DIALOG")
+    window:SetClampedToScreen(true)
     window:SetMovable(true)
     window:EnableMouse(true)
     window:RegisterForDrag("LeftButton")
     window:SetScript("OnDragStart", window.StartMoving)
     window:SetScript("OnDragStop", window.StopMovingOrSizing)
-    if window.SetBackdrop then
-        window:SetBackdrop({ bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-            edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", edgeSize = 24,
-            insets = { left = 8, right = 8, top = 8, bottom = 8 } })
-    end
+    AddBackground(window, COLORS.background)
+    AddPixelBorder(window, COLORS.highlight)
+    local header = CreateFrame("Frame", nil, window)
+    header:SetPoint("TOPLEFT", 1, -1); header:SetPoint("TOPRIGHT", -1, -1); header:SetHeight(72)
+    AddBackground(header, COLORS.surface)
+    local headerLine = header:CreateTexture(nil, "ARTWORK")
+    headerLine:SetPoint("BOTTOMLEFT"); headerLine:SetPoint("BOTTOMRIGHT"); headerLine:SetHeight(2)
+    SetColor(headerLine, COLORS.secondary)
     local title = Label(window, "Fafnyir Tools", true)
-    title:SetPoint("TOPLEFT", 22, -18)
+    title:SetFont(FontPath(), 22, "")
+    title:SetTextColor(unpack(COLORS.bright))
+    title:SetPoint("TOPLEFT", 24, -15)
     title:SetPoint("TOPRIGHT", -60, -18)
     title:SetHeight(28)
-    local close = CreateFrame("Button", nil, window, "UIPanelCloseButton")
-    close:SetPoint("TOPRIGHT", -7, -7)
+    local close = CreateButton(window, "×")
+    close:SetSize(30, 30)
+    close:GetFontString():SetFont(FontPath(), 20, "")
+    close:SetPoint("TOPRIGHT", -16, -14)
+    close:SetScript("OnClick", function() window:Hide() end)
     local subtitle = Label(window, "Standalone mode — EllesmereUI enhancements appear when EllesmereUI is installed.")
-    subtitle:SetPoint("TOPLEFT", 22, -48)
+    subtitle:SetTextColor(unpack(COLORS.muted))
+    subtitle:SetPoint("TOPLEFT", 24, -43)
     subtitle:SetPoint("TOPRIGHT", -22, -48)
     subtitle:SetHeight(20)
     local sidebar = CreateFrame("Frame", nil, window)
-    sidebar:SetPoint("TOPLEFT", 18, -78)
-    sidebar:SetPoint("BOTTOMLEFT", 18, 18)
-    sidebar:SetWidth(180)
+    sidebar:SetPoint("TOPLEFT", 14, -86)
+    sidebar:SetPoint("BOTTOMLEFT", 14, 14)
+    sidebar:SetWidth(170)
+    AddBackground(sidebar, COLORS.surface)
+    AddPixelBorder(sidebar, COLORS.surfaceLight)
     local scroll = CreateFrame("ScrollFrame", nil, window, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 12, 0)
-    scroll:SetPoint("BOTTOMRIGHT", -34, 20)
+    scroll:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 18, 0)
+    scroll:SetPoint("BOTTOMRIGHT", -34, 18)
     window.pageHost = scroll
     window.sidebar = sidebar
     window:Hide()
@@ -300,11 +420,10 @@ local function BuildSidebar()
     wipe(pageButtons)
     local previous
     for _, page in ipairs(config.pages or {}) do
-        local button = CreateFrame("Button", nil, window.sidebar, "UIPanelButtonTemplate")
-        button:SetSize(170, 28)
+        local button = CreateButton(window.sidebar, page)
+        button:SetSize(148, 32)
         if previous then button:SetPoint("TOP", previous, "BOTTOM", 0, -7)
-        else button:SetPoint("TOP", 0, -2) end
-        button:SetText(page)
+        else button:SetPoint("TOP", 0, -12) end
         button:SetScript("OnClick", function() ShowPage(page) end)
         pageButtons[page] = button
         previous = button
@@ -339,24 +458,26 @@ local function ShowTextDialog(title, prompt, text, editable, onAccept)
     dialog:SetSize(620, 250)
     dialog:SetPoint("CENTER")
     dialog:SetFrameStrata("TOOLTIP")
-    if dialog.SetBackdrop then
-        dialog:SetBackdrop({ bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-            edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", edgeSize = 24 })
-    end
+    AddBackground(dialog, COLORS.background)
+    AddPixelBorder(dialog, COLORS.highlight)
     local heading = Label(dialog, title, true)
+    heading:SetTextColor(unpack(COLORS.bright))
     heading:SetPoint("TOPLEFT", 22, -18); heading:SetPoint("TOPRIGHT", -22, -18); heading:SetHeight(24)
     local help = Label(dialog, prompt)
     help:SetPoint("TOPLEFT", 22, -48); help:SetPoint("TOPRIGHT", -22, -48); help:SetHeight(22)
-    local box = CreateFrame("EditBox", nil, dialog, "InputBoxTemplate")
-    box:SetMultiLine(true); box:SetAutoFocus(true); box:SetFontObject(ChatFontNormal)
+    local box = CreateFrame("EditBox", nil, dialog, BackdropTemplate())
+    AddBackground(box, COLORS.surface)
+    AddPixelBorder(box, COLORS.highlight)
+    box:SetMultiLine(true); box:SetAutoFocus(true); box:SetFont(FontPath(), 12, "")
+    box:SetTextColor(unpack(COLORS.text)); box:SetTextInsets(8, 8, 6, 6)
     box:SetPoint("TOPLEFT", 26, -78); box:SetPoint("BOTTOMRIGHT", -26, 55)
     box:SetText(text or ""); box:HighlightText(); box:SetCursorPosition(0)
     if not editable then box:SetScript("OnTextChanged", function(self) if self:GetText() ~= (text or "") then self:SetText(text or ""); self:HighlightText() end end) end
-    local accept = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+    local accept = CreateButton(dialog, editable and "Import" or "Close")
     accept:SetSize(110, 24); accept:SetPoint("BOTTOMRIGHT", -22, 20); accept:SetText(editable and "Import" or "Close")
     accept:SetScript("OnClick", function() if onAccept then onAccept(box:GetText()) end; dialog:Hide() end)
     if editable then
-        local cancel = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+        local cancel = CreateButton(dialog, "Cancel")
         cancel:SetSize(110, 24); cancel:SetPoint("RIGHT", accept, "LEFT", -8, 0); cancel:SetText("Cancel")
         cancel:SetScript("OnClick", function() dialog:Hide() end)
     end
@@ -374,22 +495,21 @@ end
 function UI:ShowConfirmPopup(info)
     local dialog = CreateFrame("Frame", nil, UIParent, BackdropTemplate())
     dialog:SetSize(480, 190); dialog:SetPoint("CENTER"); dialog:SetFrameStrata("TOOLTIP")
-    if dialog.SetBackdrop then
-        dialog:SetBackdrop({ bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-            edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", edgeSize = 24 })
-    end
+    AddBackground(dialog, COLORS.background)
+    AddPixelBorder(dialog, COLORS.highlight)
     local heading = Label(dialog, info.title or "Confirm", true)
+    heading:SetTextColor(unpack(COLORS.bright))
     heading:SetPoint("TOPLEFT", 22, -18); heading:SetPoint("TOPRIGHT", -22, -18); heading:SetHeight(26)
     local body = Label(dialog, info.message or "")
     body:SetPoint("TOPLEFT", 22, -52); body:SetPoint("TOPRIGHT", -22, -52); body:SetHeight(70)
-    local yes = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+    local yes = CreateButton(dialog, info.confirmText or "Confirm")
     yes:SetSize(130, 24); yes:SetPoint("BOTTOMRIGHT", -22, 20); yes:SetText(info.confirmText or "Confirm")
     yes:SetScript("OnClick", function()
         if info.onConfirm then info.onConfirm() end
         dialog:Hide()
         if info.reload and ReloadUI then ReloadUI() end
     end)
-    local no = CreateFrame("Button", nil, dialog, "UIPanelButtonTemplate")
+    local no = CreateButton(dialog, info.cancelText or "Cancel")
     no:SetSize(130, 24); no:SetPoint("RIGHT", yes, "LEFT", -8, 0); no:SetText(info.cancelText or "Cancel")
     no:SetScript("OnClick", function() dialog:Hide() end)
 end

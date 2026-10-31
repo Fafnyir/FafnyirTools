@@ -23,6 +23,14 @@ Retail/Forever rendering, settings interaction, popup behavior and action-bar
 combat safety still require in-game testing. This test is not published and
 does not alter the confirmed v1.x release line.
 
+The first in-game standalone screenshot confirmed that the native window opens
+and renders without EllesmereUI. At the user's direction, the follow-up test
+replaces the stock Blizzard presentation with the established Fafnyir palette,
+custom flat controls and pixel borders, reduces and scales the window, and uses
+the SharedMedia font named `- THE FONT` when available from FafnyirMedia. It
+falls back to Blizzard's standard font when that optional addon or media entry
+is absent. The skinned revision awaits in-game confirmation.
+
 ## v1.1.20 — Leveling Forecast refresh test
 
 At the user's direction on 2026-10-31, the existing read-only Leveling Forecast

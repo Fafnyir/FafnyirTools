@@ -14,6 +14,9 @@
   than being applied to unrelated Blizzard frames.
 - Added first-pass Simplified and Traditional Chinese strings for the new mode;
   fluent review and in-game testing remain pending.
+- Skinned the native standalone window and its controls with the Fafnyir color
+  palette, compact sizing, pixel borders, and FafnyirMedia's `- THE FONT` with
+  a safe Blizzard-font fallback.
 
 ## v1.1.20 — Leveling Forecast refresh
 

@@ -9,6 +9,8 @@ v2.0.0 test changes
 - Keeps EllesmereUI-only features hidden in standalone mode and preserves their
   saved settings for later use.
 - Adapts Right-Click Self Cast to Blizzard native action bars.
+- Skins the standalone window with the Fafnyir palette, compact sizing, pixel
+  borders, and FafnyirMedia's `- THE FONT` with a safe fallback.
 - Includes first-pass Chinese strings pending Yilang's review.
 
 Testing requested

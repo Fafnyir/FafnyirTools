@@ -10,6 +10,11 @@ window opened by `/faftools`. Do not fake EllesmereUI-owned frames or silently
 map integration settings onto unrelated Blizzard UI. Preserve dormant settings
 so installing EllesmereUI later restores those features.
 
+After the first standalone screenshot, skin only the native Fafnyir Tools
+window with the established Fafnyir palette. Use FafnyirMedia's SharedMedia
+font `- THE FONT` when available and retain a standard Blizzard-font fallback
+so FafnyirMedia remains optional. Do not restyle EllesmereUI's own options.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.

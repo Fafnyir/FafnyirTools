@@ -14,6 +14,13 @@ SlashCmdList={}; FafnyirToolsDB={}; printed={}; ns={}
 C_AddOns={IsAddOnLoaded=function() return false end}
 function GetBuildInfo() return "12.1.5","70000","",120105 end
 function print(message) printed[#printed+1]=message end
+fetchedFafnyirFont=false
+function LibStub(name,silent)
+    if name~="LibSharedMedia-3.0" then return nil end
+    return {Fetch=function(_,category,key)
+        if category=="font" and key=="- THE FONT" then fetchedFafnyirFont=true;return "Fafnyir-Regular.ttf" end
+    end}
+end
 ''')
 ns = lua.globals().ns
 lua.execute((ADDON / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
@@ -61,19 +68,24 @@ GameTooltip={SetOwner=function() end,SetText=function() end,Show=function() end,
 function Region()
     local r={shown=false,text="",checked=false,height=500,scripts={}}
     function r:SetSize() end;function r:SetPoint() end;function r:SetFrameStrata() end
+    function r:SetScale() end;function r:SetClampedToScreen() end;function r:SetAllPoints() end
     function r:SetMovable() end;function r:EnableMouse() end;function r:RegisterForDrag() end
     function r:SetScript(key,fn) self.scripts[key]=fn end;function r:HookScript(key,fn) self.scripts[key]=fn end
     function r:SetBackdrop() end;function r:SetWidth() end;function r:SetHeight(v) self.height=v end
     function r:GetHeight() return self.height end;function r:SetScrollChild(child) self.child=child end
     function r:SetParent() end;function r:Hide() self.shown=false end;function r:Show() self.shown=true end
-    function r:IsShown() return self.shown end;function r:SetEnabled() end
+    function r:IsShown() return self.shown end;function r:SetEnabled(v) self.enabled=v end
+    function r:IsEnabled() return self.enabled~=false end;function r:SetAlpha() end
     function r:SetText(v) self.text=v end;function r:GetText() return self.text end
     function r:SetChecked(v) self.checked=v end;function r:GetChecked() return self.checked end
     function r:SetAutoFocus() end;function r:SetMultiLine() end;function r:SetFontObject() end
     function r:SetFont() end;function r:SetTextColor() end;function r:SetJustifyH() end
+    function r:SetFontString(fs) self.fontString=fs end;function r:GetFontString() return self.fontString end
     function r:SetJustifyV() end;function r:SetWordWrap() end;function r:GetStringHeight() return 14 end
     function r:SetColorTexture() end;function r:SetMinMaxValues() end;function r:SetValueStep() end
     function r:SetObeyStepOnDrag() end;function r:SetValue() end;function r:HighlightText() end
+    function r:SetCheckedTexture() end;function r:SetThumbTexture() self.thumb=Region() end
+    function r:GetThumbTexture() return self.thumb end;function r:SetTextInsets() end
     function r:SetCursorPosition() end;function r:ClearFocus() end
     function r:CreateFontString() return Region() end;function r:CreateTexture() return Region() end
     return r
@@ -98,6 +110,7 @@ EllesmereUI:RegisterModule("FafnyirTools",{
 EllesmereUI:ToggleOptions()
 EllesmereUI:RefreshPage(true)
 SlashCmdList.FAFNYIRTOOLS()
+assert(fetchedFafnyirFont==true)
 ''')
 
 toc = (ADDON / "FafnyirTools.toc").read_text()

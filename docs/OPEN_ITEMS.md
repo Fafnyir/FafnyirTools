@@ -9,6 +9,8 @@ or `CHANGELOG.md`, not here.
 
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
+- Confirm the compact skinned window, Fafnyir palette, pixel borders and
+  `- THE FONT` render correctly at several UI scales and resolutions.
 - Test with EllesmereUI installed to confirm the full v1.x integration surface
   and saved settings remain unchanged.
 - Exercise Blizzard native action bars before, during and after combat; confirm
