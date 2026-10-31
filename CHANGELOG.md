@@ -33,7 +33,7 @@
   construction; Vertical, Reset and tab-state finalization can now run.
 - Updated standalone tooltip text calls for the current client API and protected
   page construction so future builder errors are reported without stale tabs.
-- Extended Native Resting Horizontal Offset to -25 through +125; Vertical
+- Extended Native Resting Horizontal Offset to -25 through +130; Vertical
   remains -25 through +25.
 
 ## v1.1.20 — Leveling Forecast refresh

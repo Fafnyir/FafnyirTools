@@ -66,7 +66,7 @@ in the tested Retail setup; max-level hiding, reload persistence and broader
 Forever/combat/vehicle behavior remain separate runtime checks.
 
 At the user's direction after that confirmation, the Horizontal Offset maximum
-is extended from +25 to +125 while retaining its -25 minimum. Vertical remains
+is extended from +25 to +130 while retaining its -25 minimum. Vertical remains
 -25 through +25. Existing saved offset values are preserved.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
