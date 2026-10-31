@@ -7,6 +7,15 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
+- Test the integrated FPS Display in standalone Retail and Forever: enable,
+  drag persistence, world-latency toggle, font-size range, reset, `/fpsdisplay`,
+  UI scale changes and monitor/resolution changes.
+- Test Nicer Damage in standalone Retail and Forever: enable and disable with
+  both Reload Now and Later, confirm the bundled font affects Blizzard floating
+  damage text, and check that no other combat-text addon is overriding it.
+- Confirm Target and Focus reaction/status strips remain hidden through target
+  changes in standalone mode without duplicate hooks.
+
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
 - Confirm the compact skinned window, Fafnyir palette, pixel borders and
@@ -26,7 +35,7 @@ or `CHANGELOG.md`, not here.
 - Exercise Blizzard native action bars before, during and after combat; confirm
   paging and disabling right-click self-cast restore expected behavior.
 - Confirm installing/removing optional FafnyirMedia produces no load error.
-- Have Yilang review the five new standalone-mode strings and check native
+- Have Yilang review the thirteen new standalone-mode strings and check native
   window wrapping on `zhCN` and `zhTW` clients.
 - Test Native Resting controls on the Blizzard Player frame in Retail and
   Forever: offsets, resting-state transitions, effective max level, reset,

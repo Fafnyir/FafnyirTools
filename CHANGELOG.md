@@ -37,6 +37,15 @@
   remains -25 through +25.
 - Added a Reload Now/Later confirmation when Native Resting Controls changes
   from disabled to enabled.
+- Consolidated the author's legacy HideTargetRepColor, FPSDisplay and
+  NicerDamage addons into standalone mode without duplicating the existing
+  Target/Focus status-texture implementation.
+- Added a default-off movable FPS/world-latency display with font size, saved
+  local position, reset control and `/fpsdisplay` shortcut.
+- Added a default-off Nicer Damage font toggle using the original bundled
+  Luckiest Guy font and a Reload Now/Later confirmation.
+- Added first-pass Simplified and Traditional Chinese text for both new QoL
+  sections; fluent review and in-game testing remain pending.
 
 ## v1.1.20 — Leveling Forecast refresh
 

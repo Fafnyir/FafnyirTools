@@ -24,6 +24,8 @@ local SCHEMA = {
     sharedArtwork = true,
     focusHeader = { enabled = true },
     permanentCompanionPet = { enabled = true, disableInPvP = true },
+    fpsDisplay = { enabled = true, showLatency = true, fontSize = true },
+    nicerDamage = { enabled = true },
     resting = true,
     rightClickSelfCast = true,
     inventory = { enabled = true, tooltips = true },

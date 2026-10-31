@@ -199,4 +199,12 @@ ns:RegisterLocale("zhCN", {
     ["QOL.RESET_NATIVE_RESTING_SETTINGS"] = "重置原生休息状态设置",
     ["QOL.NATIVE_RESTING_BLIZZARD_NOTE"] = "移动暴雪休息状态图标，并可在最高等级时隐藏。",
     ["QOL.NATIVE_RESTING_ENABLE_RELOAD"] = "启用原生休息状态控制需要重载界面。",
+    ["QOL.FPS_DISPLAY"] = "帧率显示",
+    ["QOL.ENABLE_FPS_DISPLAY"] = "启用帧率显示",
+    ["QOL.SHOW_WORLD_LATENCY"] = "显示世界延迟",
+    ["QOL.FPS_FONT_SIZE"] = "帧率字体大小",
+    ["QOL.RESET_FPS_POSITION"] = "重置帧率显示位置",
+    ["QOL.NICER_DAMAGE"] = "伤害字体",
+    ["QOL.ENABLE_NICER_DAMAGE"] = "启用美化伤害字体",
+    ["QOL.NICER_DAMAGE_RELOAD_NOTE"] = "更改伤害字体需要重载界面。",
 })

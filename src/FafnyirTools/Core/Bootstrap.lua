@@ -73,6 +73,14 @@ ns.defaults = {
         offsetX = 0,
         offsetY = 0,
     },
+    fpsDisplay = {
+        enabled = false,
+        showLatency = true,
+        fontSize = 18,
+    },
+    nicerDamage = {
+        enabled = false,
+    },
     rightClickSelfCast = {
         enabled = true,
     },

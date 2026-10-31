@@ -1,5 +1,18 @@
 # Current state — v2.0.0 standalone-capability test, 2026-10-31
 
+At the user's direction on 2026-10-31, three author-owned legacy addons are
+consolidated into standalone mode. HideTargetRepColor was already represented
+by the maintained Target/Focus status-texture handler and remains one shared
+implementation. FPSDisplay is now a default-off movable FPS/world-latency
+readout with saved local position, font-size control, reset, and the legacy
+`/fpsdisplay` shortcut. NicerDamage is now a default-off damage-font switch
+using the original Luckiest Guy font and a Reload Now/Later confirmation.
+FPS position is deliberately excluded from global transfer while its portable
+preferences and the Nicer Damage toggle are included. Both new option modules
+remain absent when EllesmereUI is installed. Offline behavior, default,
+diagnostics, localization, font-integrity, export-schema and gating checks pass;
+in-game standalone rendering and combat text still require confirmation.
+
 ## v2.0.0 test — optional EllesmereUI integration
 
 At the user's direction on 2026-10-31, standalone mode now includes default-off

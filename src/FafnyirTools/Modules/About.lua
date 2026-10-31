@@ -17,6 +17,8 @@ local CHANGELOG = {
         "Made EllesmereUI and FafnyirMedia optional dependencies.",
         "Added a native standalone settings window for portable features.",
         "Added optional position and max-level controls for Blizzard's native resting icon.",
+        "Integrated the legacy FPS Display and Nicer Damage addons as optional standalone features.",
+        "Preserved Hide Target Rep Color through the existing Target and Focus status-texture handler.",
         "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
     }},
     { version = "v1.1.20", lines = {
@@ -269,6 +271,8 @@ function feature:GetDiagnostics()
     end
     AddFeature("Resting", "Resting=" .. OnOff(db.resting and db.resting.enabled))
     AddFeature("NativeResting", "Native Resting=" .. OnOff(db.nativeResting and db.nativeResting.enabled))
+    AddFeature("FPSDisplay", "FPS Display=" .. OnOff(db.fpsDisplay and db.fpsDisplay.enabled))
+    AddFeature("NicerDamage", "Nicer Damage=" .. OnOff(db.nicerDamage and db.nicerDamage.enabled))
     AddFeature("RightClickSelfCast", "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled))
     if ns.IS_FOREVER and ns.modules.Inventory then
         enabled[#enabled + 1] = "Inventory=" .. OnOff(db.inventory and db.inventory.enabled)

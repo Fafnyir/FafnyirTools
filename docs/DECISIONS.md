@@ -1,5 +1,16 @@
 # Reconciled decisions
 
+## 2026-10-31 — Consolidate three author-owned legacy addons
+
+Include HideTargetRepColor, FPSDisplay and NicerDamage in the v2 standalone
+product. Do not duplicate HideTargetRepColor because its behavior already
+exists in `HideStatusTextures.lua`. Add FPSDisplay and NicerDamage only when
+EllesmereUI is absent, default both off, and retain their recognizable original
+behavior. Save FPS position locally but exclude it from global transfer; export
+the portable FPS preferences and damage-font toggle. Bundle only the required
+Luckiest Guy font with its Apache 2.0 license and record all three source repos.
+Changing the damage font requires Reload Now/Later.
+
 ## 2026-10-31 — Standalone native Resting controls
 
 Add default-off standalone controls for Blizzard's own Player Rest icon rather

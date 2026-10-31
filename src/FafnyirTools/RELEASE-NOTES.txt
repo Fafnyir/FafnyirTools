@@ -12,12 +12,19 @@ v2.0.0 test changes
 - Skins the standalone window with the Fafnyir palette, compact sizing, pixel
   borders, and FafnyirMedia's `- THE FONT` with a safe fallback.
 - Includes first-pass Chinese strings pending Yilang's review.
+- Integrates the author's former HideTargetRepColor behavior through the
+  existing Target/Focus status-texture handler.
+- Adds a default-off movable FPS/world-latency display with font-size and
+  position controls plus the legacy `/fpsdisplay` shortcut.
+- Adds a default-off Nicer Damage font toggle with Reload Now/Later handling.
 
 Testing requested
 
 - Test native settings, popups, scrolling and every portable feature without
   EllesmereUI on Retail and Forever.
 - Re-enable EllesmereUI and confirm the complete integration surface returns.
+- Verify FPS display dragging/persistence and Nicer Damage floating combat text
+  in standalone Retail and Forever.
 
 Previous release: Fafnyir Tools for EllesmereUI v1.1.20
 

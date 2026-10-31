@@ -1,0 +1,15 @@
+NicerDamage.ttf
+  Font: Luckiest Guy Regular
+  Copyright (c) 2010 by Brian J. Bonislawsky DBA Astigmatic (AOETI).
+  Licensed under Apache License 2.0; see Apache-2.0.txt.
+  Original integrated addon: https://github.com/Fafnyir/NicerDamage
+  Integrated from commit: 5f7e3843eedf62d3710ffed2ddc59e7b66f3737c
+  The original addon repository is licensed under GPL-3.0.
+
+Legacy feature sources
+  Hide Target Rep Color: https://github.com/Fafnyir/HideTargetRepColor
+  FPS Display: https://github.com/Fafnyir/FPSDisplay
+  Nicer Damage: https://github.com/Fafnyir/NicerDamage
+
+These integrations were requested and authorized by the original addon author,
+Fafnyir. Fafnyir Tools uses one maintained implementation of each behavior.

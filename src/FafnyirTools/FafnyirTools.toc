@@ -23,6 +23,8 @@ Modules\PermanentCompanionPet.lua
 Modules\LevelingForecast.lua
 Modules\Resting.lua
 Modules\NativeResting.lua
+Modules\FPSDisplay.lua
+Modules\NicerDamage.lua
 Modules\RightClickSelfCast.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua
