@@ -77,6 +77,17 @@ local function AskBlizzardToRefresh()
     end
 end
 
+local function RequestEnableReload()
+    if not EllesmereUI or not EllesmereUI.ShowConfirmPopup then return end
+    EllesmereUI:ShowConfirmPopup({
+        title = T("CORE.RELOAD_REQUIRED"),
+        message = T("QOL.NATIVE_RESTING_ENABLE_RELOAD"),
+        confirmText = T("CORE.RELOAD_NOW"),
+        cancelText = T("CORE.LATER"),
+        reload = true,
+    })
+end
+
 function feature:ApplyLayout()
     local icon = ResolveRestIcon()
     if not icon then return false end
@@ -151,7 +162,12 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "toggle", text = T("QOL.ENABLE_NATIVE_RESTING_CONTROLS"),
             getValue = function() return DB().enabled end,
-            setValue = function(value) DB().enabled = value; feature:Refresh() end,
+            setValue = function(value)
+                local wasEnabled = DB().enabled == true
+                DB().enabled = value
+                feature:Refresh()
+                if value and not wasEnabled then RequestEnableReload() end
+            end,
         },
         {
             type = "toggle", text = T("UNIT_FRAMES.HIDE_AT_MAX_LEVEL"),

@@ -23,6 +23,10 @@ visible Reset button as the only supported reset path.
 2026-10-31 follow-up: extend only Native Resting Horizontal Offset to the
 asymmetric -25 through +140 range. Keep Vertical at -25 through +25.
 
+2026-10-31 enable lifecycle: when Native Resting Controls changes from off to
+on, show the standard secure Reload Now/Later confirmation. Do not require a
+reload for disabling or ordinary option changes.
+
 ## 2026-10-31 — Standalone-capability v2 test
 
 Build an isolated v2.0.0 test in which EllesmereUI and FafnyirMedia are

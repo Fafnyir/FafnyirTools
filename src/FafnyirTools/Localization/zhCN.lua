@@ -198,4 +198,5 @@ ns:RegisterLocale("zhCN", {
     ["QOL.ENABLE_NATIVE_RESTING_CONTROLS"] = "启用原生休息状态控制",
     ["QOL.RESET_NATIVE_RESTING_SETTINGS"] = "重置原生休息状态设置",
     ["QOL.NATIVE_RESTING_BLIZZARD_NOTE"] = "移动暴雪休息状态图标，并可在最高等级时隐藏。",
+    ["QOL.NATIVE_RESTING_ENABLE_RELOAD"] = "启用原生休息状态控制需要重载界面。",
 })

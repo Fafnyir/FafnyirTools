@@ -142,6 +142,7 @@ ns:RegisterLocale("enUS", {
     ["QOL.ENABLE_NATIVE_RESTING_CONTROLS"] = "Enable Native Resting Controls",
     ["QOL.RESET_NATIVE_RESTING_SETTINGS"] = "Reset Native Resting Settings",
     ["QOL.NATIVE_RESTING_BLIZZARD_NOTE"] = "Moves Blizzard's resting icon and can hide it at maximum level.",
+    ["QOL.NATIVE_RESTING_ENABLE_RELOAD"] = "Enabling Native Resting Controls requires a UI reload.",
     ["UNIT_FRAMES.RESTING"] = "Resting",
     ["UNIT_FRAMES.ALL_BUFFS"] = "All Buffs",
     ["UNIT_FRAMES.ALL_DEBUFFS"] = "All Debuffs",

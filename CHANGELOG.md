@@ -35,6 +35,8 @@
   page construction so future builder errors are reported without stale tabs.
 - Extended Native Resting Horizontal Offset to -25 through +140; Vertical
   remains -25 through +25.
+- Added a Reload Now/Later confirmation when Native Resting Controls changes
+  from disabled to enabled.
 
 ## v1.1.20 — Leveling Forecast refresh
 

@@ -69,6 +69,11 @@ At the user's direction after that confirmation, the Horizontal Offset maximum
 is extended from +25 to +140 while retaining its -25 minimum. Vertical remains
 -25 through +25. Existing saved offset values are preserved.
 
+The user subsequently confirmed that the first disabled-to-enabled transition
+needs a UI reload. Enabling Native Resting Controls now saves the toggle and
+shows the standard Reload Now/Later confirmation. Disabling, offset changes and
+Hide at Max Level remain live and do not request a reload.
+
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI
 installed, the existing sidebar, widgets and complete integration feature set

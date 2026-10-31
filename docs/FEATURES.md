@@ -24,7 +24,7 @@ separate.
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide complete coverage of all 197 current interface
+  Chinese (`zhTW`) provide complete coverage of all 198 current interface
   strings. Yilang reviewed the strings through v1.1.19; the v1.1.20 Refresh and
   v2.0.0 standalone strings are first-pass translations pending fluent review.
 - Locale files load before feature modules so localized page names are stable

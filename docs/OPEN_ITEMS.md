@@ -15,6 +15,9 @@ or `CHANGELOG.md`, not here.
   row are confirmed in game in build `30e80ff` (2026-10-31).
 - Recheck `General.log` for new Fafnyir Tools Lua errors after hovering controls;
   the obsolete tooltip call has been corrected.
+- Confirm enabling Native Resting Controls shows Reload Now/Later and that the
+  setting is active after accepting the reload; Later should preserve the saved
+  enabled value.
 - Toggle-label alignment is confirmed fixed in build `16dd10c`; retain the
   22-pixel vertically centered label and six-pixel checkbox gap.
 - The user confirmed the EllesmereUI-installed v2 test is fully functional with

@@ -85,3 +85,5 @@ source = (root / "Modules/NativeResting.lua").read_text()
 assert "min = -25, max = 140" in source
 assert source.count("min = -25, max = 25") == 1
 assert "W:TripleRow" in source
+assert "if value and not wasEnabled then RequestEnableReload() end" in source
+assert 'reload = true' in source
