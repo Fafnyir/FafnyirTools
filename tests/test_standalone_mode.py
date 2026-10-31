@@ -84,6 +84,7 @@ function Region()
     function r:SetFontString(fs) self.fontString=fs end;function r:GetFontString() return self.fontString end
     function r:SetJustifyV() end;function r:SetWordWrap() end;function r:GetStringHeight() return 14 end
     function r:SetColorTexture() end;function r:SetMinMaxValues() end;function r:SetValueStep() end
+    function r:SetOrientation(value) self.orientation=value end
     function r:SetObeyStepOnDrag() end;function r:SetValue() end;function r:HighlightText() end
     function r:SetCheckedTexture() end;function r:SetThumbTexture() self.thumb=Region() end
     function r:GetThumbTexture() return self.thumb end;function r:SetTextInsets() end
@@ -133,5 +134,7 @@ standalone_ui = (ADDON / "Core/StandaloneUI.lua").read_text()
 assert 'fs:SetJustifyV("MIDDLE")' in standalone_ui
 assert 'fs:SetPoint("LEFT", check, "RIGHT", 6, 0)' in standalone_ui
 assert 'fs:SetHeight(22)' in standalone_ui
+assert 'slider:SetOrientation("HORIZONTAL")' in standalone_ui
+assert 'valueText:SetText(FormatValue(value))' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

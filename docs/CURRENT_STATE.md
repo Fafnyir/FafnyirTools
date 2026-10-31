@@ -13,7 +13,11 @@ Forever frame discovery and rendering still require in-game confirmation. The
 first package incorrectly targeted the retired `PlayerRestIcon` global and its
 controls had no visible effect. Current Blizzard source identifies the live
 object as `PlayerFrameContentContextual.PlayerRestLoop`; the corrected resolver
-and post-update hook now follow that implementation.
+and post-update hook now follow that implementation. In-game testing confirms
+the corrected offset controls move the native resting animation. The same test
+showed that standalone slider thumbs lacked explicit horizontal orientation and
+there was no numeric position readout; the shared native slider now declares
+horizontal orientation and displays its live value at the right edge.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

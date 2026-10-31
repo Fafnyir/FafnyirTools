@@ -25,6 +25,8 @@ or `CHANGELOG.md`, not here.
   Forever: offsets, resting-state transitions, effective max level, reset,
   disabling, reload persistence and combat/vehicle transitions. The four new
   Chinese strings are first-pass translations pending Yilang's review.
+  Offset application is confirmed in game; the corrected moving thumb and live
+  numeric slider feedback await confirmation.
 - Release automation still uses the v1.x `for_EllesmereUI` artifact identity;
   update it only if the standalone design is accepted for release.
 
