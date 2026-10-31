@@ -129,4 +129,9 @@ for native_prefix in (
 ):
     assert f'"{native_prefix}"' in right_click
 
+standalone_ui = (ADDON / "Core/StandaloneUI.lua").read_text()
+assert 'fs:SetJustifyV("MIDDLE")' in standalone_ui
+assert 'fs:SetPoint("LEFT", check, "RIGHT", 6, 0)' in standalone_ui
+assert 'fs:SetHeight(22)' in standalone_ui
+
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")
