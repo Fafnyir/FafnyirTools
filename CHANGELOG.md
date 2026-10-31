@@ -51,6 +51,8 @@
 - Added default-off Mouseover Action Bars controls to the Action Bars page for
   Blizzard's primary, multi, Pet and Stance bars, including faded opacity and
   immediate full-opacity restoration when disabled.
+- Added individual saved choices for Action Bars 1–8, Pet Bar and Stance Bar,
+  plus Reload Now/Later confirmation when the master feature is enabled.
 
 ## v1.1.20 — Leveling Forecast refresh
 

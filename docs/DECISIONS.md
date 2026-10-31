@@ -8,6 +8,10 @@ independent hover group, and offer a saved 0–100% faded opacity. Change only
 visual alpha and hover hooks; do not alter secure attributes, clicks, paging or
 spell state. Restore full opacity on disable. Keep the feature standalone-only
 because EllesmereUI replaces/owns the action-bar surface in integration mode.
+After in-game testing showed initial enablement needs a reload, add the standard
+Reload Now/Later confirmation for off-to-on transitions. Expose a separate
+saved toggle for Action Bars 1–8, Pet Bar and Stance Bar; individual choices and
+opacity changes remain live.
 
 ## 2026-10-31 — Standalone default-tooltip health bar
 

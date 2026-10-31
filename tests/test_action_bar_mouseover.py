@@ -36,6 +36,9 @@ lua.execute(r'''
 assert(ns.modules.ActionBarMouseover)
 assert(FafnyirToolsDB.actionBarMouseover.enabled==false)
 assert(FafnyirToolsDB.actionBarMouseover.fadedOpacity==0)
+assert(FafnyirToolsDB.actionBarMouseover.bars.main==true)
+assert(FafnyirToolsDB.actionBarMouseover.bars.bar8==true)
+assert(FafnyirToolsDB.actionBarMouseover.bars.pet==true)
 ns.modules.ActionBarMouseover:Initialize()
 assert(MainActionBar.alpha==1 and MultiBarBottomLeft.alpha==1)
 
@@ -43,6 +46,11 @@ FafnyirToolsDB.actionBarMouseover.enabled=true
 FafnyirToolsDB.actionBarMouseover.fadedOpacity=0.2
 ns.modules.ActionBarMouseover:Refresh()
 assert(MainActionBar.alpha==0.2 and MultiBarBottomLeft.alpha==0.2)
+FafnyirToolsDB.actionBarMouseover.bars.bar2=false
+ns.modules.ActionBarMouseover:Refresh()
+assert(MainActionBar.alpha==0.2 and MultiBarBottomLeft.alpha==1)
+FafnyirToolsDB.actionBarMouseover.bars.bar2=true
+ns.modules.ActionBarMouseover:Refresh()
 
 ActionButton1.hovered=true
 ActionButton1.scripts.OnEnter(ActionButton1)
@@ -64,8 +72,14 @@ for frame in ("MainActionBar", "MainMenuBar", "MultiBarBottomLeft", "MultiBar7",
 assert "SetAttribute" not in source
 assert "RegisterForClicks" not in source
 assert "InCombatLockdown" not in source
+assert 'message = T("ACTION_BARS.MOUSEOVER_ENABLE_RELOAD")' in source
+assert "reload = true" in source
+for key in ("main", "bar2", "bar3", "bar4", "bar5", "bar6", "bar7", "bar8", "pet", "stance"):
+    assert f'BarToggle("{key}"' in source
 
 schema = (ADDON / "Modules/GlobalSettings.lua").read_text()
-assert "actionBarMouseover = { enabled = true, fadedOpacity = true }" in schema
+assert "actionBarMouseover = {" in schema
+assert "fadedOpacity = true" in schema
+assert "bar8 = true, pet = true, stance = true" in schema
 
 print("PASS standalone Blizzard action-bar mouseover opacity, hover, restore and ownership")

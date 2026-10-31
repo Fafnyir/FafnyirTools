@@ -27,7 +27,14 @@ local SCHEMA = {
     fpsDisplay = { enabled = true, showLatency = true, fontSize = true },
     nicerDamage = { enabled = true },
     tooltipHealthBar = { hidden = true },
-    actionBarMouseover = { enabled = true, fadedOpacity = true },
+    actionBarMouseover = {
+        enabled = true,
+        fadedOpacity = true,
+        bars = {
+            main = true, bar2 = true, bar3 = true, bar4 = true, bar5 = true,
+            bar6 = true, bar7 = true, bar8 = true, pet = true, stance = true,
+        },
+    },
     resting = true,
     rightClickSelfCast = true,
     inventory = { enabled = true, tooltips = true },

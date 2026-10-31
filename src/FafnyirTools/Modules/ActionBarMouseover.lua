@@ -11,16 +11,16 @@ local feature = {
 ns:RegisterFeature(feature.key, feature)
 
 local BAR_DEFINITIONS = {
-    { frames = { "MainActionBar", "MainMenuBar" }, buttonPrefix = "ActionButton" },
-    { frames = { "MultiBarBottomLeft" }, buttonPrefix = "MultiBarBottomLeftButton" },
-    { frames = { "MultiBarBottomRight" }, buttonPrefix = "MultiBarBottomRightButton" },
-    { frames = { "MultiBarRight" }, buttonPrefix = "MultiBarRightButton" },
-    { frames = { "MultiBarLeft" }, buttonPrefix = "MultiBarLeftButton" },
-    { frames = { "MultiBar5" }, buttonPrefix = "MultiBar5Button" },
-    { frames = { "MultiBar6" }, buttonPrefix = "MultiBar6Button" },
-    { frames = { "MultiBar7" }, buttonPrefix = "MultiBar7Button" },
-    { frames = { "PetActionBar" }, buttonPrefix = "PetActionButton", buttonCount = 10 },
-    { frames = { "StanceBar" }, buttonPrefix = "StanceButton", buttonCount = 10 },
+    { key = "main", frames = { "MainActionBar", "MainMenuBar" }, buttonPrefix = "ActionButton" },
+    { key = "bar2", frames = { "MultiBarBottomLeft" }, buttonPrefix = "MultiBarBottomLeftButton" },
+    { key = "bar3", frames = { "MultiBarBottomRight" }, buttonPrefix = "MultiBarBottomRightButton" },
+    { key = "bar4", frames = { "MultiBarRight" }, buttonPrefix = "MultiBarRightButton" },
+    { key = "bar5", frames = { "MultiBarLeft" }, buttonPrefix = "MultiBarLeftButton" },
+    { key = "bar6", frames = { "MultiBar5" }, buttonPrefix = "MultiBar5Button" },
+    { key = "bar7", frames = { "MultiBar6" }, buttonPrefix = "MultiBar6Button" },
+    { key = "bar8", frames = { "MultiBar7" }, buttonPrefix = "MultiBar7Button" },
+    { key = "pet", frames = { "PetActionBar" }, buttonPrefix = "PetActionButton", buttonCount = 10 },
+    { key = "stance", frames = { "StanceBar" }, buttonPrefix = "StanceButton", buttonCount = 10 },
 }
 
 local groups = {}
@@ -53,7 +53,8 @@ end
 
 local function ApplyGroup(group, hovered)
     if not group.frame or not group.frame.SetAlpha then return end
-    if not DB().enabled or hovered then
+    local bars = DB().bars or {}
+    if not DB().enabled or bars[group.key] == false or hovered then
         group.frame:SetAlpha(1)
     else
         local opacity = math.max(0, math.min(1, tonumber(DB().fadedOpacity) or 0))
@@ -92,7 +93,7 @@ local function DiscoverBars()
     for _, definition in ipairs(BAR_DEFINITIONS) do
         local frame = ResolveFrame(definition)
         if frame then
-            local group = { frame = frame, buttons = {} }
+            local group = { key = definition.key, frame = frame, buttons = {} }
             HookRegion(frame)
             for index = 1, definition.buttonCount or 12 do
                 local button = _G[definition.buttonPrefix .. index]
@@ -124,6 +125,26 @@ function feature:HandleEvent(event)
     end
 end
 
+local function RequestEnableReload()
+    if not EllesmereUI or not EllesmereUI.ShowConfirmPopup then return end
+    EllesmereUI:ShowConfirmPopup({
+        title = T("CORE.RELOAD_REQUIRED"),
+        message = T("ACTION_BARS.MOUSEOVER_ENABLE_RELOAD"),
+        confirmText = T("CORE.RELOAD_NOW"),
+        cancelText = T("CORE.LATER"),
+        reload = true,
+    })
+end
+
+local function BarToggle(key, text)
+    return {
+        type = "toggle", text = text,
+        disabled = function() return not DB().enabled end,
+        getValue = function() return DB().bars[key] end,
+        setValue = function(value) DB().bars[key] = value; feature:Refresh() end,
+    }
+end
+
 function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y = yOffset
@@ -135,7 +156,12 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "toggle", text = T("ACTION_BARS.ENABLE_MOUSEOVER_ACTION_BARS"),
             getValue = function() return DB().enabled end,
-            setValue = function(value) DB().enabled = value; feature:Refresh() end,
+            setValue = function(value)
+                local wasEnabled = DB().enabled == true
+                DB().enabled = value
+                feature:Refresh()
+                if value and not wasEnabled then RequestEnableReload() end
+            end,
         },
         {
             type = "slider", text = T("ACTION_BARS.FADED_OPACITY"),
@@ -150,6 +176,28 @@ function feature:BuildOptions(parent, yOffset)
         { type = "label", text = T("ACTION_BARS.MOUSEOVER_ACTION_BARS_NOTE") },
         { type = "label", text = "" }
     )
+    y = y - h
+    _, h = W:SectionHeader(parent, T("ACTION_BARS.BARS_TO_FADE"), y)
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        BarToggle("main", T("ACTION_BARS.ACTION_BAR_NUMBER", 1)),
+        BarToggle("bar2", T("ACTION_BARS.ACTION_BAR_NUMBER", 2)))
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        BarToggle("bar3", T("ACTION_BARS.ACTION_BAR_NUMBER", 3)),
+        BarToggle("bar4", T("ACTION_BARS.ACTION_BAR_NUMBER", 4)))
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        BarToggle("bar5", T("ACTION_BARS.ACTION_BAR_NUMBER", 5)),
+        BarToggle("bar6", T("ACTION_BARS.ACTION_BAR_NUMBER", 6)))
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        BarToggle("bar7", T("ACTION_BARS.ACTION_BAR_NUMBER", 7)),
+        BarToggle("bar8", T("ACTION_BARS.ACTION_BAR_NUMBER", 8)))
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        BarToggle("pet", T("ACTION_BARS.PET_BAR")),
+        BarToggle("stance", T("ACTION_BARS.STANCE_BAR")))
     y = y - h
     return math.abs(y)
 end

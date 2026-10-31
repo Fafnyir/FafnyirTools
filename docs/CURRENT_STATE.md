@@ -23,11 +23,14 @@ Show behavior pass; Retail and Forever hover testing remains required.
 
 The standalone Action Bars page now also has a default-off **Mouseover Action
 Bars** feature. It controls Blizzard's primary, seven multi-action, Pet and
-Stance bars as independent hover groups. A saved Faded Opacity slider ranges
+Stance bars as independent hover groups, with a separate saved toggle for each
+bar. A saved Faded Opacity slider ranges
 from fully hidden to fully visible; entering a bar or any of its buttons
 restores that group to full opacity and leaving reapplies the saved value after
 a short boundary delay. Disabling immediately restores every discovered bar to
-full opacity. The implementation changes only frame alpha and hover scripts—no
+full opacity. The first disabled-to-enabled transition saves the choice and
+shows Reload Now/Later because live enablement was not reliable in game; bar
+selection and opacity changes remain live. The implementation changes only frame alpha and hover scripts—no
 secure action attributes, clicks, paging or spell state. It is not registered
 with EllesmereUI installed. Offline hover/leave/restore and ownership tests
 pass; in-game Edit Mode, combat, paging, vehicle and pet/stance testing remains.
