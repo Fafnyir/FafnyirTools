@@ -16,6 +16,10 @@ in the live viewport. Use a single three-column row for Horizontal, Vertical
 and Reset, with -25 to +25 on each axis. Preserve double-clicking either slider
 to return that axis to zero.
 
+2026-10-31 correction: WoW Slider frames do not support `OnDoubleClick`; the
+handler aborted QoL page construction. Remove double-click reset and use the
+visible Reset button as the only supported reset path.
+
 ## 2026-10-31 — Standalone-capability v2 test
 
 Build an isolated v2.0.0 test in which EllesmereUI and FafnyirMedia are

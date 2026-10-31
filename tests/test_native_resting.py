@@ -84,4 +84,3 @@ print("PASS native resting defaults, offsets, max-level hiding, hook and restora
 source = (root / "Modules/NativeResting.lua").read_text()
 assert source.count("min = -25, max = 25") == 2
 assert "W:TripleRow" in source
-assert source.count("resetValue = 0") == 2

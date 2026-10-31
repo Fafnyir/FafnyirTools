@@ -48,6 +48,16 @@ current revision replaces tab underline textures with higher-frame-level child
 frames and routes all active styling through each button's `SetSelected` method;
 the active label also turns purple as a second unambiguous state cue.
 
+Inspection of the live `General.log` then identified the actual QoL-only cause:
+WoW Slider frames reject `OnDoubleClick`, so assigning the proposed axis-reset
+handler aborted page construction immediately after Horizontal. Vertical,
+Reset, and the final tab-selection pass consequently never ran. The unsupported
+handler is removed; the visible Reset button remains the supported reset path.
+The same log exposed an obsolete multi-argument `GameTooltip:SetText` call,
+which is now reduced to the current safe text-only form. Standalone page builds
+are also protected so a future builder failure is reported in chat without
+preventing the selected-tab state from finalizing.
+
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI
 installed, the existing sidebar, widgets and complete integration feature set

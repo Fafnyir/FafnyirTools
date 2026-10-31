@@ -29,6 +29,10 @@
   remaining missing indicator.
 - Replaced unreliable tab underline textures with higher-frame-level child
   frames and added purple active-tab text.
+- Removed an unsupported Slider `OnDoubleClick` handler that aborted QoL page
+  construction; Vertical, Reset and tab-state finalization can now run.
+- Updated standalone tooltip text calls for the current client API and protected
+  page construction so future builder errors are reported without stale tabs.
 
 ## v1.1.20 — Leveling Forecast refresh
 

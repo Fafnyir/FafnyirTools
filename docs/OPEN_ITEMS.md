@@ -14,6 +14,10 @@ or `CHANGELOG.md`, not here.
 - Confirm the clicked-button-owned underline follows QoL and every other
   standalone tab after replacing underline textures with higher-level child
   frames; confirm the active tab label also turns purple.
+- Confirm the complete Native Resting row renders after removing the unsupported
+  Slider `OnDoubleClick`: Horizontal, Vertical and the visible Reset button.
+- Recheck `General.log` for new Fafnyir Tools Lua errors after hovering controls;
+  the obsolete tooltip call has been corrected.
 - Toggle-label alignment is confirmed fixed in build `16dd10c`; retain the
   22-pixel vertically centered label and six-pixel checkbox gap.
 - The user confirmed the EllesmereUI-installed v2 test is fully functional with

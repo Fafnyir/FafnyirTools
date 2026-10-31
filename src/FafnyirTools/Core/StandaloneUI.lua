@@ -76,7 +76,7 @@ local function AddTooltip(frame, text)
     frame:EnableMouse(true)
     frame:HookScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(text, 1, 1, 1, true)
+        GameTooltip:SetText(text)
         GameTooltip:Show()
     end)
     frame:HookScript("OnLeave", function() GameTooltip:Hide() end)
@@ -312,11 +312,6 @@ local function BuildSlider(parent, descriptor)
         valueText:SetText(FormatValue(value))
         if type(descriptor.setValue) == "function" then descriptor.setValue(value) end
     end)
-    if descriptor.resetValue ~= nil then
-        slider:SetScript("OnDoubleClick", function(self)
-            self:SetValue(descriptor.resetValue)
-        end)
-    end
     AddTooltip(slider, descriptor.tooltip or (Disabled(descriptor) and descriptor.disabledTooltip))
 end
 
@@ -453,7 +448,11 @@ local function ShowPage(pageName, clickedButton)
     content:SetHeight(1)
     window.pageHost:SetScrollChild(content)
     window.pageContent = content
-    local height = config.buildPage(currentPage, content, -8)
+    local ok, height = pcall(config.buildPage, currentPage, content, -8)
+    if not ok then
+        ns:Print("Could not build " .. tostring(currentPage) .. " options: " .. tostring(height))
+        height = 0
+    end
     content:SetHeight(math.max(height + 24, window.pageHost:GetHeight()))
     SetActivePageButton(currentPage, clickedButton)
 end

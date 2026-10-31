@@ -145,7 +145,7 @@ assert 'fs:SetPoint("LEFT", check, "RIGHT", 6, 0)' in standalone_ui
 assert 'fs:SetHeight(22)' in standalone_ui
 assert 'slider:SetOrientation("HORIZONTAL")' in standalone_ui
 assert 'valueText:SetText(FormatValue(value))' in standalone_ui
-assert 'slider:SetScript("OnDoubleClick"' in standalone_ui
+assert 'slider:SetScript("OnDoubleClick"' not in standalone_ui
 assert 'leftCell:SetPoint("BOTTOMRIGHT")' in standalone_ui
 assert 'function UI.Widgets:TripleRow' in standalone_ui
 assert 'local function SetActivePageButton' in standalone_ui
@@ -155,5 +155,7 @@ assert 'local accent = CreateFrame("Frame", nil, self)' in standalone_ui
 assert 'accent:SetFrameLevel(self:GetFrameLevel() + 10)' in standalone_ui
 assert 'button:SetSelected(false)' in standalone_ui
 assert 'selected:SetSelected(true)' in standalone_ui
+assert 'local ok, height = pcall(config.buildPage' in standalone_ui
+assert 'GameTooltip:SetText(text)' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")
