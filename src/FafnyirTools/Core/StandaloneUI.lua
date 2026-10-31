@@ -309,6 +309,11 @@ local function BuildSlider(parent, descriptor)
         valueText:SetText(FormatValue(value))
         if type(descriptor.setValue) == "function" then descriptor.setValue(value) end
     end)
+    if descriptor.resetValue ~= nil then
+        slider:SetScript("OnDoubleClick", function(self)
+            self:SetValue(descriptor.resetValue)
+        end)
+    end
     AddTooltip(slider, descriptor.tooltip or (Disabled(descriptor) and descriptor.disabledTooltip))
 end
 
@@ -347,7 +352,11 @@ function UI.Widgets:DualRow(parent, y, left, right)
     AddBackground(row, COLORS.surface)
     local leftCell = CreateFrame("Frame", nil, row)
     leftCell:SetPoint("TOPLEFT")
-    leftCell:SetPoint("BOTTOMRIGHT", row, "BOTTOM", -4, 0)
+    if right then
+        leftCell:SetPoint("BOTTOMRIGHT", row, "BOTTOM", -4, 0)
+    else
+        leftCell:SetPoint("BOTTOMRIGHT")
+    end
     BuildDescriptor(leftCell, left)
     if right then
         local divider = row:CreateTexture(nil, "BORDER")

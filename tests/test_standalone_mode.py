@@ -136,5 +136,7 @@ assert 'fs:SetPoint("LEFT", check, "RIGHT", 6, 0)' in standalone_ui
 assert 'fs:SetHeight(22)' in standalone_ui
 assert 'slider:SetOrientation("HORIZONTAL")' in standalone_ui
 assert 'valueText:SetText(FormatValue(value))' in standalone_ui
+assert 'slider:SetScript("OnDoubleClick"' in standalone_ui
+assert 'leftCell:SetPoint("BOTTOMRIGHT")' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")
