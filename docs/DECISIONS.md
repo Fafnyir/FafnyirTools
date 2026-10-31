@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## 2026-10-31 — Standalone minimap launcher
+
+Create a standard circular minimap button only in standalone mode. Left-click
+toggles the native Fafnyir Tools window and left-drag moves the button around
+the minimap edge. Save the angle in FafnyirToolsDB but exclude it from global
+transfer as device/layout state. Do not create a second launcher when
+EllesmereUI is installed.
+
 ## 2026-10-31 — Standalone mouseover action bars
 
 Place a default-off Mouseover Action Bars feature in the existing Action Bars

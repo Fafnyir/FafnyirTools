@@ -17,6 +17,7 @@ Core\StandaloneUI.lua
 Core\Sidebar.lua
 Modules\HideStatusTextures.lua
 Modules\About.lua
+Modules\MinimapButton.lua
 Modules\GlobalSettings.lua
 Modules\ForeverFog.lua
 Modules\PermanentCompanionPet.lua

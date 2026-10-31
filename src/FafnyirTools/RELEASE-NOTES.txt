@@ -24,6 +24,8 @@ v2.0.0 test changes
 - Adds individual bar selections and requests Reload Now/Later when Mouseover
   Action Bars is first enabled.
 - Includes separate Micro Menu and Bag Bar mouseover selections.
+- Adds a draggable standalone minimap button for opening Fafnyir Tools; its
+  device-specific position is excluded from global exports.
 
 Testing requested
 
@@ -36,6 +38,8 @@ Testing requested
   taint on Retail and Forever.
 - Verify mouseover reveal, leave delay, partial opacity and disable restoration
   for every Blizzard action-bar group in Retail and Forever.
+- Verify the minimap button click, tooltip, drag persistence and placement at
+  different UI scales on Retail and Forever.
 
 Previous release: Fafnyir Tools for EllesmereUI v1.1.20
 

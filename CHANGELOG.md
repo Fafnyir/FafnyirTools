@@ -54,6 +54,8 @@
 - Added individual saved choices for Action Bars 1–8, Pet Bar and Stance Bar,
   plus Reload Now/Later confirmation when the master feature is enabled.
 - Added Micro Menu and Bag Bar as individual mouseover groups.
+- Added a standalone minimap button that toggles Fafnyir Tools on left-click
+  and saves its position when dragged around the minimap edge.
 
 ## v1.1.20 — Leveling Forecast refresh
 

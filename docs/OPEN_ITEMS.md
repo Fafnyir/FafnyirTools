@@ -25,6 +25,9 @@ or `CHANGELOG.md`, not here.
   reload persistence, and hidden-bar mouse hit testing. Repeat hover and
   restoration checks for the Micro Menu and Bag Bar, including each child
   button and the Forever fallback frame names.
+- Test the standalone minimap button on Retail and Forever: click toggling,
+  tooltip, drag at every quadrant, persistence after reload, UI scale/minimap
+  size changes, reset behavior, combat, and coexistence with button collectors.
 
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
@@ -45,7 +48,7 @@ or `CHANGELOG.md`, not here.
 - Exercise Blizzard native action bars before, during and after combat; confirm
   paging and disabling right-click self-cast restore expected behavior.
 - Confirm installing/removing optional FafnyirMedia produces no load error.
-- Have Yilang review the twenty-seven new standalone-mode strings and check native
+- Have Yilang review the twenty-nine new standalone-mode strings and check native
   window wrapping on `zhCN` and `zhTW` clients.
 - Test Native Resting controls on the Blizzard Player frame in Retail and
   Forever: offsets, resting-state transitions, effective max level, reset,

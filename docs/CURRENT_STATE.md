@@ -35,6 +35,15 @@ secure action attributes, clicks, paging or spell state. It is not registered
 with EllesmereUI installed. Offline hover/leave/restore and ownership tests
 pass; in-game Edit Mode, combat, paging, vehicle and pet/stance testing remains.
 
+Standalone mode now creates a standard circular **Fafnyir Tools minimap
+button**. Left-click opens or closes the standalone settings window. Left-drag
+moves it around the minimap perimeter and saves its angle locally. That
+machine-specific placement is intentionally excluded from global settings
+exports. The button is not created when EllesmereUI is installed, avoiding a
+duplicate launcher. Offline click, drag, persistence, export exclusion and
+ownership tests pass; Retail/Forever minimap rendering still requires in-game
+confirmation.
+
 ## v2.0.0 test — optional EllesmereUI integration
 
 At the user's direction on 2026-10-31, standalone mode now includes default-off

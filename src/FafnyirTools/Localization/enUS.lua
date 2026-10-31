@@ -162,6 +162,8 @@ ns:RegisterLocale("enUS", {
     ["QOL.NICER_DAMAGE"] = "NICER DAMAGE",
     ["QOL.ENABLE_NICER_DAMAGE"] = "Enable Nicer Damage Font",
     ["QOL.NICER_DAMAGE_RELOAD_NOTE"] = "Changing the damage font requires a UI reload.",
+    ["QOL.MINIMAP_BUTTON_LEFT_CLICK"] = "Left-click: Open Fafnyir Tools",
+    ["QOL.MINIMAP_BUTTON_DRAG"] = "Drag: Move around the minimap",
     ["QOL.DEFAULT_TOOLTIP"] = "DEFAULT TOOLTIP",
     ["QOL.HIDE_DEFAULT_TOOLTIP_HEALTH_BAR"] = "Hide Default Tooltip Health Bar",
     ["QOL.DEFAULT_TOOLTIP_HEALTH_BAR_NOTE"] = "Hides the health bar shown on Blizzard's default unit tooltip.",

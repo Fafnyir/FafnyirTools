@@ -84,6 +84,9 @@ ns.defaults = {
     tooltipHealthBar = {
         hidden = false,
     },
+    minimapButton = {
+        angle = 220,
+    },
     actionBarMouseover = {
         enabled = false,
         fadedOpacity = 0,
