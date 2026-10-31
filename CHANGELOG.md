@@ -1,5 +1,16 @@
 # Reconciled project changelog
 
+## v1.1.20 — Leveling Forecast refresh
+
+- Added a **Refresh Leveling Forecast** button under the existing forecast.
+- Refreshing rebuilds the current options page and immediately recalculates
+  current XP, completed quests, adjusted quest XP, effective bonuses, and the
+  projected post-turn-in level without closing the page.
+- Kept the forecast read-only: no XP-bar ownership, quest/XP event listeners,
+  saved settings, or background polling were added.
+- Added first-pass Simplified and Traditional Chinese strings pending Yilang's
+  review.
+
 ## v1.1.19 — EllesmereUI ownership cleanup
 
 - Retired the Fafnyir Tools Retail Flyout Fix because EllesmereUI now owns the

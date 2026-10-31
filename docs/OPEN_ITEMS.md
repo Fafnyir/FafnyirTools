@@ -5,6 +5,14 @@ scope. Confirmed releases, superseded test attempts, retired features and
 historical implementation notes belong in `CURRENT_STATE.md`, `DECISIONS.md`
 or `CHANGELOG.md`, not here.
 
+## v1.1.20 Leveling Forecast refresh test
+
+- Confirm the Refresh button immediately updates current progress, completed
+  quest count/XP, effective bonus, and projected result without reopening QoL.
+- Confirm repeated clicks do not duplicate controls or disturb page scrolling.
+- Have Yilang review the new `zhCN` and `zhTW` Refresh wording and verify button
+  width on native Chinese clients.
+
 ## v1.1.19 client-specific verification
 
 The user reported that test build `8247f07` ran without errors and authorized

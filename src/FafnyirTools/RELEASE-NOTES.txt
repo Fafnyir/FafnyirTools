@@ -1,4 +1,23 @@
-Fafnyir Tools for EllesmereUI v1.1.18
+Fafnyir Tools for EllesmereUI v1.1.20
+
+v1.1.20 changes
+
+- Adds an in-place Refresh button to Leveling Forecast.
+- Recalculates current XP, completed quest XP, effective bonuses, and projected
+  progress without closing and reopening the QoL page.
+- Keeps the forecast read-only with no XP-bar writes, background polling,
+  quest/XP event subscriptions, or new saved settings.
+- Includes first-pass Simplified and Traditional Chinese strings pending
+  Yilang's review.
+
+v1.1.19 changes
+
+- Retires the Flyout Fix now owned by EllesmereUI.
+- Delegates Retail inventory tracking to EllesmereUI Bags while retaining the
+  Fafnyir Tools implementation on WoW Forever.
+- Delegates Forever companion-pet persistence to EllesmereUI Forever
+  Essentials while retaining the Fafnyir Tools implementation on Retail.
+- Preserves legacy settings as dormant upgrade data.
 
 v1.1.18 changes
 

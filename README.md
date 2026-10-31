@@ -4,8 +4,8 @@ A collection of enhancements for EllesmereUI.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** v1.1.19 EllesmereUI ownership cleanup based on the
-user-confirmed v1.1.18 release. Prior confirmed ZIPs remain immutable under
+**Current source:** v1.1.20 Leveling Forecast refresh test based on the
+user-confirmed v1.1.19 release. Prior confirmed ZIPs remain immutable under
 releases/.
 
 WoW Forever beta compatibility development lives on the `forever-beta` branch.
@@ -67,7 +67,7 @@ After an authorized change, update the records, review and commit, then:
 .venv/bin/python tools/package.py
 ```
 
-The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The current source version is v1.1.19.
+The package is written under ignored `dist/`, includes only `FafnyirTools/`, and carries a Git revision in its filename. A separate build manifest records the revision and hashes. The current source version is v1.1.20.
 
 ## Installation
 

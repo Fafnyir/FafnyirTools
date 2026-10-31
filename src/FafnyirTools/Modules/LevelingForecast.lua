@@ -209,7 +209,16 @@ function feature:BuildOptions(parent, yOffset)
     y = y - h
 
     _, h = W:DualRow(parent, y,
-        { type = "label", text = T("QOL.REOPEN_TO_REFRESH") })
+        {
+            type = "button",
+            text = T("QOL.REFRESH_LEVELING_FORECAST"),
+            buttonText = T("QOL.REFRESH"),
+            onClick = function()
+                if EllesmereUI and EllesmereUI.RefreshPage then
+                    EllesmereUI:RefreshPage(true)
+                end
+            end,
+        })
     y = y - h
 
     return math.abs(y)

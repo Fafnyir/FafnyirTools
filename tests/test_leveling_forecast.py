@@ -28,6 +28,8 @@ C_QuestLog={
 }
 function GetQuestLogRewardXP(id) return unpack(rewards[id]) end
 EllesmereUI={Widgets={}}
+refreshCount=0
+function EllesmereUI:RefreshPage(rebuild) assert(rebuild==true);refreshCount=refreshCount+1 end
 function EllesmereUI.Widgets:SectionHeader(_,text,_) headers[#headers+1]=text;return {},20 end
 function EllesmereUI.Widgets:DualRow(_,_,left,right) rows[#rows+1]={left,right};return {},40 end
 ''')
@@ -50,7 +52,10 @@ assert(rows[2][2].text=='3' and rows[3][2].text=='850')
 assert(rows[4][2].text=='+25%')
 assert(rows[5][2].text=='Level 83+ — 250 XP beyond next level',rows[5][2].text)
 assert(rows[6][1].text:find('Blizzard%-adjusted'))
-assert(rows[6][2]==nil and rows[7][1].text=='Reopen this page to refresh.')
+assert(rows[6][2]==nil and rows[7][1].text=='Refresh Leveling Forecast')
+assert(rows[7][1].buttonText=='Refresh' and type(rows[7][1].onClick)=='function')
+rows[7][1].onClick()
+assert(refreshCount==1)
 
 playerXP=100;rewards[101]={100,100};rewards[102]={200,200};rewards[104]={0,0}
 result=f:GetForecast()

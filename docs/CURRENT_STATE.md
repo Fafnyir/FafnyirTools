@@ -1,4 +1,16 @@
-# Current state — v1.1.19 EllesmereUI ownership cleanup, 2026-10-30
+# Current state — v1.1.20 Leveling Forecast refresh test, 2026-10-31
+
+## v1.1.20 — Leveling Forecast refresh test
+
+At the user's direction on 2026-10-31, the existing read-only Leveling Forecast
+now includes a Refresh button. The button asks EllesmereUI to rebuild the
+current options page, which reruns the forecast calculation immediately without
+requiring the page to be closed and reopened. It adds no quest/XP events,
+background polling, saved setting, or XP-bar behavior.
+
+English plus first-pass Simplified and Traditional Chinese strings are included;
+the Chinese wording remains pending Yilang's fluent review. Offline validation
+and in-game testing are pending.
 
 ## v1.1.19 — EllesmereUI 9.7 ownership cleanup
 

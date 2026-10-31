@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## 2026-10-31 — Leveling Forecast refresh
+
+Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.
+Use EllesmereUI's supported page rebuild path so the displayed values are
+recalculated only when requested. Do not add XP/quest event subscriptions,
+background polling, saved settings, or XP-bar writes. Include first-pass
+Simplified and Traditional Chinese strings marked for fluent review.
+
 ## 2026-10-30 — EllesmereUI ownership cleanup
 
 Retire the Flyout Fix completely. Delegate offline inventory and item-count

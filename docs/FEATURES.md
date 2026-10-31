@@ -3,9 +3,9 @@
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide complete coverage of all 187 current interface
-  strings, including Yilang's reviewed Leveling Forecast and v1.1.17 feature
-  translations.
+  Chinese (`zhTW`) provide complete coverage of all 188 current interface
+  strings. Yilang reviewed the strings through v1.1.19; the two v1.1.20 Refresh
+  strings are first-pass translations pending fluent review.
 - Locale files load before feature modules so localized page names are stable
   when EllesmereUI registers the options pages.
 - Saved values, feature registry keys, export field names and other runtime
@@ -39,7 +39,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Inventory | Forever only: character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names, targeted cached-alt removal and Reset All Characters. Retail delegates offline inventory and tooltip counts to EllesmereUI Bags | Present on Forever; retired on Retail |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
 | Persistent Companion Pet | Retail only: per-character specific/random favorite companion with safety controls. Forever delegates the equivalent behavior to EllesmereUI Forever Essentials; retain historical credit and legacy data | Present on Retail; retired on Forever |
-| Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; follows the guarded Midnight 80–90 XP curve and falls back to next-level overflow if the live current-level requirement changes; never touches EllesmereUI's XP bar | v1.1.16 test; offline-tested, in-game confirmation pending |
+| Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; follows the guarded Midnight 80–90 XP curve and falls back to next-level overflow if the live current-level requirement changes; an in-place Refresh button rebuilds the page to recalculate without events or polling; never touches EllesmereUI's XP bar | v1.1.20 test; validation pending |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 
 Current options pages: About, QoL, Unit Frames (including Aura Skins and

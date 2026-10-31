@@ -9,10 +9,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v1.1.19"
+local VERSION = "v1.1.20"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v1.1.20", lines = {
+        "Added an in-place Refresh button to Leveling Forecast.",
+        "Refresh recalculates current XP, completed quests, bonuses, and projected progress without reopening the page.",
+    }},
     { version = "v1.1.19", lines = {
         "Retired the Flyout Fix now owned by EllesmereUI.",
         "Delegated Retail inventory tracking and tooltips to EllesmereUI Bags.",
