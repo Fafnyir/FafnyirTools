@@ -20,6 +20,9 @@ to return that axis to zero.
 handler aborted QoL page construction. Remove double-click reset and use the
 visible Reset button as the only supported reset path.
 
+2026-10-31 follow-up: extend only Native Resting Horizontal Offset to the
+asymmetric -25 through +100 range. Keep Vertical at -25 through +25.
+
 ## 2026-10-31 — Standalone-capability v2 test
 
 Build an isolated v2.0.0 test in which EllesmereUI and FafnyirMedia are

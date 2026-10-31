@@ -65,6 +65,10 @@ at Max Level and the Reset button. This confirms presentation and construction
 in the tested Retail setup; max-level hiding, reload persistence and broader
 Forever/combat/vehicle behavior remain separate runtime checks.
 
+At the user's direction after that confirmation, the Horizontal Offset maximum
+is extended from +25 to +100 while retaining its -25 minimum. Vertical remains
+-25 through +25. Existing saved offset values are preserved.
+
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI
 installed, the existing sidebar, widgets and complete integration feature set

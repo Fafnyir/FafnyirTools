@@ -165,7 +165,7 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:TripleRow(parent, y,
         {
             type = "slider", text = T("UNIT_FRAMES.HORIZONTAL_OFFSET"),
-            min = -25, max = 25, step = 1,
+            min = -25, max = 100, step = 1,
             disabled = function() return not DB().enabled end,
             getValue = function() return DB().offsetX end,
             setValue = function(value) DB().offsetX = value; feature:ApplyLayout() end,
