@@ -44,6 +44,10 @@ duplicate launcher. Offline click, drag, persistence, export exclusion and
 ownership tests pass; Retail/Forever minimap rendering still requires in-game
 confirmation.
 
+The minimap launcher now uses the user-supplied 512×512 Fafnyir dragon logo,
+converted from transparent PNG to a WoW-safe 32-bit alpha TGA. The standard
+minimap tracking border and highlight remain in place around the branded icon.
+
 ## v2.0.0 test — optional EllesmereUI integration
 
 At the user's direction on 2026-10-31, standalone mode now includes default-off

@@ -40,7 +40,7 @@ def package():
             if not path.is_file():
                 continue
             relative = path.relative_to(ROOT / 'src').as_posix()
-            assert path.suffix in {'.lua', '.toc', '.txt', '.ttf'}, f'Review unexpected addon asset: {relative}'
+            assert path.suffix in {'.lua', '.toc', '.txt', '.ttf', '.tga'}, f'Review unexpected addon asset: {relative}'
             content = path.read_bytes()
             info = zipfile.ZipInfo(relative, date_time=(2026, 8, 27, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED

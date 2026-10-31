@@ -56,6 +56,8 @@
 - Added Micro Menu and Bag Bar as individual mouseover groups.
 - Added a standalone minimap button that toggles Fafnyir Tools on left-click
   and saves its position when dragged around the minimap edge.
+- Replaced the minimap button's temporary gear icon with the supplied Fafnyir
+  dragon logo in a WoW-safe alpha-enabled TGA texture.
 
 ## v1.1.20 — Leveling Forecast refresh
 

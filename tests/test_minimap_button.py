@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verify the standalone minimap launcher, click action and local drag position."""
 from pathlib import Path
+import struct
 
 from lupa.lua51 import LuaRuntime
 
@@ -79,6 +80,14 @@ assert "if ns.HAS_ELLESMEREUI then return end" in source
 assert 'EllesmereUI:ToggleOptions()' in source
 assert 'RegisterForDrag("LeftButton")' in source
 assert 'DB().angle = GetAngle()' in source
+assert 'Interface\\\\AddOns\\\\FafnyirTools\\\\Media\\\\Logo.tga' in source
+
+logo = ADDON / "Media/Logo.tga"
+header = logo.read_bytes()[:18]
+assert logo.is_file() and len(header) == 18
+assert struct.unpack("<HH", header[12:16]) == (512, 512)
+assert header[16] == 32
+assert "'.tga'" in (ROOT / "tools/package.py").read_text()
 
 schema = (ADDON / "Modules/GlobalSettings.lua").read_text()
 schema_body = schema.split("local SCHEMA = {", 1)[1].split("local function Copy", 1)[0]

@@ -74,10 +74,9 @@ local function CreateButton()
     background:SetVertexColor(0, 0, 0, 1)
 
     local icon = button:CreateTexture(nil, "ARTWORK")
-    icon:SetSize(18, 18)
+    icon:SetSize(21, 21)
     icon:SetPoint("CENTER")
-    icon:SetTexture("Interface\\Icons\\INV_Misc_Gear_01")
-    icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+    icon:SetTexture("Interface\\AddOns\\FafnyirTools\\Media\\Logo.tga")
 
     local overlay = button:CreateTexture(nil, "OVERLAY")
     overlay:SetSize(53, 53)

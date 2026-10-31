@@ -26,6 +26,7 @@ v2.0.0 test changes
 - Includes separate Micro Menu and Bag Bar mouseover selections.
 - Adds a draggable standalone minimap button for opening Fafnyir Tools; its
   device-specific position is excluded from global exports.
+- Uses the supplied Fafnyir dragon logo for the standalone minimap button.
 
 Testing requested
 
