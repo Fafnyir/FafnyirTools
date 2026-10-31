@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-10-31 — Standalone native Resting controls
+
+Add default-off standalone controls for Blizzard's own Player Rest icon rather
+than creating a duplicate animation. Allow horizontal/vertical offsets and
+hide-at-effective-max-level, preserve Blizzard's native visibility updates, and
+restore the exact original anchors when disabled or reset. Keep the established
+EllesmereUI Resting implementation unchanged and do not register this native
+controller when EllesmereUI is installed.
+
 ## 2026-10-31 — Standalone-capability v2 test
 
 Build an isolated v2.0.0 test in which EllesmereUI and FafnyirMedia are

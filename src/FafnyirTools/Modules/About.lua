@@ -16,6 +16,7 @@ local CHANGELOG = {
     { version = "v2.0.0 Test", lines = {
         "Made EllesmereUI and FafnyirMedia optional dependencies.",
         "Added a native standalone settings window for portable features.",
+        "Added optional position and max-level controls for Blizzard's native resting icon.",
         "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
     }},
     { version = "v1.1.20", lines = {
@@ -267,6 +268,7 @@ function feature:GetDiagnostics()
         enabled[#enabled + 1] = "Party/Raid Role Artwork=" .. OnOff(db.sharedArtwork and db.sharedArtwork.roles)
     end
     AddFeature("Resting", "Resting=" .. OnOff(db.resting and db.resting.enabled))
+    AddFeature("NativeResting", "Native Resting=" .. OnOff(db.nativeResting and db.nativeResting.enabled))
     AddFeature("RightClickSelfCast", "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled))
     if ns.IS_FOREVER and ns.modules.Inventory then
         enabled[#enabled + 1] = "Inventory=" .. OnOff(db.inventory and db.inventory.enabled)

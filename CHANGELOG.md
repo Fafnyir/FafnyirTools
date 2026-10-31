@@ -5,6 +5,8 @@
 - Made EllesmereUI and FafnyirMedia optional rather than required dependencies.
 - Added a native movable settings window opened with `/faftools` when
   EllesmereUI is not installed.
+- Added default-off controls to reposition Blizzard's native resting icon or
+  hide it at effective maximum level, with native anchor restoration.
 - Standalone mode provides About/diagnostics, global settings transfer,
   Leveling Forecast, Device Layout, native action-bar right-click self-cast,
   Retail companion-pet persistence, and Forever inventory tracking.

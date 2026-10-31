@@ -194,4 +194,8 @@ ns:RegisterLocale("zhCN", {
     ["UNIT_FRAMES.BLIZZARD_STYLE_FOCUS_FRAME"] = "暴雪风格焦点框体",
     ["UNIT_FRAMES.NAMEPLATE_TARGET_ARROWS_PARTY_RAID_ICONS"] = "姓名板目标箭头／小队与团队图标",
     ["UNIT_FRAMES.RESTING_INDICATOR"] = "休息状态标记",
+    ["QOL.NATIVE_RESTING_INDICATOR"] = "原生休息状态标记",
+    ["QOL.ENABLE_NATIVE_RESTING_CONTROLS"] = "启用原生休息状态控制",
+    ["QOL.RESET_NATIVE_RESTING_SETTINGS"] = "重置原生休息状态设置",
+    ["QOL.NATIVE_RESTING_BLIZZARD_NOTE"] = "移动暴雪休息状态图标，并可在最高等级时隐藏。",
 })

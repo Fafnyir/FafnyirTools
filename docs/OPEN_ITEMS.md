@@ -21,6 +21,10 @@ or `CHANGELOG.md`, not here.
 - Confirm installing/removing optional FafnyirMedia produces no load error.
 - Have Yilang review the five new standalone-mode strings and check native
   window wrapping on `zhCN` and `zhTW` clients.
+- Test Native Resting controls on the Blizzard Player frame in Retail and
+  Forever: offsets, resting-state transitions, effective max level, reset,
+  disabling, reload persistence and combat/vehicle transitions. The four new
+  Chinese strings are first-pass translations pending Yilang's review.
 - Release automation still uses the v1.x `for_EllesmereUI` artifact identity;
   update it only if the standalone design is accepted for release.
 

@@ -9,7 +9,7 @@ local retryTicker
 local function OrderedFeatures()
     local order = {
         "GlobalSettings", "About", "ForeverFog", "PermanentCompanionPet",
-        "LevelingForecast", "FocusHeader", "SharedArtwork", "AuraSkins",
+        "LevelingForecast", "NativeResting", "FocusHeader", "SharedArtwork", "AuraSkins",
         "Resting", "RightClickSelfCast", "IconHistoryBorder",
         "BigWigsBorder", "CursorReticle", "Inventory", "DeviceLayout",
     }

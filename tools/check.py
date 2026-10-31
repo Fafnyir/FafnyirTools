@@ -42,6 +42,7 @@ def check(baseline=False):
         'Modules/GlobalSettings.lua': ('GlobalSettings', 'CORE.ABOUT'),
         'Modules/ForeverFog.lua': ('ForeverFog', 'CORE.QOL'),
         'Modules/Resting.lua': ('Resting', 'CORE.UNIT_FRAMES'),
+        'Modules/NativeResting.lua': ('NativeResting', 'CORE.QOL'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'CORE.ACTION_BARS'),
         'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
         'Modules/BigWigsBorder.lua': ('BigWigsBorder', 'CORE.QOL'),
@@ -74,7 +75,7 @@ def check(baseline=False):
     lua.execute('SlashCmdList={}; ns={}')
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
-      for _,key in ipairs({'foreverFog','resting','rightClickSelfCast',
+      for _,key in ipairs({'foreverFog','resting','nativeResting','rightClickSelfCast',
           'deviceLayout','inventory','auraSkins','permanentCompanionPet'}) do
         assert(type(FafnyirToolsDB[key])=='table',key)
       end
@@ -93,7 +94,7 @@ def check(baseline=False):
                  'test_global_settings.py', 'test_inventory.py', 'test_unit_frame_names.py', 'test_focus_header.py',
                  'test_icon_history_border.py', 'test_bigwigs_border.py', 'test_cursor_reticle.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
                  'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
-                 'test_localization.py', 'test_leveling_forecast.py', 'test_standalone_mode.py']:
+                 'test_localization.py', 'test_leveling_forecast.py', 'test_native_resting.py', 'test_standalone_mode.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

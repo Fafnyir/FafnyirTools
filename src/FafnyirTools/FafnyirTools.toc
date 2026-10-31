@@ -22,6 +22,7 @@ Modules\ForeverFog.lua
 Modules\PermanentCompanionPet.lua
 Modules\LevelingForecast.lua
 Modules\Resting.lua
+Modules\NativeResting.lua
 Modules\RightClickSelfCast.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua

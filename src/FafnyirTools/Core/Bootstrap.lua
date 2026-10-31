@@ -67,6 +67,12 @@ ns.defaults = {
         offsetX = 20,
         offsetY = -15,
     },
+    nativeResting = {
+        enabled = false,
+        hideAtMaxLevel = false,
+        offsetX = 0,
+        offsetY = 0,
+    },
     rightClickSelfCast = {
         enabled = true,
     },
