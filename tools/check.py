@@ -45,6 +45,7 @@ def check(baseline=False):
         'Modules/NativeResting.lua': ('NativeResting', 'CORE.QOL'),
         'Modules/FPSDisplay.lua': ('FPSDisplay', 'CORE.QOL'),
         'Modules/NicerDamage.lua': ('NicerDamage', 'CORE.QOL'),
+        'Modules/TooltipHealthBar.lua': ('TooltipHealthBar', 'CORE.QOL'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'CORE.ACTION_BARS'),
         'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
         'Modules/BigWigsBorder.lua': ('BigWigsBorder', 'CORE.QOL'),
@@ -97,7 +98,7 @@ def check(baseline=False):
                  'test_icon_history_border.py', 'test_bigwigs_border.py', 'test_cursor_reticle.py', 'test_right_click_self_cast.py', 'test_forever_compat.py',
                  'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
                  'test_localization.py', 'test_leveling_forecast.py', 'test_native_resting.py', 'test_standalone_mode.py',
-                 'test_legacy_standalone_addons.py']:
+                 'test_legacy_standalone_addons.py', 'test_tooltip_health_bar.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

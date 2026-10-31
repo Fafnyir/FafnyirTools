@@ -15,6 +15,9 @@ or `CHANGELOG.md`, not here.
   damage text, and check that no other combat-text addon is overriding it.
 - Confirm Target and Focus reaction/status strips remain hidden through target
   changes in standalone mode without duplicate hooks.
+- Test Hide Default Tooltip Health Bar on player, friendly, hostile, NPC and
+  dead-unit tooltips in standalone Retail and Forever. Confirm live off/on
+  changes, reload persistence, no one-frame health-strip flash, and no taint.
 
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
@@ -35,7 +38,7 @@ or `CHANGELOG.md`, not here.
 - Exercise Blizzard native action bars before, during and after combat; confirm
   paging and disabling right-click self-cast restore expected behavior.
 - Confirm installing/removing optional FafnyirMedia produces no load error.
-- Have Yilang review the thirteen new standalone-mode strings and check native
+- Have Yilang review the sixteen new standalone-mode strings and check native
   window wrapping on `zhCN` and `zhTW` clients.
 - Test Native Resting controls on the Blizzard Player frame in Retail and
   Forever: offsets, resting-state transitions, effective max level, reset,

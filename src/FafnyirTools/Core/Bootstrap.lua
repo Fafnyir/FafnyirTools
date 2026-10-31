@@ -81,6 +81,9 @@ ns.defaults = {
     nicerDamage = {
         enabled = false,
     },
+    tooltipHealthBar = {
+        hidden = false,
+    },
     rightClickSelfCast = {
         enabled = true,
     },

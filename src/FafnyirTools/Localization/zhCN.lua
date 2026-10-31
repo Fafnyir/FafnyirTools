@@ -207,4 +207,7 @@ ns:RegisterLocale("zhCN", {
     ["QOL.NICER_DAMAGE"] = "伤害字体",
     ["QOL.ENABLE_NICER_DAMAGE"] = "启用美化伤害字体",
     ["QOL.NICER_DAMAGE_RELOAD_NOTE"] = "更改伤害字体需要重载界面。",
+    ["QOL.DEFAULT_TOOLTIP"] = "默认鼠标提示",
+    ["QOL.HIDE_DEFAULT_TOOLTIP_HEALTH_BAR"] = "隐藏默认鼠标提示生命条",
+    ["QOL.DEFAULT_TOOLTIP_HEALTH_BAR_NOTE"] = "隐藏暴雪默认单位鼠标提示中显示的生命条。",
 })

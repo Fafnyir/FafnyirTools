@@ -25,6 +25,7 @@ Modules\Resting.lua
 Modules\NativeResting.lua
 Modules\FPSDisplay.lua
 Modules\NicerDamage.lua
+Modules\TooltipHealthBar.lua
 Modules\RightClickSelfCast.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua

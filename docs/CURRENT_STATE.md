@@ -13,6 +13,14 @@ remain absent when EllesmereUI is installed. Offline behavior, default,
 diagnostics, localization, font-integrity, export-schema and gating checks pass;
 in-game standalone rendering and combat text still require confirmation.
 
+The same standalone QoL scope now includes a default-off **Hide Default Tooltip
+Health Bar** toggle. It targets only Blizzard's `GameTooltipStatusBar`, uses a
+secure post-Show hook and alpha changes rather than protected visibility
+mutations, restores full opacity immediately when disabled, and is not
+registered when EllesmereUI is installed because EllesmereUI now owns the
+equivalent tooltip-strip option. Offline ownership, live-toggle and repeated
+Show behavior pass; Retail and Forever hover testing remains required.
+
 ## v2.0.0 test — optional EllesmereUI integration
 
 At the user's direction on 2026-10-31, standalone mode now includes default-off

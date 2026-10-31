@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## 2026-10-31 — Standalone default-tooltip health bar
+
+Add a default-off standalone QoL toggle that hides only Blizzard's default unit
+tooltip health strip. Use `GameTooltipStatusBar:SetAlpha` plus a secure Show
+hook instead of hiding the frame, so the change remains reversible and avoids
+tooltip visibility taint. Do not register the feature with EllesmereUI loaded;
+the current EllesmereUI Blizzard Tooltip module owns an equivalent setting.
+
 ## 2026-10-31 — Consolidate three author-owned legacy addons
 
 Include HideTargetRepColor, FPSDisplay and NicerDamage in the v2 standalone

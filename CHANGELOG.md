@@ -46,6 +46,8 @@
   Luckiest Guy font and a Reload Now/Later confirmation.
 - Added first-pass Simplified and Traditional Chinese text for both new QoL
   sections; fluent review and in-game testing remain pending.
+- Added a default-off standalone option to hide Blizzard's default unit-tooltip
+  health bar with immediate restoration and taint-safe alpha handling.
 
 ## v1.1.20 — Leveling Forecast refresh
 

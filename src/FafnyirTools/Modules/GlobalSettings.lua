@@ -26,6 +26,7 @@ local SCHEMA = {
     permanentCompanionPet = { enabled = true, disableInPvP = true },
     fpsDisplay = { enabled = true, showLatency = true, fontSize = true },
     nicerDamage = { enabled = true },
+    tooltipHealthBar = { hidden = true },
     resting = true,
     rightClickSelfCast = true,
     inventory = { enabled = true, tooltips = true },
