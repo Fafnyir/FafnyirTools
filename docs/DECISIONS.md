@@ -21,7 +21,7 @@ handler aborted QoL page construction. Remove double-click reset and use the
 visible Reset button as the only supported reset path.
 
 2026-10-31 follow-up: extend only Native Resting Horizontal Offset to the
-asymmetric -25 through +130 range. Keep Vertical at -25 through +25.
+asymmetric -25 through +140 range. Keep Vertical at -25 through +25.
 
 ## 2026-10-31 — Standalone-capability v2 test
 
