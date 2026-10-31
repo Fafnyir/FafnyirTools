@@ -35,7 +35,11 @@ name per iteration. The next screenshot still showed the underline attached to
 Action Bars while QoL content was visible, identifying the per-button accent
 objects as the remaining failure point. The current correction uses one shared
 underline anchored directly to the clicked button and reads the page name stored
-on that same button. This revision awaits in-game confirmation.
+on that same button. In-game testing then showed the shared cross-hierarchy
+texture did not render at all. The current revision returns to the known-rendering
+button-owned accent, but selects it directly from the clicked button rather than
+through a page-name lookup. Offline coverage now performs an actual simulated
+QoL tab click and requires QoL's accent visible and About's hidden.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

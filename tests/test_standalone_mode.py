@@ -96,7 +96,7 @@ function CreateFrame() return Region() end
 
 local sampleValue=false
 EllesmereUI:RegisterModule("FafnyirTools",{
-    pages={"About"},
+    pages={"About","QoL"},
     buildPage=function(page,parent,y)
         local W=EllesmereUI.Widgets;local h
         _,h=W:SectionHeader(parent,"Standalone",y);y=y-h
@@ -115,6 +115,12 @@ SlashCmdList.FAFNYIRTOOLS()
 assert(fetchedFafnyirFont==true)
 EllesmereUI:NavigateToElementSettings("FafnyirTools","About")
 assert(EllesmereUI._activePage=="About")
+local aboutTab=EllesmereUI._tabButtons.About
+local qolTab=EllesmereUI._tabButtons.QoL
+qolTab.scripts.OnClick(qolTab)
+assert(EllesmereUI._activePage=="QoL")
+assert(qolTab._selectionAccent.shown==true)
+assert(aboutTab._selectionAccent.shown==false)
 ''')
 
 toc = (ADDON / "FafnyirTools.toc").read_text()
@@ -143,7 +149,6 @@ assert 'leftCell:SetPoint("BOTTOMRIGHT")' in standalone_ui
 assert 'function UI.Widgets:TripleRow' in standalone_ui
 assert 'local function SetActivePageButton' in standalone_ui
 assert 'local pageName = page' in standalone_ui
-assert 'window.activeTabAccent = activeTabAccent' in standalone_ui
 assert 'ShowPage(clicked._pageName, clicked)' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

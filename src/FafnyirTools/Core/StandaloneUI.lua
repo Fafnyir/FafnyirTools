@@ -438,13 +438,7 @@ local function SetActivePageButton(pageName, clickedButton)
     end
     if selected then
         selected._selected = true
-        local accent = window and window.activeTabAccent
-        if accent then
-            accent:ClearAllPoints()
-            accent:SetPoint("BOTTOMLEFT", selected, "BOTTOMLEFT", 0, 0)
-            accent:SetPoint("BOTTOMRIGHT", selected, "BOTTOMRIGHT", 0, 0)
-            accent:Show()
-        end
+        if selected._selectionAccent then selected._selectionAccent:Show() end
     end
     UI._activePage = pageName
 end
@@ -508,11 +502,6 @@ local function MakeWindow()
     local tabLine = sidebar:CreateTexture(nil, "BORDER")
     tabLine:SetPoint("BOTTOMLEFT"); tabLine:SetPoint("BOTTOMRIGHT"); tabLine:SetHeight(1)
     SetColor(tabLine, COLORS.controlBorder)
-    local activeTabAccent = sidebar:CreateTexture(nil, "OVERLAY")
-    activeTabAccent:SetHeight(3)
-    SetColor(activeTabAccent, COLORS.secondary)
-    activeTabAccent:Hide()
-    window.activeTabAccent = activeTabAccent
     local scroll = CreateFrame("ScrollFrame", nil, window, "UIPanelScrollFrameTemplate")
     scroll:SetPoint("TOPLEFT", 30, -112)
     scroll:SetPoint("BOTTOMRIGHT", -34, 18)
@@ -527,6 +516,7 @@ local function BuildSidebar()
     MakeWindow()
     for _, button in pairs(pageButtons) do button:Hide() end
     wipe(pageButtons)
+    UI._tabButtons = pageButtons
     local previous
     for _, page in ipairs(config.pages or {}) do
         local pageName = page

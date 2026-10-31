@@ -23,8 +23,8 @@
   standalone controls.
 - Added one compact Native Resting row containing Horizontal, Vertical and
   Reset controls, with a practical +/-25 range and double-click-to-zero.
-- Replaced standalone per-button tab accents with one shared underline anchored
-  directly to the tab that opens the displayed page.
+- Fixed standalone active-tab rendering by selecting the clicked button's own
+  underline directly; added click-level regression coverage for QoL versus About.
 
 ## v1.1.20 — Leveling Forecast refresh
 
