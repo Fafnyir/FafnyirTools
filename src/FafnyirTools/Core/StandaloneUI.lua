@@ -16,17 +16,17 @@ local pageButtons = {}
 local activeControls = {}
 
 local COLORS = {
-    background = { 0x02 / 255, 0x06 / 255, 0x29 / 255, 0.97 },
-    surface = { 0x0B / 255, 0x14 / 255, 0x4B / 255, 0.96 },
-    surfaceLight = { 0x12 / 255, 0x21 / 255, 0x6A / 255, 1 },
-    primary = { 0x24 / 255, 0x47 / 255, 0xAC / 255, 1 },
+    background = { 0x0C / 255, 0x0D / 255, 0x0F / 255, 0.98 },
+    surface = { 0x13 / 255, 0x14 / 255, 0x17 / 255, 0.98 },
+    surfaceLight = { 0x1C / 255, 0x1D / 255, 0x22 / 255, 1 },
+    primary = { 0x2A / 255, 0x2B / 255, 0x32 / 255, 1 },
     secondary = { 0x63 / 255, 0x58 / 255, 0xB8 / 255, 1 },
-    highlight = { 0x4A / 255, 0xA0 / 255, 0xE5 / 255, 1 },
-    bright = { 0xA7 / 255, 0xE9 / 255, 0xF9 / 255, 1 },
-    controlBorder = { 0x24 / 255, 0x47 / 255, 0xAC / 255, 0.55 },
-    divider = { 0x4A / 255, 0xA0 / 255, 0xE5 / 255, 0.38 },
-    text = { 0.93, 0.96, 1, 1 },
-    muted = { 0.62, 0.68, 0.82, 1 },
+    highlight = { 0x63 / 255, 0x58 / 255, 0xB8 / 255, 1 },
+    bright = { 0.96, 0.96, 0.98, 1 },
+    controlBorder = { 0x39 / 255, 0x3A / 255, 0x42 / 255, 0.9 },
+    divider = { 0x35 / 255, 0x36 / 255, 0x3D / 255, 0.85 },
+    text = { 0.92, 0.92, 0.95, 1 },
+    muted = { 0.52, 0.52, 0.58, 1 },
 }
 
 local fontPath
@@ -127,9 +127,7 @@ local function CreateButton(parent, caption)
         if self:IsEnabled() and not self._selected then SetColor(bg, COLORS.primary) end
     end)
     button:SetScript("OnLeave", function(self)
-        local color = self._selected and COLORS.secondary
-            or COLORS.surfaceLight
-        SetColor(bg, color)
+        SetColor(bg, self._sidebar and COLORS.background or COLORS.surfaceLight)
     end)
     button:HookScript("OnDisable", function()
         SetColor(bg, COLORS.surfaceLight)
@@ -137,19 +135,22 @@ local function CreateButton(parent, caption)
         for _, line in ipairs(border) do line:SetAlpha(0.35) end
     end)
     button:HookScript("OnEnable", function()
-        SetColor(bg, button._selected and COLORS.surfaceLight or COLORS.surfaceLight)
+        SetColor(bg, button._sidebar and COLORS.background or COLORS.surfaceLight)
         fs:SetTextColor(unpack(COLORS.text))
         for _, line in ipairs(border) do line:SetAlpha(1) end
     end)
     function button:SetSelected(selected)
         self._selected = selected == true
-        SetColor(bg, COLORS.surfaceLight)
+        SetColor(bg, self._sidebar and COLORS.background or COLORS.surfaceLight)
         fs:SetTextColor(unpack(self._selected and COLORS.bright or COLORS.text))
         if self._selectionAccent then self._selectionAccent:SetShown(self._selected) end
     end
     function button:SetSidebarStyle()
+        self._sidebar = true
+        SetColor(bg, COLORS.background)
+        for _, line in ipairs(border) do line:SetAlpha(0) end
         local accent = self:CreateTexture(nil, "OVERLAY")
-        accent:SetPoint("TOPLEFT"); accent:SetPoint("BOTTOMLEFT"); accent:SetWidth(4)
+        accent:SetPoint("BOTTOMLEFT"); accent:SetPoint("BOTTOMRIGHT"); accent:SetHeight(3)
         SetColor(accent, COLORS.secondary)
         accent:Hide()
         self._selectionAccent = accent
@@ -193,7 +194,7 @@ local function BuildToggle(parent, descriptor)
     local checked = check:CreateTexture(nil, "ARTWORK")
     checked:SetPoint("TOPLEFT", 4, -4)
     checked:SetPoint("BOTTOMRIGHT", -4, 4)
-    SetColor(checked, COLORS.bright)
+    SetColor(checked, COLORS.secondary)
     check:SetCheckedTexture(checked)
     check:SetPoint("TOPLEFT", 4, -12)
     check:SetChecked(SafeValue(descriptor, false) == true)
@@ -279,7 +280,7 @@ local function BuildSlider(parent, descriptor)
     SetColor(track, COLORS.surfaceLight)
     slider:SetThumbTexture("Interface\\Buttons\\WHITE8X8")
     local thumb = slider:GetThumbTexture()
-    thumb:SetSize(12, 20); SetColor(thumb, COLORS.bright)
+    thumb:SetSize(12, 20); SetColor(thumb, COLORS.secondary)
     slider:SetPoint("TOPLEFT", 14, -31)
     slider:SetPoint("TOPRIGHT", -18, -31)
     slider:SetHeight(16)
@@ -310,7 +311,7 @@ function UI.Widgets:SectionHeader(parent, text, y)
     frame:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
     frame:SetHeight(30)
     local fs = Label(frame, text, true)
-    fs:SetTextColor(unpack(COLORS.bright))
+    fs:SetTextColor(unpack(COLORS.secondary))
     fs:SetPoint("BOTTOMLEFT", 8, 5)
     fs:SetPoint("RIGHT", -8, 0)
     local line = frame:CreateTexture(nil, "BACKGROUND")
@@ -326,11 +327,17 @@ function UI.Widgets:DualRow(parent, y, left, right)
     row:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, y)
     row:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
     row:SetHeight(58)
+    AddBackground(row, COLORS.surface)
     local leftCell = CreateFrame("Frame", nil, row)
     leftCell:SetPoint("TOPLEFT")
     leftCell:SetPoint("BOTTOMRIGHT", row, "BOTTOM", -4, 0)
     BuildDescriptor(leftCell, left)
     if right then
+        local divider = row:CreateTexture(nil, "BORDER")
+        divider:SetPoint("TOP", row, "TOP", 0, -8)
+        divider:SetPoint("BOTTOM", row, "BOTTOM", 0, 8)
+        divider:SetWidth(1)
+        SetColor(divider, COLORS.divider)
         local rightCell = CreateFrame("Frame", nil, row)
         rightCell:SetPoint("TOPLEFT", row, "TOP", 4, 0)
         rightCell:SetPoint("BOTTOMRIGHT")
@@ -360,7 +367,7 @@ local function ShowPage(pageName)
     currentPage = pageName or currentPage or config.pages[1]
     ClearPage()
     local content = CreateFrame("Frame", nil, window.pageHost)
-    content:SetWidth(590)
+    content:SetWidth(820)
     content:SetHeight(1)
     window.pageHost:SetScrollChild(content)
     window.pageContent = content
@@ -374,7 +381,7 @@ end
 local function MakeWindow()
     if window then return window end
     window = CreateFrame("Frame", "FafnyirToolsStandaloneFrame", UIParent, BackdropTemplate())
-    window:SetSize(820, 580)
+    window:SetSize(920, 620)
     window:SetScale(0.86)
     window:SetPoint("CENTER")
     window:SetFrameStrata("DIALOG")
@@ -385,38 +392,39 @@ local function MakeWindow()
     window:SetScript("OnDragStart", window.StartMoving)
     window:SetScript("OnDragStop", window.StopMovingOrSizing)
     AddBackground(window, COLORS.background)
-    AddPixelBorder(window, COLORS.primary)
+    AddPixelBorder(window, COLORS.controlBorder)
     local header = CreateFrame("Frame", nil, window)
-    header:SetPoint("TOPLEFT", 1, -1); header:SetPoint("TOPRIGHT", -1, -1); header:SetHeight(54)
+    header:SetPoint("TOPLEFT", 1, -1); header:SetPoint("TOPRIGHT", -1, -1); header:SetHeight(46)
     AddBackground(header, COLORS.surface)
     local headerLine = header:CreateTexture(nil, "ARTWORK")
     headerLine:SetPoint("BOTTOMLEFT"); headerLine:SetPoint("BOTTOMRIGHT"); headerLine:SetHeight(1)
-    SetColor(headerLine, COLORS.divider)
-    local title = Label(header, "Fafnyir Tools", true)
-    title:SetFont(FontPath(), 20, "")
-    title:SetTextColor(unpack(COLORS.bright))
-    title:SetPoint("TOPLEFT", 18, -8)
-    title:SetPoint("TOPRIGHT", -52, -8)
+    SetColor(headerLine, COLORS.controlBorder)
+    local title = Label(header, "|cFF6358B8Fafnyir|r Tools", true)
+    title:SetFont(FontPath(), 18, "")
+    title:SetTextColor(unpack(COLORS.text))
+    title:SetPoint("LEFT", 14, 0)
+    title:SetPoint("RIGHT", -160, 0)
     title:SetHeight(22)
+    local version = Label(header, "v2.0.0")
+    version:SetTextColor(unpack(COLORS.muted))
+    version:SetPoint("RIGHT", -48, 0)
+    version:SetSize(88, 20)
+    version:SetJustifyH("RIGHT")
     local close = CreateButton(header, "×")
     close:SetSize(26, 26)
     close:GetFontString():SetFont(FontPath(), 18, "")
-    close:SetPoint("TOPRIGHT", -12, -10)
+    close:SetPoint("RIGHT", -8, 0)
     close:SetScript("OnClick", function() window:Hide() end)
-    local subtitle = Label(header, "Standalone mode — EllesmereUI enhancements appear when installed.")
-    subtitle:SetFont(FontPath(), 11, "")
-    subtitle:SetTextColor(unpack(COLORS.muted))
-    subtitle:SetPoint("TOPLEFT", 18, -31)
-    subtitle:SetPoint("TOPRIGHT", -52, -31)
-    subtitle:SetHeight(15)
     local sidebar = CreateFrame("Frame", nil, window)
-    sidebar:SetPoint("TOPLEFT", 12, -66)
-    sidebar:SetPoint("BOTTOMLEFT", 14, 14)
-    sidebar:SetWidth(150)
-    AddBackground(sidebar, COLORS.surface)
-    AddPixelBorder(sidebar, COLORS.controlBorder)
+    sidebar:SetPoint("TOPLEFT", 1, -47)
+    sidebar:SetPoint("TOPRIGHT", -1, -47)
+    sidebar:SetHeight(48)
+    AddBackground(sidebar, COLORS.background)
+    local tabLine = sidebar:CreateTexture(nil, "BORDER")
+    tabLine:SetPoint("BOTTOMLEFT"); tabLine:SetPoint("BOTTOMRIGHT"); tabLine:SetHeight(1)
+    SetColor(tabLine, COLORS.controlBorder)
     local scroll = CreateFrame("ScrollFrame", nil, window, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 16, 0)
+    scroll:SetPoint("TOPLEFT", 30, -112)
     scroll:SetPoint("BOTTOMRIGHT", -34, 18)
     window.pageHost = scroll
     window.sidebar = sidebar
@@ -432,10 +440,10 @@ local function BuildSidebar()
     local previous
     for _, page in ipairs(config.pages or {}) do
         local button = CreateButton(window.sidebar, page)
-        button:SetSize(130, 30)
+        button:SetSize(math.max(115, #page * 9 + 34), 40)
         button:SetSidebarStyle()
-        if previous then button:SetPoint("TOP", previous, "BOTTOM", 0, -7)
-        else button:SetPoint("TOP", 0, -12) end
+        if previous then button:SetPoint("LEFT", previous, "RIGHT", 4, 0)
+        else button:SetPoint("LEFT", 18, 0) end
         button:SetScript("OnClick", function() ShowPage(page) end)
         pageButtons[page] = button
         previous = button

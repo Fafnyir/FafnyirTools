@@ -21,6 +21,12 @@ use hover color sparingly, replace the full lavender selected tab with a slim
 secondary accent, and use only subtle borders/dividers. Fix the header layering
 so the title and subtitle remain visible.
 
+The user selected Naowh Smart Reminders as the visual reference for the next
+standalone skin. Follow its compact charcoal title bar, horizontal tabs, dark
+row panels, restrained borders and clear content hierarchy, but replace the
+reference blue everywhere with the exact Fafnyir secondary color `#6358B8`.
+Continue using FafnyirMedia's `- THE FONT`.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.

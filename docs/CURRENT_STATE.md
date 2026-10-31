@@ -38,6 +38,14 @@ reduces the window/header/sidebar and row spacing, limits bright borders to
 subtle accents, uses darker controls with hover color, and marks the selected
 page with a slim secondary-color bar. Trial 2 awaits in-game confirmation.
 
+The user then supplied Naowh Smart Reminders as the preferred visual reference
+and requested its blue accent be replaced by `#6358B8`. Trial 3 adopts that
+structure for the standalone window: charcoal title and tab bars, horizontal
+page tabs with a purple active underline, dark row panels with center dividers,
+grey control outlines, white text and purple section/control accents. It keeps
+`- THE FONT` and does not alter EllesmereUI's own options. Trial 3 awaits
+in-game confirmation.
+
 ## v1.1.20 — Leveling Forecast refresh test
 
 At the user's direction on 2026-10-31, the existing read-only Leveling Forecast
