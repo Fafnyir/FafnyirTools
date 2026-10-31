@@ -48,6 +48,8 @@ ns:RegisterLocale("enUS", {
     ["ACTION_BARS.ACTION_BAR_NUMBER"] = "Action Bar %d",
     ["ACTION_BARS.PET_BAR"] = "Pet Bar",
     ["ACTION_BARS.STANCE_BAR"] = "Stance Bar",
+    ["ACTION_BARS.MICRO_MENU"] = "Micro Menu",
+    ["ACTION_BARS.BAG_BAR"] = "Bag Bar",
     ["BAGS_INVENTORY.CACHED_CHARACTER"] = "Cached Character",
     ["BAGS_INVENTORY.CANCEL"] = "Cancel",
     ["BAGS_INVENTORY.CHARACTERS_CACHED"] = "Characters Cached:",

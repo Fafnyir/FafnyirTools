@@ -23,8 +23,8 @@ Show behavior pass; Retail and Forever hover testing remains required.
 
 The standalone Action Bars page now also has a default-off **Mouseover Action
 Bars** feature. It controls Blizzard's primary, seven multi-action, Pet and
-Stance bars as independent hover groups, with a separate saved toggle for each
-bar. A saved Faded Opacity slider ranges
+Stance bars, Micro Menu and Bag Bar as independent hover groups, with a
+separate saved toggle for each bar. A saved Faded Opacity slider ranges
 from fully hidden to fully visible; entering a bar or any of its buttons
 restores that group to full opacity and leaving reapplies the saved value after
 a short boundary delay. Disabling immediately restores every discovered bar to

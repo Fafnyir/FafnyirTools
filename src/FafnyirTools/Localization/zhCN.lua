@@ -48,6 +48,8 @@ ns:RegisterLocale("zhCN", {
     ["ACTION_BARS.ACTION_BAR_NUMBER"] = "动作条 %d",
     ["ACTION_BARS.PET_BAR"] = "宠物动作条",
     ["ACTION_BARS.STANCE_BAR"] = "姿态条",
+    ["ACTION_BARS.MICRO_MENU"] = "微型菜单",
+    ["ACTION_BARS.BAG_BAR"] = "背包栏",
     ["BAGS_INVENTORY.CACHED_CHARACTER"] = "已缓存角色",
     ["BAGS_INVENTORY.CANCEL"] = "取消",
     ["BAGS_INVENTORY.CHARACTERS_CACHED"] = "已缓存角色数：",

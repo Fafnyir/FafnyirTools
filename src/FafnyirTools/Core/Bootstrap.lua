@@ -98,6 +98,8 @@ ns.defaults = {
             bar8 = true,
             pet = true,
             stance = true,
+            micro = true,
+            bags = true,
         },
     },
     rightClickSelfCast = {

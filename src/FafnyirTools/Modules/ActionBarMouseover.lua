@@ -21,6 +21,23 @@ local BAR_DEFINITIONS = {
     { key = "bar8", frames = { "MultiBar7" }, buttonPrefix = "MultiBar7Button" },
     { key = "pet", frames = { "PetActionBar" }, buttonPrefix = "PetActionButton", buttonCount = 10 },
     { key = "stance", frames = { "StanceBar" }, buttonPrefix = "StanceButton", buttonCount = 10 },
+    {
+        key = "micro", frames = { "MicroMenu", "MainMenuBarMicroButtons" },
+        buttonNames = {
+            "CharacterMicroButton", "ProfessionMicroButton", "PlayerSpellsMicroButton",
+            "SpellbookMicroButton", "AchievementMicroButton", "QuestLogMicroButton",
+            "GuildMicroButton", "LFDMicroButton", "CollectionsMicroButton",
+            "EJMicroButton", "StoreMicroButton", "MainMenuMicroButton",
+        },
+    },
+    {
+        key = "bags", frames = { "BagsBar", "MainMenuBarBagManager" },
+        buttonNames = {
+            "MainMenuBarBackpackButton", "CharacterBag0Slot", "CharacterBag1Slot",
+            "CharacterBag2Slot", "CharacterBag3Slot", "CharacterReagentBag0Slot",
+            "KeyRingButton",
+        },
+    },
 }
 
 local groups = {}
@@ -96,7 +113,14 @@ local function DiscoverBars()
             local group = { key = definition.key, frame = frame, buttons = {} }
             HookRegion(frame)
             for index = 1, definition.buttonCount or 12 do
-                local button = _G[definition.buttonPrefix .. index]
+                local button = definition.buttonPrefix and _G[definition.buttonPrefix .. index]
+                if button then
+                    group.buttons[#group.buttons + 1] = button
+                    HookRegion(button)
+                end
+            end
+            for _, name in ipairs(definition.buttonNames or {}) do
+                local button = _G[name]
                 if button then
                     group.buttons[#group.buttons + 1] = button
                     HookRegion(button)
@@ -198,6 +222,10 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:DualRow(parent, y,
         BarToggle("pet", T("ACTION_BARS.PET_BAR")),
         BarToggle("stance", T("ACTION_BARS.STANCE_BAR")))
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        BarToggle("micro", T("ACTION_BARS.MICRO_MENU")),
+        BarToggle("bags", T("ACTION_BARS.BAG_BAR")))
     y = y - h
     return math.abs(y)
 end

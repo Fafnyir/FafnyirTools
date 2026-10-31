@@ -11,7 +11,8 @@ because EllesmereUI replaces/owns the action-bar surface in integration mode.
 After in-game testing showed initial enablement needs a reload, add the standard
 Reload Now/Later confirmation for off-to-on transitions. Expose a separate
 saved toggle for Action Bars 1–8, Pet Bar and Stance Bar; individual choices and
-opacity changes remain live.
+opacity changes remain live. Include Micro Menu and Bag Bar as two additional
+independent saved hover groups.
 
 ## 2026-10-31 — Standalone default-tooltip health bar
 

@@ -48,6 +48,8 @@ ns:RegisterLocale("zhTW", {
     ["ACTION_BARS.ACTION_BAR_NUMBER"] = "快捷列 %d",
     ["ACTION_BARS.PET_BAR"] = "寵物快捷列",
     ["ACTION_BARS.STANCE_BAR"] = "姿態列",
+    ["ACTION_BARS.MICRO_MENU"] = "微型選單",
+    ["ACTION_BARS.BAG_BAR"] = "背包列",
     ["BAGS_INVENTORY.CACHED_CHARACTER"] = "已快取角色",
     ["BAGS_INVENTORY.CANCEL"] = "取消",
     ["BAGS_INVENTORY.CHARACTERS_CACHED"] = "已快取角色數：",

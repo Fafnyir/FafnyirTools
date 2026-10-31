@@ -23,6 +23,7 @@ v2.0.0 test changes
   Blizzard's primary, multi, Pet and Stance bars with configurable opacity.
 - Adds individual bar selections and requests Reload Now/Later when Mouseover
   Action Bars is first enabled.
+- Includes separate Micro Menu and Bag Bar mouseover selections.
 
 Testing requested
 

@@ -25,6 +25,8 @@ MainActionBar=Region()
 for i=1,12 do _G["ActionButton"..i]=Region() end
 MultiBarBottomLeft=Region()
 for i=1,12 do _G["MultiBarBottomLeftButton"..i]=Region() end
+MicroMenu=Region();CharacterMicroButton=Region();MainMenuMicroButton=Region()
+BagsBar=Region();MainMenuBarBackpackButton=Region();CharacterBag0Slot=Region()
 ''')
 ns = lua.globals().ns
 lua.execute((ADDON / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
@@ -39,13 +41,17 @@ assert(FafnyirToolsDB.actionBarMouseover.fadedOpacity==0)
 assert(FafnyirToolsDB.actionBarMouseover.bars.main==true)
 assert(FafnyirToolsDB.actionBarMouseover.bars.bar8==true)
 assert(FafnyirToolsDB.actionBarMouseover.bars.pet==true)
+assert(FafnyirToolsDB.actionBarMouseover.bars.micro==true)
+assert(FafnyirToolsDB.actionBarMouseover.bars.bags==true)
 ns.modules.ActionBarMouseover:Initialize()
 assert(MainActionBar.alpha==1 and MultiBarBottomLeft.alpha==1)
+assert(MicroMenu.alpha==1 and BagsBar.alpha==1)
 
 FafnyirToolsDB.actionBarMouseover.enabled=true
 FafnyirToolsDB.actionBarMouseover.fadedOpacity=0.2
 ns.modules.ActionBarMouseover:Refresh()
 assert(MainActionBar.alpha==0.2 and MultiBarBottomLeft.alpha==0.2)
+assert(MicroMenu.alpha==0.2 and BagsBar.alpha==0.2)
 FafnyirToolsDB.actionBarMouseover.bars.bar2=false
 ns.modules.ActionBarMouseover:Refresh()
 assert(MainActionBar.alpha==0.2 and MultiBarBottomLeft.alpha==1)
@@ -63,23 +69,25 @@ assert(MainActionBar.alpha==0.2)
 FafnyirToolsDB.actionBarMouseover.enabled=false
 ns.modules.ActionBarMouseover:Refresh()
 assert(MainActionBar.alpha==1 and MultiBarBottomLeft.alpha==1)
+assert(MicroMenu.alpha==1 and BagsBar.alpha==1)
 ''')
 
 source = (ADDON / "Modules/ActionBarMouseover.lua").read_text()
 assert "if ns.HAS_ELLESMEREUI then return end" in source
-for frame in ("MainActionBar", "MainMenuBar", "MultiBarBottomLeft", "MultiBar7", "PetActionBar", "StanceBar"):
+for frame in ("MainActionBar", "MainMenuBar", "MultiBarBottomLeft", "MultiBar7", "PetActionBar", "StanceBar", "MicroMenu", "BagsBar"):
     assert frame in source
 assert "SetAttribute" not in source
 assert "RegisterForClicks" not in source
 assert "InCombatLockdown" not in source
 assert 'message = T("ACTION_BARS.MOUSEOVER_ENABLE_RELOAD")' in source
 assert "reload = true" in source
-for key in ("main", "bar2", "bar3", "bar4", "bar5", "bar6", "bar7", "bar8", "pet", "stance"):
+for key in ("main", "bar2", "bar3", "bar4", "bar5", "bar6", "bar7", "bar8", "pet", "stance", "micro", "bags"):
     assert f'BarToggle("{key}"' in source
 
 schema = (ADDON / "Modules/GlobalSettings.lua").read_text()
 assert "actionBarMouseover = {" in schema
 assert "fadedOpacity = true" in schema
 assert "bar8 = true, pet = true, stance = true" in schema
+assert "micro = true, bags = true" in schema
 
 print("PASS standalone Blizzard action-bar mouseover opacity, hover, restore and ownership")

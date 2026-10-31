@@ -53,6 +53,7 @@
   immediate full-opacity restoration when disabled.
 - Added individual saved choices for Action Bars 1–8, Pet Bar and Stance Bar,
   plus Reload Now/Later confirmation when the master feature is enabled.
+- Added Micro Menu and Bag Bar as individual mouseover groups.
 
 ## v1.1.20 — Leveling Forecast refresh
 
