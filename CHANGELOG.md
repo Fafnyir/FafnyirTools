@@ -25,6 +25,8 @@
   Reset controls, with a practical +/-25 range and double-click-to-zero.
 - Fixed standalone active-tab rendering by selecting the clicked button's own
   underline directly; added click-level regression coverage for QoL versus About.
+- Explicitly anchored each tab underline to its owning button to correct QoL's
+  remaining missing indicator.
 
 ## v1.1.20 — Leveling Forecast refresh
 

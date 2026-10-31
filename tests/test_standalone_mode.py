@@ -150,5 +150,7 @@ assert 'function UI.Widgets:TripleRow' in standalone_ui
 assert 'local function SetActivePageButton' in standalone_ui
 assert 'local pageName = page' in standalone_ui
 assert 'ShowPage(clicked._pageName, clicked)' in standalone_ui
+assert 'accent:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 0)' in standalone_ui
+assert 'accent:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0)' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

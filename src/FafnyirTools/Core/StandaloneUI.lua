@@ -150,7 +150,9 @@ local function CreateButton(parent, caption)
         SetColor(bg, COLORS.background)
         for _, line in ipairs(border) do line:SetAlpha(0) end
         local accent = self:CreateTexture(nil, "OVERLAY")
-        accent:SetPoint("BOTTOMLEFT"); accent:SetPoint("BOTTOMRIGHT"); accent:SetHeight(3)
+        accent:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 0, 0)
+        accent:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", 0, 0)
+        accent:SetHeight(3)
         SetColor(accent, COLORS.secondary)
         accent:Hide()
         self._selectionAccent = accent

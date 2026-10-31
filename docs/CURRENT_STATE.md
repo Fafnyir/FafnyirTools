@@ -39,7 +39,10 @@ on that same button. In-game testing then showed the shared cross-hierarchy
 texture did not render at all. The current revision returns to the known-rendering
 button-owned accent, but selects it directly from the clicked button rather than
 through a page-name lookup. Offline coverage now performs an actual simulated
-QoL tab click and requires QoL's accent visible and About's hidden.
+QoL tab click and requires QoL's accent visible and About's hidden. In game,
+every tab except QoL then rendered correctly. The remaining difference was the
+accent's reliance on an implicit relative frame; all tab accents now explicitly
+anchor both lower corners to their owning button.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI
