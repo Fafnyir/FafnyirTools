@@ -10,6 +10,7 @@
   saved settings, or background polling were added.
 - Added first-pass Simplified and Traditional Chinese strings pending Yilang's
   review.
+- User in-game testing of build `2184a77` passed on 2026-10-31.
 
 ## v1.1.19 — EllesmereUI ownership cleanup
 

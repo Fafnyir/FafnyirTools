@@ -9,8 +9,11 @@ requiring the page to be closed and reopened. It adds no quest/XP events,
 background polling, saved setting, or XP-bar behavior.
 
 English plus first-pass Simplified and Traditional Chinese strings are included;
-the Chinese wording remains pending Yilang's fluent review. Offline validation
-and in-game testing are pending.
+the Chinese wording remains pending Yilang's fluent review. All offline checks
+passed, and the user reported on 2026-10-31 that test build `2184a77` passes
+in-game testing. The client and individual refresh scenarios were not supplied,
+so this confirms the tested setup rather than an exhaustive Retail/Forever
+matrix.
 
 ## v1.1.19 — EllesmereUI 9.7 ownership cleanup
 

@@ -7,9 +7,10 @@ or `CHANGELOG.md`, not here.
 
 ## v1.1.20 Leveling Forecast refresh test
 
-- Confirm the Refresh button immediately updates current progress, completed
-  quest count/XP, effective bonus, and projected result without reopening QoL.
-- Confirm repeated clicks do not duplicate controls or disturb page scrolling.
+- The user reported that build `2184a77` passes in-game testing on 2026-10-31.
+  Exact client and scenario coverage were not supplied, so a Retail/Forever
+  matrix and repeated-click/page-scroll stress pass remain optional follow-up
+  coverage rather than release blockers.
 - Have Yilang review the new `zhCN` and `zhTW` Refresh wording and verify button
   width on native Chinese clients.
 
