@@ -3,13 +3,17 @@
 ## v2.0.0 test — optional EllesmereUI integration
 
 At the user's direction on 2026-10-31, standalone mode now includes default-off
-controls for Blizzard's native Player Rest icon. Enabling the feature permits
+controls for Blizzard's native Player Rest loop. Enabling the feature permits
 horizontal and vertical offsets and optional hiding at effective maximum level.
 It snapshots and restores Blizzard's original anchors, reapplies after the
 native status updater, and remains absent when EllesmereUI is installed so the
 existing EUI Resting integration is unchanged. Offline tests cover defaults,
 offsets, max-level visibility, the status hook and restoration; live Retail and
-Forever frame discovery and rendering still require in-game confirmation.
+Forever frame discovery and rendering still require in-game confirmation. The
+first package incorrectly targeted the retired `PlayerRestIcon` global and its
+controls had no visible effect. Current Blizzard source identifies the live
+object as `PlayerFrameContentContextual.PlayerRestLoop`; the corrected resolver
+and post-update hook now follow that implementation.
 
 At the user's direction on 2026-10-31, this isolated test changes EllesmereUI
 and FafnyirMedia from required to optional dependencies. With EllesmereUI

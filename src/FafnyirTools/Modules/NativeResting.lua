@@ -33,15 +33,17 @@ local function FindNestedRestIcon()
 
     local content = playerFrame.PlayerFrameContent
     local main = content and content.PlayerFrameContentMain
+    local contextual = content and content.PlayerFrameContentContextual
     local status = main and (main.StatusContainer or main.Status)
-    return playerFrame.RestIcon
+    return (contextual and contextual.PlayerRestLoop)
+        or playerFrame.RestIcon
         or (content and content.RestIcon)
         or (main and main.RestIcon)
         or (status and status.RestIcon)
 end
 
 local function ResolveRestIcon()
-    local candidate = _G.PlayerRestIcon or FindNestedRestIcon()
+    local candidate = FindNestedRestIcon() or _G.PlayerRestIcon
     if candidate and candidate.GetNumPoints and candidate.GetPoint then
         if candidate ~= restIcon then
             restIcon = candidate
@@ -120,10 +122,10 @@ end
 function feature:Initialize()
     self:Refresh()
     if not updateHooked and type(hooksecurefunc) == "function"
-        and type(_G.PlayerFrame_UpdateStatus) == "function"
+        and type(_G.PlayerFrame_UpdatePlayerRestLoop) == "function"
     then
         updateHooked = true
-        hooksecurefunc("PlayerFrame_UpdateStatus", function()
+        hooksecurefunc("PlayerFrame_UpdatePlayerRestLoop", function()
             feature:ApplyLayout()
             feature:UpdateVisibility()
         end)
