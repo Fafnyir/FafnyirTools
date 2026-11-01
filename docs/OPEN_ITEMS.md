@@ -7,20 +7,14 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
-- Test standalone XP controls on Retail and Forever with current gradient off
-  and on, both orientations, rested XP present/absent, Quest XP overlapping
-  rested XP, exact level boundaries, maximum level, XP-disabled characters,
-  reputation/house-favor competition, Edit Mode movement, reload persistence,
-  reset and live color-picker changes. Confirm the native track mask clips all
-  custom fills to the Retail and Forever end-cap shapes while leaving Blizzard's
-  ticks and rested pip unchanged, with no loss of configured color opacity.
-  Confirm rested XP begins exactly at current XP, matches the tooltip's rested
-  amount, covers Quest XP where they overlap, and disappears at zero/max level.
-  Watch XP gains, rested updates and tracked-bar
-  swaps for any flicker.
-  Confirm current XP remains above rested
-  XP and Quest XP remains behind both. Re-enable EllesmereUI and confirm the XP
-  page/events/defaults disappear while EllesmereUI's bar is unchanged.
+- Retail standalone XP presentation is confirmed by the user in build
+  `f18ff22`: corrected colors and end bounds, explicit rested XP, Quest/rested
+  ordering and the flicker correction all pass in game. Forever testing is not
+  available before launch. At launch, repeat the XP matrix there—both gradient
+  orientations, rested present/absent, Quest overlap, level boundaries,
+  maximum/XP-disabled states, tracked-bar competition, Edit Mode, persistence,
+  reset and live color changes—and confirm the Camelot track mask matches its
+  alternate art. Re-enable EllesmereUI and confirm ownership still transfers.
 
 - Test standalone window resizing at minimum, default and maximum dimensions;
   verify the grip, scroll area, three-column rows, reload persistence, Reset

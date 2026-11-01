@@ -66,7 +66,10 @@ rested styling is enabled and draws a dedicated segment from current XP forward
 using `GetXPExhaustion()`. It occupies ARTWORK sublevel -1, with Quest XP at -2
 and the current StatusBar above both. Disabling rested styling restores the
 captured native prediction atlas and alpha. This explicit rested rendering
-awaits in-game confirmation.
+is confirmed in Retail by the user on 2026-11-01 in build `f18ff22`, together
+with the corrected colors, end bounds, Quest/rested layering and absence of the
+reported flicker. Forever cannot be tested before launch and remains explicitly
+unconfirmed rather than assumed compatible.
 
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
