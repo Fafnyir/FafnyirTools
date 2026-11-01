@@ -22,6 +22,8 @@
   track shape so solid gradients retain the correct end-cap bounds.
 - Use the fully opaque native fill atlas—not the translucent background atlas—
   as the mask source so custom colors retain their configured opacity.
+- Replaced the ambiguous cumulative Blizzard rested texture with an explicit
+  rested segment beginning at current XP, above Quest XP and below current XP.
 - Reapplied custom textures synchronously in Blizzard's update cycle to remove
   one-frame native/custom flicker; the unsuccessful tick-hiding trial was removed.
 

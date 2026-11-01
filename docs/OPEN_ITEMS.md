@@ -14,6 +14,8 @@ or `CHANGELOG.md`, not here.
   reset and live color-picker changes. Confirm the native track mask clips all
   custom fills to the Retail and Forever end-cap shapes while leaving Blizzard's
   ticks and rested pip unchanged, with no loss of configured color opacity.
+  Confirm rested XP begins exactly at current XP, matches the tooltip's rested
+  amount, covers Quest XP where they overlap, and disappears at zero/max level.
   Watch XP gains, rested updates and tracked-bar
   swaps for any flicker.
   Confirm current XP remains above rested

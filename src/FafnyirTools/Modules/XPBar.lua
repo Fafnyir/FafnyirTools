@@ -22,6 +22,7 @@ local applying = false
 local hookedBars = setmetatable({}, { __mode = "k" })
 local nativeTextures = setmetatable({}, { __mode = "k" })
 local questOverlays = setmetatable({}, { __mode = "k" })
+local restedOverlays = setmetatable({}, { __mode = "k" })
 local trackMasks = setmetatable({}, { __mode = "k" })
 local maskedTextures = setmetatable({}, { __mode = "k" })
 local questXP = 0
@@ -93,6 +94,7 @@ local function CaptureNative(bar)
         rested = rested,
         restedAtlas = rested and rested.GetAtlas and rested:GetAtlas() or nil,
         restedTexture = rested and rested.GetTexture and rested:GetTexture() or nil,
+        restedAlpha = rested and rested.GetAlpha and rested:GetAlpha() or 1,
     }
     nativeTextures[bar] = snapshot
     return snapshot
@@ -180,6 +182,47 @@ local function UpdateQuestXP()
     end
 end
 
+function feature:UpdateRestedOverlay(bar)
+    local overlay = restedOverlays[bar]
+    if overlay then overlay:Hide() end
+    local snapshot = CaptureNative(bar)
+    if not DB().restedEnabled then
+        if snapshot.rested and snapshot.rested.SetAlpha then
+            snapshot.rested:SetAlpha(snapshot.restedAlpha)
+        end
+        RestoreTexture(snapshot.rested, snapshot.restedAtlas, snapshot.restedTexture)
+        return
+    end
+    if snapshot.rested and snapshot.rested.SetAlpha then snapshot.rested:SetAlpha(0) end
+    if AtMaxLevel() or not GetXPExhaustion then return end
+
+    local maximum = UsableNumber(UnitXPMax and UnitXPMax("player")) or 0
+    local current = UsableNumber(UnitXP and UnitXP("player")) or 0
+    local rested = UsableNumber(GetXPExhaustion()) or 0
+    if maximum <= 0 or rested <= 0 then return end
+    current = math.max(0, math.min(current, maximum))
+    local amount = math.min(rested, maximum - current)
+    local status = bar.StatusBar
+    local width, height = status:GetSize()
+    if amount <= 0 or not width or not height or width <= 0 or height <= 0 then return end
+
+    if not overlay then
+        overlay = bar:CreateTexture(nil, "ARTWORK", nil, -1)
+        restedOverlays[bar] = overlay
+    end
+    ApplyTrackMask(bar, overlay)
+    local defaults = ns.defaults.xpBar
+    ApplyGradient(
+        overlay, DB().orientation == "VERTICAL" and "VERTICAL" or "HORIZONTAL",
+        GetColor("restedStartColor", defaults.restedStartColor),
+        GetColor("restedEndColor", defaults.restedEndColor)
+    )
+    overlay:ClearAllPoints()
+    overlay:SetPoint("TOPLEFT", status, "TOPLEFT", width * current / maximum, 0)
+    overlay:SetSize(width * amount / maximum, height)
+    overlay:Show()
+end
+
 function feature:UpdateQuestOverlay(bar)
     local overlay = questOverlays[bar]
     if overlay then overlay:Hide() end
@@ -216,7 +259,6 @@ function feature:ApplyBar(bar)
     local orientation = settings.orientation == "VERTICAL" and "VERTICAL" or "HORIZONTAL"
 
     ApplyTrackMask(bar, bar.StatusBar:GetStatusBarTexture())
-    ApplyTrackMask(bar, snapshot.rested)
 
     if settings.enabled then
         ApplyGradient(
@@ -228,17 +270,7 @@ function feature:ApplyBar(bar)
         RestoreTexture(snapshot.fill, snapshot.fillAtlas, snapshot.fillTexture)
     end
 
-    if snapshot.rested then
-        if settings.restedEnabled then
-            ApplyGradient(
-                snapshot.rested, orientation,
-                GetColor("restedStartColor", defaults.restedStartColor),
-                GetColor("restedEndColor", defaults.restedEndColor)
-            )
-        else
-            RestoreTexture(snapshot.rested, snapshot.restedAtlas, snapshot.restedTexture)
-        end
-    end
+    self:UpdateRestedOverlay(bar)
     self:UpdateQuestOverlay(bar)
 end
 

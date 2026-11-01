@@ -38,6 +38,8 @@ v2.0.0 changes
   Retail and Forever end caps keep their intended bounds.
 - Uses the native fill silhouette for that mask so gradient colors remain at
   their configured brightness and opacity.
+- Draws rested XP as an explicit forward segment between current XP and Quest
+  XP, making the intended current/rested/Quest layer order unambiguous.
 - Reapplies custom XP textures in Blizzard's own update cycle to prevent a
   one-frame native/custom flicker.
 - Keeps the native XP feature entirely inactive when EllesmereUI is installed.

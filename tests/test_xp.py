@@ -18,6 +18,7 @@ function issecretvalue() return false end
 function UnitLevel() return 81 end
 function UnitXP() return 100 end
 function UnitXPMax() return 1000 end
+function GetXPExhaustion() return 300 end
 function GetMaxLevelForPlayerExpansion() return 90 end
 function IsPlayerAtEffectiveMaxLevel() return false end
 function IsLevelAtEffectiveMaxLevel() return false end
@@ -68,7 +69,8 @@ end
 
 xpBar={StatusBar=status,ExhaustionLevelFillBar=rested,scripts={},shown=true}
 function xpBar:CreateTexture(_,layer,_,sublevel)
-    local t=Texture();t.layer=layer;t.sublevel=sublevel;self.created=t;return t
+    local t=Texture();t.layer=layer;t.sublevel=sublevel
+    self.created=self.created or {};self.created[#self.created+1]=t;return t
 end
 function xpBar:HookScript(name,fn) self.scripts[name]=fn end
 function xpBar:GetParent() return MainStatusTrackingBarContainer end
@@ -115,12 +117,17 @@ assert(defaults.questColor.r==1 and math.abs(defaults.questColor.g-(150/255))<.0
 local feature=ns.modules.XPBar
 feature:Initialize()
 assert(fill.atlas=="UI-HUD-ExperienceBar-Fill-Experience")
-assert(rested.path=="Interface\\Buttons\\WHITE8X8")
-assert(xpBar.created and xpBar.created.shown and xpBar.created.sublevel==-2)
-assert(xpBar.created.width==160 and xpBar.created.height==10)
-assert(xpBar.created.point[4]==80)
+assert(rested.atlas=="UI-HUD-ExperienceBar-Fill-Prediction")
+local restedOverlay=xpBar.created[1]
+local questOverlay=xpBar.created[2]
+assert(restedOverlay.shown and restedOverlay.sublevel==-1)
+assert(restedOverlay.width==240 and restedOverlay.height==10)
+assert(restedOverlay.point[4]==80 and rested.alpha==0)
+assert(questOverlay.shown and questOverlay.sublevel==-2)
+assert(questOverlay.width==160 and questOverlay.height==10)
+assert(questOverlay.point[4]==80)
 assert(status.mask and status.mask.atlas=="UI-HUD-ExperienceBar-Fill-Experience")
-assert(fill.mask==status.mask and rested.mask==status.mask and xpBar.created.mask==status.mask)
+assert(fill.mask==status.mask and restedOverlay.mask==status.mask and questOverlay.mask==status.mask)
 
 FafnyirToolsDB.xpBar.enabled=true
 feature:Refresh()
@@ -133,10 +140,11 @@ assert(fill.mask==status.mask)
 FafnyirToolsDB.xpBar.restedEnabled=false
 feature:Refresh()
 assert(rested.atlas=="UI-HUD-ExperienceBar-Fill-Prediction")
+assert(rested.alpha==1 and restedOverlay.shown==false)
 
 FafnyirToolsDB.xpBar.questEnabled=false
 feature:Refresh()
-assert(xpBar.created.shown==false)
+assert(questOverlay.shown==false)
 ''')
 
 # EllesmereUI mode must preserve dormant legacy XP data without taking ownership.
@@ -172,6 +180,7 @@ for event in (
 source = (ADDON / "Modules/XPBar.lua").read_text()
 assert 'if ns.HAS_ELLESMEREUI then return end' in source
 assert 'StatusTrackingBarInfo.BarsEnum.Experience' in source
+assert 'overlay = bar:CreateTexture(nil, "ARTWORK", nil, -1)' in source
 assert 'overlay = bar:CreateTexture(nil, "ARTWORK", nil, -2)' in source
 assert 'bar.StatusBar:GetStatusBarTexture()' in source
 

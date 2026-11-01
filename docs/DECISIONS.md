@@ -21,6 +21,11 @@ through `C_Timer.After(0)`; the delayed handoff visibly flickers between native
 and custom art.
 Use the captured native Experience fill atlas as the mask source; the
 background atlas is translucent and visibly fades the configured colors.
+Do not depend on Blizzard's cumulative rested prediction texture for custom
+styling. While the Rested XP Gradient is enabled, make that native texture
+transparent and draw a dedicated segment beginning at current XP with width
+derived from `GetXPExhaustion()`. Keep it at ARTWORK -1 above Quest XP (-2),
+and restore the captured native prediction texture when disabled.
 
 ## 2026-11-01 — Resizable standalone settings window
 

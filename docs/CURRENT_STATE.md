@@ -58,6 +58,16 @@ the same client-specific end silhouette with an opaque fill body, so it should
 clip the ends without multiplying down the selected colors. In-game
 confirmation remains pending.
 
+The next screenshot did not show a clearly identifiable rested segment.
+Blizzard's `ExhaustionLevelFillBar` is cumulative from zero through current XP
+plus rested XP, relying on the current StatusBar to cover its leading portion.
+The standalone module now hides that native prediction texture only while its
+rested styling is enabled and draws a dedicated segment from current XP forward
+using `GetXPExhaustion()`. It occupies ARTWORK sublevel -1, with Quest XP at -2
+and the current StatusBar above both. Disabling rested styling restores the
+captured native prediction atlas and alpha. This explicit rested rendering
+awaits in-game confirmation.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.
