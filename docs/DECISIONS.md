@@ -11,6 +11,12 @@ XP behind both. Retain #5563FF→#C561FF, #4F8FFF and #FF9600 defaults. Gate the
 module, defaults, XP/quest events and global-transfer schema off in EllesmereUI
 integration mode, where legacy `xpBar` data remains dormant and untouched.
 
+Screenshot follow-up: expose a default-off Hide Segment Ticks setting. The
+segment divisions are baked into Blizzard's frame atlas, so suppress that atlas
+only while the native Experience bar is visible and draw a simple border on the
+StatusBar's exact bounds. Hide the exhaustion pip at the same time. Restore the
+native frame and pip when the setting is off or another tracked bar is shown.
+
 ## 2026-11-01 — Resizable standalone settings window
 
 Make only the native standalone settings window resizable. Use a bottom-right

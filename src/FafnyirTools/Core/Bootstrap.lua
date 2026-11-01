@@ -162,6 +162,7 @@ if not ns.HAS_ELLESMEREUI then
         restedEndColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
         questEnabled = true,
         questColor = { r = 1, g = 150 / 255, b = 0, a = 1 },
+        hideTicks = false,
     }
 end
 

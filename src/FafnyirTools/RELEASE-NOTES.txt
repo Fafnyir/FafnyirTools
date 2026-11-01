@@ -34,6 +34,8 @@ v2.0.0 changes
   the full spacing used by interactive controls.
 - Adds standalone XP & Progression controls for Blizzard's native Experience
   bar: current/rested gradients, direction, colors and completed Quest XP.
+- Adds an optional clean XP frame that hides Blizzard's baked segment ticks
+  and aligns the visible border to the native fill track.
 - Keeps the native XP feature entirely inactive when EllesmereUI is installed.
 
 Testing requested

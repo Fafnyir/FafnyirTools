@@ -22,6 +22,7 @@ local applying = false
 local hookedBars = setmetatable({}, { __mode = "k" })
 local nativeTextures = setmetatable({}, { __mode = "k" })
 local questOverlays = setmetatable({}, { __mode = "k" })
+local cleanFrames = setmetatable({}, { __mode = "k" })
 local questXP = 0
 
 local function DB()
@@ -84,6 +85,9 @@ local function CaptureNative(bar)
     if nativeTextures[bar] then return nativeTextures[bar] end
     local fill = bar.StatusBar and bar.StatusBar:GetStatusBarTexture()
     local rested = bar.ExhaustionLevelFillBar
+    local container = bar.GetParent and bar:GetParent() or nil
+    local frameTexture = container and container.BarFrameTexture
+    local tick = bar.ExhaustionTick
     local snapshot = {
         fill = fill,
         fillAtlas = fill and fill.GetAtlas and fill:GetAtlas() or nil,
@@ -91,9 +95,61 @@ local function CaptureNative(bar)
         rested = rested,
         restedAtlas = rested and rested.GetAtlas and rested:GetAtlas() or nil,
         restedTexture = rested and rested.GetTexture and rested:GetTexture() or nil,
+        frameTexture = frameTexture,
+        frameAlpha = frameTexture and frameTexture.GetAlpha and frameTexture:GetAlpha() or 1,
+        tick = tick,
+        tickAlpha = tick and tick.GetAlpha and tick:GetAlpha() or 1,
     }
     nativeTextures[bar] = snapshot
     return snapshot
+end
+
+local function SetCleanFrameShown(bar, shown)
+    local frame = cleanFrames[bar]
+    if not frame then
+        frame = {}
+        local status = bar.StatusBar
+        local function Line()
+            local texture = status:CreateTexture(nil, "OVERLAY", nil, 7)
+            texture:SetColorTexture(0.08, 0.08, 0.09, 1)
+            frame[#frame + 1] = texture
+            return texture
+        end
+        local top = Line()
+        top:SetPoint("TOPLEFT", status, "TOPLEFT", 0, 0)
+        top:SetPoint("TOPRIGHT", status, "TOPRIGHT", 0, 0)
+        top:SetHeight(1)
+        local bottom = Line()
+        bottom:SetPoint("BOTTOMLEFT", status, "BOTTOMLEFT", 0, 0)
+        bottom:SetPoint("BOTTOMRIGHT", status, "BOTTOMRIGHT", 0, 0)
+        bottom:SetHeight(1)
+        local left = Line()
+        left:SetPoint("TOPLEFT", status, "TOPLEFT", 0, 0)
+        left:SetPoint("BOTTOMLEFT", status, "BOTTOMLEFT", 0, 0)
+        left:SetWidth(1)
+        local right = Line()
+        right:SetPoint("TOPRIGHT", status, "TOPRIGHT", 0, 0)
+        right:SetPoint("BOTTOMRIGHT", status, "BOTTOMRIGHT", 0, 0)
+        right:SetWidth(1)
+        cleanFrames[bar] = frame
+    end
+    for _, texture in ipairs(frame) do texture:SetShown(shown) end
+end
+
+local function BarIsVisible(bar)
+    return not bar.IsShown or bar:IsShown()
+end
+
+local function ApplyFrameArt(bar)
+    local snapshot = CaptureNative(bar)
+    local hideTicks = DB().hideTicks and BarIsVisible(bar)
+    if snapshot.frameTexture and snapshot.frameTexture.SetAlpha then
+        snapshot.frameTexture:SetAlpha(hideTicks and 0 or snapshot.frameAlpha)
+    end
+    if snapshot.tick and snapshot.tick.SetAlpha then
+        snapshot.tick:SetAlpha(hideTicks and 0 or snapshot.tickAlpha)
+    end
+    SetCleanFrameShown(bar, hideTicks)
 end
 
 local function RestoreTexture(texture, atlas, path)
@@ -181,6 +237,8 @@ function feature:ApplyBar(bar)
     local defaults = ns.defaults.xpBar
     local orientation = settings.orientation == "VERTICAL" and "VERTICAL" or "HORIZONTAL"
 
+    ApplyFrameArt(bar)
+
     if settings.enabled then
         ApplyGradient(
             bar.StatusBar:GetStatusBarTexture(), orientation,
@@ -227,7 +285,13 @@ function feature:InstallHooks()
                 end)
             end
             bar:HookScript("OnShow", function() feature:QueueRefresh() end)
+            bar:HookScript("OnHide", function() feature:QueueRefresh() end)
             bar:HookScript("OnSizeChanged", function() feature:QueueRefresh() end)
+            if bar.ExhaustionTick and bar.ExhaustionTick.HookScript then
+                bar.ExhaustionTick:HookScript("OnShow", function()
+                    if DB().hideTicks and BarIsVisible(bar) then bar.ExhaustionTick:SetAlpha(0) end
+                end)
+            end
         end
     end
     return found
@@ -307,6 +371,13 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:DualRow(parent, y,
         ColorDescriptor("startColor", T("XP.GRADIENT_START_COLOR")),
         ColorDescriptor("endColor", T("XP.GRADIENT_END_COLOR"))); y = y - h
+    _, h = W:DualRow(parent, y, {
+        type = "toggle", text = T("XP.HIDE_SEGMENT_TICKS"),
+        getValue = function() return DB().hideTicks end,
+        setValue = function(value) DB().hideTicks = value; feature:Refresh() end,
+    }, {
+        type = "label", text = T("XP.HIDE_SEGMENT_TICKS_DESC"),
+    }); y = y - h
 
     _, h = W:SectionHeader(parent, T("XP.RESTED_XP_GRADIENT"), y); y = y - h
     _, h = W:DualRow(parent, y, {

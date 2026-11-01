@@ -40,6 +40,11 @@ local function Texture(atlas,path)
     function t:ClearAllPoints() self.points={} end
     function t:SetPoint(...) self.point={...} end
     function t:SetSize(w,h) self.width=w;self.height=h end
+    function t:SetWidth(w) self.width=w end
+    function t:SetHeight(h) self.height=h end
+    function t:SetShown(v) self.shown=v end
+    function t:SetAlpha(v) self.alpha=v end
+    function t:GetAlpha() return self.alpha or 1 end
     function t:Show() self.shown=true end
     function t:Hide() self.shown=false end
     return t
@@ -50,16 +55,27 @@ rested=Texture("UI-HUD-ExperienceBar-Fill-Prediction")
 status={texture=fill,width=800,height=10}
 function status:GetStatusBarTexture() return self.texture end
 function status:GetSize() return self.width,self.height end
+function status:CreateTexture(_,layer,_,sublevel)
+    local t=Texture();t.layer=layer;t.sublevel=sublevel
+    self.clean=self.clean or {};self.clean[#self.clean+1]=t;return t
+end
 
-xpBar={StatusBar=status,ExhaustionLevelFillBar=rested,scripts={}}
+tick={scripts={},alpha=1}
+function tick:SetAlpha(v) self.alpha=v end
+function tick:GetAlpha() return self.alpha end
+function tick:HookScript(name,fn) self.scripts[name]=fn end
+frameTexture=Texture("UI-HUD-ExperienceBar-Frame");frameTexture.alpha=1
+xpBar={StatusBar=status,ExhaustionLevelFillBar=rested,ExhaustionTick=tick,scripts={},shown=true}
 function xpBar:CreateTexture(_,layer,_,sublevel)
     local t=Texture();t.layer=layer;t.sublevel=sublevel;self.created=t;return t
 end
 function xpBar:HookScript(name,fn) self.scripts[name]=fn end
+function xpBar:GetParent() return MainStatusTrackingBarContainer end
+function xpBar:IsShown() return self.shown end
 function xpBar:UpdateAll() self.updated=(self.updated or 0)+1 end
 
 StatusTrackingBarInfo={BarsEnum={Experience=4}}
-MainStatusTrackingBarContainer={bars={[4]=xpBar}}
+MainStatusTrackingBarContainer={bars={[4]=xpBar},BarFrameTexture=frameTexture}
 SecondaryStatusTrackingBarContainer={bars={}}
 StatusTrackingBarManager={barContainers={MainStatusTrackingBarContainer,SecondaryStatusTrackingBarContainer}}
 
@@ -87,6 +103,7 @@ lua.execute(r'''
 assert(ns.defaults.xpBar and ns.modules.XPBar)
 local defaults=ns.defaults.xpBar
 assert(defaults.enabled==false and defaults.questEnabled and defaults.restedEnabled)
+assert(defaults.hideTicks==false)
 assert(math.abs(defaults.startColor.r-(85/255))<.0001)
 assert(math.abs(defaults.endColor.r-(197/255))<.0001)
 assert(math.abs(defaults.restedStartColor.r-(79/255))<.0001)
@@ -99,6 +116,17 @@ assert(rested.path=="Interface\\Buttons\\WHITE8X8")
 assert(xpBar.created and xpBar.created.shown and xpBar.created.sublevel==-2)
 assert(xpBar.created.width==160 and xpBar.created.height==10)
 assert(xpBar.created.point[4]==80)
+assert(frameTexture.alpha==1 and tick.alpha==1)
+assert(#status.clean==4 and status.clean[1].shown==false)
+
+FafnyirToolsDB.xpBar.hideTicks=true
+feature:Refresh()
+assert(frameTexture.alpha==0 and tick.alpha==0)
+assert(status.clean[1].shown==true and status.clean[4].shown==true)
+xpBar.shown=false
+feature:Refresh()
+assert(frameTexture.alpha==1 and tick.alpha==1 and status.clean[1].shown==false)
+xpBar.shown=true
 
 FafnyirToolsDB.xpBar.enabled=true
 feature:Refresh()

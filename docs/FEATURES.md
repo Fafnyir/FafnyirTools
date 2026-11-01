@@ -25,7 +25,7 @@ separate.
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide complete coverage of all 242 current interface
+  Chinese (`zhTW`) provide complete coverage of all 244 current interface
   strings. Yilang reviewed the strings through v1.1.19; the v1.1.20 Refresh and
   v2.0.0 standalone strings are first-pass translations pending fluent review.
 - Locale files load before feature modules so localized page names are stable
@@ -53,7 +53,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Minimap launcher | Standalone-only circular minimap button; left-click toggles Fafnyir Tools and left-drag saves a machine-local perimeter angle excluded from global transfer | v2.0.0 test; offline-tested, in-game confirmation pending |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle; secure attributes follow paging without action-slot/binding event refreshes | Present |
 | Mouseover action bars | Standalone-only, default-off opacity control for Blizzard primary, multi, Pet and Stance bars plus Micro Menu and Bag Bar; individual saved toggles, shared faded opacity, full visibility on hover, disable restoration, and reload confirmation on initial enable | v2.0.0 test; offline-tested, in-game confirmation pending |
-| Native XP presentation | Standalone-only current/rested gradients, orientation and completed Quest XP overlay on Blizzard's Experience bars; defaults #5563FF→#C561FF, #4F8FFF and #FF9600; current above rested above Quest; native atlas restoration on disable; hidden entirely with EllesmereUI | Post-v2.0.0 test; offline-tested, Retail/Forever confirmation pending |
+| Native XP presentation | Standalone-only current/rested gradients, orientation and completed Quest XP overlay on Blizzard's Experience bars; defaults #5563FF→#C561FF, #4F8FFF and #FF9600; current above rested above Quest; optional default-off clean frame hides baked segment ticks and aligns to the fill track; native atlas restoration on disable or tracked-bar replacement; hidden entirely with EllesmereUI | Post-v2.0.0 test; offline-tested, Retail/Forever confirmation pending |
 | Flyout Fix | Retired on both clients; EllesmereUI owns spell-flyout presentation. Legacy SavedVariables remain untouched | Removed after EllesmereUI 9.7 audit |
 | Icon History border | Default-off persistent toggle under QoL for EllesmereUI Damage Meter Icon History, with a live dropdown of all EllesmereUI border styles; Pixels is initially selected | Present; offline-tested, in-game confirmation pending |
 | BigWigs border | Default-off choice of all current EllesmereUI borders on BigWigs timer bars, attached spell icons and normal message icons; Pixels default; message borders follow icon fades; shared 0–10 spacing moves bar bodies from fixed icons/indicators and separates message icons from text; leaves profiles and nameplate icons untouched | v1.1.17 test; initial bar border confirmed in game, revised scope pending |

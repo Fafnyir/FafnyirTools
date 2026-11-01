@@ -18,6 +18,8 @@
   whenever it is installed.
 - Preserved the established #5563FF→#C561FF, #4F8FFF and #FF9600 defaults and
   restored current/rested/Quest layer ordering on Blizzard Experience bars.
+- Added a default-off Hide Segment Ticks option that replaces Blizzard's baked
+  ticked frame with a clean frame aligned to the native XP track.
 
 ## v2.0.0 — Standalone release
 

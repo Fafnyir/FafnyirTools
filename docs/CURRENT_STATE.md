@@ -39,6 +39,15 @@ EllesmereUI ownership and dormant legacy data. Offline native-frame, layer,
 default, event, export and ownership checks pass; Retail and Forever rendering
 remain an explicit in-game test.
 
+The first Retail screenshot from build `33855da` showed that Blizzard's baked
+segment frame did not align cleanly with the solid custom fill and left its
+division ticks above the gradient. A new saved, default-off Hide Segment Ticks
+control suppresses that shared atlas only while the Experience bar is visible
+and substitutes a clean one-pixel frame anchored to the actual StatusBar. It
+also suppresses the rested threshold pip. Hiding the XP bar, displaying a
+different tracked bar, or disabling the option restores the captured native
+frame and pip alpha. In-game confirmation of the corrected bounds is pending.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.
