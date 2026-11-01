@@ -243,6 +243,4 @@ ns:RegisterLocale("zhCN", {
     ["XP.COMPLETED_QUEST_XP"] = "已完成任务经验值",
     ["XP.ENABLE_QUEST_XP_OVERLAY"] = "启用任务经验覆盖层",
     ["XP.QUEST_XP_COLOR"] = "任务经验颜色",
-    ["XP.HIDE_SEGMENT_TICKS"] = "隐藏分段刻度",
-    ["XP.HIDE_SEGMENT_TICKS_DESC"] = "使用与经验条轨道对齐的简洁边框。",
 })

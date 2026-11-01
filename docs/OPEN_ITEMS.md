@@ -11,10 +11,10 @@ or `CHANGELOG.md`, not here.
   and on, both orientations, rested XP present/absent, Quest XP overlapping
   rested XP, exact level boundaries, maximum level, XP-disabled characters,
   reputation/house-favor competition, Edit Mode movement, reload persistence,
-  reset and live color-picker changes. Toggle Hide Segment Ticks and confirm
-  the clean frame follows the exact fill bounds, the rested pip is hidden, and
-  Blizzard's frame returns for reputation/house-favor bars and when disabled.
-  Watch XP gains, rested updates and tracked-bar swaps for any flicker.
+  reset and live color-picker changes. Confirm the native track mask clips all
+  custom fills to the Retail and Forever end-cap shapes while leaving Blizzard's
+  ticks and rested pip unchanged. Watch XP gains, rested updates and tracked-bar
+  swaps for any flicker.
   Confirm current XP remains above rested
   XP and Quest XP remains behind both. Re-enable EllesmereUI and confirm the XP
   page/events/defaults disappear while EllesmereUI's bar is unchanged.

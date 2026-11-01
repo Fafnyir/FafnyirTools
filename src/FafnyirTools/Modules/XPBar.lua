@@ -22,7 +22,8 @@ local applying = false
 local hookedBars = setmetatable({}, { __mode = "k" })
 local nativeTextures = setmetatable({}, { __mode = "k" })
 local questOverlays = setmetatable({}, { __mode = "k" })
-local cleanFrames = setmetatable({}, { __mode = "k" })
+local trackMasks = setmetatable({}, { __mode = "k" })
+local maskedTextures = setmetatable({}, { __mode = "k" })
 local questXP = 0
 
 local function DB()
@@ -55,21 +56,6 @@ local function ExperienceIndex()
         and StatusTrackingBarInfo.BarsEnum.Experience or EXPERIENCE_INDEX
 end
 
-local function ContainerForBar(bar)
-    local parent = bar.GetParent and bar:GetParent() or nil
-    if parent and parent.BarFrameTexture then return parent end
-    local containers = StatusTrackingBarManager and StatusTrackingBarManager.barContainers
-    if type(containers) == "table" then
-        for _, container in pairs(containers) do
-            if container and container.bars
-                and container.bars[ExperienceIndex()] == bar
-            then
-                return container
-            end
-        end
-    end
-end
-
 local function NativeBars()
     local result, seen = {}, {}
     local containers = StatusTrackingBarManager and StatusTrackingBarManager.barContainers
@@ -100,10 +86,6 @@ local function CaptureNative(bar)
     if nativeTextures[bar] then return nativeTextures[bar] end
     local fill = bar.StatusBar and bar.StatusBar:GetStatusBarTexture()
     local rested = bar.ExhaustionLevelFillBar
-    local container = ContainerForBar(bar)
-    local frameTexture = container and container.BarFrameTexture
-    local background = bar.StatusBar and bar.StatusBar.Background
-    local tick = bar.ExhaustionTick
     local snapshot = {
         fill = fill,
         fillAtlas = fill and fill.GetAtlas and fill:GetAtlas() or nil,
@@ -111,66 +93,33 @@ local function CaptureNative(bar)
         rested = rested,
         restedAtlas = rested and rested.GetAtlas and rested:GetAtlas() or nil,
         restedTexture = rested and rested.GetTexture and rested:GetTexture() or nil,
-        frameTexture = frameTexture,
-        frameAlpha = frameTexture and frameTexture.GetAlpha and frameTexture:GetAlpha() or 1,
-        background = background,
-        backgroundAlpha = background and background.GetAlpha and background:GetAlpha() or 1,
-        tick = tick,
-        tickAlpha = tick and tick.GetAlpha and tick:GetAlpha() or 1,
     }
     nativeTextures[bar] = snapshot
     return snapshot
 end
 
-local function SetCleanFrameShown(bar, shown)
-    local frame = cleanFrames[bar]
-    if not frame then
-        frame = {}
-        local status = bar.StatusBar
-        local function Line()
-            local texture = status:CreateTexture(nil, "OVERLAY", nil, 7)
-            texture:SetColorTexture(0.08, 0.08, 0.09, 1)
-            frame[#frame + 1] = texture
-            return texture
+local function ApplyTrackMask(bar, texture)
+    if not texture or not texture.AddMaskTexture or maskedTextures[texture] then return end
+    local status = bar.StatusBar
+    if not status or not status.CreateMaskTexture then return end
+    local mask = trackMasks[bar]
+    if not mask then
+        mask = status:CreateMaskTexture(nil, "ARTWORK")
+        mask:SetAllPoints(status)
+        local background = status.Background
+        local atlas = background and background.GetAtlas and background:GetAtlas()
+        local path = background and background.GetTexture and background:GetTexture()
+        if atlas and mask.SetAtlas then
+            mask:SetAtlas(atlas)
+        elseif path and mask.SetTexture then
+            mask:SetTexture(path, "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+        else
+            mask:SetAtlas("UI-HUD-ExperienceBar-Background")
         end
-        local top = Line()
-        top:SetPoint("TOPLEFT", status, "TOPLEFT", 0, 0)
-        top:SetPoint("TOPRIGHT", status, "TOPRIGHT", 0, 0)
-        top:SetHeight(1)
-        local bottom = Line()
-        bottom:SetPoint("BOTTOMLEFT", status, "BOTTOMLEFT", 0, 0)
-        bottom:SetPoint("BOTTOMRIGHT", status, "BOTTOMRIGHT", 0, 0)
-        bottom:SetHeight(1)
-        local left = Line()
-        left:SetPoint("TOPLEFT", status, "TOPLEFT", 0, 0)
-        left:SetPoint("BOTTOMLEFT", status, "BOTTOMLEFT", 0, 0)
-        left:SetWidth(1)
-        local right = Line()
-        right:SetPoint("TOPRIGHT", status, "TOPRIGHT", 0, 0)
-        right:SetPoint("BOTTOMRIGHT", status, "BOTTOMRIGHT", 0, 0)
-        right:SetWidth(1)
-        cleanFrames[bar] = frame
+        trackMasks[bar] = mask
     end
-    for _, texture in ipairs(frame) do texture:SetShown(shown) end
-end
-
-local function BarIsVisible(bar)
-    return not bar.IsShown or bar:IsShown()
-end
-
-local function ApplyFrameArt(bar)
-    local snapshot = CaptureNative(bar)
-    local hideTicks = DB().hideTicks and BarIsVisible(bar)
-    if snapshot.frameTexture and snapshot.frameTexture.SetAlpha then
-        snapshot.frameTexture:SetAlpha(hideTicks and 0 or snapshot.frameAlpha)
-    end
-    if snapshot.background and snapshot.background.SetAlpha then
-        snapshot.background:SetAlpha(hideTicks and 0 or snapshot.backgroundAlpha)
-    end
-    if snapshot.tick and snapshot.tick.SetAlpha then
-        snapshot.tick:SetAlpha(hideTicks and 0 or snapshot.tickAlpha)
-    end
-    SetCleanFrameShown(bar, hideTicks)
+    texture:AddMaskTexture(mask)
+    maskedTextures[texture] = true
 end
 
 function feature:ReapplyBar(bar)
@@ -251,6 +200,7 @@ function feature:UpdateQuestOverlay(bar)
         overlay = bar:CreateTexture(nil, "ARTWORK", nil, -2)
         questOverlays[bar] = overlay
     end
+    ApplyTrackMask(bar, overlay)
     local color = GetColor("questColor", ns.defaults.xpBar.questColor)
     overlay:SetColorTexture(color.r, color.g, color.b, color.a or 1)
     overlay:ClearAllPoints()
@@ -265,7 +215,8 @@ function feature:ApplyBar(bar)
     local defaults = ns.defaults.xpBar
     local orientation = settings.orientation == "VERTICAL" and "VERTICAL" or "HORIZONTAL"
 
-    ApplyFrameArt(bar)
+    ApplyTrackMask(bar, bar.StatusBar:GetStatusBarTexture())
+    ApplyTrackMask(bar, snapshot.rested)
 
     if settings.enabled then
         ApplyGradient(
@@ -320,11 +271,6 @@ function feature:InstallHooks()
             bar:HookScript("OnShow", function() feature:ReapplyBar(bar) end)
             bar:HookScript("OnHide", function() feature:ReapplyBar(bar) end)
             bar:HookScript("OnSizeChanged", function() feature:ReapplyBar(bar) end)
-            if bar.ExhaustionTick and bar.ExhaustionTick.HookScript then
-                bar.ExhaustionTick:HookScript("OnShow", function()
-                    if DB().hideTicks and BarIsVisible(bar) then bar.ExhaustionTick:SetAlpha(0) end
-                end)
-            end
         end
     end
     return found
@@ -404,14 +350,6 @@ function feature:BuildOptions(parent, yOffset)
     _, h = W:DualRow(parent, y,
         ColorDescriptor("startColor", T("XP.GRADIENT_START_COLOR")),
         ColorDescriptor("endColor", T("XP.GRADIENT_END_COLOR"))); y = y - h
-    _, h = W:DualRow(parent, y, {
-        type = "toggle", text = T("XP.HIDE_SEGMENT_TICKS"),
-        getValue = function() return DB().hideTicks end,
-        setValue = function(value) DB().hideTicks = value; feature:Refresh() end,
-    }, {
-        type = "label", text = T("XP.HIDE_SEGMENT_TICKS_DESC"),
-    }); y = y - h
-
     _, h = W:SectionHeader(parent, T("XP.RESTED_XP_GRADIENT"), y); y = y - h
     _, h = W:DualRow(parent, y, {
         type = "toggle", text = T("XP.ENABLE_RESTED_XP_GRADIENT"),

@@ -39,23 +39,17 @@ EllesmereUI ownership and dormant legacy data. Offline native-frame, layer,
 default, event, export and ownership checks pass; Retail and Forever rendering
 remain an explicit in-game test.
 
-The first Retail screenshot from build `33855da` showed that Blizzard's baked
-segment frame did not align cleanly with the solid custom fill and left its
-division ticks above the gradient. A new saved, default-off Hide Segment Ticks
-control suppresses that shared atlas only while the Experience bar is visible
-and substitutes a clean one-pixel frame anchored to the actual StatusBar. It
-also suppresses the rested threshold pip. Hiding the XP bar, displaying a
-different tracked bar, or disabling the option restores the captured native
-frame and pip alpha. In-game confirmation of the corrected bounds is pending.
-
-The next screenshot from build `c749709` showed the end caps/ticks still
-visible and reported flicker. The follow-up captures and suppresses the
-StatusBar background in addition to the container frame because both native
-atlases contribute visible edge artwork. It also replaces the zero-delay
-post-update refresh with synchronous post-hooks on Blizzard's texture and
-full-bar update methods, preventing the native atlas from appearing for one
-rendered frame before the custom textures return. This revision awaits an
-in-game pass.
+Retail screenshots from builds `33855da`, `c749709` and `b81d718` showed that
+solid replacement textures painted through transparent padding built into
+Blizzard's fill atlas. The attempted Hide Segment Ticks/clean-frame approach
+did not correct those end caps and was removed at the user's direction. The
+current revision keeps Blizzard's frame, ticks and rested pip unchanged and
+clips current, rested and Quest textures through a mask derived from the live
+client's own XP background atlas. This avoids guessed Retail-only offsets and
+should follow Forever's alternate Camelot art. Custom textures are reapplied
+synchronously from Blizzard's update methods rather than through a zero-delay
+timer, preventing the native atlas from appearing for one rendered frame. The
+masked bounds and flicker correction await an in-game pass.
 
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use

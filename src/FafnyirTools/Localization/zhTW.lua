@@ -243,6 +243,4 @@ ns:RegisterLocale("zhTW", {
     ["XP.COMPLETED_QUEST_XP"] = "已完成任務經驗值",
     ["XP.ENABLE_QUEST_XP_OVERLAY"] = "啟用任務經驗覆蓋層",
     ["XP.QUEST_XP_COLOR"] = "任務經驗顏色",
-    ["XP.HIDE_SEGMENT_TICKS"] = "隱藏分段刻度",
-    ["XP.HIDE_SEGMENT_TICKS_DESC"] = "使用與經驗條軌道對齊的簡潔邊框。",
 })

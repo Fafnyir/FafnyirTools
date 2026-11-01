@@ -187,8 +187,6 @@ ns:RegisterLocale("enUS", {
     ["XP.COMPLETED_QUEST_XP"] = "COMPLETED QUEST XP",
     ["XP.ENABLE_QUEST_XP_OVERLAY"] = "Enable Quest XP Overlay",
     ["XP.QUEST_XP_COLOR"] = "Quest XP Color",
-    ["XP.HIDE_SEGMENT_TICKS"] = "Hide Segment Ticks",
-    ["XP.HIDE_SEGMENT_TICKS_DESC"] = "Uses a clean frame aligned to the XP track.",
     ["UNIT_FRAMES.RESTING"] = "Resting",
     ["UNIT_FRAMES.ALL_BUFFS"] = "All Buffs",
     ["UNIT_FRAMES.ALL_DEBUFFS"] = "All Debuffs",

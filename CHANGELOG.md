@@ -18,10 +18,10 @@
   whenever it is installed.
 - Preserved the established #5563FF→#C561FF, #4F8FFF and #FF9600 defaults and
   restored current/rested/Quest layer ordering on Blizzard Experience bars.
-- Added a default-off Hide Segment Ticks option that replaces Blizzard's baked
-  ticked frame with a clean frame aligned to the native XP track.
-- Hid the native XP background as well as its outer frame when that option is
-  active and reapplied custom textures synchronously to eliminate update flicker.
+- Masked custom current, rested and Quest XP textures with Blizzard's native
+  track shape so solid gradients retain the correct end-cap bounds.
+- Reapplied custom textures synchronously in Blizzard's update cycle to remove
+  one-frame native/custom flicker; the unsuccessful tick-hiding trial was removed.
 
 ## v2.0.0 — Standalone release
 
