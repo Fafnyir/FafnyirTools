@@ -247,6 +247,11 @@ FafnyirMedia remains optional; the same Blizzard standard-font fallback is
 retained when that media key or addon is unavailable. EllesmereUI's own options
 and font choices remain untouched.
 
+After FafnyirMedia added and registered `Roboto-SemiBold.ttf`, the user selected
+its exact SharedMedia key `- Roboto SemiBold` for the standalone skin. This
+supersedes the brief regular-Roboto test while retaining the same optional-media
+fallback and EllesmereUI isolation.
+
 The first Trial 3 companion-pet screenshot showed toggle labels sitting above
 their 22-pixel checkboxes because the labels used a 36-pixel top-justified text
 box. The correction vertically centers a 22-pixel label on each checkbox and

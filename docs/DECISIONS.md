@@ -141,6 +141,9 @@ skin and request the FafnyirMedia SharedMedia key `- Roboto`. Keep the standard
 Blizzard fallback because FafnyirMedia remains optional. Do not alter fonts in
 EllesmereUI integration mode.
 
+After FafnyirMedia registered `- Roboto SemiBold`, supersede the regular Roboto
+choice with that exact key. Retain the same fallback and integration boundary.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.

@@ -10,7 +10,7 @@ v2.0.0 changes
   saved settings for later use.
 - Adapts Right-Click Self Cast to Blizzard native action bars.
 - Skins the standalone window with the Fafnyir palette, compact sizing, pixel
-  borders, and FafnyirMedia's `- Roboto` with a safe fallback.
+  borders, and FafnyirMedia's `- Roboto SemiBold` with a safe fallback.
 - Includes first-pass Chinese strings pending Yilang's review.
 - Integrates the author's former HideTargetRepColor behavior through the
   existing Target/Focus status-texture handler.

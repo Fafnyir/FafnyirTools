@@ -18,7 +18,7 @@ fetchedFafnyirFont=false
 function LibStub(name,silent)
     if name~="LibSharedMedia-3.0" then return nil end
     return {Fetch=function(_,category,key)
-        if category=="font" and key=="- Roboto" then fetchedFafnyirFont=true;return "Roboto-Regular.ttf" end
+        if category=="font" and key=="- Roboto SemiBold" then fetchedFafnyirFont=true;return "Roboto-SemiBold.ttf" end
     end}
 end
 ''')
