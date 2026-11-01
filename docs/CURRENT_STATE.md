@@ -993,6 +993,15 @@ The exact archive is retained in releases/; see docs/baselines/v1.1.2-full-fixed
 Future changes start from this source, preserving SavedVariables.
 No installed WoW files or upstream files were modified; no public release made.
 
+## 2026-11-01 standalone skin choice
+
+Standalone mode now keeps the Fafnyir skin enabled by default and exposes a
+machine-local About-page toggle. Turning it off and reloading restores the
+original Blizzard dialog frame, vertical sidebar and native Blizzard controls.
+The choice does not reset feature settings or enter global settings exports.
+Offline validation passes; both visual modes still require in-game rendering
+confirmation.
+
 Broader inventory scanners/search, Focus aura styling and discarded experiments
 remain outside this restoration. See OPEN_ITEMS.md.
 

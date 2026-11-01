@@ -14,6 +14,14 @@ local window
 local currentPage
 local pageButtons = {}
 local activeControls = {}
+local activeSkin
+
+local function UseFafnyirSkin()
+    if activeSkin ~= nil then return activeSkin end
+    local db = ns:GetDatabase()
+    local settings = db and db.standaloneWindow
+    return not settings or settings.skinEnabled ~= false
+end
 
 local DEFAULT_WIDTH = 920
 local DEFAULT_HEIGHT = 620
@@ -116,9 +124,14 @@ local function AddControl(control)
 end
 
 local function Label(parent, text, size)
-    local fs = parent:CreateFontString(nil, "ARTWORK")
-    fs:SetFont(FontPath(size == true), size and 16 or 13, "")
-    fs:SetTextColor(unpack(COLORS.text))
+    local fs
+    if UseFafnyirSkin() then
+        fs = parent:CreateFontString(nil, "ARTWORK")
+        fs:SetFont(FontPath(size == true), size and 16 or 13, "")
+        fs:SetTextColor(unpack(COLORS.text))
+    else
+        fs = parent:CreateFontString(nil, "ARTWORK", size and "GameFontNormalLarge" or "GameFontNormal")
+    end
     fs:SetJustifyH("LEFT")
     fs:SetJustifyV("TOP")
     fs:SetWordWrap(true)
@@ -127,6 +140,16 @@ local function Label(parent, text, size)
 end
 
 local function CreateButton(parent, caption)
+    if not UseFafnyirSkin() then
+        local button = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
+        button:SetText(caption or "")
+        function button:SetSelected(selected)
+            self._selected = selected == true
+            self:SetEnabled(not self._selected)
+        end
+        function button:SetSidebarStyle() self._sidebar = true end
+        return button
+    end
     local button = CreateFrame("Button", nil, parent)
     local bg = AddBackground(button, COLORS.surfaceLight)
     local border = AddPixelBorder(button, COLORS.controlBorder)
@@ -203,15 +226,18 @@ local function BuildButton(parent, descriptor)
 end
 
 local function BuildToggle(parent, descriptor)
-    local check = AddControl(CreateFrame("CheckButton", nil, parent))
+    local check = AddControl(CreateFrame("CheckButton", nil, parent,
+        not UseFafnyirSkin() and "UICheckButtonTemplate" or nil))
     check:SetSize(22, 22)
-    AddBackground(check, COLORS.surfaceLight)
-    AddPixelBorder(check, COLORS.controlBorder)
-    local checked = check:CreateTexture(nil, "ARTWORK")
-    checked:SetPoint("TOPLEFT", 4, -4)
-    checked:SetPoint("BOTTOMRIGHT", -4, 4)
-    SetColor(checked, COLORS.secondary)
-    check:SetCheckedTexture(checked)
+    if UseFafnyirSkin() then
+        AddBackground(check, COLORS.surfaceLight)
+        AddPixelBorder(check, COLORS.controlBorder)
+        local checked = check:CreateTexture(nil, "ARTWORK")
+        checked:SetPoint("TOPLEFT", 4, -4)
+        checked:SetPoint("BOTTOMRIGHT", -4, 4)
+        SetColor(checked, COLORS.secondary)
+        check:SetCheckedTexture(checked)
+    end
     check:SetPoint("TOPLEFT", 4, -12)
     check:SetChecked(SafeValue(descriptor, false) == true)
     check:SetEnabled(not Disabled(descriptor))
@@ -264,11 +290,14 @@ local function BuildInput(parent, descriptor)
     fs:SetPoint("TOPLEFT", 8, -5)
     fs:SetPoint("TOPRIGHT", -8, -5)
     fs:SetHeight(18)
-    local box = AddControl(CreateFrame("EditBox", nil, parent, BackdropTemplate()))
-    AddBackground(box, COLORS.background)
-    AddPixelBorder(box, COLORS.controlBorder)
-    box:SetFont(FontPath(false), 13, "")
-    box:SetTextColor(unpack(COLORS.text))
+    local box = AddControl(CreateFrame("EditBox", nil, parent,
+        UseFafnyirSkin() and BackdropTemplate() or "InputBoxTemplate"))
+    if UseFafnyirSkin() then
+        AddBackground(box, COLORS.background)
+        AddPixelBorder(box, COLORS.controlBorder)
+        box:SetFont(FontPath(false), 13, "")
+        box:SetTextColor(unpack(COLORS.text))
+    end
     box:SetTextInsets(7, 7, 0, 0)
     box:SetAutoFocus(false)
     box:SetPoint("TOPLEFT", 12, -29)
@@ -291,14 +320,17 @@ local function BuildSlider(parent, descriptor)
     fs:SetPoint("TOPLEFT", 8, -5)
     fs:SetPoint("TOPRIGHT", -8, -5)
     fs:SetHeight(18)
-    local slider = AddControl(CreateFrame("Slider", nil, parent))
+    local slider = AddControl(CreateFrame("Slider", nil, parent,
+        not UseFafnyirSkin() and "OptionsSliderTemplate" or nil))
     slider:SetOrientation("HORIZONTAL")
-    local track = slider:CreateTexture(nil, "BACKGROUND")
-    track:SetPoint("LEFT", 0, 0); track:SetPoint("RIGHT", 0, 0); track:SetHeight(4)
-    SetColor(track, COLORS.surfaceLight)
-    slider:SetThumbTexture("Interface\\Buttons\\WHITE8X8")
-    local thumb = slider:GetThumbTexture()
-    thumb:SetSize(12, 20); SetColor(thumb, COLORS.secondary)
+    if UseFafnyirSkin() then
+        local track = slider:CreateTexture(nil, "BACKGROUND")
+        track:SetPoint("LEFT", 0, 0); track:SetPoint("RIGHT", 0, 0); track:SetHeight(4)
+        SetColor(track, COLORS.surfaceLight)
+        slider:SetThumbTexture("Interface\\Buttons\\WHITE8X8")
+        local thumb = slider:GetThumbTexture()
+        thumb:SetSize(12, 20); SetColor(thumb, COLORS.secondary)
+    end
     slider:SetPoint("TOPLEFT", 14, -31)
     slider:SetPoint("TOPRIGHT", -58, -31)
     slider:SetHeight(16)
@@ -424,11 +456,12 @@ function UI.Widgets:SectionHeader(parent, text, y)
     frame:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
     frame:SetHeight(30)
     local fs = Label(frame, text, true)
-    fs:SetTextColor(unpack(COLORS.secondary))
+    if UseFafnyirSkin() then fs:SetTextColor(unpack(COLORS.secondary)) end
     fs:SetPoint("BOTTOMLEFT", 8, 5)
     fs:SetPoint("RIGHT", -8, 0)
     local line = frame:CreateTexture(nil, "BACKGROUND")
-    SetColor(line, COLORS.divider)
+    if UseFafnyirSkin() then SetColor(line, COLORS.divider)
+    else line:SetColorTexture(0.3, 0.3, 0.3, 0.8) end
     line:SetPoint("BOTTOMLEFT", 8, 1)
     line:SetPoint("BOTTOMRIGHT", -8, 1)
     line:SetHeight(1)
@@ -443,7 +476,7 @@ function UI.Widgets:DualRow(parent, y, left, right)
     row:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, y)
     row:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
     row:SetHeight(rowHeight)
-    AddBackground(row, COLORS.surface)
+    if UseFafnyirSkin() then AddBackground(row, COLORS.surface) end
     local leftCell = CreateFrame("Frame", nil, row)
     leftCell:SetPoint("TOPLEFT")
     if right then
@@ -457,7 +490,8 @@ function UI.Widgets:DualRow(parent, y, left, right)
         divider:SetPoint("TOP", row, "TOP", 0, -8)
         divider:SetPoint("BOTTOM", row, "BOTTOM", 0, 8)
         divider:SetWidth(1)
-        SetColor(divider, COLORS.divider)
+        if UseFafnyirSkin() then SetColor(divider, COLORS.divider)
+        else divider:SetColorTexture(0.3, 0.3, 0.3, 0.5) end
         local rightCell = CreateFrame("Frame", nil, row)
         rightCell:SetPoint("TOPLEFT", row, "TOP", 4, 0)
         rightCell:SetPoint("BOTTOMRIGHT")
@@ -471,7 +505,7 @@ function UI.Widgets:TripleRow(parent, y, first, second, third)
     row:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, y)
     row:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
     row:SetHeight(58)
-    AddBackground(row, COLORS.surface)
+    if UseFafnyirSkin() then AddBackground(row, COLORS.surface) end
 
     local descriptors = { first, second, third }
     local cells = {}
@@ -492,7 +526,8 @@ function UI.Widgets:TripleRow(parent, y, first, second, third)
             divider:SetPoint("TOP", cell, "TOPLEFT", 0, -8)
             divider:SetPoint("BOTTOM", cell, "BOTTOMLEFT", 0, 8)
             divider:SetWidth(1)
-            SetColor(divider, COLORS.divider)
+            if UseFafnyirSkin() then SetColor(divider, COLORS.divider)
+            else divider:SetColorTexture(0.3, 0.3, 0.3, 0.5) end
         end
         previous = cell
     end
@@ -511,8 +546,13 @@ function UI.Widgets:TripleRow(parent, y, first, second, third)
 end
 
 function UI.MakeFont(parent, size, _, r, g, b, a)
-    local fs = parent:CreateFontString(nil, "ARTWORK")
-    fs:SetFont(FontPath(false), size or 12, "")
+    local fs
+    if UseFafnyirSkin() then
+        fs = parent:CreateFontString(nil, "ARTWORK")
+        fs:SetFont(FontPath(false), size or 12, "")
+    else
+        fs = parent:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+    end
     fs:SetTextColor(r or 1, g or 1, b or 1, a or 1)
     return fs
 end
@@ -593,6 +633,7 @@ end
 
 local function MakeWindow()
     if window then return window end
+    activeSkin = UseFafnyirSkin()
     window = CreateFrame("Frame", "FafnyirToolsStandaloneFrame", UIParent, BackdropTemplate())
     local settings = WindowSettings()
     local savedWidth = Clamp(settings.width, MIN_WIDTH, MAX_WIDTH, DEFAULT_WIDTH)
@@ -600,7 +641,7 @@ local function MakeWindow()
     settings.width = savedWidth
     settings.height = savedHeight
     window:SetSize(savedWidth, savedHeight)
-    window:SetScale(0.86)
+    if UseFafnyirSkin() then window:SetScale(0.86) end
     window:SetPoint("CENTER")
     window:SetFrameStrata("DIALOG")
     window:SetClampedToScreen(true)
@@ -616,46 +657,55 @@ local function MakeWindow()
     window:RegisterForDrag("LeftButton")
     window:SetScript("OnDragStart", window.StartMoving)
     window:SetScript("OnDragStop", window.StopMovingOrSizing)
-    AddBackground(window, COLORS.background)
-    AddPixelBorder(window, COLORS.controlBorder)
-    local header = CreateFrame("Frame", nil, window)
-    header:SetPoint("TOPLEFT", 1, -1); header:SetPoint("TOPRIGHT", -1, -1); header:SetHeight(46)
-    AddBackground(header, COLORS.surface)
-    local headerLine = header:CreateTexture(nil, "ARTWORK")
-    headerLine:SetPoint("BOTTOMLEFT"); headerLine:SetPoint("BOTTOMRIGHT"); headerLine:SetHeight(1)
-    SetColor(headerLine, COLORS.controlBorder)
-    local brand = Label(header, "FAFNYIR", true)
-    brand:SetFont(FontPath(true), 18, "")
-    brand:SetTextColor(unpack(COLORS.secondary))
-    brand:SetPoint("LEFT", 14, 0)
-    brand:SetSize(82, 22)
-    local title = Label(header, "TOOLS", true)
-    title:SetFont(FontPath(true), 18, "")
-    title:SetTextColor(unpack(COLORS.text))
-    title:SetPoint("LEFT", brand, "RIGHT", 4, 0)
-    title:SetPoint("RIGHT", -160, 0)
-    title:SetHeight(22)
-    local version = Label(header, "v2.0.0")
-    version:SetTextColor(unpack(COLORS.muted))
-    version:SetPoint("RIGHT", -48, 0)
-    version:SetSize(88, 20)
-    version:SetJustifyH("RIGHT")
-    local close = CreateButton(header, "×")
-    close:SetSize(26, 26)
-    close:GetFontString():SetFont(FontPath(true), 18, "")
-    close:SetPoint("RIGHT", -8, 0)
-    close:SetScript("OnClick", function() window:Hide() end)
     local sidebar = CreateFrame("Frame", nil, window)
-    sidebar:SetPoint("TOPLEFT", 1, -47)
-    sidebar:SetPoint("TOPRIGHT", -1, -47)
-    sidebar:SetHeight(48)
-    AddBackground(sidebar, COLORS.background)
-    local tabLine = sidebar:CreateTexture(nil, "BORDER")
-    tabLine:SetPoint("BOTTOMLEFT"); tabLine:SetPoint("BOTTOMRIGHT"); tabLine:SetHeight(1)
-    SetColor(tabLine, COLORS.controlBorder)
     local scroll = CreateFrame("ScrollFrame", nil, window, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", 30, -112)
-    scroll:SetPoint("BOTTOMRIGHT", -34, 18)
+    if UseFafnyirSkin() then
+        AddBackground(window, COLORS.background)
+        AddPixelBorder(window, COLORS.controlBorder)
+        local header = CreateFrame("Frame", nil, window)
+        header:SetPoint("TOPLEFT", 1, -1); header:SetPoint("TOPRIGHT", -1, -1); header:SetHeight(46)
+        AddBackground(header, COLORS.surface)
+        local headerLine = header:CreateTexture(nil, "ARTWORK")
+        headerLine:SetPoint("BOTTOMLEFT"); headerLine:SetPoint("BOTTOMRIGHT"); headerLine:SetHeight(1)
+        SetColor(headerLine, COLORS.controlBorder)
+        local brand = Label(header, "FAFNYIR", true)
+        brand:SetFont(FontPath(true), 18, "")
+        brand:SetTextColor(unpack(COLORS.secondary))
+        brand:SetPoint("LEFT", 14, 0); brand:SetSize(82, 22)
+        local title = Label(header, "TOOLS", true)
+        title:SetFont(FontPath(true), 18, ""); title:SetTextColor(unpack(COLORS.text))
+        title:SetPoint("LEFT", brand, "RIGHT", 4, 0); title:SetPoint("RIGHT", -160, 0); title:SetHeight(22)
+        local version = Label(header, "v2.0.0")
+        version:SetTextColor(unpack(COLORS.muted)); version:SetPoint("RIGHT", -48, 0)
+        version:SetSize(88, 20); version:SetJustifyH("RIGHT")
+        local close = CreateButton(header, "×")
+        close:SetSize(26, 26); close:GetFontString():SetFont(FontPath(true), 18, "")
+        close:SetPoint("RIGHT", -8, 0); close:SetScript("OnClick", function() window:Hide() end)
+        sidebar:SetPoint("TOPLEFT", 1, -47); sidebar:SetPoint("TOPRIGHT", -1, -47); sidebar:SetHeight(48)
+        AddBackground(sidebar, COLORS.background)
+        local tabLine = sidebar:CreateTexture(nil, "BORDER")
+        tabLine:SetPoint("BOTTOMLEFT"); tabLine:SetPoint("BOTTOMRIGHT"); tabLine:SetHeight(1)
+        SetColor(tabLine, COLORS.controlBorder)
+        scroll:SetPoint("TOPLEFT", 30, -112); scroll:SetPoint("BOTTOMRIGHT", -34, 18)
+    else
+        if window.SetBackdrop then
+            window:SetBackdrop({
+                bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+                edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+                edgeSize = 24,
+                insets = { left = 8, right = 8, top = 8, bottom = 8 },
+            })
+        end
+        local title = window:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+        title:SetPoint("TOPLEFT", 28, -22); title:SetText("Fafnyir Tools")
+        local subtitle = window:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -7)
+        subtitle:SetText("Standalone quality-of-life tools with optional EllesmereUI enhancements.")
+        local close = CreateFrame("Button", nil, window, "UIPanelCloseButton")
+        close:SetPoint("TOPRIGHT", -7, -7)
+        sidebar:SetPoint("TOPLEFT", 20, -76); sidebar:SetPoint("BOTTOMLEFT", 20, 24); sidebar:SetWidth(180)
+        scroll:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 18, 0); scroll:SetPoint("BOTTOMRIGHT", -34, 24)
+    end
     window.pageHost = scroll
     window.sidebar = sidebar
 
@@ -697,10 +747,16 @@ local function BuildSidebar()
         local pageName = page
         local button = CreateButton(window.sidebar, pageName)
         button._pageName = pageName
-        button:SetSize(math.max(115, #pageName * 9 + 34), 40)
-        button:SetSidebarStyle()
-        if previous then button:SetPoint("LEFT", previous, "RIGHT", 4, 0)
-        else button:SetPoint("LEFT", 18, 0) end
+        if UseFafnyirSkin() then
+            button:SetSize(math.max(115, #pageName * 9 + 34), 40)
+            button:SetSidebarStyle()
+            if previous then button:SetPoint("LEFT", previous, "RIGHT", 4, 0)
+            else button:SetPoint("LEFT", 18, 0) end
+        else
+            button:SetSize(170, 28)
+            if previous then button:SetPoint("TOPLEFT", previous, "BOTTOMLEFT", 0, -7)
+            else button:SetPoint("TOPLEFT", 5, -5) end
+        end
         button:SetScript("OnClick", function(clicked)
             ShowPage(clicked._pageName, clicked)
         end)
@@ -737,18 +793,32 @@ local function ShowTextDialog(title, prompt, text, editable, onAccept)
     dialog:SetSize(620, 250)
     dialog:SetPoint("CENTER")
     dialog:SetFrameStrata("TOOLTIP")
-    AddBackground(dialog, COLORS.background)
-    AddPixelBorder(dialog, COLORS.highlight)
+    if UseFafnyirSkin() then
+        AddBackground(dialog, COLORS.background)
+        AddPixelBorder(dialog, COLORS.highlight)
+    elseif dialog.SetBackdrop then
+        dialog:SetBackdrop({
+            bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+            edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+            edgeSize = 24,
+            insets = { left = 8, right = 8, top = 8, bottom = 8 },
+        })
+    end
     local heading = Label(dialog, title, true)
-    heading:SetTextColor(unpack(COLORS.bright))
+    if UseFafnyirSkin() then heading:SetTextColor(unpack(COLORS.bright)) end
     heading:SetPoint("TOPLEFT", 22, -18); heading:SetPoint("TOPRIGHT", -22, -18); heading:SetHeight(24)
     local help = Label(dialog, prompt)
     help:SetPoint("TOPLEFT", 22, -48); help:SetPoint("TOPRIGHT", -22, -48); help:SetHeight(22)
-    local box = CreateFrame("EditBox", nil, dialog, BackdropTemplate())
-    AddBackground(box, COLORS.surface)
-    AddPixelBorder(box, COLORS.highlight)
-    box:SetMultiLine(true); box:SetAutoFocus(true); box:SetFont(FontPath(false), 12, "")
-    box:SetTextColor(unpack(COLORS.text)); box:SetTextInsets(8, 8, 6, 6)
+    local box = CreateFrame("EditBox", nil, dialog,
+        UseFafnyirSkin() and BackdropTemplate() or "InputBoxTemplate")
+    if UseFafnyirSkin() then
+        AddBackground(box, COLORS.surface)
+        AddPixelBorder(box, COLORS.highlight)
+    end
+    box:SetMultiLine(true); box:SetAutoFocus(true)
+    box:SetFont(UseFafnyirSkin() and FontPath(false) or STANDARD_TEXT_FONT, 12, "")
+    if UseFafnyirSkin() then box:SetTextColor(unpack(COLORS.text)) end
+    box:SetTextInsets(8, 8, 6, 6)
     box:SetPoint("TOPLEFT", 26, -78); box:SetPoint("BOTTOMRIGHT", -26, 55)
     box:SetText(text or ""); box:HighlightText(); box:SetCursorPosition(0)
     if not editable then box:SetScript("OnTextChanged", function(self) if self:GetText() ~= (text or "") then self:SetText(text or ""); self:HighlightText() end end) end
@@ -774,10 +844,19 @@ end
 function UI:ShowConfirmPopup(info)
     local dialog = CreateFrame("Frame", nil, UIParent, BackdropTemplate())
     dialog:SetSize(480, 190); dialog:SetPoint("CENTER"); dialog:SetFrameStrata("TOOLTIP")
-    AddBackground(dialog, COLORS.background)
-    AddPixelBorder(dialog, COLORS.highlight)
+    if UseFafnyirSkin() then
+        AddBackground(dialog, COLORS.background)
+        AddPixelBorder(dialog, COLORS.highlight)
+    elseif dialog.SetBackdrop then
+        dialog:SetBackdrop({
+            bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+            edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+            edgeSize = 24,
+            insets = { left = 8, right = 8, top = 8, bottom = 8 },
+        })
+    end
     local heading = Label(dialog, info.title or "Confirm", true)
-    heading:SetTextColor(unpack(COLORS.bright))
+    if UseFafnyirSkin() then heading:SetTextColor(unpack(COLORS.bright)) end
     heading:SetPoint("TOPLEFT", 22, -18); heading:SetPoint("TOPRIGHT", -22, -18); heading:SetHeight(26)
     local body = Label(dialog, info.message or "")
     body:SetPoint("TOPLEFT", 22, -52); body:SetPoint("TOPRIGHT", -22, -52); body:SetHeight(70)

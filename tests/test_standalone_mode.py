@@ -29,6 +29,14 @@ lua.execute((ADDON / "Localization/Core.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ADDON / "Localization/enUS.lua").read_text(), "FafnyirTools", ns)
 lua.execute((ADDON / "Core/StandaloneUI.lua").read_text(), "FafnyirTools", ns)
 
+standalone_source = (ADDON / "Core/StandaloneUI.lua").read_text()
+assert 'settings.skinEnabled ~= false' in standalone_source
+assert '"UIPanelButtonTemplate"' in standalone_source
+assert '"UICheckButtonTemplate"' in standalone_source
+assert '"OptionsSliderTemplate"' in standalone_source
+assert 'UI-DialogBox-Background' in standalone_source
+assert 'button:SetSize(170, 28)' in standalone_source
+
 lua.execute(r'''
 assert(ns.HAS_ELLESMEREUI==false)
 assert(EllesmereUI and EllesmereUI.__fafnyirStandalone==true)

@@ -71,6 +71,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Persistent Companion Pet | Retail only: per-character specific/random favorite companion with safety controls. Forever delegates the equivalent behavior to EllesmereUI Forever Essentials; retain historical credit and legacy data | Present on Retail; retired on Forever |
 | Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; follows the guarded Midnight 80–90 XP curve and falls back to next-level overflow if the live current-level requirement changes; an in-place Refresh button rebuilds the page to recalculate without events or polling; never touches EllesmereUI's XP bar | v1.1.20 build `2184a77`; offline checks and user in-game test passed |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
+| Standalone window skin | Standalone-only, enabled by default; a machine-local toggle switches between the Fafnyir skin and the original Blizzard dialog frame, vertical navigation and native controls after reload | Post-v2.0.0 test; offline-tested, in-game confirmation pending |
 
 Current integration pages: About, QoL, Unit Frames (including Aura Skins and
 Resting), Action Bars, and Layouts. Standalone additionally exposes XP &

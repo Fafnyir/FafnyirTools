@@ -24,6 +24,7 @@ local CHANGELOG = {
         "Added a draggable standalone minimap button for opening Fafnyir Tools.",
         "Added saved, bounded resizing and a reset control for the standalone settings window.",
         "Added standalone native XP, Rested XP, and completed Quest XP controls.",
+        "Added an optional Fafnyir skin; disabling it restores the original Blizzard-styled standalone window after reload.",
         "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
     }},
     { version = "v1.1.20", lines = {
@@ -376,6 +377,29 @@ function feature:BuildOptions(parent, yOffset)
 
     if not ns.HAS_ELLESMEREUI and ns.StandaloneUI then
         _, h = W:SectionHeader(parent, T("ABOUT.STANDALONE_WINDOW"), y)
+        y = y - h
+        _, h = W:DualRow(parent, y,
+            {
+                type="toggle",
+                text=T("ABOUT.ENABLE_FAFNYIR_SKIN"),
+                getValue=function()
+                    local settings = ns:GetDatabase().standaloneWindow
+                    return not settings or settings.skinEnabled ~= false
+                end,
+                setValue=function(value)
+                    local db = ns:GetDatabase()
+                    db.standaloneWindow = db.standaloneWindow or {}
+                    db.standaloneWindow.skinEnabled = value == true
+                    ns.StandaloneUI:ShowConfirmPopup({
+                        title=T("ABOUT.STANDALONE_SKIN_CHANGED"),
+                        message=T("ABOUT.STANDALONE_SKIN_RELOAD"),
+                        confirmText=T("CORE.RELOAD_NOW"),
+                        cancelText=T("CORE.LATER"),
+                        reload=true,
+                    })
+                end,
+            },
+            { type="label", text=T("ABOUT.STANDALONE_SKIN_NOTE") })
         y = y - h
         _, h = W:DualRow(parent, y,
             {

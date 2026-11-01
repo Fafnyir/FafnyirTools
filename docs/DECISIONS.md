@@ -586,3 +586,12 @@ read its native setting at `_ECL_AceDB.profile.reticle`; do not append another
 `.cursor` level from the shared backing database's internal shape.
 User confirmation on 2026-10-18: corrected build `de4f128` works perfectly and
 the user explicitly likes the addition. Retain it in the v1.1.17 scope.
+
+## 2026-11-01 — Optional standalone skin
+
+Keep the Fafnyir standalone skin as the default, but allow the user to disable
+it under About > Standalone Window. The disabled mode must restore the original
+Blizzard-styled dialog frame, vertical sidebar and native Blizzard widgets after
+a reload. Store this preference with the machine-local window settings so it is
+not transferred globally, and never reset unrelated addon preferences when the
+visual style changes.

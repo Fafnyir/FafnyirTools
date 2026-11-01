@@ -2,6 +2,10 @@
 
 ## Unreleased standalone window test
 
+- Added a saved Fafnyir Skin toggle under About > Standalone Window. Disabling
+  it restores the original Blizzard dialog frame, vertical navigation and
+  native Blizzard controls after a reload; custom feature settings are
+  unaffected.
 - Added bounded bottom-right resizing to the native standalone settings window.
 - Made scroll content and three-column option rows follow the resized width.
 - Saved window dimensions per installation and excluded them from global

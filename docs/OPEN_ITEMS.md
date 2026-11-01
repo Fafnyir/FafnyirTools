@@ -111,6 +111,13 @@ useful follow-up checks rather than release blockers:
 
 ## Runtime coverage worth retaining
 
+### Standalone window styles
+
+- Confirm both the default Fafnyir skin and the restored Blizzard style render
+  correctly at minimum, default and maximum saved window sizes.
+- Confirm switching either direction, choosing Reload Now, and deferring reload
+  all preserve feature settings and apply the selected style on the next load.
+
 These features have passed offline validation and received the user
 confirmations recorded in `CURRENT_STATE.md`. The cases below are additional
 coverage, not evidence of a known defect.
