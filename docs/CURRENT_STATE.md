@@ -252,6 +252,9 @@ its exact SharedMedia key `- Roboto SemiBold` for the standalone skin. This
 supersedes the brief regular-Roboto test while retaining the same optional-media
 fallback and EllesmereUI isolation.
 
+The accepted font trial retains the branded regular/bold pair and changes the
+split two-color header title to all caps: purple `FAFNYIR` and white `TOOLS`.
+
 Screenshot review then showed the one-weight presentation was too heavy for
 long descriptions and the inline-colored title did not render. The current
 skin uses `- Roboto Bold` for the window title, page tabs, section headings,

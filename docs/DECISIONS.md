@@ -157,6 +157,8 @@ that exact key for every emphasis role. Keep regular Roboto for body copy.
 Next font trial: supersede the Roboto pair with the exact FafnyirMedia keys
 `- THE BOLD FONT` for emphasis and `- THE FONT` for body copy. Preserve the
 mixed-weight role split and standard-font fallback.
+Finalize the split standalone title in all caps as `FAFNYIR TOOLS`, preserving
+the purple brand word and white product word.
 
 ## 2026-10-31 — Leveling Forecast refresh
 
