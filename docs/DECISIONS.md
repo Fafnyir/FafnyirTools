@@ -159,6 +159,8 @@ Next font trial: supersede the Roboto pair with the exact FafnyirMedia keys
 mixed-weight role split and standard-font fallback.
 Finalize the split standalone title in all caps as `FAFNYIR TOOLS`, preserving
 the purple brand word and white product word.
+Next skin trial: set standalone `background` (`#0C0D0F`) alpha to 0.90 and
+`surface` (`#131417`) alpha to 0.00 exactly. Do not alter the remaining palette.
 
 ## 2026-10-31 — Leveling Forecast refresh
 

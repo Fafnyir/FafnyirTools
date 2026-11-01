@@ -52,6 +52,8 @@ or `CHANGELOG.md`, not here.
   mixed `- THE BOLD FONT` headings/controls and `- THE FONT` body copy
   render correctly at several UI scales and resolutions; confirm the restored
   two-color Fafnyir Tools title remains visible.
+- Confirm the 90%-opaque window background and fully transparent row/header
+  surfaces remain legible over bright and dark game scenes.
 - Confirm slider values remain centered beside Horizontal/Vertical Resting,
   FPS font size, action-bar opacity and other sliders at all window widths.
 - QoL's active purple label/underline and the complete Native Resting control

@@ -50,6 +50,8 @@
 - Restored the two-color Fafnyir Tools title using separate font strings so the
   header remains visible with custom SharedMedia fonts.
 - Set the restored standalone header title in all caps: `FAFNYIR TOOLS`.
+- Adjusted the standalone skin to a 90%-opaque `#0C0D0F` window background
+  with fully transparent `#131417` row/header surfaces.
 - Fixed standalone slider values being anchored below their rows; numeric
   feedback now stays vertically centered beside each slider.
 - Added explicit horizontal slider thumbs and live numeric value feedback to

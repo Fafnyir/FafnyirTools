@@ -14,6 +14,7 @@ v2.0.0 changes
   `- THE FONT` for body copy, with safe fallbacks.
 - Restores the Fafnyir Tools title in the standalone header.
 - Presents the restored title as `FAFNYIR TOOLS`.
+- Uses a 90%-opaque main background with transparent row and header surfaces.
 - Keeps slider value labels centered beside their controls instead of bleeding
   below a row or into the following section.
 - Includes first-pass Chinese strings pending Yilang's review.

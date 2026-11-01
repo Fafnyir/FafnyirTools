@@ -184,6 +184,8 @@ assert 'GameTooltip:SetText(text)' in standalone_ui
 assert 'CONTENT_GUTTER = 36' in standalone_ui
 assert 'window:SetResizeBounds(MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT)' in standalone_ui
 assert 'function UI:ResetWindowSize()' in standalone_ui
+assert 'background = { 0x0C / 255, 0x0D / 255, 0x0F / 255, 0.90 }' in standalone_ui
+assert 'surface = { 0x13 / 255, 0x14 / 255, 0x17 / 255, 0.00 }' in standalone_ui
 assert 'local brand = Label(header, "FAFNYIR", true)' in standalone_ui
 assert 'local title = Label(header, "TOOLS", true)' in standalone_ui
 assert 'mediaKey = emphasis and "- THE BOLD FONT" or "- THE FONT"' in standalone_ui

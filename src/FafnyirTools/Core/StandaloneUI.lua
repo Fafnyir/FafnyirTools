@@ -24,8 +24,8 @@ local MAX_HEIGHT = 850
 local CONTENT_GUTTER = 36
 
 local COLORS = {
-    background = { 0x0C / 255, 0x0D / 255, 0x0F / 255, 0.98 },
-    surface = { 0x13 / 255, 0x14 / 255, 0x17 / 255, 0.98 },
+    background = { 0x0C / 255, 0x0D / 255, 0x0F / 255, 0.90 },
+    surface = { 0x13 / 255, 0x14 / 255, 0x17 / 255, 0.00 },
     surfaceLight = { 0x1C / 255, 0x1D / 255, 0x22 / 255, 1 },
     primary = { 0x2A / 255, 0x2B / 255, 0x32 / 255, 1 },
     secondary = { 0x63 / 255, 0x58 / 255, 0xB8 / 255, 1 },

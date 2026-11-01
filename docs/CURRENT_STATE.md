@@ -255,6 +255,12 @@ fallback and EllesmereUI isolation.
 The accepted font trial retains the branded regular/bold pair and changes the
 split two-color header title to all caps: purple `FAFNYIR` and white `TOOLS`.
 
+The next skin trial changes only the first two palette entries: the `#0C0D0F`
+window background uses 90% opacity and the `#131417` surface color uses 0%
+opacity. Rows and header surfaces therefore reveal the shared window background
+instead of adding a second opaque charcoal layer; borders, controls, typography
+and all other palette values are unchanged.
+
 Screenshot review then showed the one-weight presentation was too heavy for
 long descriptions and the inline-colored title did not render. The current
 skin uses `- Roboto Bold` for the window title, page tabs, section headings,
