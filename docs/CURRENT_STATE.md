@@ -254,11 +254,16 @@ fallback and EllesmereUI isolation.
 
 Screenshot review then showed the one-weight presentation was too heavy for
 long descriptions and the inline-colored title did not render. The current
-skin uses `- Roboto SemiBold` for the window title, page tabs, section headings,
+skin uses `- Roboto Bold` for the window title, page tabs, section headings,
 buttons and other interface emphasis, while labels, values, diagnostics, inputs
 and changelog copy use regular `- Roboto`. The header title is restored as two
 separate font strings—purple “Fafnyir” and white “Tools”—instead of relying on
 an inline color escape. Each weight retains its own Blizzard fallback.
+
+FafnyirMedia subsequently replaced the emphasis face with `Roboto-Bold.ttf`
+and registered the exact key `- Roboto Bold`. At the user's direction, Bold now
+supersedes SemiBold for all emphasis roles; regular `- Roboto` body typography
+and fallback behavior are unchanged.
 
 The same screenshot pass exposed a shared slider-value anchoring defect. Value
 labels used the row's vertical center plus a -31 offset, placing them below the

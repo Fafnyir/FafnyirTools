@@ -38,15 +38,15 @@ local COLORS = {
 }
 
 local fontPaths = {}
-local function FontPath(semibold)
-    local weight = semibold and "semibold" or "regular"
+local function FontPath(emphasis)
+    local weight = emphasis and "bold" or "regular"
     if fontPaths[weight] then return fontPaths[weight] end
     local media = LibStub and LibStub("LibSharedMedia-3.0", true)
-    local mediaKey = semibold and "- Roboto SemiBold" or "- Roboto"
+    local mediaKey = emphasis and "- Roboto Bold" or "- Roboto"
     local fontPath = media and media:Fetch("font", mediaKey, true)
     if (type(fontPath) ~= "string" or fontPath == "") and ns.HAS_FAFNYIRMEDIA then
-        fontPath = semibold
-            and "Interface\\AddOns\\FafnyirMedia\\fonts\\Roboto-SemiBold.ttf"
+        fontPath = emphasis
+            and "Interface\\AddOns\\FafnyirMedia\\fonts\\Roboto-Bold.ttf"
             or "Interface\\AddOns\\FafnyirMedia\\fonts\\Roboto-Regular.ttf"
     end
     if type(fontPath) ~= "string" or fontPath == "" then
