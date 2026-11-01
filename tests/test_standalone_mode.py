@@ -143,6 +143,7 @@ assert(aboutTab._selectionAccent.shown==false)
 toc = (ADDON / "FafnyirTools.toc").read_text()
 assert "## Dependencies:" not in toc
 assert "## OptionalDeps: EllesmereUI, FafnyirMedia" in toc
+assert "## IconTexture: Interface\\AddOns\\FafnyirTools\\Media\\Logo" in toc
 assert "Core\\StandaloneUI.lua" in toc
 
 right_click = (ADDON / "Modules/RightClickSelfCast.lua").read_text()

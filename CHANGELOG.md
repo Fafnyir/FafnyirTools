@@ -9,6 +9,8 @@
 - Added an About-page control to restore the original 920×620 window size.
 - Added complete first-pass Simplified and Traditional Chinese strings for the
   new controls pending fluent review.
+- Restored the branded addon-list icon using FafnyirTools' bundled logo so it
+  remains available without the optional FafnyirMedia addon.
 
 ## v2.0.0 — Standalone release
 

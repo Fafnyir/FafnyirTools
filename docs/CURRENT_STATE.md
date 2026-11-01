@@ -13,6 +13,11 @@ Offline resize, persistence, reset, localization and full-suite checks pass;
 in-game drag feel, extreme sizes, UI scales and Chinese wrapping require the
 new test package.
 
+The same follow-up restores the branded addon-list icon. The historical
+FafnyirMedia `AddonLogo` path is no longer safe now that FafnyirMedia is
+optional, so the TOC points to the equivalent logo bundled at
+`FafnyirTools/Media/Logo.tga`; standalone installs therefore retain the icon.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.

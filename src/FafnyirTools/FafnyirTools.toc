@@ -2,7 +2,7 @@
 ## Title: |cFF6600CCFafnyir Tools|r
 ## Author: Fafnyir
 ## Category-enUS: |cFF6600CCFafnyirs|r |cFFFFFFFFHoard|r
-## IconTexture: Interface\Icons\INV_Misc_Gear_01
+## IconTexture: Interface\AddOns\FafnyirTools\Media\Logo
 ## OptionalDeps: EllesmereUI, FafnyirMedia
 ## SavedVariables: FafnyirToolsDB
 ## Version: v2.0.0
