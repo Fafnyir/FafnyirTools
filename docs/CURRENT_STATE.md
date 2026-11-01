@@ -241,6 +241,12 @@ grey control outlines, white text and purple section/control accents. It keeps
 `- THE FONT` and does not alter EllesmereUI's own options. Trial 3 awaits
 in-game confirmation.
 
+At the user's direction on 2026-11-01, the current standalone skin now requests
+FafnyirMedia's registered SharedMedia font `- Roboto` instead of `- THE FONT`.
+FafnyirMedia remains optional; the same Blizzard standard-font fallback is
+retained when that media key or addon is unavailable. EllesmereUI's own options
+and font choices remain untouched.
+
 The first Trial 3 companion-pet screenshot showed toggle labels sitting above
 their 22-pixel checkboxes because the labels used a 36-pixel top-justified text
 box. The correction vertically centers a 22-pixel label on each checkbox and

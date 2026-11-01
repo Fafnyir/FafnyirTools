@@ -44,7 +44,7 @@
 - Added first-pass Simplified and Traditional Chinese strings for the new mode;
   fluent review and in-game testing remain pending.
 - Skinned the native standalone window and its controls with the Fafnyir color
-  palette, compact sizing, pixel borders, and FafnyirMedia's `- THE FONT` with
+  palette, compact sizing, pixel borders, and FafnyirMedia's `- Roboto` with
   a safe Blizzard-font fallback.
 - Added explicit horizontal slider thumbs and live numeric value feedback to
   standalone controls.

@@ -136,6 +136,11 @@ row panels, restrained borders and clear content hierarchy, but replace the
 reference blue everywhere with the exact Fafnyir secondary color `#6358B8`.
 Continue using FafnyirMedia's `- THE FONT`.
 
+2026-11-01 font follow-up: supersede that font choice for the current standalone
+skin and request the FafnyirMedia SharedMedia key `- Roboto`. Keep the standard
+Blizzard fallback because FafnyirMedia remains optional. Do not alter fonts in
+EllesmereUI integration mode.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.

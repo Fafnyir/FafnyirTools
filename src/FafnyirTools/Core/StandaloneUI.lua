@@ -41,7 +41,7 @@ local fontPath
 local function FontPath()
     if fontPath then return fontPath end
     local media = LibStub and LibStub("LibSharedMedia-3.0", true)
-    fontPath = media and media:Fetch("font", "- THE FONT", true)
+    fontPath = media and media:Fetch("font", "- Roboto", true)
     if (type(fontPath) ~= "string" or fontPath == "") and ns.HAS_FAFNYIRMEDIA then
         fontPath = "Interface\\AddOns\\FafnyirMedia\\fonts\\Fafnyir-Regular.ttf"
     end

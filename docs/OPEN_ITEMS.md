@@ -49,7 +49,7 @@ or `CHANGELOG.md`, not here.
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
 - Confirm the compact skinned window, Fafnyir palette, pixel borders and
-  `- THE FONT` render correctly at several UI scales and resolutions.
+  `- Roboto` render correctly at several UI scales and resolutions.
 - QoL's active purple label/underline and the complete Native Resting control
   row are confirmed in game in build `30e80ff` (2026-10-31).
 - Recheck `General.log` for new Fafnyir Tools Lua errors after hovering controls;
