@@ -49,6 +49,8 @@
   body copy, with safe Blizzard-font fallbacks.
 - Restored the two-color Fafnyir Tools title using separate font strings so the
   header remains visible with custom SharedMedia fonts.
+- Fixed standalone slider values being anchored below their rows; numeric
+  feedback now stays vertically centered beside each slider.
 - Added explicit horizontal slider thumbs and live numeric value feedback to
   standalone controls.
 - Added one compact Native Resting row containing Horizontal, Vertical and

@@ -13,6 +13,8 @@ v2.0.0 changes
   pixel borders; uses Roboto SemiBold for headings/tabs/buttons and Roboto
   Regular for body copy, with safe fallbacks.
 - Restores the Fafnyir Tools title in the standalone header.
+- Keeps slider value labels centered beside their controls instead of bleeding
+  below a row or into the following section.
 - Includes first-pass Chinese strings pending Yilang's review.
 - Integrates the author's former HideTargetRepColor behavior through the
   existing Target/Focus status-texture handler.

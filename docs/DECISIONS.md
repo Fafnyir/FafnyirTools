@@ -148,6 +148,8 @@ Screenshot follow-up: use SemiBold only for title, tabs, section headings,
 buttons and interface emphasis; use regular Roboto for body copy, values,
 diagnostics, inputs and changelog text. Restore the missing title with separate
 purple “Fafnyir” and white “Tools” strings rather than inline color markup.
+Anchor slider value text to the slider itself, not to a negative offset from
+the row center, so shared slider widgets remain inside every row layout.
 
 ## 2026-10-31 — Leveling Forecast refresh
 

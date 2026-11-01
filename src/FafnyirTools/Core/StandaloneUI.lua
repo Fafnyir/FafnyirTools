@@ -308,8 +308,9 @@ local function BuildSlider(parent, descriptor)
     local valueText = Label(parent, "")
     valueText:SetJustifyH("CENTER")
     valueText:SetJustifyV("MIDDLE")
-    valueText:SetPoint("RIGHT", parent, "RIGHT", -8, -31)
-    valueText:SetSize(42, 20)
+    valueText:SetPoint("LEFT", slider, "RIGHT", 4, 0)
+    valueText:SetPoint("RIGHT", parent, "RIGHT", -8, 0)
+    valueText:SetHeight(20)
 
     local function FormatValue(value)
         local step = tonumber(descriptor.step) or 1

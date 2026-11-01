@@ -166,6 +166,9 @@ assert 'fs:SetPoint("BOTTOMRIGHT", -8, 6)' in standalone_ui
 assert 'local rowHeight = leftIsLabel and rightIsLabel and 44 or 58' in standalone_ui
 assert 'slider:SetOrientation("HORIZONTAL")' in standalone_ui
 assert 'valueText:SetText(FormatValue(value))' in standalone_ui
+assert 'valueText:SetPoint("LEFT", slider, "RIGHT", 4, 0)' in standalone_ui
+assert 'valueText:SetPoint("RIGHT", parent, "RIGHT", -8, 0)' in standalone_ui
+assert 'valueText:SetPoint("RIGHT", parent, "RIGHT", -8, -31)' not in standalone_ui
 assert 'slider:SetScript("OnDoubleClick"' not in standalone_ui
 assert 'leftCell:SetPoint("BOTTOMRIGHT")' in standalone_ui
 assert 'function UI.Widgets:TripleRow' in standalone_ui

@@ -52,6 +52,8 @@ or `CHANGELOG.md`, not here.
   mixed `- Roboto SemiBold` headings/controls and regular `- Roboto` body copy
   render correctly at several UI scales and resolutions; confirm the restored
   two-color Fafnyir Tools title remains visible.
+- Confirm slider values remain centered beside Horizontal/Vertical Resting,
+  FPS font size, action-bar opacity and other sliders at all window widths.
 - QoL's active purple label/underline and the complete Native Resting control
   row are confirmed in game in build `30e80ff` (2026-10-31).
 - Recheck `General.log` for new Fafnyir Tools Lua errors after hovering controls;

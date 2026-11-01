@@ -260,6 +260,12 @@ and changelog copy use regular `- Roboto`. The header title is restored as two
 separate font strings—purple “Fafnyir” and white “Tools”—instead of relying on
 an inline color escape. Each weight retains its own Blizzard fallback.
 
+The same screenshot pass exposed a shared slider-value anchoring defect. Value
+labels used the row's vertical center plus a -31 offset, placing them below the
+58-unit row and allowing them to bleed toward the next section. Values now
+anchor directly between the slider's right edge and the cell's right inset,
+vertically centered on the slider in both DualRow and TripleRow layouts.
+
 The first Trial 3 companion-pet screenshot showed toggle labels sitting above
 their 22-pixel checkboxes because the labels used a 36-pixel top-justified text
 box. The correction vertically centers a 22-pixel label on each checkbox and
