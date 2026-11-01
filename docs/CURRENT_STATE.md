@@ -265,6 +265,12 @@ and registered the exact key `- Roboto Bold`. At the user's direction, Bold now
 supersedes SemiBold for all emphasis roles; regular `- Roboto` body typography
 and fallback behavior are unchanged.
 
+For the next visual trial, the user returned the standalone typography to
+FafnyirMedia's branded family: `- THE BOLD FONT` now supplies title, tabs,
+headings and buttons, while `- THE FONT` supplies body copy, values, inputs and
+changelog text. This supersedes the Roboto trial without changing layout,
+fallbacks or EllesmereUI isolation.
+
 The same screenshot pass exposed a shared slider-value anchoring defect. Value
 labels used the row's vertical center plus a -31 offset, placing them below the
 58-unit row and allowing them to bleed toward the next section. Values now

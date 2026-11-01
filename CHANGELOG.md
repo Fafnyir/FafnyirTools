@@ -45,7 +45,7 @@
   fluent review and in-game testing remain pending.
 - Skinned the native standalone window and its controls with the Fafnyir color
   palette, compact sizing and pixel borders. The current typography uses
-  FafnyirMedia's `- Roboto Bold` for interface emphasis and `- Roboto` for
+  FafnyirMedia's `- THE BOLD FONT` for interface emphasis and `- THE FONT` for
   body copy, with safe Blizzard-font fallbacks.
 - Restored the two-color Fafnyir Tools title using separate font strings so the
   header remains visible with custom SharedMedia fonts.

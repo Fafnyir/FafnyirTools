@@ -10,8 +10,8 @@ v2.0.0 changes
   saved settings for later use.
 - Adapts Right-Click Self Cast to Blizzard native action bars.
 - Skins the standalone window with the Fafnyir palette, compact sizing and
-  pixel borders; uses Roboto Bold for headings/tabs/buttons and Roboto
-  Regular for body copy, with safe fallbacks.
+  pixel borders; uses `- THE BOLD FONT` for headings/tabs/buttons and
+  `- THE FONT` for body copy, with safe fallbacks.
 - Restores the Fafnyir Tools title in the standalone header.
 - Keeps slider value labels centered beside their controls instead of bleeding
   below a row or into the following section.

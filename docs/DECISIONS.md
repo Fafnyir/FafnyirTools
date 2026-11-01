@@ -154,6 +154,10 @@ the row center, so shared slider widgets remain inside every row layout.
 After FafnyirMedia registered `- Roboto Bold`, replace `- Roboto SemiBold` with
 that exact key for every emphasis role. Keep regular Roboto for body copy.
 
+Next font trial: supersede the Roboto pair with the exact FafnyirMedia keys
+`- THE BOLD FONT` for emphasis and `- THE FONT` for body copy. Preserve the
+mixed-weight role split and standard-font fallback.
+
 ## 2026-10-31 — Leveling Forecast refresh
 
 Add an in-place Refresh button to the existing Leveling Forecast for v1.1.20.

@@ -49,7 +49,7 @@ or `CHANGELOG.md`, not here.
 - Test without EllesmereUI on both Retail and Forever: `/faftools`, every page,
   toggles, click-to-cycle selectors, text input, popups, Refresh and scrolling.
 - Confirm the compact skinned window, Fafnyir palette, pixel borders and
-  mixed `- Roboto Bold` headings/controls and regular `- Roboto` body copy
+  mixed `- THE BOLD FONT` headings/controls and `- THE FONT` body copy
   render correctly at several UI scales and resolutions; confirm the restored
   two-color Fafnyir Tools title remains visible.
 - Confirm slider values remain centered beside Horizontal/Vertical Resting,
