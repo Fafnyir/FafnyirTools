@@ -36,6 +36,8 @@ v2.0.0 changes
   bar: current/rested gradients, direction, colors and completed Quest XP.
 - Adds an optional clean XP frame that hides Blizzard's baked segment ticks
   and aligns the visible border to the native fill track.
+- Reapplies custom XP textures in Blizzard's own update cycle to prevent a
+  one-frame native/custom flicker.
 - Keeps the native XP feature entirely inactive when EllesmereUI is installed.
 
 Testing requested

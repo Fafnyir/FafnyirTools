@@ -52,7 +52,8 @@ end
 
 fill=Texture("UI-HUD-ExperienceBar-Fill-Experience")
 rested=Texture("UI-HUD-ExperienceBar-Fill-Prediction")
-status={texture=fill,width=800,height=10}
+background=Texture("UI-HUD-ExperienceBar-Background");background.alpha=1
+status={texture=fill,width=800,height=10,Background=background}
 function status:GetStatusBarTexture() return self.texture end
 function status:GetSize() return self.width,self.height end
 function status:CreateTexture(_,layer,_,sublevel)
@@ -73,6 +74,10 @@ function xpBar:HookScript(name,fn) self.scripts[name]=fn end
 function xpBar:GetParent() return MainStatusTrackingBarContainer end
 function xpBar:IsShown() return self.shown end
 function xpBar:UpdateAll() self.updated=(self.updated or 0)+1 end
+function xpBar:UpdateStatusBarTextures()
+    fill:SetAtlas("UI-HUD-ExperienceBar-Fill-Experience")
+    frameTexture:SetAlpha(1);background:SetAlpha(1);tick:SetAlpha(1)
+end
 
 StatusTrackingBarInfo={BarsEnum={Experience=4}}
 MainStatusTrackingBarContainer={bars={[4]=xpBar},BarFrameTexture=frameTexture}
@@ -116,22 +121,25 @@ assert(rested.path=="Interface\\Buttons\\WHITE8X8")
 assert(xpBar.created and xpBar.created.shown and xpBar.created.sublevel==-2)
 assert(xpBar.created.width==160 and xpBar.created.height==10)
 assert(xpBar.created.point[4]==80)
-assert(frameTexture.alpha==1 and tick.alpha==1)
+assert(frameTexture.alpha==1 and background.alpha==1 and tick.alpha==1)
 assert(#status.clean==4 and status.clean[1].shown==false)
 
 FafnyirToolsDB.xpBar.hideTicks=true
 feature:Refresh()
-assert(frameTexture.alpha==0 and tick.alpha==0)
+assert(frameTexture.alpha==0 and background.alpha==0 and tick.alpha==0)
 assert(status.clean[1].shown==true and status.clean[4].shown==true)
 xpBar.shown=false
 feature:Refresh()
-assert(frameTexture.alpha==1 and tick.alpha==1 and status.clean[1].shown==false)
+assert(frameTexture.alpha==1 and background.alpha==1 and tick.alpha==1 and status.clean[1].shown==false)
 xpBar.shown=true
 
 FafnyirToolsDB.xpBar.enabled=true
 feature:Refresh()
 assert(fill.path=="Interface\\Buttons\\WHITE8X8")
 assert(fill.gradient[1]=="HORIZONTAL")
+xpBar:UpdateStatusBarTextures()
+assert(fill.path=="Interface\\Buttons\\WHITE8X8")
+assert(frameTexture.alpha==0 and background.alpha==0 and tick.alpha==0)
 
 FafnyirToolsDB.xpBar.restedEnabled=false
 feature:Refresh()

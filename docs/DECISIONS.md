@@ -16,6 +16,10 @@ segment divisions are baked into Blizzard's frame atlas, so suppress that atlas
 only while the native Experience bar is visible and draw a simple border on the
 StatusBar's exact bounds. Hide the exhaustion pip at the same time. Restore the
 native frame and pip when the setting is off or another tracked bar is shown.
+The native Background atlas also contributes visible end artwork, so capture,
+suppress and restore it with the outer frame. Reapply the selected textures in
+Blizzard's XP texture-update call itself rather than through `C_Timer.After(0)`;
+the delayed handoff visibly flickers between native and custom art.
 
 ## 2026-11-01 — Resizable standalone settings window
 

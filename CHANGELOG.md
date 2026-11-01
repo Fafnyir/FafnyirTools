@@ -20,6 +20,8 @@
   restored current/rested/Quest layer ordering on Blizzard Experience bars.
 - Added a default-off Hide Segment Ticks option that replaces Blizzard's baked
   ticked frame with a clean frame aligned to the native XP track.
+- Hid the native XP background as well as its outer frame when that option is
+  active and reapplied custom textures synchronously to eliminate update flicker.
 
 ## v2.0.0 — Standalone release
 

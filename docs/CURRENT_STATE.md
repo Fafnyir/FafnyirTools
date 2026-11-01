@@ -48,6 +48,15 @@ also suppresses the rested threshold pip. Hiding the XP bar, displaying a
 different tracked bar, or disabling the option restores the captured native
 frame and pip alpha. In-game confirmation of the corrected bounds is pending.
 
+The next screenshot from build `c749709` showed the end caps/ticks still
+visible and reported flicker. The follow-up captures and suppresses the
+StatusBar background in addition to the container frame because both native
+atlases contribute visible edge artwork. It also replaces the zero-delay
+post-update refresh with synchronous post-hooks on Blizzard's texture and
+full-bar update methods, preventing the native atlas from appearing for one
+rendered frame before the custom textures return. This revision awaits an
+in-game pass.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.

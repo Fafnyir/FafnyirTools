@@ -55,6 +55,21 @@ local function ExperienceIndex()
         and StatusTrackingBarInfo.BarsEnum.Experience or EXPERIENCE_INDEX
 end
 
+local function ContainerForBar(bar)
+    local parent = bar.GetParent and bar:GetParent() or nil
+    if parent and parent.BarFrameTexture then return parent end
+    local containers = StatusTrackingBarManager and StatusTrackingBarManager.barContainers
+    if type(containers) == "table" then
+        for _, container in pairs(containers) do
+            if container and container.bars
+                and container.bars[ExperienceIndex()] == bar
+            then
+                return container
+            end
+        end
+    end
+end
+
 local function NativeBars()
     local result, seen = {}, {}
     local containers = StatusTrackingBarManager and StatusTrackingBarManager.barContainers
@@ -85,8 +100,9 @@ local function CaptureNative(bar)
     if nativeTextures[bar] then return nativeTextures[bar] end
     local fill = bar.StatusBar and bar.StatusBar:GetStatusBarTexture()
     local rested = bar.ExhaustionLevelFillBar
-    local container = bar.GetParent and bar:GetParent() or nil
+    local container = ContainerForBar(bar)
     local frameTexture = container and container.BarFrameTexture
+    local background = bar.StatusBar and bar.StatusBar.Background
     local tick = bar.ExhaustionTick
     local snapshot = {
         fill = fill,
@@ -97,6 +113,8 @@ local function CaptureNative(bar)
         restedTexture = rested and rested.GetTexture and rested:GetTexture() or nil,
         frameTexture = frameTexture,
         frameAlpha = frameTexture and frameTexture.GetAlpha and frameTexture:GetAlpha() or 1,
+        background = background,
+        backgroundAlpha = background and background.GetAlpha and background:GetAlpha() or 1,
         tick = tick,
         tickAlpha = tick and tick.GetAlpha and tick:GetAlpha() or 1,
     }
@@ -146,10 +164,20 @@ local function ApplyFrameArt(bar)
     if snapshot.frameTexture and snapshot.frameTexture.SetAlpha then
         snapshot.frameTexture:SetAlpha(hideTicks and 0 or snapshot.frameAlpha)
     end
+    if snapshot.background and snapshot.background.SetAlpha then
+        snapshot.background:SetAlpha(hideTicks and 0 or snapshot.backgroundAlpha)
+    end
     if snapshot.tick and snapshot.tick.SetAlpha then
         snapshot.tick:SetAlpha(hideTicks and 0 or snapshot.tickAlpha)
     end
     SetCleanFrameShown(bar, hideTicks)
+end
+
+function feature:ReapplyBar(bar)
+    if applying then return end
+    applying = true
+    self:ApplyBar(bar)
+    applying = false
 end
 
 local function RestoreTexture(texture, atlas, path)
@@ -281,12 +309,17 @@ function feature:InstallHooks()
             hookedBars[bar] = true
             if hooksecurefunc and type(bar.UpdateAll) == "function" then
                 hooksecurefunc(bar, "UpdateAll", function()
-                    if not applying then feature:QueueRefresh() end
+                    feature:ReapplyBar(bar)
                 end)
             end
-            bar:HookScript("OnShow", function() feature:QueueRefresh() end)
-            bar:HookScript("OnHide", function() feature:QueueRefresh() end)
-            bar:HookScript("OnSizeChanged", function() feature:QueueRefresh() end)
+            if hooksecurefunc and type(bar.UpdateStatusBarTextures) == "function" then
+                hooksecurefunc(bar, "UpdateStatusBarTextures", function()
+                    feature:ReapplyBar(bar)
+                end)
+            end
+            bar:HookScript("OnShow", function() feature:ReapplyBar(bar) end)
+            bar:HookScript("OnHide", function() feature:ReapplyBar(bar) end)
+            bar:HookScript("OnSizeChanged", function() feature:ReapplyBar(bar) end)
             if bar.ExhaustionTick and bar.ExhaustionTick.HookScript then
                 bar.ExhaustionTick:HookScript("OnShow", function()
                     if DB().hideTicks and BarIsVisible(bar) then bar.ExhaustionTick:SetAlpha(0) end
