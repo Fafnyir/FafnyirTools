@@ -599,3 +599,5 @@ visual style changes.
 The user subsequently requested **Push a release**. Because `release/v2.0.0`
 already exists as a final immutable release, publish this tested patch as final
 v2.0.1 through the configured GitHub/CurseForge workflow.
+Workflow `41360473794` published final GitHub release `release/v2.0.1` from
+`170cdce`; CurseForge accepted file `9400589`.

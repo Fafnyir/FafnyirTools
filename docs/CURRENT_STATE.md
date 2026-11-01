@@ -11,6 +11,12 @@ Complete offline validation passes; both visual modes and deferred reload still
 require in-game rendering confirmation. Publish this revision as a final GitHub
 and CurseForge release because the existing final v2.0.0 tag is immutable.
 
+Final workflow `41360473794` completed successfully from source commit
+`170cdce`. GitHub release `release/v2.0.1` contains
+`Fafnyir_Tools_v2.0.1_170cdce.zip` and its build manifest. CurseForge accepted
+the identical ZIP as Release file `9400589`; moderation/public availability is
+separate. The independently hosted Wago copy is not updated by this workflow.
+
 ## Post-release standalone window resizing test — 2026-11-01
 
 At the user's direction, the native standalone settings window now supports
