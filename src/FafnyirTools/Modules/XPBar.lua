@@ -106,15 +106,15 @@ local function ApplyTrackMask(bar, texture)
     if not mask then
         mask = status:CreateMaskTexture(nil, "ARTWORK")
         mask:SetAllPoints(status)
-        local background = status.Background
-        local atlas = background and background.GetAtlas and background:GetAtlas()
-        local path = background and background.GetTexture and background:GetTexture()
+        local snapshot = nativeTextures[bar] or CaptureNative(bar)
+        local atlas = snapshot and snapshot.fillAtlas
+        local path = snapshot and snapshot.fillTexture
         if atlas and mask.SetAtlas then
             mask:SetAtlas(atlas)
         elseif path and mask.SetTexture then
             mask:SetTexture(path, "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
         else
-            mask:SetAtlas("UI-HUD-ExperienceBar-Background")
+            mask:SetAtlas("UI-HUD-ExperienceBar-Fill-Experience")
         end
         trackMasks[bar] = mask
     end

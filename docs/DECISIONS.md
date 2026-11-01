@@ -19,6 +19,8 @@ and Quest texture with the active client's native XP-background atlas. Reapply
 the selected textures in Blizzard's XP texture-update call itself rather than
 through `C_Timer.After(0)`; the delayed handoff visibly flickers between native
 and custom art.
+Use the captured native Experience fill atlas as the mask source; the
+background atlas is translucent and visibly fades the configured colors.
 
 ## 2026-11-01 — Resizable standalone settings window
 

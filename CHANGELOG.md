@@ -20,6 +20,8 @@
   restored current/rested/Quest layer ordering on Blizzard Experience bars.
 - Masked custom current, rested and Quest XP textures with Blizzard's native
   track shape so solid gradients retain the correct end-cap bounds.
+- Use the fully opaque native fill atlas—not the translucent background atlas—
+  as the mask source so custom colors retain their configured opacity.
 - Reapplied custom textures synchronously in Blizzard's update cycle to remove
   one-frame native/custom flicker; the unsuccessful tick-hiding trial was removed.
 

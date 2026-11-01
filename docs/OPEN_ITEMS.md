@@ -13,7 +13,8 @@ or `CHANGELOG.md`, not here.
   reputation/house-favor competition, Edit Mode movement, reload persistence,
   reset and live color-picker changes. Confirm the native track mask clips all
   custom fills to the Retail and Forever end-cap shapes while leaving Blizzard's
-  ticks and rested pip unchanged. Watch XP gains, rested updates and tracked-bar
+  ticks and rested pip unchanged, with no loss of configured color opacity.
+  Watch XP gains, rested updates and tracked-bar
   swaps for any flicker.
   Confirm current XP remains above rested
   XP and Quest XP remains behind both. Re-enable EllesmereUI and confirm the XP

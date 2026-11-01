@@ -119,7 +119,7 @@ assert(rested.path=="Interface\\Buttons\\WHITE8X8")
 assert(xpBar.created and xpBar.created.shown and xpBar.created.sublevel==-2)
 assert(xpBar.created.width==160 and xpBar.created.height==10)
 assert(xpBar.created.point[4]==80)
-assert(status.mask and status.mask.atlas=="UI-HUD-ExperienceBar-Background")
+assert(status.mask and status.mask.atlas=="UI-HUD-ExperienceBar-Fill-Experience")
 assert(fill.mask==status.mask and rested.mask==status.mask and xpBar.created.mask==status.mask)
 
 FafnyirToolsDB.xpBar.enabled=true

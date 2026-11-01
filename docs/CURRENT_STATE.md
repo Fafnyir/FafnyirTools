@@ -51,6 +51,13 @@ synchronously from Blizzard's update methods rather than through a zero-delay
 timer, preventing the native atlas from appearing for one rendered frame. The
 masked bounds and flicker correction await an in-game pass.
 
+Build `5d10ba6` corrected the mask geometry but its background-atlas source
+reduced the opacity of every custom layer, producing visibly faded colors. The
+mask now uses the captured native Experience fill atlas instead. That atlas has
+the same client-specific end silhouette with an opaque fill body, so it should
+clip the ends without multiplying down the selected colors. In-game
+confirmation remains pending.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.
