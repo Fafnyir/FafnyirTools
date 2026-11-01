@@ -171,9 +171,9 @@ end
 
 local function BuildLabel(parent, descriptor)
     local fs = Label(parent, descriptor.text)
-    fs:SetPoint("TOPLEFT", 8, -8)
-    fs:SetPoint("TOPRIGHT", -8, -8)
-    fs:SetHeight(44)
+    fs:SetJustifyV("MIDDLE")
+    fs:SetPoint("TOPLEFT", 8, -6)
+    fs:SetPoint("BOTTOMRIGHT", -8, 6)
     AddTooltip(fs, descriptor.tooltip)
 end
 
@@ -351,10 +351,13 @@ function UI.Widgets:SectionHeader(parent, text, y)
 end
 
 function UI.Widgets:DualRow(parent, y, left, right)
+    local leftIsLabel = not left or left.type == nil or left.type == "label"
+    local rightIsLabel = not right or right.type == nil or right.type == "label"
+    local rowHeight = leftIsLabel and rightIsLabel and 44 or 58
     local row = CreateFrame("Frame", nil, parent)
     row:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, y)
     row:SetPoint("TOPRIGHT", parent, "TOPRIGHT", 0, y)
-    row:SetHeight(58)
+    row:SetHeight(rowHeight)
     AddBackground(row, COLORS.surface)
     local leftCell = CreateFrame("Frame", nil, row)
     leftCell:SetPoint("TOPLEFT")
@@ -375,7 +378,7 @@ function UI.Widgets:DualRow(parent, y, left, right)
         rightCell:SetPoint("BOTTOMRIGHT")
         BuildDescriptor(rightCell, right)
     end
-    return row, 58
+    return row, rowHeight
 end
 
 function UI.Widgets:TripleRow(parent, y, first, second, third)

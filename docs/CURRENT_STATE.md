@@ -18,6 +18,13 @@ FafnyirMedia `AddonLogo` path is no longer safe now that FafnyirMedia is
 optional, so the TOC points to the equivalent logo bundled at
 `FafnyirTools/Media/Logo.tga`; standalone installs therefore retain the icon.
 
+Screenshot review of the standalone Leveling Forecast then showed that its
+text-only rows inherited the same 58-unit height used by interactive controls
+and placed their text at the top of each cell. Standalone `DualRow` now uses a
+compact 44-unit height when both cells are labels and vertically centers label
+text within the available cell. Rows containing buttons, toggles, sliders,
+inputs or dropdowns retain the original 58-unit control spacing.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.

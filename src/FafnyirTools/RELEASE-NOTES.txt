@@ -30,6 +30,8 @@ v2.0.0 changes
 - Adds bounded bottom-right resizing to the standalone settings window, saves
   its dimensions per installation, and includes an About-page size reset.
 - Restores the branded addon-list icon from the logo bundled with FafnyirTools.
+- Tightens and vertically centers standalone text-only rows while preserving
+  the full spacing used by interactive controls.
 
 Testing requested
 

@@ -160,6 +160,9 @@ standalone_ui = (ADDON / "Core/StandaloneUI.lua").read_text()
 assert 'fs:SetJustifyV("MIDDLE")' in standalone_ui
 assert 'fs:SetPoint("LEFT", check, "RIGHT", 6, 0)' in standalone_ui
 assert 'fs:SetHeight(22)' in standalone_ui
+assert 'fs:SetJustifyV("MIDDLE")' in standalone_ui
+assert 'fs:SetPoint("BOTTOMRIGHT", -8, 6)' in standalone_ui
+assert 'local rowHeight = leftIsLabel and rightIsLabel and 44 or 58' in standalone_ui
 assert 'slider:SetOrientation("HORIZONTAL")' in standalone_ui
 assert 'valueText:SetText(FormatValue(value))' in standalone_ui
 assert 'slider:SetScript("OnDoubleClick"' not in standalone_ui

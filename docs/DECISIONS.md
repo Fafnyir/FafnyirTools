@@ -9,6 +9,11 @@ new width. Persist width and height as installation-local state excluded from
 global export. Provide an About-page reset to the original 920×620 size. Do
 not alter EllesmereUI's options window.
 
+Screenshot follow-up: use 44-unit rows for standalone label-only `DualRow`
+content and vertically center its text. Retain 58-unit rows whenever either
+cell contains an interactive control so the spacing correction does not crowd
+buttons, toggles, inputs, selectors or sliders.
+
 ## 2026-10-31 — Standalone minimap launcher
 
 Create a standard circular minimap button only in standalone mode. Left-click

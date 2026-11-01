@@ -11,6 +11,8 @@
   new controls pending fluent review.
 - Restored the branded addon-list icon using FafnyirTools' bundled logo so it
   remains available without the optional FafnyirMedia addon.
+- Tightened standalone text-only rows from 58 to 44 units and vertically
+  centered their labels; interactive control rows retain their original height.
 
 ## v2.0.0 — Standalone release
 

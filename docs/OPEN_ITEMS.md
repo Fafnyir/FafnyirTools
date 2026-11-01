@@ -11,6 +11,9 @@ or `CHANGELOG.md`, not here.
   verify the grip, scroll area, three-column rows, reload persistence, Reset
   Window Size, UI scaling and `zhCN`/`zhTW` wrapping. Confirm EllesmereUI's
   integrated options window is unchanged.
+- Confirm the compact 44-unit label rows and vertically centered Leveling
+  Forecast values at several UI scales and at minimum window width, including
+  wrapping of the guidance sentence in Chinese locales.
 
 - Test the integrated FPS Display in standalone Retail and Forever: enable,
   drag persistence, world-latency toggle, font-size range, reset, `/fpsdisplay`,
