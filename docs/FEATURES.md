@@ -24,7 +24,7 @@ separate.
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide complete coverage of all 198 current interface
+  Chinese (`zhTW`) provide complete coverage of all 225 current interface
   strings. Yilang reviewed the strings through v1.1.19; the v1.1.20 Refresh and
   v2.0.0 standalone strings are first-pass translations pending fluent review.
 - Locale files load before feature modules so localized page names are stable
@@ -43,6 +43,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Feature | Baseline contract | Status |
 | --- | --- | --- |
 | Identity/integration | Fafnyir Tools; EllesmereUI and FafnyirMedia are optional; standalone description and native window without EUI, independent Fafnyir sidebar group with EUI, existing category and Patreon link | v2.0.0 test |
+| Standalone window sizing | Bottom-right resizing from 760×520 to 1200×850; responsive content/three-column rows; machine-local width and height excluded from global transfer; About-page reset to 920×620 | Post-v2.0.0 test; offline-tested, in-game confirmation pending |
 | Resting | Animated resting indicator on EUI Player frame; configurable enable, max-level visibility, left/right placement, size and offsets; drawn above frame border | Present |
 | Native resting controls | Standalone-only, default-off repositioning of Blizzard's own `PlayerFrameContentContextual.PlayerRestLoop`, with horizontal/vertical offsets, max-level hiding, exact native anchor restoration, and post-update reconciliation | v2.0.0 test; first resolver failed in game, current live-object correction pending confirmation |
 | FPS Display | Standalone-only, default-off movable FPS and optional world-latency readout; saved machine-local position, 10–32 font size, reset position and `/fpsdisplay` shortcut | v2.0.0 test; offline-tested, in-game confirmation pending |

@@ -87,6 +87,10 @@ ns.defaults = {
     minimapButton = {
         angle = 220,
     },
+    standaloneWindow = {
+        width = 920,
+        height = 620,
+    },
     actionBarMouseover = {
         enabled = false,
         fadedOpacity = 0,

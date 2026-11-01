@@ -1,5 +1,14 @@
 # Reconciled decisions
 
+## 2026-11-01 — Resizable standalone settings window
+
+Make only the native standalone settings window resizable. Use a bottom-right
+grip, bound the unscaled frame to 760×520 through 1200×850, and rebuild the
+current page after resizing so scroll content and three-column rows match the
+new width. Persist width and height as installation-local state excluded from
+global export. Provide an About-page reset to the original 920×620 size. Do
+not alter EllesmereUI's options window.
+
 ## 2026-10-31 — Standalone minimap launcher
 
 Create a standard circular minimap button only in standalone mode. Left-click

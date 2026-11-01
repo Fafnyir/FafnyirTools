@@ -25,6 +25,7 @@ db.permanentCompanionPet.characters={['Tester-Realm']={mode='specific',petName='
 db.inventory.characters={['Tester-Realm']={money=999,items={123}}}
 db.inventory.tooltips=false
 db.deviceLayout.presetIndex=7
+db.standaloneWindow={width=1100,height=760}
 db.futureSetting={keep=true}
 db.sharedArtwork={arrow='background:- Arrow Glow',roles=true,unknown='keep'}
 
@@ -39,7 +40,7 @@ assert(payload.settings.foreverFog.enabled==false and payload.settings.foreverFo
 assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
 assert(payload.settings.inventory.tooltips==false and payload.settings.inventory.characters==nil)
-assert(payload.settings.deviceLayout==nil and payload.settings.futureSetting==nil)
+assert(payload.settings.deviceLayout==nil and payload.settings.standaloneWindow==nil and payload.settings.futureSetting==nil)
 assert(payload.settings.sharedArtwork.arrow=='background:- Arrow Glow' and payload.settings.sharedArtwork.roles)
 assert(payload.settings.sharedArtwork.unknown==nil)
 assert(payload.settings.resting.side=='right')
@@ -54,6 +55,7 @@ assert(db.xpBar.enabled==false and db.xpBar.startColor.a==.9 and db.inventory.to
 assert(db.xpBar.borderSize==3 and db.xpBar.borderColor.a==.2)
 assert(db.xpBar.customTextEnabled==false)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
+assert(db.standaloneWindow.width==1100 and db.standaloneWindow.height==760)
 assert(db.blizzardBarArt.enabled==false and db.blizzardBarArt.scaleMultiplier==1.01)
 assert(db.unitFrameSources.player=='hidden' and db.unitFrameSources.target=='blizzard')
 assert(db.unitFrameNames.mode=='last' and db.unitFrameNames.future=='keep')

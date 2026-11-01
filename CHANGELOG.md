@@ -1,5 +1,15 @@
 # Reconciled project changelog
 
+## Unreleased standalone window test
+
+- Added bounded bottom-right resizing to the native standalone settings window.
+- Made scroll content and three-column option rows follow the resized width.
+- Saved window dimensions per installation and excluded them from global
+  settings transfer.
+- Added an About-page control to restore the original 920×620 window size.
+- Added complete first-pass Simplified and Traditional Chinese strings for the
+  new controls pending fluent review.
+
 ## v2.0.0 — Standalone release
 
 - Made EllesmereUI and FafnyirMedia optional rather than required dependencies.

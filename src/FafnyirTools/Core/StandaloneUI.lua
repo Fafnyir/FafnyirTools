@@ -15,6 +15,14 @@ local currentPage
 local pageButtons = {}
 local activeControls = {}
 
+local DEFAULT_WIDTH = 920
+local DEFAULT_HEIGHT = 620
+local MIN_WIDTH = 760
+local MIN_HEIGHT = 520
+local MAX_WIDTH = 1200
+local MAX_HEIGHT = 850
+local CONTENT_GUTTER = 36
+
 local COLORS = {
     background = { 0x0C / 255, 0x0D / 255, 0x0F / 255, 0.98 },
     surface = { 0x13 / 255, 0x14 / 255, 0x17 / 255, 0.98 },
@@ -378,19 +386,17 @@ function UI.Widgets:TripleRow(parent, y, first, second, third)
     AddBackground(row, COLORS.surface)
 
     local descriptors = { first, second, third }
+    local cells = {}
     local previous
     for index, descriptor in ipairs(descriptors) do
         local cell = CreateFrame("Frame", nil, row)
+        cells[index] = cell
         if index == 1 then
             cell:SetPoint("TOPLEFT")
         else
             cell:SetPoint("TOPLEFT", previous, "TOPRIGHT", 0, 0)
         end
-        if index == 3 then
-            cell:SetPoint("BOTTOMRIGHT")
-        else
-            cell:SetSize(820 / 3, 58)
-        end
+        cell:SetHeight(58)
         BuildDescriptor(cell, descriptor)
 
         if previous then
@@ -402,6 +408,17 @@ function UI.Widgets:TripleRow(parent, y, first, second, third)
         end
         previous = cell
     end
+
+    local function ResizeCells(_, width)
+        width = tonumber(width) or (row.GetWidth and row:GetWidth()) or 0
+        if width <= 0 then return end
+        local cellWidth = width / 3
+        cells[1]:SetWidth(cellWidth)
+        cells[2]:SetWidth(cellWidth)
+        cells[3]:SetWidth(width - (cellWidth * 2))
+    end
+    row:SetScript("OnSizeChanged", ResizeCells)
+    ResizeCells(row, parent.GetWidth and parent:GetWidth() or 820)
     return row, 58
 end
 
@@ -444,7 +461,8 @@ local function ShowPage(pageName, clickedButton)
     currentPage = pageName or currentPage or config.pages[1]
     ClearPage()
     local content = CreateFrame("Frame", nil, window.pageHost)
-    content:SetWidth(820)
+    local hostWidth = window.pageHost.GetWidth and window.pageHost:GetWidth() or nil
+    content:SetWidth(math.max(1, (hostWidth or 856) - CONTENT_GUTTER))
     content:SetHeight(1)
     window.pageHost:SetScrollChild(content)
     window.pageContent = content
@@ -457,15 +475,55 @@ local function ShowPage(pageName, clickedButton)
     SetActivePageButton(currentPage, clickedButton)
 end
 
+local function WindowSettings()
+    local db = ns:GetDatabase()
+    db.standaloneWindow = db.standaloneWindow or {}
+    return db.standaloneWindow
+end
+
+local function Clamp(value, minimum, maximum, fallback)
+    value = tonumber(value) or fallback
+    return math.max(minimum, math.min(maximum, value))
+end
+
+local function SaveWindowSize()
+    if not window then return end
+    local settings = WindowSettings()
+    settings.width = math.floor(window:GetWidth() + 0.5)
+    settings.height = math.floor(window:GetHeight() + 0.5)
+end
+
+function UI:ResetWindowSize()
+    local settings = WindowSettings()
+    settings.width = DEFAULT_WIDTH
+    settings.height = DEFAULT_HEIGHT
+    if window then
+        window:SetSize(DEFAULT_WIDTH, DEFAULT_HEIGHT)
+        ShowPage(currentPage)
+    end
+end
+
 local function MakeWindow()
     if window then return window end
     window = CreateFrame("Frame", "FafnyirToolsStandaloneFrame", UIParent, BackdropTemplate())
-    window:SetSize(920, 620)
+    local settings = WindowSettings()
+    local savedWidth = Clamp(settings.width, MIN_WIDTH, MAX_WIDTH, DEFAULT_WIDTH)
+    local savedHeight = Clamp(settings.height, MIN_HEIGHT, MAX_HEIGHT, DEFAULT_HEIGHT)
+    settings.width = savedWidth
+    settings.height = savedHeight
+    window:SetSize(savedWidth, savedHeight)
     window:SetScale(0.86)
     window:SetPoint("CENTER")
     window:SetFrameStrata("DIALOG")
     window:SetClampedToScreen(true)
     window:SetMovable(true)
+    if window.SetResizable then window:SetResizable(true) end
+    if window.SetResizeBounds then
+        window:SetResizeBounds(MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT)
+    else
+        if window.SetMinResize then window:SetMinResize(MIN_WIDTH, MIN_HEIGHT) end
+        if window.SetMaxResize then window:SetMaxResize(MAX_WIDTH, MAX_HEIGHT) end
+    end
     window:EnableMouse(true)
     window:RegisterForDrag("LeftButton")
     window:SetScript("OnDragStart", window.StartMoving)
@@ -507,6 +565,30 @@ local function MakeWindow()
     scroll:SetPoint("BOTTOMRIGHT", -34, 18)
     window.pageHost = scroll
     window.sidebar = sidebar
+
+    local resizeGrip = CreateFrame("Button", nil, window)
+    resizeGrip:SetSize(22, 22)
+    resizeGrip:SetPoint("BOTTOMRIGHT", -2, 2)
+    resizeGrip:SetFrameLevel(window:GetFrameLevel() + 20)
+    local gripA = resizeGrip:CreateTexture(nil, "ARTWORK")
+    gripA:SetColorTexture(unpack(COLORS.muted))
+    gripA:SetSize(12, 1)
+    gripA:SetPoint("BOTTOMRIGHT", -3, 4)
+    local gripB = resizeGrip:CreateTexture(nil, "ARTWORK")
+    gripB:SetColorTexture(unpack(COLORS.muted))
+    gripB:SetSize(7, 1)
+    gripB:SetPoint("BOTTOMRIGHT", -3, 8)
+    resizeGrip:SetScript("OnMouseDown", function(_, button)
+        if button == "LeftButton" and window.StartSizing then
+            window:StartSizing("BOTTOMRIGHT")
+        end
+    end)
+    resizeGrip:SetScript("OnMouseUp", function()
+        window:StopMovingOrSizing()
+        SaveWindowSize()
+        ShowPage(currentPage)
+    end)
+    window.resizeGrip = resizeGrip
     window:Hide()
     return window
 end

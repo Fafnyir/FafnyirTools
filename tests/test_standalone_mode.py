@@ -66,14 +66,14 @@ function wipe(tableValue) for key in pairs(tableValue) do tableValue[key]=nil en
 UIParent={};STANDARD_TEXT_FONT="Fonts\\FRIZQT__.TTF";ChatFontNormal={};BackdropTemplateMixin={}
 GameTooltip={SetOwner=function() end,SetText=function() end,Show=function() end,Hide=function() end}
 function Region()
-    local r={shown=false,text="",checked=false,height=500,scripts={}}
-    function r:SetSize() end;function r:SetPoint() end;function r:ClearAllPoints() end;function r:SetFrameStrata() end
+    local r={shown=false,text="",checked=false,width=856,height=500,scripts={}}
+    function r:SetSize(w,h) self.width=w;self.height=h end;function r:SetPoint() end;function r:ClearAllPoints() end;function r:SetFrameStrata() end
     function r:GetFrameLevel() return 1 end;function r:SetFrameLevel() end
     function r:SetScale() end;function r:SetClampedToScreen() end;function r:SetAllPoints() end
     function r:SetMovable() end;function r:EnableMouse() end;function r:RegisterForDrag() end
     function r:SetScript(key,fn) self.scripts[key]=fn end;function r:HookScript(key,fn) self.scripts[key]=fn end
-    function r:SetBackdrop() end;function r:SetWidth() end;function r:SetHeight(v) self.height=v end
-    function r:GetHeight() return self.height end;function r:SetScrollChild(child) self.child=child end
+    function r:SetBackdrop() end;function r:SetWidth(v) self.width=v end;function r:SetHeight(v) self.height=v end
+    function r:GetWidth() return self.width end;function r:GetHeight() return self.height end;function r:SetScrollChild(child) self.child=child end
     function r:SetParent() end;function r:Hide() self.shown=false end;function r:Show() self.shown=true end
     function r:IsShown() return self.shown end;function r:SetEnabled(v) self.enabled=v end
     function r:IsEnabled() return self.enabled~=false end;function r:SetAlpha() end
@@ -90,10 +90,17 @@ function Region()
     function r:SetCheckedTexture() end;function r:SetThumbTexture() self.thumb=Region() end
     function r:GetThumbTexture() return self.thumb end;function r:SetTextInsets() end
     function r:SetCursorPosition() end;function r:ClearFocus() end
+    function r:SetResizable(v) self.resizable=v end
+    function r:SetResizeBounds(...) self.resizeBounds={...} end
+    function r:StartSizing(point) self.sizing=point end;function r:StopMovingOrSizing() self.sizing=nil end
     function r:CreateFontString() return Region() end;function r:CreateTexture() return Region() end
     return r
 end
-function CreateFrame() return Region() end
+function CreateFrame(_,name)
+    local frame=Region()
+    if name then _G[name]=frame end
+    return frame
+end
 
 local sampleValue=false
 EllesmereUI:RegisterModule("FafnyirTools",{
@@ -112,6 +119,15 @@ EllesmereUI:RegisterModule("FafnyirTools",{
 })
 EllesmereUI:ToggleOptions()
 EllesmereUI:RefreshPage(true)
+assert(FafnyirToolsStandaloneFrame.resizable==true)
+assert(FafnyirToolsStandaloneFrame.resizeBounds[1]==760 and FafnyirToolsStandaloneFrame.resizeBounds[2]==520)
+assert(FafnyirToolsStandaloneFrame.resizeBounds[3]==1200 and FafnyirToolsStandaloneFrame.resizeBounds[4]==850)
+FafnyirToolsStandaloneFrame:SetSize(1000,700)
+FafnyirToolsStandaloneFrame.resizeGrip.scripts.OnMouseUp()
+assert(FafnyirToolsDB.standaloneWindow.width==1000 and FafnyirToolsDB.standaloneWindow.height==700)
+EllesmereUI:ResetWindowSize()
+assert(FafnyirToolsStandaloneFrame:GetWidth()==920 and FafnyirToolsStandaloneFrame:GetHeight()==620)
+assert(FafnyirToolsDB.standaloneWindow.width==920 and FafnyirToolsDB.standaloneWindow.height==620)
 SlashCmdList.FAFNYIRTOOLS()
 assert(fetchedFafnyirFont==true)
 EllesmereUI:NavigateToElementSettings("FafnyirTools","About")
@@ -157,5 +173,8 @@ assert 'button:SetSelected(false)' in standalone_ui
 assert 'selected:SetSelected(true)' in standalone_ui
 assert 'local ok, height = pcall(config.buildPage' in standalone_ui
 assert 'GameTooltip:SetText(text)' in standalone_ui
+assert 'CONTENT_GUTTER = 36' in standalone_ui
+assert 'window:SetResizeBounds(MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT)' in standalone_ui
+assert 'function UI:ResetWindowSize()' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

@@ -27,6 +27,8 @@ v2.0.0 changes
 - Adds a draggable standalone minimap button for opening Fafnyir Tools; its
   device-specific position is excluded from global exports.
 - Uses the supplied Fafnyir dragon logo for the standalone minimap button.
+- Adds bounded bottom-right resizing to the standalone settings window, saves
+  its dimensions per installation, and includes an About-page size reset.
 
 Testing requested
 

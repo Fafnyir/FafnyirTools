@@ -1,5 +1,18 @@
 # Current state — v2.0.0 standalone release, 2026-10-31
 
+## Post-release standalone window resizing test — 2026-11-01
+
+At the user's direction, the native standalone settings window now supports
+bounded bottom-right resizing from 760×520 through 1200×850. Its scrollable
+content width and three-column option rows recalculate from the resized frame
+instead of retaining the original fixed 820-pixel layout. Width and height are
+stored under a machine-local `standaloneWindow` record, deliberately excluded
+from global settings transfer, and clamped before restoration. The About page
+includes a standalone-only Reset Window Size control that restores 920×620.
+Offline resize, persistence, reset, localization and full-suite checks pass;
+in-game drag feel, extreme sizes, UI scales and Chinese wrapping require the
+new test package.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.

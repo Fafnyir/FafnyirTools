@@ -22,6 +22,7 @@ local CHANGELOG = {
         "Added an optional standalone control to hide Blizzard's default tooltip health bar.",
         "Added optional mouseover visibility for Blizzard's default action bars.",
         "Added a draggable standalone minimap button for opening Fafnyir Tools.",
+        "Added saved, bounded resizing and a reset control for the standalone settings window.",
         "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
     }},
     { version = "v1.1.20", lines = {
@@ -368,6 +369,19 @@ function feature:BuildOptions(parent, yOffset)
         },
         { type="label", text=T("ABOUT.NO_CHARACTER_NAMES_ACCOUNT_DETAILS_OR_SAVEDVARIABLES_AR") })
     y = y - h
+
+    if not ns.HAS_ELLESMEREUI and ns.StandaloneUI then
+        _, h = W:SectionHeader(parent, T("ABOUT.STANDALONE_WINDOW"), y)
+        y = y - h
+        _, h = W:DualRow(parent, y,
+            {
+                type="button",
+                text=T("ABOUT.RESET_WINDOW_SIZE"),
+                onClick=function() ns.StandaloneUI:ResetWindowSize() end,
+            },
+            { type="label", text=T("ABOUT.WINDOW_SIZE_IS_SAVED_FOR_THIS_INSTALLATION") })
+        y = y - h
+    end
 
     _, h = W:SectionHeader(parent, T("ABOUT.CHANGELOG"), y)
     y = y - h

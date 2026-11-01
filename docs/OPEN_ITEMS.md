@@ -7,6 +7,11 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
+- Test standalone window resizing at minimum, default and maximum dimensions;
+  verify the grip, scroll area, three-column rows, reload persistence, Reset
+  Window Size, UI scaling and `zhCN`/`zhTW` wrapping. Confirm EllesmereUI's
+  integrated options window is unchanged.
+
 - Test the integrated FPS Display in standalone Retail and Forever: enable,
   drag persistence, world-latency toggle, font-size range, reset, `/fpsdisplay`,
   UI scale changes and monitor/resolution changes.
