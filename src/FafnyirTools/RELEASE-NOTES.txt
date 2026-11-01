@@ -1,6 +1,6 @@
-Fafnyir Tools v2.0.0 Test
+Fafnyir Tools v2.0.0
 
-v2.0.0 test changes
+v2.0.0 changes
 
 - Makes EllesmereUI and FafnyirMedia optional dependencies.
 - Adds a native movable `/faftools` settings window when EllesmereUI is absent.

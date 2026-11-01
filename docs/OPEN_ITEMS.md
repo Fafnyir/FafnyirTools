@@ -57,8 +57,9 @@ or `CHANGELOG.md`, not here.
   Offset application is confirmed in game; the three-column +/-25 sliders,
   visible Reset button, moving thumbs, live numeric feedback and double-click
   reset await confirmation.
-- Release automation still uses the v1.x `for_EllesmereUI` artifact identity;
-  update it only if the standalone design is accepted for release.
+- Release automation now derives the GitHub title and CurseForge display name
+  from the packaged artifact, preserving the v2 standalone identity without
+  changing historical v1 filenames.
 
 ## v1.1.20 Leveling Forecast refresh test
 

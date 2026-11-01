@@ -13,7 +13,7 @@ local VERSION = "v2.0.0"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
-    { version = "v2.0.0 Test", lines = {
+    { version = "v2.0.0", lines = {
         "Made EllesmereUI and FafnyirMedia optional dependencies.",
         "Added a native standalone settings window for portable features.",
         "Added optional position and max-level controls for Blizzard's native resting icon.",

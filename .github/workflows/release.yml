@@ -86,6 +86,12 @@ jobs:
           ADDON_VERSION: ${{ steps.version.outputs.version }}
           RELEASE_TYPE: ${{ inputs.release_type }}
         run: |
+          artifact="$(find dist -maxdepth 1 -type f -name '*.zip' -print -quit)"
+          if [ -z "$artifact" ]; then
+            echo "Packaged ZIP was not found." >&2
+            exit 1
+          fi
+          artifact_name="$(basename "$artifact")"
           extra_flag=""
           if [ "$RELEASE_TYPE" = "draft" ]; then
             extra_flag="--draft"
@@ -93,10 +99,10 @@ jobs:
             extra_flag="--prerelease"
           fi
           gh release create "$RELEASE_TAG" \
-            dist/*.zip \
+            "$artifact" \
             dist/*.build.json \
             --target "$GITHUB_SHA" \
-            --title "Fafnyir_Tools_for_EllesmereUI_${ADDON_VERSION}_${GITHUB_SHA:0:7}.zip" \
+            --title "$artifact_name" \
             --notes-file src/FafnyirTools/RELEASE-NOTES.txt \
             $extra_flag
 

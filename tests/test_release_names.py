@@ -31,6 +31,7 @@ with tempfile.TemporaryDirectory() as temp:
         assert Path('artifact-name.txt').read_text() == name
     finally:
         os.chdir(previous)
-assert '--title "Fafnyir_Tools_for_EllesmereUI_${ADDON_VERSION}_${GITHUB_SHA:0:7}.zip"' in workflow
+assert '--title "$artifact_name"' in workflow
+assert 'artifact_name="$(basename "$artifact")"' in workflow
 assert 'filename=$artifact_name' in workflow and 'export ARTIFACT_NAME="$artifact_name"' in workflow
 print('PASS GitHub/CurseForge display names and upload filename match the revision-stamped ZIP')

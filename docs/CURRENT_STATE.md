@@ -1,4 +1,8 @@
-# Current state — v2.0.0 standalone-capability test, 2026-10-31
+# Current state — v2.0.0 standalone release, 2026-10-31
+
+After successful local development and offline validation, the user authorized
+the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
+the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.
 
 At the user's direction on 2026-10-31, three author-owned legacy addons are
 consolidated into standalone mode. HideTargetRepColor was already represented

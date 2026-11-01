@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## v2.0.0 Test — Standalone capability
+## v2.0.0 — Standalone release
 
 - Made EllesmereUI and FafnyirMedia optional rather than required dependencies.
 - Added a native movable settings window opened with `/faftools` when
@@ -37,6 +37,8 @@
   remains -25 through +25.
 - Added a Reload Now/Later confirmation when Native Resting Controls changes
   from disabled to enabled.
+- Final release authorized by the user on 2026-10-31 after local testing and
+  complete offline validation.
 - Consolidated the author's legacy HideTargetRepColor, FPSDisplay and
   NicerDamage addons into standalone mode without duplicating the existing
   Target/Focus status-texture implementation.
