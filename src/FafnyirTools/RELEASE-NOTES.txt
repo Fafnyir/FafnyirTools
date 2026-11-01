@@ -9,8 +9,10 @@ v2.0.0 changes
 - Keeps EllesmereUI-only features hidden in standalone mode and preserves their
   saved settings for later use.
 - Adapts Right-Click Self Cast to Blizzard native action bars.
-- Skins the standalone window with the Fafnyir palette, compact sizing, pixel
-  borders, and FafnyirMedia's `- Roboto SemiBold` with a safe fallback.
+- Skins the standalone window with the Fafnyir palette, compact sizing and
+  pixel borders; uses Roboto SemiBold for headings/tabs/buttons and Roboto
+  Regular for body copy, with safe fallbacks.
+- Restores the Fafnyir Tools title in the standalone header.
 - Includes first-pass Chinese strings pending Yilang's review.
 - Integrates the author's former HideTargetRepColor behavior through the
   existing Target/Focus status-texture handler.

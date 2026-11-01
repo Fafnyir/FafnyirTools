@@ -44,8 +44,11 @@
 - Added first-pass Simplified and Traditional Chinese strings for the new mode;
   fluent review and in-game testing remain pending.
 - Skinned the native standalone window and its controls with the Fafnyir color
-  palette, compact sizing, pixel borders, and FafnyirMedia's `- Roboto SemiBold` with
-  a safe Blizzard-font fallback.
+  palette, compact sizing and pixel borders. The current typography uses
+  FafnyirMedia's `- Roboto SemiBold` for interface emphasis and `- Roboto` for
+  body copy, with safe Blizzard-font fallbacks.
+- Restored the two-color Fafnyir Tools title using separate font strings so the
+  header remains visible with custom SharedMedia fonts.
 - Added explicit horizontal slider thumbs and live numeric value feedback to
   standalone controls.
 - Added one compact Native Resting row containing Horizontal, Vertical and

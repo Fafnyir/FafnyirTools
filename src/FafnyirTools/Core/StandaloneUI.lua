@@ -37,18 +37,23 @@ local COLORS = {
     muted = { 0.52, 0.52, 0.58, 1 },
 }
 
-local fontPath
-local function FontPath()
-    if fontPath then return fontPath end
+local fontPaths = {}
+local function FontPath(semibold)
+    local weight = semibold and "semibold" or "regular"
+    if fontPaths[weight] then return fontPaths[weight] end
     local media = LibStub and LibStub("LibSharedMedia-3.0", true)
-    fontPath = media and media:Fetch("font", "- Roboto SemiBold", true)
+    local mediaKey = semibold and "- Roboto SemiBold" or "- Roboto"
+    local fontPath = media and media:Fetch("font", mediaKey, true)
     if (type(fontPath) ~= "string" or fontPath == "") and ns.HAS_FAFNYIRMEDIA then
-        fontPath = "Interface\\AddOns\\FafnyirMedia\\fonts\\Fafnyir-Regular.ttf"
+        fontPath = semibold
+            and "Interface\\AddOns\\FafnyirMedia\\fonts\\Roboto-SemiBold.ttf"
+            or "Interface\\AddOns\\FafnyirMedia\\fonts\\Roboto-Regular.ttf"
     end
     if type(fontPath) ~= "string" or fontPath == "" then
         fontPath = STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF"
     end
-    return fontPath
+    fontPaths[weight] = fontPath
+    return fontPaths[weight]
 end
 
 local function SetColor(region, color)
@@ -112,7 +117,7 @@ end
 
 local function Label(parent, text, size)
     local fs = parent:CreateFontString(nil, "ARTWORK")
-    fs:SetFont(FontPath(), size and 16 or 13, "")
+    fs:SetFont(FontPath(size == true), size and 16 or 13, "")
     fs:SetTextColor(unpack(COLORS.text))
     fs:SetJustifyH("LEFT")
     fs:SetJustifyV("TOP")
@@ -126,7 +131,7 @@ local function CreateButton(parent, caption)
     local bg = AddBackground(button, COLORS.surfaceLight)
     local border = AddPixelBorder(button, COLORS.controlBorder)
     local fs = button:CreateFontString(nil, "ARTWORK")
-    fs:SetFont(FontPath(), 13, "")
+    fs:SetFont(FontPath(true), 13, "")
     fs:SetTextColor(unpack(COLORS.text))
     fs:SetPoint("CENTER", 0, 0)
     button:SetFontString(fs)
@@ -262,7 +267,7 @@ local function BuildInput(parent, descriptor)
     local box = AddControl(CreateFrame("EditBox", nil, parent, BackdropTemplate()))
     AddBackground(box, COLORS.background)
     AddPixelBorder(box, COLORS.controlBorder)
-    box:SetFont(FontPath(), 13, "")
+    box:SetFont(FontPath(false), 13, "")
     box:SetTextColor(unpack(COLORS.text))
     box:SetTextInsets(7, 7, 0, 0)
     box:SetAutoFocus(false)
@@ -506,7 +511,7 @@ end
 
 function UI.MakeFont(parent, size, _, r, g, b, a)
     local fs = parent:CreateFontString(nil, "ARTWORK")
-    fs:SetFont(FontPath(), size or 12, "")
+    fs:SetFont(FontPath(false), size or 12, "")
     fs:SetTextColor(r or 1, g or 1, b or 1, a or 1)
     return fs
 end
@@ -618,10 +623,15 @@ local function MakeWindow()
     local headerLine = header:CreateTexture(nil, "ARTWORK")
     headerLine:SetPoint("BOTTOMLEFT"); headerLine:SetPoint("BOTTOMRIGHT"); headerLine:SetHeight(1)
     SetColor(headerLine, COLORS.controlBorder)
-    local title = Label(header, "|cFF6358B8Fafnyir|r Tools", true)
-    title:SetFont(FontPath(), 18, "")
+    local brand = Label(header, "Fafnyir", true)
+    brand:SetFont(FontPath(true), 18, "")
+    brand:SetTextColor(unpack(COLORS.secondary))
+    brand:SetPoint("LEFT", 14, 0)
+    brand:SetSize(68, 22)
+    local title = Label(header, "Tools", true)
+    title:SetFont(FontPath(true), 18, "")
     title:SetTextColor(unpack(COLORS.text))
-    title:SetPoint("LEFT", 14, 0)
+    title:SetPoint("LEFT", brand, "RIGHT", 4, 0)
     title:SetPoint("RIGHT", -160, 0)
     title:SetHeight(22)
     local version = Label(header, "v2.0.0")
@@ -631,7 +641,7 @@ local function MakeWindow()
     version:SetJustifyH("RIGHT")
     local close = CreateButton(header, "×")
     close:SetSize(26, 26)
-    close:GetFontString():SetFont(FontPath(), 18, "")
+    close:GetFontString():SetFont(FontPath(true), 18, "")
     close:SetPoint("RIGHT", -8, 0)
     close:SetScript("OnClick", function() window:Hide() end)
     local sidebar = CreateFrame("Frame", nil, window)
@@ -736,7 +746,7 @@ local function ShowTextDialog(title, prompt, text, editable, onAccept)
     local box = CreateFrame("EditBox", nil, dialog, BackdropTemplate())
     AddBackground(box, COLORS.surface)
     AddPixelBorder(box, COLORS.highlight)
-    box:SetMultiLine(true); box:SetAutoFocus(true); box:SetFont(FontPath(), 12, "")
+    box:SetMultiLine(true); box:SetAutoFocus(true); box:SetFont(FontPath(false), 12, "")
     box:SetTextColor(unpack(COLORS.text)); box:SetTextInsets(8, 8, 6, 6)
     box:SetPoint("TOPLEFT", 26, -78); box:SetPoint("BOTTOMRIGHT", -26, 55)
     box:SetText(text or ""); box:HighlightText(); box:SetCursorPosition(0)

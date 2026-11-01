@@ -252,6 +252,14 @@ its exact SharedMedia key `- Roboto SemiBold` for the standalone skin. This
 supersedes the brief regular-Roboto test while retaining the same optional-media
 fallback and EllesmereUI isolation.
 
+Screenshot review then showed the one-weight presentation was too heavy for
+long descriptions and the inline-colored title did not render. The current
+skin uses `- Roboto SemiBold` for the window title, page tabs, section headings,
+buttons and other interface emphasis, while labels, values, diagnostics, inputs
+and changelog copy use regular `- Roboto`. The header title is restored as two
+separate font strings—purple “Fafnyir” and white “Tools”—instead of relying on
+an inline color escape. Each weight retains its own Blizzard fallback.
+
 The first Trial 3 companion-pet screenshot showed toggle labels sitting above
 their 22-pixel checkboxes because the labels used a 36-pixel top-justified text
 box. The correction vertically centers a 22-pixel label on each checkbox and

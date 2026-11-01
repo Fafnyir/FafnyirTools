@@ -14,11 +14,12 @@ SlashCmdList={}; FafnyirToolsDB={}; printed={}; ns={}
 C_AddOns={IsAddOnLoaded=function() return false end}
 function GetBuildInfo() return "12.1.5","70000","",120105 end
 function print(message) printed[#printed+1]=message end
-fetchedFafnyirFont=false
+fetchedRobotoRegular=false;fetchedRobotoSemiBold=false
 function LibStub(name,silent)
     if name~="LibSharedMedia-3.0" then return nil end
     return {Fetch=function(_,category,key)
-        if category=="font" and key=="- Roboto SemiBold" then fetchedFafnyirFont=true;return "Roboto-SemiBold.ttf" end
+        if category=="font" and key=="- Roboto" then fetchedRobotoRegular=true;return "Roboto-Regular.ttf" end
+        if category=="font" and key=="- Roboto SemiBold" then fetchedRobotoSemiBold=true;return "Roboto-SemiBold.ttf" end
     end}
 end
 ''')
@@ -129,7 +130,7 @@ EllesmereUI:ResetWindowSize()
 assert(FafnyirToolsStandaloneFrame:GetWidth()==920 and FafnyirToolsStandaloneFrame:GetHeight()==620)
 assert(FafnyirToolsDB.standaloneWindow.width==920 and FafnyirToolsDB.standaloneWindow.height==620)
 SlashCmdList.FAFNYIRTOOLS()
-assert(fetchedFafnyirFont==true)
+assert(fetchedRobotoRegular==true and fetchedRobotoSemiBold==true)
 EllesmereUI:NavigateToElementSettings("FafnyirTools","About")
 assert(EllesmereUI._activePage=="About")
 local aboutTab=EllesmereUI._tabButtons.About
@@ -180,6 +181,9 @@ assert 'GameTooltip:SetText(text)' in standalone_ui
 assert 'CONTENT_GUTTER = 36' in standalone_ui
 assert 'window:SetResizeBounds(MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT)' in standalone_ui
 assert 'function UI:ResetWindowSize()' in standalone_ui
+assert 'local brand = Label(header, "Fafnyir", true)' in standalone_ui
+assert 'local title = Label(header, "Tools", true)' in standalone_ui
+assert 'mediaKey = semibold and "- Roboto SemiBold" or "- Roboto"' in standalone_ui
 assert 'local function BuildColor(parent, descriptor)' in standalone_ui
 assert 'ColorPickerFrame:SetupColorPickerAndShow' in standalone_ui
 assert 'elseif descriptor.type == "color" then BuildColor(parent, descriptor)' in standalone_ui
