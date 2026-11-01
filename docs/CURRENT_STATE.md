@@ -1,4 +1,15 @@
-# Current state — v2.0.0 standalone release, 2026-10-31
+# Current state — v2.0.1 standalone release, 2026-11-01
+
+## v2.0.1 optional standalone skin release — 2026-11-01
+
+The user confirmed the standalone skin-toggle test build and explicitly
+authorized a release. v2.0.1 keeps the Fafnyir skin enabled by default and adds
+a machine-local About-page toggle that restores the original Blizzard dialog
+frame, vertical navigation and native controls after reload. Feature settings
+remain untouched and the visual preference is excluded from global exports.
+Complete offline validation passes; both visual modes and deferred reload still
+require in-game rendering confirmation. Publish this revision as a final GitHub
+and CurseForge release because the existing final v2.0.0 tag is immutable.
 
 ## Post-release standalone window resizing test — 2026-11-01
 

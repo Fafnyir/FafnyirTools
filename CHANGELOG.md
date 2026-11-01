@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased standalone window test
+## v2.0.1 — Optional standalone window skin
 
 - Added a saved Fafnyir Skin toggle under About > Standalone Window. Disabling
   it restores the original Blizzard dialog frame, vertical navigation and

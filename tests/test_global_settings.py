@@ -32,7 +32,7 @@ db.sharedArtwork={arrow='background:- Arrow Glow',roles=true,unknown='keep'}
 local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
 local payload,err=f:Decode(exported);assert(payload and not err)
-assert(payload.addonVersion=='v2.0.0' and payload.format==1)
+assert(payload.addonVersion=='v2.0.1' and payload.format==1)
 assert(payload.settings.xpBar.enabled==true and payload.settings.xpBar.startColor.a==.5)
 assert(payload.settings.xpBar.startColor.unknown==nil and payload.settings.xpBar.customTextEnabled==nil)
 assert(payload.settings.blizzardBarArt==nil and payload.settings.unitFrameSources==nil)

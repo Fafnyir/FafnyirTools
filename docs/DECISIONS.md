@@ -595,3 +595,7 @@ Blizzard-styled dialog frame, vertical sidebar and native Blizzard widgets after
 a reload. Store this preference with the machine-local window settings so it is
 not transferred globally, and never reset unrelated addon preferences when the
 visual style changes.
+
+The user subsequently requested **Push a release**. Because `release/v2.0.0`
+already exists as a final immutable release, publish this tested patch as final
+v2.0.1 through the configured GitHub/CurseForge workflow.

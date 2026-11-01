@@ -53,7 +53,7 @@ lua.execute(ABOUT.read_text(), "FafnyirTools", lua.globals().ns)
 lua.execute(
     r'''
     local report=ns.modules.About:GetDiagnostics()
-    assert(string.find(report,"Addon: v2.0.0",1,true))
+    assert(string.find(report,"Addon: v2.0.1",1,true))
     assert(string.find(report,"Mode: EllesmereUI integration",1,true))
     assert(string.find(report,"Flavor: Retail",1,true))
     assert(string.find(report,"Client: 12.1.5",1,true))

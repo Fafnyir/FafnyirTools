@@ -9,10 +9,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v2.0.0"
+local VERSION = "v2.0.1"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.1", lines = {
+        "Added a saved Fafnyir Skin toggle to the standalone window settings.",
+        "Disabling the skin restores the original Blizzard-styled window and native controls after reload.",
+        "Preserved all feature settings and kept the visual preference local to each installation.",
+    }},
     { version = "v2.0.0", lines = {
         "Made EllesmereUI and FafnyirMedia optional dependencies.",
         "Added a native standalone settings window for portable features.",

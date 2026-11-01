@@ -1,4 +1,25 @@
-Fafnyir Tools v2.0.0
+Fafnyir Tools v2.0.1
+
+v2.0.1 changes
+
+- Adds an Enable Fafnyir Skin toggle under About > Standalone Window.
+- Keeps the current Fafnyir skin enabled by default.
+- Restores the original Blizzard dialog frame, vertical navigation, fonts and
+  native controls when the skin is disabled and the interface is reloaded.
+- Stores the visual preference per installation and excludes it from global
+  settings exports.
+- Preserves all existing feature settings when switching window styles.
+- Includes complete first-pass Simplified and Traditional Chinese strings for
+  the new controls pending fluent review.
+
+Testing requested
+
+- Switch from the Fafnyir skin to Blizzard style and back, testing both Reload
+  Now and a deferred reload.
+- Confirm both styles at minimum, default and maximum saved window sizes.
+- Confirm feature settings remain unchanged while switching styles.
+
+Previous release: Fafnyir Tools v2.0.0
 
 v2.0.0 changes
 
