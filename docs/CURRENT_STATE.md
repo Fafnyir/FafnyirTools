@@ -25,6 +25,20 @@ compact 44-unit height when both cells are labels and vertically centers label
 text within the available cell. Rows containing buttons, toggles, sliders,
 inputs or dropdowns retain the original 58-unit control spacing.
 
+At the user's direction on 2026-11-01, the previously retired XP presentation
+returns only in standalone mode. The module discovers Blizzard's Experience
+bar at `StatusTrackingBarInfo.BarsEnum.Experience` in either status-tracking
+container, styles the native current and rested textures, and draws completed
+Quest XP at ARTWORK sublevel -2 behind Blizzard's rested prediction texture.
+It restores captured native atlases when individual gradients are disabled,
+clips Quest XP at the next level, and hides it at maximum level, with XP
+disabled, or with no completed rewards. Defaults remain #5563FF→#C561FF,
+#4F8FFF and #FF9600 at full opacity. The new XP & Progression page, events,
+defaults and export schema are absent when EllesmereUI is loaded, preserving
+EllesmereUI ownership and dormant legacy data. Offline native-frame, layer,
+default, event, export and ownership checks pass; Retail and Forever rendering
+remain an explicit in-game test.
+
 After successful local development and offline validation, the user authorized
 the final v2.0.0 release on 2026-10-31. GitHub and CurseForge publication use
 the revision-stamped standalone artifact identity `Fafnyir_Tools_v2.0.0_*`.

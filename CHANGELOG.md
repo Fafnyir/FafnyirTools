@@ -13,6 +13,11 @@
   remains available without the optional FafnyirMedia addon.
 - Tightened standalone text-only rows from 58 to 44 units and vertically
   centered their labels; interactive control rows retain their original height.
+- Added standalone-only XP & Progression controls for native current/rested
+  gradients and completed Quest XP, while leaving EllesmereUI full ownership
+  whenever it is installed.
+- Preserved the established #5563FF→#C561FF, #4F8FFF and #FF9600 defaults and
+  restored current/rested/Quest layer ordering on Blizzard Experience bars.
 
 ## v2.0.0 — Standalone release
 

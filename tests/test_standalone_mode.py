@@ -180,5 +180,9 @@ assert 'GameTooltip:SetText(text)' in standalone_ui
 assert 'CONTENT_GUTTER = 36' in standalone_ui
 assert 'window:SetResizeBounds(MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT)' in standalone_ui
 assert 'function UI:ResetWindowSize()' in standalone_ui
+assert 'local function BuildColor(parent, descriptor)' in standalone_ui
+assert 'ColorPickerFrame:SetupColorPickerAndShow' in standalone_ui
+assert 'elseif descriptor.type == "color" then BuildColor(parent, descriptor)' in standalone_ui
+assert 'WOW_PROJECT_CAMELOT' in standalone_ui
 
 print("PASS standalone dependency metadata, native UI shim, feature gating, and Blizzard action-bar support")

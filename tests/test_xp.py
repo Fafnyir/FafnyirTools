@@ -1,18 +1,153 @@
-"""XP ownership retirement: no runtime, events, controls or settings mutations."""
+"""Standalone native XP styling and EllesmereUI ownership isolation."""
 from pathlib import Path
+
 from lupa.lua51 import LuaRuntime
-root=Path(__file__).resolve().parents[1]/'src/FafnyirTools'
-assert not (root/'Modules/XPBar.lua').exists()
-for name in ['Core/Options.lua','FafnyirTools.toc']:
-    assert 'XPBar' not in (root/name).read_text()
-events=(root/'Core/Events.lua').read_text()
-for event in ['PLAYER_XP_UPDATE','UPDATE_EXHAUSTION','QUEST_LOG_UPDATE','QUEST_WATCH_UPDATE','QUEST_ACCEPTED','QUEST_REMOVED','QUEST_TURNED_IN','QUEST_DATA_LOAD_RESULT']:
-    assert event not in events
-assert 'PLAYER_LEVEL_UP' in events  # Resting still needs this event.
-lua=LuaRuntime(unpack_returned_tuples=True)
-lua.execute("ns={};SlashCmdList={};FafnyirToolsDB={xpBar={questEnabled=false,restedEnabled=true,questColor={r=.2,a=.4},future='keep'}};saved=FafnyirToolsDB.xpBar")
-lua.execute((root/'Core/Bootstrap.lua').read_text(),'FafnyirTools',lua.globals().ns)
-lua.execute((root / 'Localization/Core.lua').read_text(), 'FafnyirTools', lua.globals().ns)
-lua.execute((root / 'Localization/enUS.lua').read_text(), 'FafnyirTools', lua.globals().ns)
-lua.execute("assert(ns.defaults.xpBar==nil and ns.modules.XPBar==nil);ns:InitializeDatabase();assert(FafnyirToolsDB.xpBar==saved and saved.questColor.a==.4 and saved.questEnabled==false and saved.future=='keep');FafnyirToolsDB=nil;ns:InitializeDatabase();assert(FafnyirToolsDB.xpBar==nil)")
-print('PASS XP module/options/events retired, legacy settings preserved, fresh installs omit XP defaults')
+
+
+ROOT = Path(__file__).resolve().parents[1]
+ADDON = ROOT / "src/FafnyirTools"
+
+
+lua = LuaRuntime(unpack_returned_tuples=True)
+lua.execute(r'''
+SlashCmdList={};FafnyirToolsDB={};ns={}
+C_AddOns={IsAddOnLoaded=function() return false end}
+function GetBuildInfo() return "12.1.5","70448","",120105 end
+function CreateColor(r,g,b,a) return {r=r,g=g,b=b,a=a} end
+function issecretvalue() return false end
+function UnitLevel() return 81 end
+function UnitXP() return 100 end
+function UnitXPMax() return 1000 end
+function GetMaxLevelForPlayerExpansion() return 90 end
+function IsPlayerAtEffectiveMaxLevel() return false end
+function IsLevelAtEffectiveMaxLevel() return false end
+function IsXPUserDisabled() return false end
+
+C_Timer={After=function(_,fn) fn() end,NewTicker=function(_,fn)
+    return {Cancel=function(self) self.cancelled=true end,Fire=fn}
+end}
+
+local function Texture(atlas,path)
+    local t={atlas=atlas,path=path,shown=true}
+    function t:GetAtlas() return self.atlas end
+    function t:GetTexture() return self.path end
+    function t:SetAtlas(v) self.atlas=v;self.path=nil end
+    function t:SetTexture(v) self.path=v;self.atlas=nil end
+    function t:SetVertexColor(...) self.vertex={...} end
+    function t:SetGradient(direction,a,b) self.gradient={direction,a,b} end
+    function t:SetGradientAlpha(...) self.gradient={...} end
+    function t:SetColorTexture(...) self.color={...} end
+    function t:ClearAllPoints() self.points={} end
+    function t:SetPoint(...) self.point={...} end
+    function t:SetSize(w,h) self.width=w;self.height=h end
+    function t:Show() self.shown=true end
+    function t:Hide() self.shown=false end
+    return t
+end
+
+fill=Texture("UI-HUD-ExperienceBar-Fill-Experience")
+rested=Texture("UI-HUD-ExperienceBar-Fill-Prediction")
+status={texture=fill,width=800,height=10}
+function status:GetStatusBarTexture() return self.texture end
+function status:GetSize() return self.width,self.height end
+
+xpBar={StatusBar=status,ExhaustionLevelFillBar=rested,scripts={}}
+function xpBar:CreateTexture(_,layer,_,sublevel)
+    local t=Texture();t.layer=layer;t.sublevel=sublevel;self.created=t;return t
+end
+function xpBar:HookScript(name,fn) self.scripts[name]=fn end
+function xpBar:UpdateAll() self.updated=(self.updated or 0)+1 end
+
+StatusTrackingBarInfo={BarsEnum={Experience=4}}
+MainStatusTrackingBarContainer={bars={[4]=xpBar}}
+SecondaryStatusTrackingBarContainer={bars={}}
+StatusTrackingBarManager={barContainers={MainStatusTrackingBarContainer,SecondaryStatusTrackingBarContainer}}
+
+function hooksecurefunc(object,name,hook)
+    local old=object[name]
+    object[name]=function(self,...)
+        local values={old(self,...)}
+        hook(self,...)
+        return unpack(values)
+    end
+end
+
+C_QuestLog={}
+function C_QuestLog.GetNumQuestLogEntries() return 2 end
+function C_QuestLog.GetQuestIDForLogIndex(index) return 100+index end
+function C_QuestLog.IsComplete() return true end
+function GetQuestLogRewardXP(id) return id==101 and 150 or 50 end
+''')
+ns = lua.globals().ns
+lua.execute((ADDON / "Core/Bootstrap.lua").read_text(), "FafnyirTools", ns)
+lua.execute((ADDON / "Localization/Core.lua").read_text(), "FafnyirTools", ns)
+lua.execute((ADDON / "Localization/enUS.lua").read_text(), "FafnyirTools", ns)
+lua.execute((ADDON / "Modules/XPBar.lua").read_text(), "FafnyirTools", ns)
+lua.execute(r'''
+assert(ns.defaults.xpBar and ns.modules.XPBar)
+local defaults=ns.defaults.xpBar
+assert(defaults.enabled==false and defaults.questEnabled and defaults.restedEnabled)
+assert(math.abs(defaults.startColor.r-(85/255))<.0001)
+assert(math.abs(defaults.endColor.r-(197/255))<.0001)
+assert(math.abs(defaults.restedStartColor.r-(79/255))<.0001)
+assert(defaults.questColor.r==1 and math.abs(defaults.questColor.g-(150/255))<.0001)
+
+local feature=ns.modules.XPBar
+feature:Initialize()
+assert(fill.atlas=="UI-HUD-ExperienceBar-Fill-Experience")
+assert(rested.path=="Interface\\Buttons\\WHITE8X8")
+assert(xpBar.created and xpBar.created.shown and xpBar.created.sublevel==-2)
+assert(xpBar.created.width==160 and xpBar.created.height==10)
+assert(xpBar.created.point[4]==80)
+
+FafnyirToolsDB.xpBar.enabled=true
+feature:Refresh()
+assert(fill.path=="Interface\\Buttons\\WHITE8X8")
+assert(fill.gradient[1]=="HORIZONTAL")
+
+FafnyirToolsDB.xpBar.restedEnabled=false
+feature:Refresh()
+assert(rested.atlas=="UI-HUD-ExperienceBar-Fill-Prediction")
+
+FafnyirToolsDB.xpBar.questEnabled=false
+feature:Refresh()
+assert(xpBar.created.shown==false)
+''')
+
+# EllesmereUI mode must preserve dormant legacy XP data without taking ownership.
+eui = LuaRuntime(unpack_returned_tuples=True)
+eui.execute(r'''
+SlashCmdList={};ns={};EllesmereUI={}
+C_AddOns={IsAddOnLoaded=function(_,name) return name=="EllesmereUI" end}
+FafnyirToolsDB={xpBar={questEnabled=false,future="keep"}}
+saved=FafnyirToolsDB.xpBar
+''')
+eui_ns = eui.globals().ns
+eui.execute((ADDON / "Core/Bootstrap.lua").read_text(), "FafnyirTools", eui_ns)
+eui.execute((ADDON / "Modules/XPBar.lua").read_text(), "FafnyirTools", eui_ns)
+eui.execute("function time() return 123 end")
+eui.execute((ADDON / "Modules/GlobalSettings.lua").read_text(), "FafnyirTools", eui_ns)
+eui.execute(r'''
+assert(ns.defaults.xpBar==nil and ns.modules.XPBar==nil)
+ns:InitializeDatabase()
+assert(FafnyirToolsDB.xpBar==saved and saved.questEnabled==false and saved.future=="keep")
+local payload=ns.modules.GlobalSettings:Decode(ns.modules.GlobalSettings:Export())
+assert(payload.settings.xpBar==nil)
+''')
+
+events = (ADDON / "Core/Events.lua").read_text()
+assert "if not ns.HAS_ELLESMEREUI then" in events
+for event in (
+    "PLAYER_XP_UPDATE", "UPDATE_EXHAUSTION", "QUEST_LOG_UPDATE",
+    "QUEST_WATCH_UPDATE", "QUEST_ACCEPTED", "QUEST_REMOVED",
+    "QUEST_TURNED_IN", "QUEST_DATA_LOAD_RESULT",
+):
+    assert f'events:RegisterEvent("{event}")' in events
+
+source = (ADDON / "Modules/XPBar.lua").read_text()
+assert 'if ns.HAS_ELLESMEREUI then return end' in source
+assert 'StatusTrackingBarInfo.BarsEnum.Experience' in source
+assert 'overlay = bar:CreateTexture(nil, "ARTWORK", nil, -2)' in source
+assert 'bar.StatusBar:GetStatusBarTexture()' in source
+
+print("PASS standalone native XP gradients, quest layering, defaults, restoration and EllesmereUI isolation")

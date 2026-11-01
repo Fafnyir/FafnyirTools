@@ -33,7 +33,8 @@ local exported=f:Export()
 assert(exported:sub(1,15)=='FAFNYIRTOOLS:1:')
 local payload,err=f:Decode(exported);assert(payload and not err)
 assert(payload.addonVersion=='v2.0.0' and payload.format==1)
-assert(payload.settings.xpBar==nil)
+assert(payload.settings.xpBar.enabled==true and payload.settings.xpBar.startColor.a==.5)
+assert(payload.settings.xpBar.startColor.unknown==nil and payload.settings.xpBar.customTextEnabled==nil)
 assert(payload.settings.blizzardBarArt==nil and payload.settings.unitFrameSources==nil)
 assert(payload.settings.unitFrameNames==nil)
 assert(payload.settings.foreverFog.enabled==false and payload.settings.foreverFog.initialized==nil)
@@ -47,11 +48,10 @@ assert(payload.settings.resting.side=='right')
 
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 db.sharedArtwork.arrow='native';db.sharedArtwork.roles=false
-payload.settings.xpBar={enabled=true,questEnabled=false}
 payload.settings.unitFrameNames={mode='first'}
 f:ApplyImport(payload)
 assert(db.sharedArtwork.arrow=='background:- Arrow Glow' and db.sharedArtwork.roles and db.sharedArtwork.unknown=='keep')
-assert(db.xpBar.enabled==false and db.xpBar.startColor.a==.9 and db.inventory.tooltips==false)
+assert(db.xpBar.enabled==true and db.xpBar.startColor.a==.5 and db.inventory.tooltips==false)
 assert(db.xpBar.borderSize==3 and db.xpBar.borderColor.a==.2)
 assert(db.xpBar.customTextEnabled==false)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
@@ -62,7 +62,7 @@ assert(db.unitFrameNames.mode=='last' and db.unitFrameNames.future=='keep')
 assert(db.permanentCompanionPet.characters['Tester-Realm'].petName=='Secret Pet')
 assert(db.inventory.characters['Tester-Realm'].money==999)
 assert(db.globalSettingsImportBackup.created==12345)
-assert(db.globalSettingsImportBackup.settings.xpBar==nil)
+assert(db.globalSettingsImportBackup.settings.xpBar.enabled==false)
 assert(f:RestoreBackup() and db.xpBar.enabled==false and db.xpBar.startColor.a==.9)
 assert(db.sharedArtwork.arrow=='native' and not db.sharedArtwork.roles)
 

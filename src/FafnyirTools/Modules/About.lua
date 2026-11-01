@@ -23,6 +23,7 @@ local CHANGELOG = {
         "Added optional mouseover visibility for Blizzard's default action bars.",
         "Added a draggable standalone minimap button for opening Fafnyir Tools.",
         "Added saved, bounded resizing and a reset control for the standalone settings window.",
+        "Added standalone native XP, Rested XP, and completed Quest XP controls.",
         "EllesmereUI-specific enhancements remain available when EllesmereUI is installed.",
     }},
     { version = "v1.1.20", lines = {
@@ -279,6 +280,9 @@ function feature:GetDiagnostics()
     AddFeature("NicerDamage", "Nicer Damage=" .. OnOff(db.nicerDamage and db.nicerDamage.enabled))
     AddFeature("TooltipHealthBar", "Tooltip Health Bar Hidden=" .. OnOff(db.tooltipHealthBar and db.tooltipHealthBar.hidden))
     AddFeature("ActionBarMouseover", "Action Bar Mouseover=" .. OnOff(db.actionBarMouseover and db.actionBarMouseover.enabled))
+    AddFeature("XPBar", "XP Gradient=" .. OnOff(db.xpBar and db.xpBar.enabled)
+        .. "; Rested XP=" .. OnOff(db.xpBar and db.xpBar.restedEnabled)
+        .. "; Quest XP=" .. OnOff(db.xpBar and db.xpBar.questEnabled))
     AddFeature("MinimapButton", "Minimap Button=on")
     AddFeature("RightClickSelfCast", "Right-Click Self Cast=" .. OnOff(db.rightClickSelfCast and db.rightClickSelfCast.enabled))
     if ns.IS_FOREVER and ns.modules.Inventory then

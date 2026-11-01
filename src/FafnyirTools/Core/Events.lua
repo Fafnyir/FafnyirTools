@@ -10,6 +10,17 @@ events:RegisterEvent("PLAYER_REGEN_ENABLED")
 events:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
 events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 
+if not ns.HAS_ELLESMEREUI then
+    events:RegisterEvent("PLAYER_XP_UPDATE")
+    events:RegisterEvent("UPDATE_EXHAUSTION")
+    events:RegisterEvent("QUEST_LOG_UPDATE")
+    events:RegisterEvent("QUEST_WATCH_UPDATE")
+    events:RegisterEvent("QUEST_ACCEPTED")
+    events:RegisterEvent("QUEST_REMOVED")
+    events:RegisterEvent("QUEST_TURNED_IN")
+    events:RegisterEvent("QUEST_DATA_LOAD_RESULT")
+end
+
 if ns.IS_FOREVER then
     events:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
     events:RegisterEvent("PLAYERBANKSLOTS_CHANGED")

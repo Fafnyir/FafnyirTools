@@ -323,6 +323,84 @@ local function BuildSlider(parent, descriptor)
     AddTooltip(slider, descriptor.tooltip or (Disabled(descriptor) and descriptor.disabledTooltip))
 end
 
+local function BuildColor(parent, descriptor)
+    local fs = Label(parent, descriptor.text)
+    fs:SetJustifyV("MIDDLE")
+    fs:SetPoint("LEFT", 8, 0)
+    fs:SetPoint("RIGHT", parent, "RIGHT", -48, 0)
+    fs:SetHeight(22)
+
+    local button = AddControl(CreateButton(parent, ""))
+    button:SetSize(30, 22)
+    button:SetPoint("RIGHT", -8, 0)
+    local swatch = button:CreateTexture(nil, "ARTWORK")
+    swatch:SetPoint("TOPLEFT", 3, -3)
+    swatch:SetPoint("BOTTOMRIGHT", -3, 3)
+
+    local function Current()
+        local value = SafeValue(descriptor, {})
+        return tonumber(value.r) or 1, tonumber(value.g) or 1,
+            tonumber(value.b) or 1, tonumber(value.a) or 1
+    end
+    local function Repaint()
+        swatch:SetColorTexture(Current())
+        button:SetEnabled(not Disabled(descriptor))
+    end
+    local function SetValue(r, g, b, a)
+        if type(descriptor.setValue) == "function" then
+            descriptor.setValue(r, g, b, a)
+        end
+        Repaint()
+    end
+    local invertedAlpha = WOW_PROJECT_ID ~= nil
+        and WOW_PROJECT_MAINLINE ~= nil
+        and WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE
+        and (WOW_PROJECT_CAMELOT == nil or WOW_PROJECT_ID ~= WOW_PROJECT_CAMELOT)
+    local function ToPickerAlpha(alpha)
+        alpha = tonumber(alpha) or 1
+        return invertedAlpha and (1 - alpha) or alpha
+    end
+    local function FromPickerAlpha(alpha)
+        alpha = tonumber(alpha) or 1
+        return invertedAlpha and (1 - alpha) or alpha
+    end
+    button:SetScript("OnClick", function()
+        local r, g, b, a = Current()
+        local previous = { r, g, b, a }
+        if ColorPickerFrame and ColorPickerFrame.SetupColorPickerAndShow then
+            ColorPickerFrame:SetupColorPickerAndShow({
+                r = r, g = g, b = b,
+                opacity = ToPickerAlpha(a),
+                hasOpacity = true,
+                swatchFunc = function()
+                    local cr, cg, cb = ColorPickerFrame:GetColorRGB()
+                    SetValue(cr, cg, cb, FromPickerAlpha(ColorPickerFrame:GetColorAlpha()))
+                end,
+                opacityFunc = function()
+                    local cr, cg, cb = ColorPickerFrame:GetColorRGB()
+                    SetValue(cr, cg, cb, FromPickerAlpha(ColorPickerFrame:GetColorAlpha()))
+                end,
+                cancelFunc = function() SetValue(unpack(previous)) end,
+            })
+        elseif ColorPickerFrame then
+            ColorPickerFrame.hasOpacity = true
+            ColorPickerFrame.opacity = ToPickerAlpha(a)
+            ColorPickerFrame.previousValues = previous
+            ColorPickerFrame.func = function()
+                local cr, cg, cb = ColorPickerFrame:GetColorRGB()
+                SetValue(cr, cg, cb, FromPickerAlpha(OpacitySliderFrame:GetValue()))
+            end
+            ColorPickerFrame.opacityFunc = ColorPickerFrame.func
+            ColorPickerFrame.cancelFunc = function(values) SetValue(unpack(values or previous)) end
+            ColorPickerFrame:SetColorRGB(r, g, b)
+            ColorPickerFrame:Hide()
+            ColorPickerFrame:Show()
+        end
+    end)
+    Repaint()
+    AddTooltip(button, descriptor.tooltip or (Disabled(descriptor) and descriptor.disabledTooltip))
+end
+
 local function BuildDescriptor(parent, descriptor)
     descriptor = descriptor or { type = "label", text = "" }
     if descriptor.type == "button" then BuildButton(parent, descriptor)
@@ -330,6 +408,7 @@ local function BuildDescriptor(parent, descriptor)
     elseif descriptor.type == "dropdown" then BuildDropdown(parent, descriptor)
     elseif descriptor.type == "input" then BuildInput(parent, descriptor)
     elseif descriptor.type == "slider" then BuildSlider(parent, descriptor)
+    elseif descriptor.type == "color" then BuildColor(parent, descriptor)
     else BuildLabel(parent, descriptor) end
 end
 

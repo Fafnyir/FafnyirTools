@@ -1,5 +1,16 @@
 # Reconciled decisions
 
+## 2026-11-01 — Standalone native XP options
+
+Supersede the blanket 2026-10-06 XP retirement only when EllesmereUI is not
+loaded. Add a standalone XP & Progression page for current-XP gradient,
+rested-XP gradient, orientation, completed Quest XP overlay, colors and reset.
+Target Blizzard's native Experience entry in `StatusTrackingBarManager`, not
+the retired EllesmereUI frame names. Keep current XP above rested XP and Quest
+XP behind both. Retain #5563FF→#C561FF, #4F8FFF and #FF9600 defaults. Gate the
+module, defaults, XP/quest events and global-transfer schema off in EllesmereUI
+integration mode, where legacy `xpBar` data remains dormant and untouched.
+
 ## 2026-11-01 — Resizable standalone settings window
 
 Make only the native standalone settings window resizable. Use a bottom-right

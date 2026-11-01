@@ -32,6 +32,9 @@ v2.0.0 changes
 - Restores the branded addon-list icon from the logo bundled with FafnyirTools.
 - Tightens and vertically centers standalone text-only rows while preserving
   the full spacing used by interactive controls.
+- Adds standalone XP & Progression controls for Blizzard's native Experience
+  bar: current/rested gradients, direction, colors and completed Quest XP.
+- Keeps the native XP feature entirely inactive when EllesmereUI is installed.
 
 Testing requested
 

@@ -7,6 +7,14 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
+- Test standalone XP controls on Retail and Forever with current gradient off
+  and on, both orientations, rested XP present/absent, Quest XP overlapping
+  rested XP, exact level boundaries, maximum level, XP-disabled characters,
+  reputation/house-favor competition, Edit Mode movement, reload persistence,
+  reset and live color-picker changes. Confirm current XP remains above rested
+  XP and Quest XP remains behind both. Re-enable EllesmereUI and confirm the XP
+  page/events/defaults disappear while EllesmereUI's bar is unchanged.
+
 - Test standalone window resizing at minimum, default and maximum dimensions;
   verify the grip, scroll area, three-column rows, reload persistence, Reset
   Window Size, UI scaling and `zhCN`/`zhTW` wrapping. Confirm EllesmereUI's

@@ -29,6 +29,7 @@ Modules\NicerDamage.lua
 Modules\TooltipHealthBar.lua
 Modules\RightClickSelfCast.lua
 Modules\ActionBarMouseover.lua
+Modules\XPBar.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua
 Modules\CursorReticle.lua

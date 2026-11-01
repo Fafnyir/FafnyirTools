@@ -42,6 +42,10 @@ local SCHEMA = {
     auraSkins = true,
 }
 
+if not ns.HAS_ELLESMEREUI then
+    SCHEMA.xpBar = true
+end
+
 local function Copy(value)
     if type(value) ~= "table" then return value end
     local result = {}

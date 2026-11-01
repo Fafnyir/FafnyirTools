@@ -8,6 +8,7 @@
 | Leveling Forecast and Refresh | Yes | Yes |
 | Device Layout | Yes | Yes |
 | Right-click self cast | Blizzard action bars | EllesmereUI and supported action bars |
+| XP bar gradients and Quest XP | Blizzard native Experience bar | Hidden; EllesmereUI owns XP presentation |
 | Persistent Companion Pet | Retail | Retail |
 | Inventory tracking | Forever | Forever |
 | Native resting icon controls | Yes; default off | Blizzard indicator remains untouched; EUI Resting remains available |
@@ -24,7 +25,7 @@ separate.
 ## Localization
 
 - English is the fallback locale. Simplified Chinese (`zhCN`) and Traditional
-  Chinese (`zhTW`) provide complete coverage of all 225 current interface
+  Chinese (`zhTW`) provide complete coverage of all 242 current interface
   strings. Yilang reviewed the strings through v1.1.19; the v1.1.20 Refresh and
   v2.0.0 standalone strings are first-pass translations pending fluent review.
 - Locale files load before feature modules so localized page names are stable
@@ -52,6 +53,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Minimap launcher | Standalone-only circular minimap button; left-click toggles Fafnyir Tools and left-drag saves a machine-local perimeter angle excluded from global transfer | v2.0.0 test; offline-tested, in-game confirmation pending |
 | Right-click self cast | Applicable EUI action buttons cast on self on right-click; preserve normal left-click behavior and toggle; secure attributes follow paging without action-slot/binding event refreshes | Present |
 | Mouseover action bars | Standalone-only, default-off opacity control for Blizzard primary, multi, Pet and Stance bars plus Micro Menu and Bag Bar; individual saved toggles, shared faded opacity, full visibility on hover, disable restoration, and reload confirmation on initial enable | v2.0.0 test; offline-tested, in-game confirmation pending |
+| Native XP presentation | Standalone-only current/rested gradients, orientation and completed Quest XP overlay on Blizzard's Experience bars; defaults #5563FF→#C561FF, #4F8FFF and #FF9600; current above rested above Quest; native atlas restoration on disable; hidden entirely with EllesmereUI | Post-v2.0.0 test; offline-tested, Retail/Forever confirmation pending |
 | Flyout Fix | Retired on both clients; EllesmereUI owns spell-flyout presentation. Legacy SavedVariables remain untouched | Removed after EllesmereUI 9.7 audit |
 | Icon History border | Default-off persistent toggle under QoL for EllesmereUI Damage Meter Icon History, with a live dropdown of all EllesmereUI border styles; Pixels is initially selected | Present; offline-tested, in-game confirmation pending |
 | BigWigs border | Default-off choice of all current EllesmereUI borders on BigWigs timer bars, attached spell icons and normal message icons; Pixels default; message borders follow icon fades; shared 0–10 spacing moves bar bodies from fixed icons/indicators and separates message icons from text; leaves profiles and nameplate icons untouched | v1.1.17 test; initial bar border confirmed in game, revised scope pending |
@@ -70,9 +72,10 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; follows the guarded Midnight 80–90 XP curve and falls back to next-level overflow if the live current-level requirement changes; an in-place Refresh button rebuilds the page to recalculate without events or polling; never touches EllesmereUI's XP bar | v1.1.20 build `2184a77`; offline checks and user in-game test passed |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 
-Current options pages: About, QoL, Unit Frames (including Aura Skins and
-Resting), Action Bars, and Layouts. Bags & Inventory is additionally present on
-Forever; Retail uses EllesmereUI Bags for the equivalent feature.
+Current integration pages: About, QoL, Unit Frames (including Aura Skins and
+Resting), Action Bars, and Layouts. Standalone additionally exposes XP &
+Progression. Bags & Inventory is additionally present on Forever; Retail uses
+EllesmereUI Bags for the equivalent feature.
 
 Retired in v1.1.5: Blizzard Bar Art and Unit Frame Sources are now provided by
 EllesmereUI. Their FafnyirTools modules, options, defaults, export/import schema,
@@ -105,18 +108,21 @@ ordinary upgrades.
 - Per-character companion selections, inventory/economy caches, and device-specific Edit Mode layouts are excluded.
 - Import requires explicit confirmation and a UI reload.
 
-## XP bar ownership — retired 2026-10-06
+## XP bar ownership — integration retired 2026-10-06; standalone restored 2026-11-01
 
-EllesmereUI now owns the entire XP bar, including quest overlays. FafnyirTools
-must not load an XP module, expose XP options/page, subscribe to XP/quest-only
-events, alter gradients/layers/text/borders, or export/import/reset XP settings.
-Preserve legacy xpBar SavedVariables as unknown data without migration or writes.
-PLAYER_LEVEL_UP remains subscribed for the independent Resting feature.
+With EllesmereUI loaded, EllesmereUI owns the entire XP bar, including quest
+overlays. FafnyirTools must not register its XP module/page, XP/quest-only
+events, defaults, transfer schema or runtime writes. Preserve legacy `xpBar`
+SavedVariables as unknown dormant data.
 
-The Leveling Forecast is an explicit exception for read-only reporting:
+Without EllesmereUI, FafnyirTools may style Blizzard's native Experience bars
+and expose the standalone XP & Progression page authorized on 2026-11-01. The
+scope is gradients and completed Quest XP only: no custom bar replacement,
+text, border, size, placement, reputation bar or EllesmereUI frame access.
+
+The Leveling Forecast remains a separate read-only reporter:
 it may query current player XP and completed quest reward values when its QoL
-options section is built. It must not restore the XP module/page, subscribe to
-XP/quest events, alter EllesmereUI regions, or add XP settings and transfers.
+options section is built. It never changes either Blizzard or EllesmereUI bars.
 
 ## Preservation boundaries
 

@@ -151,6 +151,20 @@ ns.defaults = {
     },
 }
 
+if not ns.HAS_ELLESMEREUI then
+    ns.defaults.xpBar = {
+        enabled = false,
+        orientation = "HORIZONTAL",
+        startColor = { r = 85 / 255, g = 99 / 255, b = 1, a = 1 },
+        endColor = { r = 197 / 255, g = 97 / 255, b = 1, a = 1 },
+        restedEnabled = true,
+        restedStartColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
+        restedEndColor = { r = 79 / 255, g = 143 / 255, b = 1, a = 1 },
+        questEnabled = true,
+        questColor = { r = 1, g = 150 / 255, b = 0, a = 1 },
+    }
+end
+
 local function CopyDefaults(source, target)
     for key, value in pairs(source) do
         if type(value) == "table" then

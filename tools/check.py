@@ -31,7 +31,7 @@ def check(baseline=False):
     fingerprint = json.loads((ROOT / 'docs/baselines/v1.1.2-quest-xp-fixed.json').read_text())
     expected = {p.removeprefix('FafnyirTools/') for p in fingerprint['files']}
     actual_files = {p.relative_to(ADDON).as_posix() for p in ADDON.rglob('*') if p.is_file()}
-    retired = {'Modules/BlizzardBarArt.lua', 'Modules/UnitFrameSources.lua', 'Modules/XPBar.lua',
+    retired = {'Modules/BlizzardBarArt.lua', 'Modules/UnitFrameSources.lua',
                'Modules/UnitFrameNames.lua', 'Modules/FlyoutButtonMatch.lua'}
     assert expected - retired <= actual_files, 'Baseline module/file removed; reconcile feature inventory explicitly'
     assert retired.isdisjoint(actual_files), 'EllesmereUI-owned retired module restored unexpectedly'
@@ -48,6 +48,7 @@ def check(baseline=False):
         'Modules/TooltipHealthBar.lua': ('TooltipHealthBar', 'CORE.QOL'),
         'Modules/RightClickSelfCast.lua': ('RightClickSelfCast', 'CORE.ACTION_BARS'),
         'Modules/ActionBarMouseover.lua': ('ActionBarMouseover', 'CORE.ACTION_BARS'),
+        'Modules/XPBar.lua': ('XPBar', 'CORE.XP_PROGRESSION'),
         'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
         'Modules/BigWigsBorder.lua': ('BigWigsBorder', 'CORE.QOL'),
         'Modules/CursorReticle.lua': ('CursorReticle', 'CORE.QOL'),
@@ -80,7 +81,7 @@ def check(baseline=False):
     lua.execute((ADDON / 'Core/Bootstrap.lua').read_text(), 'FafnyirTools', lua.globals().ns)
     lua.execute('''
       for _,key in ipairs({'foreverFog','resting','nativeResting','rightClickSelfCast',
-          'deviceLayout','inventory','auraSkins','permanentCompanionPet'}) do
+          'deviceLayout','inventory','auraSkins','permanentCompanionPet','xpBar'}) do
         assert(type(FafnyirToolsDB[key])=='table',key)
       end
       FafnyirToolsDB.unrecognizedFutureSetting={keep=true}
