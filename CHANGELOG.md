@@ -2,6 +2,9 @@
 
 ## v2.0.1 — Optional standalone window skin
 
+- Fixed BigWigs message-icon discovery comparing protected secret anchor names
+  found on unrelated EllesmereUI frames; secret anchors are now skipped before
+  any tainted string comparison.
 - Added a saved Fafnyir Skin toggle under About > Standalone Window. Disabling
   it restores the original Blizzard dialog frame, vertical navigation and
   native Blizzard controls after a reload; custom feature settings are

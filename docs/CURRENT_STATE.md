@@ -1,5 +1,17 @@
 # Current state — v2.0.1 standalone release, 2026-11-01
 
+## Post-release BigWigs secret-anchor fix — 2026-11-02
+
+The user reported repeated taint errors at `BigWigsBorder.lua:175` while the
+message-icon discovery scan inspected an unrelated EllesmereUI absorb
+StatusBar. That frame returned protected secret anchor names, and comparing
+them with `RIGHT`/`LEFT` raised an error before the scanner could reject the
+frame. Message discovery now checks `issecretvalue` on both anchor names and
+the relative frame before any comparison. A regression fixture inserts a
+secret-anchor decoy ahead of the real BigWigs message frame and verifies that
+the decoy is skipped while all four genuine icons remain styled. The focused
+test and complete offline suite pass; in-game confirmation is pending.
+
 ## v2.0.1 optional standalone skin release — 2026-11-01
 
 The user confirmed the standalone skin-toggle test build and explicitly

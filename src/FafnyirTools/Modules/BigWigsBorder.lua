@@ -24,6 +24,10 @@ local function BigWigsAvailable()
     return BigWigsLoader and type(BigWigsLoader.RegisterMessage) == "function"
 end
 
+local function IsSecret(value)
+    return issecretvalue and issecretvalue(value) == true
+end
+
 local function HideBorder(target, field)
     local border = target and target[field]
     if border then border:Hide() end
@@ -172,7 +176,9 @@ local function IsMessagesFrame(frame)
     for _, region in ipairs({ frame:GetRegions() }) do
         if region.GetObjectType and region:GetObjectType() == "Texture" then
             local ok, point, relativeTo, relativePoint = pcall(region.GetPoint, region, 1)
-            if ok and point == "RIGHT" and relativePoint == "LEFT"
+            if ok and not IsSecret(point) and not IsSecret(relativePoint)
+                and not IsSecret(relativeTo)
+                and point == "RIGHT" and relativePoint == "LEFT"
                 and relativeTo and relativeTo.GetObjectType
                 and relativeTo:GetObjectType() == "FontString" then
                 textures[#textures + 1] = region

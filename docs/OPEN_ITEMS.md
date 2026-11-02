@@ -124,6 +124,8 @@ coverage, not evidence of a known defect.
 
 ### BigWigs borders
 
+- Confirm the 2026-11-02 secret-anchor guard eliminates the reported taint
+  error while EllesmereUI absorb frames and BigWigs messages coexist.
 - Exercise normal and emphasized timer bars, icons on both sides, bars without
   icons, message-icon fading and pooled reuse.
 - Check every currently offered EllesmereUI border style, including styles

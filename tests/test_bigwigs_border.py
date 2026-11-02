@@ -12,7 +12,11 @@ MODULE = ADDON / "Modules/BigWigsBorder.lua"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(
     r'''
-    SlashCmdList={}; ns={}; registrations={}; applied={}
+    SlashCmdList={}; ns={}; registrations={}; applied={}; secretChecks=0
+    function issecretvalue(value)
+        secretChecks=secretChecks+1
+        return value=="SECRET"
+    end
     function GetBuildInfo() return "12.1.5", "1", "", 120105 end
     local frameMethods={}
     function frameMethods:RegisterEvent() end
@@ -129,13 +133,20 @@ lua.execute(
         messageFrame.regions[i]=icon
     end
     UIParent={GetChildren=function() return end}
+    local secretFrame=CreateFrame("StatusBar")
+    local secretRegion=CreateFrame("Texture",nil,secretFrame);secretRegion.objectType="Texture"
+    local secretLabel=CreateFrame("FontString",nil,secretFrame);secretLabel.objectType="FontString"
+    secretRegion:SetPoint("SECRET",secretLabel,"LEFT",0,0)
+    secretFrame.regions={secretRegion}
     function EnumerateFrames(previous)
-        if previous==nil then return messageFrame end
+        if previous==nil then return secretFrame end
+        if previous==secretFrame then return messageFrame end
         return nil
     end
     ns:GetDatabase().bigWigsBorder.enabled=true
     ns:GetDatabase().bigWigsBorder.iconOffset=3
     registrations.BigWigs_Message.callback("BigWigs_Message",{},1,"Test","yellow",123,false)
+    assert(secretChecks>0 and secretRegion._fafnyirBigWigsMessageBorder==nil)
     assert(#applied==12)
     for i=1,4 do
         local border=messageFrame.regions[i]._fafnyirBigWigsMessageBorder
