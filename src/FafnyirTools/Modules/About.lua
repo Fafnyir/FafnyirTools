@@ -18,6 +18,7 @@ local CHANGELOG = {
         "Disabling the skin restores the original Blizzard-styled window and native controls after reload.",
         "Preserved all feature settings and kept the visual preference local to each installation.",
         "Added a default-off Minimap Button Collector test when EllesmereUI Minimap is not loaded.",
+        "Improved collector coverage and visibility, and use the Fafnyir dragon logo for its button.",
     }},
     { version = "v2.0.0", lines = {
         "Made EllesmereUI and FafnyirMedia optional dependencies.",

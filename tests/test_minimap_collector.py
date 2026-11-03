@@ -37,6 +37,9 @@ function Region(objectType,name,parent)
     function r:GetFrameLevel() return 2 end
     function r:SetFrameLevel(value) self.level=value end
     function r:SetFrameStrata(value) self.strata=value end
+    function r:GetScale() return self.scale or 1 end
+    function r:SetScale(value) self.scale=value end
+    function r:SetAlpha(value) self.alpha=value end
     function r:SetClampedToScreen() end
     function r:RegisterForClicks(...) self.clicks={...} end
     function r:RegisterForDrag(value) self.drag=value end
@@ -60,6 +63,7 @@ function Region(objectType,name,parent)
 end
 UIParent=Region("Frame","UIParent")
 Minimap=Region("Frame","Minimap",UIParent);Minimap:SetSize(140,140)
+MinimapCluster=Region("Frame","MinimapCluster",UIParent)
 function CreateFrame(objectType,name,parent)
     local frame=Region(objectType,name,parent)
     if name then _G[name]=frame end
@@ -74,6 +78,12 @@ lua.execute((ADDON / "Localization/enUS.lua").read_text(), "FafnyirTools", ns)
 lua.execute(r'''
 addonOne=CreateFrame("Button","LibDBIcon10_One",Minimap);addonOne:SetSize(31,31);addonOne:SetPoint("CENTER",Minimap,"CENTER",10,10)
 addonTwo=CreateFrame("Button","SomeAddonButton",Minimap);addonTwo:SetSize(24,24);addonTwo:SetPoint("CENTER",Minimap,"CENTER",-10,-10)
+clusterAddon=CreateFrame("Button","ClusterAddonButton",MinimapCluster);clusterAddon:SetSize(32,32);clusterAddon:SetPoint("CENTER")
+libraryAddon=CreateFrame("Button","LibDBIcon10_Library",UIParent);libraryAddon:SetSize(31,31);libraryAddon:SetPoint("CENTER")
+libraryAddon.alpha=.1
+function LibStub(name,silent)
+    if name=="LibDBIcon-1.0" then return {objects={Library=libraryAddon}} end
+end
 systemButton=CreateFrame("Button","AddonCompartmentFrame",Minimap);systemButton:SetSize(30,30);systemButton:SetPoint("CENTER")
 protectedButton=CreateFrame("Button","ProtectedAddonButton",Minimap);protectedButton.protected=true;protectedButton:SetPoint("CENTER")
 ''')
@@ -88,9 +98,12 @@ local panel=feature:GetPanel()
 assert(button and panel and button.shown==true and panel.shown==false)
 assert(addonOne.parent==FafnyirToolsMinimapCollectorStorage)
 assert(addonTwo.parent==FafnyirToolsMinimapCollectorStorage)
+assert(clusterAddon.parent==FafnyirToolsMinimapCollectorStorage)
+assert(libraryAddon.parent==FafnyirToolsMinimapCollectorStorage)
 assert(systemButton.parent==Minimap and protectedButton.parent==Minimap)
 button.scripts.OnClick(button,"LeftButton")
 assert(panel.shown==true and addonOne.parent==panel and addonTwo.parent==panel)
+assert(clusterAddon.parent==panel and libraryAddon.parent==panel and libraryAddon.alpha==1)
 button.scripts.OnClick(button,"LeftButton")
 assert(panel.shown==false and addonOne.parent==FafnyirToolsMinimapCollectorStorage)
 button.scripts.OnDragStart(button)
@@ -110,7 +123,10 @@ assert lua2.globals().ns.modules["MinimapButtonCollector"] is None
 
 source = MODULE.read_text()
 assert 'AddOnLoaded("EllesmereUIMinimap")' in source
-assert 'Minimap:GetChildren()' in source
+assert 'AddChildren(Minimap)' in source
+assert 'AddChildren(MinimapCluster)' in source
+assert 'LibStub("LibDBIcon-1.0", true)' in source
+assert 'Interface\\\\AddOns\\\\FafnyirTools\\\\Media\\\\Logo.tga' in source
 assert 'frame:IsProtected()' not in source  # access stays behind SafeCall
 assert 'minimapButtonCollector = { enabled = true }' in (ADDON / "Modules/GlobalSettings.lua").read_text()
 

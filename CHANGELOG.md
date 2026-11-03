@@ -5,6 +5,9 @@
 - Added a default-off Minimap Button Collector test when EllesmereUI Minimap
   is not loaded: one draggable group button opens eligible third-party minimap
   buttons in a grid, excludes protected/Blizzard controls, and supports rescan.
+- Expanded collection to MinimapCluster and LibDBIcon registrations, restored
+  collected-button alpha/scale when opened, and replaced the temporary grid
+  glyph with the bundled Fafnyir dragon logo.
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.

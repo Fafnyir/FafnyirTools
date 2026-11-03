@@ -18,6 +18,16 @@ suite checks pass. Retail/Forever button compatibility, combat safety, late
 button creation and actual panel placement require in-game testing. New zhCN
 and zhTW strings are first-pass translations pending fluent review.
 
+The first in-game screenshot showed several collected button shells with their
+icons effectively black and the temporary four-square collector glyph reading
+as a cross. It also showed incomplete discovery. The follow-up restores every
+button to full alpha while the grid is open, scales its native button
+proportionally instead of forcing a new width/height, and searches direct
+Minimap children, MinimapCluster children and LibDBIcon's registered objects.
+The collector button now uses the bundled Fafnyir dragon logo. The broader
+coverage and visibility regression pass offline; in-game confirmation remains
+pending.
+
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 
 The user reported repeated taint errors at `BigWigsBorder.lua:175` while the

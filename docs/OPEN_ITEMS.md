@@ -115,6 +115,9 @@ useful follow-up checks rather than release blockers:
 
 - Test with common LibDBIcon buttons and independently implemented minimap
   buttons, including buttons created several seconds after login.
+- Confirm the revised alpha/scale restoration makes every collected icon fully
+  visible and that MinimapCluster/LibDBIcon discovery captures the buttons
+  missing from the first screenshot.
 - Confirm excluded Blizzard controls remain on the minimap, collected buttons
   retain clicks/tooltips, Escape closes the grid, and drag position persists.
 - Exercise combat transitions and both Retail/Forever clients. Confirm the

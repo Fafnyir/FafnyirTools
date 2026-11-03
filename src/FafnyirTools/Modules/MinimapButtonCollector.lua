@@ -106,9 +106,14 @@ local function LayoutPanel()
     local rows = math.max(1, math.ceil(#visible / COLUMNS))
     panel:SetSize((COLUMNS * CELL_SIZE) + 16, (rows * CELL_SIZE) + 16)
     for index, frame in ipairs(visible) do
+        local state = collected[frame]
         frame:SetParent(panel)
         frame:ClearAllPoints()
-        frame:SetSize(28, 28)
+        if frame.SetScale then
+            local nativeSize = math.max(1, state.width or 28, state.height or 28)
+            frame:SetScale((state.scale or 1) * math.min(1, 28 / nativeSize))
+        end
+        if frame.SetAlpha then frame:SetAlpha(1) end
         local column = (index - 1) % COLUMNS
         local row = math.floor((index - 1) / COLUMNS)
         frame:SetPoint("TOPLEFT", panel, "TOPLEFT", 10 + (column * CELL_SIZE), -10 - (row * CELL_SIZE))
@@ -135,9 +140,16 @@ local function Collect(frame)
     local parentOK, parent = SafeCall(frame, "GetParent")
     local widthOK, width = SafeCall(frame, "GetWidth")
     local heightOK, height = SafeCall(frame, "GetHeight")
+    local scaleOK, scale = SafeCall(frame, "GetScale")
     local points = ReadPoints(frame)
     if not parentOK or not widthOK or not heightOK or not points then return false end
-    collected[frame] = { parent = parent, points = points, width = width, height = height }
+    collected[frame] = {
+        parent = parent,
+        points = points,
+        width = width,
+        height = height,
+        scale = scaleOK and scale or 1,
+    }
     ordered[#ordered + 1] = frame
     frame:SetParent(storage)
     return true
@@ -145,11 +157,28 @@ end
 
 local function Scan()
     if not Enabled() or not Minimap or InCombatLockdown and InCombatLockdown() then return false end
-    local children
-    local ok = pcall(function() children = { Minimap:GetChildren() } end)
-    if not ok then return false end
+    local candidates, seen = {}, {}
+    local function AddCandidate(frame)
+        if frame and not seen[frame] then
+            seen[frame] = true
+            candidates[#candidates + 1] = frame
+        end
+    end
+    local function AddChildren(owner)
+        if not owner then return end
+        local children
+        local ok = pcall(function() children = { owner:GetChildren() } end)
+        if not ok then return end
+        for _, frame in ipairs(children) do AddCandidate(frame) end
+    end
+    AddChildren(Minimap)
+    AddChildren(MinimapCluster)
+    local libDBIcon = LibStub and LibStub("LibDBIcon-1.0", true)
+    if libDBIcon and type(libDBIcon.objects) == "table" then
+        for _, frame in pairs(libDBIcon.objects) do AddCandidate(frame) end
+    end
     local changed = false
-    for _, frame in ipairs(children) do
+    for _, frame in ipairs(candidates) do
         if Collect(frame) then changed = true end
     end
     if changed and panel and panel:IsShown() then LayoutPanel() end
@@ -213,11 +242,9 @@ local function CreateCollector()
     background:SetSize(25, 25); background:SetPoint("CENTER")
     background:SetTexture("Interface\\Minimap\\UI-Minimap-Background")
     background:SetVertexColor(0, 0, 0, 1)
-    for index, offset in ipairs({ {-5, 5}, {5, 5}, {-5, -5}, {5, -5} }) do
-        local dot = button:CreateTexture(nil, "ARTWORK")
-        dot:SetSize(6, 6); dot:SetPoint("CENTER", offset[1], offset[2])
-        dot:SetColorTexture(0.388, 0.345, 0.722, 1)
-    end
+    local icon = button:CreateTexture(nil, "ARTWORK")
+    icon:SetSize(21, 21); icon:SetPoint("CENTER")
+    icon:SetTexture("Interface\\AddOns\\FafnyirTools\\Media\\Logo.tga")
     local overlay = button:CreateTexture(nil, "OVERLAY")
     overlay:SetSize(53, 53); overlay:SetPoint("TOPLEFT")
     overlay:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
