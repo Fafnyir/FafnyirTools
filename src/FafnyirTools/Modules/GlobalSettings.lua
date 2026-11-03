@@ -27,6 +27,7 @@ local SCHEMA = {
     fpsDisplay = { enabled = true, showLatency = true, fontSize = true },
     nicerDamage = { enabled = true },
     tooltipHealthBar = { hidden = true },
+    minimapButtonCollector = { enabled = true },
     actionBarMouseover = {
         enabled = true,
         fadedOpacity = true,

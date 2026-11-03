@@ -1,5 +1,23 @@
 # Current state — v2.0.1 standalone release, 2026-11-01
 
+## Minimap Button Collector test — 2026-11-03
+
+At the user's direction, FafnyirTools now offers a default-off QoL collector
+whenever the separate `EllesmereUIMinimap` addon is not loaded. This condition
+is independent of EllesmereUI core, so the feature is available in standalone
+mode and alongside EllesmereUI's other modules without competing with its
+native minimap collector. Enabling creates one draggable four-dot minimap
+button; left-click opens eligible third-party buttons in a five-column grid and
+right-click rescans direct Minimap children. Blizzard structural controls,
+Fafnyir's settings launcher, protected frames, secret anchors, non-buttons and
+implausible button sizes are excluded. Enable/disable is reload-applied; the
+portable enabled choice is exported while the per-installation angle is not.
+The implementation is independent rather than copied from EllesmereUI Minimap.
+Offline gating, collection, exclusions, grid, drag, reset, transfer and full
+suite checks pass. Retail/Forever button compatibility, combat safety, late
+button creation and actual panel placement require in-game testing. New zhCN
+and zhTW strings are first-pass translations pending fluent review.
+
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 
 The user reported repeated taint errors at `BigWigsBorder.lua:175` while the

@@ -601,3 +601,14 @@ already exists as a final immutable release, publish this tested patch as final
 v2.0.1 through the configured GitHub/CurseForge workflow.
 Workflow `41360473794` published final GitHub release `release/v2.0.1` from
 `170cdce`; CurseForge accepted file `9400589`.
+
+## 2026-11-03 — Conditional Minimap Button Collector test
+
+Add a default-off FafnyirTools collector only when the separate
+`EllesmereUIMinimap` addon is not loaded. EllesmereUI core alone must not hide
+the feature. The initial test gathers eligible non-protected Button children
+owned directly by Blizzard's Minimap into a five-column flyout behind one
+draggable group button. Exclude Blizzard structural controls, Fafnyir's launcher
+and protected/secret frames; apply enable/disable on reload. Transfer only the
+enabled preference globally and keep button angle machine-local. Implement the
+behavior independently and do not copy EllesmereUI Minimap source.

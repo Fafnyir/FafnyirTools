@@ -111,6 +111,15 @@ useful follow-up checks rather than release blockers:
 
 ## Runtime coverage worth retaining
 
+### Minimap Button Collector
+
+- Test with common LibDBIcon buttons and independently implemented minimap
+  buttons, including buttons created several seconds after login.
+- Confirm excluded Blizzard controls remain on the minimap, collected buttons
+  retain clicks/tooltips, Escape closes the grid, and drag position persists.
+- Exercise combat transitions and both Retail/Forever clients. Confirm the
+  entire option and runtime remain absent whenever EllesmereUI Minimap loads.
+
 ### Standalone window styles
 
 - Confirm both the default Fafnyir skin and the restored Blizzard style render

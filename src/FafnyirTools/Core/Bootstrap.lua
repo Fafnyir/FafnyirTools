@@ -87,6 +87,10 @@ ns.defaults = {
     minimapButton = {
         angle = 220,
     },
+    minimapButtonCollector = {
+        enabled = false,
+        angle = 180,
+    },
     standaloneWindow = {
         width = 920,
         height = 620,

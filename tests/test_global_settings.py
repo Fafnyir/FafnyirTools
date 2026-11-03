@@ -26,6 +26,7 @@ db.inventory.characters={['Tester-Realm']={money=999,items={123}}}
 db.inventory.tooltips=false
 db.deviceLayout.presetIndex=7
 db.standaloneWindow={width=1100,height=760}
+db.minimapButtonCollector={enabled=true,angle=42}
 db.futureSetting={keep=true}
 db.sharedArtwork={arrow='background:- Arrow Glow',roles=true,unknown='keep'}
 
@@ -42,12 +43,14 @@ assert(payload.settings.permanentCompanionPet.enabled==true)
 assert(payload.settings.permanentCompanionPet.characters==nil)
 assert(payload.settings.inventory.tooltips==false and payload.settings.inventory.characters==nil)
 assert(payload.settings.deviceLayout==nil and payload.settings.standaloneWindow==nil and payload.settings.futureSetting==nil)
+assert(payload.settings.minimapButtonCollector.enabled==true and payload.settings.minimapButtonCollector.angle==nil)
 assert(payload.settings.sharedArtwork.arrow=='background:- Arrow Glow' and payload.settings.sharedArtwork.roles)
 assert(payload.settings.sharedArtwork.unknown==nil)
 assert(payload.settings.resting.side=='right')
 
 db.xpBar.enabled=false;db.xpBar.startColor.a=.9;db.inventory.tooltips=true
 db.sharedArtwork.arrow='native';db.sharedArtwork.roles=false
+db.minimapButtonCollector.enabled=false;db.minimapButtonCollector.angle=99
 payload.settings.unitFrameNames={mode='first'}
 f:ApplyImport(payload)
 assert(db.sharedArtwork.arrow=='background:- Arrow Glow' and db.sharedArtwork.roles and db.sharedArtwork.unknown=='keep')
@@ -56,6 +59,7 @@ assert(db.xpBar.borderSize==3 and db.xpBar.borderColor.a==.2)
 assert(db.xpBar.customTextEnabled==false)
 assert(db.deviceLayout.presetIndex==7 and db.futureSetting.keep)
 assert(db.standaloneWindow.width==1100 and db.standaloneWindow.height==760)
+assert(db.minimapButtonCollector.enabled==true and db.minimapButtonCollector.angle==99)
 assert(db.blizzardBarArt.enabled==false and db.blizzardBarArt.scaleMultiplier==1.01)
 assert(db.unitFrameSources.player=='hidden' and db.unitFrameSources.target=='blizzard')
 assert(db.unitFrameNames.mode=='last' and db.unitFrameNames.future=='keep')

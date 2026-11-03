@@ -91,6 +91,6 @@ assert "'.tga'" in (ROOT / "tools/package.py").read_text()
 
 schema = (ADDON / "Modules/GlobalSettings.lua").read_text()
 schema_body = schema.split("local SCHEMA = {", 1)[1].split("local function Copy", 1)[0]
-assert "minimapButton" not in schema_body
+assert "minimapButton =" not in schema_body
 
 print("PASS standalone minimap button click, drag persistence, local-only position and ownership")
