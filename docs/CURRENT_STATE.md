@@ -45,7 +45,10 @@ The following in-game screenshot confirmed that all eight collected addon
 buttons are now visible, but the below-minimap flyout overlapped the Objective
 Tracker. The flyout is now top-aligned immediately left of the minimap, so its
 grid expands into the open screen area rather than down the tracker column.
-This revised placement is pending in-game confirmation.
+At the user's follow-up direction, that placement is anchored to the movable
+collector button rather than the minimap frame, so changing the saved button
+angle also moves the flyout. This revised placement is pending in-game
+confirmation.
 
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 

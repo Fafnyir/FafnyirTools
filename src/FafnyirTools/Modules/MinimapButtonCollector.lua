@@ -238,9 +238,6 @@ local function CreateCollector()
     panel:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8", edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 1 })
     panel:SetBackdropColor(0.047, 0.051, 0.059, 0.96)
     panel:SetBackdropBorderColor(0.388, 0.345, 0.722, 1)
-    -- Expand beside the minimap rather than below it, where Retail's
-    -- Objective Tracker normally occupies the same right-side column.
-    panel:SetPoint("TOPRIGHT", Minimap, "TOPLEFT", -6, 0)
     panel:Hide()
     table.insert(UISpecialFrames, panel:GetName())
 
@@ -251,6 +248,10 @@ local function CreateCollector()
     button:SetClampedToScreen(true)
     button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     button:RegisterForDrag("LeftButton")
+
+    -- Follow the collector button around the minimap instead of anchoring to
+    -- the minimap itself. The panel opens immediately to the button's left.
+    panel:SetPoint("TOPRIGHT", button, "TOPLEFT", -6, 0)
 
     local background = button:CreateTexture(nil, "BACKGROUND")
     background:SetSize(25, 25); background:SetPoint("CENTER")

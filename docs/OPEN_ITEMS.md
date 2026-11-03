@@ -120,8 +120,8 @@ useful follow-up checks rather than release blockers:
   missing from the first screenshot.
 - Confirm the DIALOG frame-level correction renders every icon above the panel
   background and the Retail clock no longer appears in the grid.
-- Confirm the top-aligned left-of-minimap flyout stays clear of the Objective
-  Tracker at common UI scales and remains clamped on unusually narrow layouts.
+- Confirm the flyout follows the movable collector button, stays clear of the
+  Objective Tracker at common UI scales and remains clamped on narrow layouts.
 - Confirm excluded Blizzard controls remain on the minimap, collected buttons
   retain clicks/tooltips, Escape closes the grid, and drag position persists.
 - Exercise combat transitions and both Retail/Forever clients. Confirm the

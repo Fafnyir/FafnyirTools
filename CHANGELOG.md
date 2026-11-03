@@ -14,6 +14,8 @@
   attempts to raise their own rendering level.
 - Moved the collector flyout to the left of the minimap so it no longer opens
   over the Objective Tracker below the minimap.
+- Anchored the flyout to the movable collector button itself, allowing its
+  saved position around the minimap to carry the panel with it.
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.
