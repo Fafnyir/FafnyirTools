@@ -2,7 +2,7 @@
 
 ## v2.0.1 — Optional standalone window skin
 
-- Added a default-off Minimap Button Collector test when EllesmereUI Minimap
+- Added the default-off Fafnyirs Button Collector test when EllesmereUI Minimap
   is not loaded: one draggable group button opens eligible third-party minimap
   buttons in a grid, excludes protected/Blizzard controls, and supports rescan.
 - Expanded collection to MinimapCluster and LibDBIcon registrations, restored
@@ -16,6 +16,8 @@
   over the Objective Tracker below the minimap.
 - Anchored the flyout to the movable collector button itself, allowing its
   saved position around the minimap to carry the panel with it.
+- Renamed the user-facing feature to Fafnyirs Button Collector without changing
+  its internal setting key or existing SavedVariables.
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.

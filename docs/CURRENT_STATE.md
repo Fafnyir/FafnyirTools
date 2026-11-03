@@ -1,6 +1,6 @@
 # Current state — v2.0.1 standalone release, 2026-11-01
 
-## Minimap Button Collector test — 2026-11-03
+## Fafnyirs Button Collector test — 2026-11-03
 
 At the user's direction, FafnyirTools now offers a default-off QoL collector
 whenever the separate `EllesmereUIMinimap` addon is not loaded. This condition
@@ -49,6 +49,10 @@ At the user's follow-up direction, that placement is anchored to the movable
 collector button rather than the minimap frame, so changing the saved button
 angle also moves the flyout. This revised placement is pending in-game
 confirmation.
+
+The user confirmed the button-relative placement looks appropriate and named
+the feature **Fafnyirs Button Collector**. Only user-facing copy changed; the
+internal feature and SavedVariables keys remain stable for upgrades.
 
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 

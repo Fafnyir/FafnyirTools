@@ -111,7 +111,7 @@ useful follow-up checks rather than release blockers:
 
 ## Runtime coverage worth retaining
 
-### Minimap Button Collector
+### Fafnyirs Button Collector
 
 - Test with common LibDBIcon buttons and independently implemented minimap
   buttons, including buttons created several seconds after login.

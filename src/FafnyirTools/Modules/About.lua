@@ -17,7 +17,7 @@ local CHANGELOG = {
         "Added a saved Fafnyir Skin toggle to the standalone window settings.",
         "Disabling the skin restores the original Blizzard-styled window and native controls after reload.",
         "Preserved all feature settings and kept the visual preference local to each installation.",
-        "Added a default-off Minimap Button Collector test when EllesmereUI Minimap is not loaded.",
+        "Added the default-off Fafnyirs Button Collector test when EllesmereUI Minimap is not loaded.",
         "Improved collector coverage and visibility, and use the Fafnyir dragon logo for its button.",
     }},
     { version = "v2.0.0", lines = {
@@ -288,7 +288,7 @@ function feature:GetDiagnostics()
     AddFeature("NicerDamage", "Nicer Damage=" .. OnOff(db.nicerDamage and db.nicerDamage.enabled))
     AddFeature("TooltipHealthBar", "Tooltip Health Bar Hidden=" .. OnOff(db.tooltipHealthBar and db.tooltipHealthBar.hidden))
     AddFeature("ActionBarMouseover", "Action Bar Mouseover=" .. OnOff(db.actionBarMouseover and db.actionBarMouseover.enabled))
-    AddFeature("MinimapButtonCollector", "Minimap Button Collector=" .. OnOff(db.minimapButtonCollector and db.minimapButtonCollector.enabled))
+    AddFeature("MinimapButtonCollector", "Fafnyirs Button Collector=" .. OnOff(db.minimapButtonCollector and db.minimapButtonCollector.enabled))
     AddFeature("XPBar", "XP Gradient=" .. OnOff(db.xpBar and db.xpBar.enabled)
         .. "; Rested XP=" .. OnOff(db.xpBar and db.xpBar.restedEnabled)
         .. "; Quest XP=" .. OnOff(db.xpBar and db.xpBar.questEnabled))
