@@ -12,6 +12,8 @@
   clock button from the addon-button grid.
 - Lowered the flyout backdrop beneath fixed-strata minimap buttons that ignore
   attempts to raise their own rendering level.
+- Moved the collector flyout to the left of the minimap so it no longer opens
+  over the Objective Tracker below the minimap.
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.

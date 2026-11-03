@@ -41,6 +41,12 @@ The flyout backdrop now uses LOW strata instead, placing it beneath both fixed
 native buttons and buttons that accept the DIALOG raise. Offline regression
 passes; in-game confirmation is pending.
 
+The following in-game screenshot confirmed that all eight collected addon
+buttons are now visible, but the below-minimap flyout overlapped the Objective
+Tracker. The flyout is now top-aligned immediately left of the minimap, so its
+grid expands into the open screen area rather than down the tracker column.
+This revised placement is pending in-game confirmation.
+
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 
 The user reported repeated taint errors at `BigWigsBorder.lua:175` while the
