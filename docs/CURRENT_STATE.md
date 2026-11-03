@@ -35,6 +35,12 @@ strata and a frame level above the flyout while open. Retail's
 `TimeManagerClockButton` is explicitly excluded. Offline frame-order and
 blacklist regression checks pass; the corrected in-game grid is pending.
 
+The next screenshot remained dark except for Ellesmere's icon, confirming the
+other addons lock their native minimap strata and ignore our attempted raise.
+The flyout backdrop now uses LOW strata instead, placing it beneath both fixed
+native buttons and buttons that accept the DIALOG raise. Offline regression
+passes; in-game confirmation is pending.
+
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 
 The user reported repeated taint errors at `BigWigsBorder.lua:175` while the

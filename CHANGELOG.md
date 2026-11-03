@@ -10,6 +10,8 @@
   glyph with the bundled Fafnyir dragon logo.
 - Raised collected buttons above the flyout background and excluded Retail's
   clock button from the addon-button grid.
+- Lowered the flyout backdrop beneath fixed-strata minimap buttons that ignore
+  attempts to raise their own rendering level.
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.

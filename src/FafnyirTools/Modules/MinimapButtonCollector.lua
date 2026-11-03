@@ -230,7 +230,10 @@ local function CreateCollector()
 
     panel = CreateFrame("Frame", "FafnyirToolsMinimapCollectorPanel", UIParent,
         BackdropTemplateMixin and "BackdropTemplate" or nil)
-    panel:SetFrameStrata("DIALOG")
+    -- Some third-party minimap buttons lock their native frame strata and
+    -- ignore attempts to raise them. Keep the flyout backdrop below those
+    -- buttons instead of relying on every addon to accept a strata change.
+    panel:SetFrameStrata("LOW")
     panel:SetClampedToScreen(true)
     panel:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8", edgeFile = "Interface\\Buttons\\WHITE8X8", edgeSize = 1 })
     panel:SetBackdropColor(0.047, 0.051, 0.059, 0.96)
