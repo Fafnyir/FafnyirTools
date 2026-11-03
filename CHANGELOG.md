@@ -8,6 +8,8 @@
 - Expanded collection to MinimapCluster and LibDBIcon registrations, restored
   collected-button alpha/scale when opened, and replaced the temporary grid
   glyph with the bundled Fafnyir dragon logo.
+- Raised collected buttons above the flyout background and excluded Retail's
+  clock button from the addon-button grid.
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.

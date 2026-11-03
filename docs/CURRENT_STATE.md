@@ -28,6 +28,13 @@ The collector button now uses the bundled Fafnyir dragon logo. The broader
 coverage and visibility regression pass offline; in-game confirmation remains
 pending.
 
+The second screenshot confirmed the collector logo but showed only the Spotify
+button above the panel; the remaining button shells and clock text were drawn
+behind the nearly opaque panel background. Collected buttons now use DIALOG
+strata and a frame level above the flyout while open. Retail's
+`TimeManagerClockButton` is explicitly excluded. Offline frame-order and
+blacklist regression checks pass; the corrected in-game grid is pending.
+
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 
 The user reported repeated taint errors at `BigWigsBorder.lua:175` while the

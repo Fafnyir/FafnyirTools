@@ -35,6 +35,7 @@ function Region(objectType,name,parent)
     function r:GetCenter() return 500,400 end
     function r:GetEffectiveScale() return 1 end
     function r:GetFrameLevel() return 2 end
+    function r:GetFrameStrata() return self.strata or "MEDIUM" end
     function r:SetFrameLevel(value) self.level=value end
     function r:SetFrameStrata(value) self.strata=value end
     function r:GetScale() return self.scale or 1 end
@@ -85,6 +86,7 @@ function LibStub(name,silent)
     if name=="LibDBIcon-1.0" then return {objects={Library=libraryAddon}} end
 end
 systemButton=CreateFrame("Button","AddonCompartmentFrame",Minimap);systemButton:SetSize(30,30);systemButton:SetPoint("CENTER")
+clockButton=CreateFrame("Button","TimeManagerClockButton",MinimapCluster);clockButton:SetSize(30,30);clockButton:SetPoint("CENTER")
 protectedButton=CreateFrame("Button","ProtectedAddonButton",Minimap);protectedButton.protected=true;protectedButton:SetPoint("CENTER")
 ''')
 lua.execute(MODULE.read_text(), "FafnyirTools", ns)
@@ -101,9 +103,11 @@ assert(addonTwo.parent==FafnyirToolsMinimapCollectorStorage)
 assert(clusterAddon.parent==FafnyirToolsMinimapCollectorStorage)
 assert(libraryAddon.parent==FafnyirToolsMinimapCollectorStorage)
 assert(systemButton.parent==Minimap and protectedButton.parent==Minimap)
+assert(clockButton.parent==MinimapCluster)
 button.scripts.OnClick(button,"LeftButton")
 assert(panel.shown==true and addonOne.parent==panel and addonTwo.parent==panel)
 assert(clusterAddon.parent==panel and libraryAddon.parent==panel and libraryAddon.alpha==1)
+assert(addonOne.strata=="DIALOG" and addonOne.level==panel:GetFrameLevel()+5)
 button.scripts.OnClick(button,"LeftButton")
 assert(panel.shown==false and addonOne.parent==FafnyirToolsMinimapCollectorStorage)
 button.scripts.OnDragStart(button)

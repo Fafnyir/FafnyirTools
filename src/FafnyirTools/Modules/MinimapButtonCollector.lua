@@ -36,6 +36,7 @@ local blacklist = {
     MinimapCluster = true,
     MinimapZoneTextButton = true,
     QueueStatusButton = true,
+    TimeManagerClockButton = true,
     FafnyirToolsMinimapButton = true,
     FafnyirToolsMinimapCollectorButton = true,
 }
@@ -114,6 +115,10 @@ local function LayoutPanel()
             frame:SetScale((state.scale or 1) * math.min(1, 28 / nativeSize))
         end
         if frame.SetAlpha then frame:SetAlpha(1) end
+        if frame.SetFrameStrata then frame:SetFrameStrata("DIALOG") end
+        if frame.SetFrameLevel and panel.GetFrameLevel then
+            frame:SetFrameLevel(panel:GetFrameLevel() + 5)
+        end
         local column = (index - 1) % COLUMNS
         local row = math.floor((index - 1) / COLUMNS)
         frame:SetPoint("TOPLEFT", panel, "TOPLEFT", 10 + (column * CELL_SIZE), -10 - (row * CELL_SIZE))
@@ -141,6 +146,8 @@ local function Collect(frame)
     local widthOK, width = SafeCall(frame, "GetWidth")
     local heightOK, height = SafeCall(frame, "GetHeight")
     local scaleOK, scale = SafeCall(frame, "GetScale")
+    local strataOK, strata = SafeCall(frame, "GetFrameStrata")
+    local levelOK, level = SafeCall(frame, "GetFrameLevel")
     local points = ReadPoints(frame)
     if not parentOK or not widthOK or not heightOK or not points then return false end
     collected[frame] = {
@@ -149,6 +156,8 @@ local function Collect(frame)
         width = width,
         height = height,
         scale = scaleOK and scale or 1,
+        strata = strataOK and strata or nil,
+        level = levelOK and level or nil,
     }
     ordered[#ordered + 1] = frame
     frame:SetParent(storage)

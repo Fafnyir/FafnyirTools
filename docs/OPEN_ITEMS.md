@@ -118,6 +118,8 @@ useful follow-up checks rather than release blockers:
 - Confirm the revised alpha/scale restoration makes every collected icon fully
   visible and that MinimapCluster/LibDBIcon discovery captures the buttons
   missing from the first screenshot.
+- Confirm the DIALOG frame-level correction renders every icon above the panel
+  background and the Retail clock no longer appears in the grid.
 - Confirm excluded Blizzard controls remain on the minimap, collected buttons
   retain clicks/tooltips, Escape closes the grid, and drag position persists.
 - Exercise combat transitions and both Retail/Forever clients. Confirm the
