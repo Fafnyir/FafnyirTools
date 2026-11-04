@@ -28,6 +28,15 @@ local function IsSecret(value)
     return issecretvalue and issecretvalue(value) == true
 end
 
+local function ObjectType(object)
+    local ok, objectType = pcall(function()
+        if not object or type(object.GetObjectType) ~= "function" then return nil end
+        return object:GetObjectType()
+    end)
+    if not ok or IsSecret(objectType) then return nil end
+    return objectType
+end
+
 local function HideBorder(target, field)
     local border = target and target[field]
     if border then border:Hide() end
@@ -171,16 +180,20 @@ local function ApplyToMessageIcon(icon, owner)
 end
 
 local function IsMessagesFrame(frame)
-    if not frame or not frame.GetRegions then return false end
+    local regions
+    local ok = pcall(function()
+        if not frame or type(frame.GetRegions) ~= "function" then return end
+        regions = { frame:GetRegions() }
+    end)
+    if not ok or not regions then return false end
     local textures = {}
-    for _, region in ipairs({ frame:GetRegions() }) do
-        if region.GetObjectType and region:GetObjectType() == "Texture" then
-            local ok, point, relativeTo, relativePoint = pcall(region.GetPoint, region, 1)
-            if ok and not IsSecret(point) and not IsSecret(relativePoint)
+    for _, region in ipairs(regions) do
+        if ObjectType(region) == "Texture" then
+            local pointOK, point, relativeTo, relativePoint = pcall(region.GetPoint, region, 1)
+            if pointOK and not IsSecret(point) and not IsSecret(relativePoint)
                 and not IsSecret(relativeTo)
                 and point == "RIGHT" and relativePoint == "LEFT"
-                and relativeTo and relativeTo.GetObjectType
-                and relativeTo:GetObjectType() == "FontString" then
+                and ObjectType(relativeTo) == "FontString" then
                 textures[#textures + 1] = region
             end
         end
@@ -192,10 +205,12 @@ end
 
 local function ScanMessageIcons()
     if EnumerateFrames then
-        local frame = EnumerateFrames()
+        local ok, frame = pcall(EnumerateFrames)
+        if not ok then return false end
         while frame do
             if IsMessagesFrame(frame) then return true end
-            frame = EnumerateFrames(frame)
+            ok, frame = pcall(EnumerateFrames, frame)
+            if not ok then return false end
         end
         return false
     end

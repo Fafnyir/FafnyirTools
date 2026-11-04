@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## v2.0.1 — Optional standalone window skin
+## v2.0.2 — Button Collector and BigWigs safety
 
 - Added the default-off Fafnyirs Button Collector test when EllesmereUI Minimap
   is not loaded: one draggable group button opens eligible third-party minimap
@@ -21,6 +21,11 @@
 - Fixed BigWigs message-icon discovery comparing protected secret anchor names
   found on unrelated EllesmereUI frames; secret anchors are now skipped before
   any tainted string comparison.
+- Guarded region enumeration, object-type inspection and global frame scanning
+  so unrelated forbidden frames are skipped without aborting BigWigs styling.
+
+## v2.0.1 — Optional standalone window skin
+
 - Added a saved Fafnyir Skin toggle under About > Standalone Window. Disabling
   it restores the original Blizzard dialog frame, vertical navigation and
   native Blizzard controls after a reload; custom feature settings are

@@ -1,4 +1,27 @@
-Fafnyir Tools v2.0.1
+Fafnyir Tools v2.0.2
+
+v2.0.2 changes
+
+- Adds the default-off Fafnyirs Button Collector whenever EllesmereUI Minimap
+  is not loaded.
+- Gathers eligible third-party minimap buttons into a five-column flyout
+  anchored to the movable Fafnyir collector button.
+- Uses the bundled Fafnyir dragon logo and preserves existing button clicks,
+  tooltips, proportions and visibility.
+- Searches Minimap, MinimapCluster and LibDBIcon registrations while excluding
+  protected frames and Blizzard structural controls.
+- Hardens BigWigs message-icon discovery against secret anchor values and
+  unrelated forbidden frames encountered during frame enumeration.
+- Preserves all existing feature settings and SavedVariables.
+
+Testing status
+
+- Fafnyirs Button Collector visibility, flyout placement, movement and naming
+  are confirmed in game by the user.
+- BigWigs safety guards pass the complete offline regression suite; broader
+  in-game BigWigs combat and message-icon coverage remains welcome.
+
+Previous release: Fafnyir Tools v2.0.1
 
 v2.0.1 changes
 

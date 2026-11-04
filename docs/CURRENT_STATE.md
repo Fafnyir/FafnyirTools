@@ -1,4 +1,4 @@
-# Current state — v2.0.1 standalone release, 2026-11-01
+# Current state — v2.0.2 release candidate, 2026-11-04
 
 ## Fafnyirs Button Collector test — 2026-11-03
 
@@ -50,9 +50,10 @@ collector button rather than the minimap frame, so changing the saved button
 angle also moves the flyout. This revised placement is pending in-game
 confirmation.
 
-The user confirmed the button-relative placement looks appropriate and named
-the feature **Fafnyirs Button Collector**. Only user-facing copy changed; the
-internal feature and SavedVariables keys remain stable for upgrades.
+The user confirmed the final button-relative placement, visibility and naming
+work perfectly in game. The feature is named **Fafnyirs Button Collector**.
+Only user-facing copy changed; the internal feature and SavedVariables keys
+remain stable for upgrades.
 
 ## Post-release BigWigs secret-anchor fix — 2026-11-02
 
@@ -63,8 +64,13 @@ them with `RIGHT`/`LEFT` raised an error before the scanner could reject the
 frame. Message discovery now checks `issecretvalue` on both anchor names and
 the relative frame before any comparison. A regression fixture inserts a
 secret-anchor decoy ahead of the real BigWigs message frame and verifies that
-the decoy is skipped while all four genuine icons remain styled. The focused
-test and complete offline suite pass; in-game confirmation is pending.
+the decoy is skipped while all four genuine icons remain styled. After a second
+report showed `GetRegions()` itself could reject an unrelated forbidden frame,
+the final guard protects region enumeration, object-type inspection and
+successive `EnumerateFrames` calls. The focused test includes both secret-anchor
+and forbidden-frame decoys and the complete offline suite passes. The user
+authorized release with this guard on 2026-11-04; broader in-game BigWigs
+combat coverage remains a follow-up rather than a claimed pass.
 
 ## v2.0.1 optional standalone skin release — 2026-11-01
 

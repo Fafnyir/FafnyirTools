@@ -138,8 +138,16 @@ lua.execute(
     local secretLabel=CreateFrame("FontString",nil,secretFrame);secretLabel.objectType="FontString"
     secretRegion:SetPoint("SECRET",secretLabel,"LEFT",0,0)
     secretFrame.regions={secretRegion}
+    local forbiddenFrame=CreateFrame("Frame")
+    function forbiddenFrame:GetRegions() error("forbidden object") end
+    local forbiddenTypeFrame=CreateFrame("Frame")
+    local forbiddenTypeRegion=CreateFrame("Texture",nil,forbiddenTypeFrame)
+    function forbiddenTypeRegion:GetObjectType() error("forbidden object type") end
+    forbiddenTypeFrame.regions={forbiddenTypeRegion}
     function EnumerateFrames(previous)
-        if previous==nil then return secretFrame end
+        if previous==nil then return forbiddenFrame end
+        if previous==forbiddenFrame then return forbiddenTypeFrame end
+        if previous==forbiddenTypeFrame then return secretFrame end
         if previous==secretFrame then return messageFrame end
         return nil
     end

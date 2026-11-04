@@ -9,16 +9,19 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v2.0.1"
+local VERSION = "v2.0.2"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.2", lines = {
+        "Added the default-off Fafnyirs Button Collector when EllesmereUI Minimap is not loaded.",
+        "Collector buttons now render reliably in a button-anchored flyout using the Fafnyir dragon logo.",
+        "Hardened BigWigs message-icon discovery against secret anchors and forbidden unrelated frames.",
+    }},
     { version = "v2.0.1", lines = {
         "Added a saved Fafnyir Skin toggle to the standalone window settings.",
         "Disabling the skin restores the original Blizzard-styled window and native controls after reload.",
         "Preserved all feature settings and kept the visual preference local to each installation.",
-        "Added the default-off Fafnyirs Button Collector test when EllesmereUI Minimap is not loaded.",
-        "Improved collector coverage and visibility, and use the Fafnyir dragon logo for its button.",
     }},
     { version = "v2.0.0", lines = {
         "Made EllesmereUI and FafnyirMedia optional dependencies.",

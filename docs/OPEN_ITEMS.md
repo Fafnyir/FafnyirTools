@@ -113,15 +113,9 @@ useful follow-up checks rather than release blockers:
 
 ### Fafnyirs Button Collector
 
-- Test with common LibDBIcon buttons and independently implemented minimap
-  buttons, including buttons created several seconds after login.
-- Confirm the revised alpha/scale restoration makes every collected icon fully
-  visible and that MinimapCluster/LibDBIcon discovery captures the buttons
-  missing from the first screenshot.
-- Confirm the DIALOG frame-level correction renders every icon above the panel
-  background and the Retail clock no longer appears in the grid.
-- Confirm the flyout follows the movable collector button, stays clear of the
-  Objective Tracker at common UI scales and remains clamped on narrow layouts.
+- Core discovery, visibility, button-relative placement and naming are confirmed
+  in game by the user. Retain coverage for buttons created several seconds
+  after login, unusual UI scales and narrow layouts.
 - Confirm excluded Blizzard controls remain on the minimap, collected buttons
   retain clicks/tooltips, Escape closes the grid, and drag position persists.
 - Exercise combat transitions and both Retail/Forever clients. Confirm the

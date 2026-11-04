@@ -5,7 +5,7 @@
 ## IconTexture: Interface\AddOns\FafnyirTools\Media\Logo
 ## OptionalDeps: EllesmereUI, EllesmereUIMinimap, FafnyirMedia
 ## SavedVariables: FafnyirToolsDB
-## Version: v2.0.1
+## Version: v2.0.2
 ## Notes: Standalone quality-of-life tools with optional EllesmereUI enhancements.
 
 Core\Bootstrap.lua

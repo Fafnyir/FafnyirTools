@@ -612,3 +612,12 @@ draggable group button. Exclude Blizzard structural controls, Fafnyir's launcher
 and protected/secret frames; apply enable/disable on reload. Transfer only the
 enabled preference globally and keep button angle machine-local. Implement the
 behavior independently and do not copy EllesmereUI Minimap source.
+
+## 2026-11-04 — v2.0.2 release scope
+
+Release the user-confirmed Fafnyirs Button Collector together with the completed
+BigWigs taint guard as v2.0.2. Preserve the collector's internal settings keys
+and every existing SavedVariable. The BigWigs scanner must skip secret anchors,
+forbidden region enumeration, unsafe object types and failed frame enumeration
+without scanning or modifying unrelated EllesmereUI frames. Full offline
+validation is required; broader in-game BigWigs coverage remains documented.
