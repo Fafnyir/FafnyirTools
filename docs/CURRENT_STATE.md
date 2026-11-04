@@ -1,4 +1,11 @@
-# Current state — v2.0.2 release candidate, 2026-11-04
+# Current state — v2.0.2 release, 2026-11-04
+
+Final workflow `41916656028` completed successfully from source commit
+`34f9582`. GitHub release `release/v2.0.2` contains the verified
+`Fafnyir_Tools_v2.0.2_34f9582.zip` and build manifest. CurseForge accepted the
+identical ZIP as Release file `9439980`; public availability remains subject to
+CurseForge moderation. The independently hosted Wago copy is not updated by
+this workflow.
 
 ## Fafnyirs Button Collector test — 2026-11-03
 
