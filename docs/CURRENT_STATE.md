@@ -1,4 +1,11 @@
-# Current state — v2.0.3 release candidate, 2026-11-08
+# Current state — v2.0.3 release, 2026-11-08
+
+Final workflow `42521905257` completed successfully from source commit
+`0e2f53a`. GitHub release `release/v2.0.3` contains the verified
+`Fafnyir_Tools_v2.0.3_0e2f53a.zip` and build manifest. CurseForge accepted the
+identical ZIP as Release file `9516702`; public availability remains subject to
+CurseForge moderation. The independently hosted Wago copy is not updated by
+this workflow.
 
 ## Forever overlap compatibility test — 2026-11-08
 

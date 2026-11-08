@@ -4,7 +4,7 @@ Standalone quality-of-life tools with optional EllesmereUI enhancements.
 
 **Authoritative local project:** `/Users/fpatten/Documents/Codex/FafnyirTools`
 
-**Current source:** v2.0.3 standalone release candidate based on the
+**Current source:** v2.0.3 standalone release based on the
 user-confirmed v1.1.20 test. The confirmed v1.x line remains available on the
 `forever-beta` branch; prior confirmed ZIPs remain immutable under `releases/`.
 
