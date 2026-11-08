@@ -1,4 +1,30 @@
-Fafnyir Tools v2.0.2
+Fafnyir Tools v2.0.3
+
+v2.0.3 changes
+
+- Places the Fafnyir Tools section at the top of EllesmereUI's sidebar, above
+  NaowhUI and EllesmereUI's native sections.
+- Suppresses Fafnyir's Forever inventory page, scanners, tooltip hooks and
+  events when EllesmereUI Bags is loaded or Naowh Forever Alt Item Counts is
+  active.
+- Suppresses Fafnyir's standalone XP presentation while Naowh Forever's XP Bar
+  is active.
+- Suppresses Fafnyir's standalone FPS display while Naowh Forever's Top Bar
+  FPS/MS readout is active.
+- Preserves every dormant Fafnyir setting and cached inventory record so the
+  features return unchanged when the external owner is disabled.
+- Adds load-order and late-sidebar-insertion regression coverage for the
+  EllesmereUI and Naowh Forever compatibility paths.
+
+Testing status
+
+- The complete offline validation suite passes.
+- The sidebar timing test reproduces NaowhUI's late position-one insertion and
+  confirms Fafnyir Tools retakes the first position without duplicate groups.
+- Combined in-game Forever testing with EllesmereUI and Naowh Forever remains
+  welcome.
+
+Previous release: Fafnyir Tools v2.0.2
 
 v2.0.2 changes
 

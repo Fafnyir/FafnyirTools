@@ -1,4 +1,4 @@
-# Current state — v2.0.2 release, 2026-11-04
+# Current state — v2.0.3 release candidate, 2026-11-08
 
 ## Forever overlap compatibility test — 2026-11-08
 

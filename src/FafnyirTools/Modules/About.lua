@@ -9,10 +9,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v2.0.2"
+local VERSION = "v2.0.3"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.3", lines = {
+        "Added Naowh Forever ownership gates for standalone XP, FPS, and inventory tracking.",
+        "Fafnyir inventory now yields to EllesmereUI Bags or active Naowh Alt Item Counts without deleting saved caches.",
+        "Placed the Fafnyir Tools section above NaowhUI and EllesmereUI's native sidebar sections.",
+    }},
     { version = "v2.0.2", lines = {
         "Added the default-off Fafnyirs Button Collector when EllesmereUI Minimap is not loaded.",
         "Collector buttons now render reliably in a button-anchored flyout using the Fafnyir dragon logo.",

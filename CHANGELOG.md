@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased — Forever ownership compatibility
+## v2.0.3 — Forever ownership compatibility
 
 - Place the Fafnyir Tools section at the top of EllesmereUI's sidebar, above
   other plugin and suite sections, including plugins that insert themselves
