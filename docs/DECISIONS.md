@@ -1,5 +1,11 @@
 # Reconciled decisions
 
+## 2026-11-08 — Fafnyir Tools sidebar position
+
+Insert the independent Fafnyir Tools group at position one in EllesmereUI's
+public addon-group list. This deliberately places Fafnyir Tools above NaowhUI
+and the EllesmereUI suite block without joining or relabeling any native group.
+
 ## 2026-11-08 — Forever overlap ownership
 
 Yield Fafnyir's Forever inventory implementation whenever EllesmereUI Bags is

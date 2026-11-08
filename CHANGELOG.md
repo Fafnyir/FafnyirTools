@@ -2,6 +2,8 @@
 
 ## Unreleased — Forever ownership compatibility
 
+- Place the Fafnyir Tools section at the top of EllesmereUI's sidebar, above
+  other plugin and suite sections.
 - Suppress Fafnyir's Forever inventory page, scanners, tooltip hooks and
   inventory events when EllesmereUI Bags is loaded or Naowh Forever's Alt Item
   Counts feature is active; existing Fafnyir inventory SavedVariables remain

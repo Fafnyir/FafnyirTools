@@ -75,6 +75,7 @@ def check(baseline=False):
     assert '16001' in interfaces, 'Forever interface missing'
     assert entries.index('Core/Bootstrap.lua') < entries.index('Core/Events.lua')
     assert entries.index('Core/Bootstrap.lua') < entries.index('Localization/Core.lua')
+    assert 'table.insert(EllesmereUI.ADDON_GROUPS, 1, targetGroup)' in (ADDON / 'Core/Sidebar.lua').read_text()
     assert entries.index('Localization/Core.lua') < entries.index('Localization/enUS.lua')
     first_module = min(entries.index(name) for name in entries if name.startswith('Modules/'))
     for locale_file in ('Localization/enUS.lua', 'Localization/zhCN.lua', 'Localization/zhTW.lua'):

@@ -37,7 +37,7 @@ function sidebar:Install()
             members = {},
         }
 
-        table.insert(EllesmereUI.ADDON_GROUPS, targetGroup)
+        table.insert(EllesmereUI.ADDON_GROUPS, 1, targetGroup)
     end
 
     targetGroup.label = "Fafnyir Tools"

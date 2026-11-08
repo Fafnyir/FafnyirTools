@@ -2,6 +2,11 @@
 
 ## Forever overlap compatibility test — 2026-11-08
 
+Fafnyir Tools now inserts its independent sidebar section at position one,
+placing it above NaowhUI and EllesmereUI's native sections. This changes only
+navigation order; the Fafnyir page taxonomy and settings ownership are
+unchanged.
+
 At the user's direction, Fafnyir Tools now yields overlapping Forever runtime
 ownership to the installed EllesmereUI 9.8.2 and Naowh Forever 1.2.17 APIs.
 Fafnyir's inventory page, scanners, tooltip hooks and inventory events remain
