@@ -169,7 +169,7 @@ assert(payload.settings.xpBar==nil)
 ''')
 
 events = (ADDON / "Core/Events.lua").read_text()
-assert "if not ns.HAS_ELLESMEREUI then" in events
+assert "if ns:StandaloneXPAvailable() then" in events
 for event in (
     "PLAYER_XP_UPDATE", "UPDATE_EXHAUSTION", "QUEST_LOG_UPDATE",
     "QUEST_WATCH_UPDATE", "QUEST_ACCEPTED", "QUEST_REMOVED",
@@ -178,7 +178,7 @@ for event in (
     assert f'events:RegisterEvent("{event}")' in events
 
 source = (ADDON / "Modules/XPBar.lua").read_text()
-assert 'if ns.HAS_ELLESMEREUI then return end' in source
+assert 'if not ns:StandaloneXPAvailable() then return end' in source
 assert 'StatusTrackingBarInfo.BarsEnum.Experience' in source
 assert 'overlay = bar:CreateTexture(nil, "ARTWORK", nil, -1)' in source
 assert 'overlay = bar:CreateTexture(nil, "ARTWORK", nil, -2)' in source

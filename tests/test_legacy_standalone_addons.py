@@ -90,7 +90,7 @@ assert 'RegisterEvent("PLAYER_FOCUS_CHANGED")' in hide_source
 
 fps_source = (ADDON / "Modules/FPSDisplay.lua").read_text()
 nicer_source = (ADDON / "Modules/NicerDamage.lua").read_text()
-assert "if ns.HAS_ELLESMEREUI then return end" in fps_source
+assert "if not ns:StandaloneFPSAvailable() then return end" in fps_source
 assert "if ns.HAS_ELLESMEREUI then return end" in nicer_source
 assert 'SLASH_FAFNYIRTOOLSFPS1 = "/fpsdisplay"' in fps_source
 

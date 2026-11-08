@@ -1,5 +1,18 @@
 # Reconciled project changelog
 
+## Unreleased — Forever ownership compatibility
+
+- Suppress Fafnyir's Forever inventory page, scanners, tooltip hooks and
+  inventory events when EllesmereUI Bags is loaded or Naowh Forever's Alt Item
+  Counts feature is active; existing Fafnyir inventory SavedVariables remain
+  untouched.
+- Suppress standalone XP presentation when Naowh Forever's QoL module and XP
+  Bar are active.
+- Suppress the standalone FPS display when Naowh Forever's Top Bar and FPS/MS
+  readout are active.
+- Added optional-dependency load ordering for EllesmereUI Bags and Naowh
+  Forever so ownership is resolved before Fafnyir modules register.
+
 ## v2.0.2 — Button Collector and BigWigs safety
 
 - Added the default-off Fafnyirs Button Collector test when EllesmereUI Minimap

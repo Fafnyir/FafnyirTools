@@ -10,7 +10,7 @@ events:RegisterEvent("PLAYER_REGEN_ENABLED")
 events:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
 events:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 
-if not ns.HAS_ELLESMEREUI then
+if ns:StandaloneXPAvailable() then
     events:RegisterEvent("PLAYER_XP_UPDATE")
     events:RegisterEvent("UPDATE_EXHAUSTION")
     events:RegisterEvent("QUEST_LOG_UPDATE")
@@ -21,7 +21,7 @@ if not ns.HAS_ELLESMEREUI then
     events:RegisterEvent("QUEST_DATA_LOAD_RESULT")
 end
 
-if ns.IS_FOREVER then
+if ns.IS_FOREVER and ns.modules.Inventory then
     events:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
     events:RegisterEvent("PLAYERBANKSLOTS_CHANGED")
     events:RegisterEvent("BANKFRAME_OPENED")

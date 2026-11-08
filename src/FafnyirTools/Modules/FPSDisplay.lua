@@ -1,5 +1,5 @@
 local ADDON_NAME, ns = ...
-if ns.HAS_ELLESMEREUI then return end
+if not ns:StandaloneFPSAvailable() then return end
 
 local function T(key, ...) return ns.Text and ns:Text(key, ...) or key end
 

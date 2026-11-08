@@ -1,5 +1,20 @@
 # Current state — v2.0.2 release, 2026-11-04
 
+## Forever overlap compatibility test — 2026-11-08
+
+At the user's direction, Fafnyir Tools now yields overlapping Forever runtime
+ownership to the installed EllesmereUI 9.8.2 and Naowh Forever 1.2.17 APIs.
+Fafnyir's inventory page, scanners, tooltip hooks and inventory events remain
+dormant whenever EllesmereUI Bags is loaded or Naowh's QoL module and Alt Item
+Counts are active. Standalone XP remains dormant while Naowh's QoL XP Bar is
+active, and Fafnyir's standalone FPS display remains dormant while Naowh's Top
+Bar FPS/MS readout is active. Installed-but-disabled Naowh features do not
+suppress Fafnyir controls. Optional dependency ordering ensures those settings
+are readable before Fafnyir modules register. No dormant Fafnyir setting or
+cached inventory data is deleted. Offline ownership checks pass; live toggles
+require a reload before ownership is recalculated, and the combined Forever
+addon matrix still requires in-game confirmation.
+
 Final workflow `41916656028` completed successfully from source commit
 `34f9582`. GitHub release `release/v2.0.2` contains the verified
 `Fafnyir_Tools_v2.0.2_34f9582.zip` and build manifest. CurseForge accepted the

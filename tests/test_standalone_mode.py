@@ -151,7 +151,8 @@ assert(aboutTab._selectionAccent.shown==false)
 
 toc = (ADDON / "FafnyirTools.toc").read_text()
 assert "## Dependencies:" not in toc
-assert "## OptionalDeps: EllesmereUI, EllesmereUIMinimap, FafnyirMedia" in toc
+assert ("## OptionalDeps: EllesmereUI, EllesmereUIBags, EllesmereUIMinimap, FafnyirMedia, "
+        "NaowhForever, NaowhForever_QoL") in toc
 assert "## IconTexture: Interface\\AddOns\\FafnyirTools\\Media\\Logo" in toc
 assert "Core\\StandaloneUI.lua" in toc
 

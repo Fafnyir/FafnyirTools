@@ -7,6 +7,11 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
+- Test the 2026-11-08 Forever ownership gates with EllesmereUI Bags and Naowh
+  Forever separately and together: active/disabled Alt Item Counts, XP Bar and
+  Top Bar FPS/MS, reload after changing ownership, absence of duplicate pages
+  and event work, and preservation/reactivation of dormant Fafnyir settings.
+
 - Retail standalone XP presentation is confirmed by the user in build
   `f18ff22`: corrected colors and end bounds, explicit rested XP, Quest/rested
   ordering and the flicker correction all pass in game. Forever testing is not

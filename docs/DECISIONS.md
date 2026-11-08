@@ -1,5 +1,16 @@
 # Reconciled decisions
 
+## 2026-11-08 — Forever overlap ownership
+
+Yield Fafnyir's Forever inventory implementation whenever EllesmereUI Bags is
+loaded or Naowh Forever's QoL Alt Item Counts is active. Yield standalone XP
+while Naowh's QoL XP Bar is active and yield standalone FPS while Naowh's Top
+Bar FPS/MS readout is active. Detect Naowh's published settings rather than the
+mere presence of the addon, preserve every dormant Fafnyir setting/cache, and
+use optional dependency ordering so ownership is known before module
+registration. Ownership changes are applied on the next UI load; do not hook
+or rewrite another addon's settings.
+
 ## 2026-11-01 — Standalone native XP options
 
 Supersede the blanket 2026-10-06 XP retirement only when EllesmereUI is not

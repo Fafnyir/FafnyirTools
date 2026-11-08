@@ -20,6 +20,47 @@ ns.HAS_FAFNYIRMEDIA = C_AddOns
     and C_AddOns.IsAddOnLoaded
     and C_AddOns.IsAddOnLoaded("FafnyirMedia")
 
+local function AddOnLoaded(name)
+    return C_AddOns
+        and C_AddOns.IsAddOnLoaded
+        and C_AddOns.IsAddOnLoaded(name) == true
+end
+
+local function ExternalSetting(storeName, key)
+    local owner = _G.NaowhForever
+    local store = owner and owner[storeName]
+    if not store or type(store.Get) ~= "function" then return false end
+    local ok, value = pcall(store.Get, key)
+    return ok and value == true
+end
+
+function ns:NaowhQoLFeatureActive(key)
+    return AddOnLoaded("NaowhForever_QoL")
+        and ExternalSetting("QoLSettings", "enabled")
+        and ExternalSetting("QoLSettings", key)
+end
+
+function ns:NaowhFPSActive()
+    return AddOnLoaded("NaowhForever_QoL")
+        and ExternalSetting("TopBarSettings", "enabled")
+        and ExternalSetting("TopBarSettings", "showSystem")
+end
+
+function ns:ExternalInventoryOwnerActive()
+    return AddOnLoaded("EllesmereUIBags")
+        or self:NaowhQoLFeatureActive("altCounts")
+end
+
+function ns:StandaloneXPAvailable()
+    return not self.HAS_ELLESMEREUI
+        and not self:NaowhQoLFeatureActive("xpBar")
+end
+
+function ns:StandaloneFPSAvailable()
+    return not self.HAS_ELLESMEREUI
+        and not self:NaowhFPSActive()
+end
+
 function ns:ForeverSavedVariablesUnsafe()
     return self.IS_FOREVER
         and EllesmereUI
@@ -155,7 +196,7 @@ ns.defaults = {
     },
 }
 
-if not ns.HAS_ELLESMEREUI then
+if ns:StandaloneXPAvailable() then
     ns.defaults.xpBar = {
         enabled = false,
         orientation = "HORIZONTAL",

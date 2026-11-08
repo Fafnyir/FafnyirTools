@@ -3,7 +3,7 @@
 ## Author: Fafnyir
 ## Category-enUS: |cFF6600CCFafnyirs|r |cFFFFFFFFHoard|r
 ## IconTexture: Interface\AddOns\FafnyirTools\Media\Logo
-## OptionalDeps: EllesmereUI, EllesmereUIMinimap, FafnyirMedia
+## OptionalDeps: EllesmereUI, EllesmereUIBags, EllesmereUIMinimap, FafnyirMedia, NaowhForever, NaowhForever_QoL
 ## SavedVariables: FafnyirToolsDB
 ## Version: v2.0.2
 ## Notes: Standalone quality-of-life tools with optional EllesmereUI enhancements.
