@@ -22,10 +22,12 @@ function sidebar:Install()
     }
 
     local targetGroup
+    local targetIndex
 
-    for _, group in ipairs(EllesmereUI.ADDON_GROUPS) do
+    for index, group in ipairs(EllesmereUI.ADDON_GROUPS) do
         if group.key == "fafnyirtools" then
             targetGroup = group
+            targetIndex = index
             break
         end
     end
@@ -37,6 +39,9 @@ function sidebar:Install()
             members = {},
         }
 
+        table.insert(EllesmereUI.ADDON_GROUPS, 1, targetGroup)
+    elseif targetIndex ~= 1 then
+        table.remove(EllesmereUI.ADDON_GROUPS, targetIndex)
         table.insert(EllesmereUI.ADDON_GROUPS, 1, targetGroup)
     end
 

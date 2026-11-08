@@ -75,7 +75,6 @@ def check(baseline=False):
     assert '16001' in interfaces, 'Forever interface missing'
     assert entries.index('Core/Bootstrap.lua') < entries.index('Core/Events.lua')
     assert entries.index('Core/Bootstrap.lua') < entries.index('Localization/Core.lua')
-    assert 'table.insert(EllesmereUI.ADDON_GROUPS, 1, targetGroup)' in (ADDON / 'Core/Sidebar.lua').read_text()
     assert entries.index('Localization/Core.lua') < entries.index('Localization/enUS.lua')
     first_module = min(entries.index(name) for name in entries if name.startswith('Modules/'))
     for locale_file in ('Localization/enUS.lua', 'Localization/zhCN.lua', 'Localization/zhTW.lua'):
@@ -104,7 +103,8 @@ def check(baseline=False):
                  'test_diagnostics.py', 'test_shared_artwork.py', 'test_resting.py', 'test_release_names.py',
                  'test_localization.py', 'test_leveling_forecast.py', 'test_native_resting.py', 'test_standalone_mode.py',
                  'test_legacy_standalone_addons.py', 'test_tooltip_health_bar.py', 'test_action_bar_mouseover.py',
-                 'test_minimap_button.py', 'test_minimap_collector.py', 'test_compatibility_gates.py']:
+                 'test_minimap_button.py', 'test_minimap_collector.py', 'test_compatibility_gates.py',
+                 'test_sidebar_order.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
 

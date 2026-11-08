@@ -5,6 +5,9 @@
 Insert the independent Fafnyir Tools group at position one in EllesmereUI's
 public addon-group list. This deliberately places Fafnyir Tools above NaowhUI
 and the EllesmereUI suite block without joining or relabeling any native group.
+On the `PLAYER_LOGIN` retry, reposition an existing Fafnyir group as well as
+creating a missing one, because NaowhUI performs its own position-one insertion
+during that event.
 
 ## 2026-11-08 — Forever overlap ownership
 
