@@ -1,4 +1,11 @@
-# Current state — v2.0.4 release candidate, 2026-11-14
+# Current state — v2.0.4 release, 2026-11-14
+
+Final workflow `43652222266` completed successfully from source commit
+`2d7e0b5`. GitHub release `release/v2.0.4` contains the verified
+`Fafnyir_Tools_v2.0.4_2d7e0b5.zip` and build manifest. CurseForge accepted the
+identical ZIP as Release file `9620417`; public availability remains subject to
+CurseForge moderation. The independently hosted Wago copy is not updated by
+this workflow.
 
 ## Forever Sleeping Bag forecast test — 2026-11-14
 
