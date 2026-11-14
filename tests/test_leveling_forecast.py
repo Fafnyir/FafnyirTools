@@ -26,6 +26,7 @@ C_QuestLog={
  GetQuestIDForLogIndex=function(index) return quests[index] end,
  IsComplete=function(id) return complete[id] end,
 }
+C_UnitAuras={GetPlayerAuraBySpellID=function() return sleepingBagAura end}
 function GetQuestLogRewardXP(id) return unpack(rewards[id]) end
 EllesmereUI={Widgets={}}
 refreshCount=0
@@ -86,9 +87,31 @@ playerLevel=82;playerXP=100;playerMax=1000;secret=200
 rewards[101]={100,100};rewards[102]={200,200};rewards[104]={0,0}
 result=f:GetForecast();assert(result.questCount==1 and result.questXP==100)
 
-local savedQuestLog=C_QuestLog;C_QuestLog=nil
+-- Forever adds the live Sleeping Bag Well-Rested stacks to each completed
+-- quest without affecting Retail. The bonus is additive to adjusted/base XP.
+ns.IS_FOREVER=true;secret=nil;playerXP=100
+rewards[101]={250,200};rewards[102]={500,400};rewards[104]={100,nil}
+sleepingBagAura={applications=3}
+result=f:GetForecast()
+assert(result.questXP==871 and result.sleepingBagStacks==3 and result.sleepingBagBonusXP==21)
+assert(result.bonusPercent==28)
+rows={};headers={};f:BuildOptions({},-10)
+assert(#rows==8 and rows[4][1].text=='Sleeping Bag XP Bonus')
+assert(rows[4][2].text=='+3% (+21 XP)',rows[4][2].text)
+
+sleepingBagAura={applications=9}
+result=f:GetForecast();assert(result.sleepingBagStacks==3)
+secret=2;sleepingBagAura={applications=secret}
+result=f:GetForecast();assert(result.sleepingBagStacks==0 and result.sleepingBagBonusXP==0)
+sleepingBagAura={applications=3};secret=sleepingBagAura
+result=f:GetForecast();assert(result.sleepingBagStacks==0 and result.sleepingBagBonusXP==0)
+ns.IS_FOREVER=false;secret=nil
+result=f:GetForecast();assert(result.questXP==850 and result.sleepingBagStacks==0)
+
+local savedQuestLog=C_QuestLog;C_QuestLog=nil;ns.IS_FOREVER=true
 local count,total,base,adjusted=f:GetCompletedQuestXP()
 assert(count==0 and total==0 and base==0 and adjusted==0)
+result=f:GetForecast();assert(result.sleepingBagStacks==0 and result.sleepingBagBonusXP==0)
 C_QuestLog=savedQuestLog
 ''')
 

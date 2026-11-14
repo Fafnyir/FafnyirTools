@@ -1,5 +1,12 @@
 # Reconciled project changelog
 
+## Unreleased — Forever Sleeping Bag forecast
+
+- Added the Cozy Sleeping Bag's live 1–3% Well-Rested quest-XP bonus to the
+  Forever Leveling Forecast and display its added XP explicitly.
+- Kept Retail forecast behavior unchanged and added no new saved settings,
+  events or polling.
+
 ## v2.0.3 — Forever ownership compatibility
 
 - Place the Fafnyir Tools section at the top of EllesmereUI's sidebar, above

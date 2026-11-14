@@ -150,6 +150,8 @@ ns:RegisterLocale("zhCN", {
     ["QOL.LEVEL_PERCENT"] = "等级 %d — %s",
     ["QOL.COMPLETED_QUESTS_READY"] = "已完成可交付任务",
     ["QOL.COMPLETED_QUEST_XP"] = "已完成任务经验值",
+    ["QOL.SLEEPING_BAG_XP_BONUS"] = "睡袋经验值加成",
+    ["QOL.SLEEPING_BAG_XP_BONUS_VALUE"] = "+%d%%（+%s 经验值）",
     ["QOL.EFFECTIVE_QUEST_XP_BONUS"] = "有效任务经验加成",
     ["QOL.NOT_AVAILABLE"] = "不可用",
     ["QOL.PROJECTED_AFTER_TURN_INS"] = "交付任务后的预计进度",

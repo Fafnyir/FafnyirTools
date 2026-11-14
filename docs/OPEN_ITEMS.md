@@ -153,6 +153,10 @@ coverage, not evidence of a known defect.
 
 - Verify exact level boundaries, projections spanning several levels and the
   level-90 cap.
+- On Forever, compare the forecast with actual quest turn-ins at one, two and
+  three Well-Rested stacks (spell 429959), including another simultaneous XP
+  bonus. Confirm the Sleeping Bag contribution is additive and is not already
+  included in the client's adjusted reward API.
 - If Blizzard changes the XP curve, confirm the guarded one-level overflow
   fallback appears instead of a false multi-level estimate.
 

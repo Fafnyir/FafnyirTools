@@ -26,6 +26,12 @@ local MIDNIGHT_XP_TO_NEXT_LEVEL = {
     [89] = 592980,
 }
 
+-- WoW Forever's Cozy Sleeping Bag grants Well-Rested (spell 429959), which
+-- adds 1% quest XP per stack up to three stacks. At the user's direction, the
+-- Forever forecast accounts for this separate live aura explicitly.
+local SLEEPING_BAG_BUFF = 429959
+local SLEEPING_BAG_MAX_STACKS = 3
+
 local function UsableNumber(value)
     if type(value) ~= "number" then return nil end
     if issecretvalue and issecretvalue(value) then return nil end
@@ -48,15 +54,31 @@ local function IsAtMaxLevel(level, maximum)
     return type(maximum) == "number" and level >= maximum
 end
 
+function feature:GetSleepingBagStacks()
+    if not ns.IS_FOREVER or not (C_UnitAuras and C_UnitAuras.GetPlayerAuraBySpellID) then
+        return 0
+    end
+    local ok, aura = pcall(C_UnitAuras.GetPlayerAuraBySpellID, SLEEPING_BAG_BUFF)
+    if not ok or type(aura) ~= "table"
+        or (issecretvalue and issecretvalue(aura))
+    then
+        return 0
+    end
+    local stacks = UsableNumber(aura.applications) or 0
+    return math.max(0, math.min(SLEEPING_BAG_MAX_STACKS, math.floor(stacks)))
+end
+
 function feature:GetCompletedQuestXP()
     if not (C_QuestLog and C_QuestLog.GetNumQuestLogEntries
         and C_QuestLog.GetQuestIDForLogIndex and C_QuestLog.IsComplete
         and GetQuestLogRewardXP)
     then
-        return 0, 0, 0, 0
+        return 0, 0, 0, 0, 0, 0
     end
 
     local count, totalXP, baseXP, adjustedForBonus = 0, 0, 0, 0
+    local sleepingBagStacks = self:GetSleepingBagStacks()
+    local sleepingBagBonusXP = 0
     local seen = {}
     for index = 1, C_QuestLog.GetNumQuestLogEntries() do
         local questID = C_QuestLog.GetQuestIDForLogIndex(index)
@@ -68,16 +90,20 @@ function feature:GetCompletedQuestXP()
             adjusted = UsableNumber(adjusted)
             base = UsableNumber(base)
             if adjusted and adjusted > 0 then
+                local sleepingBase = base and base > 0 and base or adjusted
+                local sleepingBonus = sleepingBagStacks > 0
+                    and math.floor(sleepingBase * sleepingBagStacks / 100) or 0
                 count = count + 1
-                totalXP = totalXP + adjusted
+                totalXP = totalXP + adjusted + sleepingBonus
+                sleepingBagBonusXP = sleepingBagBonusXP + sleepingBonus
                 if base and base > 0 then
                     baseXP = baseXP + base
-                    adjustedForBonus = adjustedForBonus + adjusted
+                    adjustedForBonus = adjustedForBonus + adjusted + sleepingBonus
                 end
             end
         end
     end
-    return count, totalXP, baseXP, adjustedForBonus
+    return count, totalXP, baseXP, adjustedForBonus, sleepingBagStacks, sleepingBagBonusXP
 end
 
 function feature:GetForecast()
@@ -85,7 +111,8 @@ function feature:GetForecast()
     local current = UsableNumber(UnitXP and UnitXP("player")) or 0
     local maximum = UsableNumber(UnitXPMax and UnitXPMax("player")) or 0
     local maximumLevel = EffectiveMaxLevel()
-    local count, questXP, baseXP, adjustedForBonus = self:GetCompletedQuestXP()
+    local count, questXP, baseXP, adjustedForBonus, sleepingBagStacks, sleepingBagBonusXP =
+        self:GetCompletedQuestXP()
     local result = {
         level = level,
         currentXP = current,
@@ -93,6 +120,8 @@ function feature:GetForecast()
         questCount = count,
         questXP = questXP,
         baseQuestXP = baseXP,
+        sleepingBagStacks = sleepingBagStacks,
+        sleepingBagBonusXP = sleepingBagBonusXP,
         maximumLevel = maximumLevel,
         atMaxLevel = IsAtMaxLevel(level, maximumLevel) or maximum <= 0,
     }
@@ -180,6 +209,17 @@ function feature:BuildOptions(parent, yOffset)
         { type = "label", text = T("QOL.COMPLETED_QUEST_XP") },
         { type = "label", text = Number(forecast.questXP) })
     y = y - h
+
+    if ns.IS_FOREVER then
+        local sleepingBagBonus = forecast.sleepingBagStacks > 0
+            and T("QOL.SLEEPING_BAG_XP_BONUS_VALUE", forecast.sleepingBagStacks,
+                Number(forecast.sleepingBagBonusXP))
+            or "0%"
+        _, h = W:DualRow(parent, y,
+            { type = "label", text = T("QOL.SLEEPING_BAG_XP_BONUS") },
+            { type = "label", text = sleepingBagBonus })
+        y = y - h
+    end
 
     local bonus = forecast.bonusPercent ~= nil
         and (forecast.bonusPercent > 0 and ("+" .. forecast.bonusPercent .. "%") or "0%")

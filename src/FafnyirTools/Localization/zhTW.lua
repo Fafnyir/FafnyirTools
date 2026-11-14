@@ -150,6 +150,8 @@ ns:RegisterLocale("zhTW", {
     ["QOL.LEVEL_PERCENT"] = "等級 %d — %s",
     ["QOL.COMPLETED_QUESTS_READY"] = "已完成可交付任務",
     ["QOL.COMPLETED_QUEST_XP"] = "已完成任務經驗值",
+    ["QOL.SLEEPING_BAG_XP_BONUS"] = "睡袋經驗值加成",
+    ["QOL.SLEEPING_BAG_XP_BONUS_VALUE"] = "+%d%%（+%s 經驗值）",
     ["QOL.EFFECTIVE_QUEST_XP_BONUS"] = "有效任務經驗加成",
     ["QOL.NOT_AVAILABLE"] = "無法取得",
     ["QOL.PROJECTED_AFTER_TURN_INS"] = "交付任務後的預估進度",

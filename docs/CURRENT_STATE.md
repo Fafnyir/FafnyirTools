@@ -1,4 +1,18 @@
-# Current state — v2.0.3 release, 2026-11-08
+# Current state — post-v2.0.3 development, 2026-11-14
+
+## Forever Sleeping Bag forecast test — 2026-11-14
+
+At the user's direction, the Leveling Forecast now detects WoW Forever's
+Well-Rested aura (spell 429959) and reads its live stack count. Each stack adds
+one percent of the quest's base reward, up to the aura's three-stack maximum,
+to completed Quest XP and the projected post-turn-in result. The Forever page
+shows the detected percentage and added XP explicitly. Retail remains unchanged.
+The calculation is read-only, adds no events or SavedVariables, and continues
+to refresh only when the page is opened or its Refresh button is pressed.
+Simplified and Traditional Chinese strings are first-pass translations pending
+Yilang's review. Offline aura, clamp, additive-bonus, projection and Retail
+isolation checks pass; the live Forever reward total still requires comparison
+before and after turning in a quest with one, two and three stacks.
 
 Final workflow `42521905257` completed successfully from source commit
 `0e2f53a`. GitHub release `release/v2.0.3` contains the verified

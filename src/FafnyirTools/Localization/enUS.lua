@@ -150,6 +150,8 @@ ns:RegisterLocale("enUS", {
     ["QOL.LEVEL_PERCENT"] = "Level %d — %s",
     ["QOL.COMPLETED_QUESTS_READY"] = "Completed Quests Ready",
     ["QOL.COMPLETED_QUEST_XP"] = "Completed Quest XP",
+    ["QOL.SLEEPING_BAG_XP_BONUS"] = "Sleeping Bag XP Bonus",
+    ["QOL.SLEEPING_BAG_XP_BONUS_VALUE"] = "+%d%% (+%s XP)",
     ["QOL.EFFECTIVE_QUEST_XP_BONUS"] = "Effective Quest XP Bonus",
     ["QOL.NOT_AVAILABLE"] = "Not Available",
     ["QOL.PROJECTED_AFTER_TURN_INS"] = "Projected After Turn-ins",

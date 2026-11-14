@@ -190,6 +190,15 @@ recalculated only when requested. Do not add XP/quest event subscriptions,
 background polling, saved settings, or XP-bar writes. Include first-pass
 Simplified and Traditional Chinese strings marked for fluent review.
 
+## 2026-11-14 — Forever Sleeping Bag XP forecast
+
+Add the Cozy Sleeping Bag's Well-Rested quest-XP bonus to Leveling Forecast on
+WoW Forever only. Detect spell 429959 through the player's aura data, clamp its
+applications to three, and add one percent of each completed quest's base XP
+per stack to Blizzard's adjusted reward. Show the detected bonus percentage and
+added XP as a separate Forever row. Preserve the existing manual Refresh model;
+do not add events, settings, polling, XP-bar writes, or any Retail behavior.
+
 ## 2026-10-30 — EllesmereUI ownership cleanup
 
 Retire the Flyout Fix completely. Delegate offline inventory and item-count
