@@ -9,10 +9,15 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v2.0.3"
+local VERSION = "v2.0.4"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.4", lines = {
+        "Added the Cozy Sleeping Bag's live Well-Rested XP bonus to the Forever Leveling Forecast.",
+        "The forecast now shows the detected 1–3% bonus and added completed-quest XP.",
+        "Kept Retail behavior unchanged with no new settings, events, or polling.",
+    }},
     { version = "v2.0.3", lines = {
         "Added Naowh Forever ownership gates for standalone XP, FPS, and inventory tracking.",
         "Fafnyir inventory now yields to EllesmereUI Bags or active Naowh Alt Item Counts without deleting saved caches.",

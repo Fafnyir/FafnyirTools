@@ -1,4 +1,4 @@
-# Current state — post-v2.0.3 development, 2026-11-14
+# Current state — v2.0.4 release candidate, 2026-11-14
 
 ## Forever Sleeping Bag forecast test — 2026-11-14
 
@@ -11,8 +11,10 @@ The calculation is read-only, adds no events or SavedVariables, and continues
 to refresh only when the page is opened or its Refresh button is pressed.
 Simplified and Traditional Chinese strings are first-pass translations pending
 Yilang's review. Offline aura, clamp, additive-bonus, projection and Retail
-isolation checks pass; the live Forever reward total still requires comparison
-before and after turning in a quest with one, two and three stacks.
+isolation checks pass. The user reported the Forever test passes in game on
+2026-11-14 and authorized a v2.0.4 release. Exact stack and simultaneous-bonus
+coverage were not supplied, so those remain useful follow-up checks rather than
+release blockers.
 
 Final workflow `42521905257` completed successfully from source commit
 `0e2f53a`. GitHub release `release/v2.0.3` contains the verified

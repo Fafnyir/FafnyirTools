@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased — Forever Sleeping Bag forecast
+## v2.0.4 — Forever Sleeping Bag forecast
 
 - Added the Cozy Sleeping Bag's live 1–3% Well-Rested quest-XP bonus to the
   Forever Leveling Forecast and display its added XP explicitly.

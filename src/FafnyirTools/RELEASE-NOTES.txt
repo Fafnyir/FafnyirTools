@@ -1,4 +1,26 @@
-Fafnyir Tools v2.0.3
+Fafnyir Tools v2.0.4
+
+v2.0.4 changes
+
+- Adds the Cozy Sleeping Bag's live Well-Rested quest-XP bonus to the WoW
+  Forever Leveling Forecast.
+- Detects one to three Well-Rested stacks and adds one percent of each
+  completed quest's base XP per stack to the projected turn-in total.
+- Shows the detected Sleeping Bag percentage and its added XP as a separate
+  Forever-only forecast row.
+- Keeps Retail behavior unchanged and adds no new SavedVariables, events,
+  background polling, or XP-bar writes.
+- Includes first-pass Simplified and Traditional Chinese strings pending
+  Yilang's review.
+
+Testing status
+
+- The complete offline validation suite passes, including aura-stack clamping,
+  protected-value guards, additive bonus math, localization, and Retail
+  isolation.
+- The user confirmed the test build works in WoW Forever on 2026-11-14.
+
+Previous release: Fafnyir Tools v2.0.3
 
 v2.0.3 changes
 
