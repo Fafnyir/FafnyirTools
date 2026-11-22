@@ -24,6 +24,7 @@ Two attempts to chain the click into Naowh's hidden One-Key Fishing action did
 not cast in game, including a corrected mouse-down forward. The current test
 therefore uses a direct secure spell action and requires no keybind or One-Key
 Fishing setting. It intentionally does not copy Naowh's lure/gear preparation.
+The user confirmed the direct-cast reminder works in game on 2026-11-22.
 
 Final workflow `43652222266` completed successfully from source commit
 `2d7e0b5`. GitHub release `release/v2.0.4` contains the verified
