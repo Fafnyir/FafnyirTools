@@ -6,7 +6,7 @@ if not ns.IS_FOREVER or not ns.HAS_ELLESMEREUI or not _G.NaowhForever then retur
 local feature = {
     key = "NaowhForeverIconBorders",
     page = T("CORE.QOL"),
-    searchTerms = { "naowh", "forever", "food", "drink", "consumable", "gear", "trinket", "blessings", "sleeping bag", "pixel border" },
+    searchTerms = { "naowh", "forever", "food", "drink", "consumable", "gear", "trinket", "blessings", "sleeping bag", "fishing pole", "pixel border" },
 }
 ns:RegisterFeature(feature.key, feature)
 
@@ -119,6 +119,17 @@ local function ScanSleepingBag()
     end
 end
 
+local function ScanFishingPoleReminder()
+    for _, child in ipairs(Children(_G.NaowhForeverGearReminders)) do
+        if child.slot == 16 and child.texture then
+            ApplyBorder(child)
+        else
+            local border = tracked[child]
+            if border then border:Hide() end
+        end
+    end
+end
+
 local function Apply()
     if not Enabled() then
         for _, border in pairs(tracked) do border:Hide() end
@@ -133,6 +144,7 @@ local function Apply()
     ScanChildren(_G.NaowhForeverTrinkets, 2)
     ScanChildren(_G.NaowhForeverBlessingBar, 3)
     ScanSleepingBag()
+    ScanFishingPoleReminder()
 end
 
 local function QueueRefresh()
@@ -242,3 +254,8 @@ function feature:BuildOptions(parent, yOffset)
     y = y - h
     return math.abs(y)
 end
+
+local reminderEvents = CreateFrame("Frame")
+reminderEvents:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+reminderEvents:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+reminderEvents:SetScript("OnEvent", QueueRefresh)

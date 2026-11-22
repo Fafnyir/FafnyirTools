@@ -139,7 +139,7 @@ ns:RegisterLocale("enUS", {
     ["QOL.CHANGING_BIGWIGS_BORDER_SETTINGS_REQUIRES_A_UI_RELOAD"] = "Changing BigWigs Border settings requires a UI reload to apply.",
     ["QOL.NAOWH_FOREVER_ICON_BORDERS"] = "NAOWH FOREVER ICON BORDERS",
     ["QOL.ENABLE_NAOWH_FOREVER_ICON_BORDERS"] = "Enable Naowh Forever Icon Borders",
-    ["QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE"] = "Apply the EllesmereUI Pixels border to Naowh Forever's Food & Drink, Consumable, Gear Set, Trinket, Blessings, and Sleeping Bag icons.",
+    ["QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE"] = "Apply the selected EllesmereUI border to Naowh Forever's Food & Drink, Consumable, Gear Set, Trinket, Blessings, Sleeping Bag, and Fishing Pole Reminder icons.",
     ["QOL.CURSOR_RETICLE"] = "CURSOR RETICLE",
     ["QOL.RETICLE_ONLY_WHILE_CLICKING"] = "Reticle Only While Clicking",
     ["QOL.SHOW_ELLESMEREUI_CENTER_RETICLE_ONLY_WHILE_CLICKING"] = "Show EllesmereUI's Center Reticle only while the left or right mouse button is held.",

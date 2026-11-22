@@ -663,3 +663,6 @@ replacement border renderer.
 Expose the same live border-style dropdown as Icon History and BigWigs. Pixels
 remains the default with an exact 24-pixel edge; other styles retain their
 EllesmereUI defaults.
+Include only the active Fishing Pole Reminder from Naowh's pooled Gear
+Reminders icons. Do not style the unrelated worn-gear or Argent Dawn reminder
+icons, and refresh ownership when equipment or zone state changes.

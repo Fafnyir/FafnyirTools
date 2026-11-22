@@ -24,6 +24,8 @@ local function Frame(parent)
   function f:SetFrameLevel(v) self.level=v end
   function f:GetFrameLevel() return self.level end
   function f:HookScript(k,fn) self.scripts[k]=fn end
+  function f:RegisterEvent(event) self.events=self.events or {};self.events[event]=true end
+  function f:SetScript(k,fn) self.scripts[k]=fn end
   return f
 end
 UIParent=Frame()
@@ -44,6 +46,9 @@ NaowhForeverConsumableBar=Frame(); consumable=Icon(NaowhForeverConsumableBar)
 NaowhForeverGearBar=Frame(); gear=Icon(NaowhForeverGearBar)
 NaowhForeverTrinkets=Frame(); trinket=Icon(NaowhForeverTrinkets)
 NaowhForeverBlessingBar=Frame(); blessing=Icon(NaowhForeverBlessingBar)
+NaowhForeverGearReminders=Frame()
+fishingReminder=Frame(NaowhForeverGearReminders); fishingReminder.texture={}; fishingReminder.slot=16
+otherReminder=Frame(NaowhForeverGearReminders); otherReminder.texture={}; otherReminder.slot=13
 bag=Icon(UIParent,'tex'); bag.cooldown={}; bag.count={}
 function bag:GetAttribute(key) if key=='item1' then return 'item:211527' end end
 
@@ -67,25 +72,31 @@ lua.execute((ROOT / "Modules/NaowhForeverIconBorders.lua").read_text(), "Fafnyir
 lua.execute(r'''
 local f=ns.modules.NaowhForeverIconBorders
 assert(f and ns:GetDatabase().naowhForeverIconBorders.enabled==false)
-f:Refresh(); assert(#borders==0)
+f:Refresh(); assert(#borders==1 and borders[1].applied==nil) -- module event frame only
 f:BuildOptions({},0)
 assert(rows[1].text=='Enable Naowh Forever Icon Borders')
 assert(rows[2].text=='Border Style' and rows[2].getValue()=='pixels' and rows[2].disabled())
 assert(rows[2].values.blizz=='Blizzard')
 rows[1].setValue(true)
-assert(#borders==7,#borders)
+assert(#borders==9,#borders) -- seven supported icons + the fishing reminder + module event frame
+assert(fishingReminder.children[1] and fishingReminder.children[1].isFafnyirBorder)
+assert(#otherReminder.children==0)
 for _,border in ipairs(borders) do
-  assert(border.applied.texture=='pixels' and border.applied.size==3)
-  assert(border.applied.context=='naowh_forever_icon' and border.applied.exactPixels==24)
+  if border.applied then
+    assert(border.applied.texture=='pixels' and border.applied.size==3)
+    assert(border.applied.context=='naowh_forever_icon' and border.applied.exactPixels==24)
+  end
 end
 assert(#hooks==4)
 rows[2].setValue('blizz')
 for _,border in ipairs(borders) do
-  assert(border.applied.texture=='blizz' and border.applied.size==4)
-  assert(border.applied.exactPixels==nil)
+  if border.applied then
+    assert(border.applied.texture=='blizz' and border.applied.size==4)
+    assert(border.applied.exactPixels==nil)
+  end
 end
 rows[1].setValue(false)
-for _,border in ipairs(borders) do assert(border.shown==false) end
+for _,border in ipairs(borders) do if border.applied then assert(border.shown==false) end end
 f:Reset(); assert(ns:GetDatabase().naowhForeverIconBorders.enabled==false)
 assert(ns:GetDatabase().naowhForeverIconBorders.texture=='pixels')
 ''')

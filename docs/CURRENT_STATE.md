@@ -4,7 +4,8 @@
 
 At the user's direction, a default-off Forever-only QoL option applies
 the selected EllesmereUI border to supported Naowh Forever icon controls: Food &
-Drink, Consumable, Gear Set, Trinket, Blessings and Sleeping Bag. The adapter
+Drink, Consumable, Gear Set, Trinket, Blessings, Sleeping Bag and the Fishing
+Pole Reminder. The adapter
 uses stable named parents and targeted child scans, never global frame
 enumeration, and does not change Naowh settings or secure action attributes.
 Border creation is deferred during combat and refreshed after combat, login,
@@ -12,7 +13,7 @@ relevant Naowh setting changes and Sleeping Bag synchronization. Simplified
 and Traditional Chinese labels are first-pass translations pending Yilang's
 review. Pixels is the saved default and uses a 24-pixel edge; other styles use
 their EllesmereUI defaults. Offline tests cover gating, default state, the full
-style dropdown, all six groups, live changes and reset; in-game appearance, combat transitions and Naowh
+style dropdown, all seven groups, live changes and reset; in-game appearance, combat transitions and Naowh
 layout/size changes remain to be confirmed from the requested test build.
 
 Final workflow `43652222266` completed successfully from source commit

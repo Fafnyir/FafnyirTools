@@ -9,7 +9,8 @@ or `CHANGELOG.md`, not here.
 
 - Test Naowh Forever Icon Borders with Food-only and Food+Drink classes,
   Consumable Bar food/drink placement, Gear Set and Trinket resizing,
-  Blessings layouts, and the Sleeping Bag button. Toggle before/during combat,
+  Blessings layouts, the Sleeping Bag button, and the Fishing Pole Reminder.
+  Confirm unrelated pooled Gear Reminder icons remain unchanged. Toggle before/during combat,
   change Naowh icon sizes and layouts, reload, and confirm no double-border
   artifacts or secure-action interference. Repeat with `zhCN`/`zhTW`; new
   translations await Yilang's review.

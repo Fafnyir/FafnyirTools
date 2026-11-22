@@ -139,7 +139,7 @@ ns:RegisterLocale("zhTW", {
     ["QOL.CHANGING_BIGWIGS_BORDER_SETTINGS_REQUIRES_A_UI_RELOAD"] = "BigWigs邊框設定需重新載入介面。",
     ["QOL.NAOWH_FOREVER_ICON_BORDERS"] = "NAOWH FOREVER 圖示邊框",
     ["QOL.ENABLE_NAOWH_FOREVER_ICON_BORDERS"] = "啟用 Naowh Forever 圖示邊框",
-    ["QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE"] = "將 EllesmereUI 像素邊框套用至 Naowh Forever 的食物和飲料、消耗品、裝備套裝、飾品、祝福和睡袋圖示。",
+    ["QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE"] = "將所選 EllesmereUI 邊框套用至 Naowh Forever 的食物和飲料、消耗品、裝備套裝、飾品、祝福、睡袋和釣魚竿提醒圖示。",
     ["QOL.CURSOR_RETICLE"] = "游標準星",
     ["QOL.RETICLE_ONLY_WHILE_CLICKING"] = "點擊時顯示準星",
     ["QOL.SHOW_ELLESMEREUI_CENTER_RETICLE_ONLY_WHILE_CLICKING"] = "在按住滑鼠左鍵或右鍵時顯示EllesmereUI中心準星。",
