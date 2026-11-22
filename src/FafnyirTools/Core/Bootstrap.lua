@@ -86,6 +86,9 @@ ns.defaults = {
         texture = "pixels",
         iconOffset = 0,
     },
+    naowhForeverIconBorders = {
+        enabled = false,
+    },
     cursorReticle = {
         enabled = false,
     },
@@ -243,6 +246,7 @@ function ns:RegisterFeature(key, feature)
     local requiresEllesmereUI = {
         AuraSkins = true,
         BigWigsBorder = true,
+        NaowhForeverIconBorders = true,
         CursorReticle = true,
         FocusHeader = true,
         IconHistoryBorder = true,

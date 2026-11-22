@@ -290,6 +290,7 @@ function feature:GetDiagnostics()
     AddFeature("FocusHeader", "Focus Header=" .. OnOff(db.focusHeader and db.focusHeader.enabled))
     AddFeature("IconHistoryBorder", "Icon History Border=" .. OnOff(db.iconHistoryBorder and db.iconHistoryBorder.enabled))
     AddFeature("BigWigsBorder", "BigWigs Border=" .. OnOff(db.bigWigsBorder and db.bigWigsBorder.enabled))
+    AddFeature("NaowhForeverIconBorders", "Naowh Forever Icon Borders=" .. OnOff(db.naowhForeverIconBorders and db.naowhForeverIconBorders.enabled))
     AddFeature("CursorReticle", "Click Reticle=" .. OnOff(db.cursorReticle and db.cursorReticle.enabled))
     if ns.modules.SharedArtwork then
         enabled[#enabled + 1] = "Nameplate Arrow=" .. tostring(db.sharedArtwork and db.sharedArtwork.arrow or "native")

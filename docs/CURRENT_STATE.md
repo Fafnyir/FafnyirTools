@@ -1,5 +1,19 @@
 # Current state — v2.0.4 release, 2026-11-14
 
+## Naowh Forever icon-border test — 2026-11-22
+
+At the user's direction, a default-off Forever-only QoL option applies
+EllesmereUI's Pixels border to supported Naowh Forever icon controls: Food &
+Drink, Consumable, Gear Set, Trinket, Blessings and Sleeping Bag. The adapter
+uses stable named parents and targeted child scans, never global frame
+enumeration, and does not change Naowh settings or secure action attributes.
+Border creation is deferred during combat and refreshed after combat, login,
+relevant Naowh setting changes and Sleeping Bag synchronization. Simplified
+and Traditional Chinese labels are first-pass translations pending Yilang's
+review. Offline tests cover gating, default state, all six groups, live toggle,
+Pixels rendering and reset; in-game appearance, combat transitions and Naowh
+layout/size changes remain to be confirmed from the requested test build.
+
 Final workflow `43652222266` completed successfully from source commit
 `2d7e0b5`. GitHub release `release/v2.0.4` contains the verified
 `Fafnyir_Tools_v2.0.4_2d7e0b5.zip` and build manifest. CurseForge accepted the

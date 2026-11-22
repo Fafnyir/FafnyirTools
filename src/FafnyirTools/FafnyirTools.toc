@@ -3,7 +3,7 @@
 ## Author: Fafnyir
 ## Category-enUS: |cFF6600CCFafnyirs|r |cFFFFFFFFHoard|r
 ## IconTexture: Interface\AddOns\FafnyirTools\Media\Logo
-## OptionalDeps: EllesmereUI, EllesmereUIBags, EllesmereUIMinimap, FafnyirMedia, NaowhForever, NaowhForever_QoL
+## OptionalDeps: EllesmereUI, EllesmereUIBags, EllesmereUIMinimap, FafnyirMedia, NaowhForever, NaowhForever_QoL, NaowhForever_Combat
 ## SavedVariables: FafnyirToolsDB
 ## Version: v2.0.4
 ## Notes: Standalone quality-of-life tools with optional EllesmereUI enhancements.
@@ -33,6 +33,7 @@ Modules\ActionBarMouseover.lua
 Modules\XPBar.lua
 Modules\IconHistoryBorder.lua
 Modules\BigWigsBorder.lua
+Modules\NaowhForeverIconBorders.lua
 Modules\CursorReticle.lua
 Modules\FocusHeader.lua
 Modules\SharedArtwork.lua

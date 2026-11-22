@@ -1,5 +1,11 @@
 # Reconciled project changelog
 
+## Post-v2.0.4 test
+
+- Added a default-off WoW Forever option to apply EllesmereUI's Pixels border
+  to Naowh Forever Food & Drink, Consumable, Gear Set, Trinket, Blessings and
+  Sleeping Bag icons without changing Naowh settings or secure actions.
+
 ## v2.0.4 — Forever Sleeping Bag forecast
 
 - Added the Cozy Sleeping Bag's live 1–3% Well-Rested quest-XP bonus to the

@@ -650,3 +650,13 @@ and every existing SavedVariable. The BigWigs scanner must skip secret anchors,
 forbidden region enumeration, unsafe object types and failed frame enumeration
 without scanning or modifying unrelated EllesmereUI frames. Full offline
 validation is required; broader in-game BigWigs coverage remains documented.
+
+## 2026-11-22 — Naowh Forever icon-border scope
+
+Add one default-off, Forever-only QoL option that applies EllesmereUI's Pixels
+border to Naowh Forever Food & Drink, Consumable, Gear Set, Trinket, Blessings
+and Sleeping Bag icons. Do not include the PvP Flag or Naowh status bars in the
+initial scope. Preserve Naowh's settings and secure attributes, avoid global
+frame enumeration, and defer protected-frame cosmetic creation during combat.
+The option requires both Naowh Forever and EllesmereUI; it is not a standalone
+replacement border renderer.

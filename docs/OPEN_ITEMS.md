@@ -7,6 +7,13 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
+- Test Naowh Forever Icon Borders with Food-only and Food+Drink classes,
+  Consumable Bar food/drink placement, Gear Set and Trinket resizing,
+  Blessings layouts, and the Sleeping Bag button. Toggle before/during combat,
+  change Naowh icon sizes and layouts, reload, and confirm no double-border
+  artifacts or secure-action interference. Repeat with `zhCN`/`zhTW`; new
+  translations await Yilang's review.
+
 - Test the 2026-11-08 Forever ownership gates with EllesmereUI Bags and Naowh
   Forever separately and together: active/disabled Alt Item Counts, XP Bar and
   Top Bar FPS/MS, reload after changing ownership, absence of duplicate pages

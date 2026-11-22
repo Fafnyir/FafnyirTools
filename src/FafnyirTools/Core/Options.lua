@@ -12,7 +12,7 @@ local function OrderedFeatures()
         "LevelingForecast", "NativeResting", "FPSDisplay", "NicerDamage", "TooltipHealthBar",
         "FocusHeader", "SharedArtwork", "AuraSkins",
         "Resting", "RightClickSelfCast", "ActionBarMouseover", "XPBar", "IconHistoryBorder",
-        "BigWigsBorder", "CursorReticle", "Inventory", "DeviceLayout",
+        "BigWigsBorder", "NaowhForeverIconBorders", "CursorReticle", "Inventory", "DeviceLayout",
     }
     local features = {}
     for _, key in ipairs(order) do

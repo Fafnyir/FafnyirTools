@@ -51,6 +51,7 @@ def check(baseline=False):
         'Modules/XPBar.lua': ('XPBar', 'CORE.XP_PROGRESSION'),
         'Modules/IconHistoryBorder.lua': ('IconHistoryBorder', 'CORE.QOL'),
         'Modules/BigWigsBorder.lua': ('BigWigsBorder', 'CORE.QOL'),
+        'Modules/NaowhForeverIconBorders.lua': ('NaowhForeverIconBorders', 'CORE.QOL'),
         'Modules/CursorReticle.lua': ('CursorReticle', 'CORE.QOL'),
         'Modules/FocusHeader.lua': ('FocusHeader', 'CORE.UNIT_FRAMES'),
         'Modules/SharedArtwork.lua': ('SharedArtwork', 'CORE.UNIT_FRAMES'),
@@ -69,7 +70,7 @@ def check(baseline=False):
     assert '## SavedVariables: FafnyirToolsDB' in toc
     assert '## Dependencies:' not in toc
     assert ('## OptionalDeps: EllesmereUI, EllesmereUIBags, EllesmereUIMinimap, FafnyirMedia, '
-            'NaowhForever, NaowhForever_QoL') in toc
+            'NaowhForever, NaowhForever_QoL, NaowhForever_Combat') in toc
     interfaces = re.search(r'^## Interface: (.+)$', toc, re.M).group(1)
     assert '120105' in interfaces, 'Retail 12.1.5 interface missing'
     assert '16001' in interfaces, 'Forever interface missing'
@@ -104,6 +105,7 @@ def check(baseline=False):
                  'test_localization.py', 'test_leveling_forecast.py', 'test_native_resting.py', 'test_standalone_mode.py',
                  'test_legacy_standalone_addons.py', 'test_tooltip_health_bar.py', 'test_action_bar_mouseover.py',
                  'test_minimap_button.py', 'test_minimap_collector.py', 'test_compatibility_gates.py',
+                 'test_naowh_icon_borders.py',
                  'test_sidebar_order.py']:
         subprocess.run([sys.executable, str(ROOT / 'tests' / test)], cwd=ROOT, check=True)
     print('ALL OFFLINE CHECKS PASSED (in-game rendering/combat still require manual QA)', flush=True)
