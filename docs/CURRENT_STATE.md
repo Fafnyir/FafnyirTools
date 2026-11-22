@@ -1,4 +1,11 @@
-# Current state — v2.0.5 release candidate, 2026-11-22
+# Current state — v2.0.5 release, 2026-11-22
+
+Final workflow `45046608612` completed successfully from source commit
+`a2c820a`. GitHub release `release/v2.0.5` contains the verified
+`Fafnyir_Tools_v2.0.5_a2c820a.zip` and build manifest. CurseForge accepted the
+identical ZIP as Release file `9755193`; public availability remains subject to
+CurseForge moderation. The independently hosted Wago copy is not updated by
+this workflow.
 
 ## Naowh Forever icon-border test — 2026-11-22
 
