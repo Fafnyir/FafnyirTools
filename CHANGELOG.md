@@ -10,6 +10,8 @@
 - Added an optional secure click-through that lets the Fishing Pole Reminder
   use Naowh Forever's existing One-Key Fishing action while preserving its
   tooltip and Ctrl-click dismissal.
+- Corrected the click-through to execute on mouse-down, matching Naowh's secure
+  fishing button instead of forwarding on the unsupported mouse-up edge.
 
 ## v2.0.4 — Forever Sleeping Bag forecast
 

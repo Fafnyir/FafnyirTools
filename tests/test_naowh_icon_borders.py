@@ -102,7 +102,10 @@ assert(#borders==10,#borders)
 local click=fishingReminder._fafnyirFishingClick
 assert(click and click.attributes['*type1']=='click')
 assert(click.attributes['*clickbutton1']==NaowhForeverFish and click.attributes['ctrl-type1']=='')
-ctrlDown=true;click.scripts.PostClick(click,'LeftButton');ctrlDown=false
+assert(click.attributes.useOnKeyDown==true)
+assert(click.registeredClicks[1]=='AnyDown' and click.registeredClicks[2]=='AnyUp')
+ctrlDown=true;click.scripts.PostClick(click,'LeftButton',true);assert(dismissed==nil)
+click.scripts.PostClick(click,'LeftButton',false);ctrlDown=false
 assert(dismissed==1)
 rows[2].setValue('blizz')
 for _,border in ipairs(borders) do

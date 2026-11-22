@@ -671,3 +671,5 @@ activate when Naowh's One-Key Fishing is enabled and its secure target exists.
 Use a secure click-through overlay created outside combat; preserve the native
 tooltip and route Ctrl-click back to Naowh's existing dismissal handler. Do not
 copy Naowh's fishing, lure or gear-selection logic into Fafnyir Tools.
+Mirror the target button's AnyDown/useOnKeyDown execution; a mouse-up forward
+does not arm Naowh's secure fishing action. Retain AnyUp only for dismissal.

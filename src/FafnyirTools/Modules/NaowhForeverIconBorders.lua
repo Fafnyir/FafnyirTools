@@ -142,8 +142,11 @@ local function ScanFishingPoleReminder()
                 click = CreateFrame("Button", nil, child, "SecureActionButtonTemplate")
                 click:SetAllPoints(child)
                 click:SetFrameLevel(child:GetFrameLevel() + 10)
-                click:RegisterForClicks("AnyUp")
-                click:SetAttribute("useOnKeyDown", false)
+                -- NaowhForeverFish is an AnyDown action with useOnKeyDown=true.
+                -- The forwarding button must execute on the same edge or the
+                -- target's secure PreClick never arms the fishing action.
+                click:RegisterForClicks("AnyDown", "AnyUp")
+                click:SetAttribute("useOnKeyDown", true)
                 click:SetAttribute("*type1", "click")
                 click:SetAttribute("*clickbutton1", _G.NaowhForeverFish)
                 -- An exact empty Ctrl action prevents the wildcard cast, leaving
@@ -157,8 +160,8 @@ local function ScanFishingPoleReminder()
                     local script = child:GetScript("OnLeave")
                     if script then script(child) end
                 end)
-                click:SetScript("PostClick", function(_, button)
-                    if IsControlKeyDown and IsControlKeyDown() then
+                click:SetScript("PostClick", function(_, button, down)
+                    if not down and IsControlKeyDown and IsControlKeyDown() then
                         local script = child:GetScript("OnMouseUp")
                         if script then script(child, button) end
                     end
