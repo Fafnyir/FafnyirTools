@@ -46,6 +46,8 @@ end
 
 NaowhForever={QoLSettings={Set=function() end,Get=function(key) return key=='enabled' or key=='fishingKey' end},Blessings={Settings={Set=function() end}},
   AuraBuffs={Settings={Set=function() end},CampBag={Sync=function() end}}}
+NaowhForever.FishingData={SPELLS={[7620]=1,[7731]=2,[7732]=3,[18248]=4}}
+C_SpellBook={IsSpellKnown=function(id) return id==7620 or id==18248 end}
 NaowhForeverFoodBarFood=Frame(); NaowhForeverFoodBarDrink=Frame()
 NaowhForeverConsumableBar=Frame(); consumable=Icon(NaowhForeverConsumableBar)
 NaowhForeverGearBar=Frame(); gear=Icon(NaowhForeverGearBar)
@@ -55,7 +57,6 @@ NaowhForeverGearReminders=Frame()
 fishingReminder=Frame(NaowhForeverGearReminders); fishingReminder.texture={}; fishingReminder.slot=16
 fishingReminder:SetScript('OnMouseUp',function() dismissed=(dismissed or 0)+1 end)
 otherReminder=Frame(NaowhForeverGearReminders); otherReminder.texture={}; otherReminder.slot=13
-NaowhForeverFish=Frame()
 bag=Icon(UIParent,'tex'); bag.cooldown={}; bag.count={}
 function bag:GetAttribute(key) if key=='item1' then return 'item:211527' end end
 
@@ -100,8 +101,9 @@ rows[3].setValue(true)
 assert(ns:GetDatabase().naowhForeverIconBorders.clickableFishingPole==true)
 assert(#borders==10,#borders)
 local click=fishingReminder._fafnyirFishingClick
-assert(click and click.attributes['*type1']=='click')
-assert(click.attributes['*clickbutton1']==NaowhForeverFish and click.attributes['ctrl-type1']=='')
+assert(click and click.attributes.type1=='spell' and click.attributes.spell1==18248)
+assert(click.attributes['*type1']==nil and click.attributes['*clickbutton1']==nil)
+assert(click.attributes['ctrl-type1']=='')
 assert(click.attributes.useOnKeyDown==true)
 assert(click.registeredClicks[1]=='AnyDown' and click.registeredClicks[2]=='AnyUp')
 ctrlDown=true;click.scripts.PostClick(click,'LeftButton',true);assert(dismissed==nil)

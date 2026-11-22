@@ -15,7 +15,7 @@ or `CHANGELOG.md`, not here.
   artifacts or secure-action interference. Repeat with `zhCN`/`zhTW`; new
   translations await Yilang's review.
 - Test Clickable Fishing Pole Reminder with One-Key Fishing enabled/disabled,
-  ordinary left-click casting, lure handling, Ctrl-click dismissal, tooltip
+  ordinary left-click direct casting, Ctrl-click dismissal, tooltip
   behavior, combat transitions, equipping/removing a pole and pooled reminder
   reuse. Confirm it never creates a duplicate cast or modifies Naowh settings.
 

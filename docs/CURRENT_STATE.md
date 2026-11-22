@@ -16,14 +16,14 @@ their EllesmereUI defaults. Offline tests cover gating, default state, the full
 style dropdown, all seven groups, live changes and reset; in-game appearance, combat transitions and Naowh
 layout/size changes remain to be confirmed from the requested test build.
 The same section also offers a separate default-off Clickable Fishing Pole
-Reminder toggle. When Naowh's One-Key Fishing is enabled, an out-of-combat
-secure overlay forwards ordinary left-clicks to Naowh's existing secure
-fishing action while exact Ctrl-clicks retain Naowh's reminder dismissal.
+Reminder toggle. An out-of-combat secure overlay casts the character's highest
+known Fishing rank directly while exact Ctrl-clicks retain Naowh's reminder dismissal.
 The overlay preserves the reminder tooltip, follows pooled-icon ownership and
 is hidden when One-Key Fishing or the fishing reminder is unavailable.
-The first forwarding test incorrectly fired on mouse-up while Naowh's secure
-target is registered for mouse-down. The corrected overlay mirrors Naowh's
-AnyDown/useOnKeyDown action and reserves mouse-up for Ctrl-click dismissal.
+Two attempts to chain the click into Naowh's hidden One-Key Fishing action did
+not cast in game, including a corrected mouse-down forward. The current test
+therefore uses a direct secure spell action and requires no keybind or One-Key
+Fishing setting. It intentionally does not copy Naowh's lure/gear preparation.
 
 Final workflow `43652222266` completed successfully from source commit
 `2d7e0b5`. GitHub release `release/v2.0.4` contains the verified

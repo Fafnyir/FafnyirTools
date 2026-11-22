@@ -28,13 +28,22 @@ local function ClickableFishingPole()
     return DB().clickableFishingPole == true
 end
 
-local function FishingAvailable()
+local function BestFishingSpell()
     local owner = _G.NaowhForever
-    local store = owner and owner.QoLSettings
-    if not store or type(store.Get) ~= "function" or not _G.NaowhForeverFish then return false end
-    local okEnabled, enabled = pcall(store.Get, "enabled")
-    local okFishing, fishing = pcall(store.Get, "fishingKey")
-    return okEnabled and okFishing and enabled == true and fishing == true
+    local spells = owner and owner.FishingData and owner.FishingData.SPELLS
+    if type(spells) ~= "table" or not C_SpellBook or type(C_SpellBook.IsSpellKnown) ~= "function" then return end
+    local best, bestRank
+    for spellID, rank in pairs(spells) do
+        local ok, known = pcall(C_SpellBook.IsSpellKnown, spellID)
+        if ok and known and (not bestRank or rank > bestRank) then
+            best, bestRank = spellID, rank
+        end
+    end
+    return best
+end
+
+local function FishingAvailable()
+    return BestFishingSpell() ~= nil
 end
 
 local function SafeShown(frame)
@@ -137,7 +146,8 @@ local function ScanFishingPoleReminder()
         if child.slot == 16 and child.texture then
             ApplyBorder(child)
             local click = child._fafnyirFishingClick
-            local shouldClick = ClickableFishingPole() and FishingAvailable()
+            local fishingSpell = BestFishingSpell()
+            local shouldClick = ClickableFishingPole() and fishingSpell ~= nil
             if shouldClick and not click and not (InCombatLockdown and InCombatLockdown()) then
                 click = CreateFrame("Button", nil, child, "SecureActionButtonTemplate")
                 click:SetAllPoints(child)
@@ -147,9 +157,7 @@ local function ScanFishingPoleReminder()
                 -- target's secure PreClick never arms the fishing action.
                 click:RegisterForClicks("AnyDown", "AnyUp")
                 click:SetAttribute("useOnKeyDown", true)
-                click:SetAttribute("*type1", "click")
-                click:SetAttribute("*clickbutton1", _G.NaowhForeverFish)
-                -- An exact empty Ctrl action prevents the wildcard cast, leaving
+                -- An exact empty Ctrl action prevents the normal spell cast, leaving
                 -- Ctrl-click available for Naowh's existing dismiss behavior.
                 click:SetAttribute("ctrl-type1", "")
                 click:SetScript("OnEnter", function()
@@ -167,6 +175,12 @@ local function ScanFishingPoleReminder()
                     end
                 end)
                 child._fafnyirFishingClick = click
+            end
+            if click and shouldClick then
+                click:SetAttribute("*type1", nil)
+                click:SetAttribute("*clickbutton1", nil)
+                click:SetAttribute("type1", "spell")
+                click:SetAttribute("spell1", fishingSpell)
             end
             if click then click:SetShown(shouldClick and child:IsShown()) end
         else
@@ -307,7 +321,7 @@ function feature:BuildOptions(parent, yOffset)
             text = T("QOL.CLICKABLE_FISHING_POLE_REMINDER"),
             tooltip = T("QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE"),
             disabled = function() return not FishingAvailable() end,
-            disabledTooltip = T("QOL.CLICKABLE_FISHING_POLE_REQUIRES_ONE_KEY"),
+            disabledTooltip = T("QOL.CLICKABLE_FISHING_POLE_REQUIRES_FISHING"),
             getValue = function() return DB().clickableFishingPole end,
             setValue = function(value)
                 DB().clickableFishingPole = value and true or false
