@@ -15,6 +15,12 @@ review. Pixels is the saved default and uses a 24-pixel edge; other styles use
 their EllesmereUI defaults. Offline tests cover gating, default state, the full
 style dropdown, all seven groups, live changes and reset; in-game appearance, combat transitions and Naowh
 layout/size changes remain to be confirmed from the requested test build.
+The same section also offers a separate default-off Clickable Fishing Pole
+Reminder toggle. When Naowh's One-Key Fishing is enabled, an out-of-combat
+secure overlay forwards ordinary left-clicks to Naowh's existing secure
+fishing action while exact Ctrl-clicks retain Naowh's reminder dismissal.
+The overlay preserves the reminder tooltip, follows pooled-icon ownership and
+is hidden when One-Key Fishing or the fishing reminder is unavailable.
 
 Final workflow `43652222266` completed successfully from source commit
 `2d7e0b5`. GitHub release `release/v2.0.4` contains the verified

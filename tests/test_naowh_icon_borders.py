@@ -5,10 +5,11 @@ from lupa.lua51 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1] / "src/FafnyirTools"
 lua = LuaRuntime(unpack_returned_tuples=True)
 lua.execute(r'''
-ns={}; SlashCmdList={}; timers={}; rows={}; borders={}; hooks={}
+ns={}; SlashCmdList={}; timers={}; rows={}; borders={}; hooks={}; ctrlDown=false
 function GetBuildInfo() return '', '', '', 16001 end
 C_AddOns={IsAddOnLoaded=function(name) return name=='EllesmereUI' or name=='NaowhForever' or name=='NaowhForever_Combat' end}
 function InCombatLockdown() return false end
+function IsControlKeyDown() return ctrlDown end
 function hooksecurefunc(store,key,fn) hooks[#hooks+1]={store=store,key=key,fn=fn} end
 C_Timer={After=function(_,fn) timers[#timers+1]=fn end}
 
@@ -26,6 +27,10 @@ local function Frame(parent)
   function f:HookScript(k,fn) self.scripts[k]=fn end
   function f:RegisterEvent(event) self.events=self.events or {};self.events[event]=true end
   function f:SetScript(k,fn) self.scripts[k]=fn end
+  function f:GetScript(k) return self.scripts[k] end
+  function f:RegisterForClicks(...) self.registeredClicks={...} end
+  function f:SetAttribute(k,v) self.attributes=self.attributes or {};self.attributes[k]=v end
+  function f:GetAttribute(k) return self.attributes and self.attributes[k] end
   return f
 end
 UIParent=Frame()
@@ -39,7 +44,7 @@ local function Icon(parent,field)
   local f=Frame(parent); f[field or 'icon']={}; return f
 end
 
-NaowhForever={QoLSettings={Set=function() end},Blessings={Settings={Set=function() end}},
+NaowhForever={QoLSettings={Set=function() end,Get=function(key) return key=='enabled' or key=='fishingKey' end},Blessings={Settings={Set=function() end}},
   AuraBuffs={Settings={Set=function() end},CampBag={Sync=function() end}}}
 NaowhForeverFoodBarFood=Frame(); NaowhForeverFoodBarDrink=Frame()
 NaowhForeverConsumableBar=Frame(); consumable=Icon(NaowhForeverConsumableBar)
@@ -48,7 +53,9 @@ NaowhForeverTrinkets=Frame(); trinket=Icon(NaowhForeverTrinkets)
 NaowhForeverBlessingBar=Frame(); blessing=Icon(NaowhForeverBlessingBar)
 NaowhForeverGearReminders=Frame()
 fishingReminder=Frame(NaowhForeverGearReminders); fishingReminder.texture={}; fishingReminder.slot=16
+fishingReminder:SetScript('OnMouseUp',function() dismissed=(dismissed or 0)+1 end)
 otherReminder=Frame(NaowhForeverGearReminders); otherReminder.texture={}; otherReminder.slot=13
+NaowhForeverFish=Frame()
 bag=Icon(UIParent,'tex'); bag.cooldown={}; bag.count={}
 function bag:GetAttribute(key) if key=='item1' then return 'item:211527' end end
 
@@ -77,6 +84,7 @@ f:BuildOptions({},0)
 assert(rows[1].text=='Enable Naowh Forever Icon Borders')
 assert(rows[2].text=='Border Style' and rows[2].getValue()=='pixels' and rows[2].disabled())
 assert(rows[2].values.blizz=='Blizzard')
+assert(rows[3].text=='Clickable Fishing Pole Reminder' and rows[3].getValue()==false and not rows[3].disabled())
 rows[1].setValue(true)
 assert(#borders==9,#borders) -- seven supported icons + the fishing reminder + module event frame
 assert(fishingReminder.children[1] and fishingReminder.children[1].isFafnyirBorder)
@@ -88,6 +96,14 @@ for _,border in ipairs(borders) do
   end
 end
 assert(#hooks==4)
+rows[3].setValue(true)
+assert(ns:GetDatabase().naowhForeverIconBorders.clickableFishingPole==true)
+assert(#borders==10,#borders)
+local click=fishingReminder._fafnyirFishingClick
+assert(click and click.attributes['*type1']=='click')
+assert(click.attributes['*clickbutton1']==NaowhForeverFish and click.attributes['ctrl-type1']=='')
+ctrlDown=true;click.scripts.PostClick(click,'LeftButton');ctrlDown=false
+assert(dismissed==1)
 rows[2].setValue('blizz')
 for _,border in ipairs(borders) do
   if border.applied then
@@ -99,5 +115,6 @@ rows[1].setValue(false)
 for _,border in ipairs(borders) do if border.applied then assert(border.shown==false) end end
 f:Reset(); assert(ns:GetDatabase().naowhForeverIconBorders.enabled==false)
 assert(ns:GetDatabase().naowhForeverIconBorders.texture=='pixels')
+assert(ns:GetDatabase().naowhForeverIconBorders.clickableFishingPole==false)
 ''')
 print("PASS Naowh Forever icon borders gate, targets, Pixels rendering, hooks, toggle, and reset")

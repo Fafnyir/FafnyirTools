@@ -7,6 +7,9 @@
   Sleeping Bag and Fishing Pole Reminder icons without changing Naowh settings
   or secure actions. Pixels
   remains the default with a 24-pixel edge.
+- Added an optional secure click-through that lets the Fishing Pole Reminder
+  use Naowh Forever's existing One-Key Fishing action while preserving its
+  tooltip and Ctrl-click dismissal.
 
 ## v2.0.4 — Forever Sleeping Bag forecast
 

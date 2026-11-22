@@ -89,6 +89,7 @@ ns.defaults = {
     naowhForeverIconBorders = {
         enabled = false,
         texture = "pixels",
+        clickableFishingPole = false,
     },
     cursorReticle = {
         enabled = false,

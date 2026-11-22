@@ -14,6 +14,10 @@ or `CHANGELOG.md`, not here.
   change Naowh icon sizes and layouts, reload, and confirm no double-border
   artifacts or secure-action interference. Repeat with `zhCN`/`zhTW`; new
   translations await Yilang's review.
+- Test Clickable Fishing Pole Reminder with One-Key Fishing enabled/disabled,
+  ordinary left-click casting, lure handling, Ctrl-click dismissal, tooltip
+  behavior, combat transitions, equipping/removing a pole and pooled reminder
+  reuse. Confirm it never creates a duplicate cast or modifies Naowh settings.
 
 - Test the 2026-11-08 Forever ownership gates with EllesmereUI Bags and Naowh
   Forever separately and together: active/disabled Alt Item Counts, XP Bar and

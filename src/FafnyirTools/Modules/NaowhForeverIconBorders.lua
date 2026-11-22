@@ -24,6 +24,19 @@ local function Enabled()
     return DB().enabled == true
 end
 
+local function ClickableFishingPole()
+    return DB().clickableFishingPole == true
+end
+
+local function FishingAvailable()
+    local owner = _G.NaowhForever
+    local store = owner and owner.QoLSettings
+    if not store or type(store.Get) ~= "function" or not _G.NaowhForeverFish then return false end
+    local okEnabled, enabled = pcall(store.Get, "enabled")
+    local okFishing, fishing = pcall(store.Get, "fishingKey")
+    return okEnabled and okFishing and enabled == true and fishing == true
+end
+
 local function SafeShown(frame)
     local ok, shown = pcall(frame.IsShown, frame)
     return ok and shown == true
@@ -123,9 +136,40 @@ local function ScanFishingPoleReminder()
     for _, child in ipairs(Children(_G.NaowhForeverGearReminders)) do
         if child.slot == 16 and child.texture then
             ApplyBorder(child)
+            local click = child._fafnyirFishingClick
+            local shouldClick = ClickableFishingPole() and FishingAvailable()
+            if shouldClick and not click and not (InCombatLockdown and InCombatLockdown()) then
+                click = CreateFrame("Button", nil, child, "SecureActionButtonTemplate")
+                click:SetAllPoints(child)
+                click:SetFrameLevel(child:GetFrameLevel() + 10)
+                click:RegisterForClicks("AnyUp")
+                click:SetAttribute("useOnKeyDown", false)
+                click:SetAttribute("*type1", "click")
+                click:SetAttribute("*clickbutton1", _G.NaowhForeverFish)
+                -- An exact empty Ctrl action prevents the wildcard cast, leaving
+                -- Ctrl-click available for Naowh's existing dismiss behavior.
+                click:SetAttribute("ctrl-type1", "")
+                click:SetScript("OnEnter", function()
+                    local script = child:GetScript("OnEnter")
+                    if script then script(child) end
+                end)
+                click:SetScript("OnLeave", function()
+                    local script = child:GetScript("OnLeave")
+                    if script then script(child) end
+                end)
+                click:SetScript("PostClick", function(_, button)
+                    if IsControlKeyDown and IsControlKeyDown() then
+                        local script = child:GetScript("OnMouseUp")
+                        if script then script(child, button) end
+                    end
+                end)
+                child._fafnyirFishingClick = click
+            end
+            if click then click:SetShown(shouldClick and child:IsShown()) end
         else
             local border = tracked[child]
             if border then border:Hide() end
+            if child._fafnyirFishingClick then child._fafnyirFishingClick:Hide() end
         end
     end
 end
@@ -133,17 +177,18 @@ end
 local function Apply()
     if not Enabled() then
         for _, border in pairs(tracked) do border:Hide() end
-        return
     end
     if InCombatLockdown and InCombatLockdown() then return end
 
-    ApplyNamed("NaowhForeverFoodBarFood")
-    ApplyNamed("NaowhForeverFoodBarDrink")
-    ScanChildren(_G.NaowhForeverConsumableBar, 2)
-    ScanChildren(_G.NaowhForeverGearBar, 2)
-    ScanChildren(_G.NaowhForeverTrinkets, 2)
-    ScanChildren(_G.NaowhForeverBlessingBar, 3)
-    ScanSleepingBag()
+    if Enabled() then
+        ApplyNamed("NaowhForeverFoodBarFood")
+        ApplyNamed("NaowhForeverFoodBarDrink")
+        ScanChildren(_G.NaowhForeverConsumableBar, 2)
+        ScanChildren(_G.NaowhForeverGearBar, 2)
+        ScanChildren(_G.NaowhForeverTrinkets, 2)
+        ScanChildren(_G.NaowhForeverBlessingBar, 3)
+        ScanSleepingBag()
+    end
     ScanFishingPoleReminder()
 end
 
@@ -209,6 +254,7 @@ end
 function feature:Reset()
     DB().enabled = ns.defaults.naowhForeverIconBorders.enabled
     DB().texture = ns.defaults.naowhForeverIconBorders.texture
+    DB().clickableFishingPole = ns.defaults.naowhForeverIconBorders.clickableFishingPole
     self:Refresh()
 end
 
@@ -251,6 +297,21 @@ function feature:BuildOptions(parent, yOffset)
                 feature:Refresh()
             end,
         })
+    y = y - h
+    _, h = W:DualRow(parent, y,
+        {
+            type = "toggle",
+            text = T("QOL.CLICKABLE_FISHING_POLE_REMINDER"),
+            tooltip = T("QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE"),
+            disabled = function() return not FishingAvailable() end,
+            disabledTooltip = T("QOL.CLICKABLE_FISHING_POLE_REQUIRES_ONE_KEY"),
+            getValue = function() return DB().clickableFishingPole end,
+            setValue = function(value)
+                DB().clickableFishingPole = value and true or false
+                feature:Refresh()
+            end,
+        },
+        { type = "description", text = T("QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE") })
     y = y - h
     return math.abs(y)
 end

@@ -666,3 +666,8 @@ EllesmereUI defaults.
 Include only the active Fishing Pole Reminder from Naowh's pooled Gear
 Reminders icons. Do not style the unrelated worn-gear or Argent Dawn reminder
 icons, and refresh ownership when equipment or zone state changes.
+Add a separate default-off Clickable Fishing Pole Reminder option. It may only
+activate when Naowh's One-Key Fishing is enabled and its secure target exists.
+Use a secure click-through overlay created outside combat; preserve the native
+tooltip and route Ctrl-click back to Naowh's existing dismissal handler. Do not
+copy Naowh's fishing, lure or gear-selection logic into Fafnyir Tools.
