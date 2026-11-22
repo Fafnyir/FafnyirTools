@@ -18,7 +18,7 @@ layout/size changes remain to be confirmed from the requested test build.
 The same section also offers a separate default-off Clickable Fishing Pole
 Reminder toggle. An out-of-combat secure overlay casts the character's highest
 known Fishing rank directly while exact Ctrl-clicks retain Naowh's reminder dismissal.
-The overlay preserves the reminder tooltip, follows pooled-icon ownership and
+The overlay suppresses the reminder tooltip while enabled, follows pooled-icon ownership and
 is hidden when One-Key Fishing or the fishing reminder is unavailable.
 Two attempts to chain the click into Naowh's hidden One-Key Fishing action did
 not cast in game, including a corrected mouse-down forward. The current test

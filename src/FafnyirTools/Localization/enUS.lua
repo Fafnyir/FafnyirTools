@@ -141,7 +141,7 @@ ns:RegisterLocale("enUS", {
     ["QOL.ENABLE_NAOWH_FOREVER_ICON_BORDERS"] = "Enable Naowh Forever Icon Borders",
     ["QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE"] = "Apply the selected EllesmereUI border to Naowh Forever's Food & Drink, Consumable, Gear Set, Trinket, Blessings, Sleeping Bag, and Fishing Pole Reminder icons.",
     ["QOL.CLICKABLE_FISHING_POLE_REMINDER"] = "Clickable Fishing Pole Reminder",
-    ["QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE"] = "Left-click Naowh Forever's Fishing Pole Reminder to cast your highest known Fishing rank. Ctrl-click still dismisses the reminder.",
+    ["QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE"] = "Left-click Naowh Forever's Fishing Pole Reminder to cast your highest known Fishing rank. Ctrl-click still dismisses the reminder; its tooltip is hidden while this option is enabled.",
     ["QOL.CLICKABLE_FISHING_POLE_REQUIRES_FISHING"] = "Learn Fishing first.",
     ["QOL.CURSOR_RETICLE"] = "CURSOR RETICLE",
     ["QOL.RETICLE_ONLY_WHILE_CLICKING"] = "Reticle Only While Clicking",

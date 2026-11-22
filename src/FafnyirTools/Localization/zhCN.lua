@@ -141,7 +141,7 @@ ns:RegisterLocale("zhCN", {
     ["QOL.ENABLE_NAOWH_FOREVER_ICON_BORDERS"] = "启用 Naowh Forever 图标边框",
     ["QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE"] = "将所选 EllesmereUI 边框应用于 Naowh Forever 的食物和饮料、消耗品、装备套装、饰品、祝福、睡袋和钓鱼竿提醒图标。",
     ["QOL.CLICKABLE_FISHING_POLE_REMINDER"] = "可点击的钓鱼竿提醒",
-    ["QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE"] = "左键点击 Naowh Forever 的钓鱼竿提醒以施放已知的最高等级钓鱼。Ctrl 点击仍会关闭提醒。",
+    ["QOL.CLICKABLE_FISHING_POLE_REMINDER_NOTE"] = "左键点击 Naowh Forever 的钓鱼竿提醒以施放已知的最高等级钓鱼。Ctrl 点击仍会关闭提醒；启用此选项时将隐藏提示信息。",
     ["QOL.CLICKABLE_FISHING_POLE_REQUIRES_FISHING"] = "请先学习钓鱼。",
     ["QOL.CURSOR_RETICLE"] = "鼠标准星",
     ["QOL.RETICLE_ONLY_WHILE_CLICKING"] = "点击时显示准星",

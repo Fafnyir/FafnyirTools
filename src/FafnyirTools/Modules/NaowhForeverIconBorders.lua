@@ -160,14 +160,6 @@ local function ScanFishingPoleReminder()
                 -- An exact empty Ctrl action prevents the normal spell cast, leaving
                 -- Ctrl-click available for Naowh's existing dismiss behavior.
                 click:SetAttribute("ctrl-type1", "")
-                click:SetScript("OnEnter", function()
-                    local script = child:GetScript("OnEnter")
-                    if script then script(child) end
-                end)
-                click:SetScript("OnLeave", function()
-                    local script = child:GetScript("OnLeave")
-                    if script then script(child) end
-                end)
                 click:SetScript("PostClick", function(_, button, down)
                     if not down and IsControlKeyDown and IsControlKeyDown() then
                         local script = child:GetScript("OnMouseUp")
@@ -177,6 +169,11 @@ local function ScanFishingPoleReminder()
                 child._fafnyirFishingClick = click
             end
             if click and shouldClick then
+                -- The secure overlay intentionally owns hover while enabled,
+                -- suppressing Naowh's reminder tooltip. Hiding the overlay
+                -- restores the original reminder's mouse scripts unchanged.
+                click:SetScript("OnEnter", nil)
+                click:SetScript("OnLeave", nil)
                 click:SetAttribute("*type1", nil)
                 click:SetAttribute("*clickbutton1", nil)
                 click:SetAttribute("type1", "spell")

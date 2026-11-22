@@ -12,6 +12,8 @@
   tooltip and Ctrl-click dismissal.
 - Replaced the nonfunctional chained click with a direct secure cast of the
   character's highest known Fishing rank; no keybind is required.
+- Suppressed the Fishing Pole Reminder tooltip while its clickable overlay is
+  enabled; disabling the option restores Naowh's original tooltip.
 
 ## v2.0.4 — Forever Sleeping Bag forecast
 

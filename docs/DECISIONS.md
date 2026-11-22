@@ -668,7 +668,10 @@ Reminders icons. Do not style the unrelated worn-gear or Argent Dawn reminder
 icons, and refresh ownership when equipment or zone state changes.
 Add a separate default-off Clickable Fishing Pole Reminder option. Use a secure
 overlay created outside combat to cast the highest learned Fishing rank;
-preserve the native tooltip and route Ctrl-click back to Naowh's existing
+route Ctrl-click back to Naowh's existing
 dismissal handler. No keybind or One-Key Fishing setting is required. Do not
 copy Naowh's lure or gear-selection logic into Fafnyir Tools. Two click-through
 attempts targeting Naowh's hidden secure button failed in game and are retired.
+Per the user's follow-up, suppress the native Fishing Pole Reminder tooltip
+while the clickable overlay is enabled; disabling the option restores Naowh's
+original hover behavior without altering its scripts.

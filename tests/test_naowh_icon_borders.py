@@ -104,6 +104,7 @@ local click=fishingReminder._fafnyirFishingClick
 assert(click and click.attributes.type1=='spell' and click.attributes.spell1==18248)
 assert(click.attributes['*type1']==nil and click.attributes['*clickbutton1']==nil)
 assert(click.attributes['ctrl-type1']=='')
+assert(click.scripts.OnEnter==nil and click.scripts.OnLeave==nil)
 assert(click.attributes.useOnKeyDown==true)
 assert(click.registeredClicks[1]=='AnyDown' and click.registeredClicks[2]=='AnyUp')
 ctrlDown=true;click.scripts.PostClick(click,'LeftButton',true);assert(dismissed==nil)
