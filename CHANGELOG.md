@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Post-v2.0.4 test
+## v2.0.5 — Naowh Forever icon borders and clickable fishing
 
 - Added a default-off WoW Forever option to apply the selected EllesmereUI border
   to Naowh Forever Food & Drink, Consumable, Gear Set, Trinket, Blessings and

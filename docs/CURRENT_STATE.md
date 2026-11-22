@@ -1,4 +1,4 @@
-# Current state — v2.0.4 release, 2026-11-14
+# Current state — v2.0.5 release candidate, 2026-11-22
 
 ## Naowh Forever icon-border test — 2026-11-22
 

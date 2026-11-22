@@ -1,3 +1,32 @@
+Fafnyir Tools v2.0.5
+
+v2.0.5 changes
+
+- Adds a default-off Naowh Forever Icon Borders option when EllesmereUI is
+  available.
+- Applies the selected EllesmereUI border to Naowh Forever Food & Drink,
+  Consumable, Gear Set, Trinket, Blessings, Sleeping Bag and Fishing Pole
+  Reminder icons.
+- Keeps Pixels as the default at a 24-pixel edge while other styles retain
+  their EllesmereUI defaults.
+- Adds a separate default-off Clickable Fishing Pole Reminder option that
+  securely casts the character's highest known Fishing rank without a keybind.
+- Retains Ctrl-click dismissal and suppresses the reminder tooltip while the
+  clickable option is enabled.
+- Includes first-pass Simplified and Traditional Chinese strings pending
+  Yilang's review.
+
+Testing status
+
+- The complete offline validation suite passes, including feature gating,
+  supported icon targeting, pooled reminder isolation, live border selection,
+  24-pixel Pixels sizing, direct secure spell selection, reset and localization.
+- The user confirmed direct left-click Fishing casting works in WoW Forever on
+  2026-11-22. Broader border-style, combat-transition and pooled-icon coverage
+  remains useful follow-up testing.
+
+Previous release: Fafnyir Tools v2.0.4
+
 Fafnyir Tools v2.0.4
 
 v2.0.4 changes

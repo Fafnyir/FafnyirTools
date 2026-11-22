@@ -9,10 +9,16 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v2.0.4"
+local VERSION = "v2.0.5"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.5", lines = {
+        "Added selectable EllesmereUI borders to supported Naowh Forever icon bars and reminders.",
+        "Pixels remains the default with a 24-pixel edge; other styles use their EllesmereUI defaults.",
+        "Added an optional clickable Fishing Pole Reminder that securely casts the highest known Fishing rank.",
+        "Clickable fishing suppresses the reminder tooltip while enabled and retains Ctrl-click dismissal.",
+    }},
     { version = "v2.0.4", lines = {
         "Added the Cozy Sleeping Bag's live Well-Rested XP bonus to the Forever Leveling Forecast.",
         "The forecast now shows the detected 1–3% bonus and added completed-quest XP.",
