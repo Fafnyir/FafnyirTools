@@ -3,7 +3,7 @@
 ## Naowh Forever icon-border test — 2026-11-22
 
 At the user's direction, a default-off Forever-only QoL option applies
-EllesmereUI's Pixels border to supported Naowh Forever icon controls: Food &
+EllesmereUI's Pixels border with a 24-pixel edge to supported Naowh Forever icon controls: Food &
 Drink, Consumable, Gear Set, Trinket, Blessings and Sleeping Bag. The adapter
 uses stable named parents and targeted child scans, never global frame
 enumeration, and does not change Naowh settings or secure action attributes.

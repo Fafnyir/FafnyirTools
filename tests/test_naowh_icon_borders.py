@@ -50,11 +50,11 @@ function bag:GetAttribute(key) if key=='item1' then return 'item:211527' end end
 EllesmereUI={Widgets={}}
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
 function EllesmereUI.Widgets:DualRow(_,_,left,right) rows[#rows+1]=left;rows[#rows+1]=right;return {},40 end
-function EllesmereUI.GetBorderDefaultSize() return 2 end
+function EllesmereUI.BorderPxStep(px,texture) assert(px==24 and texture=='pixels');return 3 end
 function EllesmereUI.GetBorderStyleSelectDefaults() return {r=.5,g=.6,b=.7},false end
 function EllesmereUI.BorderPx(_,size) return size end
-function EllesmereUI.ApplyBorderStyle(frame,size,r,g,b,a,texture)
-  frame.applied={size=size,r=r,g=g,b=b,a=a,texture=texture}
+function EllesmereUI.ApplyBorderStyle(frame,size,r,g,b,a,texture,_,_,_,_,context,_,_,exactPixels)
+  frame.applied={size=size,r=r,g=g,b=b,a=a,texture=texture,context=context,exactPixels=exactPixels}
 end
 ''')
 ns = lua.globals().ns
@@ -71,7 +71,8 @@ assert(rows[1].text=='Enable Naowh Forever Icon Borders')
 rows[1].setValue(true)
 assert(#borders==7,#borders)
 for _,border in ipairs(borders) do
-  assert(border.applied.texture=='pixels' and border.applied.size==2)
+  assert(border.applied.texture=='pixels' and border.applied.size==3)
+  assert(border.applied.context=='naowh_forever_icon' and border.applied.exactPixels==24)
 end
 assert(#hooks==4)
 rows[1].setValue(false)

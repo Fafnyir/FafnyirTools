@@ -2,7 +2,7 @@
 
 ## Post-v2.0.4 test
 
-- Added a default-off WoW Forever option to apply EllesmereUI's Pixels border
+- Added a default-off WoW Forever option to apply EllesmereUI's 24-pixel Pixels border
   to Naowh Forever Food & Drink, Consumable, Gear Set, Trinket, Blessings and
   Sleeping Bag icons without changing Naowh settings or secure actions.
 

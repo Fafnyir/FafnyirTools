@@ -14,6 +14,7 @@ local tracked = setmetatable({}, { __mode = "k" })
 local settingsHooked = setmetatable({}, { __mode = "k" })
 local refreshQueued = false
 local sleepingBagHooked = false
+local BORDER_PIXELS = 24
 
 local function DB()
     return ns:GetDatabase().naowhForeverIconBorders
@@ -53,9 +54,9 @@ local function ApplyBorder(target)
 
     local texture = "pixels"
     local context = "naowh_forever_icon"
-    local size = EllesmereUI.GetBorderDefaultSize
-        and EllesmereUI.GetBorderDefaultSize(context, texture)
-        or 1
+    local size = EllesmereUI.BorderPxStep
+        and EllesmereUI.BorderPxStep(BORDER_PIXELS, texture)
+        or 3
     local color, behind
     if EllesmereUI.GetBorderStyleSelectDefaults then
         color, behind = EllesmereUI.GetBorderStyleSelectDefaults(texture)
@@ -63,12 +64,11 @@ local function ApplyBorder(target)
     color = color or { r = 1, g = 1, b = 1 }
     local ok, level = pcall(target.GetFrameLevel, target)
     border:SetFrameLevel(math.max(0, (ok and level or 0) + (behind and -1 or 8)))
-    local exactPixels = EllesmereUI.BorderPx and EllesmereUI.BorderPx(nil, size, texture)
     EllesmereUI.ApplyBorderStyle(
         border, size,
         color.r or 1, color.g or 1, color.b or 1, 1,
         texture, nil, nil, nil, nil,
-        context, size, nil, exactPixels
+        context, size, nil, BORDER_PIXELS
     )
     SetBorderShown(target, border)
 end
