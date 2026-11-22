@@ -653,10 +653,13 @@ validation is required; broader in-game BigWigs coverage remains documented.
 
 ## 2026-11-22 — Naowh Forever icon-border scope
 
-Add one default-off, Forever-only QoL option that applies EllesmereUI's Pixels
-border at an exact 24-pixel edge to Naowh Forever Food & Drink, Consumable, Gear Set, Trinket, Blessings
+Add one default-off, Forever-only QoL option that applies the selected
+EllesmereUI border to Naowh Forever Food & Drink, Consumable, Gear Set, Trinket, Blessings
 and Sleeping Bag icons. Do not include the PvP Flag or Naowh status bars in the
 initial scope. Preserve Naowh's settings and secure attributes, avoid global
 frame enumeration, and defer protected-frame cosmetic creation during combat.
 The option requires both Naowh Forever and EllesmereUI; it is not a standalone
 replacement border renderer.
+Expose the same live border-style dropdown as Icon History and BigWigs. Pixels
+remains the default with an exact 24-pixel edge; other styles retain their
+EllesmereUI defaults.

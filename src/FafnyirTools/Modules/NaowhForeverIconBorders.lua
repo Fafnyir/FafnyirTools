@@ -52,11 +52,20 @@ local function ApplyBorder(target)
         end
     end
 
-    local texture = "pixels"
+    local texture = DB().texture or "pixels"
     local context = "naowh_forever_icon"
-    local size = EllesmereUI.BorderPxStep
-        and EllesmereUI.BorderPxStep(BORDER_PIXELS, texture)
-        or 3
+    local exactPixels
+    local size
+    if texture == "pixels" then
+        exactPixels = BORDER_PIXELS
+        size = EllesmereUI.BorderPxStep
+            and EllesmereUI.BorderPxStep(BORDER_PIXELS, texture)
+            or 3
+    else
+        size = EllesmereUI.GetBorderDefaultSize
+            and EllesmereUI.GetBorderDefaultSize(context, texture)
+            or 1
+    end
     local color, behind
     if EllesmereUI.GetBorderStyleSelectDefaults then
         color, behind = EllesmereUI.GetBorderStyleSelectDefaults(texture)
@@ -68,7 +77,7 @@ local function ApplyBorder(target)
         border, size,
         color.r or 1, color.g or 1, color.b or 1, 1,
         texture, nil, nil, nil, nil,
-        context, size, nil, BORDER_PIXELS
+        context, size, nil, exactPixels
     )
     SetBorderShown(target, border)
 end
@@ -187,6 +196,7 @@ end
 
 function feature:Reset()
     DB().enabled = ns.defaults.naowhForeverIconBorders.enabled
+    DB().texture = ns.defaults.naowhForeverIconBorders.texture
     self:Refresh()
 end
 
@@ -196,6 +206,15 @@ function feature:BuildOptions(parent, yOffset)
     parent._showRowDivider = true
     _, h = W:SectionHeader(parent, T("QOL.NAOWH_FOREVER_ICON_BORDERS"), y)
     y = y - h
+    local values, order
+    if EllesmereUI.GetBorderTextureDropdown then
+        values, order = EllesmereUI.GetBorderTextureDropdown()
+    else
+        values, order = {
+            solid = T("QOL.SOLID"),
+            pixels = T("QOL.PIXELS"),
+        }, { "solid", "pixels" }
+    end
     _, h = W:DualRow(parent, y,
         {
             type = "toggle",
@@ -207,7 +226,19 @@ function feature:BuildOptions(parent, yOffset)
                 feature:Refresh()
             end,
         },
-        { type = "description", text = T("QOL.NAOWH_FOREVER_ICON_BORDERS_NOTE") })
+        {
+            type = "dropdown",
+            text = T("QOL.BORDER_STYLE"),
+            values = values,
+            order = order,
+            disabled = function() return not DB().enabled end,
+            disabledTooltip = T("QOL.ENABLE_NAOWH_FOREVER_ICON_BORDERS"),
+            getValue = function() return DB().texture or "pixels" end,
+            setValue = function(value)
+                DB().texture = value
+                feature:Refresh()
+            end,
+        })
     y = y - h
     return math.abs(y)
 end

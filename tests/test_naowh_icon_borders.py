@@ -51,7 +51,9 @@ EllesmereUI={Widgets={}}
 function EllesmereUI.Widgets:SectionHeader() return {},20 end
 function EllesmereUI.Widgets:DualRow(_,_,left,right) rows[#rows+1]=left;rows[#rows+1]=right;return {},40 end
 function EllesmereUI.BorderPxStep(px,texture) assert(px==24 and texture=='pixels');return 3 end
+function EllesmereUI.GetBorderDefaultSize(context,texture) assert(context=='naowh_forever_icon');return texture=='blizz' and 4 or 1 end
 function EllesmereUI.GetBorderStyleSelectDefaults() return {r=.5,g=.6,b=.7},false end
+function EllesmereUI.GetBorderTextureDropdown() return {pixels='Pixels',blizz='Blizzard'},{'pixels','blizz'} end
 function EllesmereUI.BorderPx(_,size) return size end
 function EllesmereUI.ApplyBorderStyle(frame,size,r,g,b,a,texture,_,_,_,_,context,_,_,exactPixels)
   frame.applied={size=size,r=r,g=g,b=b,a=a,texture=texture,context=context,exactPixels=exactPixels}
@@ -68,6 +70,8 @@ assert(f and ns:GetDatabase().naowhForeverIconBorders.enabled==false)
 f:Refresh(); assert(#borders==0)
 f:BuildOptions({},0)
 assert(rows[1].text=='Enable Naowh Forever Icon Borders')
+assert(rows[2].text=='Border Style' and rows[2].getValue()=='pixels' and rows[2].disabled())
+assert(rows[2].values.blizz=='Blizzard')
 rows[1].setValue(true)
 assert(#borders==7,#borders)
 for _,border in ipairs(borders) do
@@ -75,8 +79,14 @@ for _,border in ipairs(borders) do
   assert(border.applied.context=='naowh_forever_icon' and border.applied.exactPixels==24)
 end
 assert(#hooks==4)
+rows[2].setValue('blizz')
+for _,border in ipairs(borders) do
+  assert(border.applied.texture=='blizz' and border.applied.size==4)
+  assert(border.applied.exactPixels==nil)
+end
 rows[1].setValue(false)
 for _,border in ipairs(borders) do assert(border.shown==false) end
 f:Reset(); assert(ns:GetDatabase().naowhForeverIconBorders.enabled==false)
+assert(ns:GetDatabase().naowhForeverIconBorders.texture=='pixels')
 ''')
 print("PASS Naowh Forever icon borders gate, targets, Pixels rendering, hooks, toggle, and reset")
