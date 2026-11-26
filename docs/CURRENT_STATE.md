@@ -1,5 +1,15 @@
 # Current state — v2.0.5 release, 2026-11-22
 
+## Permanent Companion Pet Forever restoration test — 2026-11-26
+
+At the user's direction, the existing default-off Permanent Companion Pet
+feature is registered again on WoW Forever. It retains the same per-character
+specific/random-favorite choices, legacy migration, PvP and gameplay safety
+guards, throttling and current/legacy Pet Journal support used on Retail.
+Fafnyir Tools does not read or write EllesmereUI's equivalent setting. Forever
+inventory and companion event subscriptions now coexist. Offline validation
+passes; in-game Forever confirmation remains pending.
+
 Final workflow `45046608612` completed successfully from source commit
 `a2c820a`. GitHub release `release/v2.0.5` contains the verified
 `Fafnyir_Tools_v2.0.5_a2c820a.zip` and build manifest. CurseForge accepted the

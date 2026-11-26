@@ -1,5 +1,12 @@
 Fafnyir Tools v2.0.5
 
+Post-v2.0.5 test changes
+
+- Restores the default-off Permanent Companion Pet controls on WoW Forever.
+- Preserves per-character pet choices and existing safety behavior without
+  changing EllesmereUI settings.
+- Allows Forever companion and inventory events to operate together.
+
 v2.0.5 changes
 
 - Adds a default-off Naowh Forever Icon Borders option when EllesmereUI is

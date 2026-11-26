@@ -92,13 +92,16 @@ assert(summons[#summons]=='forever-one')
 local saved=C_PetJournal;C_PetJournal=nil;db.enabled=true;f:Refresh();flush();C_PetJournal=saved
 ''')
 print('PASS companion migration, per-character choices/reset, all safety guards, throttle/coalescing, events, modes and missing API')
-# Forever delegates companion persistence to EllesmereUI Forever Essentials.
+# Forever restores the same companion controls and preserves legacy settings.
 forever=LuaRuntime(unpack_returned_tuples=True)
 forever.execute("ns={};SlashCmdList={};function GetBuildInfo() return '1.60.1','1','',16001 end")
 forever.execute((ROOT/'Core/Bootstrap.lua').read_text(),'FafnyirTools',forever.globals().ns)
 forever.execute((ROOT/'Modules/PermanentCompanionPet.lua').read_text(),'FafnyirTools',forever.globals().ns)
-forever.execute("assert(ns.IS_FOREVER and ns.modules.PermanentCompanionPet==nil and type(FafnyirToolsDB.permanentCompanionPet)=='table')")
-print('PASS Forever companion ownership delegated to EllesmereUI with legacy settings preserved')
+forever.execute("assert(ns.IS_FOREVER and type(ns.modules.PermanentCompanionPet)=='table' and type(FafnyirToolsDB.permanentCompanionPet)=='table')")
+events_source=(ROOT/'Core/Events.lua').read_text()
+assert 'if ns.modules.PermanentCompanionPet then' in events_source
+assert events_source.index('if ns.IS_FOREVER and ns.modules.Inventory then') < events_source.index('if ns.modules.PermanentCompanionPet then')
+print('PASS Forever companion controls restored with legacy settings and inventory events preserved')
 # Real metadata from all features; no fake feature slots in this registration check.
 for path in ['Modules/About.lua','Modules/GlobalSettings.lua','Modules/ForeverFog.lua','Modules/LevelingForecast.lua','Modules/FocusHeader.lua','Modules/SharedArtwork.lua','Modules/AuraSkins.lua','Modules/Resting.lua',
              'Modules/RightClickSelfCast.lua','Modules/IconHistoryBorder.lua',

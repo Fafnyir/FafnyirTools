@@ -7,6 +7,12 @@ or `CHANGELOG.md`, not here.
 
 ## v2.0.0 standalone-capability test
 
+- On WoW Forever, enable Fafnyir's restored Permanent Companion Pet option with
+  EllesmereUI's equivalent option disabled. Test random favorite and specific
+  pet modes, per-character persistence, mounting/combat/PvP guards, reloads and
+  coexistence with Fafnyir inventory events. Then repeat once with both pet
+  options enabled to document whether the two addons compete.
+
 - Test Naowh Forever Icon Borders with Food-only and Food+Drink classes,
   Consumable Bar food/drink placement, Gear Set and Trinket resizing,
   Blessings layouts, the Sleeping Bag button, and the Fishing Pole Reminder.
@@ -118,10 +124,10 @@ useful follow-up checks rather than release blockers:
 
 - Retail: confirm Fafnyir Tools has no Flyout Fix or Bags & Inventory page,
   EllesmereUI owns both surfaces, and the Fafnyir companion controls remain.
-- Forever: confirm Fafnyir Tools has no companion-pet controls, EllesmereUI
-  Forever Essentials owns pet persistence, and Fafnyir Bags & Inventory remains.
-- On both clients, confirm an ordinary upgrade leaves dormant legacy flyout,
-  inventory and companion SavedVariables untouched.
+- Forever: confirm the restored Fafnyir companion-pet controls and Fafnyir Bags
+  & Inventory can operate together without dropped event updates.
+- On both clients, confirm an ordinary upgrade leaves legacy flyout and
+  inventory SavedVariables untouched and preserves companion choices.
 - Confirm CurseForge file `9376718` is publicly available after moderation.
 - Verify or manually update the independently hosted Wago release; the current
   release workflow publishes only GitHub and CurseForge.

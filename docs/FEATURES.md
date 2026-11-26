@@ -9,7 +9,7 @@
 | Device Layout | Yes | Yes |
 | Right-click self cast | Blizzard action bars | EllesmereUI and supported action bars |
 | XP bar gradients and Quest XP | Blizzard native Experience bar | Hidden; EllesmereUI owns XP presentation |
-| Persistent Companion Pet | Retail | Retail |
+| Persistent Companion Pet | Retail and Forever | Retail and Forever |
 | Inventory tracking | Forever | Forever |
 | Native resting icon controls | Yes; default off | Blizzard indicator remains untouched; EUI Resting remains available |
 | EUI Resting, Aura Skins, Focus Header | Hidden; requires EllesmereUI frames | Yes |
@@ -70,7 +70,7 @@ The source and explicit user decisions outrank old assistant descriptions. “Pr
 | Device Layout | Per-installation Edit Mode default, spec overrides, safe switching and concise loaded-layout chat message | Present; not hardware identification or cross-machine sync |
 | Inventory | Forever only when no external owner is active: character bag/bank/currency caches, gold totals, item-location tooltips with class-colored names, targeted cached-alt removal and Reset All Characters. It remains dormant on Retail, whenever EllesmereUI Bags is loaded, or while Naowh Forever Alt Item Counts is active; saved caches are preserved | Present as fallback; external-owner compatibility gate added 2026-11-08 |
 | Wider inventory locations | Warband/guild/mail/auction data structures and aggregation exist, but dedicated scanners/search UI are not implemented in this baseline | Incomplete; do not advertise full tracking |
-| Persistent Companion Pet | Retail only: per-character specific/random favorite companion with safety controls. Forever delegates the equivalent behavior to EllesmereUI Forever Essentials; retain historical credit and legacy data | Present on Retail; retired on Forever |
+| Persistent Companion Pet | Retail and Forever: per-character specific/random favorite companion with safety controls; default off and independent of EllesmereUI's equivalent Forever option; retain historical credit and legacy data | Present |
 | Leveling Forecast | Read-only QoL summary of completed quest XP, effective adjusted/base quest bonus and projected post-turn-in progress; on Forever, detects Well-Rested spell 429959 and adds its live 1–3% Sleeping Bag quest-XP bonus; follows the guarded Midnight 80–90 XP curve and falls back to next-level overflow if the live current-level requirement changes; an in-place Refresh button rebuilds the page to recalculate without events or polling; never touches EllesmereUI's XP bar | v2.0.4; offline checks and user in-game test passed 2026-11-14 |
 | About | Version, history, credits, support link and privacy-safe copyable diagnostics | Reports client/dependency versions, compatibility and feature state without character/account/raw SavedVariables data; offline-tested, in-game confirmation pending |
 | Standalone window skin | Standalone-only, enabled by default; a machine-local toggle switches between the Fafnyir skin and the original Blizzard dialog frame, vertical navigation and native controls after reload | Post-v2.0.0 test; offline-tested, in-game confirmation pending |

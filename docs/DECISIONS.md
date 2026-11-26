@@ -1,5 +1,13 @@
 # Reconciled decisions
 
+## 2026-11-26 — Restore companion summoning on Forever
+
+At the user's direction, restore Fafnyir Tools' Permanent Companion Pet option
+on WoW Forever because the equivalent EllesmereUI behavior is inconsistent.
+Reuse the existing default-off implementation, preserved per-character choices,
+migration and safety guards. Do not alter EllesmereUI settings. Companion event
+subscriptions coexist with Forever inventory events rather than replacing them.
+
 ## 2026-11-08 — Fafnyir Tools sidebar position
 
 Insert the independent Fafnyir Tools group at position one in EllesmereUI's

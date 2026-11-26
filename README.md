@@ -30,7 +30,8 @@ Existing settings remain saved if an integration is temporarily unavailable.
 - Movable native resting indicator with optional max-level hiding.
 - Optional FPS and world-latency display.
 - Optional Nicer Damage font and default-tooltip health-bar suppression.
-- Retail Permanent Companion Pet controls.
+- Retail and Forever Permanent Companion Pet controls with per-character pet
+  choices and safety guards.
 - Forever inventory fallback with cached character totals and item-location
   tooltips when EllesmereUI Bags or Naowh Alt Item Counts is not active.
 - Per-installation Edit Mode device layouts and global settings transfer.

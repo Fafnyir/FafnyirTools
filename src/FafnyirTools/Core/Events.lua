@@ -27,7 +27,9 @@ if ns.IS_FOREVER and ns.modules.Inventory then
     events:RegisterEvent("BANKFRAME_OPENED")
     events:RegisterEvent("PLAYER_MONEY")
     events:RegisterEvent("BAG_UPDATE_DELAYED")
-else
+end
+
+if ns.modules.PermanentCompanionPet then
     events:RegisterEvent("PLAYER_STARTED_MOVING")
     events:RegisterEvent("ZONE_CHANGED_NEW_AREA")
     events:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED")

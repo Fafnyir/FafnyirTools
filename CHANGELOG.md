@@ -1,5 +1,12 @@
 # Reconciled project changelog
 
+## Unreleased
+
+- Restored the default-off Permanent Companion Pet controls on WoW Forever,
+  including preserved per-character choices and safety behavior.
+- Made Forever companion and inventory event subscriptions coexist without
+  changing EllesmereUI settings.
+
 ## v2.0.5 — Naowh Forever icon borders and clickable fishing
 
 - Added a default-off WoW Forever option to apply the selected EllesmereUI border
