@@ -3,7 +3,7 @@
 Standalone quality-of-life tools for World of Warcraft Retail and WoW Forever,
 with optional enhancements for EllesmereUI and Naowh Forever.
 
-**Current release:** v2.0.5
+**Current release:** v2.0.6
 
 [Download the latest GitHub release](https://github.com/Fafnyir/FafnyirTools/releases/latest) ·
 [CurseForge](https://www.curseforge.com/wow/addons/fafnyir-tools) ·

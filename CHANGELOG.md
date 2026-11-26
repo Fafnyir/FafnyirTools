@@ -1,6 +1,6 @@
 # Reconciled project changelog
 
-## Unreleased
+## v2.0.6 — Permanent Companion Pet on WoW Forever
 
 - Restored the default-off Permanent Companion Pet controls on WoW Forever,
   including preserved per-character choices and safety behavior.

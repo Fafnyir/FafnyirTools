@@ -9,10 +9,14 @@ local feature = {
 
 ns:RegisterFeature(feature.key, feature)
 
-local VERSION = "v2.0.5"
+local VERSION = "v2.0.6"
 local PATREON_URL = "https://www.patreon.com/cw/fafnyir"
 
 local CHANGELOG = {
+    { version = "v2.0.6", lines = {
+        "Restored Permanent Companion Pet on WoW Forever with saved per-character choices.",
+        "Added the EllesmereUI Auto Summon Pet menu path to the companion toggle tooltip.",
+    } },
     { version = "v2.0.5", lines = {
         "Added selectable EllesmereUI borders to supported Naowh Forever icon bars and reminders.",
         "Pixels remains the default with a 24-pixel edge; other styles use their EllesmereUI defaults.",

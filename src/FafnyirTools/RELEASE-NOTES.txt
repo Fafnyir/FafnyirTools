@@ -1,11 +1,15 @@
-Fafnyir Tools v2.0.5
+Fafnyir Tools v2.0.6
 
-Post-v2.0.5 test changes
+v2.0.6 changes
 
 - Restores the default-off Permanent Companion Pet controls on WoW Forever.
 - Preserves per-character pet choices and existing safety behavior without
   changing EllesmereUI settings.
 - Allows Forever companion and inventory events to operate together.
+- The companion toggle tooltip points to EllesmereUI → Forever Essentials →
+  General → Auto Summon Pet so players can turn off EllesmereUI summoning.
+
+Previous release: Fafnyir Tools v2.0.5
 
 v2.0.5 changes
 
