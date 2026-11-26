@@ -10,6 +10,9 @@ Fafnyir Tools does not read or write EllesmereUI's equivalent setting. Forever
 inventory and companion event subscriptions now coexist. Offline validation
 passes; in-game Forever confirmation remains pending.
 
+The Forever tooltip guides EllesmereUI users to turn off Auto Summon Pet under
+Forever Essentials → General. The Chinese warning translations await review.
+
 Final workflow `45046608612` completed successfully from source commit
 `a2c820a`. GitHub release `release/v2.0.5` contains the verified
 `Fafnyir_Tools_v2.0.5_a2c820a.zip` and build manifest. CurseForge accepted the

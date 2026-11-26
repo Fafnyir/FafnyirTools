@@ -233,6 +233,10 @@ function feature:BuildOptions(parent, yOffset)
     local W = EllesmereUI.Widgets
     local y = yOffset
     local h
+    local summonTooltip = T("QOL.KEEP_A_COMPANION_PET_SUMMONED_WHENEVER_CONDITIONS_ALLOW")
+    if ns.IS_FOREVER and ns.HAS_ELLESMEREUI then
+        summonTooltip = summonTooltip .. "\n\n" .. T("QOL.DISABLE_ELLESMERE_AUTO_SUMMON_PET")
+    end
 
     parent._showRowDivider = true
 
@@ -245,7 +249,7 @@ function feature:BuildOptions(parent, yOffset)
         {
             type = "toggle",
             text = T("QOL.ENABLE_PERMANENT_COMPANION_PET"),
-            tooltip = T("QOL.KEEP_A_COMPANION_PET_SUMMONED_WHENEVER_CONDITIONS_ALLOW"),
+            tooltip = summonTooltip,
             getValue = function() return DB().enabled end,
             setValue = function(value)
                 DB().enabled = value

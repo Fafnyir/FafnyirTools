@@ -128,6 +128,7 @@ ns:RegisterLocale("enUS", {
     ["QOL.ENABLE_ICON_BORDER"] = "Enable Icon Border",
     ["QOL.ENABLE_PERMANENT_COMPANION_PET"] = "Enable Permanent Companion Pet",
     ["QOL.KEEP_A_COMPANION_PET_SUMMONED_WHENEVER_CONDITIONS_ALLOW"] = "Keep a companion pet summoned whenever conditions allow.",
+    ["QOL.DISABLE_ELLESMERE_AUTO_SUMMON_PET"] = "Before enabling this, turn off Auto Summon Pet in EllesmereUI → Forever Essentials → General.",
     ["QOL.PET_CHOICE_THIS_CHARACTER"] = "Pet Choice (This Character)",
     ["QOL.SPECIES_OR_CUSTOM_NAME"] = "Species or custom name",
     ["QOL.SPECIFIC_PET_NAME_THIS_CHARACTER"] = "Specific Pet Name (This Character)",

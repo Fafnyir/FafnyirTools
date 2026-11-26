@@ -128,6 +128,7 @@ ns:RegisterLocale("zhCN", {
     ["QOL.ENABLE_ICON_BORDER"] = "启用图标边框",
     ["QOL.ENABLE_PERMANENT_COMPANION_PET"] = "启用常驻小宠物",
     ["QOL.KEEP_A_COMPANION_PET_SUMMONED_WHENEVER_CONDITIONS_ALLOW"] = "在条件允许时始终保持小宠物处于召唤状态。",
+    ["QOL.DISABLE_ELLESMERE_AUTO_SUMMON_PET"] = "启用前，请在 EllesmereUI → Forever Essentials → General 中关闭 Auto Summon Pet（自动召唤小宠物）。",
     ["QOL.PET_CHOICE_THIS_CHARACTER"] = "小宠物选择（此角色）",
     ["QOL.SPECIES_OR_CUSTOM_NAME"] = "种类或自定义名称",
     ["QOL.SPECIFIC_PET_NAME_THIS_CHARACTER"] = "指定小宠物名称（此角色）",
